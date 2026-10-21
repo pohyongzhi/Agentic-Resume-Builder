@@ -1,0 +1,7 @@
+langgraph>=1.0
+ollama>=0.6
+numpy
+sentence-transformers   # NLI faithfulness referee (pulls in torch; CPU is fine)
+gradio                  # simple web page (app.py)
+pypdf                   # read PDF resumes
+python-docx             # read Word resumes
