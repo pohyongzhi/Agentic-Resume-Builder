@@ -1,7 +1,11 @@
 langgraph>=1.0
 ollama>=0.6
 numpy
+pydantic>=2
 sentence-transformers   # NLI faithfulness referee (pulls in torch; CPU is fine)
 gradio                  # simple web page (app.py)
 pypdf                   # read PDF resumes
 python-docx             # read Word resumes
+httpx                   # fetch job description pages
+trafilatura             # extract readable text from job description pages
+pytest                  # tests/ (no Ollama needed)

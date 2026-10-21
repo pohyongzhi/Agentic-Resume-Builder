@@ -56,11 +56,13 @@ def _load_nli():
 
 
 def extract_claims(resume_md):
-    """Claims = bullet points and summary sentences. Headings, names and contact lines are skipped."""
+    """Claims = bullet points, summary sentences and entry headings such as
+    '### Data Analyst, Example Ltd (2022 - 2024)', which carry titles, employers and dates.
+    Section headings, names and contact lines are too short to count and are skipped."""
     claims = []
     for line in resume_md.splitlines():
-        line = line.strip()
-        if not line or line.startswith("#") or len(line) < 25:
+        line = re.sub(r"^#+\s*", "", line.strip())
+        if len(line) < 25:
             continue
         line = re.sub(r"^[-*•\d.)\s]+", "", line).strip()
         for sent in re.split(r"(?<=[.;])\s+", line):

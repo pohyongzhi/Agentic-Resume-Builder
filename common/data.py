@@ -16,9 +16,11 @@ def load_pairs():
     with open(os.path.join(config.DATA_DIR, "pairs.csv"), encoding="utf-8") as f:
         for row in csv.DictReader(f):
             jd_base = os.path.join(config.DATA_DIR, "jds", row["jd_id"])
+            resume_path = os.path.join(config.DATA_DIR, "resumes", row["resume_id"] + ".md")
             pairs.append({
                 "pair_id": f'{row["resume_id"]}__{row["jd_id"]}',
-                "resume": _read(os.path.join(config.DATA_DIR, "resumes", row["resume_id"] + ".md")),
+                "resume_path": resume_path,
+                "resume": _read(resume_path),
                 "jd": _read(jd_base + ".md"),
                 "jd_url": row.get("jd_url", ""),
                 # Hand-written must-have keywords for this JD (with synonyms). Used for keyword coverage.

@@ -1,121 +1,147 @@
-# Resume Agent Lab (IS469 group project starter)
+# Resume Agent Lab
 
-**Question:** which agentic technique makes a small local model (Qwen 4B) write the best tailored resume,
-at what cost, and without making things up?
+**Research question:** which agentic technique makes a small local model write the best tailored
+resume, at what cost, and without inventing facts?
 
-Same model, same inputs, same base prompt, same scorecard for every workflow. Only the technique changes.
+The shared baseline is now an end-to-end agentic system. A resume parser and JD retriever run in
+parallel, a creator tailors the resume, and a code harness requires validation before rendering.
+The original one-prompt implementation remains as `single_pass` (V0), the lower-bound control.
 
-| Workflow | Owner | Technique | Status |
-|---|---|---|---|
-| baseline | everyone | one prompt, no tools (control) | ✅ done |
-| w1_research | | web search + Harvard guide RAG | stub in `workflows/_stubs.py` |
-| w2_recruiter | | recruiter agent reviews, writer revises | stub |
-| w3_critic | | critic + verify_claims, up to 2 rewrites | stub |
-| w4_ats_optimiser | | keyword check → rewrite loop | ✅ worked example |
-| w5_plan_first | | plan, then write | stub |
+| Workflow | Technique | Status |
+|---|---|---|
+| `single_pass` | one prompt, no tools or guardrails (V0 control) | done |
+| `baseline` | parallel extraction agents + creator + validation/render harness | done |
+| `w1_research` | web search + resume-guide RAG | stub |
+| `w2_recruiter` | recruiter agent reviews, writer revises | stub |
+| `w3_critic` | critic + claim verification + rewrites | stub |
+| `w4_ats_optimiser` | keyword check and rewrite loop | worked example |
+| `w5_plan_first` | plan, then write | stub |
 
----
+## Architecture
 
-## Setup (everyone, ~20 min)
-
-**1. Install Ollama** from https://ollama.com/download, then in a terminal:
-```bash
-ollama pull qwen3.5:4b-q4_K_M
-ollama pull nomic-embed-text
+```text
+resume file ──> resume_parser ──┐
+                               ├─> check_extractions ─> resume_creator ─> harness
+JD URL/text ──> jd_retriever ──┘                              │
+                                                              ├─ validate_resume
+                                                              └─ render_resume -> results/outputs/
 ```
 
-**2. Python environment** (inside this folder):
+LangGraph starts both extraction nodes in the same step and waits for both. The creator only sees
+their structured `CandidateData` and `JobData`. If either extraction fails, generation stops.
+
+The harness enforces these rules in Python rather than relying on the prompt:
+
+- only `validate_resume` and `render_resume` are allowed;
+- rendering requires the exact latest draft to have passed validation;
+- employers, titles, dates, education, skills and certifications are checked against candidate data
+  and the original resume text;
+- tool calls are capped by `MAX_TOOL_CALLS`;
+- output files must stay inside `OUTPUT_DIR`, cannot overwrite the input, and cannot replace an
+  existing file.
+
+These checks catch structural and selected factual errors. They do not prove that every rewritten
+sentence is accurate; the separate evaluation still measures claim-level faithfulness.
+
+## Setup
+
+1. Install [Ollama](https://ollama.com/download), then pull the configured models:
+
+   ```bash
+   ollama pull qwen3.5:4b-q4_K_M
+   ollama pull nomic-embed-text
+   ```
+
+2. Create the environment:
+
+   ```bash
+   python -m venv venv
+   source venv/bin/activate          # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
+
+3. Check ordinary and nested-JSON tool calls:
+
+   ```bash
+   python smoke_test.py
+   ```
+
+4. Run tests (they stub all LLM calls and do not need Ollama):
+
+   ```bash
+   pytest -q
+   ```
+
+## Use the agentic baseline
+
 ```bash
-python -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+python app.py
 ```
 
-**3. Check the model can call tools** (do this before building anything):
-```bash
-python smoke_test.py
-```
-Aim for ≥80% valid tool calls. If it's much lower, tell the group before anyone builds a workflow.
+Open http://127.0.0.1:7860, upload a text-based PDF, DOCX, TXT or Markdown resume, then provide a
+job URL or paste the JD. Pasted text takes precedence and is the fallback for pages that require
+login or JavaScript. The validated Markdown resume can be previewed and downloaded.
 
-**4. Quick end-to-end test** on the sample data:
+`baseline_tailor.py` is intentionally still the non-agentic single-pass CLI, not the new baseline:
+
+```bash
+python baseline_tailor.py --resume my_resume.pdf --jd job.txt
+```
+
+## Run experiments
+
 ```bash
 python run_all.py --limit 1 --repeats 1
 python summarise.py
 ```
-The first run downloads the NLI model for the faithfulness check (a few hundred MB).
 
----
+Evaluation uses saved JD snapshots rather than live URLs for reproducibility. Results are appended
+to `results/results.jsonl`; generated resumes go to `results/outputs/`. Runs are skipped only when
+workflow, pair, repeat, model and config/prompt hash all match. Failed runs remain in the summary's
+success rate.
 
-## Try the baseline on your own resume
+The first faithfulness run downloads `cross-encoder/nli-deberta-v3-small`.
 
-Web page (easiest):
-```bash
-python app.py
-```
-Open http://127.0.0.1:7860, upload your resume (.pdf/.docx/.txt/.md), paste the job ad, click **Tailor my resume**.
+## Code layout
 
-Terminal:
-```bash
-python baseline_tailor.py --resume my_resume.pdf --jd job.txt
-```
-Saves `tailored_resume.md`.
-
----
-
-## How the code is organised
-
-```
-baseline_tailor.py      the baseline: one prompt, no tools (also used by workflows/baseline.py)
-app.py                  simple web page: upload resume + paste JD -> tailored resume
-config.py               every setting (model, temperature, context length, step budget). Same for all workflows.
-common/llm.py           the ONLY way to call the model. Logs tokens, time and tool calls into a Tracker.
-common/agent.py         shared LangGraph ReAct loop: agent -> tools -> agent ... -> submit_resume
-common/prompts.py       BASE_RULES + task prompt shared by all workflows
-common/data.py          loads data/pairs.csv (resume + JD + hand-labelled keywords)
-workflows/              one file per workflow, registered in workflows/__init__.py
-eval/metrics.py         the shared scorecard
-run_all.py              runs every workflow on every pair, appends to results/results.jsonl
-summarise.py            mean ± SD of each metric per workflow -> results/summary.csv
+```text
+app.py                    Gradio UI for the agentic baseline
+baseline_tailor.py        single-pass V0 CLI
+config.py                 shared model, harness and extraction settings
+common/
+  schemas.py              CandidateData, JobData and GeneratedResume
+  state.py                shared LangGraph state and parallel error reducer
+  tools.py                resume text extraction and JD page retrieval
+  extraction.py           resume-parser and JD-retriever agent nodes
+  pipeline.py             parallel fan-out/fan-in graph
+  harness.py              validation, rendering, permissions and budgets
+  agent.py                shared ReAct tool loop
+  llm.py                  only Ollama entry point; logs every call
+workflows/
+  single_pass.py          V0 control
+  baseline.py             agentic baseline creator
+eval/metrics.py           shared evaluator metrics
+run_all.py                batch runner
+summarise.py              per-workflow summary
+tests/                    harness, extraction-tool and graph tests
 ```
 
-## Building your workflow (owners)
+## Adding a workflow
 
-1. Copy `workflows/w4_ats_optimiser.py` to `workflows/w1_research.py` (or yours).
-2. Change `NAME`, the `SYSTEM` prompt (keep `BASE_RULES +` at the start) and the tools.
-3. A tool = a normal Python function + `Tool(fn, description, params)`. Write the description
-   carefully: the model reads it to decide when to call the tool.
-4. Always call the model through `common.llm.chat(...)`, never `ollama` directly, or your cost won't be counted.
-5. Return `{"resume_md": ..., "hit_budget": ..., "finished": ...}`.
-6. Add it to `workflows/__init__.py`, then test: `python run_all.py --workflows w1_research --limit 1 --repeats 1`.
+All variants should reuse `common/pipeline.py` so extraction and guardrails stay constant. Supply
+another creator factory in place of `workflows.baseline.make_creator`, call the model only through
+`common.llm.chat`, return the standard workflow dictionary, and register it in
+`workflows/__init__.py`.
 
-Workflows that aren't a tool loop (e.g. W2 recruiter, W5 plan-first) can be their own small LangGraph
-graph like `workflows/baseline.py`, with a fixed number of review rounds.
+Keep `config.py`, extraction, `BASE_RULES`, the harness and evaluation data frozen across variants.
+The test labels must never be shown to a workflow.
 
-## The scorecard (eval/metrics.py)
+## Evaluation data
 
-| Metric | How | Why |
-|---|---|---|
-| Cost | input/output tokens + seconds from Ollama | fancier isn't free |
-| JD similarity | cosine of embeddings, JD vs resume, before and after | does it read like a match? |
-| Keyword coverage | % of our hand-labelled must-have keywords present | roughly what an ATS filter checks |
-| Faithfulness | NLI model checks each claim against the original resume | catches invented skills/numbers; stops "copy the JD" from winning |
-| Tool-call success | valid tool calls / all tool calls, repeated calls, budget hits | can a 4B model run an agent reliably? |
+- `data/resumes/*.md`: fictional candidates only.
+- `data/jds/*.md`: saved JD snapshots.
+- `data/jds/*.keywords.json`: hand-labelled must-have keywords and synonyms.
+- `data/pairs.csv`: resume/JD pairings and optional source URLs.
 
-Notes:
-- Faithfulness uses a separate model (`cross-encoder/nli-deberta-v3-small`) as an independent referee.
-  Check the label order on its Hugging Face model card matches the code (contradiction, entailment, neutral).
-- If you add an overall quality judge, use a bigger model than the writer, and check it against ~20 human ratings.
-
-## Data (data/)
-
-- `resumes/*.md`: fictional candidates only. Never real people's resumes.
-- `jds/<id>.md`: job descriptions (real postings, with the URL in pairs.csv).
-- `jds/<id>.keywords.json`: 10–15 must-have keywords per JD, **hand-labelled by two people**, with synonyms.
-- `pairs.csv`: which resume goes with which JD.
-
-The sample files are placeholders. Plan: 5 resumes × 4 JDs = 20 pairs × 6 workflows × 2 repeats = 240 runs.
-
-## Rules that keep the comparison fair
-- Don't change `config.py` or `BASE_RULES` for your own workflow.
-- Run experiments one workflow at a time (`run_all.py` already does this) so timings aren't distorted.
-- Freeze all workflows before the full run. No tweaking after seeing test results.
+The sample is a placeholder. Expand it before the final experiment and freeze all workflows before
+looking at test results.
