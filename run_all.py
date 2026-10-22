@@ -1,7 +1,7 @@
 """Runs every workflow on every pair, scores it, and appends one JSON line per run.
 
     python run_all.py                         # everything, 2 repeats
-    python run_all.py --workflows baseline    # just one workflow
+    python run_all.py --workflows w2_baseline # just one workflow
     python run_all.py --limit 2 --repeats 1   # quick test on 2 pairs
 
 Safe to stop and restart: runs already in results.jsonl with the same model and config are skipped.
@@ -26,7 +26,11 @@ from workflows import WORKFLOWS
 
 def config_hash():
     settings = {k: getattr(config, k) for k in dir(config) if k.isupper()}
-    settings["prompts"] = [prompts.BASE_RULES, prompts.CREATOR_SYSTEM]
+    settings["prompts"] = [
+        prompts.BASE_RULES,
+        prompts.CREATOR_SYSTEM,
+        prompts.STRUCTURED_CREATOR_SYSTEM,
+    ]
     return hashlib.sha256(json.dumps(settings, sort_keys=True, default=str).encode()).hexdigest()[:12]
 
 

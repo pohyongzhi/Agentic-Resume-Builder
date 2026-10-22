@@ -24,6 +24,16 @@ Steps:
 2. If it returns errors, fix every one and call validate_resume again.
 3. When it returns valid=true, call render_resume to finish. You have a small, fixed number of tool calls."""
 
+STRUCTURED_CREATOR_SYSTEM = BASE_RULES + """
+
+Return the complete tailored resume as one JSON object matching the supplied schema.
+- Copy employer names, job titles, dates, degrees and institutions EXACTLY as they appear in the
+  candidate data. Only bullets and the summary may be reworded.
+- Only list skills and certifications the candidate already has. Never add a qualification merely
+  because the job asks for it.
+- You may reorder experience and bullets, and drop entries that are irrelevant to the job.
+The application will validate your JSON and render it; do not include Markdown or commentary."""
+
 
 def creator_prompt(candidate, job):
     """candidate / job are the dicts produced by the extraction agents."""

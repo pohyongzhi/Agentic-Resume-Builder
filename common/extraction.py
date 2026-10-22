@@ -3,6 +3,8 @@
 Each agent calls its tool in code (small local models are unreliable at deciding when to call a
 tool), then asks the model to turn the text into a fixed schema using Ollama's `format=`.
 Each node writes only its own state field, plus `errors` on failure."""
+import re
+
 from pydantic import ValidationError
 
 from common.llm import chat
@@ -26,6 +28,21 @@ def _structured(prompt, text, schema_model, tracker, exclude=()):
     return schema_model.model_validate_json(msg.content or "")
 
 
+def _recover_contact(candidate, raw_text):
+    """Recover obvious protected contact fields that a small parser model omitted."""
+    if not candidate.contact.email:
+        email = re.search(r"[\w.+-]+@[\w.-]+\.[A-Za-z]{2,}", raw_text)
+        if email:
+            candidate.contact.email = email.group(0)
+    if not candidate.contact.phone:
+        for match in re.finditer(r"(?<!\w)\+?[\d() .-]{7,}\d(?!\w)", raw_text):
+            value = match.group(0).strip()
+            digits = re.sub(r"\D", "", value)
+            if 7 <= len(digits) <= 15:
+                candidate.contact.phone = value
+                break
+
+
 def make_resume_parser(tracker):
     def resume_parser(state):
         try:
@@ -36,6 +53,7 @@ def make_resume_parser(tracker):
             candidate = _structured(PARSER_PROMPT, raw_text, CandidateData, tracker, exclude=("raw_text",))
         except ValidationError as e:
             return {"errors": [f"RESUME_PARSE_FAILED: the model's output did not match the schema ({e.error_count()} errors)"]}
+        _recover_contact(candidate, raw_text)
         candidate.raw_text = raw_text
         return {"candidate_data": candidate.model_dump()}
     return resume_parser

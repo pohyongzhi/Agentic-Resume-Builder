@@ -1,5 +1,7 @@
 """Fixed schemas passed between agents. The JSON schema of each model is also sent to Ollama
 (`format=`), so the model's reply is constrained to this shape."""
+from typing import Literal
+
 from pydantic import BaseModel, Field, model_validator
 
 
@@ -86,6 +88,23 @@ class GeneratedResume(Schema):
     projects: list[Project] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
+
+
+class CriticIssue(Schema):
+    """One actionable problem found by a W3 critic."""
+    category: str
+    severity: Literal["minor", "major", "critical"]
+    evidence: str
+    recommendation: str
+
+
+class CriticFeedback(Schema):
+    """Common structured response returned by every specialist critic."""
+    critic: Literal["fact_checker", "recruiter", "formatting"]
+    approved: bool
+    score: int = Field(ge=1, le=5)
+    summary: str
+    issues: list[CriticIssue] = Field(default_factory=list)
 
 
 def llm_schema(model: type[BaseModel], exclude: tuple[str, ...] = ()) -> dict:

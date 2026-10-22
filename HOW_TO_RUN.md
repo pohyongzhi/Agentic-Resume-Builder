@@ -67,8 +67,8 @@ Useful smaller runs:
 
 ```bash
 python run_all.py --limit 1 --repeats 1
-python run_all.py --workflows single_pass baseline --limit 1 --repeats 1
-python run_all.py --workflows baseline --skip-faithfulness
+python run_all.py --workflows w1_single_pass w2_baseline --limit 1 --repeats 1
+python run_all.py --workflows w2_baseline --skip-faithfulness
 ```
 
 The evaluator uses the saved JD files in `data/jds/`, not live pages. Results append to

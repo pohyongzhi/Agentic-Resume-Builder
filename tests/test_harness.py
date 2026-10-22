@@ -137,6 +137,14 @@ def test_missing_name_and_contact_filled_from_candidate(candidate, good_resume, 
     assert h.outcome()["resume_md"].startswith("# Alex Tan\nalex.tan@example.com")
 
 
+def test_blank_structured_contact_filled_from_candidate(candidate, good_resume, tmp_path):
+    h = make_harness(candidate, tmp_path)
+    draft = dict(good_resume, contact={"email": "", "phone": "", "location": "", "links": []})
+    ok, msg, _ = h.execute("validate_resume", {"resume": draft})
+    assert ok and '"valid": true' in msg
+    assert h.draft["contact"]["email"] == candidate["contact"]["email"]
+
+
 def test_json_string_argument_accepted(candidate, good_resume, tmp_path):
     import json
     h = make_harness(candidate, tmp_path)

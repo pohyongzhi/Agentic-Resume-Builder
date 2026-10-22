@@ -1,5 +1,6 @@
 """SINGLE PASS (V0): the simplest possible resume tailor. One prompt, one model call, no tools, no LangGraph.
-Used by workflows/single_pass.py as the lower bound. The agentic baseline is workflows/baseline.py.
+Used by workflows/w1_single_pass.py as the lower bound. The agentic baseline is
+workflows/w2_baseline.py.
 
 Use it from the terminal:
     python baseline_tailor.py --resume my_resume.pdf --jd job.txt

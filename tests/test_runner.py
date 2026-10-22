@@ -14,18 +14,18 @@ def test_config_hash_changes_with_shared_prompt(monkeypatch):
 def test_done_keys_includes_model_and_config_hash(monkeypatch, tmp_path):
     path = tmp_path / "results.jsonl"
     path.write_text(json.dumps({
-        "workflow": "baseline", "pair_id": "p1", "repeat": 0,
+        "workflow": "w2_baseline", "pair_id": "p1", "repeat": 0,
         "model": "model-a", "config_hash": "abc",
     }) + "\n")
     monkeypatch.setattr(config, "RESULTS_FILE", str(path))
-    assert run_all.done_keys() == {("baseline", "p1", 0, "model-a", "abc")}
+    assert run_all.done_keys() == {("w2_baseline", "p1", 0, "model-a", "abc")}
 
 
 def test_summary_counts_failed_runs(monkeypatch, tmp_path):
     results = tmp_path / "results.jsonl"
     rows = [
-        {"workflow": "baseline", "error": None, "sim_after": 0.5, "finished": True},
-        {"workflow": "baseline", "error": "TOOL_BUDGET_EXCEEDED: x", "finished": False},
+        {"workflow": "w2_baseline", "error": None, "sim_after": 0.5, "finished": True},
+        {"workflow": "w2_baseline", "error": "TOOL_BUDGET_EXCEEDED: x", "finished": False},
     ]
     results.write_text("".join(json.dumps(row) + "\n" for row in rows))
     monkeypatch.setattr(config, "RESULTS_FILE", str(results))

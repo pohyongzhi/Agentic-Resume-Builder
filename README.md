@@ -5,17 +5,14 @@ resume, at what cost, and without inventing facts?
 
 The shared baseline is now an end-to-end agentic system. A resume parser and JD retriever run in
 parallel, a creator tailors the resume, and a code harness requires validation before rendering.
-The original one-prompt implementation remains as `single_pass` (V0), the lower-bound control.
+The original one-prompt implementation is `w1_single_pass`, the lower-bound control. The shared
+agentic baseline is `w2_baseline`.
 
 | Workflow | Technique | Status |
 |---|---|---|
-| `single_pass` | one prompt, no tools or guardrails (V0 control) | done |
-| `baseline` | parallel extraction agents + creator + validation/render harness | done |
-| `w1_research` | web search + resume-guide RAG | stub |
-| `w2_recruiter` | recruiter agent reviews, writer revises | stub |
-| `w3_critic` | critic + claim verification + rewrites | stub |
-| `w4_ats_optimiser` | keyword check and rewrite loop | worked example |
-| `w5_plan_first` | plan, then write | stub |
+| `w1_single_pass` | W1: one prompt, no tools or guardrails (lower-bound control) | done |
+| `w2_baseline` | W2: parallel extraction agents + creator + validation/render harness | done |
+| `w3_critic` | W3: parallel fact, recruiter and formatting critics + rewrites | done |
 
 ## Architecture
 
@@ -29,6 +26,10 @@ JD URL/text ──> jd_retriever ──┘                              │
 
 LangGraph starts both extraction nodes in the same step and waits for both. The creator only sees
 their structured `CandidateData` and `JobData`. If either extraction fails, generation stops.
+
+The baseline creator uses Ollama's constrained `GeneratedResume` schema instead of putting a large,
+nested resume inside a tool argument. Python then invokes the harness operations. This avoids
+malformed JSON from small models while keeping every validation and file-safety rule.
 
 The harness enforces these rules in Python rather than relying on the prompt:
 
@@ -80,7 +81,22 @@ python app.py
 
 Open http://127.0.0.1:7860, upload a text-based PDF, DOCX, TXT or Markdown resume, then provide a
 job URL or paste the JD. Pasted text takes precedence and is the fallback for pages that require
-login or JavaScript. The validated Markdown resume can be previewed and downloaded.
+login or JavaScript. Use the workflow selector to compare the single-pass control, agentic baseline
+and multi-critic workflow interactively. Harness-validated Markdown resumes can be
+previewed and downloaded; unguarded comparison workflows are clearly marked as experimental.
+
+## W3 multi-critic workflow
+
+`w3_critic` creates a structured draft, then runs three separate reviewers in parallel:
+
+- the fact-checker looks for claims unsupported by the original resume;
+- the recruiter checks role relevance, evidence and shortlist quality;
+- the formatting reviewer checks completeness, consistency, concision and scanability.
+
+Their structured feedback is combined and sent back to the creator. The workflow stops early when
+all three approve with no major or critical issues, or after at most two revisions. The latest draft
+must still pass the same deterministic harness used by the baseline before it is rendered. This
+workflow is expected to improve quality and faithfulness at the cost of more model calls and time.
 
 `baseline_tailor.py` is intentionally still the non-agentic single-pass CLI, not the new baseline:
 
@@ -118,8 +134,9 @@ common/
   agent.py                shared ReAct tool loop
   llm.py                  only Ollama entry point; logs every call
 workflows/
-  single_pass.py          V0 control
-  baseline.py             agentic baseline creator
+  w1_single_pass.py       W1 one-prompt control
+  w2_baseline.py          W2 agentic baseline creator
+  w3_critic.py            parallel specialist critics + bounded revision loop
 eval/metrics.py           shared evaluator metrics
 run_all.py                batch runner
 summarise.py              per-workflow summary
@@ -129,7 +146,7 @@ tests/                    harness, extraction-tool and graph tests
 ## Adding a workflow
 
 All variants should reuse `common/pipeline.py` so extraction and guardrails stay constant. Supply
-another creator factory in place of `workflows.baseline.make_creator`, call the model only through
+another creator factory in place of `workflows.w2_baseline.make_creator`, call the model only through
 `common.llm.chat`, return the standard workflow dictionary, and register it in
 `workflows/__init__.py`.
 

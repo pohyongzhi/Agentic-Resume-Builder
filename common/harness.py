@@ -243,8 +243,19 @@ class ToolHarness:
             data = dict(data)
             if not data.get("name"):
                 data["name"] = self.candidate.name
-            if not data.get("contact"):
+            contact = data.get("contact")
+            if not isinstance(contact, dict):
                 data["contact"] = self.candidate.contact.model_dump()
+            else:
+                # Constrained schemas often make small models emit every optional contact key as
+                # an empty value. Fill those protected fields from the source just like omissions.
+                original = self.candidate.contact.model_dump()
+                data["contact"] = {
+                    key: value if value else original.get(key, value)
+                    for key, value in contact.items()
+                }
+                for key, value in original.items():
+                    data["contact"].setdefault(key, value)
         self.draft = data
         self.last_errors = validate_resume(data, self.candidate)
         if self.last_errors:
