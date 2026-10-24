@@ -23,6 +23,11 @@
 *.bin
 *.parquet
 *.arrow
+*.csv
+*.tsv
+*.onnx
+*.npz
+*.npy
 *.jsonl
 !/data/fixtures/v4/*.jsonl
 .env
@@ -30,6 +35,8 @@
 !.env.example
 *.pem
 *.key
+/.aws/
+/.ssh/
 __pycache__/
 *.py[cod]
 .pytest_cache/

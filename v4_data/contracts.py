@@ -1,7 +1,7 @@
 """Small, dependency-free validator for the checked-in schema vocabulary.
 
 The schema uses only local $ref, type, enum, const, required, properties,
-additionalProperties, items, minItems, uniqueItems, minLength, pattern,
+additionalProperties, items, minItems, uniqueItems, minLength, pattern, format,
 minimum and maximum. Unknown schema keywords fail closed.
 """
 
@@ -9,6 +9,7 @@ import hashlib
 import json
 import math
 import re
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,12 +30,25 @@ def digest(value):
     return hashlib.sha256(raw.encode("utf-8")).hexdigest()
 
 
+def parse_json(text):
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise DataError(f"Duplicate JSON key: {key}")
+            result[key] = value
+        return result
+    def invalid_constant(value):
+        raise DataError(f"Invalid JSON constant: {value}")
+    return json.loads(text, object_pairs_hook=pairs, parse_constant=invalid_constant)
+
+
 def validate(record, definition):
     """Validate a named record using the same schema shipped to consumers."""
     def check(value, rule, path):
         allowed = {"$ref", "type", "enum", "const", "required", "properties",
                    "additionalProperties", "items", "minItems", "uniqueItems",
-                   "minLength", "pattern", "minimum", "maximum", "description"}
+                   "minLength", "pattern", "minimum", "maximum", "description", "format"}
         if set(rule) - allowed:
             raise DataError(f"Unsupported schema keywords at {path}")
         if "$ref" in rule:
@@ -74,6 +88,13 @@ def validate(record, definition):
                 raise DataError(f"{path}: empty string")
             if "pattern" in rule and not re.search(rule["pattern"], value):
                 raise DataError(f"{path}: invalid string format")
+            if "format" in rule:
+                if rule["format"] != "date-time":
+                    raise DataError(f"{path}: unsupported format")
+                try:
+                    datetime.strptime(value, "%Y-%m-%dT%H:%M:%SZ")
+                except ValueError as exc:
+                    raise DataError(f"{path}: invalid UTC timestamp") from exc
         if type(value) in (int, float):
             if not math.isfinite(value):
                 raise DataError(f"{path}: non-finite number")
@@ -92,7 +113,7 @@ def read_jsonl(path, definition):
             if not line.strip():
                 raise DataError(f"{path}:{number}: blank JSONL record")
             try:
-                rows.append(validate(json.loads(line), definition))
+                rows.append(validate(parse_json(line), definition))
             except (ValueError, TypeError) as exc:
                 raise DataError(f"{path}:{number}: {exc}") from exc
     return rows

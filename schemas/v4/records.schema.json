@@ -3,6 +3,92 @@
   "title": "V4 archival record definitions, version 1.0",
   "description": "Validate each JSONL record against its named $defs entry. Character spans use Python Unicode code point offsets, with an exclusive end.",
   "$defs": {
+    "holdout": {
+      "type": "object",
+      "properties": {
+        "schema_version": {
+          "type": "string",
+          "const": "1.0"
+        },
+        "id": {
+          "$ref": "#/$defs/id"
+        },
+        "created_at": {
+          "$ref": "#/$defs/timestamp"
+        },
+        "protocol_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "policy_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "assignments_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "fingerprint_version": {
+          "type": "string",
+          "const": "word-trigrams-v1"
+        },
+        "entries": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "source_id": {
+                "$ref": "#/$defs/id"
+              },
+              "family_ids": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/id"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              },
+              "raw_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "text_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "normalized_sha256": {
+                "$ref": "#/$defs/sha256"
+              },
+              "shingles": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/$defs/sha256"
+                },
+                "minItems": 1,
+                "uniqueItems": true
+              }
+            },
+            "required": [
+              "source_id",
+              "family_ids",
+              "raw_sha256",
+              "text_sha256",
+              "normalized_sha256",
+              "shingles"
+            ],
+            "additionalProperties": false
+          },
+          "minItems": 1,
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "created_at",
+        "protocol_sha256",
+        "policy_sha256",
+        "assignments_sha256",
+        "fingerprint_version",
+        "entries"
+      ],
+      "additionalProperties": false
+    },
     "request": {
       "type": "object",
       "properties": {
@@ -92,7 +178,8 @@
     },
     "timestamp": {
       "type": "string",
-      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+      "format": "date-time"
     },
     "source_metadata": {
       "type": "object",
@@ -145,7 +232,8 @@
         },
         "retrieved_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "fictional": {
           "type": "boolean"
@@ -224,7 +312,8 @@
         },
         "created_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "source": {
           "$ref": "#/$defs/source_metadata"
@@ -339,7 +428,8 @@
         },
         "created_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "version": {
           "type": "string",
@@ -417,7 +507,8 @@
         },
         "created_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         }
       },
       "required": [
@@ -575,11 +666,13 @@
         },
         "started_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "completed_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "input_tokens": {
           "type": "integer",
@@ -666,7 +759,8 @@
         },
         "created_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "ledger_id": {
           "$ref": "#/$defs/id"
@@ -816,7 +910,8 @@
         },
         "validated_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "status": {
           "type": "string",
@@ -894,7 +989,8 @@
         },
         "created_at": {
           "type": "string",
-          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$"
+          "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z$",
+          "format": "date-time"
         },
         "purpose": {
           "type": "string",
