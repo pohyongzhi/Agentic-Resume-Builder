@@ -1,6 +1,6 @@
 # V4 fine-tuning research and design
 
-Status: local data foundation implemented, 24 October 2026, following the research/design checkpoint. Only tiny fictional software fixtures have been rendered. No corpus acquisition, teacher generation, GPU training, application changes, or remote publication has been performed.
+Status: local data foundation implemented and a 50-case fictional development pilot drafted, 24 October 2026. Pilot acceptance remains pending independent review, a frozen benchmark exclusion manifest and complete generation metadata. No external corpus acquisition, paid generation, GPU training, application changes, or remote publication has been performed.
 
 The source, licensing and synthetic-design reviews are complete. A fresh independent final judging pass remains pending; the cross-source challenge is documented with its independence limitation. Recommendations remain provisional until that review and the later data pilot.
 
@@ -13,6 +13,7 @@ The current phase adds a local data preparation and validation foundation to the
 - [Dataset evidence and decisions](datasets.md)
 - [Synthetic data, evaluation and training plan](training-plan.md)
 - [Local pipeline, contracts, split safeguards and verification](data-pipeline.md)
+- [50-example development pilot and validation limits](pilot-50.md)
 
 ## Repository findings
 
@@ -56,7 +57,7 @@ Initial proposal: 500 accepted development examples, then approximately 5,000 ac
 |---|---|
 | Research/design (documented) | Source inventory, reviewed shortlist, synthetic recipe, split protocol, architecture-aware training plan; independent final adjudication remains pending. |
 | Data implementation (foundation complete) | Versioned contracts, source admission, component splitting, holdout fingerprints, offline fixture generation and deterministic validation. Real-source cleaning/admission, teacher integration, independent acceptance and a separately frozen final benchmark remain pending. |
-| Generation pilot (later) | 500 accepted development examples with source evidence; independent review and human audit pass. Teacher choice and budget settled before any paid request. |
+| Generation pilot (50-case draft complete) | 50 fictional development cases with evidence mappings are available locally; none has passed the full archival acceptance gate. The proposed 500 accepted cases, independent review and human audit remain later milestones. Teacher choice and budget must be settled before any paid request. |
 | Cluster smoke run (later) | Approved Slurm environment, one GPU allocation, correct loss masks, finite gradients, adapter reload and export checks. |
 | Controlled training (later) | Small validation sweep, locked winner, seed repeat, documented throughput/memory and cost. |
 | Final evaluation/integration (later) | Base versus adapter comparison on untouched final cases; same export pipeline and inference settings; additional workflow without replacing baseline. |
