@@ -15,7 +15,8 @@ from .validation import validate_cases
 
 
 def local_path(value):
-    path = Path(value).resolve()
+    raw = Path(value)
+    path = raw.resolve() if raw.exists() else (raw.parent.resolve() / raw.name)
     if not path.is_relative_to(ROOT):
         raise DataError("All inputs and outputs must stay inside the repository")
     return path

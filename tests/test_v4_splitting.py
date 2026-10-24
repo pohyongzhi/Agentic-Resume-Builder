@@ -3,7 +3,16 @@ import json
 import unittest
 
 from v4_data.contracts import ROOT, DataError, digest, read_jsonl
-from v4_data.splitting import admit_sources, assign_splits, check_assignments, normalize, pair_sources
+from v4_data.splitting import (
+    _prepare_text,
+    _similar_prepared,
+    admit_sources,
+    assign_splits,
+    check_assignments,
+    normalize,
+    pair_sources,
+    similar,
+)
 
 STAMP = "2026-10-24T00:00:00Z"
 
@@ -155,6 +164,22 @@ class SplitTests(unittest.TestCase):
         rows[0]["component_id"] = "forged-component"
         with self.assertRaises(DataError):
             check_assignments(self.sources, rows, self.policy)
+
+    def test_precomputed_similarity_matches_direct_similarity(self):
+        samples = [s["text"] for s in self.sources] + [
+            self.sources[0]["text"] + " Extra note.",
+            "short text",
+            "two words",
+            "",
+        ]
+        prepared = [_prepare_text(t) for t in samples]
+        for threshold in (0.5, 0.75, 0.9):
+            for i, left in enumerate(samples):
+                for j, right in enumerate(samples):
+                    self.assertEqual(
+                        _similar_prepared(prepared[i], prepared[j], threshold),
+                        similar(left, right, threshold),
+                    )
 
 
 if __name__ == "__main__":

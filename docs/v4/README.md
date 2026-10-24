@@ -14,6 +14,8 @@ The current phase adds a local data preparation and validation foundation to the
 - [Synthetic data, evaluation and training plan](training-plan.md)
 - [Local pipeline, contracts, split safeguards and verification](data-pipeline.md)
 - [50-example development pilot and validation limits](pilot-50.md)
+- [Revised 50-example pilot](pilot-50-v2.md)
+- [500-example hybrid expansion preparation and 20-case trial dry-run](expansion-500.md)
 
 ## Repository findings
 

@@ -16,20 +16,39 @@ def normalize(text):
     return " ".join(re.findall(r"\w+", unicodedata.normalize("NFKC", text).casefold()))
 
 
-def similar(left, right, threshold):
-    """Conservative lexical check; declared families cover semantic variants."""
-    a, b = normalize(left), normalize(right)
+def _prepare_text(text):
+    norm = normalize(text)
+    words = norm.split()
+    shingles = frozenset(tuple(words[i:i + 3]) for i in range(max(0, len(words) - 2)))
+    g4 = frozenset(norm[i:i + 4] for i in range(max(0, len(norm) - 3)))
+    return norm, len(norm), shingles, len(shingles), g4, len(g4)
+
+
+def _similar_prepared(left_prep, right_prep, threshold):
+    a, len_a, sa, len_sa, g4_a, len_g4a = left_prep
+    b, len_b, sb, len_sb, g4_b, len_g4b = right_prep
     if a == b:
         return True
-    if min(len(a), len(b)) >= 30 and (a in b or b in a):
+    if min(len_a, len_b) >= 30 and (a in b or b in a):
         return True
-    words_a, words_b = a.split(), b.split()
-    def shingles(words):
-        return {tuple(words[i:i + 3]) for i in range(max(0, len(words) - 2))}
-    sa, sb = shingles(words_a), shingles(words_b)
-    jaccard = len(sa & sb) / len(sa | sb) if sa | sb else 0
+    if len_sa and len_sb and min(len_sa, len_sb) >= threshold * max(len_sa, len_sb):
+        inter = len(sa & sb)
+        if inter / (len_sa + len_sb - inter) >= threshold:
+            return True
+    if not len_a or not len_b:
+        return False
+    if (2.0 * min(len_a, len_b)) / (len_a + len_b) < threshold:
+        return False
+    if min(len_a, len_b) >= 80 and len_g4a and len_g4b:
+        if (2.0 * len(g4_a & g4_b)) / (len_g4a + len_g4b) < threshold * 0.45:
+            return False
     # SequenceMatcher's autojunk would hide repeated template words.
-    return jaccard >= threshold or SequenceMatcher(None, a, b, autojunk=False).ratio() >= threshold
+    return SequenceMatcher(None, a, b, autojunk=False).ratio() >= threshold
+
+
+def similar(left, right, threshold):
+    """Conservative lexical check; declared families cover semantic variants."""
+    return _similar_prepared(_prepare_text(left), _prepare_text(right), threshold)
 
 
 class Exclusions:
@@ -46,6 +65,7 @@ class Exclusions:
             if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != expected:
                 raise DataError(f"Legacy exclusion inventory changed: {relative}; review its exclusion manifest")
             self.texts.append(path.read_text(encoding="utf-8"))
+        self.prepared = [_prepare_text(text) for text in self.texts]
 
     def check(self, source):
         metadata = canonical({k: v for k, v in source.items() if k != "text"})
@@ -56,7 +76,8 @@ class Exclusions:
                source["template_family_id"], *source["parent_ids"], *source["related_family_ids"]}
         if ids & self.ids or any(h in metadata for h in self.hashes):
             raise DataError("Excluded legacy fixture ID or hash")
-        if any(similar(source["text"], text, 0.75) for text in self.texts):
+        src_prep = _prepare_text(source["text"])
+        if any(_similar_prepared(src_prep, prep, 0.75) for prep in self.prepared):
             raise DataError("Excluded legacy fixture content or near-duplicate")
 
 
@@ -128,8 +149,10 @@ def assign_splits(sources, policy, created_at, existing_pairs=(), previous=(), r
             families[family] = source["id"]
         for ancestor in source["parent_ids"]:
             union(source["id"], ancestor)
+    prepared = {key: _prepare_text(records[key]["text"]) for key in records}
     for left, right in combinations(sorted(records), 2):
-        if similar(records[left]["text"], records[right]["text"], policy["near_duplicate_threshold"]):
+        if find(left) != find(right) and _similar_prepared(
+                prepared[left], prepared[right], policy["near_duplicate_threshold"]):
             union(left, right)
     index_unique(existing_pairs)
     for pair in existing_pairs:
