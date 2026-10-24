@@ -52,6 +52,17 @@ class SplitTests(unittest.TestCase):
                 assigned = self.assign()
                 self.assertEqual(assigned[0]["component_id"], assigned[1]["component_id"])
 
+    def test_same_raw_source_or_upstream_identity_groups_different_cleaned_text(self):
+        for identity in ("raw", "source"):
+            with self.subTest(identity=identity):
+                self.setUp()
+                if identity == "raw":
+                    self.sources[1]["source"]["raw_sha256"] = self.sources[0]["source"]["raw_sha256"]
+                else:
+                    self.sources[1]["source"]["source_id"] = self.sources[0]["source"]["source_id"]
+                assigned = self.assign()
+                self.assertEqual(assigned[0]["component_id"], assigned[1]["component_id"])
+
     def test_connected_paired_components_are_transitive(self):
         c1, c2, j1, j2 = [source["id"] for source in self.sources]
         pairs = [{"schema_version": "1.0", "id": f"edge-{i}", "candidate_id": c, "jd_id": j}

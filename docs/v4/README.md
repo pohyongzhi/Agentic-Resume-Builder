@@ -1,6 +1,6 @@
 # V4 fine-tuning research and design
 
-Status: research/design checkpoint, 24 October 2026. No corpus acquisition, teacher generation, GPU training, application changes, or remote publication has been performed.
+Status: local data foundation implemented, 24 October 2026, following the research/design checkpoint. Only tiny fictional software fixtures have been rendered. No corpus acquisition, teacher generation, GPU training, application changes, or remote publication has been performed.
 
 The source, licensing and synthetic-design reviews are complete. A fresh independent final judging pass remains pending; the cross-source challenge is documented with its independence limitation. Recommendations remain provisional until that review and the later data pilot.
 
@@ -8,10 +8,11 @@ The source, licensing and synthetic-design reviews are complete. A fresh indepen
 
 Active checkout: `/Users/kester/Desktop/Agentic-Resume-Builder`, local branch `v4-finetuning-workstream`, based on `Baseline` commit `60132d2181df5005af834771ceee6d04b304af86`. Keep changes local. Commit coherent milestones with one-line messages. Do not push. An earlier unchanged clone exists in the ChatGPT project directory; it is not the active checkout.
 
-The current phase covers source research, licensing/privacy assessment, the synthetic-data design, evaluation policy, and a proposed training/export plan. VPN, SSH, cluster setup, paid generation, bulk downloads and training are later phases. This is an academic project; prefer sources that support future reuse, but record any restrictions rather than assuming academic use clears them.
+The current phase adds a local data preparation and validation foundation to the documented source research, licensing/privacy assessment, synthetic-data design, evaluation policy, and proposed training/export plan. VPN, SSH, cluster setup, paid generation, bulk downloads and training are later phases. This is an academic project; prefer sources that support future reuse, but record any restrictions rather than assuming academic use clears them.
 
 - [Dataset evidence and decisions](datasets.md)
 - [Synthetic data, evaluation and training plan](training-plan.md)
+- [Local pipeline, contracts, split safeguards and verification](data-pipeline.md)
 
 ## Repository findings
 
@@ -53,8 +54,8 @@ Initial proposal: 500 accepted development examples, then approximately 5,000 ac
 
 | Stage | Deliverable and gate |
 |---|---|
-| Research/design (current) | Source inventory, reviewed shortlist, synthetic recipe, schema, split protocol, architecture-aware training plan. |
-| Data implementation (later) | Versioned source manifests, cleaners, duplicate checks, explicit source-use decisions, and a separately frozen final benchmark. |
+| Research/design (documented) | Source inventory, reviewed shortlist, synthetic recipe, split protocol, architecture-aware training plan; independent final adjudication remains pending. |
+| Data implementation (foundation complete) | Versioned contracts, source admission, component splitting, holdout fingerprints, offline fixture generation and deterministic validation. Real-source cleaning/admission, teacher integration, independent acceptance and a separately frozen final benchmark remain pending. |
 | Generation pilot (later) | 500 accepted development examples with source evidence; independent review and human audit pass. Teacher choice and budget settled before any paid request. |
 | Cluster smoke run (later) | Approved Slurm environment, one GPU allocation, correct loss masks, finite gradients, adapter reload and export checks. |
 | Controlled training (later) | Small validation sweep, locked winner, seed repeat, documented throughput/memory and cost. |

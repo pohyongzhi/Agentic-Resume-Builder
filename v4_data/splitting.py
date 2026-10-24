@@ -114,8 +114,13 @@ def assign_splits(sources, policy, created_at, existing_pairs=(), previous=(), r
         x, y = find(a), find(b)
         parent[max(x, y)] = min(x, y)
 
-    families = {}
+    families, originals = {}, {}
     for source in sources:
+        metadata = source["source"]
+        for identity in (("raw", metadata["raw_sha256"]), ("source", metadata["dataset"], metadata["source_id"])):
+            if identity in originals:
+                union(source["id"], originals[identity])
+            originals[identity] = source["id"]
         for family in {source["family_id"], source["template_family_id"], *source["related_family_ids"]}:
             # Globally namespaced family IDs also allow declared cross-kind links.
             if family in families:
