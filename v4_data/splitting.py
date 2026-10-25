@@ -42,8 +42,15 @@ def _similar_prepared(left_prep, right_prep, threshold):
     if min(len_a, len_b) >= 80 and len_g4a and len_g4b:
         if (2.0 * len(g4_a & g4_b)) / (len_g4a + len_g4b) < threshold * 0.45:
             return False
-    # SequenceMatcher's autojunk would hide repeated template words.
-    return SequenceMatcher(None, a, b, autojunk=False).ratio() >= threshold
+    # Compare normalized word sequences. Character-level SequenceMatcher is
+    # quadratic on long templated JDs and overweights shared spelling inside
+    # otherwise different words; word sequences match this lexical safeguard.
+    # Its upper bounds are safe early exits. autojunk remains disabled because
+    # repeated template words can carry the duplicate signal.
+    matcher = SequenceMatcher(None, a.split(), b.split(), autojunk=False)
+    if matcher.real_quick_ratio() < threshold or matcher.quick_ratio() < threshold:
+        return False
+    return matcher.ratio() >= threshold
 
 
 def similar(left, right, threshold):
