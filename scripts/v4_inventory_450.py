@@ -106,7 +106,8 @@ ASPIRATION = re.compile(
     r"allowed me to learn and grow|opportunit(?:y|ies) to develop and improve|"
     r"always open to new knowledge|excited to|suitable candidate|leadership qualities|"
     r"let['’]s discuss|write me|schedule a convenient time|no preferences|"
-    r"like to use|value a company culture|"
+    r"like to use|value a company culture|expect to get|enthusiasm for working|"
+    r"improvise knowledge|meet new obstacles|"
     r"moving forward|in the (?:ongoing )?future|possibilities to grow|development opportunities)\b|"
     r"^professional growth\b"
 )
@@ -345,6 +346,7 @@ def candidate_organization_names(text):
         r"\b(?i:in)[ \t]+([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})[ \t]+"
         r"(?i:social network(?: product)?)\b",
         r"\b(?i:company)[ \t]+[\"'“]([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})[\"'”]",
+        r"\b([A-Z][\w&.-]+)(?:['’]s)[ \t]+(?i:external APIs?|platform|product)\b",
     )
     generic = {"a", "an", "client", "company", "employer", "organization", "the"}
     for pattern in patterns:
@@ -371,6 +373,7 @@ def candidate_product_names(text):
         r"([A-Z][A-Za-z0-9.-]+(?:[ \t]+[A-Z][A-Za-z0-9.-]+){1,4})",
         r"\b(?i:portal|system|application)[ \t]+(?i:of)[ \t]+"
         r"([A-Z][A-Za-z0-9.-]+(?:[ \t]+[A-Z][A-Za-z0-9.-]+){0,3})",
+        r"\b(?i:development)\s*:\s*([A-Za-z][A-Za-z0-9.-]+)\b",
     )
     for pattern in patterns:
         for match in re.finditer(pattern, text):

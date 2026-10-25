@@ -70,7 +70,10 @@ class Inventory450Tests(unittest.TestCase):
                        "Let's discuss the details; write me to schedule a convenient time.",
                        "Can work on a new project or support an existing one—no preferences.",
                        "I like to use WebFlux, REST, SQL, and Spring.",
-                       "I value a company culture that encourages professional development."):
+                       "I value a company culture that encourages professional development.",
+                       "I expect to get a trainee or junior position.",
+                       "I have great enthusiasm for working among like-minded people.",
+                       "Improvise knowledge in automation and meet new obstacles."):
             changed = {**row, "CV": row["CV"] + "\n" + phrase}
             changed_text, _, _ = MODULE.sanitize_candidate(changed)
             self.assertNotIn(phrase, changed_text)
@@ -251,8 +254,9 @@ class Inventory450Tests(unittest.TestCase):
             "Built a toolbox for Kaospilot company.\n"
             "Senior Java Developer in AskFm social network product.\n"
             "Developed features for Jumia online marketplace.\n"
-            "Worked at an international IT company 'Amdaris'.")
-        self.assertEqual(names, {"Kaospilot", "AskFm", "Jumia", "Amdaris"})
+            "Worked at an international IT company 'Amdaris'.\n"
+            "Designed and architected Emtech's External APIs.")
+        self.assertEqual(names, {"Kaospilot", "AskFm", "Jumia", "Amdaris", "Emtech"})
 
     def test_candidate_product_names_are_reused_for_redaction(self):
         raw = ("TechBoss is an e-commerce platform for merchants.\n"
@@ -268,11 +272,13 @@ class Inventory450Tests(unittest.TestCase):
                "1 Sonalysis (in progress) Sonalysis is an analytics application.\n"
                "2 Resume builder: A resume builder for document creation.\n"
                "5 The Bulb Africa website : a company website.\n"
-               "Created the Unified Information Portal of Roshydromet.\n")
+               "Created the Unified Information Portal of Roshydromet.\n"
+               "REST services development: viewily.\n")
         self.assertEqual(MODULE.candidate_product_names(raw),
                          {"TechBoss", "Adfury", "Filmoteka", "Visa Exception System",
                           "IceCream", "Filmoteka Plus", "So Yummy", "MIMIHO", "Mimino",
-                          "Sonalysis", "Resume builder", "The Bulb Africa", "Roshydromet"})
+                          "Sonalysis", "Resume builder", "The Bulb Africa", "Roshydromet",
+                          "viewily"})
         row = {"Position": "Frontend Developer", "Experience Years": 4,
                "CV": raw + "Developed React JavaScript TypeScript HTML CSS Redux interfaces.\n" * 15}
         text, _, actions = MODULE.sanitize_candidate(row)

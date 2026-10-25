@@ -2,7 +2,7 @@
 
 ## Outcome
 
-The additional development inventory is ready for tailored-target generation at `runs/v4-inventory-450-v1/inventory-043`. The directory is ignored by Git and contains no generated tailored resumes. It preserves the frozen V2 pilot and final-evaluation holdout without modification.
+The additional development inventory is ready for tailored-target generation at `runs/v4-inventory-450-v1/inventory-044`. The directory is ignored by Git and contains no generated tailored resumes. It preserves the frozen V2 pilot and final-evaluation holdout without modification.
 
 The inventory contains exactly 450 source pairs: 410 training and 40 validation. These combine with the accepted V2 pilot's 40 training and 10 validation cases to produce the intended 450/50 final development split. The new inventory uses 225 candidate families with two distinct JDs per candidate. Candidate and JD families are isolated between splits.
 
@@ -31,7 +31,7 @@ JD screening recorded 4,261 thin records, 3,323 with too few explicit skills, 2,
 
 Across all screened rows, deterministic sanitization recorded:
 
-- candidate organization redaction in 767 rows, product-name redaction in 124 rows, contact/profile-link removal in 270, non-English-line removal in 206, and sensitive-personal-line removal in 85;
+- candidate organization redaction in 767 rows, product-name redaction in 145 rows, contact/profile-link removal in 270, non-English-line removal in 206, and sensitive-personal-line removal in 85;
 - structured JD company-name redaction in all 7,400 rows, additional organization redaction in 2,060 rows, and product-name redaction in 74 rows.
 
 Selected records have zero detected contact patterns, non-technology domains, malformed redaction markers, known audited organization residues, non-English remnants, exact duplicates, near duplicates, split-family leaks, Java/JavaScript crossover matches, or holdout overlaps. Employer and product names, recruiter details, links, application instructions, benefits, discriminatory language, prompt injections, company marketing, aspirations, inconsistent experience totals, and unsupported occupation evidence are removed or rejected deterministically.
@@ -66,7 +66,7 @@ Candidate source length is 150 / 177 / 204 / 241 / 428 words at minimum, first q
 
 Thirty final pairs were reviewed: ten per occupation family, stratified across low, median, and high pairing scores and including validation examples. All 30 were accepted as coherent, evidence-bearing source combinations suitable for later tailoring. The sample included lower-overlap pairs and a genuinely entry-level candidate. The review checked occupation, responsibility overlap, explicit skill support, seniority, experience requirements, employer and product-name residue, JD marketing, source coherence, and practical application usefulness.
 
-During the audit, rejected, repaired, or replaced source and pair candidates included experience shortfalls, contradictory experience totals, hidden leadership requirements, unsupported Java automation requirements, unsupported language requirements, malformed JD titles, automation or framework specialization without evidence, misleading JD bodies, company marketing, branded product descriptions, employer residues, aspiration text, cross-line redaction damage, and duplicate candidate/JD allocations. The final inventory contains none of those observed defects. The ignored review sample is `runs/v4-inventory-450-v1/inventory-043/manual-review-sample.jsonl`.
+During the audit, rejected, repaired, or replaced source and pair candidates included experience shortfalls, contradictory experience totals, hidden leadership requirements, unsupported Java automation requirements, unsupported language requirements, malformed JD titles, automation or framework specialization without evidence, misleading JD bodies, company marketing, branded product descriptions, employer residues, aspiration text, cross-line redaction damage, and duplicate candidate/JD allocations. The final inventory contains none of those observed defects. The ignored review sample is `runs/v4-inventory-450-v1/inventory-044/manual-review-sample.jsonl`.
 
 ## Validation
 
@@ -74,7 +74,7 @@ Run the independent validator with:
 
 ```sh
 python3 scripts/v4_inventory_450.py validate \
-  --inventory runs/v4-inventory-450-v1/inventory-043 \
+  --inventory runs/v4-inventory-450-v1/inventory-044 \
   --holdout runs/v4-expansion-500/holdout-freeze/holdout.jsonl
 ```
 
