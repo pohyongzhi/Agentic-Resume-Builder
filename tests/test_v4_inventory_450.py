@@ -43,9 +43,28 @@ class Inventory450Tests(unittest.TestCase):
                        "Would be nice to grow into Automation Quality Assurance.",
                        "I enjoy studying and developing myself.",
                        "I am interesed in team leading.",
+                       "My expectations for my next career move include challenging projects.",
+                       "Looking forward to join a corporation where I can create value.",
+                       "I am confident that I can make a significant contribution.",
+                       "For me good work is where I can improve my skills.",
+                       "I continuously expand my knowledge and stay up-to-date.",
                        "I am eager to participate in innovative web development.",
                        "I have a strong desire to continuously learn.",
-                       "Advancing expertise in frontend frameworks like React."):
+                       "Advancing expertise in frontend frameworks like React.",
+                       "Self-development direction: Principal Software Engineer.",
+                       "An opportunity to learn and collaborate with experienced colleagues is valuable.",
+                       "My goal for improvement is to stay current with industry trends.",
+                       "I am looking forward to helping you build modern interfaces.",
+                       "Attaining the position of Technical Leader would be desirable.",
+                       "I am open to opportunities that offer professional growth.",
+                       "I wish I could learn more about automation testing.",
+                       "I would be happy to consider opportunities for further development.",
+                       "I am looking to continually improve my testing skills.",
+                       "This challenge allowed me to learn and grow as a developer.",
+                       "Testing gave me opportunities to develop and improve my skills.",
+                       "I am flexible and always open to new knowledge.",
+                       "I am excited to join a collaborative team.",
+                       "My experience makes me a suitable candidate for the position."):
             changed = {**row, "CV": row["CV"] + "\n" + phrase}
             changed_text, _, _ = MODULE.sanitize_candidate(changed)
             self.assertNotIn(phrase, changed_text)
@@ -125,6 +144,8 @@ class Inventory450Tests(unittest.TestCase):
                "Long Description": ("They develop and market a leading documentation platform. "
                  "Their claim is to provide the best solution worldwide. "
                  "An award-winning developer with offices in several cities serves a global audience. "
+                 "From company parties to personal development, our culture and people drive success. "
+                 "Cool, centrally located offices create good working conditions. "
                  "Develop React and TypeScript interfaces. Implement HTML and CSS components. "
                  "Test JavaScript and REST integrations. Maintain Git workflows. Review requirements. "
                  "Support production releases. Document UI behavior. Build accessible pages. " * 3)}
@@ -132,6 +153,8 @@ class Inventory450Tests(unittest.TestCase):
         self.assertNotIn("They develop and market", text)
         self.assertNotIn("Their claim", text)
         self.assertNotIn("award-winning", text)
+        self.assertNotIn("company parties", text)
+        self.assertNotIn("working conditions", text)
 
     def test_jd_redacts_branded_product_but_preserves_technology(self):
         row = {"Position": "Java Engineer", "Company Name": "Different Employer", "Exp Years": "3",
@@ -193,6 +216,13 @@ class Inventory450Tests(unittest.TestCase):
         value = MODULE.redact_candidate_unit("Front-End Developer at Upwork (Outsourcing industry)")
         self.assertNotIn("Upwork", value)
         self.assertIn("(Outsourcing industry)", value)
+        value = MODULE.redact_candidate_unit(
+            'Led two projects "IceCream" and "Filmoteka" using React and Redux')
+        self.assertNotIn("IceCream", value)
+        self.assertNotIn("Filmoteka", value)
+        value = MODULE.redact_candidate_unit(
+            "So Yummy [JS, React, Redux] - a digital cookbook with authorization")
+        self.assertNotIn("So Yummy", value)
 
     def test_candidate_organization_names_are_reused_for_redaction(self):
         raw = "Netcracker (Provider BSS and OSS): Java developer\nTechnologies: Netcracker ORM"
@@ -207,17 +237,37 @@ class Inventory450Tests(unittest.TestCase):
             "Frontend Developer Internship at codeVillage.\nCompleted a six-month internship.")
         self.assertIn("codeVillage", names)
         self.assertNotIn("codeVillage.\nCompleted", names)
+        names = MODULE.candidate_organization_names(
+            "Worked in the company Vorodis as a developer.\n"
+            "Developed a store for the company PowerLife, It-Group.")
+        self.assertEqual(names, {"Vorodis", "PowerLife", "It-Group"})
+        names = MODULE.candidate_organization_names(
+            "Built a toolbox for Kaospilot company.\n"
+            "Senior Java Developer in AskFm social network product.\n"
+            "Developed features for Jumia online marketplace.")
+        self.assertEqual(names, {"Kaospilot", "AskFm", "Jumia"})
 
     def test_candidate_product_names_are_reused_for_redaction(self):
         raw = ("TechBoss is an e-commerce platform for merchants.\n"
                "Developed the TechBoss mobile apps.\n"
-               "Developed the interface of Adfury and wrote its technical documentation.\n")
-        self.assertEqual(MODULE.candidate_product_names(raw), {"TechBoss", "Adfury"})
+               "Developed the interface of Adfury and wrote its technical documentation.\n"
+               "Worked on the Filmoteka project.\n"
+               "Developed an application, the Visa Exception System, for travel workflows.\n"
+               'Led projects "IceCream" and "Filmoteka Plus" using React.\n'
+               "So Yummy [JS, React, Redux] - a digital cookbook.\n"
+               "Filmoteka - (HTML, CSS, SASS, JS, REST API) responsive website.\n"
+               "MIMIHO [HTML, CSS, JS, Vite]\n"
+               "Developed the Mimino website with an adaptive layout.\n")
+        self.assertEqual(MODULE.candidate_product_names(raw),
+                         {"TechBoss", "Adfury", "Filmoteka", "Visa Exception System",
+                          "IceCream", "Filmoteka Plus", "So Yummy", "MIMIHO", "Mimino"})
         row = {"Position": "Frontend Developer", "Experience Years": 4,
                "CV": raw + "Developed React JavaScript TypeScript HTML CSS Redux interfaces.\n" * 15}
         text, _, actions = MODULE.sanitize_candidate(row)
         self.assertNotIn("TechBoss", text)
         self.assertNotIn("Adfury", text)
+        self.assertNotIn("Filmoteka", text)
+        self.assertNotIn("Visa Exception System", text)
         self.assertIn("redacted_product_names", actions)
 
     def test_candidate_redacts_course_provider_and_slash_separated_platforms(self):
@@ -233,6 +283,24 @@ class Inventory450Tests(unittest.TestCase):
         self.assertNotIn("Freelancehunt", text)
         self.assertNotIn("Upwork", text)
         self.assertIn("redacted_organization_names", actions)
+
+    def test_candidate_drops_course_title_and_redacts_organization_suffix(self):
+        raw = ("How to Build a Startup for Remote Drone Operations.\n"
+               "In this Project/Course we are building a Cloud Application.\n"
+               "Acme: Acme helps founders build sustainable businesses.\n"
+               "Developed REST services for accounts of [Organization withheld]: ticos-systems.\n"
+               "CMS Developer at Q-team/Freelancehunt/Upwork.\n"
+               "Developed React JavaScript TypeScript HTML CSS interfaces and tested REST APIs.\n"
+               "developed react javascript typescript html css interfaces and tested rest apis.\n")
+        row = {"Position": "Frontend Developer", "Experience Years": 2,
+               "CV": raw +
+                     "Developed React JavaScript TypeScript HTML CSS interfaces and tested REST APIs.\n" * 15}
+        text, _, _ = MODULE.sanitize_candidate(row)
+        self.assertNotIn("How to Build", text)
+        self.assertNotIn("Project/Course", text)
+        self.assertNotIn("helps founders", text)
+        self.assertNotIn("ticos-systems", text)
+        self.assertEqual(text.casefold().count("developed react javascript typescript html css"), 1)
 
     def test_candidate_employer_timeline_is_redacted(self):
         value = MODULE.redact_candidate_unit("Named Bank, Senior Java Developer: May 2017 - March 2020")

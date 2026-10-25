@@ -81,7 +81,7 @@ UNIQUE_RISK = re.compile(
 )
 COURSE_MARKETING = re.compile(
     r"(?i)\b(?:udemy course|by the end of this course|students? (?:will )?(?:learn|build)|"
-    r"course curriculum|course developer)\b"
+    r"course curriculum|course developer|project/course)\b|(?i:^how to\b)"
 )
 ASPIRATION = re.compile(
     r"(?i)\b(i am looking for|i'm looking for|looking for|want to|"
@@ -94,6 +94,17 @@ ASPIRATION = re.compile(
     r"would be nice to|enrich my knowledge|enjoy studying|improve my [^.!\n]{0,30} skills?|"
     r"not (?:interested|interesed|intreseted)|(?:interesed|intreseted) in|"
     r"interviews? as a max|jobs? with a requirement|grow in automation|"
+    r"expectations? for my next career move|looking forward to join|open to (?:learn|job|opportunit)|"
+    r"confident that i can|for me good work|where i (?:can|will|would)|i['’]d like to work|"
+    r"continuously expand my knowledge|stay up-to-date|passionate about creating|"
+    r"self-development direction|opportunit(?:y|ies) to (?:learn|collaborate|acquire|grow)|"
+    r"goals? for improvement|looking forward to|continuous learning|continually improve|"
+    r"attaining the position|opportunit(?:y|ies) (?:that offer|to grow|for further development)|"
+    r"possibility of development|expect opportunit(?:y|ies)|wish i could learn|"
+    r"would be happy to consider|valuable asset to any|motivated for professional growth|"
+    r"wouldn['’]t like to|i['’]d like to (?:dive|find)|"
+    r"allowed me to learn and grow|opportunit(?:y|ies) to develop and improve|"
+    r"always open to new knowledge|excited to join|suitable candidate|"
     r"moving forward|in the (?:ongoing )?future|possibilities to grow|development opportunities)\b|"
     r"^professional growth\b"
 )
@@ -110,6 +121,8 @@ JD_DROP = re.compile(
     r"lifelong love of learning|technical test|built to change the nature|"
     r"look no further|tech startup seeking|is seeking a skilled|always looking for talented|"
     r"unique situation|chance to learn|"
+    r"company parties|personal development|culture and people|centrally located offices?|"
+    r"working conditions|"
     r"team buildings?|travel to|multinational corporation|drivers of change|join (?:the|our) team|"
     r"patent|innovation award|leadership award|leading manufacturers|solutions provide|"
     r"purposefully designed for|a few details:|team of \d|used by \d|they deliver|if you are|"
@@ -233,6 +246,12 @@ def redact_candidate_unit(unit):
         r"\b((?i:client|company|employer))\s*:\s*[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}",
     )
     value = unit.replace("**", "")
+    if re.search(r"(?i)\bprojects?\b", value):
+        value = re.sub(r"[\"“][A-Z][^\"”\n]{1,40}[\"”]", "[Product withheld]", value)
+    value = re.sub(
+        r"^[A-Z][A-Za-z0-9'-]*(?:\s+[A-Z][A-Za-z0-9'-]*){0,3}"
+        r"(?=\s+\[[^\]]{2,80}\]\s*[-–—])",
+        "[Product withheld]", value)
     for pattern in patterns:
         value = re.sub(pattern, lambda match: match.group(1) + " [Organization withheld]", value)
     value = re.sub(
@@ -298,6 +317,9 @@ def redact_candidate_unit(unit):
         r"([A-Z][A-Za-z0-9.-]+)\b", redact_candidate_product, value)
     value = re.sub(r"(?i)\bfor the [A-Z][\w&.-]+ customers\b", "for customers", value)
     value = ORG_SUFFIX.sub("[Organization withheld]", value)
+    value = re.sub(
+        r"\[Organization withheld\]\s*:\s*[A-Za-z][\w.-]+",
+        "[Organization withheld]", value)
     return value
 
 
@@ -312,6 +334,14 @@ def candidate_organization_names(text):
         r"([A-Za-z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
         r"\b(?i:course|training)[ \t]+(?i:at|of|from)[ \t]+"
         r"([A-Za-z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
+        r"\b(?i:(?:the[ \t]+)?company)[ \t]+"
+        r"([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
+        r"\b(?i:worked)[ \t]+(?i:in)[ \t]+(?i:(?:the[ \t]+)?company)[ \t]+"
+        r"([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
+        r"\b(?i:for)[ \t]+([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})[ \t]+"
+        r"(?i:company|online marketplace)\b",
+        r"\b(?i:in)[ \t]+([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})[ \t]+"
+        r"(?i:social network(?: product)?)\b",
     )
     generic = {"a", "an", "client", "company", "employer", "organization", "the"}
     for pattern in patterns:
@@ -319,6 +349,10 @@ def candidate_organization_names(text):
             name = match.group(1).strip(" ,.;:-")
             if name.casefold() not in generic and len(name) >= 3:
                 names.add(name)
+    for match in re.finditer(
+            r"\b(?i:(?:the[ \t]+)?company)[ \t]+[A-Z][\w&.-]*,[ \t]*"
+            r"([A-Z][\w&.-]+)", text):
+        names.add(match.group(1).strip(" ,.;:-"))
     return names
 
 
@@ -329,12 +363,35 @@ def candidate_product_names(text):
         r"\b(?:platform|application)\b",
         r"\b(?i:interface|frontend|technical document)[ \t]+(?i:of|for)[ \t]+"
         r"([A-Z][A-Za-z0-9.-]+)\b",
+        r"\b(?i:on)[ \t]+(?i:the)[ \t]+([A-Z][A-Za-z0-9.-]+)[ \t]+(?i:project)\b",
+        r"\b(?i:application),[ \t]+(?i:the)[ \t]+"
+        r"([A-Z][A-Za-z0-9.-]+(?:[ \t]+[A-Z][A-Za-z0-9.-]+){1,4})",
     )
     for pattern in patterns:
         for match in re.finditer(pattern, text):
             name = match.group(1)
             if not skill_set(name):
                 names.add(name)
+    for line in text.splitlines():
+        if re.search(r"(?i)\bprojects?\b", line):
+            for match in re.finditer(r"[\"“]([A-Z][^\"”\n]{1,40})[\"”]", line):
+                names.add(match.group(1))
+        match = re.match(
+            r"([A-Z][A-Za-z0-9'-]*(?:\s+[A-Z][A-Za-z0-9'-]*){0,3})"
+            r"(?=\s+\[[^\]]{2,80}\](?:\s*[-–—])?)", line)
+        if match and not skill_set(match.group(1)):
+            names.add(match.group(1))
+        match = re.search(
+            r"\b(?i:developed|built|created)\s+(?:an?\s+)?(?:the\s+)?"
+            r"([A-Z][A-Za-z0-9'-]*(?:\s+[A-Z][A-Za-z0-9'-]*){0,3})\s+"
+            r"(?i:website|application|platform)\b", line)
+        if match and not skill_set(match.group(1)):
+            names.add(match.group(1))
+        match = re.match(
+            r"([A-Z][A-Za-z0-9'-]*(?:\s+[A-Z][A-Za-z0-9'-]*){0,3})\s*[-–—]\s*"
+            r"\((?=[^)]*\b(?:HTML|CSS|SASS|JavaScript|JS|React|Redux|REST|NPM)\b)", line)
+        if match and not skill_set(match.group(1)):
+            names.add(match.group(1))
     return names
 
 
@@ -430,6 +487,11 @@ def sanitize_candidate(row):
         "[Organization withheld]", raw)
     if slash_count:
         actions.append("redacted_organization_names")
+    raw, suffix_count = re.subn(
+        r"\[Organization withheld\]\s*:\s*[A-Za-z][\w.-]+",
+        "[Organization withheld]", raw)
+    if suffix_count:
+        actions.append("redacted_organization_names")
     inverted, future = chronology_findings(raw)
     if inverted:
         reasons.append("impossible_timeline")
@@ -463,11 +525,19 @@ def sanitize_candidate(row):
         if redacted != unit:
             actions.append("redacted_organization_names")
         unit = redacted
+        if (unit.endswith(":") or re.search(
+                r"\[Organization withheld\].*\b(?:helps|provides|offers|is an?)\b",
+                unit, flags=re.IGNORECASE)):
+            continue
         # Retain explicit work evidence and dense skill statements. Identity-only
         # employers, clients, products, courses and project descriptions are removed.
         if not RESPONSIBILITY.search(unit) and len(skill_set(unit)) < 2:
             continue
         kept.append(unit)
+    deduplicated = {}
+    for unit in kept:
+        deduplicated.setdefault(unit.casefold(), unit)
+    kept = list(deduplicated.values())
     # Bound unique narrative combinations while retaining enough evidence.
     kept = kept[:24]
     evidence_words = sum(len(words(x)) for x in kept)
