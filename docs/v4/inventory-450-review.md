@@ -2,7 +2,7 @@
 
 ## Outcome
 
-The additional development inventory is ready for tailored-target generation at `runs/v4-inventory-450-v1/inventory-019`. The directory is ignored by Git and contains no generated tailored resumes. It preserves the frozen V2 pilot and final-evaluation holdout without modification.
+The additional development inventory is ready for tailored-target generation at `runs/v4-inventory-450-v1/inventory-032`. The directory is ignored by Git and contains no generated tailored resumes. It preserves the frozen V2 pilot and final-evaluation holdout without modification.
 
 The inventory contains exactly 450 source pairs: 410 training and 40 validation. These combine with the accepted V2 pilot's 40 training and 10 validation cases to produce the intended 450/50 final development split. The new inventory uses 225 candidate families with two distinct JDs per candidate. Candidate and JD families are isolated between splits.
 
@@ -25,16 +25,16 @@ The cards declare MIT, but the provenance of every third-party free-text fragmen
 
 Exactly 3,975 of 4,200 screened candidate rows and 7,134 of 7,400 screened JD rows were rejected or not selected. Rejection reasons are non-exclusive.
 
-Candidate screening recorded 3,631 thin records, 2,675 with too few fact units, 2,207 with too few explicit skills, 1,497 with too few responsibilities, 552 outside the supported occupations, 163 with contradictory experience totals, 76 with distinctive personal details, six without two compatible JDs, four with post-publication dates, one inverted timeline, and one frozen-holdout overlap. Another 116 eligible records were not selected.
+Candidate screening recorded 3,671 thin records, 2,753 with too few fact units, 2,349 with too few explicit skills, 1,562 with too few responsibilities, 552 outside the supported occupations, 262 with contradictory experience totals, 76 with distinctive personal details, nine without two compatible JDs, four with post-publication dates, one inverted timeline, and one frozen-holdout overlap. Another 71 eligible records were not selected.
 
-JD screening recorded 4,133 thin records, 2,857 with too few explicit skills, 2,835 with too few responsibilities, 1,452 outside the supported occupations, 432 leadership roles, 247 with insufficient occupation evidence, 114 near duplicates, 96 with residual PII, 17 exact duplicates, and three frozen-holdout overlaps. Another 1,694 eligible records were not selected.
+JD screening recorded 4,252 thin records, 3,323 with too few explicit skills, 2,975 with too few responsibilities, 1,454 outside the supported occupations, 432 leadership roles, 257 with insufficient occupation evidence, 103 near duplicates, 91 with residual PII, 15 exact duplicates, two malformed titles, two unsupported language requirements, and two frozen-holdout overlaps. Another 1,508 eligible records were not selected.
 
 Across all screened rows, deterministic sanitization recorded:
 
-- candidate organization redaction in 500 rows, contact/profile-link removal in 270, non-English-line removal in 206, and sensitive-personal-line removal in 85;
-- structured JD company-name redaction in all 7,400 rows and additional organization redaction in 1,963 rows.
+- candidate organization redaction in 716 rows, contact/profile-link removal in 270, non-English-line removal in 206, and sensitive-personal-line removal in 85;
+- structured JD company-name redaction in all 7,400 rows, additional organization redaction in 2,022 rows, and product-name redaction in 74 rows.
 
-Selected records have zero detected contact patterns, organization suffixes, non-English remnants, exact duplicates, near duplicates, split-family leaks, or holdout overlaps. Employer names, recruiter details, links, application instructions, benefits, discriminatory language, prompt injections, company marketing, distinctive projects, inconsistent timelines, and unsupported occupation evidence are removed or rejected deterministically.
+Selected records have zero detected contact patterns, non-technology domains, malformed redaction markers, known audited organization residues, non-English remnants, exact duplicates, near duplicates, split-family leaks, Java/JavaScript crossover matches, or holdout overlaps. Employer and product names, recruiter details, links, application instructions, benefits, discriminatory language, prompt injections, company marketing, aspirations, inconsistent experience totals, and unsupported occupation evidence are removed or rejected deterministically.
 
 ## Pairing and split audit
 
@@ -50,9 +50,9 @@ The split was reserved before pairing. Stable candidate and JD family assignment
 | Validation pairs | 40 |
 | Frontend / Java / QA pairs | 150 / 150 / 150 |
 | Distinct candidate/JD edges | 450 |
-| JD reuse | 151 once, 48 twice, 68 three times |
-| Pair score, minimum / median / maximum | 0.775 / 0.933333 / 1.0 |
-| Skill coverage, minimum / median | 0.363636 / 1.0 |
+| JD reuse | 146 once, 56 twice, 64 three times |
+| Pair score, minimum / median / maximum | 0.7 / 0.906667 / 1.0 |
+| Skill coverage, minimum / median | 0.375 / 0.833333 |
 | Experience shortfalls | 0 |
 | Exact or near duplicates selected | 0 |
 | Cross-split family leaks | 0 |
@@ -60,13 +60,13 @@ The split was reserved before pairing. Stable candidate and JD family assignment
 
 Every pair has the same occupation family, at least three explicitly shared skills, at least 30% JD-skill coverage, non-increasing seniority, and no JD minimum-experience requirement above the candidate's reported experience. Automation and named specialization roles require corresponding candidate evidence. Every candidate has two distinct JDs; one JD may support at most three candidates and never crosses splits.
 
-Candidate source length is 140 / 165 / 192 / 230 / 445 words at minimum, first quartile, median, third quartile, and maximum. JD source length is 85 / 101 / 118 / 156 / 355 words at the same points.
+Candidate source length is 140 / 163 / 191 / 227 / 432 words at minimum, first quartile, median, third quartile, and maximum. JD source length is 85 / 101 / 118 / 151 / 353 words at the same points.
 
 ## Manual review
 
-Thirty final pairs were reviewed: ten per occupation family, stratified across low, median, and high pairing scores and including validation examples. All 30 were accepted as coherent, evidence-bearing source combinations suitable for later tailoring. The review checked occupation, responsibility overlap, explicit skill support, seniority, experience requirements, employer and project-name residue, JD marketing, and practical application usefulness.
+Thirty final pairs were reviewed: ten per occupation family, stratified across low, median, and high pairing scores and including validation examples. All 30 were accepted as coherent, evidence-bearing source combinations suitable for later tailoring. The sample included lower-overlap pairs and a genuinely entry-level candidate. The review checked occupation, responsibility overlap, explicit skill support, seniority, experience requirements, employer and product-name residue, JD marketing, source coherence, and practical application usefulness.
 
-During the audit, rejected or replaced pair candidates included experience shortfalls, hidden leadership requirements, automation or framework specialization without evidence, misleading JD bodies, company marketing, branded project descriptions, employer residues, and duplicate candidate/JD allocations. The final inventory contains none of those observed defects. The ignored review sample is `runs/v4-inventory-450-v1/inventory-019/manual-review-sample.jsonl`.
+During the audit, rejected, repaired, or replaced source and pair candidates included experience shortfalls, contradictory experience totals, hidden leadership requirements, unsupported language requirements, malformed JD titles, automation or framework specialization without evidence, misleading JD bodies, company marketing, branded product descriptions, employer residues, cross-line redaction damage, and duplicate candidate/JD allocations. The final inventory contains none of those observed defects. The ignored review sample is `runs/v4-inventory-450-v1/inventory-032/manual-review-sample.jsonl`.
 
 ## Validation
 
@@ -74,7 +74,7 @@ Run the independent validator with:
 
 ```sh
 python3 scripts/v4_inventory_450.py validate \
-  --inventory runs/v4-inventory-450-v1/inventory-019 \
+  --inventory runs/v4-inventory-450-v1/inventory-032 \
   --holdout runs/v4-expansion-500/holdout-freeze/holdout.jsonl
 ```
 

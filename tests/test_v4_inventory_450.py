@@ -29,6 +29,36 @@ class Inventory450Tests(unittest.TestCase):
         self.assertNotIn("person@example.com", text)
         self.assertNotIn("looking for", text)
         self.assertIn("removed_contact_or_profile_link_lines", actions)
+        for phrase in ("I want to learn AWS.", "I am searching for a friendly team.",
+                       "Professional growth and development opportunities.",
+                       "Currently seeking new opportunities as a frontend developer.",
+                       "I am seeking an engaging company in frontend development.",
+                       "I am highly motivated to achieve new heights in my career.",
+                       "I am always eager to develop my skills and abilities.",
+                       "Interested in learning automation testing.",
+                       "Looking for a full time remote position.",
+                       "Now I'm studying to automate testing on Java.",
+                       "Obtain a QA Engineer position in a product company.",
+                       "Not interested in legacy projects.",
+                       "I am eager to participate in innovative web development.",
+                       "I have a strong desire to continuously learn.",
+                       "Advancing expertise in frontend frameworks like React."):
+            changed = {**row, "CV": row["CV"] + "\n" + phrase}
+            changed_text, _, _ = MODULE.sanitize_candidate(changed)
+            self.assertNotIn(phrase, changed_text)
+
+    def test_candidate_drops_self_identifier(self):
+        row = {"Position": "Frontend Developer", "Experience Years": 2, "CV": """
+        My name is Yaroslav, and I am a frontend developer.
+        Developed React and JavaScript interfaces with responsive HTML and CSS components.
+        Implemented Redux state management and tested REST API integrations.
+        Maintained Git workflows and reviewed pull requests with the development team.
+        Built accessible TypeScript pages and analyzed browser compatibility defects.
+        Documented UI behavior and coordinated Scrum delivery through Jira.
+        Supported production releases and investigated frontend incidents.
+        """}
+        text, _, _ = MODULE.sanitize_candidate(row)
+        self.assertNotIn("Yaroslav", text)
 
     def test_candidate_drops_non_english_identity_line(self):
         row = {"Position": "Java Developer", "Experience Years": 5, "CV":
@@ -50,6 +80,13 @@ class Inventory450Tests(unittest.TestCase):
                      "Developed Java Spring Docker SQL Git services and tested APIs. " * 20}
         _, reasons, _ = MODULE.sanitize_candidate(row)
         self.assertIn("contradictory_experience", reasons)
+        row["Experience Years"] = 5
+        row["CV"] = row["CV"].replace("over 11 years", "6 years")
+        _, reasons, _ = MODULE.sanitize_candidate(row)
+        self.assertIn("contradictory_experience", reasons)
+        row["CV"] = row["CV"].replace("6 years", "4+ years")
+        _, reasons, _ = MODULE.sanitize_candidate(row)
+        self.assertNotIn("contradictory_experience", reasons)
 
     def test_split_units_preserves_leading_year_requirement(self):
         self.assertEqual(MODULE.split_units("3+ years of Java experience."),
@@ -68,6 +105,41 @@ class Inventory450Tests(unittest.TestCase):
         self.assertNotIn("recruiter@example.com", text)
         self.assertIn("redacted_company_name", actions)
         self.assertGreaterEqual(len(skills), 4)
+
+    def test_jd_company_redaction_does_not_corrupt_larger_words(self):
+        row = {"Position": "Java Developer", "Company Name": "Block", "Exp Years": "3",
+               "Long Description": ("Support developer teams for Block and blockchain releases. "
+                 "Our mission is to help every developer grow. Develop Java and Spring services. "
+                 "Implement SQL persistence and test REST APIs. Maintain Git and Docker workflows. "
+                 "Review code and document service behavior. Support production releases. " * 3)}
+        text, _, _, _ = MODULE.sanitize_jd(row)
+        self.assertIn("blockchain", text)
+        self.assertNotIn("[Employer withheld]chain", text)
+        self.assertNotIn("Our mission", text)
+
+    def test_jd_drops_company_marketing_without_structured_name(self):
+        row = {"Position": "Front-End Developer", "Company Name": "", "Exp Years": "3",
+               "Long Description": ("They develop and market a leading documentation platform. "
+                 "Their claim is to provide the best solution worldwide. "
+                 "An award-winning developer with offices in several cities serves a global audience. "
+                 "Develop React and TypeScript interfaces. Implement HTML and CSS components. "
+                 "Test JavaScript and REST integrations. Maintain Git workflows. Review requirements. "
+                 "Support production releases. Document UI behavior. Build accessible pages. " * 3)}
+        text, _, _, _ = MODULE.sanitize_jd(row)
+        self.assertNotIn("They develop and market", text)
+        self.assertNotIn("Their claim", text)
+        self.assertNotIn("award-winning", text)
+
+    def test_jd_redacts_branded_product_but_preserves_technology(self):
+        row = {"Position": "Java Engineer", "Company Name": "Different Employer", "Exp Years": "3",
+               "Long Description": ("Design and implement Varjo backend applications. "
+                 "Develop Java backend services with Spring Boot. Implement SQL persistence. "
+                 "Test REST APIs and maintain Git and Docker workflows. Review code. "
+                 "Support production releases and document service behavior. " * 3)}
+        text, _, actions, _ = MODULE.sanitize_jd(row)
+        self.assertNotIn("Varjo", text)
+        self.assertIn("Java backend services", text)
+        self.assertIn("redacted_product_names", actions)
 
     def test_pair_requires_role_seniority_and_skills(self):
         candidate = {"role_family": "java", "seniority": 2, "skills": {"java", "spring", "sql", "git"}}
@@ -90,6 +162,8 @@ class Inventory450Tests(unittest.TestCase):
     def test_javascript_is_frontend_not_java(self):
         self.assertEqual(MODULE.role_family("JavaScript Developer"), "frontend")
         self.assertEqual(MODULE.role_family("Senior Java Developer"), "java")
+        self.assertEqual(MODULE.skill_set("JavaScript, React and CSS"), {"javascript", "react", "css"})
+        self.assertIn("java", MODULE.skill_set("Java, Spring Boot and Docker"))
 
     def test_candidate_seniority_uses_reported_experience(self):
         self.assertEqual(MODULE.candidate_seniority("Senior Java Developer", 2.5), 2)
@@ -101,6 +175,39 @@ class Inventory450Tests(unittest.TestCase):
         value = MODULE.redact_candidate_unit("Worked at Named Company as a Java developer")
         self.assertNotIn("Named Company", value)
         self.assertNotIn("atis", MODULE.redact_candidate_unit("Developer at atis building interfaces"))
+        value = MODULE.redact_candidate_unit("Netcracker (Provider BSS and OSS): Java developer")
+        self.assertNotIn("Netcracker", value)
+        value = MODULE.redact_candidate_unit("Front-End Developer at Upwork (Outsourcing industry)")
+        self.assertNotIn("Upwork", value)
+        self.assertIn("(Outsourcing industry)", value)
+
+    def test_candidate_organization_names_are_reused_for_redaction(self):
+        raw = "Netcracker (Provider BSS and OSS): Java developer\nTechnologies: Netcracker ORM"
+        self.assertEqual(MODULE.candidate_organization_names(raw), {"Netcracker"})
+        row = {"Position": "Java Developer", "Experience Years": 5,
+               "CV": raw + "\n" +
+                     "Developed Java Spring Docker SQL Git REST services and tested APIs.\n" * 15}
+        text, _, actions = MODULE.sanitize_candidate(row)
+        self.assertNotIn("Netcracker", text)
+        self.assertIn("redacted_organization_names", actions)
+        names = MODULE.candidate_organization_names(
+            "Frontend Developer Internship at codeVillage.\nCompleted a six-month internship.")
+        self.assertIn("codeVillage", names)
+        self.assertNotIn("codeVillage.\nCompleted", names)
+
+    def test_candidate_redacts_course_provider_and_slash_separated_platforms(self):
+        raw = ("Completed a FrontEnd Development course at DAN.IT EDUCATION with high grades.\n"
+               "Attended an online course of QA Testlab.\n"
+               "CMS Developer at Q-team/Freelancehunt/Upwork.\n")
+        row = {"Position": "Frontend Developer", "Experience Years": 2,
+               "CV": raw +
+                     "Developed React JavaScript TypeScript HTML CSS interfaces and tested REST APIs.\n" * 15}
+        text, _, actions = MODULE.sanitize_candidate(row)
+        self.assertNotIn("DAN.IT EDUCATION", text)
+        self.assertNotIn("QA Testlab", text)
+        self.assertNotIn("Freelancehunt", text)
+        self.assertNotIn("Upwork", text)
+        self.assertIn("redacted_organization_names", actions)
 
     def test_candidate_employer_timeline_is_redacted(self):
         value = MODULE.redact_candidate_unit("Named Bank, Senior Java Developer: May 2017 - March 2020")
@@ -110,6 +217,31 @@ class Inventory450Tests(unittest.TestCase):
         self.assertNotIn("NamedCo", value)
         value = MODULE.redact_candidate_unit("My current position: Senior Java Developer, NamedCo")
         self.assertNotIn("NamedCo", value)
+        value = MODULE.redact_candidate_unit(
+            "Jul 2018 - Jan 2020, Junior Front End developer (webisland.agency)")
+        self.assertNotIn("webisland.agency", value)
+        value = MODULE.redact_candidate_unit(
+            "Luxoft – Senior Java Developer (Krakow, Poland February 2019 – till now)")
+        self.assertNotIn("Luxoft", value)
+        value = MODULE.redact_candidate_unit("Content manager - ViDi AutoCity (Automotive business)")
+        self.assertNotIn("ViDi AutoCity", value)
+        value = MODULE.redact_candidate_unit(
+            "Siduna & Ndou Engineering: Designed and developed the site")
+        self.assertNotIn("Siduna & Ndou Engineering", value)
+        value = MODULE.redact_candidate_unit(
+            "Developed a site for a real estate company, improving user experience")
+        self.assertIn("improving user experience", value)
+        self.assertNotIn("[Organization withheld] user experience", value)
+
+    def test_candidate_redacts_non_technology_domains(self):
+        value = MODULE.redact_candidate_unit(
+            "Built webisland.agency using React.js, ASP.NET, Socket.io, Qase.io and Cypress.io")
+        self.assertNotIn("webisland.agency", value)
+        for technology in ("React.js", "ASP.NET", "Socket.io", "Qase.io", "Cypress.io"):
+            self.assertIn(technology, value)
+        value = MODULE.redact_candidate_unit(
+            'Completed test automation training at “ACADEMIA TESTARII” with a diploma')
+        self.assertNotIn("ACADEMIA TESTARII", value)
 
     def test_jd_seniority_ignores_markdown_boundaries(self):
         text = "The **Principal Software Engineer** designs and develops systems."
@@ -123,6 +255,18 @@ class Inventory450Tests(unittest.TestCase):
         self.assertEqual(MODULE.sanitize_jd_title("Java Engineer (IRC158047)", ""), "Java Engineer")
         self.assertEqual(MODULE.sanitize_jd_title("QA Automation (Python), Poland", ""),
                          "QA Automation (Python), Poland")
+
+    def test_jd_rejects_malformed_and_language_restricted_titles(self):
+        body = ("Develop and test Java Spring SQL Git REST services. "
+                "Implement APIs and review code with the team. " * 10)
+        malformed = {"Position": ("QA automatization Good knowledge SQL database Experience in testing projects "
+                                  "based on microservices Basic knowledge JAVA Knowledge of Jira will be a plus"),
+                     "Company Name": "", "Exp Years": "3", "Long Description": body}
+        _, reasons, _, _ = MODULE.sanitize_jd(malformed)
+        self.assertIn("invalid_jd_title", reasons)
+        language = {**malformed, "Position": "Java developer with Lithuanian language"}
+        _, reasons, _, _ = MODULE.sanitize_jd(language)
+        self.assertIn("unsupported_language_requirement", reasons)
 
     def test_specialized_pair_requires_matching_evidence(self):
         candidate = {"role_family": "java", "seniority": 3,

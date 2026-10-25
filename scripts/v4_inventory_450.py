@@ -84,9 +84,17 @@ COURSE_MARKETING = re.compile(
     r"course curriculum|course developer)\b"
 )
 ASPIRATION = re.compile(
-    r"(?i)\b(i am looking for|i'm looking for|looking for (?:a|an|interesting)|want to work|"
-    r"would like to|my goal is|areas? of interest|prefer to|dream of|seeking a)\b"
+    r"(?i)\b(i am looking for|i'm looking for|looking for|want to|"
+    r"would like to|my goal is|my objective is|areas? of interest|prefer to|dream of|seeking (?:a|an)|"
+    r"i aspire|i am searching|i'm willing|i am planning to|interested in|searching for a team|"
+    r"currently seeking|seeking new opportunities|motivated to|eager to|studying to|"
+    r"strong desire to|advancing (?:my )?expertise|enhancing (?:my )?skills|growing (?:my )?understanding|"
+    r"obtain a [^.!\n]{0,40} position|have an opportunity to develop|interesting project where|"
+    r"positions? below|where i can (?:apply|improve|develop)|"
+    r"moving forward|in the (?:ongoing )?future|possibilities to grow|development opportunities)\b|"
+    r"^professional growth\b"
 )
+SELF_IDENTIFIER = re.compile(r"(?i)\b(?:my name is|i am named|this is)\s+[A-Z][a-z]{1,30}\b")
 JD_DROP = re.compile(
     r"(?i)\b(apply now|send (?:us |your )?(?:cv|resume)|recruiter|contact us|salary|"
     r"compensation|benefits|we offer|(?:is|are) looking for|operates (?:community|a |the )|"
@@ -94,6 +102,11 @@ JD_DROP = re.compile(
     r"our (?:client|company|team)|the company|headquartered|work schedule|days off|"
     r"reimbursement|relocation|visa support|training program|career advancement|career development|"
     r"professional growth|family atmosphere|"
+    r"award-winning developer|with offices in|global audience|phase of growth|unique opportunity|"
+    r"their claim|they develop and market|they build an|there is a small team|is looking to hire|"
+    r"lifelong love of learning|technical test|built to change the nature|"
+    r"look no further|tech startup seeking|is seeking a skilled|always looking for talented|"
+    r"unique situation|chance to learn|"
     r"team buildings?|travel to|multinational corporation|drivers of change|join (?:the|our) team|"
     r"patent|innovation award|leadership award|leading manufacturers|solutions provide|"
     r"purposefully designed for|a few details:|team of \d|used by \d|they deliver|if you are|"
@@ -106,13 +119,14 @@ JD_DROP = re.compile(
 )
 INJECTION = re.compile(r"(?i)\b(ignore (?:all |the )?(?:previous|above)|assistant:|system prompt|do not follow)\b")
 JD_MARKETING = re.compile(
-    r"(?i)(?:^(?:we|our|the client|client)\b|^\[employer withheld\]|"
+    r"(?i)(?:^(?:we|our|the client|client)\b|^at\s+[A-Z]|^as a part of \[employer withheld\]|"
+    r"^\[employer withheld\]|\bour mission\b|"
     r"\b(?:leading(?:\s+\w+){0,3}\s+company|one of the leaders|world[’']s leading|software studio from|"
     r"venture-backed company|subscriber locations|corporate parties|market leader|pioneer)\b)"
 )
 ORG_SUFFIX = re.compile(
     r"\b[A-Z][\w&.-]+(?:\s+[A-Z][\w&.-]+){0,3}\s+"
-    r"(?:Inc|Ltd|LLC|GmbH|Corp|Corporation|Systems|Bank|University)\b"
+    r"(?:Inc|Ltd|LLC|GmbH|Corp|Corporation|Systems|Bank|University|Academy|Institute|Center)\b"
 )
 RESPONSIBILITY = re.compile(
     r"(?i)\b(develop|design|implement|test|analy[sz]e|maintain|create|build|support|"
@@ -143,7 +157,13 @@ def clean_space(text):
 
 def skill_set(text):
     haystack = " " + clean_space(text).casefold() + " "
-    return {name for name, variants in SKILLS.items() if any(v in haystack for v in variants)}
+    def present(variant):
+        if variant != variant.strip():
+            return variant in haystack
+        if re.fullmatch(r"[a-z0-9+#.\-/]+", variant):
+            return bool(re.search(r"(?<![\w+#])" + re.escape(variant) + r"(?![\w+#])", haystack))
+        return variant in haystack
+    return {name for name, variants in SKILLS.items() if any(present(variant) for variant in variants)}
 
 
 def role_family(title):
@@ -205,7 +225,8 @@ def redact_candidate_unit(unit):
     patterns = (
         r"\b((?i:contractor for|worked at|worked for|working at|working for|role at|"
         r"(?:engineer|developer|architect|tester) at))\s+"
-        r"(?!\[Organization withheld\])[^,.;\n]{2,60}",
+        r"(?!\[(?:Organization|Employer) withheld\])"
+        r"[A-Za-z0-9&.-]+(?:\s+[A-Z][\w&.-]*){0,3}",
         r"\b((?i:client|company|employer))\s*:\s*[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}",
     )
     value = unit.replace("**", "")
@@ -216,16 +237,71 @@ def redact_candidate_unit(unit):
         r"(?:software|java|qa|front[- ]?end|quality assurance)\s+[^:]{0,35}:)",
         r"[Organization withheld], \1", value, flags=re.IGNORECASE)
     value = re.sub(
-        r"(\b(?:(?:senior|junior|lead|middle|mid-level)\s+)?"
+        r"(\b(?i:(?:(?:senior|junior|lead|middle|mid-level)\s+)?"
         r"(?:java|software|front[- ]?end|full[- ]?stack|qa)\s+"
-        r"(?:developer|engineer|architect)(?:\s*/\s*(?:full[- ]?stack\s+)?lead)?),\s*"
+        r"(?:developer|engineer|architect)(?:\s*/\s*(?:full[- ]?stack\s+)?lead)?)),\s*"
         r"[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}(?=\s*(?:\(|,|-|$))",
-        r"\1, [Organization withheld]", value, flags=re.IGNORECASE)
-    value = re.sub(r"(?i)\b(company),\s*[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}",
+        r"\1, [Organization withheld]", value)
+    value = re.sub(r"\b((?i:company)),\s*[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}",
                    r"\1, [Organization withheld]", value)
+    value = re.sub(
+        r"^[A-Z][A-Za-z0-9&.-]*(?:\s+[A-Z][A-Za-z0-9&.-]+){0,3}\s*"
+        r"(\((?i:Provider|Software company|IT company)\b)",
+        r"[Organization withheld] \1", value)
+    value = re.sub(
+        r"^([A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]+){0,4})\s*[–—-]\s*"
+        r"((?i:(?:(?:senior|junior|middle|lead)\s+)?(?:java|software|front[- ]?end|full[- ]?stack|qa)?\s*"
+        r"(?:developer|engineer|tester|manager|architect)\b))",
+        r"[Organization withheld] – \2", value)
+    value = re.sub(
+        r"(\b(?i:developer|engineer|tester|manager|architect|lead)\b)\s*-\s*"
+        r"[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}(?=\s*\()",
+        r"\1 - [Organization withheld]", value)
+    value = re.sub(
+        r"^([A-Z][^:]{1,70}\b(?:Engineering|Agency|Technologies|Solutions|Systems|Group))\s*:",
+        "[Organization withheld]:", value)
+    if DATE_RANGE.search(value) and re.search(
+            r"(?i)\b(?:developer|engineer|tester|manager|architect|lead)\b", value):
+        value = re.sub(r"\((?![^)]*\b(?:years?|yrs?|months?)\b)[^)]{2,60}\)\s*$",
+                       "([Organization withheld])", value)
+    value = re.sub(r"\[Organization withheld\]\s*\([A-Z][\w&.-]{1,30}\)",
+                   "[Organization withheld]", value)
+    technology_domains = {"asp.net", "cypress.io", "next.js", "node.js", "qase.io",
+                          "react.js", "socket.io", "vue.js"}
+    value = re.sub(
+        r"(?i)\b[a-z0-9][a-z0-9.-]+\.(?:agency|ai|co|com|dev|io|net|org|tech|ua|uk)\b",
+        lambda match: match.group(0) if match.group(0).casefold() in technology_domains
+        else "[Organization withheld]", value)
+    value = re.sub(
+        r"(?i)\b(?:company|IT company)\s+(?:which is )?named\s+"
+        r"[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}",
+        "company [Organization withheld]", value)
+    value = re.sub(r"\b(?i:at)[ \t]+[“\"][^”\"]{2,60}[”\"]",
+                   "at [Organization withheld]", value)
     value = re.sub(r"(?i)\bfor the [A-Z][\w&.-]+ customers\b", "for customers", value)
     value = ORG_SUFFIX.sub("[Organization withheld]", value)
     return value
+
+
+def candidate_organization_names(text):
+    names = set()
+    patterns = (
+        r"(?m)^([A-Z][A-Za-z0-9&.-]*(?:[ \t]+[A-Z][A-Za-z0-9&.-]+){0,3})[ \t]*"
+        r"\((?i:Provider|Software company|IT company)\b",
+        r"\b(?i:worked|working|role|internship)[ \t]+(?i:at|for)[ \t]+"
+        r"([A-Za-z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
+        r"\b(?i:engineer|developer|architect|tester)[ \t]+(?i:at)[ \t]+"
+        r"([A-Za-z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
+        r"\b(?i:course|training)[ \t]+(?i:at|of|from)[ \t]+"
+        r"([A-Za-z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})",
+    )
+    generic = {"a", "an", "client", "company", "employer", "organization", "the"}
+    for pattern in patterns:
+        for match in re.finditer(pattern, text):
+            name = match.group(1).strip(" ,.;:-")
+            if name.casefold() not in generic and len(name) >= 3:
+                names.add(name)
+    return names
 
 
 def sanitize_jd_title(title, company):
@@ -304,6 +380,17 @@ def sanitize_candidate(row):
         reasons.append("distinctive_personal_detail")
     if re.search(r"[\u0400-\u04ff]", raw):
         actions.append("removed_non_english_lines")
+    organization_names = candidate_organization_names(raw)
+    for name in sorted(organization_names, key=len, reverse=True):
+        raw, count = re.subn(r"(?<![\w])" + re.escape(name) + r"(?![\w])",
+                             "[Organization withheld]", raw, flags=re.IGNORECASE)
+        if count:
+            actions.append("redacted_organization_names")
+    raw, slash_count = re.subn(
+        r"\[Organization withheld\](?:/[A-Za-z][\w.-]*)+",
+        "[Organization withheld]", raw)
+    if slash_count:
+        actions.append("redacted_organization_names")
     inverted, future = chronology_findings(raw)
     if inverted:
         reasons.append("impossible_timeline")
@@ -313,13 +400,16 @@ def sanitize_candidate(row):
         reported_years = float(row.get("Experience Years"))
     except (TypeError, ValueError):
         reported_years = None
-    stated_years = [int(value) for value in re.findall(
-        r"(?i)\b(?:over\s+|more than\s+)?(\d{1,2})\+?\s+years?\s+(?:of\s+)?"
+    stated_years = [(float(value), bool(plus)) for value, plus in re.findall(
+        r"(?i)\b(?:over\s+|more than\s+)?(\d{1,2}(?:\.\d+)?)\s*(\+?)\s+years?\s+(?:of\s+)?"
         r"(?:experience|[\w -]{0,35}(?:testing|development))\b", raw)]
-    if reported_years is not None and any(abs(value - reported_years) > 2 for value in stated_years):
+    if reported_years is not None and any(
+            (reported_years < value if plus else abs(value - reported_years) > 0.6)
+            for value, plus in stated_years):
         reasons.append("contradictory_experience")
     for unit in split_units(raw):
-        if (CONTACT.search(unit) or PERSONAL.search(unit) or ASPIRATION.search(unit)
+        if (CONTACT.search(unit) or PERSONAL.search(unit) or SELF_IDENTIFIER.search(unit)
+                or ASPIRATION.search(unit)
                 or COURSE_MARKETING.search(unit)
                 or re.search(r"[\u0400-\u04ff]", unit)):
             continue
@@ -375,10 +465,16 @@ def sanitize_jd(row):
     family = role_family(title)
     if family is None:
         reasons.append("unsupported_occupation")
+    if (len(words(title)) > 14
+            or re.search(r"(?i)\b(?:good knowledge|basic knowledge|experience in).*(?:will be a plus|knowledge of)\b", title)):
+        reasons.append("invalid_jd_title")
+    if re.search(r"(?i)\bwith\s+[A-Z][A-Za-z-]+\s+language\b", title):
+        reasons.append("unsupported_language_requirement")
     if jd_seniority(title, row.get("Exp Years"), raw) == 4:
         reasons.append("leadership_role")
     if company:
-        raw = re.sub(re.escape(company), "[Employer withheld]", raw, flags=re.IGNORECASE)
+        raw = re.sub(r"(?<!\w)" + re.escape(company) + r"(?!\w)",
+                     "[Employer withheld]", raw, flags=re.IGNORECASE)
         actions.append("redacted_company_name")
     for unit in split_units(raw):
         if (CONTACT.search(unit) or JD_DROP.search(unit) or JD_MARKETING.search(unit)
@@ -391,6 +487,15 @@ def sanitize_jd(row):
         if redacted != unit:
             actions.append("redacted_organization_names")
         unit = redacted
+        def redact_product(match):
+            return match.group(0) if skill_set(match.group(1)) else (
+                "[Product withheld] " + match.group(2) + " " + match.group(3))
+        unit, product_count = re.subn(
+            r"\b([A-Z][A-Za-z0-9.-]+)\s+"
+            r"(backend|frontend|web|mobile)\s+(applications?|platforms?|services?)\b",
+            redact_product, unit)
+        if product_count and "[Product withheld]" in unit:
+            actions.append("redacted_product_names")
         if not RESPONSIBILITY.search(unit) and len(skill_set(unit)) < 2:
             continue
         kept.append(unit)
