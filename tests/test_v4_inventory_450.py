@@ -64,7 +64,13 @@ class Inventory450Tests(unittest.TestCase):
                        "Testing gave me opportunities to develop and improve my skills.",
                        "I am flexible and always open to new knowledge.",
                        "I am excited to join a collaborative team.",
-                       "My experience makes me a suitable candidate for the position."):
+                       "I am excited to combine my skills in web development.",
+                       "My experience makes me a suitable candidate for the position.",
+                       "I have leadership qualities and strive for high quality.",
+                       "Let's discuss the details; write me to schedule a convenient time.",
+                       "Can work on a new project or support an existing one—no preferences.",
+                       "I like to use WebFlux, REST, SQL, and Spring.",
+                       "I value a company culture that encourages professional development."):
             changed = {**row, "CV": row["CV"] + "\n" + phrase}
             changed_text, _, _ = MODULE.sanitize_candidate(changed)
             self.assertNotIn(phrase, changed_text)
@@ -244,8 +250,9 @@ class Inventory450Tests(unittest.TestCase):
         names = MODULE.candidate_organization_names(
             "Built a toolbox for Kaospilot company.\n"
             "Senior Java Developer in AskFm social network product.\n"
-            "Developed features for Jumia online marketplace.")
-        self.assertEqual(names, {"Kaospilot", "AskFm", "Jumia"})
+            "Developed features for Jumia online marketplace.\n"
+            "Worked at an international IT company 'Amdaris'.")
+        self.assertEqual(names, {"Kaospilot", "AskFm", "Jumia", "Amdaris"})
 
     def test_candidate_product_names_are_reused_for_redaction(self):
         raw = ("TechBoss is an e-commerce platform for merchants.\n"
@@ -257,10 +264,15 @@ class Inventory450Tests(unittest.TestCase):
                "So Yummy [JS, React, Redux] - a digital cookbook.\n"
                "Filmoteka - (HTML, CSS, SASS, JS, REST API) responsive website.\n"
                "MIMIHO [HTML, CSS, JS, Vite]\n"
-               "Developed the Mimino website with an adaptive layout.\n")
+               "Developed the Mimino website with an adaptive layout.\n"
+               "1 Sonalysis (in progress) Sonalysis is an analytics application.\n"
+               "2 Resume builder: A resume builder for document creation.\n"
+               "5 The Bulb Africa website : a company website.\n"
+               "Created the Unified Information Portal of Roshydromet.\n")
         self.assertEqual(MODULE.candidate_product_names(raw),
                          {"TechBoss", "Adfury", "Filmoteka", "Visa Exception System",
-                          "IceCream", "Filmoteka Plus", "So Yummy", "MIMIHO", "Mimino"})
+                          "IceCream", "Filmoteka Plus", "So Yummy", "MIMIHO", "Mimino",
+                          "Sonalysis", "Resume builder", "The Bulb Africa", "Roshydromet"})
         row = {"Position": "Frontend Developer", "Experience Years": 4,
                "CV": raw + "Developed React JavaScript TypeScript HTML CSS Redux interfaces.\n" * 15}
         text, _, actions = MODULE.sanitize_candidate(row)

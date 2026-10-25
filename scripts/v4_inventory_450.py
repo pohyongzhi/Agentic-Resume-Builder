@@ -77,7 +77,7 @@ PERSONAL = re.compile(
 UNIQUE_RISK = re.compile(
     r"(?i)\b(certificate (?:no|number)|patent|publication|award|olympiad|world record|"
     r"conference speaker|youtube channel|instagram|facebook|audience of|followers|"
-    r"project name|coursera for business|far cry|heineken|wl pay|aimienpay)\b"
+    r"project name|winner of|coursera for business|far cry|heineken|wl pay|aimienpay)\b"
 )
 COURSE_MARKETING = re.compile(
     r"(?i)\b(?:udemy course|by the end of this course|students? (?:will )?(?:learn|build)|"
@@ -104,7 +104,9 @@ ASPIRATION = re.compile(
     r"would be happy to consider|valuable asset to any|motivated for professional growth|"
     r"wouldn['’]t like to|i['’]d like to (?:dive|find)|"
     r"allowed me to learn and grow|opportunit(?:y|ies) to develop and improve|"
-    r"always open to new knowledge|excited to join|suitable candidate|"
+    r"always open to new knowledge|excited to|suitable candidate|leadership qualities|"
+    r"let['’]s discuss|write me|schedule a convenient time|no preferences|"
+    r"like to use|value a company culture|"
     r"moving forward|in the (?:ongoing )?future|possibilities to grow|development opportunities)\b|"
     r"^professional growth\b"
 )
@@ -342,6 +344,7 @@ def candidate_organization_names(text):
         r"(?i:company|online marketplace)\b",
         r"\b(?i:in)[ \t]+([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})[ \t]+"
         r"(?i:social network(?: product)?)\b",
+        r"\b(?i:company)[ \t]+[\"'“]([A-Z][\w&.-]*(?:[ \t]+[A-Z][\w&.-]*){0,3})[\"'”]",
     )
     generic = {"a", "an", "client", "company", "employer", "organization", "the"}
     for pattern in patterns:
@@ -366,13 +369,25 @@ def candidate_product_names(text):
         r"\b(?i:on)[ \t]+(?i:the)[ \t]+([A-Z][A-Za-z0-9.-]+)[ \t]+(?i:project)\b",
         r"\b(?i:application),[ \t]+(?i:the)[ \t]+"
         r"([A-Z][A-Za-z0-9.-]+(?:[ \t]+[A-Z][A-Za-z0-9.-]+){1,4})",
+        r"\b(?i:portal|system|application)[ \t]+(?i:of)[ \t]+"
+        r"([A-Z][A-Za-z0-9.-]+(?:[ \t]+[A-Z][A-Za-z0-9.-]+){0,3})",
     )
     for pattern in patterns:
         for match in re.finditer(pattern, text):
-            name = match.group(1)
+            name = match.group(1).strip(" ,.;:-")
             if not skill_set(name):
                 names.add(name)
     for line in text.splitlines():
+        match = re.match(r"\s*\d+\s+(.+?)\s*:\s*", line)
+        if match:
+            name = re.sub(r"(?i)\s+website\s*$", "", match.group(1)).strip()
+            if len(name) >= 3 and not skill_set(name):
+                names.add(name)
+        match = re.match(
+            r"\s*\d+\s+([A-Z][A-Za-z0-9'-]*(?:\s+[A-Z][A-Za-z0-9'-]*){0,3})"
+            r"\s+\((?i:in progress)\)", line)
+        if match and not skill_set(match.group(1)):
+            names.add(match.group(1))
         if re.search(r"(?i)\bprojects?\b", line):
             for match in re.finditer(r"[\"“]([A-Z][^\"”\n]{1,40})[\"”]", line):
                 names.add(match.group(1))
