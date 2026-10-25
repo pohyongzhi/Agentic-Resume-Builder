@@ -91,6 +91,9 @@ ASPIRATION = re.compile(
     r"strong desire to|advancing (?:my )?expertise|enhancing (?:my )?skills|growing (?:my )?understanding|"
     r"obtain a [^.!\n]{0,40} position|have an opportunity to develop|interesting project where|"
     r"positions? below|where i can (?:apply|improve|develop)|"
+    r"would be nice to|enrich my knowledge|enjoy studying|improve my [^.!\n]{0,30} skills?|"
+    r"not (?:interested|interesed|intreseted)|(?:interesed|intreseted) in|"
+    r"interviews? as a max|jobs? with a requirement|grow in automation|"
     r"moving forward|in the (?:ongoing )?future|possibilities to grow|development opportunities)\b|"
     r"^professional growth\b"
 )
@@ -126,7 +129,7 @@ JD_MARKETING = re.compile(
 )
 ORG_SUFFIX = re.compile(
     r"\b[A-Z][\w&.-]+(?:\s+[A-Z][\w&.-]+){0,3}\s+"
-    r"(?:Inc|Ltd|LLC|GmbH|Corp|Corporation|Systems|Bank|University|Academy|Institute|Center)\b"
+    r"(?:Inc|Ltd|LLC|GmbH|Corp|Corporation|Systems|Bank|University|Academy|Institute|Center|Group)\b"
 )
 RESPONSIBILITY = re.compile(
     r"(?i)\b(develop|design|implement|test|analy[sz]e|maintain|create|build|support|"
@@ -254,6 +257,11 @@ def redact_candidate_unit(unit):
         r"(?:developer|engineer|tester|manager|architect)\b))",
         r"[Organization withheld] – \2", value)
     value = re.sub(
+        r"^[A-Z][A-Z0-9&.-]{2,}(?:,\s*[A-Z][A-Za-z -]+)?\s*[–—-]\s*"
+        r"((?i:(?:front[- ]?end|full[- ]?stack|java|software|qa)?\s*"
+        r"(?:developer|engineer|tester|manager|architect|lead)\b))",
+        r"[Organization withheld] — \1", value)
+    value = re.sub(
         r"(\b(?i:developer|engineer|tester|manager|architect|lead)\b)\s*-\s*"
         r"[A-Z][\w&.-]*(?:\s+[A-Z][\w&.-]*){0,4}(?=\s*\()",
         r"\1 - [Organization withheld]", value)
@@ -278,6 +286,16 @@ def redact_candidate_unit(unit):
         "company [Organization withheld]", value)
     value = re.sub(r"\b(?i:at)[ \t]+[“\"][^”\"]{2,60}[”\"]",
                    "at [Organization withheld]", value)
+    value = re.sub(
+        r"\b(?i:for)[ \t]+[A-Z][\w&.-]*"
+        r"(?:[ \t]+(?:and|&|[A-Z][\w&.-]*)){0,4}[ \t]+Engineering\b",
+        "for [Organization withheld]", value)
+    def redact_candidate_product(match):
+        return match.group(0) if skill_set(match.group(2)) else (
+            match.group(1) + " [Product withheld]")
+    value = re.sub(
+        r"\b((?i:interface of|frontend of|technical document for))[ \t]+"
+        r"([A-Z][A-Za-z0-9.-]+)\b", redact_candidate_product, value)
     value = re.sub(r"(?i)\bfor the [A-Z][\w&.-]+ customers\b", "for customers", value)
     value = ORG_SUFFIX.sub("[Organization withheld]", value)
     return value
@@ -300,6 +318,22 @@ def candidate_organization_names(text):
         for match in re.finditer(pattern, text):
             name = match.group(1).strip(" ,.;:-")
             if name.casefold() not in generic and len(name) >= 3:
+                names.add(name)
+    return names
+
+
+def candidate_product_names(text):
+    names = set()
+    patterns = (
+        r"(?m)^([A-Z][A-Za-z0-9.-]+)[ \t]+is[ \t]+an?[ \t]+[^.\n]{0,80}"
+        r"\b(?:platform|application)\b",
+        r"\b(?i:interface|frontend|technical document)[ \t]+(?i:of|for)[ \t]+"
+        r"([A-Z][A-Za-z0-9.-]+)\b",
+    )
+    for pattern in patterns:
+        for match in re.finditer(pattern, text):
+            name = match.group(1)
+            if not skill_set(name):
                 names.add(name)
     return names
 
@@ -386,6 +420,11 @@ def sanitize_candidate(row):
                              "[Organization withheld]", raw, flags=re.IGNORECASE)
         if count:
             actions.append("redacted_organization_names")
+    for name in sorted(candidate_product_names(raw), key=len, reverse=True):
+        raw, count = re.subn(r"(?<![\w])" + re.escape(name) + r"(?![\w])",
+                             "[Product withheld]", raw)
+        if count:
+            actions.append("redacted_product_names")
     raw, slash_count = re.subn(
         r"\[Organization withheld\](?:/[A-Za-z][\w.-]*)+",
         "[Organization withheld]", raw)
@@ -611,6 +650,10 @@ def pair_score(candidate, jd, cmeta, jmeta):
         return None
     if "automation" in jmeta.get("raw_position", "").casefold() and not (
             cmeta["skills"] & {"test automation", "selenium", "cypress", "playwright", "testng"}):
+        return None
+    if (cmeta["role_family"] == "qa"
+            and re.search(r"\bjava\b", jmeta.get("raw_position", "").casefold())
+            and "java" not in cmeta["skills"]):
         return None
     specializations = {
         "machine learning": ("machine learning", " ml "),

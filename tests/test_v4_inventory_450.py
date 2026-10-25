@@ -40,6 +40,9 @@ class Inventory450Tests(unittest.TestCase):
                        "Now I'm studying to automate testing on Java.",
                        "Obtain a QA Engineer position in a product company.",
                        "Not interested in legacy projects.",
+                       "Would be nice to grow into Automation Quality Assurance.",
+                       "I enjoy studying and developing myself.",
+                       "I am interesed in team leading.",
                        "I am eager to participate in innovative web development.",
                        "I have a strong desire to continuously learn.",
                        "Advancing expertise in frontend frameworks like React."):
@@ -159,6 +162,16 @@ class Inventory450Tests(unittest.TestCase):
         job["required_years"] = 3
         self.assertIsNone(MODULE.pair_score({}, {}, candidate, job))
 
+    def test_qa_java_automation_requires_java_evidence(self):
+        candidate = {"role_family": "qa", "seniority": 2, "experience_years": 4,
+                     "skills": {"test automation", "selenium", "jmeter"}, "text": "Selenium JMeter"}
+        job = {"role_family": "qa", "seniority": 2, "required_years": 3,
+               "skills": {"test automation", "selenium", "jmeter"},
+               "raw_position": "QA Automation Engineer Java"}
+        self.assertIsNone(MODULE.pair_score({}, {}, candidate, job))
+        candidate["skills"].add("java")
+        self.assertIsNotNone(MODULE.pair_score({}, {}, candidate, job))
+
     def test_javascript_is_frontend_not_java(self):
         self.assertEqual(MODULE.role_family("JavaScript Developer"), "frontend")
         self.assertEqual(MODULE.role_family("Senior Java Developer"), "java")
@@ -194,6 +207,18 @@ class Inventory450Tests(unittest.TestCase):
             "Frontend Developer Internship at codeVillage.\nCompleted a six-month internship.")
         self.assertIn("codeVillage", names)
         self.assertNotIn("codeVillage.\nCompleted", names)
+
+    def test_candidate_product_names_are_reused_for_redaction(self):
+        raw = ("TechBoss is an e-commerce platform for merchants.\n"
+               "Developed the TechBoss mobile apps.\n"
+               "Developed the interface of Adfury and wrote its technical documentation.\n")
+        self.assertEqual(MODULE.candidate_product_names(raw), {"TechBoss", "Adfury"})
+        row = {"Position": "Frontend Developer", "Experience Years": 4,
+               "CV": raw + "Developed React JavaScript TypeScript HTML CSS Redux interfaces.\n" * 15}
+        text, _, actions = MODULE.sanitize_candidate(row)
+        self.assertNotIn("TechBoss", text)
+        self.assertNotIn("Adfury", text)
+        self.assertIn("redacted_product_names", actions)
 
     def test_candidate_redacts_course_provider_and_slash_separated_platforms(self):
         raw = ("Completed a FrontEnd Development course at DAN.IT EDUCATION with high grades.\n"
@@ -242,6 +267,14 @@ class Inventory450Tests(unittest.TestCase):
         value = MODULE.redact_candidate_unit(
             'Completed test automation training at “ACADEMIA TESTARII” with a diploma')
         self.assertNotIn("ACADEMIA TESTARII", value)
+        value = MODULE.redact_candidate_unit("EVDEV, Ukraine — Front-end Developer")
+        self.assertNotIn("EVDEV", value)
+        value = MODULE.redact_candidate_unit(
+            "Developed the site for Siduna and Ndou Engineering")
+        self.assertNotIn("Siduna", value)
+        value = MODULE.redact_candidate_unit(
+            "Developed the interface of TechBoss and wrote technical documentation")
+        self.assertNotIn("TechBoss", value)
 
     def test_jd_seniority_ignores_markdown_boundaries(self):
         text = "The **Principal Software Engineer** designs and develops systems."
