@@ -13,6 +13,7 @@ Same model, same inputs, same base prompt, same scorecard for every workflow. On
 | w3_critic | | critic + verify_claims, up to 2 rewrites | stub |
 | w4_ats_optimiser | | keyword check → rewrite loop | ✅ worked example |
 | w5_plan_first | | plan, then write | stub |
+| w6_best_of_n | | three strategy drafts + rubric selector | ✅ implemented |
 
 ---
 
@@ -90,6 +91,20 @@ summarise.py            mean ± SD of each metric per workflow -> results/summar
 
 Workflows that aren't a tool loop (e.g. W2 recruiter, W5 plan-first) can be their own small LangGraph
 graph like `workflows/baseline.py`, with a fixed number of review rounds.
+
+### W6: Best-of-N
+
+W6 generates strategy-specific drafts, validates their structure and claims with the shared NLI
+faithfulness checker, scores valid drafts with the same rubric in both candidate orders, and selects
+the highest-scoring valid draft. Run it with:
+
+```bash
+python run_all.py --workflows w6_best_of_n --limit 1 --repeats 1
+```
+
+Set `W6_NUM_CANDIDATES` in `config.py` from 1 to 6. The default of 3 uses skills-first,
+impact-first, and JD-wording-alignment strategies. The selected strategy and candidate scores are
+stored under `workflow_details` in `results/results.jsonl`.
 
 ## The scorecard (eval/metrics.py)
 

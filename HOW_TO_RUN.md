@@ -68,6 +68,14 @@ python run_all.py --limit 2 --repeats 1
 python run_all.py --workflows baseline
 ```
 
+Run the W6 Best-of-N workflow on one sample pair:
+```bash
+python run_all.py --workflows w6_best_of_n --limit 1 --repeats 1
+```
+
+W6 generates three drafts by default and records the selected strategy and per-candidate rubric
+scores in `results/results.jsonl`. Change `W6_NUM_CANDIDATES` in `config.py` to use 1-6 strategies.
+
 ### Skip Faithfulness Check (Faster)
 ```bash
 python run_all.py --skip-faithfulness

@@ -83,11 +83,16 @@ def faithfulness(original_resume, new_resume):
     if not claims:
         return {"faithfulness": None, "unsupported": [], "n_claims": 0}
     model = _load_nli()
-    chunks = _chunks(original_resume)
+    # Sentence/line-sized evidence is essential here. A long chunk containing several unrelated
+    # resume facts can be classified as neutral even when it contains the hypothesis verbatim.
+    # Keep chunks as extra context for claims that span source lines, then deduplicate the evidence.
+    evidence = list(dict.fromkeys(extract_claims(original_resume) + _chunks(original_resume)))
     unsupported = []
     for c in claims:
-        logits = model.predict([(ch, c) for ch in chunks])
-        probs = np.exp(logits) / np.exp(logits).sum(axis=1, keepdims=True)
+        logits = model.predict([(item, c) for item in evidence])
+        # Stable softmax; CrossEncoder returns logits for this model.
+        shifted = logits - logits.max(axis=1, keepdims=True)
+        probs = np.exp(shifted) / np.exp(shifted).sum(axis=1, keepdims=True)
         entail = probs[:, 1].max()    # label order for this model: contradiction, entailment, neutral
         if entail < config.ENTAIL_THRESHOLD:
             unsupported.append(c)

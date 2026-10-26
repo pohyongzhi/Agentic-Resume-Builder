@@ -8,6 +8,10 @@ NUM_CTX = 16384       # Ollama's default context is small and silently cuts off 
 THINK = False         # Qwen thinking mode. Same for all workflows (or make it its own experiment).
 MAX_STEPS = 8         # step budget for agent loops (Topic 7: budgets stop runaway loops)
 
+# W6 Best-of-N: strategy prompts provide diversity while the shared TEMPERATURE stays identical
+# to the baseline. Choose 1-6; the default uses the three required strategies.
+W6_NUM_CANDIDATES = 3
+
 # NLI model used as an independent referee for faithfulness (runs on CPU, separate from the writer).
 NLI_MODEL = "cross-encoder/nli-deberta-v3-small"
 ENTAIL_THRESHOLD = 0.5   # a claim counts as "supported" if entailment prob >= this

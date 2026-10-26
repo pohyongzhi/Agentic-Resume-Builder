@@ -72,6 +72,9 @@ def main():
                     out = {"resume_md": ""}
                     row = {**tracker.totals(), "error": f"{type(e).__name__}: {e}"}
                     traceback.print_exc()
+                # Workflows may expose technique-specific diagnostics without changing the
+                # shared scorecard. W6 records per-candidate rubric scores and its selected strategy.
+                row["workflow_details"] = out.get("details", {})
                 row.update({"workflow": wf, "pair_id": pair["pair_id"], "repeat": rep,
                             "model": config.MODEL, "wall_seconds": round(time.time() - t0, 1),
                             "resume_md": out["resume_md"], "trace": tracker.events})
