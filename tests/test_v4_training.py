@@ -2,8 +2,10 @@ import copy
 import hashlib
 import json
 import tempfile
+import types
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from v4_training.config import ROOT, TrainingConfigError, load_config, require_safe_output_dir
 from v4_training.data import (
@@ -15,7 +17,7 @@ from v4_training.data import (
     verify_training_inputs,
 )
 from v4_training.modeling import expected_target_names
-from v4_training.trainer import _fixed_smoke_rows, _prepare_output
+from v4_training.trainer import _fixed_smoke_rows, _prepare_output, _training_arguments
 
 
 class FakeTokenizer:
@@ -162,6 +164,17 @@ class TrainingInputTests(unittest.TestCase):
             self.assertEqual(_prepare_output(output), output)
             with self.assertRaisesRegex(RuntimeError, "already exists"):
                 _prepare_output(output)
+
+    def test_transformers_five_receives_fractional_warmup_steps(self):
+        class FakeTrainingArguments:
+            def __init__(self, **kwargs):
+                self.values = kwargs
+
+        fake_transformers = types.SimpleNamespace(TrainingArguments=FakeTrainingArguments)
+        with patch.dict("sys.modules", {"transformers": fake_transformers}):
+            arguments = _training_arguments(load_config(), ROOT / "runs" / "fake", smoke=True)
+        self.assertEqual(arguments.values["warmup_steps"], 0.05)
+        self.assertNotIn("warmup_ratio", arguments.values)
 
 
 class TargetDiscoveryTests(unittest.TestCase):

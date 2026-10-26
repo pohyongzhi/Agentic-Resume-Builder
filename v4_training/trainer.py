@@ -132,7 +132,8 @@ def _training_arguments(config, output_dir, *, smoke=False, max_steps=None):
         weight_decay=train["weight_decay"],
         optim=train["optimizer"],
         lr_scheduler_type=train["lr_scheduler_type"],
-        warmup_ratio=train["warmup_ratio"],
+        # Transformers 5.x accepts a fractional warmup through warmup_steps.
+        warmup_steps=train["warmup_ratio"],
         max_grad_norm=1.0,
         bf16=train["bf16"],
         fp16=False,
