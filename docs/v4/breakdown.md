@@ -6,23 +6,24 @@ Last updated: 27 October 2026
 
 The V4 workstream produced a reproducible, evidence-constrained resume-tailoring dataset and a working LoRA adaptation of the official `Qwen/Qwen3.5-4B` model. Work progressed through research, schema design, two 50-case pilots, public-source screening, a 500-case dataset, an editorial rewrite, a 50-case constraint augmentation, single-GPU training, adapter verification, model merging, GGUF conversion, local Ollama import, and controlled application-level comparisons.
 
-The current training corpus is `runs/v4-dataset-550-v4-1/`:
+The current trained candidate used `runs/v4-dataset-550-v4-1/`. The next accepted training corpus is the accuracy-focused V4.2 package at `runs/v4-dataset-600-v4-2/`:
 
 | Item | Result |
 | --- | ---: |
-| Total accepted examples | 550 |
-| Training examples | 490 |
-| Validation examples | 60 |
-| Preserved V3 core | 500 |
-| V4.1 constraint additions | 50 |
-| Added candidate families | 25 |
-| Added split | 40 train / 10 validation |
+| Total accepted examples | 600 |
+| Training examples | 530 |
+| Validation examples | 70 |
+| V4.1 source records | 550 |
+| Versioned V4.1 target-summary repairs | 29 |
+| New V4.2 examples | 50 |
+| New V4.2 candidate families | 25 |
+| New V4.2 split | 40 train / 10 validation |
 | Paid generation calls | 0 |
 | Frozen-holdout overlaps | 0 |
 
 The current trained candidate is imported locally as `agentic-resume-v4-1:q4_K_M`. It is not yet the application default. The application still uses `qwen3.5:4b-q4_K_M` so that the established baseline remains available while V4.1 is evaluated and refined.
 
-The strongest measured outcome is improved constraint retention. V4.1 preserved automation percentages, actual titles, limited proficiency, temporary authority, and manager approval boundaries more reliably than V3. Its remaining defect is occasional negative wording in the summary, such as explicitly stating what the candidate does not own. The recommended next iteration is a narrow V4.2 data correction followed by retraining and the same fixed comparison protocol.
+The strongest measured outcome is improved constraint retention. V4.1 preserved automation percentages, actual titles, limited proficiency, temporary authority, and manager approval boundaries more reliably than V3. Its remaining defect was occasional negative wording in the summary, such as explicitly stating what the candidate did not own. V4.2 repairs that target pattern, adds broader targeted coverage, and is ready for controlled rank-16 training followed by a rank-32 capacity ablation.
 
 ## 2. Scope and controls
 
@@ -369,18 +370,29 @@ Manual findings were:
 
 Prompt-only attempts did not reliably remove the negative summary framing. Inspection traced the behavior to repeated `without` constructions in several V4.1 training summaries. The production prompt changes were reverted so the model comparison remained controlled.
 
+### Phase 14 — V4.2 accuracy dataset and controlled training design
+
+V4.2 was prepared as a separate package at `runs/v4-dataset-600-v4-2/`; no earlier dataset was overwritten. It applies 29 versioned target-summary repairs to V4.1 and adds 50 fictional cases from 25 new candidate families. The repairs preserve every original resume, JD, family assignment and split while moving approval and authority limits into their supported experience bullets. One older QA summary was changed from an unsupported job title to the evidence-compatible label `QA professional`.
+
+The 50 additions contribute 40 training and ten validation records across 25 role areas. They deliberately test title fidelity, percentages, basic and intermediate proficiency, manager approvals, temporary duties, sparse evidence and senior-JD restraint. The combined dataset contains 530 training and 70 validation records.
+
+All 79 changed or new records received direct editorial review and passed factual support, title fidelity, constraint preservation, positive-summary usefulness and application usefulness checks. Deterministic validation found zero unsupported numeric strings, unsupported experience headings, invalid evidence spans, direct-identifier patterns, split leaks or frozen-holdout overlaps. Maximum holdout five-word-shingle Jaccard was `0.009288`. The review was complete but was not an independent external review.
+
+The primary V4.2 recipe uses rank 16, alpha 32, learning rate `5e-5`, five epochs and gradient accumulation eight, with the lowest validation-loss checkpoint selected automatically. A rank-32/alpha-64 configuration changes only adapter capacity and should run as a controlled second experiment after rank 16. Per-case validation-loss reporting was added to separate inherited, repaired and new-example cohorts and identify the ten hardest cases.
+
 ## 4. Current dataset composition and role coverage
 
-The current 550-case set has three layers:
+The current 600-case set has four layers:
 
 | Layer | Candidate families | Examples | Role coverage |
 | --- | ---: | ---: | --- |
 | V2 fictional pilot | 25 | 50 | 25 diverse business, technical, service, operations, and entry-level roles |
 | Screened Djinni expansion | 225 | 450 | 150 frontend, 150 Java, 150 QA pairs |
 | V4.1 fictional augmentation | 25 | 50 | 25 diverse constraint-heavy roles |
-| Total | 275 | 550 | Broad pilot/augmentation coverage with a technology-heavy 450-case core |
+| V4.2 fictional augmentation | 25 | 50 | 25 accuracy-focused and underrepresented roles |
+| Total | 300 | 600 | Broad pilot/augmentation coverage with a technology-heavy 450-case core |
 
-The 450-case public-data core is deliberately concentrated in three occupation families because these were the public records that passed the evidence, privacy, chronology, compatibility, and duplication gates at the required volume. The fictional pilot and V4.1 augmentation supply broader industries and Singapore-oriented contexts.
+The 450-case public-data core is deliberately concentrated in three occupation families because these were the public records that passed the evidence, privacy, chronology, compatibility, and duplication gates at the required volume. The fictional pilot and V4.1/V4.2 augmentations supply broader industries and Singapore-oriented contexts.
 
 This concentration is an important reporting limitation: the model has strong exposure to frontend, Java, and QA tailoring, plus smaller controlled coverage of finance, operations, support, procurement, data, HR, marketing, design, education, compliance, facilities, hospitality, retail, research, laboratory, and logistics work. It should not be presented as uniformly validated across every occupation.
 
@@ -400,7 +412,8 @@ The workstream verified the following end-to-end properties:
 - saved adapters reload deterministically;
 - merged-model output matches adapter output for the verification sample;
 - the corrected GGUF loads in local Ollama;
-- V4.1 improves the targeted factual constraints on the fixed development comparison.
+- V4.1 improves the targeted factual constraints on the fixed development comparison;
+- the V4.2 package preserves 521 V4.1 records unchanged, applies 29 traceable repairs and adds 50 leakage-safe cases.
 
 The complete V4 test suite recorded 96 passing tests after the V4.1 package changes. Tests cover contracts, splitting, holdout exclusions, validation, prompt masking, target resolution, non-overwrite behavior, and training preflight checks.
 
@@ -415,8 +428,8 @@ The current results should be interpreted with these limits:
 5. Djinni dataset cards declare MIT, but original free-text consent and provenance could not be independently established. The data and derivatives remain local-development only.
 6. Most bulk V2/V3 records did not receive independent case-by-case human certification. The V2 pilot, stratified V3 sample, all V4.1 additions, and flagged cases did receive direct review as documented.
 7. Validation loss measures agreement with reference wording and is not a direct factuality score. Higher or lower loss alone cannot decide deployment quality.
-8. V4.1 can write unnecessary negative responsibility statements in summaries. These are usually factual but reduce resume usefulness.
-9. One older QA case still permits adoption of a target title when the source has no explicit title.
+8. V4.1 can write unnecessary negative responsibility statements in summaries. V4.2 corrects the targets, but retraining is required before claiming the model behavior is fixed.
+9. One older QA target adopted a role title not stated by the source. V4.2 repairs the target, but the trained behavior still requires verification.
 10. Optional accelerated DeltaNet kernels were not installed, increasing training time without changing the intended computation.
 
 ## 7. Current release state
@@ -429,22 +442,25 @@ The current results should be interpreted with these limits:
 | V4.1 Q4_K_M GGUF | Converted, checksum-verified, and imported locally |
 | V4.1 Ollama tag | `agentic-resume-v4-1:q4_K_M` |
 | V4.1 production promotion | Not approved yet |
+| V4.2 600-case package | Accepted for local experimental training |
+| V4.2 rank-16/rank-32 configs | Prepared; GPU runs pending |
 | Frozen final benchmark | Unopened |
 | GitHub publication | Not performed |
 
 ## 8. Recommended next steps
 
-The smallest high-value next iteration is V4.2:
+The V4.2 dataset work is complete. The next steps are:
 
-1. Repair only the constraint examples that place missing authority in the summary. Preserve the same facts but express authority limits in the relevant experience bullet.
-2. Add or repair a small number of title-preservation examples where the source lacks an explicit title and the JD title is more senior or specialized.
-3. Keep all 500 V3 core records, splits, and holdout artifacts unchanged.
-4. Re-run deterministic validation and manual review for every changed case.
-5. Train with the same pinned base, environment, LoRA settings, seed, and completion mask.
-6. Repeat the smoke, reload, merge, conversion, and fixed seven-case comparison.
-7. Expand the development comparison with more role-balanced, constraint-specific cases before considering promotion.
-8. Lock the recipe and evaluation protocol before opening the final benchmark once.
-9. Promote a new Ollama tag only if factual safety, usefulness, formatting, and latency all pass; keep the current baseline as rollback.
+1. Run tokenizer and completion-mask audits on the 530/70 exports.
+2. Run the fixed rank-16 overfit smoke test.
+3. Train rank 16 for five epochs and retain the lowest validation-loss checkpoint.
+4. Produce aggregate and per-case validation loss, then run deterministic reload verification.
+5. Run the rank-32 capacity ablation only after rank 16 passes.
+6. Select the adapter using factual gates and usefulness alongside validation loss.
+7. Merge the selected adapter and compare BF16, Q6_K, Q5_K_M and Q4_K_M on identical development cases.
+8. Repeat the fixed comparison and expand it with role-balanced constraint cases.
+9. Lock the recipe before opening the final benchmark once.
+10. Promote a new Ollama tag only if factual safety, usefulness, formatting and latency all pass; keep the current baseline as rollback.
 
 More resumes per JD are not the immediate priority. The present defect is targeted wording learned from target examples, so correcting a small number of high-impact targets is more efficient than adding undirected volume.
 
@@ -463,6 +479,7 @@ More resumes per JD are not the immediate priority. The present defect is target
 - `docs/v4/inventory-450-review.md` — final 450-pair source audit.
 - `docs/v4/target-polish-v3.md` — V3 editorial quality audit.
 - `docs/v4/training-package.md` — pinned LoRA training package.
+- `docs/v4/v4-2-improvement.md` — V4.2 dataset, controlled experiments and commands.
 
 ### Ignored local dataset evidence
 
@@ -471,6 +488,7 @@ More resumes per JD are not the immediate priority. The present defect is target
 - `runs/v4-dataset-500-v2/` — first complete 500-case training package.
 - `runs/v4-dataset-500-v3-r4/` — polished 500-case package.
 - `runs/v4-dataset-550-v4-1/` — current 550-case constraint-augmented package.
+- `runs/v4-dataset-600-v4-2/` — accepted 600-case accuracy-focused training package.
 
 ### Ignored local training and evaluation evidence
 
@@ -505,4 +523,4 @@ More resumes per JD are not the immediate priority. The present defect is target
 
 ## 10. Final status
 
-The workstream has completed dataset construction, local experimental training, adapter verification, merging, quantization, import, and a controlled development comparison. The resulting V4.1 model is operational and materially better on the constraints it was designed to address. It remains a candidate rather than the application default because one learned writing pattern still reduces resume quality. The next work should be a narrow data correction and controlled V4.2 retrain, not a broad rewrite or unstructured dataset expansion.
+The workstream has completed V4.1 dataset construction, local experimental training, adapter verification, merging, quantization, import and a controlled development comparison. The V4.1 model is operational and materially better on its targeted constraints, but it remains a candidate rather than the application default. The narrow V4.2 data correction and augmentation are now complete and validated. The next work is controlled rank-16 training, one rank-32 capacity ablation, per-case diagnosis and matched-quantization evaluation—not further unstructured dataset expansion.
