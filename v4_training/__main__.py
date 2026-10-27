@@ -24,16 +24,17 @@ def parser():
     modules.add_argument("--report")
 
     for name, help_text in (
-        ("train", "Train the full 450/50 pilot"),
+        ("train", "Train the full configured dataset"),
         ("overfit-smoke", "Run the fixed-example overfit smoke test"),
         ("evaluate", "Evaluate a saved adapter on validation"),
+        ("evaluate-cases", "Record completion-only loss for every validation case"),
         ("reload-test", "Verify deterministic adapter reload generation"),
     ):
         item = sub.add_parser(name, help=help_text)
         item.add_argument("--config", default=str(DEFAULT_CONFIG))
         item.add_argument("--cache-dir", required=True)
         item.add_argument("--output-dir", required=True)
-        if name in {"evaluate", "reload-test"}:
+        if name in {"evaluate", "evaluate-cases", "reload-test"}:
             item.add_argument("--adapter", required=True)
         if name == "overfit-smoke":
             item.add_argument("--examples", type=int)
@@ -82,7 +83,7 @@ def main(argv=None):
             args.config, args.cache_dir, args.output_dir, args.adapter,
             args.verification_tokens)
     else:
-        from .trainer import evaluate, overfit_smoke, reload_test, train_full
+        from .trainer import evaluate, evaluate_cases, overfit_smoke, reload_test, train_full
         if args.command == "train":
             train_full(args.config, args.cache_dir, args.output_dir)
         elif args.command == "overfit-smoke":
@@ -90,6 +91,8 @@ def main(argv=None):
                           args.examples, args.max_steps, args.required_loss_ratio)
         elif args.command == "evaluate":
             evaluate(args.config, args.cache_dir, args.output_dir, args.adapter)
+        elif args.command == "evaluate-cases":
+            evaluate_cases(args.config, args.cache_dir, args.output_dir, args.adapter)
         elif args.command == "reload-test":
             reload_test(args.config, args.cache_dir, args.output_dir, args.adapter)
 

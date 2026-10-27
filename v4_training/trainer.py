@@ -2,6 +2,8 @@
 
 import hashlib
 import json
+import math
+import statistics
 import time
 from importlib.metadata import version
 from pathlib import Path
@@ -143,7 +145,7 @@ def _training_arguments(config, output_dir, *, smoke=False, max_steps=None):
         logging_steps=1,
         eval_strategy="steps" if smoke else "epoch",
         save_strategy="steps" if smoke else "epoch",
-        save_total_limit=3,
+        save_total_limit=train.get("save_total_limit", 3),
         seed=train["seed"],
         data_seed=train["seed"],
         report_to="none",
@@ -158,6 +160,12 @@ def _training_arguments(config, output_dir, *, smoke=False, max_steps=None):
         kwargs["save_steps"] = 50
     else:
         kwargs["num_train_epochs"] = train["num_train_epochs"]
+        if train.get("load_best_model_at_end", False):
+            kwargs.update(
+                load_best_model_at_end=True,
+                metric_for_best_model=train.get("metric_for_best_model", "eval_loss"),
+                greater_is_better=train.get("greater_is_better", False),
+            )
     return TrainingArguments(**kwargs)
 
 
@@ -298,6 +306,113 @@ def evaluate(config_path, cache_dir, output_dir, adapter):
     trainer = Trainer(model=model, args=args, eval_dataset=validation, data_collator=collator)
     metrics = trainer.evaluate()
     (output / "validation-metrics.json").write_text(json.dumps(metrics, indent=2) + "\n", encoding="utf-8")
+
+
+def _validation_archive_rows(config, manifest):
+    """Resolve validation case metadata and verify its order against the SFT export."""
+    manifest_path = resolve_repo_path(config["data"]["manifest"])
+    archive = manifest.get("archive", {})
+    relative = archive.get("path")
+    if not relative:
+        raise RuntimeError("Training manifest does not declare an archival dataset")
+    archive_path = Path(relative)
+    if not archive_path.is_absolute():
+        archive_path = manifest_path.parent / archive_path
+    rows = [row for row in read_records(resolve_repo_path(config["data"]["validation"]))]
+    with archive_path.open(encoding="utf-8") as handle:
+        cases = [json.loads(line) for line in handle if line.strip()]
+    cases = [case for case in cases if case.get("split") == "validation"]
+    if len(rows) != len(cases):
+        raise RuntimeError(
+            f"Validation export/archive count mismatch: {len(rows)} versus {len(cases)}")
+    for index, (record, case) in enumerate(zip(rows, cases), 1):
+        completion = record["completion"][0]["content"]
+        if completion != case.get("target", {}).get("resume_md"):
+            raise RuntimeError(f"Validation archive order mismatch at record {index}")
+    return rows, cases
+
+
+def _loss_summary(values):
+    ordered = sorted(values)
+    if not ordered:
+        return {"records": 0}
+    p90_index = min(len(ordered) - 1, math.ceil(len(ordered) * 0.9) - 1)
+    return {
+        "records": len(ordered),
+        "minimum": ordered[0],
+        "median": statistics.median(ordered),
+        "mean": statistics.fmean(ordered),
+        "p90": ordered[p90_index],
+        "maximum": ordered[-1],
+    }
+
+
+def evaluate_cases(config_path, cache_dir, output_dir, adapter):
+    """Record completion-only validation loss for each archival case."""
+    import torch
+
+    config = load_config(config_path)
+    manifest = verify_training_inputs(config, resolve_repo_path("."))
+    output = _prepare_output(output_dir)
+    tokenizer = load_tokenizer(config, cache_dir)
+    records, cases = _validation_archive_rows(config, manifest)
+    dataset = TokenizedDataset(records, tokenizer, config["sequence"]["max_length"])
+    model = _reload_adapter(config, cache_dir, adapter)
+    model.to("cuda")
+    model.eval()
+    results = []
+    cohort_losses = {}
+    with torch.inference_mode():
+        for index, (feature, record, case) in enumerate(zip(dataset.features, records, cases), 1):
+            inputs = {
+                "input_ids": torch.tensor([feature["input_ids"]], dtype=torch.long, device="cuda"),
+                "attention_mask": torch.tensor(
+                    [feature["attention_mask"]], dtype=torch.long, device="cuda"),
+                "labels": torch.tensor([feature["labels"]], dtype=torch.long, device="cuda"),
+            }
+            loss = float(model(**inputs, use_cache=False).loss.detach().cpu())
+            if not math.isfinite(loss):
+                raise RuntimeError(f"Non-finite validation loss at record {index}")
+            parents = case.get("generation", {}).get("parent_case_ids", [])
+            if parents:
+                cohort = "v4_2_target_repair"
+            elif case.get("candidate_family_id", "").startswith("v42-"):
+                cohort = "v4_2_addition"
+            else:
+                cohort = "inherited"
+            cohort_losses.setdefault(cohort, []).append(loss)
+            user = record["prompt"][1]["content"]
+            jd = user.split("JOB DESCRIPTION:\n", 1)[-1].split("\n", 1)[0].lstrip("# ")
+            results.append({
+                "validation_index": index,
+                "case_id": case["id"],
+                "candidate_family_id": case["candidate_family_id"],
+                "jd_family_id": case["jd_family_id"],
+                "job_title": jd,
+                "cohort": cohort,
+                "loss": loss,
+                "total_tokens": len(feature["input_ids"]),
+                "supervised_tokens": feature["supervised_tokens"],
+                "record_sha256": hashlib.sha256(
+                    json.dumps(record, ensure_ascii=False, sort_keys=True,
+                               separators=(",", ":")).encode("utf-8")
+                ).hexdigest(),
+            })
+    with (output / "per-case-loss.jsonl").open("x", encoding="utf-8") as handle:
+        for result in results:
+            handle.write(json.dumps(result, sort_keys=True) + "\n")
+    summary = {
+        "model_id": config["model"]["id"],
+        "model_revision": config["model"]["revision"],
+        "adapter": str(Path(adapter).resolve()),
+        "overall": _loss_summary([row["loss"] for row in results]),
+        "cohorts": {
+            cohort: _loss_summary(values) for cohort, values in sorted(cohort_losses.items())
+        },
+        "hardest_cases": sorted(results, key=lambda row: row["loss"], reverse=True)[:10],
+    }
+    (output / "per-case-loss-summary.json").write_text(
+        json.dumps(summary, indent=2) + "\n", encoding="utf-8")
 
 
 def reload_test(config_path, cache_dir, output_dir, adapter):

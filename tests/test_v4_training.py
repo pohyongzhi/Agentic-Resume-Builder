@@ -20,6 +20,7 @@ from v4_training.modeling import expected_target_names
 from v4_training.trainer import (
     _comparison_rows,
     _fixed_smoke_rows,
+    _loss_summary,
     _prepare_output,
     _training_arguments,
 )
@@ -225,6 +226,57 @@ class TrainingInputTests(unittest.TestCase):
             arguments = _training_arguments(load_config(), ROOT / "runs" / "fake", smoke=True)
         self.assertEqual(arguments.values["warmup_steps"], 0.05)
         self.assertNotIn("warmup_ratio", arguments.values)
+
+    def test_v4_2_training_loads_lowest_validation_loss_checkpoint(self):
+        class FakeTrainingArguments:
+            def __init__(self, **kwargs):
+                self.values = kwargs
+
+        config = load_config("configs/v4/qwen35-4b-lora-v4-2-r16.json")
+        fake_transformers = types.SimpleNamespace(TrainingArguments=FakeTrainingArguments)
+        with patch.dict("sys.modules", {"transformers": fake_transformers}):
+            arguments = _training_arguments(config, ROOT / "runs" / "fake")
+        self.assertEqual(arguments.values["learning_rate"], 0.00005)
+        self.assertEqual(arguments.values["num_train_epochs"], 5)
+        self.assertEqual(arguments.values["gradient_accumulation_steps"], 8)
+        self.assertTrue(arguments.values["load_best_model_at_end"])
+        self.assertEqual(arguments.values["metric_for_best_model"], "eval_loss")
+        self.assertFalse(arguments.values["greater_is_better"])
+        self.assertEqual(arguments.values["eval_strategy"], "epoch")
+        self.assertEqual(arguments.values["save_strategy"], "epoch")
+
+    def test_v4_2_rank_ablation_changes_only_lora_capacity(self):
+        rank16 = load_config("configs/v4/qwen35-4b-lora-v4-2-r16.json")
+        rank32 = load_config("configs/v4/qwen35-4b-lora-v4-2-r32.json")
+        self.assertEqual(rank16["data"], rank32["data"])
+        self.assertEqual(rank16["training"], rank32["training"])
+        self.assertEqual(rank16["lora"]["rank"], 16)
+        self.assertEqual(rank16["lora"]["alpha"], 32)
+        self.assertEqual(rank32["lora"]["rank"], 32)
+        self.assertEqual(rank32["lora"]["alpha"], 64)
+        left = copy.deepcopy(rank16["lora"])
+        right = copy.deepcopy(rank32["lora"])
+        left.pop("rank")
+        left.pop("alpha")
+        right.pop("rank")
+        right.pop("alpha")
+        self.assertEqual(left, right)
+
+    def test_per_case_loss_summary_is_deterministic(self):
+        summary = _loss_summary([0.7, 0.2, 0.4, 0.5, 0.1])
+        self.assertEqual(summary["records"], 5)
+        self.assertEqual(summary["minimum"], 0.1)
+        self.assertEqual(summary["median"], 0.4)
+        self.assertEqual(summary["maximum"], 0.7)
+        self.assertEqual(summary["p90"], 0.7)
+
+    def test_per_case_evaluation_requires_adapter(self):
+        args = parser().parse_args([
+            "evaluate-cases", "--cache-dir", "/cache", "--output-dir", "/output",
+            "--adapter", "/adapter",
+        ])
+        self.assertEqual(args.command, "evaluate-cases")
+        self.assertEqual(args.adapter, "/adapter")
 
 
 class TargetDiscoveryTests(unittest.TestCase):
