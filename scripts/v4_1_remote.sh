@@ -194,7 +194,7 @@ case "$stage" in
     log="$storage/logs/$train_name.log"
     smoke_result="$storage/runs/$smoke_name/smoke-result.json"
     [[ -f "$smoke_result" ]] || { echo "Smoke result is missing: $smoke_result" >&2; exit 1; }
-    "$python_bin" -c 'import json,sys; x=json.load(open(sys.argv[1])); assert x["memorization_gate_passed"] and x["reload_token_ids_identical"], x' "$smoke_result"
+    /usr/bin/python3 -c 'import json,sys; x=json.load(open(sys.argv[1])); assert x["memorization_gate_passed"] and x["reload_token_ids_identical"], x' "$smoke_result"
     [[ ! -e "$output" ]] || { echo "Refusing to overwrite $output" >&2; exit 1; }
     payload="module load Python/3.11.11-GCCcore-13.3.0; cd '$repo'; export HF_HUB_CACHE='$cache' HF_HUB_DISABLE_TELEMETRY=1 TOKENIZERS_PARALLELISM=false; '$python_bin' -m v4_training train --config '$config_rel' --cache-dir '$cache' --output-dir '$output' 2>&1 | tee '$log'"
     time_limit="02:00:00"
