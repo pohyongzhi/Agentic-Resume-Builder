@@ -6,6 +6,7 @@ import time
 import ollama
 
 import config
+from common.prompts import clean_model_output
 
 _client = ollama.Client()  # talks to the local Ollama server (default http://localhost:11434)
 
@@ -55,6 +56,12 @@ def chat(messages, tracker, tools=None, think=None):
         options={"temperature": config.TEMPERATURE, "num_ctx": config.NUM_CTX},
     )
     msg = resp.message
+    cleaned = clean_model_output(msg.content)
+    if cleaned != msg.content:
+        try:
+            msg.content = cleaned
+        except (AttributeError, TypeError):
+            msg = msg.model_copy(update={"content": cleaned})
     tracker.log(
         type="llm",
         input_tokens=resp.prompt_eval_count or 0,
