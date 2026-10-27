@@ -389,3 +389,44 @@ def compare_adapters(config_path, cache_dir, output_dir, adapter_a, adapter_b,
     }
     (output / "comparison-metadata.json").write_text(
         json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
+
+
+def merge_adapter(config_path, cache_dir, output_dir, adapter, verification_tokens=128):
+    import torch
+
+    if verification_tokens < 32 or verification_tokens > 512:
+        raise RuntimeError("Merge verification tokens must be between 32 and 512")
+    config = load_config(config_path)
+    verify_training_inputs(config, resolve_repo_path("."))
+    output = _prepare_output(output_dir)
+    tokenizer = load_tokenizer(config, cache_dir)
+    record = read_records(resolve_repo_path(config["data"]["validation"]))[0]
+
+    model = _reload_adapter(config, cache_dir, adapter)
+    model.to("cuda")
+    adapter_ids, adapter_text = _generate(model, tokenizer, record, verification_tokens)
+    merged = model.merge_and_unload(safe_merge=True)
+    if any("lora_" in name for name in merged.state_dict()):
+        raise RuntimeError("Merged model still contains LoRA tensors")
+    merged_ids, merged_text = _generate(merged, tokenizer, record, verification_tokens)
+    if adapter_ids != merged_ids:
+        raise RuntimeError("Merged model output differs from the loaded adapter")
+
+    merged.to("cpu")
+    torch.cuda.empty_cache()
+    merged.save_pretrained(
+        str(output), safe_serialization=True, max_shard_size="4GB")
+    tokenizer.save_pretrained(str(output))
+    result = {
+        "schema_version": "1.0",
+        "model_id": config["model"]["id"],
+        "model_revision": config["model"]["revision"],
+        "adapter": str(Path(adapter).resolve()),
+        "verification_tokens": verification_tokens,
+        "token_ids_identical": True,
+        "adapter_output": adapter_text,
+        "merged_output": merged_text,
+        "safetensors": sorted(path.name for path in output.glob("*.safetensors")),
+    }
+    (output / "merge-result.json").write_text(
+        json.dumps(result, indent=2) + "\n", encoding="utf-8")

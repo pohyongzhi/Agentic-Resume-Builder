@@ -49,6 +49,14 @@ def parser():
     comparison.add_argument("--adapter-b", required=True)
     comparison.add_argument("--examples", type=int, default=8)
     comparison.add_argument("--max-new-tokens", type=int, default=768)
+
+    merge = sub.add_parser(
+        "merge-adapter", help="Merge and verify a LoRA adapter into the pinned base")
+    merge.add_argument("--config", default=str(DEFAULT_CONFIG))
+    merge.add_argument("--cache-dir", required=True)
+    merge.add_argument("--output-dir", required=True)
+    merge.add_argument("--adapter", required=True)
+    merge.add_argument("--verification-tokens", type=int, default=128)
     return command
 
 
@@ -68,6 +76,11 @@ def main(argv=None):
         compare_adapters(
             args.config, args.cache_dir, args.output_dir, args.adapter_a,
             args.adapter_b, args.examples, args.max_new_tokens)
+    elif args.command == "merge-adapter":
+        from .trainer import merge_adapter
+        merge_adapter(
+            args.config, args.cache_dir, args.output_dir, args.adapter,
+            args.verification_tokens)
     else:
         from .trainer import evaluate, overfit_smoke, reload_test, train_full
         if args.command == "train":

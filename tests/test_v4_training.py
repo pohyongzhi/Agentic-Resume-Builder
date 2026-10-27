@@ -23,6 +23,7 @@ from v4_training.trainer import (
     _prepare_output,
     _training_arguments,
 )
+from v4_training.__main__ import parser
 
 
 class FakeTokenizer:
@@ -93,6 +94,14 @@ class CompletionMaskTests(unittest.TestCase):
 
 
 class TrainingInputTests(unittest.TestCase):
+    def test_merge_command_requires_explicit_adapter_and_output(self):
+        args = parser().parse_args([
+            "merge-adapter", "--cache-dir", "/cache", "--output-dir", "/output",
+            "--adapter", "/adapter",
+        ])
+        self.assertEqual(args.command, "merge-adapter")
+        self.assertEqual(args.verification_tokens, 128)
+
     def test_manifest_hashes_counts_and_system_prompt_are_verified(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "runs") as directory:
             root = Path(directory)
