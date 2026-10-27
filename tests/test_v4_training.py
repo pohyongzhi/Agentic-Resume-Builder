@@ -128,6 +128,33 @@ class TrainingInputTests(unittest.TestCase):
             with self.assertRaisesRegex(SerializationError, "SHA-256"):
                 verify_training_inputs(config, root)
 
+    def test_explicit_non_pilot_record_counts_are_verified(self):
+        with tempfile.TemporaryDirectory(dir=ROOT / "runs") as directory:
+            root = Path(directory)
+            system = root / "system.txt"
+            system.write_text("Frozen prompt\n", encoding="utf-8")
+            row = sample_record()
+            row["prompt"][0]["content"] = "Frozen prompt"
+            train = root / "train.jsonl"
+            validation = root / "validation.jsonl"
+            train.write_text(json.dumps(row) + "\n" + json.dumps(row) + "\n", encoding="utf-8")
+            validation.write_text(json.dumps(row) + "\n", encoding="utf-8")
+            manifest = {
+                "train": {"records": 2, "sha256": hashlib.sha256(train.read_bytes()).hexdigest()},
+                "validation": {"records": 1, "sha256": hashlib.sha256(validation.read_bytes()).hexdigest()},
+                "system_prompt": {"sha256": hashlib.sha256(system.read_bytes()).hexdigest()},
+            }
+            (root / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+            config = {"data": {
+                "train": "train.jsonl", "validation": "validation.jsonl",
+                "system_prompt": "system.txt", "manifest": "manifest.json",
+                "expected_records": {"train": 2, "validation": 1},
+            }}
+            verify_training_inputs(config, root)
+            config["data"]["expected_records"]["train"] = 3
+            with self.assertRaisesRegex(SerializationError, "exactly 3"):
+                verify_training_inputs(config, root)
+
     def test_model_revision_and_output_location_are_guarded(self):
         config = load_config()
         self.assertEqual(config["model"]["revision"], "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a")

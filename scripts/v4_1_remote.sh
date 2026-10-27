@@ -95,8 +95,11 @@ expected = {
     "manifest": manifest,
     "system_prompt": prompt,
 }
-if config.get("data") != expected:
-    raise SystemExit(f"Config data paths do not match: {config.get('data')!r}")
+data = config.get("data", {})
+if any(data.get(key) != value for key, value in expected.items()):
+    raise SystemExit(f"Config data paths do not match: {data!r}")
+if data.get("expected_records") != {"train": 490, "validation": 60}:
+    raise SystemExit("Config must explicitly require 490 train and 60 validation records")
 if config.get("model", {}).get("revision") != revision:
     raise SystemExit("Pinned model revision is missing or incorrect")
 print("Local preflight passed: 490 train, 60 validation, pinned model revision present.")

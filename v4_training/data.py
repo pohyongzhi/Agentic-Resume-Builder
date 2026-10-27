@@ -48,9 +48,17 @@ def verify_training_inputs(config, root):
     """Verify the frozen data, prompt, counts, and hashes before serialization."""
     manifest_path = root / config["data"]["manifest"]
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    expected_records = config["data"].get(
+        "expected_records", {"train": 450, "validation": 50})
+    if (set(expected_records) != {"train", "validation"}
+            or any(not isinstance(value, int) or value <= 0
+                   for value in expected_records.values())):
+        raise SerializationError(
+            "data.expected_records must declare positive train and validation counts")
     checks = {
-        "train": (root / config["data"]["train"], 450),
-        "validation": (root / config["data"]["validation"], 50),
+        "train": (root / config["data"]["train"], expected_records["train"]),
+        "validation": (
+            root / config["data"]["validation"], expected_records["validation"]),
         "system_prompt": (root / config["data"]["system_prompt"], None),
     }
     for key, (path, required_count) in checks.items():
