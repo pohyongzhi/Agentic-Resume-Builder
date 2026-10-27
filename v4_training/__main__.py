@@ -39,6 +39,16 @@ def parser():
             item.add_argument("--examples", type=int)
             item.add_argument("--max-steps", type=int)
             item.add_argument("--required-loss-ratio", type=float)
+
+    comparison = sub.add_parser(
+        "compare-adapters", help="Generate a fixed side-by-side adapter sample")
+    comparison.add_argument("--config", default=str(DEFAULT_CONFIG))
+    comparison.add_argument("--cache-dir", required=True)
+    comparison.add_argument("--output-dir", required=True)
+    comparison.add_argument("--adapter-a", required=True)
+    comparison.add_argument("--adapter-b", required=True)
+    comparison.add_argument("--examples", type=int, default=8)
+    comparison.add_argument("--max-new-tokens", type=int, default=768)
     return command
 
 
@@ -53,6 +63,11 @@ def main(argv=None):
     elif args.command == "audit-modules":
         from .audit import audit_weight_index
         audit_weight_index(args.config, args.cache_dir, args.local_files_only, args.report)
+    elif args.command == "compare-adapters":
+        from .trainer import compare_adapters
+        compare_adapters(
+            args.config, args.cache_dir, args.output_dir, args.adapter_a,
+            args.adapter_b, args.examples, args.max_new_tokens)
     else:
         from .trainer import evaluate, overfit_smoke, reload_test, train_full
         if args.command == "train":

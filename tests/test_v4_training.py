@@ -17,7 +17,12 @@ from v4_training.data import (
     verify_training_inputs,
 )
 from v4_training.modeling import expected_target_names
-from v4_training.trainer import _fixed_smoke_rows, _prepare_output, _training_arguments
+from v4_training.trainer import (
+    _comparison_rows,
+    _fixed_smoke_rows,
+    _prepare_output,
+    _training_arguments,
+)
 
 
 class FakeTokenizer:
@@ -157,6 +162,15 @@ class TrainingInputTests(unittest.TestCase):
         rows = [{"value": index} for index in range(30)]
         first = _fixed_smoke_rows(rows, 12, "fixed-seed")
         self.assertEqual(first, _fixed_smoke_rows(list(reversed(rows)), 12, "fixed-seed"))
+
+    def test_adapter_comparison_selection_is_fixed_and_bounded(self):
+        rows = [{"value": index} for index in range(30)]
+        first = _comparison_rows(rows, 8)
+        self.assertEqual(first, _comparison_rows(list(reversed(rows)), 8))
+        with self.assertRaisesRegex(RuntimeError, "2 to 20"):
+            _comparison_rows(rows, 1)
+        with self.assertRaisesRegex(RuntimeError, "from 5"):
+            _comparison_rows(rows[:5], 8)
 
     def test_training_output_is_never_overwritten(self):
         with tempfile.TemporaryDirectory(dir=ROOT / "runs") as directory:

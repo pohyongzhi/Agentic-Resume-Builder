@@ -320,3 +320,72 @@ def reload_test(config_path, cache_dir, output_dir, adapter):
     (output / "reload-result.json").write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     if first_ids != second_ids:
         raise RuntimeError("Deterministic adapter generation differs across reloads")
+
+
+def _comparison_rows(rows, count):
+    if count < 2 or count > 20:
+        raise RuntimeError("Adapter comparison requires 2 to 20 examples")
+    if count > len(rows):
+        raise RuntimeError(f"Requested {count} comparison examples from {len(rows)} records")
+    return _fixed_smoke_rows(rows, count, "v4-adapter-comparison-v1")
+
+
+def _adapter_generations(config, cache_dir, adapter, tokenizer, rows, maximum):
+    import torch
+
+    model = _reload_adapter(config, cache_dir, adapter)
+    model.to("cuda")
+    generations = [_generate(model, tokenizer, row, maximum)[1] for row in rows]
+    del model
+    torch.cuda.empty_cache()
+    return generations
+
+
+def compare_adapters(config_path, cache_dir, output_dir, adapter_a, adapter_b,
+                     examples=8, max_new_tokens=768):
+    config = load_config(config_path)
+    verify_training_inputs(config, resolve_repo_path("."))
+    if Path(adapter_a).resolve() == Path(adapter_b).resolve():
+        raise RuntimeError("Adapter comparison requires two different adapter paths")
+    if max_new_tokens < 128 or max_new_tokens > 2048:
+        raise RuntimeError("Comparison max-new-tokens must be between 128 and 2048")
+
+    output = _prepare_output(output_dir)
+    validation = read_records(resolve_repo_path(config["data"]["validation"]))
+    rows = _comparison_rows(validation, examples)
+    tokenizer = load_tokenizer(config, cache_dir)
+    a_outputs = _adapter_generations(
+        config, cache_dir, adapter_a, tokenizer, rows, max_new_tokens)
+    b_outputs = _adapter_generations(
+        config, cache_dir, adapter_b, tokenizer, rows, max_new_tokens)
+
+    results = []
+    for index, (row, a_text, b_text) in enumerate(zip(rows, a_outputs, b_outputs), 1):
+        prompt_hash = hashlib.sha256(json.dumps(
+            row["prompt"], sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        results.append({
+            "example": index,
+            "prompt_sha256": prompt_hash,
+            "prompt": row["prompt"],
+            "reference": row["completion"][0]["content"],
+            "adapter_a": a_text,
+            "adapter_b": b_text,
+        })
+
+    with (output / "comparison.jsonl").open("w", encoding="utf-8") as handle:
+        for result in results:
+            handle.write(json.dumps(result, ensure_ascii=False) + "\n")
+
+    metadata = {
+        "schema_version": "1.0",
+        "model_id": config["model"]["id"],
+        "model_revision": config["model"]["revision"],
+        "adapter_a": str(Path(adapter_a).resolve()),
+        "adapter_b": str(Path(adapter_b).resolve()),
+        "examples": len(results),
+        "max_new_tokens": max_new_tokens,
+        "decoding": "greedy",
+        "selection_seed": "v4-adapter-comparison-v1",
+    }
+    (output / "comparison-metadata.json").write_text(
+        json.dumps(metadata, indent=2) + "\n", encoding="utf-8")
