@@ -3,6 +3,8 @@ so the web page and the experiment use exactly the same baseline."""
 from baseline_tailor import tailor
 
 NAME = "baseline"
+DISPLAY_NAME = "Workflow 1 — Baseline"
+STATUS = "implemented"
 
 
 def run(pair, tracker):

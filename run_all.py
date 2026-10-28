@@ -18,14 +18,24 @@ import config
 from common.data import load_pairs
 from common.llm import Tracker
 from eval import metrics
-from workflows import WORKFLOWS
+from workflows import WORKFLOWS, WORKFLOW_SPECS
 
 
 def done_keys():
     if not os.path.exists(config.RESULTS_FILE):
         return set()
     with open(config.RESULTS_FILE, encoding="utf-8") as f:
-        return {(r["workflow"], r["pair_id"], r["repeat"]) for r in map(json.loads, f)}
+        return {
+            (r["workflow"], r["pair_id"], r["repeat"], r.get("model"))
+            for r in map(json.loads, f)
+        }
+
+
+def actual_model(tracker):
+    models = {event["model"] for event in tracker.events if event["type"] == "llm"}
+    if len(models) != 1:
+        raise RuntimeError(f"Expected one writer model per workflow run, found {sorted(models)}")
+    return models.pop()
 
 
 def score(pair, out, tracker, skip_faithfulness=False):
@@ -52,20 +62,33 @@ def main():
     ap.add_argument("--skip-faithfulness", action="store_true")
     args = ap.parse_args()
 
+    unavailable = [workflow for workflow in args.workflows if workflow not in WORKFLOWS]
+    if unavailable:
+        states = {
+            workflow: WORKFLOW_SPECS[workflow].status
+            for workflow in unavailable if workflow in WORKFLOW_SPECS
+        }
+        ap.error(f"workflows are unavailable or unknown: {unavailable}; known states: {states}")
+
     pairs = load_pairs()[: args.limit]
     done = done_keys()
     os.makedirs(os.path.dirname(config.RESULTS_FILE), exist_ok=True)
 
     for wf in args.workflows:
+        expected_model = WORKFLOW_SPECS[wf].model
         for pair in pairs:
             for rep in range(args.repeats):
-                if (wf, pair["pair_id"], rep) in done:
+                if (wf, pair["pair_id"], rep, expected_model) in done:
                     continue
                 tracker = Tracker()
                 print(f"[{wf}] {pair['pair_id']} repeat {rep} ...", end=" ", flush=True)
                 t0 = time.time()
                 try:
                     out = WORKFLOWS[wf](pair, tracker)
+                    used_model = actual_model(tracker)
+                    if used_model != expected_model:
+                        raise RuntimeError(
+                            f"{wf} routed to {used_model}, expected {expected_model}")
                     row = score(pair, out, tracker, args.skip_faithfulness)
                     row["error"] = None
                 except Exception as e:
@@ -73,7 +96,7 @@ def main():
                     row = {**tracker.totals(), "error": f"{type(e).__name__}: {e}"}
                     traceback.print_exc()
                 row.update({"workflow": wf, "pair_id": pair["pair_id"], "repeat": rep,
-                            "model": config.MODEL, "wall_seconds": round(time.time() - t0, 1),
+                            "model": expected_model, "wall_seconds": round(time.time() - t0, 1),
                             "resume_md": out["resume_md"], "trace": tracker.events})
                 with open(config.RESULTS_FILE, "a", encoding="utf-8") as f:
                     f.write(json.dumps(row, ensure_ascii=False) + "\n")

@@ -12,7 +12,7 @@ import argparse
 import os
 
 from common.llm import Tracker, chat
-from common.prompts import BASE_RULES
+from common.prompts import BASE_RULES, task_prompt
 
 
 def read_file(path):
@@ -28,16 +28,14 @@ def read_file(path):
         return f.read().strip()
 
 
-def tailor(resume_text, jd_text, tracker=None):
+def tailor(resume_text, jd_text, tracker=None, model=None):
     """One model call: original resume + job description -> tailored resume (Markdown).
     Returns (tailored_resume, stats)."""
     tracker = tracker or Tracker()
     msg = chat([
         {"role": "system", "content": BASE_RULES},
-        {"role": "user", "content": f"JOB DESCRIPTION:\n{jd_text}\n\n"
-                                    f"CANDIDATE'S ORIGINAL RESUME:\n{resume_text}\n\n"
-                                    f"Tailor the resume to this job."},
-    ], tracker)
+        {"role": "user", "content": task_prompt({"resume": resume_text, "jd": jd_text})},
+    ], tracker, model=model)
     return (msg.content or "").strip(), tracker.totals()
 
 

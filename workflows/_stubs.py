@@ -1,4 +1,9 @@
-"""Starting points for the other four owners. Each one copies the W4 pattern:
+"""Historical design notes retained for provenance.
+
+The stable V1 planned-workflow modules now live in their own files. This note is
+not registered and the legacy W4 ATS example is not one of the six workflows.
+
+Starting points for the other four owners originally copied the W4 pattern:
     1. Write a SYSTEM prompt = BASE_RULES + how your technique works.
     2. Define your tools as plain Python functions and wrap them with Tool(...).
     3. Return run_agent(...) results in the same dict shape.

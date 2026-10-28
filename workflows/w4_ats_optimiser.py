@@ -1,4 +1,7 @@
-"""W4 - ATS OPTIMISER LOOP  (worked example: copy this pattern for your own workflow)
+"""Legacy ATS optimiser example, excluded from the six-workflow V1 comparison.
+
+This historical worked example is not Workflow 4. Workflow 4 is the fine-tuned
+small generator in ``workflows/fine_tuned_small_generator.py``.
 
 Technique: the agent extracts the JD's keywords itself, checks how many the resume covers,
 rewrites to cover the missing ones, and repeats until it is happy or runs out of steps.
