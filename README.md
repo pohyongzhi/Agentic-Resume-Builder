@@ -18,10 +18,16 @@ Same model, same inputs, same base prompt, same scorecard for every workflow. On
 
 ## Setup (everyone, ~20 min)
 
-**1. Install Ollama** from https://ollama.com/download, then in a terminal:
+**1. Install Ollama** from https://ollama.com/download. The application uses the locally imported V4.1 model by default. Confirm it is available, then pull the embedding model:
 ```bash
-ollama pull qwen3.5:4b-q4_K_M
+ollama list
 ollama pull nomic-embed-text
+```
+
+The model list must include `agentic-resume-v4-1:q4_K_M`. To temporarily use the original base model as a rollback or comparison control:
+
+```bash
+OLLAMA_MODEL=qwen3.5:4b-q4_K_M python app.py
 ```
 
 **2. Python environment** (inside this folder):

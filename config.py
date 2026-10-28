@@ -1,6 +1,10 @@
 """One place for every setting. Keep these IDENTICAL for all workflows so the comparison is fair."""
 
-MODEL = "qwen3.5:4b-q4_K_M"      # writer model for every workflow (Ollama tag)
+import os
+
+DEFAULT_MODEL = "agentic-resume-v4-1:q4_K_M"
+BASE_MODEL = "qwen3.5:4b-q4_K_M"
+MODEL = os.getenv("OLLAMA_MODEL", DEFAULT_MODEL)  # writer model for every workflow (Ollama tag)
 EMBED_MODEL = "nomic-embed-text"  # embedding model for cosine similarity (ollama pull nomic-embed-text)
 
 TEMPERATURE = 0.0     # low randomness so differences come from the technique, not luck

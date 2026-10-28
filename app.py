@@ -8,6 +8,7 @@ import tempfile
 
 import gradio as gr
 
+import config
 from baseline_tailor import read_file, tailor
 from eval.metrics import keyword_coverage
 
@@ -40,8 +41,11 @@ def run(resume_file, jd_text, keywords_text):
     return result, info, out.name
 
 
-with gr.Blocks(title="Resume Tailor - Baseline") as demo:
-    gr.Markdown("# Resume Tailor (baseline)\nOne prompt to a local model. No tools, no agent.")
+with gr.Blocks(title="Resume Tailor - V4.1") as demo:
+    gr.Markdown(
+        f"# Resume Tailor (V4.1)\n"
+        f"Local model: `{config.MODEL}`. One prompt, no tools, no external API."
+    )
     with gr.Row():
         with gr.Column():
             resume_in = gr.File(label="Your resume (.pdf, .docx, .txt, .md)",

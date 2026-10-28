@@ -21,7 +21,7 @@ The current deployed candidate used `runs/v4-dataset-550-v4-1/`. The accuracy-fo
 | Paid generation calls | 0 |
 | Frozen-holdout overlaps | 0 |
 
-The current trained candidate is imported locally as `agentic-resume-v4-1:q4_K_M`. It is not yet the application default. The application still uses `qwen3.5:4b-q4_K_M` so that the established baseline remains available while V4.1 is evaluated and refined.
+The selected trained model is imported locally as `agentic-resume-v4-1:q4_K_M` and is now the application default. The original `qwen3.5:4b-q4_K_M` remains available as the rollback and comparison control through the `OLLAMA_MODEL` environment variable.
 
 The strongest measured outcome remains improved constraint retention. V4.1 preserved automation percentages, actual titles, limited proficiency, temporary authority, and manager approval boundaries more reliably than V3. V4.2 reduced validation loss and corrected the targeted negative-summary behavior, but an eight-case generation gate exposed one unsupported JD-derived industry claim. V4.2 is therefore retained as an experimental adapter rather than promoted or quantized.
 
@@ -446,7 +446,7 @@ The current results should be interpreted with these limits:
 
 | Artifact | State |
 | --- | --- |
-| Baseline `qwen3.5:4b-q4_K_M` | Current application default and rollback |
+| Baseline `qwen3.5:4b-q4_K_M` | Rollback and comparison control |
 | V3 adapted model | Retained comparison model |
 | V4.1 adapter and merge evidence | Verified and archived |
 | V4.1 Q4_K_M GGUF | Converted, checksum-verified, and imported locally |
