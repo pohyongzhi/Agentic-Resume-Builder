@@ -21,7 +21,7 @@ The current deployed candidate used `runs/v4-dataset-550-v4-1/`. The accuracy-fo
 | Paid generation calls | 0 |
 | Frozen-holdout overlaps | 0 |
 
-The selected trained model is imported locally as `agentic-resume-v4-1:q4_K_M` and is now the application default. The original `qwen3.5:4b-q4_K_M` remains available as the rollback and comparison control through the `OLLAMA_MODEL` environment variable.
+The selected trained model is imported locally as `agentic-resume-v4-1:q4_K_M` for the fine-tuned Workflow 4. The original `qwen3.5:4b-q4_K_M` remains the application default, Workflow 1 baseline, and comparison control.
 
 The strongest measured outcome remains improved constraint retention. V4.1 preserved automation percentages, actual titles, limited proficiency, temporary authority, and manager approval boundaries more reliably than V3. V4.2 reduced validation loss and corrected the targeted negative-summary behavior, but an eight-case generation gate exposed one unsupported JD-derived industry claim. V4.2 is therefore retained as an experimental adapter rather than promoted or quantized.
 

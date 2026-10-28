@@ -1,127 +1,83 @@
-# Resume Agent Lab (IS469 group project starter)
+# Agentic Resume Builder
 
-**Question:** which agentic technique makes a small local model (Qwen 4B) write the best tailored resume,
-at what cost, and without making things up?
+Agentic Resume Builder is a local experimental application for comparing six resume-tailoring workflows under a shared input and output contract. Product version 1.0.0 keeps the original Qwen model as the control and uses the selected V4.1 fine-tune only in Workflow 4.
 
-Same model, same inputs, same base prompt, same scorecard for every workflow. Only the technique changes.
+## Workflow design
 
-| Workflow | Owner | Technique | Status |
-|---|---|---|---|
-| baseline | everyone | one prompt, no tools (control) | ✅ done |
-| w1_research | | web search + Harvard guide RAG | stub in `workflows/_stubs.py` |
-| w2_recruiter | | recruiter agent reviews, writer revises | stub |
-| w3_critic | | critic + verify_claims, up to 2 rewrites | stub |
-| w4_ats_optimiser | | keyword check → rewrite loop | ✅ worked example |
-| w5_plan_first | | plan, then write | stub |
+| No. | Workflow ID | Technique | Model | Status |
+| ---: | --- | --- | --- | --- |
+| 1 | `baseline` | Single-pass baseline | `qwen3.5:4b-q4_K_M` | Implemented; default |
+| 2 | `multi_critic_review` | Multi-critic review loop | Base model | Planned |
+| 3 | `evidence_grounded_generation` | Evidence-grounded generation | Base model | Planned |
+| 4 | `fine_tuned_small_generator` | Fine-tuned small generator | `agentic-resume-v4-1:q4_K_M` | Implemented |
+| 5 | `multi_draft_selector` | Several drafts plus selector | Base model | Planned |
+| 6 | `planner_section_writers` | Planner and section writers | Base model | Planned |
 
----
+Only implemented workflows are executable. The historical `w4_ats_optimiser` module is an earlier example and is not Workflow 4 in this design.
 
-## Setup (everyone, ~20 min)
+## Setup
 
-**1. Install Ollama** from https://ollama.com/download. The application uses the locally imported V4.1 model by default. Confirm it is available, then pull the embedding model:
+Prerequisites are Python 3.11, [Ollama](https://ollama.com/), and the baseline model. Create an ignored virtual environment rather than installing packages globally:
+
+```bash
+python3.11 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+ollama pull qwen3.5:4b-q4_K_M
+```
+
+Workflow 4 additionally requires the local tag `agentic-resume-v4-1:q4_K_M`. Its selected GGUF is stored outside Git under `/Users/kester/Desktop/Agentic-Resume-Builder-Models/v4-1-q4_K_M/`; the exact file and hash are recorded in `release/v1/manifest.json`.
+
+Confirm both tags before running comparisons:
+
 ```bash
 ollama list
-ollama pull nomic-embed-text
+ollama show qwen3.5:4b-q4_K_M
+ollama show agentic-resume-v4-1:q4_K_M
 ```
 
-The model list must include `agentic-resume-v4-1:q4_K_M`. To temporarily use the original base model as a rollback or comparison control:
+## Run
 
-```bash
-OLLAMA_MODEL=qwen3.5:4b-q4_K_M python app.py
-```
+Start the web interface:
 
-**2. Python environment** (inside this folder):
-```bash
-python -m venv venv
-source venv/bin/activate          # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-**3. Check the model can call tools** (do this before building anything):
-```bash
-python smoke_test.py
-```
-Aim for ≥80% valid tool calls. If it's much lower, tell the group before anyone builds a workflow.
-
-**4. Quick end-to-end test** on the sample data:
-```bash
-python run_all.py --limit 1 --repeats 1
-python summarise.py
-```
-The first run downloads the NLI model for the faithfulness check (a few hundred MB).
-
----
-
-## Try the baseline on your own resume
-
-Web page (easiest):
 ```bash
 python app.py
 ```
-Open http://127.0.0.1:7860, upload your resume (.pdf/.docx/.txt/.md), paste the job ad, click **Tailor my resume**.
 
-Terminal:
+Open <http://127.0.0.1:7860>. Workflow 1 Baseline is selected by default; the selector exposes only implemented workflows and displays the selected workflow and model.
+
+Run the baseline directly:
+
 ```bash
-python baseline_tailor.py --resume my_resume.pdf --jd job.txt
-```
-Saves `tailored_resume.md`.
-
----
-
-## How the code is organised
-
-```
-baseline_tailor.py      the baseline: one prompt, no tools (also used by workflows/baseline.py)
-app.py                  simple web page: upload resume + paste JD -> tailored resume
-config.py               every setting (model, temperature, context length, step budget). Same for all workflows.
-common/llm.py           the ONLY way to call the model. Logs tokens, time and tool calls into a Tracker.
-common/agent.py         shared LangGraph ReAct loop: agent -> tools -> agent ... -> submit_resume
-common/prompts.py       BASE_RULES + task prompt shared by all workflows
-common/data.py          loads data/pairs.csv (resume + JD + hand-labelled keywords)
-workflows/              one file per workflow, registered in workflows/__init__.py
-eval/metrics.py         the shared scorecard
-run_all.py              runs every workflow on every pair, appends to results/results.jsonl
-summarise.py            mean ± SD of each metric per workflow -> results/summary.csv
+python baseline_tailor.py --resume resume.pdf --jd job.txt --out tailored.md
 ```
 
-## Building your workflow (owners)
+Run a deterministic comparison on the repository fixtures:
 
-1. Copy `workflows/w4_ats_optimiser.py` to `workflows/w1_research.py` (or yours).
-2. Change `NAME`, the `SYSTEM` prompt (keep `BASE_RULES +` at the start) and the tools.
-3. A tool = a normal Python function + `Tool(fn, description, params)`. Write the description
-   carefully: the model reads it to decide when to call the tool.
-4. Always call the model through `common.llm.chat(...)`, never `ollama` directly, or your cost won't be counted.
-5. Return `{"resume_md": ..., "hit_budget": ..., "finished": ...}`.
-6. Add it to `workflows/__init__.py`, then test: `python run_all.py --workflows w1_research --limit 1 --repeats 1`.
+```bash
+python run_all.py --workflows baseline fine_tuned_small_generator --limit 2 --repeats 1
+```
 
-Workflows that aren't a tool loop (e.g. W2 recruiter, W5 plan-first) can be their own small LangGraph
-graph like `workflows/baseline.py`, with a fixed number of review rounds.
+`common.llm.chat()` uses `BASE_MODEL` when no model is provided. Workflow 4 is the only workflow that supplies `FINE_TUNED_MODEL` as an explicit override. Each call records the actual model in its trace.
 
-## The scorecard (eval/metrics.py)
+## Repository structure
 
-| Metric | How | Why |
-|---|---|---|
-| Cost | input/output tokens + seconds from Ollama | fancier isn't free |
-| JD similarity | cosine of embeddings, JD vs resume, before and after | does it read like a match? |
-| Keyword coverage | % of our hand-labelled must-have keywords present | roughly what an ATS filter checks |
-| Faithfulness | NLI model checks each claim against the original resume | catches invented skills/numbers; stops "copy the JD" from winning |
-| Tool-call success | valid tool calls / all tool calls, repeated calls, budget hits | can a 4B model run an agent reliably? |
+```text
+common/          shared prompts, model wrapper, data helpers
+workflows/       workflow registry and implementations or status metadata
+eval/            comparison metrics
+v4_data/         reusable dataset contracts and validation
+v4_training/     reproducible LoRA training and evaluation tools
+configs/v4/      pinned V4 training configurations
+docs/v4/         historical research and experiment documentation
+release/v1/      V1 manifest, checksums, workflow record and limitations
+runs/            ignored local datasets and evaluation artifacts
+```
 
-Notes:
-- Faithfulness uses a separate model (`cross-encoder/nli-deberta-v3-small`) as an independent referee.
-  Check the label order on its Hugging Face model card matches the code (contradiction, entailment, neutral).
-- If you add an overall quality judge, use a bigger model than the writer, and check it against ~20 human ratings.
+The selected V4.1 dataset, training evidence, local comparison, frozen holdout and source provenance remain under ignored `runs/` paths listed in the release manifest. Model weights remain outside ordinary Git.
 
-## Data (data/)
+## Limitations
 
-- `resumes/*.md`: fictional candidates only. Never real people's resumes.
-- `jds/<id>.md`: job descriptions (real postings, with the URL in pairs.csv).
-- `jds/<id>.keywords.json`: 10–15 must-have keywords per JD, **hand-labelled by two people**, with synonyms.
-- `pairs.csv`: which resume goes with which JD.
+The fine-tuned Workflow 4 model works and improved several constraint-retention cases, but it is not consistently superior to the baseline. It can produce undesirable negative framing in some summaries. This repository is a local experimental comparison, not an assurance that generated resumes are accurate, suitable, private or ready to submit without review. Public-source derivatives are restricted to local development pending renewed licensing and privacy review.
 
-The sample files are placeholders. Plan: 5 resumes × 4 JDs = 20 pairs × 6 workflows × 2 repeats = 240 runs.
-
-## Rules that keep the comparison fair
-- Don't change `config.py` or `BASE_RULES` for your own workflow.
-- Run experiments one workflow at a time (`run_all.py` already does this) so timings aren't distorted.
-- Freeze all workflows before the full run. No tweaking after seeing test results.
+See [release/v1/README.md](release/v1/README.md) for the release record and [docs/v4/README.md](docs/v4/README.md) for the historical V4 research workstream.

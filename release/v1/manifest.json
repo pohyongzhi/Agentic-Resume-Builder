@@ -1,0 +1,79 @@
+{
+  "schema_version": "1.0",
+  "product": {"name": "Agentic Resume Builder", "version": "1.0.0", "release_scope": "local experimental comparison"},
+  "workflow_design": [
+    {"number": 1, "id": "baseline", "status": "implemented", "model": "qwen3.5:4b-q4_K_M", "default": true},
+    {"number": 2, "id": "multi_critic_review", "status": "planned", "model": "qwen3.5:4b-q4_K_M", "default": false},
+    {"number": 3, "id": "evidence_grounded_generation", "status": "planned", "model": "qwen3.5:4b-q4_K_M", "default": false},
+    {"number": 4, "id": "fine_tuned_small_generator", "status": "implemented", "model": "agentic-resume-v4-1:q4_K_M", "default": false},
+    {"number": 5, "id": "multi_draft_selector", "status": "planned", "model": "qwen3.5:4b-q4_K_M", "default": false},
+    {"number": 6, "id": "planner_section_writers", "status": "planned", "model": "qwen3.5:4b-q4_K_M", "default": false}
+  ],
+  "models": {
+    "baseline_default": "qwen3.5:4b-q4_K_M",
+    "workflow_4": "agentic-resume-v4-1:q4_K_M",
+    "optional_release_alias": "agentic-resume-finetuned-v1:q4_K_M",
+    "optional_alias_created": false,
+    "historical_origin": "V4.1 experiment",
+    "training_base": {"id": "Qwen/Qwen3.5-4B", "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a", "license": "Apache-2.0"}
+  },
+  "selected_dataset": {
+    "directory": "runs/v4-dataset-550-v4-1",
+    "development_records": 550,
+    "train_records": 490,
+    "validation_records": 60,
+    "train_path": "runs/v4-dataset-550-v4-1/sft-train-490.jsonl",
+    "train_sha256": "3e85c45af090e66b585a24261f3e310b45075c6b74d53913a407fed9eb3de2f3",
+    "validation_path": "runs/v4-dataset-550-v4-1/sft-validation-60.jsonl",
+    "validation_sha256": "fe9bdc897dcf40efdb8abd6add5c99e8a87bd018f5d7d1537f39270d87a15d6b",
+    "manifest_path": "runs/v4-dataset-550-v4-1/training-manifest.json",
+    "system_prompt_path": "runs/v4-dataset-550-v4-1/student-v1-1.txt",
+    "system_prompt_version": "student-v1-1",
+    "system_prompt_sha256": "a4cffd2073f8916628503f8eaf257280b430bc9d0f23874d5a0f53b4ad54d54b"
+  },
+  "lineage": {
+    "accepted_predecessor": "runs/v4-dataset-500-v2",
+    "editorial_predecessor": "runs/v4-dataset-500-v3-r4",
+    "source_inventory": "runs/v4-inventory-450-v1/inventory-044",
+    "frozen_holdout": "runs/v4-expansion-500/holdout-freeze",
+    "public_source_derivatives": "local development only pending renewed license and privacy review"
+  },
+  "training": {
+    "config_path": "configs/v4/qwen35-4b-lora-v4-1.json",
+    "config_sha256": "03b144c4616a6d379df7a3e1310614b168160399c0d19ae8060efae6b565fdea",
+    "validation_loss": 0.5822656750679016,
+    "adapter_metadata_path": "runs/v4-1-server-results/v4-pilot-training-v4-1-blackwell-001/adapter-final/adapter_config.json",
+    "adapter_metadata_available": true,
+    "adapter_weights_expected": "adapter_model.safetensors",
+    "adapter_weights_available_locally": false
+  },
+  "deployment": {
+    "gguf_path": "/Users/kester/Desktop/Agentic-Resume-Builder-Models/v4-1-q4_K_M/agentic-resume-v4-1-no-nextn-q4_K_M.gguf",
+    "gguf_sha256": "30b3ac98715ad1e0aee49477606840e00d0e4339725f8c31e6f99ac56596f804",
+    "quantization": "Q4_K_M",
+    "historical_ollama_tag": "agentic-resume-v4-1:q4_K_M",
+    "raw_terminal_control_token_detected": false
+  },
+  "evaluation": {
+    "path": "runs/v4-ollama-ab-v4-1/assessment.md",
+    "cases": 7,
+    "required_headings": "7/7",
+    "unsupported_numeric_string_check": "7/7",
+    "v4_1_preferred": 2,
+    "comparison_preferred": 1,
+    "ties": 4,
+    "summary": "V4.1 improved targeted constraint retention but is not consistently superior and can use undesirable negative summary framing."
+  },
+  "rollback": {
+    "procedure": "Select workflow ID baseline; it routes to qwen3.5:4b-q4_K_M. Do not delete either Ollama tag.",
+    "baseline_tag_must_remain": true,
+    "historical_v4_1_tag_must_remain": true
+  },
+  "archive": {"path": "/Users/kester/Desktop/Agentic-Resume-Builder-Archive-2026-10-28", "contents": "pre-cleanup inventory, Git bundle, staged patch, added staged files, cleanup candidates and checksums"},
+  "restrictions": [
+    "Local-only release; nothing was pushed.",
+    "Large datasets and model weights are excluded from ordinary Git.",
+    "Public-source derivatives require renewed license, privacy and redistribution review before publication."
+  ],
+  "known_limitations": "release/v1/limitations.md"
+}
