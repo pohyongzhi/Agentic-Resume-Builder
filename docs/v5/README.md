@@ -32,6 +32,33 @@ V5 expands the comparison design from the V1 six-workflow registry to the seven 
 6. Planned variants must be implemented as their documented technique, not as aliases to one-pass generation.
 7. The frozen holdout remains closed until all intended variants and the evaluation protocol are finalized.
 
+## Completed V5 foundation
+
+The V5 foundation is implemented on branch `v5-workflow`:
+
+- the ordered seven-variant registry is the single source of identity, model route and implementation status;
+- the web application defaults to Variant 1 and displays only implemented variants;
+- planned variants fail closed in the evaluation CLI;
+- Variant 1 uses `qwen3.5:4b-q4_K_M` through the shared wrapper;
+- Variant 5 explicitly uses `agentic-resume-v4-1:q4_K_M` through the same wrapper;
+- every model call records its actual model tag;
+- product version `1.0.0`, experiment V5 and historical model experiment V4.1 remain separate;
+- the complete repository suite passes 100 tests.
+
+A live identical-input test produced the four required Markdown headings for both implemented variants. Variant 1 traced the original base tag, Variant 5 traced the fine-tuned tag, and neither output contained a raw terminal control token.
+
+## Team distribution
+
+Source code is available from the GitHub `v5-workflow` branch. The selected runnable model is publicly downloadable without a Hugging Face account from:
+
+```text
+echokes/agentic-resume-finetuned-v1-GGUF
+```
+
+Its Hub-side size and SHA-256 match the local release record. The portable Modelfile was tested through a fresh temporary Ollama import and deterministic resume generation. The LoRA adapter remains private at `echokes/agentic-resume-finetuned-v1`, and the training dataset was not uploaded.
+
+Detailed teammate commands are maintained in `HOW_TO_RUN.md`. The application currently exposes Variant 1 and Variant 5; this is intentional and not evidence that the five planned techniques are complete.
+
 ## Next implementation order
 
 Implement Variant 2 first because it establishes reusable parsing, validation and rendering contracts. Then implement evidence grounding, the critic loop, multi-draft selection and planner/section writers. Each variant requires unit tests, identical-input routing tests and development-set review before the frozen holdout is opened.
