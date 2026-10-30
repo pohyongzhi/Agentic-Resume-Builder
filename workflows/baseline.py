@@ -1,12 +1,12 @@
-"""BASELINE (shared control). One prompt, no tools. Same logic as baseline_tailor.py,
-so the web page and the experiment use exactly the same baseline."""
-from baseline_tailor import tailor
+"""Deprecated compatibility alias for the former V1 one-pass baseline.
+
+V5 registers ``workflows.one_pass`` as Variant 1 and reserves
+``agentic_baseline`` for the parser/retriever/creator design in Variant 2.
+This module remains importable for historical scripts but is not registered.
+"""
+
+from workflows.one_pass import run
 
 NAME = "baseline"
-DISPLAY_NAME = "Workflow 1 — Baseline"
-STATUS = "implemented"
-
-
-def run(pair, tracker):
-    resume, _ = tailor(pair["resume"], pair["jd"], tracker)
-    return {"resume_md": resume, "hit_budget": False, "finished": True}
+DISPLAY_NAME = "Legacy V1 baseline alias"
+STATUS = "legacy"

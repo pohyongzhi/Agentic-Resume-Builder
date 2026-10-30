@@ -1,5 +1,5 @@
-"""Workflow 5 design placeholder: several drafts plus selector."""
+"""V5 Variant 6 design placeholder: several drafts plus selector."""
 
 NAME = "multi_draft_selector"
-DISPLAY_NAME = "Workflow 5 — Several drafts plus selector"
+DISPLAY_NAME = "Variant 6 — Several drafts plus selector"
 STATUS = "planned"

@@ -13,6 +13,10 @@ class InferenceBoundaryTests(unittest.TestCase):
         self.assertEqual(config.FINE_TUNED_MODEL, "agentic-resume-v4-1:q4_K_M")
         self.assertNotEqual(config.FINE_TUNED_MODEL, config.BASE_MODEL)
 
+    def test_product_and_experiment_versions_are_separate(self):
+        self.assertEqual(config.PRODUCT_VERSION, "1.0.0")
+        self.assertEqual(config.EXPERIMENT_VERSION, "V5")
+
     def test_terminal_control_tokens_are_removed(self):
         self.assertEqual(
             clean_model_output("## Skills\nJava<|im_end|>\n"),

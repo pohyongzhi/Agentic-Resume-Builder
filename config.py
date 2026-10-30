@@ -2,12 +2,13 @@
 
 PRODUCT_NAME = "Agentic Resume Builder"
 PRODUCT_VERSION = "1.0.0"
+EXPERIMENT_VERSION = "V5"
 
 BASE_MODEL = "qwen3.5:4b-q4_K_M"
 FINE_TUNED_MODEL = "agentic-resume-v4-1:q4_K_M"
 
 # Backwards-compatible name for code that expects the shared/default writer.
-# It must remain the original base model; Workflow 4 opts into FINE_TUNED_MODEL.
+# It must remain the original base model; V5 Variant 5 opts into FINE_TUNED_MODEL.
 MODEL = BASE_MODEL
 EMBED_MODEL = "nomic-embed-text"  # embedding model for cosine similarity (ollama pull nomic-embed-text)
 

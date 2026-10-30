@@ -1,5 +1,5 @@
-"""Workflow 3 design placeholder: evidence-grounded generation."""
+"""V5 Variant 4 design placeholder: evidence-grounded generation."""
 
 NAME = "evidence_grounded_generation"
-DISPLAY_NAME = "Workflow 3 — Evidence-grounded generation"
+DISPLAY_NAME = "Variant 4 — Evidence-grounded generation"
 STATUS = "planned"

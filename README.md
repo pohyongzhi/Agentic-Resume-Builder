@@ -1,23 +1,32 @@
 # Agentic Resume Builder
 
-Agentic Resume Builder is a local experimental application for comparing six resume-tailoring workflows under a shared input and output contract. Product version 1.0.0 keeps the original Qwen model as the control and uses the selected V4.1 fine-tune only in Workflow 4.
+Agentic Resume Builder is a local experiment for comparing seven resume-tailoring variants under a shared input, output and evaluation contract.
 
-## Workflow design
+- Product: Agentic Resume Builder
+- Product version: `1.0.0`
+- Active experiment: `V5`
+- Shared base model: `qwen3.5:4b-q4_K_M`
+- Fine-tuned model: `agentic-resume-v4-1:q4_K_M`
 
-| No. | Workflow ID | Technique | Model | Status |
+Product versioning, workflow-experiment versioning and historical model-experiment names are deliberately separate.
+
+## V5 variant design
+
+| No. | Stable ID | Technique | Model | Status |
 | ---: | --- | --- | --- | --- |
-| 1 | `baseline` | Single-pass baseline | `qwen3.5:4b-q4_K_M` | Implemented; default |
-| 2 | `multi_critic_review` | Multi-critic review loop | Base model | Planned |
-| 3 | `evidence_grounded_generation` | Evidence-grounded generation | Base model | Planned |
-| 4 | `fine_tuned_small_generator` | Fine-tuned small generator | `agentic-resume-v4-1:q4_K_M` | Implemented |
-| 5 | `multi_draft_selector` | Several drafts plus selector | Base model | Planned |
-| 6 | `planner_section_writers` | Planner and section writers | Base model | Planned |
+| 1 | `one_pass` | Resume and JD in one prompt | Base model | Implemented; default |
+| 2 | `agentic_baseline` | Resume parser, JD retriever, creator, validator and renderer | Base model | Planned |
+| 3 | `multi_critic_review` | Separate fact, recruiter and formatting critics | Base model | Planned |
+| 4 | `evidence_grounded_generation` | Claims linked to source-resume spans and verified | Base model | Planned |
+| 5 | `fine_tuned_small_generator` | Selected V4.1 LoRA-derived generator | Fine-tuned model | Implemented |
+| 6 | `multi_draft_selector` | Several drafts plus a selector | Base model | Planned |
+| 7 | `planner_section_writers` | Planner, parallel section writers and assembler | Base model | Planned |
 
-Only implemented workflows are executable. The historical `w4_ats_optimiser` module is an earlier example and is not Workflow 4 in this design.
+Only implemented variants are executable or shown in the application selector. The former V1 `baseline` name referred to the one-pass control; V5 names it `one_pass` so the distinct agentic baseline can occupy Variant 2. The legacy `w4_ats_optimiser` example is not registered as a V5 variant.
 
 ## Setup
 
-Prerequisites are Python 3.11, [Ollama](https://ollama.com/), and the baseline model. Create an ignored virtual environment rather than installing packages globally:
+Install Python 3.11 and [Ollama](https://ollama.com/), then create an isolated environment:
 
 ```bash
 python3.11 -m venv .venv
@@ -26,71 +35,61 @@ python -m pip install -r requirements.txt
 ollama pull qwen3.5:4b-q4_K_M
 ```
 
-Workflow 4 additionally requires the local tag `agentic-resume-v4-1:q4_K_M`. Its selected GGUF is stored outside Git under `/Users/kester/Desktop/Agentic-Resume-Builder-Models/v4-1-q4_K_M/`; the exact file and hash are recorded in `release/v1/manifest.json`.
-
-Teammates can install the fine-tuned model without a Hugging Face account:
+Install the fine-tuned model without a Hugging Face account:
 
 ```bash
-mkdir -p agentic-resume-finetuned-v1-GGUF
-cd agentic-resume-finetuned-v1-GGUF
-curl -L -C - -o agentic-resume-v4-1-no-nextn-q4_K_M.gguf \
+MODEL_DIR="$HOME/Agentic-Resume-Builder-Models/fine-tuned-v1"
+mkdir -p "$MODEL_DIR"
+
+curl -L -C - \
+  -o "$MODEL_DIR/agentic-resume-v4-1-no-nextn-q4_K_M.gguf" \
   https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
-curl -L -o Modelfile \
+
+curl -L \
+  -o "$MODEL_DIR/Modelfile" \
   https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
-ollama create agentic-resume-v4-1:q4_K_M -f Modelfile
-cd ..
-```
 
-Confirm both tags before running comparisons:
-
-```bash
-ollama list
-ollama show qwen3.5:4b-q4_K_M
-ollama show agentic-resume-v4-1:q4_K_M
+ollama create agentic-resume-v4-1:q4_K_M -f "$MODEL_DIR/Modelfile"
 ```
 
 ## Run
 
-Start the web interface:
+Start the application:
 
 ```bash
 python app.py
 ```
 
-Open <http://127.0.0.1:7860>. Workflow 1 Baseline is selected by default; the selector exposes only implemented workflows and displays the selected workflow and model.
+Open <http://127.0.0.1:7860>. Variant 1 One-pass is selected by default. Choose Variant 5 to run the fine-tuned model.
 
-Run the baseline directly:
-
-```bash
-python baseline_tailor.py --resume resume.pdf --jd job.txt --out tailored.md
-```
-
-Run a deterministic comparison on the repository fixtures:
+Run both implemented variants on identical repository fixtures:
 
 ```bash
-python run_all.py --workflows baseline fine_tuned_small_generator --limit 2 --repeats 1
+python run_all.py \
+  --workflows one_pass fine_tuned_small_generator \
+  --limit 2 --repeats 1
 ```
 
-`common.llm.chat()` uses `BASE_MODEL` when no model is provided. Workflow 4 is the only workflow that supplies `FINE_TUNED_MODEL` as an explicit override. Each call records the actual model in its trace.
+The shared model wrapper uses the base model when no override is supplied. Only Variant 5 explicitly supplies the fine-tuned tag, and every call records the actual model used.
 
 ## Repository structure
 
 ```text
-common/          shared prompts, model wrapper, data helpers
-workflows/       workflow registry and implementations or status metadata
-eval/            comparison metrics
+common/          shared prompts, model wrapper, agent loop and data helpers
+workflows/       V5 implementations and planned-variant metadata
+eval/            shared comparison metrics
+docs/v5/         current seven-variant experiment record
+docs/v4/         historical fine-tuning research and training record
 v4_data/         reusable dataset contracts and validation
 v4_training/     reproducible LoRA training and evaluation tools
-configs/v4/      pinned V4 training configurations
-docs/v4/         historical research and experiment documentation
-release/v1/      V1 manifest, checksums, workflow record and limitations
-runs/            ignored local datasets and evaluation artifacts
+release/v1/      frozen V1 release record and artifact checksums
+runs/            ignored local datasets and experiment artifacts
 ```
 
-The selected V4.1 dataset, training evidence, local comparison, frozen holdout and source provenance remain under ignored `runs/` paths listed in the release manifest. Model weights remain outside ordinary Git.
+Model weights remain outside ordinary Git. The runnable GGUF is public on Hugging Face for school-project use; the adapter and training data remain private.
 
 ## Limitations
 
-The fine-tuned Workflow 4 model works and improved several constraint-retention cases, but it is not consistently superior to the baseline. It can produce undesirable negative framing in some summaries. This repository is a local experimental comparison, not an assurance that generated resumes are accurate, suitable, private or ready to submit without review. Public-source derivatives are restricted to local development pending renewed licensing and privacy review.
+Five V5 variants are not implemented yet and are marked planned. The fine-tuned model works and improved several constraint-retention cases, but it is not consistently superior to the base model and can produce undesirable negative framing. Generated resumes require human factual and editorial review and must not be used for autonomous hiring decisions.
 
-See [release/v1/README.md](release/v1/README.md) for the release record and [docs/v4/README.md](docs/v4/README.md) for the historical V4 research workstream.
+See [docs/v5/README.md](docs/v5/README.md) for V5 scope, [release/v1/README.md](release/v1/README.md) for the preserved V1 release, and [docs/v4/README.md](docs/v4/README.md) for historical fine-tuning research.

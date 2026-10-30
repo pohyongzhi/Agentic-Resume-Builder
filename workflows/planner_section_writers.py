@@ -1,5 +1,5 @@
-"""Workflow 6 design placeholder: planner and section writers."""
+"""V5 Variant 7 design placeholder: planner and section writers."""
 
 NAME = "planner_section_writers"
-DISPLAY_NAME = "Workflow 6 — Planner and section writers"
+DISPLAY_NAME = "Variant 7 — Planner and section writers"
 STATUS = "planned"

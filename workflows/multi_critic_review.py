@@ -1,5 +1,5 @@
-"""Workflow 2 design placeholder: multi-critic review loop."""
+"""V5 Variant 3 design placeholder: multi-critic review loop."""
 
 NAME = "multi_critic_review"
-DISPLAY_NAME = "Workflow 2 — Multi-critic review loop"
+DISPLAY_NAME = "Variant 3 — Multi-critic review loop"
 STATUS = "planned"

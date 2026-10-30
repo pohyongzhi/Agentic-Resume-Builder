@@ -1,7 +1,7 @@
-"""Historical design notes retained for provenance.
+"""Historical pre-V5 design notes retained for provenance.
 
-The stable V1 planned-workflow modules now live in their own files. This note is
-not registered and the legacy W4 ATS example is not one of the six workflows.
+The stable V5 planned-variant modules now live in their own files. This note is
+not registered and the legacy W4 ATS example is not one of the seven variants.
 
 Starting points for the other four owners originally copied the W4 pattern:
     1. Write a SYSTEM prompt = BASE_RULES + how your technique works.

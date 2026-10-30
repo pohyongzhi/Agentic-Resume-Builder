@@ -1,11 +1,11 @@
-"""Workflow 4: one-pass generation with the selected V4.1 fine-tuned model."""
+"""V5 Variant 5: one-pass generation with the selected V4.1 fine-tuned model."""
 
 import config
 from baseline_tailor import tailor
 
 
 NAME = "fine_tuned_small_generator"
-DISPLAY_NAME = "Workflow 4 — Fine-tuned small generator"
+DISPLAY_NAME = "Variant 5 — Fine-tuned small generator"
 STATUS = "implemented"
 
 

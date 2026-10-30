@@ -14,7 +14,7 @@ from eval.metrics import keyword_coverage
 from workflows import WORKFLOWS, WORKFLOW_SPECS
 
 
-def run(resume_file, jd_text, keywords_text, workflow_id="baseline"):
+def run(resume_file, jd_text, keywords_text, workflow_id="one_pass"):
     if resume_file is None:
         return "Please upload your resume.", "", None
     if not (jd_text or "").strip():
@@ -58,14 +58,15 @@ IMPLEMENTED_CHOICES = [
 with gr.Blocks(title=f"{config.PRODUCT_NAME} {config.PRODUCT_VERSION}") as demo:
     gr.Markdown(
         f"# {config.PRODUCT_NAME} v{config.PRODUCT_VERSION}\n"
-        "Compare implemented local workflows. Workflow 1 Baseline is selected by default."
+        f"Experiment {config.EXPERIMENT_VERSION}: compare implemented local variants. "
+        "Variant 1 One-pass is selected by default."
     )
     with gr.Row():
         with gr.Column():
             resume_in = gr.File(label="Your resume (.pdf, .docx, .txt, .md)",
                                 file_types=[".pdf", ".docx", ".txt", ".md"])
             workflow_in = gr.Dropdown(
-                label="Workflow", choices=IMPLEMENTED_CHOICES, value="baseline")
+                label="Variant", choices=IMPLEMENTED_CHOICES, value="one_pass")
             jd_in = gr.Textbox(label="Job description (paste the full ad)", lines=14)
             kw_in = gr.Textbox(label="Optional: keywords to check, comma-separated (e.g. SQL, Power BI, Python)")
             go = gr.Button("Tailor my resume", variant="primary")
