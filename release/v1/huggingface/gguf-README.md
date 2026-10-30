@@ -15,7 +15,7 @@ tags:
 
 # Agentic Resume Fine-tuned V1 — GGUF
 
-This private repository contains the deployable GGUF produced from the selected V4.1 Agentic Resume Builder LoRA experiment.
+This public repository contains the deployable GGUF produced from the selected V4.1 Agentic Resume Builder LoRA experiment. It is published for reproducible school-project use and can be downloaded without a Hugging Face account.
 
 The artifact was created by merging the V4.1 adapter into the pinned official `Qwen/Qwen3.5-4B` base, converting the merged model to GGUF, excluding the auxiliary next-token-prediction tensors used by the source architecture, and quantizing to `Q4_K_M` for local inference.
 
@@ -36,14 +36,24 @@ SHA-256:
 
 ## Ollama usage
 
-Download this repository so the GGUF and `Modelfile` are in the same directory, then run:
+Download both files into the same directory. No Hugging Face login is required:
 
 ```bash
-ollama create agentic-resume-finetuned-v1:q4_K_M -f Modelfile
-ollama show agentic-resume-finetuned-v1:q4_K_M
+curl -L -C - -o agentic-resume-v4-1-no-nextn-q4_K_M.gguf \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+
+curl -L -o Modelfile \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
 ```
 
-The supplied Modelfile uses a relative path and configures Qwen terminal stop tokens. Application prompts and generation settings remain in the Agentic Resume Builder code repository.
+Then import the model:
+
+```bash
+ollama create agentic-resume-v4-1:q4_K_M -f Modelfile
+ollama show agentic-resume-v4-1:q4_K_M
+```
+
+The historical tag above is the tag expected by the current application. The supplied Modelfile uses a relative path and configures Qwen terminal stop tokens. Application prompts and generation settings remain in the Agentic Resume Builder code repository.
 
 ## Evaluation and limitations
 
@@ -54,7 +64,8 @@ The supplied Modelfile uses a relative path and configures Qwen terminal stop to
 - Quantization introduces an additional difference from the BF16 adapter evaluation.
 - Generated resumes require human factual and editorial review.
 - The model must not be used for autonomous hiring or candidate ranking.
-- This artifact has not been cleared for public redistribution and should remain private pending renewed data-license and privacy review.
+- This artifact is published for this school project, but a formal legal or privacy review of the source-data lineage has not been completed.
+- Public availability does not grant permission to redistribute the underlying training dataset, which is not included.
 
 The dataset is intentionally not included.
 

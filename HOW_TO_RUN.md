@@ -12,6 +12,19 @@ ollama list
 
 The original `qwen3.5:4b-q4_K_M` is the baseline and shared default. Workflow 4 alone requests `agentic-resume-v4-1:q4_K_M`; that tag must already have been imported from the selected local GGUF.
 
+To install the fine-tuned tag without a Hugging Face account:
+
+```bash
+mkdir -p agentic-resume-finetuned-v1-GGUF
+cd agentic-resume-finetuned-v1-GGUF
+curl -L -C - -o agentic-resume-v4-1-no-nextn-q4_K_M.gguf \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+curl -L -o Modelfile \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
+ollama create agentic-resume-v4-1:q4_K_M -f Modelfile
+cd ..
+```
+
 Start the interface:
 
 ```bash

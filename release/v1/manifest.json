@@ -59,21 +59,24 @@
     "raw_terminal_control_token_detected": false
   },
   "hosting": {
-    "visibility": "private",
+    "visibility": "mixed",
     "adapter_repository": {
       "id": "echokes/agentic-resume-finetuned-v1",
       "url": "https://huggingface.co/echokes/agentic-resume-finetuned-v1",
       "revision": "231e7d1b6b9fcbf2bb7841b4013a9319b11c9b65",
+      "visibility": "private",
       "weights_sha256_verified": true
     },
     "gguf_repository": {
       "id": "echokes/agentic-resume-finetuned-v1-GGUF",
       "url": "https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF",
-      "revision": "73c897b8fdc4d322caab9626cea18a1b84725e3f",
+      "revision": "898e7b5e0c58706a0a781cd312a9da55cca1bfd6",
+      "visibility": "public",
       "weights_sha256_verified": true
     },
     "dataset_uploaded": false,
-    "public_release_approved": false
+    "gguf_publication_authorized_by_owner": true,
+    "formal_redistribution_review_complete": false
   },
   "evaluation": {
     "path": "runs/v4-ollama-ab-v4-1/assessment.md",
@@ -92,7 +95,7 @@
   },
   "archive": {"path": "/Users/kester/Desktop/Agentic-Resume-Builder-Archive-2026-10-28", "contents": "pre-cleanup inventory, Git bundle, staged patch, added staged files, cleanup candidates and checksums"},
   "restrictions": [
-    "Source records are preserved on GitHub; model artifacts are backed up in private Hugging Face repositories.",
+    "Source records are preserved on GitHub; the runnable GGUF is public on Hugging Face and the adapter is private.",
     "Large datasets and model weights are excluded from ordinary Git.",
     "Public-source derivatives require renewed license, privacy and redistribution review before publication."
   ],

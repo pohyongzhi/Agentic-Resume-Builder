@@ -28,6 +28,19 @@ ollama pull qwen3.5:4b-q4_K_M
 
 Workflow 4 additionally requires the local tag `agentic-resume-v4-1:q4_K_M`. Its selected GGUF is stored outside Git under `/Users/kester/Desktop/Agentic-Resume-Builder-Models/v4-1-q4_K_M/`; the exact file and hash are recorded in `release/v1/manifest.json`.
 
+Teammates can install the fine-tuned model without a Hugging Face account:
+
+```bash
+mkdir -p agentic-resume-finetuned-v1-GGUF
+cd agentic-resume-finetuned-v1-GGUF
+curl -L -C - -o agentic-resume-v4-1-no-nextn-q4_K_M.gguf \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+curl -L -o Modelfile \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
+ollama create agentic-resume-v4-1:q4_K_M -f Modelfile
+cd ..
+```
+
 Confirm both tags before running comparisons:
 
 ```bash

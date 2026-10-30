@@ -18,11 +18,11 @@ The selected V4.1 tag remains historical and recoverable as `agentic-resume-v4-1
 
 The recoverable cleanup archive is `/Users/kester/Desktop/Agentic-Resume-Builder-Archive-2026-10-28`. It contains the pre-cleanup inventory, a complete Git bundle, the former staged patch and copied cleanup candidates with SHA-256 verification.
 
-## Private model backup
+## Model hosting
 
-The selected artifacts are backed up in private Hugging Face model repositories:
+The selected artifacts are backed up on Hugging Face:
 
-- Adapter: `echokes/agentic-resume-finetuned-v1`
-- GGUF: `echokes/agentic-resume-finetuned-v1-GGUF`
+- Private adapter: `echokes/agentic-resume-finetuned-v1`
+- Public runnable GGUF: `echokes/agentic-resume-finetuned-v1-GGUF`
 
-Their pinned Hub revisions and verified large-file hashes are recorded in `manifest.json`. The dataset was not uploaded, and public redistribution has not been approved.
+Their pinned Hub revisions and verified large-file hashes are recorded in `manifest.json`. The dataset was not uploaded. The GGUF is public for school-project distribution; the adapter remains private.
