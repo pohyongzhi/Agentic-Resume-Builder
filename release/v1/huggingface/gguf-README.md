@@ -69,4 +69,4 @@ The historical tag above is the tag expected by the current application. The sup
 
 The dataset is intentionally not included.
 
-Project and reproducibility records: [Agentic Resume Builder, `v1-local`](https://github.com/pohyongzhi/Agentic-Resume-Builder/tree/v1-local)
+Project and reproducibility records: [Agentic Resume Builder, `v5-workflow-rollback`](https://github.com/pohyongzhi/Agentic-Resume-Builder/tree/v5-workflow-rollback)

@@ -95,4 +95,4 @@ Apply the official Qwen3.5 chat template with `enable_thinking=False`. Use the e
 1d059d631ff308c3077cc25c7c433389178b47ae45d448a06ad2749c518ad808
 ```
 
-Project and reproducibility records: [Agentic Resume Builder, `v1-local`](https://github.com/pohyongzhi/Agentic-Resume-Builder/tree/v1-local)
+Project and reproducibility records: [Agentic Resume Builder, `v5-workflow-rollback`](https://github.com/pohyongzhi/Agentic-Resume-Builder/tree/v5-workflow-rollback)

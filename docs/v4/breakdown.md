@@ -408,7 +408,7 @@ The V4.1 `adapter_model.safetensors` file was subsequently recovered from the se
 1d059d631ff308c3077cc25c7c433389178b47ae45d448a06ad2749c518ad808
 ```
 
-It is stored outside Git at `/Users/kester/Desktop/Agentic-Resume-Builder-Models/v4-1-adapter/`. The V1 manifest and checksum record were updated. The normalized `v1-local` branch was preserved and published to GitHub as a stable reference.
+It is stored outside Git at `/Users/kester/Desktop/Agentic-Resume-Builder-Models/v4-1-adapter/`. The V1 manifest and checksum record were updated. The normalized release snapshot was preserved and published to GitHub as `v5-workflow-rollback`.
 
 ### Phase 17 — model hosting and teammate distribution
 
@@ -512,7 +512,7 @@ The current results should be interpreted with these limits:
 | V4.2 rank-32 config | Prepared but not justified before factual-safety correction |
 | V4.2 merge/quantization/import | Not performed because the generation gate found a regression |
 | Frozen final benchmark | Unopened |
-| GitHub publication | `v1-local` preserved; active `v5-workflow` published |
+| GitHub publication | `v5-workflow-rollback` preserved; active `v5-workflow` published |
 | Hugging Face adapter | `echokes/agentic-resume-finetuned-v1`, private |
 | Hugging Face GGUF | `echokes/agentic-resume-finetuned-v1-GGUF`, public |
 
@@ -606,4 +606,4 @@ If fine-tuning resumes later, the V4.2 banking-context regression remains the fi
 
 The workstream completed V4.1 dataset construction, training, adapter verification, merging, Q4_K_M conversion, local Ollama import and controlled development comparison. The selected adapter was recovered and independently checksum-verified; the runnable GGUF is publicly downloadable without an account, while the adapter and dataset remain private. V4.2 remains a rejected historical experiment because its release gate exposed an unsupported QA banking-context claim.
 
-The repository is normalized as product version `1.0.0`, with the original Qwen model as the shared default and the fine-tuned model isolated to its designated variant. The stable `v1-local` branch preserves the six-workflow V1 release. Active development continues on `v5-workflow`, whose seven-variant registry is verified and whose current executable variants are One-pass and Fine-tuned small generator. The immediate next task is implementing the real agentic baseline rather than performing additional unstructured training.
+The repository is normalized as product version `1.0.0`, with the original Qwen model as the shared default and the fine-tuned model isolated to its designated variant. The stable `v5-workflow-rollback` branch preserves the normalized V1 release snapshot for rollback. Active development continues on `v5-workflow`, whose seven-variant registry is verified and whose current executable variants are One-pass and Fine-tuned small generator. The immediate next task is implementing the real agentic baseline rather than performing additional unstructured training.
