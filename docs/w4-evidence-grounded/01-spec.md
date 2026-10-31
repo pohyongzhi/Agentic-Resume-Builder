@@ -105,7 +105,7 @@ class GroundedEducation(Schema):
 
 class GroundedProject(Schema):
     name: str
-    description: str = ""
+    description: Claim = Field(default_factory=lambda: Claim(text=""))
     bullets: list[Claim] = Field(default_factory=list)
 
 class GroundedResume(Schema):
@@ -133,6 +133,12 @@ class VerifyBatch(Schema):
   citation check, which is the correct outcome.
 - `sources` given as one string like `"S3, S4"` or `"[S3] [S4]"` → `["S3", "S4"]`
 - lower-case or bracketed IDs (`"s3"`, `"[S3]"`) → `"S3"`
+- `sources: null` → `[]` (the claim then fails citation validation).
+
+Project descriptions are claims too: a nonempty description must pass the same citation,
+rule and LLM checks as project bullets. A legacy plain-string description is accepted as an
+uncited claim and must be revised or dropped. An empty description is omitted from verification.
+The final `GeneratedResume` still contains a plain-string description.
 
 Do this in `Claim` itself so it works wherever a Claim appears (bullets, details, summary).
 Note that the existing `Schema` validator wraps a lone string into a list only for `list[str]` fields.
@@ -148,8 +154,11 @@ After a draft is parsed, give every claim a stable ID based on its position:
 - `summary.0`, `summary.1`, …
 - `exp.{i}.{j}`: experience entry i (index in the draft), bullet j
 - `edu.{i}.{j}`, `proj.{i}.{j}`
+- `proj.{i}.description` for a nonempty project description
 
 Use these IDs in the verifier, the evidence report and the revise prompt.
+Positions may change after deletion or reordering. Track first-pass history separately by
+section, entry label, claim text and source IDs so revision metrics follow the claim itself.
 
 ## 4. Node-by-node behaviour
 
@@ -175,6 +184,9 @@ entry header lines end in a date range, and paragraphs wrap mid-sentence.)
    A Markdown heading whose text is **not** a known heading (e.g. `# Alex Tan`) does not change the
    section; it's still a `kind="heading"` span (so before the first known heading it's part of the
    header section, rule 9).
+   Within experience, education and projects, first test unknown Markdown headings for an
+   entry match (rule 5). A matching heading is an `entry_header` and sets its entry. An
+   unrecognized Markdown heading clears entry ownership rather than inheriting the prior entry.
 5. **Entry header line:** inside experience / education / projects, a line that contains a date
    range (`Jan 2024 – Present`, `May 2025 - Aug 2025`, `2019`, `2018 - 2022`, `expected 2026`),
    **or** contains the normalised employer / institution / project name of a parsed candidate entry.
@@ -231,7 +243,7 @@ are still included as in `creator_prompt`; build the prompt with a W4 helper rat
 
 ```
 CITATION RULES (mandatory):
-- Every summary sentence, experience bullet, education detail and project bullet is an object
+- Every summary sentence, experience bullet, education detail, project description and project bullet is an object
   {"text": ..., "sources": [...]}. "sources" lists the IDs (e.g. "S7") of the source spans the
   sentence is based on. Never leave "sources" empty.
 - A bullet under a job may only cite spans listed under that same job. Summary sentences may cite
@@ -259,6 +271,11 @@ returns the problems per claim (empty list = passed). Problem codes:
 | `wrong_entry` | an experience bullet cites a span whose `entry` is a different job. Match the draft's experience entry to the candidate's by normalised (employer, title), falling back to employer only. If the draft entry can't be matched, skip this check (the harness rejects unknown entries later). Same for education and projects. |
 | `wrong_section` | an education detail cites a non-education span, or a project bullet cites a non-project span. Summary claims are exempt. |
 
+Entry citation checks require a resolved source entry for a matched draft entry. Experience
+claims must cite experience spans belonging to that same job; unassigned or other-section
+spans cannot establish job-specific experience. Education and project claims likewise reject
+unassigned spans. Summary claims remain exempt from entry restrictions.
+
 ### 4.4 `rule_check` (code), in `common/grounding.py`
 
 `rule_check(claim_text: str, cited_text: str, job_text: str) -> list[str]`, where
@@ -268,7 +285,16 @@ returns the problems per claim (empty list = passed). Problem codes:
 |---|---|---|
 | `new_number` | Every number in the claim (regex `\d[\d,]*(?:\.\d+)?%?`, also `$`-prefixed) must appear in `cited_text`. Ignore 4-digit years 1950–2035. | Invented metrics are the most common resume fabrication and are trivially checkable |
 | `new_skill` | Collect *skill-like terms* from `job_text`: tokens that are ALL-CAPS ≥ 2 letters (SQL, KPI, AWS), contain `/ + # .` inside a word (A/B, C#, Node.js), or are Capitalised words not at the start of a sentence (Tableau, Jira, Figma). Merge consecutive such tokens into one phrase (`Power BI`, `Google Analytics`), and also keep each token on its own. A plural `s` is ignored when matching (`KPIs` ↔ `KPI`). Ignore a stop-list of generic capitalised words (I, We, The, You, Our, Singapore, January–December, Monday–Sunday). Flag any such term that appears in the claim (via `_in_text`) but not in `cited_text`. | This is the "fabrication bait" case: the JD asks for a tool, so the model slips it in |
-| `inflated` | For each stem in `INFLATION_TERMS`, if a word in the claim starts with that stem and no word in `cited_text` does, flag it. Default stems: `led, lead, spearhead, head, own, expert, advanced, extensive, proven, significant, substantial, strategic, senior, award, world-class, cutting-edge, drastically, dramatically`. Match on word starts so `led` doesn't match `ledger`. | Inflation is a vocabulary pattern, so a list is transparent and explainable |
+| `inflated` | Match each `INFLATION_TERMS` word or its explicit inflections in the claim; flag it if none occur in the cited text. Preserve hyphenated terms. `ledger` must not match `led`. See defaults in §7. | Inflation is a vocabulary pattern, so a list is transparent and explainable |
+
+Deterministic matching clarifications:
+
+- Compare complete numeric tokens: `40%` is not supported by `140%`, nor `$40` by `$400`.
+- Determine sentence-initial capitalization per occurrence, not by excluding a word everywhere
+  because it began an earlier sentence. Join skill phrases across whitespace, not list punctuation.
+- Match inflation terms as whole words with explicit inflections (e.g. `lead`, `leading`,
+  `leadership`) and preserve hyphenated terms (`world-class`, `cutting-edge`). `ledger` does not
+  establish support for `led`.
 
 ### 4.5 `llm_verify` (LLM), in `common/grounding.py`
 
@@ -330,7 +356,7 @@ draft and go to `finalise`).
    form is in the candidate's parsed list or `_in_text(item, normalised raw_text)`. This avoids
    failing the whole run over one skill the creator added.
 3. Convert to a `GeneratedResume` dict: `summary` = supported summary claim texts joined with
-   `" "`; bullets/details = claim texts; everything else copied.
+   `" "`; bullets/details and project descriptions = claim texts; everything else copied.
 4. `ToolHarness(candidate_data, resume_path=..., run_id=...)`. Run `validate_resume` then
    `render_resume` through a tracked helper (copy `_tracked_execute` from W3) so both tool calls are
    logged.

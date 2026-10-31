@@ -2,6 +2,8 @@
 import json
 from types import SimpleNamespace
 
+import pytest
+
 from common import grounding
 from common.grounding import (
     cache_key,
@@ -290,6 +292,18 @@ def test_rule_check_new_skill_kpi():
     claim = "Gathered requirements and defined KPIs for dashboards"
     problems = rule_check(claim, cited, JOB_TEXT)
     assert any("new_skill: KPI" in p or "new_skill: KPIs" in p for p in problems)
+
+
+@pytest.mark.parametrize("job,claim,cited,unsupported", [
+    ("Need KPI.", "Tracked KPIs", "Tracked KPI", False),
+    ("Need KPIs.", "Tracked KPI", "Tracked KPIs", False),
+    ("Need KPI.", "Tracked KPIs", "Tracked reporting", True),
+    ("Need KPIs.", "Tracked KPI", "Tracked reporting", True),
+    ("Need AWS.", "Used AWS", "Used AW", True),
+])
+def test_rule_check_skill_plural_matching(job, claim, cited, unsupported):
+    problems = rule_check(claim, cited, job)
+    assert any(problem.startswith("new_skill:") for problem in problems) is unsupported
 
 
 def test_rule_check_new_skill_ab_testing():
@@ -629,3 +643,48 @@ def test_llm_verify_uses_correct_format(monkeypatch):
     # Check format is the schema
     expected_schema = llm_schema(VerifyBatch)
     assert calls[0]["format"] == expected_schema
+@pytest.mark.parametrize("claim,source", [
+    ("Saved 40%", "Saved 140%"),
+    ("Saved $40", "Saved $400"),
+    ("Processed 4 records", "Processed 40 records"),
+    ("Improved by 3.5%", "Improved by 13.5%"),
+])
+def test_number_check_rejects_partial_numeric_matches(claim, source):
+    assert any(p.startswith("new_number:") for p in rule_check(claim, source, ""))
+    assert rule_check(claim, claim, "") == []
+
+
+@pytest.mark.parametrize("claim,source,flag", [
+    ("Built world-class reports", "Built reports", True),
+    ("Built cutting-edge reports", "Built reports", True),
+    ("Led reporting", "Maintained ledger files", True),
+    ("Maintained ledger files", "Maintained files", False),
+    ("Spearheaded reporting", "Built reports", True),
+    ("Built world-class reports", "Created world-class reports", False),
+    ("Led reporting", "Led weekly reporting", False),
+])
+def test_inflation_matches_words_and_inflections(claim, source, flag):
+    assert any(p.startswith("inflated:") for p in rule_check(claim, source, "")) is flag
+
+
+def test_skill_sentence_position_is_per_occurrence():
+    job = "Tableau experience required. Familiarity with Tableau is preferred."
+    assert "Tableau" in skill_terms(job)
+    assert "new_skill: Tableau" in rule_check("Used Tableau", "Used Excel", job)
+    assert "Tableau" not in skill_terms("Tableau experience required.")
+    terms = skill_terms("Need SQL, Tableau and Power BI. Use C#, C++ and Node.js.")
+    assert {"SQL", "Tableau", "Power BI", "C#", "C++", "Node.js"} <= terms
+    assert "SQL Tableau" not in terms
+
+
+@pytest.mark.parametrize("source_section", ["experience", "skills", "education"])
+def test_experience_citations_require_resolved_job(source_section):
+    from common.spans import Span
+
+    candidate = {"experience": [{"employer": "Alpha Company", "title": "Analyst"}]}
+    resume = GroundedResume.model_validate({"name": "Alex Example", "experience": [{
+        "employer": "Alpha Company", "title": "Analyst",
+        "bullets": [{"text": "Built reports", "sources": ["S1"]}],
+    }]})
+    spans = [Span("S1", "Built reports", 0, 13, source_section, None, "content")]
+    assert "wrong_entry: S1" in check_citations(resume, spans, candidate)["exp.0.0"]

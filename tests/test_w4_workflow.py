@@ -2,12 +2,28 @@
 import json
 from types import SimpleNamespace
 
+import pytest
+
 import config
-from common import extraction
+from common import extraction, grounding, llm
 from common.llm import Tracker
 from common.schemas import GroundedResume
 from common.spans import split_spans
 from workflows import WORKFLOWS, w4_evidence
+
+
+@pytest.fixture(autouse=True)
+def forbid_real_model_calls(monkeypatch):
+    """Fail immediately if a workflow test accidentally reaches Ollama."""
+    def unexpected_call(*args, **kwargs):
+        pytest.fail("W4 tests must patch both the creator and verifier chat functions")
+
+    monkeypatch.setattr(llm._client, "chat", unexpected_call)
+
+
+def patch_chat(monkeypatch, fake):
+    monkeypatch.setattr(w4_evidence, "chat", fake)
+    monkeypatch.setattr(grounding, "chat", fake)
 
 
 def sid(spans, needle):
@@ -105,7 +121,7 @@ def test_w1_good_draft_first_time(monkeypatch, tmp_path, candidate):
     )
 
     fake = FakeChat(creator_drafts=[GOOD])
-    monkeypatch.setattr(w4_evidence, "chat", fake)
+    patch_chat(monkeypatch, fake)
 
     job_data = {"title": "Data Analyst", "source_text": "Need SQL and Power BI.", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -155,7 +171,7 @@ def test_w2_bad_then_good_on_revise(monkeypatch, tmp_path, candidate):
     )
 
     fake = FakeChat(creator_drafts=[BAD, GOOD])
-    monkeypatch.setattr(w4_evidence, "chat", fake)
+    patch_chat(monkeypatch, fake)
 
     job_data = {"title": "Data Analyst", "source_text": "Need SQL and Power BI.", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -185,11 +201,11 @@ def test_w2_bad_then_good_on_revise(monkeypatch, tmp_path, candidate):
     if fixed:
         assert fixed[0]["rounds_to_pass"] == 1
 
-    # Check that verifier wasn't called for the unchanged claim in round 2 (cache)
-    # This is hard to test directly, but we can check the verifier call count
     verifier_calls = [c for c in fake.calls if "check resume claims" in c.get("system", "").lower()]
-    # Should be called twice (once per round), but second call should have fewer items
-    # This is implicit in the cache mechanism
+    assert len(verifier_calls) == 2
+    assert [item["claim_id"] for item in json.loads(verifier_calls[1]["user"])] == ["exp.0.1"]
+    rounds = [event for event in tracker.events if event["type"] == "w4_round"]
+    assert [(event["llm_checked"], event["llm_cached"]) for event in rounds] == [(1, 0), (1, 1)]
 
 
 def test_w3_bad_every_time_hits_budget(monkeypatch, tmp_path, candidate):
@@ -208,7 +224,7 @@ def test_w3_bad_every_time_hits_budget(monkeypatch, tmp_path, candidate):
     )
 
     fake = FakeChat(creator_drafts=[BAD, BAD, BAD])  # Draft + 2 revisions
-    monkeypatch.setattr(w4_evidence, "chat", fake)
+    patch_chat(monkeypatch, fake)
 
     job_data = {"title": "Data Analyst", "source_text": "Need SQL and Power BI.", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -252,7 +268,7 @@ def test_w4_no_citation_dropped(monkeypatch, tmp_path, candidate):
     )
 
     fake = FakeChat(creator_drafts=[BAD, BAD])  # Stays bad
-    monkeypatch.setattr(w4_evidence, "chat", fake)
+    patch_chat(monkeypatch, fake)
 
     job_data = {"title": "Data Analyst", "source_text": "", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -302,10 +318,7 @@ def test_w5_verifier_rejects_then_approves(monkeypatch, tmp_path, candidate):
             ]},
         ]
     )
-    # Patch both w4_evidence.chat and common.grounding.chat (llm_verify uses grounding.chat)
-    monkeypatch.setattr(w4_evidence, "chat", fake)
-    from common import grounding
-    monkeypatch.setattr(grounding, "chat", fake)
+    patch_chat(monkeypatch, fake)
 
     job_data = {"title": "Data Analyst", "source_text": "", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -339,7 +352,7 @@ def test_w6_draft_fails_twice_no_resume(monkeypatch, tmp_path, candidate):
         fake_call_count[0] += 1
         return SimpleNamespace(content="not json")
 
-    monkeypatch.setattr(w4_evidence, "chat", bad_chat)
+    patch_chat(monkeypatch, bad_chat)
 
     job_data = {"title": "Data Analyst", "source_text": "", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -371,7 +384,7 @@ def test_w7_skills_filtered(monkeypatch, tmp_path, candidate):
     )
 
     fake = FakeChat(creator_drafts=[DRAFT])
-    monkeypatch.setattr(w4_evidence, "chat", fake)
+    patch_chat(monkeypatch, fake)
 
     job_data = {"title": "Data Analyst", "source_text": "", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -405,19 +418,22 @@ def test_w8_revise_fails_keeps_bad_draft(monkeypatch, tmp_path, candidate):
     call_count = [0]
 
     def mixed_chat(messages, tracker, format=None, **kwargs):
-        call_count[0] += 1
         system = messages[0]["content"]
 
         if "check resume claims" in system.lower():
-            return SimpleNamespace(content=json.dumps({"verdicts": []}))
+            items = json.loads(messages[1]["content"])
+            return SimpleNamespace(content=json.dumps({"verdicts": [
+                {"claim_id": item["claim_id"], "supported": True} for item in items
+            ]}))
 
         # Creator
-        if call_count[0] <= 2:  # First call is draft
+        call_count[0] += 1
+        if call_count[0] == 1:  # First call is draft
             return SimpleNamespace(content=json.dumps(BAD))
         else:  # Revise calls return invalid JSON
             return SimpleNamespace(content="bad json")
 
-    monkeypatch.setattr(w4_evidence, "chat", mixed_chat)
+    patch_chat(monkeypatch, mixed_chat)
 
     job_data = {"title": "Data Analyst", "source_text": "", "responsibilities": [],
                 "required_qualifications": [], "preferred_qualifications": []}
@@ -429,6 +445,11 @@ def test_w8_revise_fails_keeps_bad_draft(monkeypatch, tmp_path, candidate):
     # Resume still rendered (bad claim dropped)
     assert result.get("resume_md")
     assert "40%" not in result["resume_md"]
+    assert "Built weekly Power BI sales dashboards." in result["resume_md"]
+    assert call_count[0] == 3  # Draft, failed revision, failed retry; then finalise.
+    assert result["w4_stats"]["rounds_used"] == 1
+    assert result["w4_stats"]["dropped"] == 1
+    assert result["hit_budget"] is False
 
 
 def test_w9_empty_raw_text_error(monkeypatch, tmp_path, candidate):
@@ -448,6 +469,65 @@ def test_w9_empty_raw_text_error(monkeypatch, tmp_path, candidate):
 def test_w10_w4_in_workflows():
     """W10: w4_evidence is registered in WORKFLOWS."""
     assert "w4_evidence" in WORKFLOWS
+
+
+@pytest.mark.parametrize("revise", [False, True])
+def test_education_fields_preserved_after_creator_reply(monkeypatch, tmp_path, candidate, revise):
+    """A creator-added year label must not break protected-field validation."""
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    spans = split_spans(candidate["raw_text"], candidate)
+    source = sid(spans, "Built weekly sales dashboards")
+    changed = draft([("Built weekly sales dashboards.", [source])])
+    changed["education"][0].update({
+        "degree": "Bachelor of Science (Information Systems) (Year 3)",
+        "start": "2023", "end": "2027",
+    })
+    replies = [changed]
+    if revise:
+        replies.insert(0, draft([("Increased sales by 40%.", [source])]))
+    fake = FakeChat(replies)
+    patch_chat(monkeypatch, fake)
+
+    result = w4_evidence.build_evidence_graph(
+        Tracker(), resume_path=str(tmp_path / "input.md"), run_id="education"
+    ).invoke({"candidate_data": candidate, "job_data": {"title": "Analyst"}})
+
+    assert not result.get("errors")
+    assert result["w4_stats"]["rounds_used"] == int(revise)
+    education = result["generated_resume"]["education"][0]
+    for field in ("institution", "degree", "start", "end"):
+        assert education[field] == candidate["education"][0][field]
+    assert "Year 3" not in result["resume_md"]
+    assert "Built weekly sales dashboards." in result["resume_md"]
+
+
+def test_education_restoration_does_not_guess_between_degrees(candidate):
+    candidate["education"].append({
+        "institution": "Example University", "degree": "Master of Science",
+        "start": "2027", "end": "2028", "details": [],
+    })
+    original = GroundedResume.model_validate(draft([]))
+    original.education[0].degree = "Unknown degree (Year 3)"
+    restored = w4_evidence.preserve_education_fields(original, candidate)
+    assert restored == original  # Two entries at this school: no safe fallback.
+
+    original.education[0].degree = "Master of Science"
+    restored = w4_evidence.preserve_education_fields(original, candidate)
+    assert restored.education[0].start == "2027"
+    assert restored.education[0].end == "2028"
+    assert original.education[0].end == "expected 2026"  # Input is not mutated.
+
+
+def test_unknown_education_still_fails_harness(monkeypatch, tmp_path, candidate):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    changed = draft([])
+    changed["education"][0]["institution"] = "Unknown University"
+    patch_chat(monkeypatch, FakeChat([changed]))
+    result = w4_evidence.build_evidence_graph(
+        Tracker(), resume_path=str(tmp_path / "input.md"), run_id="unknown-school"
+    ).invoke({"candidate_data": candidate, "job_data": {"title": "Analyst"}})
+    assert result["errors"][0].startswith("W4_FINAL_VALIDATION_FAILED:")
+    assert not result.get("resume_md")
 
 
 def test_w11_end_to_end_through_run(monkeypatch, tmp_path, candidate):
@@ -478,10 +558,13 @@ def test_w11_end_to_end_through_run(monkeypatch, tmp_path, candidate):
     def fake_w4_chat(messages, tracker, format=None, **kwargs):
         system = messages[0]["content"]
         if "check resume claims" in system.lower():
-            return SimpleNamespace(content=json.dumps({"verdicts": []}))
+            items = json.loads(messages[1]["content"])
+            return SimpleNamespace(content=json.dumps({"verdicts": [
+                {"claim_id": item["claim_id"], "supported": True} for item in items
+            ]}))
         return SimpleNamespace(content=json.dumps(GOOD))
 
-    monkeypatch.setattr(w4_evidence, "chat", fake_w4_chat)
+    patch_chat(monkeypatch, fake_w4_chat)
 
     # Run
     tracker = Tracker()
@@ -497,6 +580,7 @@ def test_w11_end_to_end_through_run(monkeypatch, tmp_path, candidate):
     assert "resume_md" in result
     assert "finished" in result
     assert result["finished"] is True
+    assert "Built sales dashboards." in result["resume_md"]
     assert "errors" in result
     assert result["errors"] == []
     assert "evidence" in result
@@ -504,3 +588,74 @@ def test_w11_end_to_end_through_run(monkeypatch, tmp_path, candidate):
     assert len(result["evidence"]) > 0
     assert "w4_stats" in result
     assert isinstance(result["w4_stats"], dict)
+@pytest.mark.parametrize("description,supported", [
+    ("Led a team of 50 and increased revenue by 900% using Tableau.", False),
+    ({"text": "Increased revenue by 900%.", "sources": "SOURCE"}, False),
+    ({"text": "Built a report viewer in Python.", "sources": "SOURCE"}, True),
+])
+def test_project_descriptions_are_verified(monkeypatch, tmp_path, candidate, description, supported):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    candidate["projects"] = [{"name": "Reporting Tool", "description": "Report viewer", "bullets": []}]
+    candidate["raw_text"] += "\n## Projects\n### Reporting Tool\n- Built a report viewer in Python.\n"
+    source = sid(split_spans(candidate["raw_text"], candidate), "Built a report viewer")
+    if isinstance(description, dict):
+        description = {**description, "sources": [source]}
+    proposed = draft([])
+    proposed["projects"] = [{"name": "Reporting Tool", "description": description}]
+    fake = FakeChat([proposed])
+    patch_chat(monkeypatch, fake)
+    result = w4_evidence.build_evidence_graph(Tracker(), run_id="project").invoke({
+        "candidate_data": candidate, "job_data": {"title": "Analyst"},
+    })
+    assert not result.get("errors")
+    assert "900%" not in result["resume_md"]
+    row = next(e for e in result["evidence"] if e["claim_id"] == "proj.0.description")
+    assert row["status"] == ("kept" if supported else "dropped")
+    verifier_calls = [c for c in fake.calls if c["system"] == grounding.VERIFIER_SYSTEM]
+    assert len(verifier_calls) == int(supported)
+    if supported:
+        assert "Built a report viewer in Python." in result["resume_md"]
+        assert json.loads(verifier_calls[0]["user"])[0]["claim_id"] == "proj.0.description"
+    else:
+        assert result["generated_resume"]["projects"][0]["description"] == ""
+
+
+def test_project_description_rejected_by_verifier_is_dropped(monkeypatch, tmp_path, candidate):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    candidate["projects"] = [{"name": "Reporting Tool"}]
+    candidate["raw_text"] += "\n## Projects\n### Reporting Tool\n- Built reports.\n"
+    source = sid(split_spans(candidate["raw_text"], candidate), "Built reports.")
+    proposed = draft([])
+    proposed["projects"] = [{"name": "Reporting Tool", "description": {
+        "text": "Built reports for executives.", "sources": [source],
+    }}]
+    fake = FakeChat([proposed], verifier_responses=[{"verdicts": [{
+        "claim_id": "proj.0.description", "supported": False, "reason": "adds audience",
+    }]}])
+    patch_chat(monkeypatch, fake)
+    result = w4_evidence.build_evidence_graph(Tracker(), run_id="project-rejected").invoke({
+        "candidate_data": candidate, "job_data": {"title": "Analyst"},
+    })
+    assert "executives" not in result["resume_md"]
+    assert result["evidence"][0]["problems"] == ["not_entailed: adds audience"]
+    assert result["evidence"][0]["status"] == "dropped"
+
+
+@pytest.mark.parametrize("replace_claim", [False, True])
+def test_first_pass_history_survives_deletion_and_replacement(monkeypatch, tmp_path, candidate, replace_claim):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    source = sid(split_spans(candidate["raw_text"], candidate), "Built weekly sales dashboards")
+    good = ("Built weekly sales dashboards.", [source])
+    bad = ("Reduced time by 40%.", [source])
+    if replace_claim:
+        initial = draft([], summary=[good, bad])
+        revised = draft([], summary=[("Built sales dashboards in Excel.", [source])])
+    else:
+        initial = draft([], summary=[bad, good])
+        revised = draft([], summary=[good])
+    patch_chat(monkeypatch, FakeChat([initial, revised]))
+    result = w4_evidence.build_evidence_graph(Tracker(), run_id="history").invoke({
+        "candidate_data": candidate, "job_data": {"title": "Analyst"},
+    })
+    assert result["w4_stats"]["rounds_used"] == 1
+    assert result["evidence"][0]["rounds_to_pass"] == int(replace_claim)

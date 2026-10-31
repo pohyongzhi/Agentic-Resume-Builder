@@ -58,6 +58,7 @@ python -c "from workflows.w4_evidence import generate; from common.llm import Tr
 ```
 
 Each claim must:
+- Include project descriptions as cited claims, as well as summary sentences and bullets
 - Cite 1-3 source spans from the original resume
 - Only reference spans from the same resume section (for experience/education/projects)
 - Pass deterministic rule checks (no new numbers, skills, or inflation)

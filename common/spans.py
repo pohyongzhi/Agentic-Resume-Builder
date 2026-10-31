@@ -233,14 +233,18 @@ def split_spans(raw_text: str, candidate: dict, max_chars: int = SPAN_MAX_CHARS)
             ))
             continue
         elif is_markdown_heading:
-            # Markdown heading but not a known section (e.g., "# Alex Tan")
-            # Still a heading span, but doesn't change section
+            # Markdown job/school/project headers still establish entry ownership.
             if current_block:
                 spans.append(current_block)
                 current_block = None
+            heading_text = line_text.strip().lstrip("#").strip()
+            entry_match = _match_entry(heading_text, current_section, candidate, current_entry)
+            if current_section in ("experience", "education", "projects"):
+                current_entry = entry_match
             spans.append((
-                _clean_text(line_text.lstrip("#").strip()),
-                line_start, line_end, current_section, None, "heading"
+                _clean_text(heading_text),
+                line_start, line_end, current_section, entry_match,
+                "entry_header" if entry_match is not None else "heading"
             ))
             continue
 
@@ -290,10 +294,14 @@ def split_spans(raw_text: str, candidate: dict, max_chars: int = SPAN_MAX_CHARS)
     final_spans = []
     for text, start, end, section, entry, kind in spans:
         if kind == "content" and len(text) > max_chars:
-            # Split into sentences
-            sents = _sentences(text, start)
+            # Split the original slice: cleaned text has different character offsets
+            # after removing markers, collapsing whitespace and repairing hyphens.
+            original = raw_text[start:end]
+            unmarked = _strip_bullet(original)
+            content_start = start + len(original) - len(unmarked)
+            sents = _sentences(unmarked, content_start)
             for sent_text, sent_start, sent_end in sents:
-                final_spans.append((sent_text, sent_start, sent_end, section, entry, kind))
+                final_spans.append((_clean_text(sent_text), sent_start, sent_end, section, entry, kind))
         else:
             final_spans.append((text, start, end, section, entry, kind))
 

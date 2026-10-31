@@ -27,7 +27,7 @@ MAX_GROUNDING_ROUNDS = 2
 
 W4_CITATION_RULES = """
 CITATION RULES (mandatory):
-- Every summary sentence, experience bullet, education detail and project bullet is an object
+- Every summary sentence, experience bullet, education detail, project description and project bullet is an object
   {"text": ..., "sources": [...]}. "sources" lists the IDs (e.g. "S7") of the source spans the
   sentence is based on. Never leave "sources" empty.
 - A bullet under a job may only cite spans listed under that same job. Summary sentences may cite
@@ -36,7 +36,9 @@ CITATION RULES (mandatory):
 - The sentence may reword, shorten or combine its cited spans, but must not add anything they don't
   say: no new tools, skills, numbers, scope, seniority ("led", "advanced", "expert") or outcomes.
 - If the job asks for something no span supports, leave it out. Do not cite a span that doesn't
-  actually say it."""
+  actually say it.
+- Copy education institution, degree, start and end exactly from CANDIDATE DATA. Do not add
+  year-of-study labels or other qualifiers to the degree; put supported details in cited details."""
 
 SYSTEM = STRUCTURED_CREATOR_SYSTEM + "\n\n" + W4_CITATION_RULES
 
@@ -49,7 +51,7 @@ class EvidenceState(TypedDict, total=False):
     round: int
     problems: dict  # claim_id -> list[str]
     verdict_cache: dict  # cache_key -> verdict dict
-    first_pass: dict  # claim_id -> round in which it first passed
+    first_pass: dict  # claim identity (content, sources, section, entry) -> first passing round
     first_draft_stats: dict
     resume_md: str
     output_path: str
@@ -57,7 +59,35 @@ class EvidenceState(TypedDict, total=False):
     evidence: list
     w4_stats: dict
     hit_budget: bool
+    revision_failed: bool
     errors: list[str]
+
+
+def preserve_education_fields(draft: GroundedResume, candidate: dict) -> GroundedResume:
+    """Restore protected fields only when the candidate entry is unambiguous.
+
+    Match by institution and degree first, then by a unique institution. Never
+    guess by position: the creator may reorder entries or omit an entry.
+    """
+    result = draft.model_copy(deep=True)
+    for education in result.education:
+        schools = [entry for entry in candidate.get("education", [])
+                   if _norm(entry.get("institution", "")) == _norm(education.institution)
+                   and _norm(education.institution)]
+        exact = [entry for entry in schools
+                 if _norm(entry.get("degree", "")) == _norm(education.degree)]
+        matches = exact if exact else schools
+        if len(matches) != 1:
+            continue
+        original = matches[0]
+        for field in ("institution", "degree", "start", "end"):
+            setattr(education, field, original.get(field) or "")
+    return result
+
+
+def claim_history_key(item: dict) -> str:
+    """Track a claim independently of positions that change after revision."""
+    return json.dumps([item["section"], item["entry_label"], cache_key(item["claim"])])
 
 
 def draft_prompt(candidate, job, spans) -> str:
@@ -178,6 +208,7 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
         try:
             msg = chat(messages, tracker, format=llm_schema(GroundedResume))
             draft = GroundedResume.model_validate_json(msg.content or "{}")
+            draft = preserve_education_fields(draft, state["candidate_data"])
             return {"draft": draft.model_dump()}
         except Exception as e:
             # Retry once
@@ -185,6 +216,7 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
             try:
                 msg = chat(messages, tracker, format=llm_schema(GroundedResume))
                 draft = GroundedResume.model_validate_json(msg.content or "{}")
+                draft = preserve_education_fields(draft, state["candidate_data"])
                 return {"draft": draft.model_dump()}
             except Exception as e2:
                 return {"errors": [f"W4_DRAFT_FAILED: {type(e2).__name__}: {e2}"]}
@@ -266,6 +298,8 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
                 "cited_text": cited_text,
             })
 
+        # Count cache hits before verification inserts newly checked claims.
+        llm_cached = sum(cache_key(item["claim"]) in cache for item in items)
         # Call LLM verifier
         if items:
             verdicts = llm_verify(items, tracker, cache)
@@ -281,8 +315,9 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
         # Track which claims passed for the first time
         for item in iter_claims(draft):
             claim_id = item["claim_id"]
-            if not problems[claim_id] and claim_id not in first_pass:
-                first_pass[claim_id] = current_round
+            history_key = claim_history_key(item)
+            if not problems[claim_id] and history_key not in first_pass:
+                first_pass[history_key] = current_round
 
         # Calculate stats for this round
         total_claims = len(problems)
@@ -290,8 +325,7 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
                        if not any(p.startswith(("no_citation", "bad_citation", "too_many_sources", "wrong_entry", "wrong_section")) for p in probs))
         rule_ok = sum(1 for cid, probs in problems.items()
                       if not any(p.startswith(("new_number", "new_skill", "inflated")) for p in probs))
-        llm_checked = len(items)
-        llm_cached = len([i for i in items if cache_key(i["claim"]) in cache]) if current_round > 0 else 0
+        llm_checked = len(items) - llm_cached
         supported = sum(1 for probs in problems.values() if not probs)
         rejected_by_code = {}
         for probs in problems.values():
@@ -359,6 +393,7 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
         try:
             msg = chat(messages, tracker, format=llm_schema(GroundedResume))
             draft = GroundedResume.model_validate_json(msg.content or "{}")
+            draft = preserve_education_fields(draft, candidate)
             return {"draft": draft.model_dump(), "round": state["round"] + 1}
         except Exception as e:
             # Retry once
@@ -366,10 +401,11 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
             try:
                 msg = chat(messages, tracker, format=llm_schema(GroundedResume))
                 draft = GroundedResume.model_validate_json(msg.content or "{}")
+                draft = preserve_education_fields(draft, candidate)
                 return {"draft": draft.model_dump(), "round": state["round"] + 1}
             except Exception:
                 # Keep previous draft and go to finalise
-                return {"round": state["round"] + 1}
+                return {"round": state["round"] + 1, "revision_failed": True}
 
     @_timed(tracker, "finalise")
     def finalise_node(state):
@@ -390,7 +426,7 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
             entry_label = item["entry_label"]
             probs = problems.get(claim_id, [])
             status = "dropped" if probs else "kept"
-            rounds_to_pass = first_pass.get(claim_id, -1) if not probs else -1
+            rounds_to_pass = first_pass.get(claim_history_key(item), -1) if not probs else -1
 
             # Get source span details
             from common.spans import Span
@@ -483,6 +519,9 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
             return END
         return "check"
 
+    def route_after_revise(state):
+        return "finalise" if state.get("revision_failed") else "check"
+
     # Build the graph
     graph = StateGraph(EvidenceState)
     graph.add_node("split_spans", split_spans_node)
@@ -497,7 +536,7 @@ def build_evidence_graph(tracker, resume_path=None, run_id=None):
     graph.add_conditional_edges("draft", route_after_draft, ["check", END])
     graph.add_edge("check", "llm_verify")
     graph.add_conditional_edges("llm_verify", decide, ["revise", "finalise"])
-    graph.add_edge("revise", "check")
+    graph.add_conditional_edges("revise", route_after_revise, ["check", "finalise"])
     graph.add_edge("finalise", END)
 
     return graph.compile()

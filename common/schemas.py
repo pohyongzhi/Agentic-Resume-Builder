@@ -148,7 +148,7 @@ class Claim(Schema):
             return data
 
         # Normalize sources field
-        sources = data.get("sources", [])
+        sources = data.get("sources") or []
         if isinstance(sources, str):
             # Extract IDs from string like "S3, S4" or "[S3] [S4]"
             sources = re.findall(r"[Ss]\s*(\d+)", sources)
@@ -211,7 +211,7 @@ class GroundedEducation(Schema):
 
 class GroundedProject(Schema):
     name: str
-    description: str = ""
+    description: Claim = Field(default_factory=lambda: Claim(text=""))
     bullets: list[Claim] = Field(default_factory=list)
 
     @classmethod

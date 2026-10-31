@@ -273,3 +273,16 @@ After all tests pass, with Ollama running:
    - `resume_md` has no `[S` markers
 3. `python app.py`, select W4, upload a real resume and paste a JD. Read the evidence report:
    do the ❌ rows really deserve to be dropped? Write down 3 examples for the presentation.
+## Audit regression coverage
+
+Additional regressions cover:
+
+- Project descriptions passing citation, rule and LLM checks, including dropping uncited
+  strings, invented metrics and verifier-rejected descriptions before rendering.
+- Markdown job headings assigning entry ownership, cross-job citations being rejected, and
+  unassigned/other-section spans not supporting a known job's bullets.
+- Complete numeric token comparisons (`40%` versus `140%`, currency and decimals).
+- Hyphenated inflation terms, explicit inflections, and `led` versus `ledger`.
+- Skill extraction tracking sentence position per occurrence and preserving technical punctuation.
+- First-pass metrics surviving claim deletion, movement and replacement.
+- Null citation lists becoming empty lists without raising an exception.

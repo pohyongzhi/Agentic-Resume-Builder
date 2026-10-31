@@ -235,6 +235,27 @@ def test_empty_text():
     assert spans == []
 
 
+@pytest.mark.parametrize("marker,newline", [("• ", "\n"), ("  1. ", "\r\n"), ("", "\n")])
+def test_long_wrapped_block_offsets(marker, newline):
+    """Every split sentence must map to its actual original source characters."""
+    import re
+
+    first = "Built an Excel -based tracker that helped the operations team "
+    second = "review requests, coordinate approvals and provide detailed reports to stakeholders."
+    third = "Designed self -service reports with clear documentation and regular reviews "
+    fourth = "so colleagues could use the reports to understand their weekly workload and plan upcoming operational activities."
+    raw = newline.join(["Summary", marker + first, "    " + second, third, "\t" + fourth])
+    spans = citeable(split_spans(raw, {}, max_chars=300))
+    assert len(spans) == 2
+    assert spans[0].text == (first + second).replace("Excel -based", "Excel-based")
+    assert spans[1].text == (third + fourth).replace("self -service", "self-service")
+    for span in spans:
+        source = re.sub(r"(\w) -(\w)", r"\1-\2", raw[span.start:span.end])
+        assert " ".join(source.split()) == span.text
+    assert spans[0].end <= spans[1].start
+    assert spans[-1].end == len(raw)
+
+
 # ========== Prompt rendering tests ==========
 
 def test_render_spans_for_prompt_structure(PDF_CANDIDATE=PDF_CANDIDATE):
@@ -269,3 +290,23 @@ def test_render_spans_excludes_non_citeable(PDF_CANDIDATE=PDF_CANDIDATE):
         # The span text might appear in section headers (==), but not as a [S..] citation line
         # Check that span.id doesn't appear in the rendered output
         assert f"[{span.id}]" not in rendered
+def test_markdown_job_headers_establish_entry_ownership():
+    from common.grounding import check_citations
+    from common.schemas import GroundedResume
+
+    candidate = {"experience": [
+        {"employer": "Alpha Company", "title": "Analyst"},
+        {"employer": "Beta Company", "title": "Engineer"},
+    ]}
+    raw = ("## Experience\n### Analyst, Alpha Company\n- Built reports.\n"
+           "### Engineer, Beta Company\n- Built APIs.\n"
+           "### Unrecognized role\n- Wrote documentation.\n")
+    spans = split_spans(raw, candidate)
+    reports = next(s for s in spans if s.text == "Built reports.")
+    apis = next(s for s in spans if s.text == "Built APIs.")
+    unknown = next(s for s in spans if s.text == "Wrote documentation.")
+    assert (reports.entry, apis.entry, unknown.entry) == (0, 1, None)
+    resume = GroundedResume.model_validate({"name": "Alex Example", "experience": [{
+        **candidate["experience"][0], "bullets": [{"text": "Built APIs.", "sources": [apis.id]}],
+    }]})
+    assert f"wrong_entry: {apis.id}" in check_citations(resume, spans, candidate)["exp.0.0"]

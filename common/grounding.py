@@ -70,6 +70,14 @@ def iter_claims(resume: GroundedResume) -> list[dict]:
     # Projects
     for proj_idx, proj in enumerate(resume.projects):
         entry_label = proj.name
+        if proj.description.text.strip():
+            claims.append({
+                "claim_id": f"proj.{proj_idx}.description",
+                "section": "projects",
+                "entry_index": proj_idx,
+                "entry_label": entry_label,
+                "claim": proj.description,
+            })
         for bullet_idx, claim in enumerate(proj.bullets):
             claims.append({
                 "claim_id": f"proj.{proj_idx}.{bullet_idx}",
@@ -178,21 +186,21 @@ def check_citations(
                 matched_index = match_entry("experience", draft_entry, candidate)
                 if matched_index is not None:
                     # If the span belongs to a different entry, flag it
-                    if span.section == "experience" and span.entry is not None and span.entry != matched_index:
+                    if span.section != "experience" or span.entry != matched_index:
                         issues.append(f"wrong_entry: {source_id}")
 
             elif section == "education" and entry_index is not None:
                 draft_entry = resume.education[entry_index]
                 matched_index = match_entry("education", draft_entry, candidate)
                 if matched_index is not None:
-                    if span.section == "education" and span.entry is not None and span.entry != matched_index:
+                    if span.section == "education" and span.entry != matched_index:
                         issues.append(f"wrong_entry: {source_id}")
 
             elif section == "projects" and entry_index is not None:
                 draft_entry = resume.projects[entry_index]
                 matched_index = match_entry("projects", draft_entry, candidate)
                 if matched_index is not None:
-                    if span.section == "projects" and span.entry is not None and span.entry != matched_index:
+                    if span.section == "projects" and span.entry != matched_index:
                         issues.append(f"wrong_entry: {source_id}")
 
         problems[claim_id] = issues
@@ -201,105 +209,44 @@ def check_citations(
 
 
 def skill_terms(job_text: str) -> set[str]:
-    """Extract skill-like terms from job description text.
-
-    Returns set of terms that look like skills: ALL-CAPS, contains /.+#., or Capitalized.
-    Ignores generic capitalized words and sentence-initial capitals.
-    """
+    """Find skill terms by occurrence, retaining technical punctuation and phrases."""
+    generic = {
+        "i", "we", "the", "you", "our", "singapore", "and", "or", "with",
+        "january", "february", "march", "april", "may", "june",
+        "july", "august", "september", "october", "november", "december",
+        "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday",
+    }
     terms = set()
+    phrase = []
+    previous_end = 0
+    previous_ended_sentence = False
 
-    # Split into sentences to detect sentence-initial words
-    sentences = re.split(r'[.!?]+\s+', job_text)
-    sentence_starts = set()
-    for sent in sentences:
-        # Split on whitespace and punctuation, take first word
-        words = re.findall(r'\b[A-Za-z]+', sent)
-        if words:
-            sentence_starts.add(words[0])
+    def flush():
+        if len(phrase) > 1:
+            terms.add(" ".join(phrase))
+        phrase.clear()
 
-    # Better tokenization: split on whitespace and most punctuation, but preserve /, +, #, .
-    # This will capture "Tableau" even after a comma
-    tokens = re.findall(r"[A-Za-z][A-Za-z0-9+#./]*", job_text)
-
-    generic_lower = {"i", "we", "the", "you", "our", "singapore", "and", "or", "with",
-                     "january", "february", "march", "april", "may", "june",
-                     "july", "august", "september", "october", "november", "december",
-                     "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"}
-
-    i = 0
-    while i < len(tokens):
-        token = tokens[i]
-
-        # ALL-CAPS (≥ 2 letters)
-        if token.isupper() and len(token) >= 2:
-            # Add this token
+    for match in re.finditer(r"[A-Za-z][A-Za-z0-9+#./]*", job_text):
+        raw_token = match.group()
+        token = raw_token.rstrip(".")
+        gap = job_text[previous_end:match.start()]
+        sentence_start = previous_end == 0 or previous_ended_sentence or bool(re.search(r"[.!?]", gap))
+        # Punctuation separates listed skills; only whitespace can join a phrase.
+        if sentence_start or gap.strip():
+            flush()
+        letters = re.sub(r"[^A-Za-z]", "", token)
+        acronym = len(letters) >= 2 and (letters.isupper() or
+                   (letters.endswith("s") and len(letters) > 2 and letters[:-1].isupper()))
+        technical = bool(re.search(r"[+#/]", token) or "." in token)
+        capitalized = token[0].isupper() and not sentence_start
+        if token.lower() not in generic and (acronym or technical or capitalized):
             terms.add(token)
-            # Try to build a phrase with following skill-like tokens
-            phrase_tokens = [token]
-            j = i + 1
-            while j < len(tokens):
-                next_tok = tokens[j]
-                # Check if next token is also skill-like
-                is_caps = next_tok.isupper() and len(next_tok) >= 2
-                is_special = re.search(r'[+#./]', next_tok[:-1]) or '/' in next_tok
-                is_capitalized = (next_tok[0].isupper() and next_tok not in sentence_starts and
-                                  _norm(next_tok) not in generic_lower)
-                if is_caps or is_special or is_capitalized:
-                    phrase_tokens.append(next_tok)
-                    # Also add this individual token
-                    if is_capitalized or is_caps:
-                        terms.add(next_tok)
-                    j += 1
-                else:
-                    break
-            # Add the phrase if we merged multiple tokens
-            if len(phrase_tokens) > 1:
-                terms.add(" ".join(phrase_tokens))
-            i = j if j > i + 1 else i + 1
-            continue
-
-        # Contains special chars inside word (not just at end)
-        if re.search(r'[+#./]', token[:-1]) or '/' in token:
-            terms.add(token)
-            # Try to build a phrase
-            phrase_tokens = [token]
-            j = i + 1
-            while j < len(tokens) and (re.search(r'[+#./]', tokens[j][:-1]) or '/' in tokens[j]):
-                phrase_tokens.append(tokens[j])
-                terms.add(tokens[j])
-                j += 1
-            if len(phrase_tokens) > 1:
-                terms.add(" ".join(phrase_tokens))
-            i = j if j > i + 1 else i + 1
-            continue
-
-        # Capitalized (but not sentence-initial or generic)
-        if token[0].isupper() and token not in sentence_starts:
-            norm_token = _norm(token)
-            if norm_token not in generic_lower:
-                terms.add(token)
-                # Try to build a phrase with consecutive capitalized tokens
-                phrase_tokens = [token]
-                j = i + 1
-                while j < len(tokens):
-                    next_tok = tokens[j]
-                    if next_tok[0].isupper() and next_tok not in sentence_starts:
-                        norm_next = _norm(next_tok)
-                        if norm_next not in generic_lower:
-                            phrase_tokens.append(next_tok)
-                            terms.add(next_tok)
-                            j += 1
-                        else:
-                            break
-                    else:
-                        break
-                if len(phrase_tokens) > 1:
-                    terms.add(" ".join(phrase_tokens))
-                i = j if j > i + 1 else i + 1
-                continue
-
-        i += 1
-
+            phrase.append(token)
+        else:
+            flush()
+        previous_end = match.end()
+        previous_ended_sentence = raw_token.endswith(".")
+    flush()
     return terms
 
 
@@ -320,8 +267,9 @@ def rule_check(
     claim_numbers = re.findall(r'\$?\d[\d,]*(?:\.\d+)?%?', claim_text)
     claim_numbers = [n for n in claim_numbers if not (re.match(r'^\d{4}$', n) and 1950 <= int(n) <= 2035)]
 
+    cited_numbers = set(re.findall(r'\$?\d[\d,]*(?:\.\d+)?%?', cited_text))
     for num in claim_numbers:
-        if num not in cited_text:
+        if num not in cited_numbers:
             problems.append(f"new_number: {num}")
 
     # Rule: new_skill
@@ -329,28 +277,33 @@ def rule_check(
     claim_norm = _norm(claim_text)
     cited_norm = _norm(cited_text)
 
-    for skill in skills:
-        # Check with plural tolerance (s at end)
-        skill_base = skill.rstrip('s').rstrip('S')
-        skill_pattern_claim = skill_base.lower()
-        skill_pattern_cited = skill_base.lower()
-
-        # If skill appears in claim but not in cited text
-        if _in_text(skill, claim_norm) and not _in_text(skill, cited_norm):
+    for skill in sorted(skills):
+        # Strip a plural suffix, preserving acronym endings such as AWS.
+        base = skill[:-1] if skill.endswith("s") and not skill.endswith("ss") else skill
+        variants = {base, base + "s", skill}
+        in_claim = any(_in_text(term, claim_norm) for term in variants)
+        in_source = any(_in_text(term, cited_norm) for term in variants)
+        if in_claim and not in_source:
             problems.append(f"new_skill: {skill}")
 
     # Rule: inflated
+    inflections = {
+        "led": {"led"},
+        "lead": {"lead", "leads", "leading", "leader", "leaders", "leadership"},
+        "spearhead": {"spearhead", "spearheads", "spearheaded", "spearheading"},
+        "head": {"head", "heads", "headed", "heading"},
+        "own": {"own", "owns", "owned", "owning", "owner", "owners", "ownership"},
+        "expert": {"expert", "experts", "expertise", "expertly"},
+        "award": {"award", "awards", "awarded", "awarding", "award-winning"},
+        "senior": {"senior", "seniors", "seniority"},
+    }
+    claim_words = re.findall(r"[a-z]+(?:-[a-z]+)*", claim_text.lower())
+    cited_words = set(re.findall(r"[a-z]+(?:-[a-z]+)*", cited_text.lower()))
     for stem in inflation_terms:
-        # Check if any word in claim starts with this stem
-        claim_words = re.findall(r'\b\w+', claim_text.lower())
-        cited_words = re.findall(r'\b\w+', cited_text.lower())
-
-        for word in claim_words:
-            if word.startswith(stem):
-                # Check if any word in cited_text starts with this stem
-                if not any(cw.startswith(stem) for cw in cited_words):
-                    problems.append(f"inflated: {word}")
-                    break  # Only flag once per stem
+        forms = inflections.get(stem, {stem, stem + "ly"})
+        added = next((word for word in claim_words if word in forms), None)
+        if added and not cited_words.intersection(forms):
+            problems.append(f"inflated: {added}")
 
     return problems
 
@@ -392,7 +345,7 @@ def drop_unsupported(resume: GroundedResume, problems: dict[str, list[str]]) -> 
                        if not problems.get(f"proj.{proj_idx}.{bullet_idx}")]
         new_projects.append(type(proj)(
             name=proj.name,
-            description=proj.description,
+            description=Claim(text="") if problems.get(f"proj.{proj_idx}.description") else proj.description,
             bullets=new_bullets,
         ))
 
@@ -456,7 +409,7 @@ def to_generated(resume: GroundedResume) -> dict:
         "projects": [
             {
                 "name": proj.name,
-                "description": proj.description,
+                "description": proj.description.text,
                 "bullets": [claim.text for claim in proj.bullets],
             }
             for proj in resume.projects

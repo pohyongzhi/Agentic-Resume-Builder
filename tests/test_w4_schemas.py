@@ -70,3 +70,10 @@ def test_llm_schema_verify_batch():
     """1.9: llm_schema has verdicts."""
     schema = llm_schema(VerifyBatch)
     assert "verdicts" in schema["properties"]
+def test_null_claim_sources_become_empty_citations():
+    from common.schemas import Claim, GroundedProject
+
+    assert Claim.model_validate({"text": "Built reports", "sources": None}).sources == []
+    project = GroundedProject.model_validate({"name": "Reporting Tool", "description": "Built reports"})
+    assert project.description.text == "Built reports"
+    assert project.description.sources == []
