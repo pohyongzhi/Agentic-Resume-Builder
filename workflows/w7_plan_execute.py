@@ -14,8 +14,10 @@ Every decision is made by the model. The plan reaches the writers exactly as the
     against the original (that is the evidence-grounded variant's technique; the scorecard's
     faithfulness metric measures it)
   - no critique/revise loop (that is the multi-critic variant's technique)
-Code only does plumbing: parse the plan's JSON (one retry), hand each writer its part, tidy
-headings, and put the header in front.
+Like the baseline, no prompt or code imposes a layout: the models decide how each section looks
+(the baseline's only format rule is BASE_RULES, and W7 adds none). Code only does plumbing: parse
+the plan's JSON (one retry), hand each writer its part, cut a writer's reply down to its own section,
+and turn PDF '•' bullets into Markdown bullets so the page shows them as a list.
 
 The planner chooses the sections freely (no checks on its choice). BASE_RULES still asks for
 Summary, Experience, Education and Skills, so a plan that adds e.g. Projects goes beyond the shared
@@ -64,22 +66,8 @@ WRITER = BASE_RULES + """
 For this step you write ONLY the "{section}" section, not the whole resume. Other writers are
 writing the other sections at the same time.
 - Start with the heading "## {section}" and write nothing after the section.
-- Format: {format}
-- Every line must state a fact about the candidate. Never write lines about the job or why something
-  is relevant (e.g. "This degree aligns with the role").
-- Use only facts from the original resume. Requirements marked UNSUPPORTED must not be claimed.
+- Follow your part of the plan. Requirements marked UNSUPPORTED must not be claimed.
 - Reply with the Markdown section only, no explanations."""
-
-# Each writer works alone, so the format of its section has to be spelled out or sections clash.
-FORMATS = {
-    "summary": "2-3 sentences in implied first person: no name, no 'I', no 'he', 'she' or 'they'. "
-               "Summarise in your own words: who the candidate is and their strongest relevant strengths.",
-    "list": "A comma-separated list of short items (1-3 words each), optionally grouped with a bold label "
-            "per line. No sentences.",
-    "entries": 'Only the entries (roles, projects, degrees, activities) that belong under this heading. For each, '
-               'keep its bold title line with the name, organisation and dates exactly as in the original, then '
-               'up to 4 bullets starting with "- ", one point per bullet. Entries with nothing to add need no bullets.',
-}
 
 ASSEMBLER = BASE_RULES + """
 You are the assembler. Different writers drafted the sections below separately, from a shared plan,
@@ -90,7 +78,8 @@ without seeing each other's work. Merge them into one resume and make sure they 
   project involved). If they do, keep the version in the section that the fact belongs to.
 - Follow the plan: leave out the items it says to cut and never claim requirements it marks UNSUPPORTED.
 - Do not add new facts. Keep each section's content otherwise as written.
-Reply with the merged resume sections in Markdown only, starting with the first "## " heading."""
+Reply with the complete resume in Markdown only: the candidate's header from HEADER first, then the
+merged sections."""
 
 
 class PlanState(TypedDict):
@@ -111,16 +100,6 @@ def _same_section(a, b):
     """Planner labels vary ("Experience" vs "Professional Experience"); treat containment as a match."""
     a, b = _norm(a), _norm(b)
     return bool(a and b) and (a == b or a in b or b in a)
-
-
-def _kind(name):
-    """Which writing format a section gets, from the heading the planner chose."""
-    n = _norm(name)
-    if any(k in n for k in ("summary", "profile", "objective", "about")):
-        return "summary"
-    if any(k in n for k in ("skill", "tool", "technolog", "language", "competenc", "interest", "hobb")):
-        return "list"
-    return "entries"
 
 
 def _parse_json(text):
@@ -165,17 +144,13 @@ def _clean_plan(raw):
 
 
 def _brief_for(section, plan):
-    """What one writer sees of the plan: its requirements (with evidence quotes for entry sections;
-    names only for summary/list sections, which otherwise paste the quotes in as sentences),
-    every UNSUPPORTED requirement, and its own lead and cut items."""
+    """What one writer sees of the plan: the requirements the planner mapped to its section (with their
+    evidence), every requirement the planner marked UNSUPPORTED, and its own lead and cut items."""
     reqs = plan["requirements"]
     unsupported = [r["requirement"] for r in reqs if not r["evidence"]]
-    if _kind(section["name"]) in ("summary", "list"):
-        body = "Requirements the candidate meets: " + (", ".join(r["requirement"] for r in reqs if r["evidence"]) or "-")
-    else:
-        mine = [r for r in reqs if r["evidence"] and _same_section(r["section"], section["name"])]
-        body = "Requirements for this section:\n" + (
-            "\n".join(f'- {r["requirement"]}: evidence "{r["evidence"]}"' for r in mine) or "- (none mapped)")
+    mine = [r for r in reqs if r["evidence"] and _same_section(r["section"], section["name"])]
+    body = "Requirements for this section:\n" + (
+        "\n".join(f'- {r["requirement"]}: evidence "{r["evidence"]}"' for r in mine) or "- (none mapped)")
     return (body +
             "\nUNSUPPORTED (do not claim): " + (", ".join(unsupported) or "-") +
             "\nLead with: " + (", ".join(section["lead_with"]) or "-") +
@@ -212,16 +187,6 @@ def _md_bullets(text):
     return re.sub(r"^(\s*)[•●▪◦‣∙·]\s*", r"\1- ", text, flags=re.M)
 
 
-def _restore_headings(md, names):
-    """The assembler sometimes drops the '## ' (e.g. writes **Summary**). Put the planned headings back."""
-    by_norm = {_norm(n): n for n in names}
-    out = []
-    for line in md.splitlines():
-        key = _norm(re.sub(r"^[#*\s]+|[*:\s]+$", "", line.strip()))
-        out.append(f"## {by_norm[key]}" if key in by_norm and len(line) < 80 else line)
-    return "\n".join(out)
-
-
 # ---------- the workflow ----------
 
 def run(pair, tracker):
@@ -253,7 +218,7 @@ def run(pair, tracker):
         section, plan = task["section"], task["plan"]
         name = section["name"]
         msg = chat([
-            {"role": "system", "content": WRITER.format(section=name, format=FORMATS[_kind(name)])},
+            {"role": "system", "content": WRITER.format(section=name)},
             {"role": "user", "content": f"JOB DESCRIPTION:\n{jd}\n\nCANDIDATE'S ORIGINAL RESUME:\n{resume}\n\n"
                                         f"YOUR PART OF THE PLAN:\n{_brief_for(section, plan)}\n\n"
                                         f"Write the {name} section."},
@@ -270,20 +235,18 @@ def run(pair, tracker):
             [f'- {r["requirement"]}: ' + (f'evidence "{r["evidence"]}"' if r["evidence"] else "UNSUPPORTED")
              for r in plan["requirements"]] +
             [f'Cut from {s["name"]}: {", ".join(s["cut"])}' for s in plan["sections"] if s["cut"]])
+        # The assembler writes the whole resume, header included, as the baseline's model does.
+        header = plan["header"] or "\n".join([l for l in resume.splitlines() if l.strip()][:2])
         msg = chat([
             {"role": "system", "content": ASSEMBLER},
-            {"role": "user", "content": f"PLAN:\n{plan_text}\n\nSECTIONS (in order):\n\n{draft}"},
+            {"role": "user", "content": f"HEADER:\n{header}\n\nPLAN:\n{plan_text}\n\n"
+                                        f"SECTIONS (in order):\n\n{draft}"},
         ], tracker)
-        merged = _restore_headings(_md_bullets(re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip())), names)
-        # Anything before the first section (a repeated name, "Here is the resume:") is dropped:
-        # the header comes from the plan, so keeping it would print the name twice.
-        first = re.search(r"^## ", merged, re.M)   # a real '## ' heading at the start of a line, not inside '###'
-        merged = merged[first.start():] if first else merged
+        merged = _md_bullets(re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip()))
         ok = len(merged) >= 200
-        if not ok:   # the assembler returned nothing usable: fall back to the sections joined as written
-            merged = draft
-        header = plan["header"] or "\n".join([l for l in resume.splitlines() if l.strip()][:2])
-        return {"resume_md": "\n\n".join(p for p in [header, merged] if p), "assembled_ok": ok}
+        if not ok:   # the assembler returned nothing usable: fall back to the header and sections as written
+            merged = "\n\n".join(p for p in [header, draft] if p)
+        return {"resume_md": merged, "assembled_ok": ok}
 
     g = StateGraph(PlanState)
     g.add_node("plan", plan_node)

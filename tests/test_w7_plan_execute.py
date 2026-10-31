@@ -61,8 +61,9 @@ class FakeOllama:
             role, content = f"write:{name}", (f"## {name}\n**Entry for {name}** | 2025\n"
                                               f"• first fact for {name}, written out in a full sentence\n"
                                               f"• second fact for {name}, also a full sentence")
-        elif "You are the assembler" in system:
-            role, content = "assemble", user.split("SECTIONS (in order):", 1)[1].strip()
+        elif "You are the assembler" in system:   # writes the header, then the sections as given
+            header = user.split("HEADER:\n", 1)[1].split("\n\nPLAN:", 1)[0]
+            role, content = "assemble", header + "\n\n" + user.split("SECTIONS (in order):", 1)[1].strip()
         else:
             raise AssertionError("unexpected prompt: " + system[:80])
         with self.lock:
@@ -169,23 +170,16 @@ class W7OutputCleanup(unittest.TestCase):
         out = w7._only_section("## Experience\n### DBS Bank\n- did X", "Experience", ["Experience", "Skills"])
         self.assertIn("### DBS Bank", out)
 
-    def test_assembler_name_line_is_dropped_not_turned_into_a_heading(self):
-        plan = make_plan(("Summary", "Experience"))
-        name_first = "### Alex Tan\n" + "\n\n".join(
-            f"## {s}\n- a full sentence about {s} that makes the section long enough" * 3 for s in ("Summary", "Experience"))
+    def test_no_layout_rules_in_any_prompt(self):
+        """Like the baseline, the model decides the layout: W7's prompts add no format or style rules."""
+        for prompt in (w7.WRITER, w7.ASSEMBLER, w7.PLANNER):
+            extra = prompt[len(BASE_RULES):]
+            for rule in ("Format:", "bold title line", "comma-separated", "2-3 sentences", "implied first person"):
+                self.assertNotIn(rule, extra)
 
-        class Assembler(FakeOllama):
-            def chat(self, model, messages, **kw):
-                reply = super().chat(model, messages, **kw)
-                if "You are the assembler" in messages[0]["content"]:
-                    reply.message.content = name_first
-                return reply
-
-        fake, tracker = Assembler([json.dumps(plan)]), Tracker()
-        with mock.patch.object(common.llm, "_client", fake):
-            md = w7.run({"resume": RESUME, "jd": JD}, tracker)["resume_md"]
-        self.assertEqual(md.count("Alex Tan"), 1)
-        self.assertEqual(re.findall(r"^## (.+)$", md, re.M), ["Summary", "Experience"])
+    def test_assembler_is_given_the_planners_header(self):
+        _, fake, _ = run_w7([json.dumps(make_plan())])
+        self.assertIn("HEADER:\nAlex Tan\nalex@example.com", fake.calls[-1]["messages"][-1]["content"])
 
 
 class W7FollowsReadmeRules(unittest.TestCase):
