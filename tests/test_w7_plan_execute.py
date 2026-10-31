@@ -154,6 +154,40 @@ class W7MatchesDescription(unittest.TestCase):
         self.assertEqual(len(fake.calls), 1 + 3 + 1, "N follows the planner's choice of sections")
 
 
+class W7OutputCleanup(unittest.TestCase):
+    """Formatting plumbing: none of these change what the model wrote, only how it is laid out."""
+
+    def test_reworded_own_heading_is_not_duplicated(self):
+        out = w7._only_section("## Professional Experience\n- did X", "Experience", ["Summary", "Experience"])
+        self.assertEqual(out, "## Experience\n- did X")
+
+    def test_writer_stops_at_another_planned_section(self):
+        out = w7._only_section("## Experience\n- did X\n## Skills\nPython", "Experience", ["Experience", "Skills"])
+        self.assertEqual(out, "## Experience\n- did X")
+
+    def test_subheadings_inside_a_section_are_kept(self):
+        out = w7._only_section("## Experience\n### DBS Bank\n- did X", "Experience", ["Experience", "Skills"])
+        self.assertIn("### DBS Bank", out)
+
+    def test_assembler_name_line_is_dropped_not_turned_into_a_heading(self):
+        plan = make_plan(("Summary", "Experience"))
+        name_first = "### Alex Tan\n" + "\n\n".join(
+            f"## {s}\n- a full sentence about {s} that makes the section long enough" * 3 for s in ("Summary", "Experience"))
+
+        class Assembler(FakeOllama):
+            def chat(self, model, messages, **kw):
+                reply = super().chat(model, messages, **kw)
+                if "You are the assembler" in messages[0]["content"]:
+                    reply.message.content = name_first
+                return reply
+
+        fake, tracker = Assembler([json.dumps(plan)]), Tracker()
+        with mock.patch.object(common.llm, "_client", fake):
+            md = w7.run({"resume": RESUME, "jd": JD}, tracker)["resume_md"]
+        self.assertEqual(md.count("Alex Tan"), 1)
+        self.assertEqual(re.findall(r"^## (.+)$", md, re.M), ["Summary", "Experience"])
+
+
 class W7FollowsReadmeRules(unittest.TestCase):
 
     def setUp(self):

@@ -187,15 +187,18 @@ def _only_section(text, name, all_names):
     planned section's heading, so sub-headings inside the section (e.g. '### DBS Bank') are kept."""
     text = re.sub(r"^```\w*\s*|\s*```$", "", (text or "").strip())
     others = {_norm(n) for n in all_names} - {_norm(name)}
+    # Its own heading, also when reworded ("Professional Experience" for "Experience"),
+    # as long as that wording isn't another planned section's heading.
+    is_own = lambda heading: heading == _norm(name) or (heading not in others and _same_section(heading, name))
     lines = text.splitlines()
-    own = [i for i, l in enumerate(lines) if l.startswith("#") and _norm(l.lstrip("#")) == _norm(name)]
+    own = [i for i, l in enumerate(lines) if l.startswith("#") and is_own(_norm(l.lstrip("#")))]
     if own:                                   # drop any preamble ("Here is the section:") before its heading
         lines = lines[own[0] + 1:]
     body = []
     for line in lines:
         if line.startswith("#"):
             heading = _norm(line.lstrip("#"))
-            if heading == _norm(name) or re.match(r"#\s", line):
+            if is_own(heading) or re.match(r"#\s", line):
                 continue                      # its own heading (added back below) or a stray '# Name' title
             if heading in others:
                 break                         # the writer started another section
@@ -274,7 +277,8 @@ def run(pair, tracker):
         merged = _restore_headings(_md_bullets(re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip())), names)
         # Anything before the first section (a repeated name, "Here is the resume:") is dropped:
         # the header comes from the plan, so keeping it would print the name twice.
-        merged = merged[merged.find("## "):] if "## " in merged else merged
+        first = re.search(r"^## ", merged, re.M)   # a real '## ' heading at the start of a line, not inside '###'
+        merged = merged[first.start():] if first else merged
         ok = len(merged) >= 200
         if not ok:   # the assembler returned nothing usable: fall back to the sections joined as written
             merged = draft
