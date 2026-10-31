@@ -19,16 +19,19 @@ def _w7_details(events):
     lines = []
     for e in events:
         if e["type"] == "w7_plan":
+            sections = e.get("sections", [])
             if not e["ok"]:
-                lines.append("**Plan:** JSON failed twice; writers used the original's own sections")
+                lines.append("**Plan:** JSON failed twice; writers used the default sections: " +
+                             ", ".join(s["name"] for s in sections))
                 continue
             reqs = e.get("requirements", [])
-            lines.append(f"**Plan sections:** {' → '.join(e.get('sections', []))}")
+            lines.append("**Plan sections:** " + " → ".join(s["name"] for s in sections) + "\n" +
+                         "\n".join(f"- **{s['name']}**: lead with " + ("; ".join(s["lead_with"]) or "-") +
+                                   " | cut " + ("; ".join(s["cut"]) or "-") for s in sections))
             lines.append(f"**Plan mapping:** {e.get('supported', 0)}/{len(reqs)} requirements backed by resume evidence\n" +
                          "\n".join(f"- {r['requirement']} → " +
                                    (f"*\"{r['evidence']}\"* ({r['section']})" if r["evidence"] else "**unsupported**")
                                    for r in reqs))
-            lines.append("**Plan cut:** " + ("; ".join(e.get("cut", [])) or "nothing"))
         elif e["type"] == "w7_check":
             label = ("Consistency before assembler" if e.get("stage") == "before_assembler"
                      else "Consistency after assembler")
