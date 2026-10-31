@@ -22,7 +22,9 @@ def _w7_details(events):
             lines.append(f"**Plan:** {e.get('supported', 0)}/{e.get('requirements', 0)} requirements backed by "
                          f"resume evidence" if e["ok"] else "**Plan:** JSON failed twice; wrote without a plan")
         elif e["type"] in ("w7_check", "w7_recheck"):
-            label = "Check" if e["type"] == "w7_check" else "Re-check after fix"
+            label = "Check" if e["type"] == "w7_check" else (
+                "Re-check after fix (fix kept)" if e.get("kept_fix") else
+                "Re-check after fix (fix discarded, showing the draft before it)")
             if e["problems"]:
                 lines.append(f"**{label}:** {len(e['problems'])} problem(s)\n" +
                              "\n".join(f"- {p}" for p in e["problems"]))

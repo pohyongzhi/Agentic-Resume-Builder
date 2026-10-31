@@ -247,10 +247,19 @@ def _brief_for(section, plan, source):
 
 
 def _source_text(section, resume, original):
-    """The part of the original resume this writer works from. Summaries see everything; other sections
-    see the original sections the planner named, or everything if none of the names match."""
+    """The part of the original resume this writer works from. Other sections see the original sections
+    the planner named, or everything if none of the names match. Summaries see the original summary
+    plus every title line (roles, projects, degrees, skills) but no bullets: shown bullets, a 4B
+    model copies them into the summary word for word, whatever the prompt says."""
     if _kind(section["name"]) == "summary":
-        return resume
+        if not resume:
+            return ""
+        parts = []
+        for h, t in original.items():
+            lines = t.strip().splitlines() if _kind(h) in ("summary", "list") else \
+                [l for l in t.splitlines() if l.strip() and not l.strip().startswith(("-", "•", "* "))]
+            parts.append(f"{h}\n" + "\n".join(lines))
+        return "\n\n".join(parts)
     wanted = {_norm(s) for s in section["source"] + [section["name"]]}
     parts = [f"{h}\n{t.strip()}" for h, t in original.items() if _norm(h) in wanted]
     return "\n\n".join(parts) if parts else resume
@@ -471,8 +480,12 @@ def run(pair, tracker):
         if len(fixed) < 200:   # the fix failed; keep the assembled draft
             return {}
         fixed = _restore_headings(fixed, [s["name"] for s in state["plan"]["sections"]])
-        tracker.log(type="w7_recheck", problems=_find_problems(fixed, state["plan"], resume))
-        return {"resume_md": fixed}
+        remaining = _find_problems(fixed, state["plan"], resume)
+        # The fix call can make things worse (e.g. refilling a cut role with another entry's bullets).
+        # Keep it only if it leaves fewer problems than the assembled draft had.
+        kept = len(remaining) < len(state["problems"])
+        tracker.log(type="w7_recheck", problems=remaining, kept_fix=kept)
+        return {"resume_md": fixed} if kept else {}
 
     g = StateGraph(PlanState)
     g.add_node("plan", plan_node)
