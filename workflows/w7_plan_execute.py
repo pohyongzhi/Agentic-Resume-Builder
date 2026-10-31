@@ -6,16 +6,16 @@ what to cut. One writer per planned section then drafts its section, all in para
 original resume and its own part of the plan. An assembler (one model call) merges the sections in
 the planned order and makes them consistent with each other and with the plan.
 
-    START -> plan --Send--> write (one per planned section, in parallel) -> assemble -> check -> END
+    START -> plan --Send--> write (one per planned section, in parallel) -> assemble -> END
 
-This follows the W7 description and nothing more, so it can be compared with the other variants:
+This follows the W7 description and nothing more, so it can be compared with the other variants.
+Every decision is made by the model. The plan reaches the writers exactly as the planner wrote it:
+  - no check that its evidence quotes are really in the resume, and no checks of the output
+    against the original (that is the evidence-grounded variant's technique; the scorecard's
+    faithfulness metric measures it)
   - no critique/revise loop (that is the multi-critic variant's technique)
-  - no checking of output claims against the original resume (that is the evidence-grounded
-    variant's technique, and the scorecard's faithfulness metric already measures it)
-The only code decision is that evidence the planner quotes must really be in the resume: the
-description says evidence *in the resume*, so a made-up quote is not a mapping.
-The `check` node is plain code and changes nothing: it logs the inconsistencies it finds in the
-draft before the assembler and in the final resume after it, as diagnostics for the report.
+Code only does plumbing: parse the plan's JSON (one retry), hand each writer its part, tidy
+headings, and put the header in front.
 
 The planner chooses the sections freely (no checks on its choice). BASE_RULES still asks for
 Summary, Experience, Education and Skills, so a plan that adds e.g. Projects goes beyond the shared
@@ -37,7 +37,6 @@ from langgraph.types import Send
 
 from common.llm import chat
 from common.prompts import BASE_RULES
-from eval.metrics import keyword_coverage
 
 NAME = "w7_plan_execute"
 
@@ -124,36 +123,6 @@ def _kind(name):
     return "entries"
 
 
-STOPWORDS = {"and", "the", "for", "with", "from", "into", "using", "use", "used", "strong", "skills",
-             "skill", "ability", "experience", "proficient", "proficiency", "familiar", "familiarity",
-             "knowledge", "including", "via", "per", "about"}
-
-
-def _content_words(text):
-    return [w for w in _norm(text).split() if len(w) > 2 and w not in STOPWORDS]
-
-
-def _overlaps(a, b, share=0.8):
-    """True if at least `share` of a's content words appear in b, or the other way round."""
-    wa, wb = _content_words(a), _content_words(b)
-    if not wa or not wb:
-        return False
-    return (sum(w in set(wb) for w in wa) / len(wa) >= share or
-            sum(w in set(wa) for w in wb) / len(wb) >= share)
-
-
-def _evidence_is_real(evidence, resume):
-    """The planner must quote the resume. Accept a near-verbatim quote: at least 80% of its words
-    appear in the resume. Anything else is treated as made up and the requirement becomes unsupported."""
-    words = _norm(evidence).split()
-    if not words:
-        return False
-    if " ".join(words) in _norm(resume):
-        return True
-    resume_words = set(_norm(resume).split())
-    return sum(w in resume_words for w in words) / len(words) >= 0.8
-
-
 def _parse_json(text):
     found = re.search(r"\{.*\}", text or "", re.S)
     if not found:
@@ -168,17 +137,16 @@ def _as_list(v):
     return [str(x) for x in v if isinstance(x, (str, int, float))] if isinstance(v, list) else []
 
 
-def _clean_plan(raw, resume):
-    """Keep the planner's choices; only fix the shape and drop evidence quotes that aren't in the resume."""
+def _clean_plan(raw):
+    """Keep the planner's choices exactly; only fix the shape so a malformed plan can't crash the run."""
     listed = lambda key: raw.get(key) if isinstance(raw.get(key), list) else []   # a string would loop over letters
     reqs = []
     for r in listed("requirements"):
         if not isinstance(r, dict) or not r.get("requirement"):
             continue
         ev = r.get("evidence")
-        ev = ev if isinstance(ev, str) and _evidence_is_real(ev, resume) else None
+        ev = ev.strip() if isinstance(ev, str) and ev.strip() else None
         reqs.append({"requirement": str(r["requirement"]), "evidence": ev, "section": str(r.get("section") or "")})
-    evidence = [r["evidence"] for r in reqs if r["evidence"]]
 
     sections, seen = [], set()
     for s in listed("sections"):
@@ -187,9 +155,8 @@ def _clean_plan(raw, resume):
             continue
         seen.add(_norm(name))
         s = s if isinstance(s, dict) else {}
-        # A small planner often cuts a line it also uses as evidence. Evidence wins: drop those cuts.
-        cut = [c for c in _as_list(s.get("cut")) if not any(_overlaps(c, ev) for ev in evidence)]
-        sections.append({"name": name.strip(), "lead_with": _as_list(s.get("lead_with")), "cut": cut})
+        sections.append({"name": name.strip(), "lead_with": _as_list(s.get("lead_with")),
+                         "cut": _as_list(s.get("cut"))})
     if not sections:   # no usable sections: fall back to the four BASE_RULES asks for
         sections = [{"name": n, "lead_with": [], "cut": []} for n in ("Summary", "Experience", "Education", "Skills")]
 
@@ -246,50 +213,6 @@ def _restore_headings(md, names):
     return "\n".join(out)
 
 
-def _split_sections(md):
-    sections, current = {}, None
-    for line in md.splitlines():
-        if line.startswith("## "):
-            current = line[3:].strip()
-            sections[current] = ""
-        elif current:
-            sections[current] += line + "\n"
-    return sections
-
-
-def _find_problems(md, plan):
-    """Diagnostics only: are the sections consistent with each other and with the plan? Nothing is
-    compared with the original resume (that is the evidence-grounded variant's job and the
-    faithfulness metric's). Logged before and after the assembler; never changes the output."""
-    problems, sections = [], _split_sections(md)
-    found = {_norm(h): body for h, body in sections.items()}
-
-    for s in plan["sections"]:
-        if len(found.get(_norm(s["name"]), "").split()) < 3:
-            problems.append(f'Planned section "{s["name"]}" is missing or empty.')
-    words = len(md.split())
-    if words > 550:
-        problems.append(f"{words} words; BASE_RULES asks for about 350-500.")
-
-    # Writers can't see each other, so the same sentence often lands in several sections.
-    # Compare on the first 8 words so near-copies ("...team to track metrics" vs "...team") also count.
-    openings = [" ".join(_norm(s).split()[:8]) for s in re.split(r"(?<=[.;,])\s+|\n", md)
-                if len(s.split()) >= 8]
-    for d in sorted({o for o in openings if openings.count(o) > 1}):
-        problems.append(f'Repeated in more than one place: "{d} ..."')
-
-    for r in plan["requirements"]:
-        if r["evidence"] is None and keyword_coverage(md, [{"keyword": r["requirement"]}])["hit"]:
-            problems.append(f'Plan marks "{r["requirement"]}" UNSUPPORTED, but the resume claims it.')
-    for c in (c for s in plan["sections"] for c in s["cut"]):
-        # One direction only: the cut item's words must be in the line, not just the line's words in the item.
-        cw = _content_words(c)
-        if len(cw) >= 3 and any(sum(w in set(_content_words(line)) for w in cw) / len(cw) >= 0.8
-                                for line in md.splitlines()):
-            problems.append(f'Plan says to cut "{c}", but it is still there.')
-    return problems
-
-
 # ---------- the workflow ----------
 
 def run(pair, tracker):
@@ -301,7 +224,7 @@ def run(pair, tracker):
         for attempt in range(2):   # one retry if the JSON is broken
             msg = chat(messages, tracker)
             try:
-                plan = _clean_plan(_parse_json(msg.content), resume)
+                plan = _clean_plan(_parse_json(msg.content))
                 tracker.log(type="w7_plan", ok=True, attempt=attempt + 1, header=plan["header"],
                             sections=plan["sections"], requirements=plan["requirements"],
                             supported=sum(r["evidence"] is not None for r in plan["requirements"]))
@@ -309,7 +232,7 @@ def run(pair, tracker):
             except (ValueError, json.JSONDecodeError) as e:
                 messages += [{"role": "assistant", "content": msg.content or ""},
                              {"role": "user", "content": f"That was not valid JSON ({e}). Reply with the JSON only."}]
-        plan = _clean_plan({}, resume)   # writers still run on the four BASE_RULES sections; run not finished cleanly
+        plan = _clean_plan({})   # writers still run on the four BASE_RULES sections; run not finished cleanly
         tracker.log(type="w7_plan", ok=False, attempt=2, sections=plan["sections"])
         return {"plan": plan, "plan_ok": False}
 
@@ -334,7 +257,6 @@ def run(pair, tracker):
         plan = state["plan"]
         names = [s["name"] for s in plan["sections"] if s["name"] in state["sections"]]
         draft = "\n\n".join(state["sections"][n] for n in names)
-        tracker.log(type="w7_check", stage="before_assembler", problems=_find_problems(draft, plan))
         plan_text = "\n".join(
             [f'- {r["requirement"]}: ' + (f'evidence "{r["evidence"]}"' if r["evidence"] else "UNSUPPORTED")
              for r in plan["requirements"]] +
@@ -353,20 +275,14 @@ def run(pair, tracker):
         header = plan["header"] or "\n".join([l for l in resume.splitlines() if l.strip()][:2])
         return {"resume_md": "\n\n".join(p for p in [header, merged] if p), "assembled_ok": ok}
 
-    def check_node(state):
-        tracker.log(type="w7_check", stage="final", problems=_find_problems(state["resume_md"], state["plan"]))
-        return {}
-
     g = StateGraph(PlanState)
     g.add_node("plan", plan_node)
     g.add_node("write", write_node)
     g.add_node("assemble", assemble_node)
-    g.add_node("check", check_node)
     g.add_edge(START, "plan")
     g.add_conditional_edges("plan", fan_out, ["write"])   # fan out: one writer per planned section
     g.add_edge("write", "assemble")                        # fan in: waits for every writer
-    g.add_edge("assemble", "check")
-    g.add_edge("check", END)
+    g.add_edge("assemble", END)
 
     out = g.compile().invoke({"plan": {}, "plan_ok": False, "sections": {}, "resume_md": "", "assembled_ok": False})
     return {"resume_md": out["resume_md"], "hit_budget": False, "finished": out["plan_ok"] and out["assembled_ok"]}

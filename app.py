@@ -15,7 +15,7 @@ from workflows import WORKFLOWS
 
 
 def _w7_details(events):
-    """W7 logs its plan and consistency checks into the Tracker; show them to explain its output."""
+    """W7 logs its plan into the Tracker; show it to explain the output."""
     lines = []
     for e in events:
         if e["type"] == "w7_plan":
@@ -32,11 +32,6 @@ def _w7_details(events):
                          "\n".join(f"- {r['requirement']} → " +
                                    (f"*\"{r['evidence']}\"* ({r['section']})" if r["evidence"] else "**unsupported**")
                                    for r in reqs))
-        elif e["type"] == "w7_check":
-            label = ("Consistency before assembler" if e.get("stage") == "before_assembler"
-                     else "Consistency after assembler")
-            lines.append(f"**{label}:** " + (f"{len(e['problems'])} issue(s)\n" + "\n".join(f"- {p}" for p in e["problems"])
-                                             if e["problems"] else "no issues"))
     return "\n\n".join(lines)
 
 
