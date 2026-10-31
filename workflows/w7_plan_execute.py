@@ -3,7 +3,12 @@ r"""W7 - PLAN-AND-EXECUTE  (planner + parallel section writers + assembler)
 Technique: a planner first maps each JD requirement to evidence quoted from the resume (or marks it
 unsupported), picks the section order, and decides what to cut. Four writers then draft one section
 each, in parallel, seeing only the plan items for their section. An assembler joins the sections
-and a checker looks for inconsistencies; if it finds any, one fix pass rewrites the whole resume.
+and a checker (plain code) looks for inconsistencies:
+  - between sections: repeated sentences, Skills not backed by the original resume
+  - with the original: role titles, employers, degrees and numbers must match exactly
+  - with the plan: unsupported requirements claimed, items the plan said to cut still present
+If it finds any, one fix pass rewrites the whole resume. (The fix pass is an addition to the
+W7 description; it costs at most one extra model call.)
 
     START -> plan -> write_summary    -\
                   -> write_experience -+-> assemble -> check --(ok)-------> END
@@ -117,8 +122,103 @@ def _clean_plan(raw, resume):
     order = [s for s in (raw.get("section_order") or []) if s in SECTIONS]
     order += [s for s in SECTIONS if s not in order]
     as_list = lambda v: [str(x) for x in v] if isinstance(v, list) else []
+    # A small planner often cuts a line it also uses as evidence. Evidence wins: drop those cuts.
+    evidence = [r["evidence"] for r in reqs if r["evidence"]]
+    cut = [c for c in as_list(raw.get("cut")) if not any(_overlaps(c, ev) for ev in evidence)]
     return {"requirements": reqs, "section_order": order,
-            "lead_with": as_list(raw.get("lead_with")), "cut": as_list(raw.get("cut"))}
+            "lead_with": as_list(raw.get("lead_with")), "cut": cut}
+
+
+STOPWORDS = {"and", "the", "for", "with", "from", "into", "using", "use", "used", "strong", "skills",
+             "skill", "ability", "experience", "proficient", "proficiency", "familiar", "familiarity",
+             "knowledge", "including", "via", "per", "about"}
+
+
+def _content_words(text):
+    return [w for w in _norm(text).split() if len(w) > 2 and w not in STOPWORDS]
+
+
+def _overlaps(a, b, share=0.8):
+    """True if at least `share` of a's content words appear in b, or the other way round."""
+    wa, wb = _content_words(a), _content_words(b)
+    if not wa or not wb:
+        return False
+    return (sum(w in set(wb) for w in wa) / len(wa) >= share or
+            sum(w in set(wa) for w in wb) / len(wb) >= share)
+
+
+def _backed_by(text, resume):
+    """Every content word of `text` appears somewhere in the original resume. Words of 5+ letters
+    match on their first 5, a crude stem so "cleaning" matches "cleaned"."""
+    words = set(_norm(resume).split())
+    stems = {w[:5] for w in words if len(w) >= 5}
+    return all(w in words or (len(w) >= 5 and w[:5] in stems) for w in _content_words(text))
+
+
+def _split_sections(md):
+    """{'Summary': body, ...} from a Markdown resume, keyed by '## ' headings."""
+    sections, current = {}, None
+    for line in md.splitlines():
+        if line.startswith("## "):
+            current = next((s for s in SECTIONS if _norm(line[3:]) == _norm(s)), line[3:].strip())
+            sections[current] = ""
+        elif current:
+            sections[current] += line + "\n"
+    return sections
+
+
+def _find_problems(md, plan, resume):
+    """Code-only checks that the assembled sections are consistent with each other, with the plan,
+    and with the original resume. Returns a list of problems in words the fix step can act on."""
+    problems, sections = [], _split_sections(md)
+
+    # Structure
+    for s in SECTIONS:
+        if len(sections.get(s, "").split()) < 4:
+            problems.append(f"The {s} section is missing or empty; write it from the original resume.")
+    if not re.search(r"^\s*[-*] ", sections.get("Experience", ""), re.M):
+        problems.append("The Experience section must use bullet points under each role.")
+    words = len(md.split())
+    if words > 550:
+        problems.append(f"The resume is {words} words; cut it to about 350-500.")
+
+    # Writers can't see each other, so the same sentence often lands in several sections.
+    # Compare on the first 8 words so near-copies ("...team to track metrics" vs "...team") also count.
+    openings = [" ".join(_norm(s).split()[:8]) for s in re.split(r"(?<=[.;,])\s+|\n", md)
+                if len(s.split()) >= 8]
+    dupes = sorted({o for o in openings if openings.count(o) > 1})
+    if dupes:
+        problems.append("These sentences appear in more than one place; keep each only once: "
+                        + "; ".join(f'"{d} ..."' for d in dupes))
+
+    # Protected facts: role titles, employers, degrees and every number must match the original.
+    for line in (sections.get("Experience", "") + sections.get("Education", "")).splitlines():
+        if line.strip().startswith(("-", "* ")):
+            continue
+        for bold in re.findall(r"\*\*(.+?)\*\*", line) or ([line] if line.strip() else []):
+            if not _backed_by(bold, resume):
+                problems.append(f'"{bold.strip()}" does not match a title, employer or degree in the '
+                                "original resume; copy it exactly from the original.")
+    for num in sorted(set(re.findall(r"\d+", md)) - set(re.findall(r"\d+", resume))):
+        problems.append(f'The number "{num}" is not in the original resume; remove it or use the original figure.')
+
+    # Skills must be backed by the original resume, not just by what another writer wrote.
+    for line in sections.get("Skills", "").splitlines():
+        line = re.sub(r"\*\*[^*]+\*\*:?", "", line)          # bold group label, e.g. **Programming:**
+        line = re.sub(r"^\s*[-*]\s+", "", line)
+        for skill in re.split(r"[,;](?![^()]*\))", line):    # don't split inside "SQL (basic, intermediate)"
+            if skill.strip() and not _backed_by(skill, resume):
+                problems.append(f'Skill "{skill.strip()}" is not in the original resume; remove it.')
+
+    # The plan: unsupported requirements must not be claimed, cut items must be gone.
+    for r in plan["requirements"]:
+        kw = [{"keyword": r["requirement"]}]
+        if r["evidence"] is None and keyword_coverage(md, kw)["hit"] and not keyword_coverage(resume, kw)["hit"]:
+            problems.append(f'"{r["requirement"]}" is not in the original resume; remove that claim.')
+    for c in plan["cut"]:
+        if len(_content_words(c)) >= 3 and any(_overlaps(c, line) for line in md.splitlines()):
+            problems.append(f'The plan said to cut "{c}", but it is still in the resume; remove or shorten it.')
+    return problems
 
 
 def _header(resume):
@@ -205,39 +305,23 @@ def run(pair, tracker):
         return {"resume_md": "\n\n".join(p for p in parts if p)}
 
     def check_node(state):
-        """Code-only consistency checks; problems go to the fix node."""
-        md, problems = state["resume_md"], []
-        words = len(md.split())
-        if words > 550:
-            problems.append(f"The resume is {words} words; cut it to about 350-500.")
-        # Writers can't see each other, so the same sentence often lands in several sections.
-        # Compare on the first 8 words so near-copies ("...team to track metrics" vs "...team") also count.
-        openings = [" ".join(_norm(s).split()[:8]) for s in re.split(r"(?<=[.;,])\s+|\n", md)
-                    if len(s.split()) >= 8]
-        dupes = sorted({o for o in openings if openings.count(o) > 1})
-        if dupes:
-            problems.append("These sentences appear in more than one place; keep each only once: "
-                            + "; ".join(f'"{d} ..."' for d in dupes))
-        if not re.search(r"^\s*[-*] ", state["sections"]["Experience"], re.M):
-            problems.append("The Experience section must use bullet points under each role.")
-        for r in state["plan"]["requirements"]:
-            kw = [{"keyword": r["requirement"]}]
-            if r["evidence"] is None and keyword_coverage(md, kw)["hit"] and not keyword_coverage(resume, kw)["hit"]:
-                problems.append(f'"{r["requirement"]}" is not in the original resume; remove that claim.')
-        for s in SECTIONS:
-            if len(state["sections"][s].split()) < 4:
-                problems.append(f"The {s} section is empty; write it from the original resume.")
+        problems = _find_problems(state["resume_md"], state["plan"], resume)
         tracker.log(type="w7_check", problems=problems)
         return {"problems": problems}
 
     def fix_node(state):
+        """Not in the original W7 description: one repair pass when the check finds problems.
+        Costs at most one extra model call; the re-check is only logged, never looped."""
         msg = chat([
             {"role": "system", "content": FIXER},
             {"role": "user", "content": f"CANDIDATE'S ORIGINAL RESUME:\n{resume}\n\nTAILORED RESUME:\n"
                                         f"{state['resume_md']}\n\nPROBLEMS:\n- " + "\n- ".join(state["problems"])},
         ], tracker)
-        fixed = (msg.content or "").strip()
-        return {"resume_md": fixed} if len(fixed) > 200 else {}   # keep the assembled draft if the fix failed
+        fixed = re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip())
+        if len(fixed) < 200:   # the fix failed; keep the assembled draft
+            return {}
+        tracker.log(type="w7_recheck", problems=_find_problems(fixed, state["plan"], resume))
+        return {"resume_md": fixed}
 
     g = StateGraph(PlanState)
     g.add_node("plan", plan_node)
