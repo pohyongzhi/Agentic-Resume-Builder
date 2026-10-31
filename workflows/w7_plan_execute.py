@@ -3,23 +3,23 @@ r"""W7 - PLAN-AND-EXECUTE  (planner + parallel section writers + assembler)
 Technique: a planner first writes a tailoring plan: which sections the resume should have and in
 what order, a word budget for each, which JD requirement maps to which evidence in the resume, and
 what to cut. One writer per planned section then drafts its section, all in parallel, each seeing
-only its part of the plan and its part of the original resume. An assembler joins the sections and
-a checker (plain code) looks for inconsistencies:
-  - between sections: repeated sentences, skills not backed by the original resume
-  - with the original: role titles, employers, degrees and numbers must match exactly
-  - with the plan: planned sections missing, unsupported requirements claimed, cut items still present
-If it finds any, one fix pass rewrites the whole resume. (The fix pass is an addition to the
-W7 description; it costs at most one extra model call.)
+only its part of the plan and its part of the original resume. An assembler (one model call) merges
+the sections in the planned order and makes them consistent with each other and with the plan.
 
-    START -> plan --Send--> write (one per planned section, in parallel) -> assemble -> check
-                                                                          (ok) -> END
-                                                                  (problems) -> fix -> END
+    START -> plan --Send--> write (one per planned section, in parallel) -> assemble -> check -> END
+
+This follows the W7 description and nothing more, so it can be compared with the other variants:
+  - no critique/revise loop (that is the multi-critic variant's technique)
+  - no checking of output claims against the original resume (that is the evidence-grounded
+    variant's technique, and the scorecard's faithfulness metric already measures it)
+The `check` node is plain code and changes nothing: it logs the inconsistencies it finds in the
+draft before the assembler and in the final resume after it, as diagnostics for the report.
 
 The planner chooses the sections freely (no checks on its choice). BASE_RULES still asks for
 Summary, Experience, Education and Skills, so a plan that adds e.g. Projects goes beyond the shared
 rule; raise this with the group before the full run.
 
-What it costs: 1 plan call + 1 call per planned section + at most 1 fix call. Varies per resume.
+What it costs: 1 plan call + 1 call per planned section + 1 assembler call. Varies per resume.
 Course link: Topic 7 §4 plan-and-execute.
 
 Note: all writers share one Ollama server, so "parallel" may just queue. Report wall_seconds
@@ -83,10 +83,16 @@ FORMATS = {
                'one point per bullet. Entries with nothing to add (e.g. a degree) need no bullets.',
 }
 
-FIXER = BASE_RULES + """
-You are given a tailored resume and a list of problems found in it. Fix every problem and change as
-little else as possible. Keep every "## " section heading exactly as it is.
-Reply with the complete corrected resume in Markdown only."""
+ASSEMBLER = BASE_RULES + """
+You are the assembler. Different writers drafted the sections below separately, from a shared plan,
+without seeing each other's work. Merge them into one resume and make sure they are consistent:
+- Keep the sections in the order given, each under its "## " heading.
+- Remove any sentence or fact that appears in more than one section; keep it where it fits best.
+- The sections must not contradict each other (titles, organisations, dates, what each role or
+  project involved). If they do, keep the version in the section that the fact belongs to.
+- Follow the plan: leave out the items it says to cut and never claim requirements it marks UNSUPPORTED.
+- Do not add new facts. Keep each section's content otherwise as written.
+Reply with the merged resume sections in Markdown only, starting with the first "## " heading."""
 
 
 class PlanState(TypedDict):
@@ -94,7 +100,7 @@ class PlanState(TypedDict):
     plan_ok: bool
     sections: Annotated[dict, operator.or_]   # each writer adds {section: markdown}; merged in parallel
     resume_md: str
-    problems: list
+    assembled_ok: bool
 
 
 # ---------- reading the original resume (plain text from PDF/DOCX, or Markdown) ----------
@@ -299,7 +305,7 @@ def _only_section(text, name):
 
 
 def _restore_headings(md, names):
-    """The fix call sometimes drops the '## ' (e.g. writes **Summary**). Put the planned headings back."""
+    """The assembler sometimes drops the '## ' (e.g. writes **Summary**). Put the planned headings back."""
     by_norm = {_norm(n): n for n in names}
     out = []
     for line in md.splitlines():
@@ -337,78 +343,37 @@ def _overlaps(a, b, share=0.8):
             sum(w in set(wa) for w in wb) / len(wb) >= share)
 
 
-def _backed_by(text, resume):
-    """Every content word of `text` appears somewhere in the original resume. Words of 5+ letters
-    match on their first 5, a crude stem so "cleaning" matches "cleaned"."""
-    words = set(_norm(resume).split())
-    stems = {w[:5] for w in words if len(w) >= 5}
-    return all(w in words or (len(w) >= 5 and w[:5] in stems) for w in _content_words(text))
-
-
-def _find_problems(md, plan, resume):
-    """Code-only checks that the assembled sections are consistent with each other, with the plan,
-    and with the original resume. Returns a list of problems in words the fix step can act on."""
+def _find_problems(md, plan):
+    """Diagnostics only: are the sections consistent with each other and with the plan? Nothing is
+    compared with the original resume (that is the evidence-grounded variant's job and the
+    faithfulness metric's). Logged before and after the assembler; never changes the output."""
     problems, sections = [], _split_sections(md)
     found = {_norm(h): body for h, body in sections.items()}
 
-    # Structure: every planned section is there; long paragraphs in entry sections should be bullets.
     for s in plan["sections"]:
         if len(found.get(_norm(s["name"]), "").split()) < 3:
-            problems.append(f'The "{s["name"]}" section is missing or empty; write it from the original resume.')
+            problems.append(f'Planned section "{s["name"]}" is missing or empty.')
     words = len(md.split())
     if words > 550:
-        problems.append(f"The resume is {words} words; cut it to about 350-500.")
-    for head, body in sections.items():
-        if _kind(head) == "entries" and any(len(l.split()) > 35 and not l.strip().startswith(("-", "* "))
-                                            for l in body.splitlines()):
-            problems.append(f'The "{head}" section has long paragraphs; use one bullet per point.')
+        problems.append(f"{words} words; BASE_RULES asks for about 350-500.")
 
     # Writers can't see each other, so the same sentence often lands in several sections.
     # Compare on the first 8 words so near-copies ("...team to track metrics" vs "...team") also count.
     openings = [" ".join(_norm(s).split()[:8]) for s in re.split(r"(?<=[.;,])\s+|\n", md)
                 if len(s.split()) >= 8]
     dupes = sorted({o for o in openings if openings.count(o) > 1})
-    if dupes:
-        problems.append("These sentences appear in more than one place; keep each only once: "
-                        + "; ".join(f'"{d} ..."' for d in dupes))
+    for d in dupes:
+        problems.append(f'Repeated in more than one place: "{d} ..."')
 
-    # Protected facts: entry titles (roles, employers, projects, degrees) and every number match the original.
-    for head, body in sections.items():
-        if _kind(head) != "entries":
-            continue
-        for line in body.splitlines():
-            if line.strip().startswith(("-", "* ")):
-                continue
-            for title in re.findall(r"\*\*(.+?)\*\*", line) or ([line] if line.strip() else []):
-                if not _backed_by(title, resume):
-                    problems.append(f'"{title.strip()}" does not match a title, organisation, project or degree '
-                                    "in the original resume; copy it exactly from the original.")
-    for num in sorted(set(re.findall(r"\d+", md)) - set(re.findall(r"\d+", resume))):
-        problems.append(f'The number "{num}" is not in the original resume; remove it or use the original figure.')
-
-    # List sections (skills, tools) must be backed by the original resume, not just by another writer.
-    for head, body in sections.items():
-        if _kind(head) != "list":
-            continue
-        for line in body.splitlines():
-            line = re.sub(r"\*\*[^*]+\*\*:?", "", line)          # bold group label, e.g. **Programming:**
-            line = re.sub(r"^\s*[-*]\s+", "", line)
-            line = re.sub(r"^[^,:]{1,40}:\s", "", line)           # plain group label, e.g. "Data & Tools: "
-            for item in re.split(r"[,;](?![^()]*\))", line):     # don't split inside "SQL (basic, intermediate)"
-                if item.strip(" .") and not _backed_by(item, resume):
-                    problems.append(f'"{item.strip(" .")}" in {head} is not in the original resume; remove it.')
-
-    # The plan: unsupported requirements must not be claimed, cut items must be gone.
     for r in plan["requirements"]:
-        kw = [{"keyword": r["requirement"]}]
-        if r["evidence"] is None and keyword_coverage(md, kw)["hit"] and not keyword_coverage(resume, kw)["hit"]:
-            problems.append(f'"{r["requirement"]}" is not in the original resume; remove that claim.')
+        if r["evidence"] is None and keyword_coverage(md, [{"keyword": r["requirement"]}])["hit"]:
+            problems.append(f'Plan marks "{r["requirement"]}" UNSUPPORTED, but the resume claims it.')
     for c in plan["cut"]:
         # One direction only: the cut item's words must be in the line, not just the line's words in the item.
         cw = _content_words(c)
         if len(cw) >= 3 and any(sum(w in set(_content_words(line)) for w in cw) / len(cw) >= 0.8
                                 for line in md.splitlines()):
-            problems.append(f'The plan said to cut "{c}", but it is still in the resume; remove or shorten it.')
+            problems.append(f'Plan says to cut "{c}", but it is still there.')
     return problems
 
 
@@ -429,7 +394,7 @@ def run(pair, tracker):
                                         resume, original)
                 tracker.log(type="w7_plan", ok=True, attempt=attempt + 1,
                             sections=[f'{s["name"]} ({s["words"]}w)' for s in plan["sections"]],
-                            requirements=len(plan["requirements"]),
+                            requirements=plan["requirements"],
                             supported=sum(r["evidence"] is not None for r in plan["requirements"]),
                             cut=plan["cut"])
                 return {"plan": plan, "plan_ok": True}
@@ -459,46 +424,40 @@ def run(pair, tracker):
         return {"sections": {name: _only_section(msg.content, name)}}
 
     def assemble_node(state):
-        parts = [header] + [state["sections"][s["name"]] for s in state["plan"]["sections"]
-                            if s["name"] in state["sections"]]
-        return {"resume_md": "\n\n".join(p for p in parts if p)}
+        """One model call: merge the separately written sections and make them consistent."""
+        names = [s["name"] for s in state["plan"]["sections"] if s["name"] in state["sections"]]
+        draft = "\n\n".join(state["sections"][n] for n in names)
+        tracker.log(type="w7_check", stage="before_assembler", problems=_find_problems(draft, state["plan"]))
+        plan = state["plan"]
+        plan_text = "\n".join(
+            [f'- {r["requirement"]}: ' + (f'evidence "{r["evidence"]}"' if r["evidence"] else "UNSUPPORTED")
+             for r in plan["requirements"]] +
+            [f"Cut: {', '.join(plan['cut']) or '-'}"])
+        msg = chat([
+            {"role": "system", "content": ASSEMBLER},
+            {"role": "user", "content": f"PLAN:\n{plan_text}\n\nSECTIONS (in order):\n\n{draft}"},
+        ], tracker)
+        merged = re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip())
+        ok = len(merged) >= 200
+        if not ok:   # the assembler returned nothing usable: fall back to the sections joined as written
+            merged = draft
+        merged = _restore_headings(merged, names)
+        return {"resume_md": "\n\n".join(p for p in [header, merged] if p), "assembled_ok": ok}
 
     def check_node(state):
-        problems = _find_problems(state["resume_md"], state["plan"], resume)
-        tracker.log(type="w7_check", problems=problems)
-        return {"problems": problems}
-
-    def fix_node(state):
-        """Not in the original W7 description: one repair pass when the check finds problems.
-        Costs at most one extra model call; the re-check is only logged, never looped."""
-        msg = chat([
-            {"role": "system", "content": FIXER},
-            {"role": "user", "content": f"CANDIDATE'S ORIGINAL RESUME:\n{resume}\n\nTAILORED RESUME:\n"
-                                        f"{state['resume_md']}\n\nPROBLEMS:\n- " + "\n- ".join(state["problems"])},
-        ], tracker)
-        fixed = re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip())
-        if len(fixed) < 200:   # the fix failed; keep the assembled draft
-            return {}
-        fixed = _restore_headings(fixed, [s["name"] for s in state["plan"]["sections"]])
-        remaining = _find_problems(fixed, state["plan"], resume)
-        # The fix call can make things worse (e.g. refilling a cut role with another entry's bullets).
-        # Keep it only if it leaves fewer problems than the assembled draft had.
-        kept = len(remaining) < len(state["problems"])
-        tracker.log(type="w7_recheck", problems=remaining, kept_fix=kept)
-        return {"resume_md": fixed} if kept else {}
+        tracker.log(type="w7_check", stage="final", problems=_find_problems(state["resume_md"], state["plan"]))
+        return {}
 
     g = StateGraph(PlanState)
     g.add_node("plan", plan_node)
     g.add_node("write", write_node)
     g.add_node("assemble", assemble_node)
     g.add_node("check", check_node)
-    g.add_node("fix", fix_node)
     g.add_edge(START, "plan")
     g.add_conditional_edges("plan", fan_out, ["write"])   # fan out: one writer per planned section
     g.add_edge("write", "assemble")                        # fan in: waits for every writer
     g.add_edge("assemble", "check")
-    g.add_conditional_edges("check", lambda s: "fix" if s["problems"] else END, ["fix", END])
-    g.add_edge("fix", END)
+    g.add_edge("check", END)
 
-    out = g.compile().invoke({"plan": {}, "plan_ok": False, "sections": {}, "resume_md": "", "problems": []})
-    return {"resume_md": out["resume_md"], "hit_budget": False, "finished": out["plan_ok"]}
+    out = g.compile().invoke({"plan": {}, "plan_ok": False, "sections": {}, "resume_md": "", "assembled_ok": False})
+    return {"resume_md": out["resume_md"], "hit_budget": False, "finished": out["plan_ok"] and out["assembled_ok"]}

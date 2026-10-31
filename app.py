@@ -15,21 +15,25 @@ from workflows import WORKFLOWS
 
 
 def _w7_details(events):
-    """W7 logs its plan and checks into the Tracker; show them so you can see what the checker did."""
+    """W7 logs its plan and consistency checks into the Tracker; show them to explain its output."""
     lines = []
     for e in events:
         if e["type"] == "w7_plan":
-            lines.append(f"**Plan:** {e.get('supported', 0)}/{e.get('requirements', 0)} requirements backed by "
-                         f"resume evidence" if e["ok"] else "**Plan:** JSON failed twice; wrote without a plan")
-        elif e["type"] in ("w7_check", "w7_recheck"):
-            label = "Check" if e["type"] == "w7_check" else (
-                "Re-check after fix (fix kept)" if e.get("kept_fix") else
-                "Re-check after fix (fix discarded, showing the draft before it)")
-            if e["problems"]:
-                lines.append(f"**{label}:** {len(e['problems'])} problem(s)\n" +
-                             "\n".join(f"- {p}" for p in e["problems"]))
-            else:
-                lines.append(f"**{label}:** no problems")
+            if not e["ok"]:
+                lines.append("**Plan:** JSON failed twice; writers used the original's own sections")
+                continue
+            reqs = e.get("requirements", [])
+            lines.append(f"**Plan sections:** {' → '.join(e.get('sections', []))}")
+            lines.append(f"**Plan mapping:** {e.get('supported', 0)}/{len(reqs)} requirements backed by resume evidence\n" +
+                         "\n".join(f"- {r['requirement']} → " +
+                                   (f"*\"{r['evidence']}\"* ({r['section']})" if r["evidence"] else "**unsupported**")
+                                   for r in reqs))
+            lines.append("**Plan cut:** " + ("; ".join(e.get("cut", [])) or "nothing"))
+        elif e["type"] == "w7_check":
+            label = ("Consistency before assembler" if e.get("stage") == "before_assembler"
+                     else "Consistency after assembler")
+            lines.append(f"**{label}:** " + (f"{len(e['problems'])} issue(s)\n" + "\n".join(f"- {p}" for p in e["problems"])
+                                             if e["problems"] else "no issues"))
     return "\n\n".join(lines)
 
 
