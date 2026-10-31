@@ -200,7 +200,13 @@ def _only_section(text, name, all_names):
             if heading in others:
                 break                         # the writer started another section
         body.append(line)
-    return f"## {name}\n" + "\n".join(body).strip()
+    return f"## {name}\n" + _md_bullets("\n".join(body).strip())
+
+
+def _md_bullets(text):
+    """PDF resumes use '•' bullets and writers copy them. Markdown doesn't treat '•' as a list, so the
+    page runs the title and its bullets into one paragraph. Turn them into '- ' bullets."""
+    return re.sub(r"^(\s*)[•●▪◦‣∙·]\s*", r"\1- ", text, flags=re.M)
 
 
 def _restore_headings(md, names):
@@ -265,7 +271,7 @@ def run(pair, tracker):
             {"role": "system", "content": ASSEMBLER},
             {"role": "user", "content": f"PLAN:\n{plan_text}\n\nSECTIONS (in order):\n\n{draft}"},
         ], tracker)
-        merged = _restore_headings(re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip()), names)
+        merged = _restore_headings(_md_bullets(re.sub(r"^```\w*\s*|\s*```$", "", (msg.content or "").strip())), names)
         # Anything before the first section (a repeated name, "Here is the resume:") is dropped:
         # the header comes from the plan, so keeping it would print the name twice.
         merged = merged[merged.find("## "):] if "## " in merged else merged
