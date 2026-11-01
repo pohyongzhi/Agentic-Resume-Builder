@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: deterministic protected-field evaluation
-- Last completed task: `F2` - repair claim extraction and source evidence segmentation
-- Next task: `F3` - add deterministic protected-field violation metrics
+- Current phase: automatically derived fabrication-bait evaluation
+- Last completed task: `F3` - add deterministic protected-field violation metrics
+- Next task: `F4` - add automatically derived fabrication-bait metrics
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -82,7 +82,7 @@ because not every workflow uses the same harness.
 | F0 | Create dedicated branch and resumable status document | Complete | Branch created from `origin/main`; this document added |
 | F1 | Capture baseline tests and reproduce known false positives | Complete | `74 passed, 1 xfailed`; baseline JSON and four regression fixtures committed |
 | F2 | Repair claim extraction and source evidence segmentation | Complete | `79 passed`; known case reduced from 23 to 17 semantic claims and retrieved the correct source bullet |
-| F3 | Add deterministic protected-field violation metrics | Not started | Pending |
+| F3 | Add deterministic protected-field violation metrics | Complete | `86 passed`; diagnostic scan found 5/100 high-confidence W1 violations |
 | F4 | Add automatically derived fabrication-bait metrics | Not started | Pending |
 | F5 | Add semantic support adjudication and evaluator versioning | Not started | Pending |
 | F6 | Integrate component metrics into records, task gates and reports | Not started | Pending |
@@ -253,3 +253,24 @@ and update this file before beginning F3.
 - Did not rescore or overwrite saved evaluation records.
 
 Next action: execute F3 and update this file before beginning F4.
+
+### 2026-11-01 - F3 complete
+
+- Added evaluator-side protected-field extraction for names, emails, phones, actual job titles,
+  employers, employment dates, degrees, institutions and education dates.
+- Added exact comparison after formatting-only normalization; source-field omissions remain
+  permitted and are not treated as fabrication.
+- Added numerical-claim checks that exclude contact/header lines and normalize percentages.
+- Supported combined and split Markdown layouts, including heading-plus-employer, bold title plus
+  employer, separate date lines, locations and moved project entries.
+- Added violation type, value, normalized value, source line and allowed source values to every
+  finding.
+- Added seven protected-field regression tests, including formatting-equivalent layouts,
+  alterations, omissions, project placement and invented numbers.
+- Ran a read-only diagnostic scan over the 100 saved W1 outputs. It found five outputs with
+  high-confidence violations: one malformed employment date, two unsupported rounded percentages
+  and two `ISO 27001` to `ISO 2701` numerical changes.
+- Ran the complete suite: `86 passed`.
+- Did not write or replace evaluation records.
+
+Next action: execute F4 and update this file before beginning F5.

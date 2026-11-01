@@ -62,19 +62,25 @@ _SKILL_SECTIONS = {"skills", "technical skills"}
 _CONTACT_EMAIL = re.compile(r"[\w.+-]+@[\w.-]+\.\w+")
 _CONTACT_PHONE = re.compile(r"(?:\+?\d[\d\s().-]{7,}\d)")
 _MARKDOWN_BULLET = re.compile(r"^(?:[-*•]|\d+[.)])\s+")
-_DATE_RANGE = re.compile(
-    r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
-    r"jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|"
-    r"dec(?:ember)?|\d{4})\b.*(?:-|–|—|to).*"
-    r"\b(?:present|current|jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|"
-    r"jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|"
-    r"dec(?:ember)?|\d{4})\b",
-    re.IGNORECASE,
-)
 _COMPARISON_STOPWORDS = {
     "a", "an", "and", "as", "at", "by", "for", "from", "in", "into", "of",
     "on", "or", "the", "to", "using", "with",
 }
+_MONTH = (
+    r"jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
+    r"jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|"
+    r"dec(?:ember)?"
+)
+_DATE_POINT = rf"(?:{_MONTH})\s+\d{{1,4}}|\d{{4}}"
+_DATE_RANGE_VALUE = re.compile(
+    rf"(?P<start>{_DATE_POINT})\s*(?:-|–|—|to)\s*"
+    rf"(?P<end>present|current|{_DATE_POINT})",
+    re.IGNORECASE,
+)
+_NUMBER_VALUE = re.compile(
+    r"(?<![\w])\d+(?:,\d{3})*(?:\.\d+)?\s*(?:%|percent)?(?![\w])",
+    re.IGNORECASE,
+)
 
 
 def normalize_evidence_text(text):
@@ -144,7 +150,7 @@ def _line_records(resume_md):
         elif section in _SKILL_SECTIONS:
             kind = "skill_list"
         elif stripped.startswith(("**", "__")) or (
-            not _MARKDOWN_BULLET.match(stripped) and _DATE_RANGE.search(text)
+            not _MARKDOWN_BULLET.match(stripped) and _DATE_RANGE_VALUE.search(text)
         ):
             kind = "protected_header"
         elif not seen_section and len(text.split()) <= 12 and not re.search(r"[.!?]$", text):
@@ -224,6 +230,188 @@ def retrieve_evidence_units(claim, evidence_units, limit=3):
         ranked,
         key=lambda unit: (-unit["retrieval_score"], unit["evidence_id"]),
     )[:limit]
+
+
+def _normalized_dates(text):
+    return [
+        re.sub(r"\s+", " ", normalize_evidence_text(match.group(0))).strip()
+        for match in _DATE_RANGE_VALUE.finditer(text)
+    ]
+
+
+def _header_core(text):
+    text = _plain_markdown(text)
+    text = _DATE_RANGE_VALUE.sub("", text)
+    text = re.sub(r"\(\s*fictional\s*\)", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\s*\([^)]*\)\s*$", "", text)
+    return text.strip(" |,()-")
+
+
+def _header_parts(text):
+    core = _header_core(text)
+    if not core:
+        return []
+    separator = "|" if "|" in core else "," if "," in core else None
+    if separator:
+        return [part.strip() for part in core.split(separator) if part.strip()]
+    return [core]
+
+
+def _protected_entities(resume_md):
+    """Extract comparable protected values from the project's Markdown resume contract."""
+    entities = {
+        "candidate_name": [],
+        "contact_email": [],
+        "contact_phone": [],
+        "employment_title": [],
+        "employer": [],
+        "employment_date": [],
+        "degree": [],
+        "institution": [],
+        "education_date": [],
+    }
+
+    def add(kind, value, line):
+        normalized = normalize_evidence_text(value)
+        if normalized and all(item["normalized"] != normalized for item in entities[kind]):
+            entities[kind].append({
+                "value": value.strip(),
+                "normalized": normalized,
+                "line": line,
+            })
+
+    pending_experience_title = False
+    pending_education_degree = False
+    active_section = None
+    for record in _line_records(resume_md):
+        raw = record["raw"]
+        if record["section"] != active_section:
+            active_section = record["section"]
+            pending_experience_title = False
+            pending_education_degree = False
+        if record["kind"] == "candidate_name":
+            add("candidate_name", record["text"], record["line"])
+        for match in _CONTACT_EMAIL.finditer(raw):
+            add("contact_email", match.group(0), record["line"])
+        for match in _CONTACT_PHONE.finditer(raw):
+            digits = re.sub(r"\D", "", match.group(0))
+            if len(digits) >= 8:
+                add("contact_phone", digits, record["line"])
+        if record["kind"] != "protected_header":
+            continue
+
+        section = record["section"]
+        dates = _normalized_dates(record["text"])
+        parts = _header_parts(record["text"])
+        is_heading = raw.lstrip().startswith("#")
+        if section in {"experience", "professional experience", "work experience"}:
+            for value in dates:
+                add("employment_date", value, record["line"])
+            looks_like_project = any(
+                "project" in normalize_evidence_text(part) for part in parts
+            ) or any(
+                normalize_evidence_text(part) in {"personal initiative", "personal project"}
+                for part in parts
+            )
+            if looks_like_project:
+                pending_experience_title = False
+                continue
+            if len(parts) >= 2:
+                if pending_experience_title:
+                    add("employer", parts[0], record["line"])
+                    pending_experience_title = False
+                else:
+                    add("employment_title", parts[0], record["line"])
+                    add("employer", parts[1], record["line"])
+            elif parts and (
+                is_heading or (raw.lstrip().startswith(("**", "__")) and not dates)
+            ):
+                add("employment_title", parts[0], record["line"])
+                pending_experience_title = True
+            elif parts:
+                add("employer", parts[0], record["line"])
+                pending_experience_title = False
+        elif section == "education":
+            for value in dates:
+                add("education_date", value, record["line"])
+            if len(parts) >= 2:
+                if pending_education_degree:
+                    add("institution", parts[0], record["line"])
+                    pending_education_degree = False
+                else:
+                    add("degree", parts[0], record["line"])
+                    add("institution", parts[1], record["line"])
+            elif parts and pending_education_degree:
+                add("institution", parts[0], record["line"])
+                pending_education_degree = False
+            elif parts:
+                is_bold_degree = raw.lstrip().startswith(("**", "__")) and not dates
+                if is_heading or is_bold_degree:
+                    add("degree", parts[0], record["line"])
+                    pending_education_degree = True
+                else:
+                    add("institution", parts[0], record["line"])
+    return entities
+
+
+def _normalized_number(value):
+    value = value.lower().replace(",", "").strip()
+    value = re.sub(r"\s*percent$", "%", value)
+    return re.sub(r"\s+", "", value)
+
+
+def protected_field_metrics(original_resume, tailored_resume):
+    """Return high-confidence protected-field changes without penalizing omissions."""
+    source = _protected_entities(original_resume)
+    output = _protected_entities(tailored_resume)
+    violations = []
+    seen = set()
+
+    def add(kind, item, expected):
+        key = (kind, item["normalized"], item["line"])
+        if key in seen:
+            return
+        seen.add(key)
+        violations.append({
+            "type": kind,
+            "value": item["value"],
+            "normalized": item["normalized"],
+            "line": item["line"],
+            "expected_source_values": [entry["value"] for entry in expected],
+        })
+
+    for kind, output_items in output.items():
+        allowed = {item["normalized"] for item in source[kind]}
+        for item in output_items:
+            if item["normalized"] not in allowed:
+                add(kind, item, source[kind])
+
+    source_numbers = {
+        _normalized_number(match.group(0))
+        for match in _NUMBER_VALUE.finditer(original_resume)
+    }
+    for record in _line_records(tailored_resume):
+        if record["kind"] != "claim":
+            continue
+        for match in _NUMBER_VALUE.finditer(record["text"]):
+            normalized = _normalized_number(match.group(0))
+            if normalized in source_numbers:
+                continue
+            add("invented_number", {
+                "value": match.group(0),
+                "normalized": normalized,
+                "line": record["line"],
+            }, [{"value": value} for value in sorted(source_numbers)])
+
+    return {
+        "protected_field_violation": bool(violations),
+        "protected_field_violation_count": len(violations),
+        "protected_field_violations": violations,
+        "protected_source_fields": {
+            kind: [item["value"] for item in values]
+            for kind, values in source.items()
+        },
+    }
 
 
 def nli_model_identity():

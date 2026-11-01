@@ -85,3 +85,105 @@ def test_retrieval_finds_the_supported_source_bullet_and_penalizes_number_mismat
         claim.replace("35%", "95%"), units,
     )
     assert mismatched[0]["retrieval_score"] < matches[0]["retrieval_score"]
+
+
+def test_protected_fields_accept_faithful_formatting_changes():
+    case = next(
+        case for case in _cases() if case["id"] == "faithful_formatting_and_paraphrase"
+    )
+    result = metrics.protected_field_metrics(
+        case["original_resume"], case["tailored_resume"],
+    )
+    assert result["protected_field_violation"] is False
+    assert result["protected_field_violations"] == []
+
+
+def test_protected_fields_detect_altered_contact_title_and_date():
+    case = next(
+        case for case in _cases() if case["id"] == "altered_protected_fields"
+    )
+    result = metrics.protected_field_metrics(
+        case["original_resume"], case["tailored_resume"],
+    )
+    assert {
+        violation["type"] for violation in result["protected_field_violations"]
+    } == set(case["expected_protected_violation_types"])
+    assert all(violation["line"] > 0 for violation in result["protected_field_violations"])
+
+
+def test_protected_fields_detect_invented_number_inside_mixed_claim():
+    case = next(
+        case for case in _cases() if case["id"] == "mixed_supported_and_invented_clause"
+    )
+    result = metrics.protected_field_metrics(
+        case["original_resume"], case["tailored_resume"],
+    )
+    assert [
+        violation["type"] for violation in result["protected_field_violations"]
+    ] == ["invented_number"]
+    assert result["protected_field_violations"][0]["value"] == "12"
+
+
+def test_protected_field_omissions_are_not_violations():
+    result = metrics.protected_field_metrics(
+        "# Casey Lim\ncasey@example.test | +65 6000 0101\n"
+        "## Experience\n### Analyst, Example Operations (Jan 2024 - Present)\n"
+        "- Prepared weekly reports for managers.\n",
+        "# Casey Lim\n## Experience\n- Prepared weekly reports for managers.\n",
+    )
+    assert result["protected_field_violation"] is False
+
+
+def test_split_headers_ignore_location_and_accept_bold_degree_layout():
+    original = (
+        "# Casey Lim\ncasey@example.test | +65 6000 0101 | Singapore\n"
+        "## Experience\n### Analyst, Example Operations (Jan 2024 - Present)\n"
+        "- Prepared weekly reports for managers.\n"
+        "## Education\n"
+        "### Bachelor of Science in Information Systems, Example Polytechnic "
+        "(Aug 2020 - May 2024)\n"
+    )
+    tailored = (
+        "# Casey Lim\ncasey@example.test | +65 6000 0101 | Singapore\n"
+        "## Experience\n### Analyst\n"
+        "**Example Operations** | Singapore (Jan 2024 – Present)\n"
+        "- Prepared weekly reports for managers.\n"
+        "## Education\n**Bachelor of Science in Information Systems**\n"
+        "Example Polytechnic (fictional) | Aug 2020 – May 2024\n"
+    )
+    assert metrics.protected_field_metrics(original, tailored)[
+        "protected_field_violations"
+    ] == []
+
+
+def test_project_moved_under_experience_is_not_treated_as_job_title():
+    original = (
+        "## Experience\n### Analyst, Example Operations (Jan 2024 - Present)\n"
+        "- Prepared weekly reports.\n"
+        "## Projects\n### Analyst Practice Project\n- Built a reporting demonstration.\n"
+    )
+    tailored = (
+        "## Experience\n**Analyst** | Example Operations (Jan 2024 – Present)\n"
+        "- Prepared weekly reports.\n"
+        "**Analyst Practice Project** | Personal Initiative\n"
+        "- Built a reporting demonstration.\n"
+    )
+    assert metrics.protected_field_metrics(original, tailored)[
+        "protected_field_violations"
+    ] == []
+
+
+def test_standalone_bold_title_followed_by_employer_is_parsed_as_one_role():
+    original = (
+        "## Experience\n"
+        "### Threat Intelligence Lead, Example Atlas Solutions (Jan 2021 - Present)\n"
+        "- Briefed technical stakeholders.\n"
+    )
+    tailored = (
+        "## Experience\n**Threat Intelligence Lead**\n"
+        "*Example Atlas Solutions (fictional)* | Jan 2021 – Present\n"
+        "- Briefed technical stakeholders.\n"
+    )
+    assert metrics.protected_field_metrics(original, tailored)[
+        "protected_field_violations"
+    ] == []
