@@ -96,10 +96,43 @@ graph like `workflows/baseline.py`, with a fixed number of review rounds.
 
 W6 generates strategy-specific drafts, validates their structure and claims with the shared NLI
 faithfulness checker, scores valid drafts with the same rubric in both candidate orders, and selects
-the highest-scoring valid draft. Run it with:
+the highest-scoring valid draft.
+
+Quick test on the first two resume–JD pairs:
 
 ```bash
-python run_all.py --workflows w6_best_of_n --limit 1 --repeats 1
+python run_all.py --workflows w6_best_of_n --limit 2 --repeats 1
+```
+
+Evaluate all 100 pairs once:
+
+```bash
+python run_all.py --workflows w6_best_of_n --repeats 1
+```
+
+Evaluate all 100 pairs twice for the final consistency comparison:
+
+```bash
+python run_all.py --workflows w6_best_of_n --repeats 2
+```
+
+| Command setting | Result rows when starting fresh | When to use it |
+|---|---:|---|
+| `--limit 2 --repeats 1` | 2 | Quick setup check |
+| `--repeats 1` | 100 | One complete W6 pass |
+| `--repeats 2` | 200 | Two complete passes for the final experiment |
+
+`--repeats N` is the total desired number of repeats, not the number of additional repeats. The
+runner saves after every pair and skips existing `(workflow, pair, repeat)` results, so rerunning the
+same command safely continues an interrupted evaluation. Do not use `--skip-faithfulness` for the
+final experiment because faithfulness is part of the shared scorecard.
+
+On the development machine, one W6 pair took about two minutes. Allow roughly 3 hours 20 minutes
+for 100 pairs once, or 6 hours 40 minutes for two repeats; actual time depends on the hardware and
+resume length. Keep Ollama running and prevent the computer from sleeping. When evaluation finishes:
+
+```bash
+python summarise.py
 ```
 
 Set `W6_NUM_CANDIDATES` in `config.py` from 1 to 6. The default of 3 uses skills-first,
@@ -124,11 +157,14 @@ Notes:
 ## Data (data/)
 
 - `resumes/*.md`: fictional candidates only. Never real people's resumes.
-- `jds/<id>.md`: job descriptions (real postings, with the URL in pairs.csv).
-- `jds/<id>.keywords.json`: 10–15 must-have keywords per JD, **hand-labelled by two people**, with synonyms.
-- `pairs.csv`: which resume goes with which JD.
+- `jds/<id>.md`: synthetic job descriptions informed by the linked O*NET occupation profiles.
+- `jds/<id>.keywords.json`: 10–15 must-have keyword drafts with synonyms. **Two people must review and reconcile these labels before the final run.**
+- `pairs.csv`: 100 resume–JD pairs, with exactly four fictional candidates assigned to each JD.
+- `SOURCES.md`: occupation provenance, licensing, and dataset limitations.
 
-The sample files are placeholders. Plan: 5 resumes × 4 JDs = 20 pairs × 6 workflows × 2 repeats = 240 runs.
+Current dataset: 100 fictional resumes × one assigned JD each = 100 pairs across 25 JDs. At six
+workflows and two repeats, the complete experiment is 1,200 runs. Regenerate and validate the
+synthetic files with `python scripts/generate_synthetic_dataset.py`.
 
 ## Rules that keep the comparison fair
 - Don't change `config.py` or `BASE_RULES` for your own workflow.
