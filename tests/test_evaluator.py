@@ -115,6 +115,40 @@ def test_offline_record_includes_deterministic_faithfulness_components(
     assert record["fabrication_bait_matches"][0]["keyword"] == "Python"
 
 
+def test_offline_record_reuses_complete_saved_quality_metrics(monkeypatch, tmp_path):
+    saved_quality = {
+        "words": 250,
+        "sim_before": 0.4,
+        "sim_after": 0.5,
+        "sim_gain": 0.1,
+        "kw_before": 0.25,
+        "kw_after": 0.5,
+        "kw_missing": ["AWS"],
+    }
+    monkeypatch.setattr(
+        offline_evaluation,
+        "_quality",
+        lambda *_: (_ for _ in ()).throw(AssertionError("must reuse saved metrics")),
+    )
+    record = offline_evaluation._evaluate_output(
+        {
+            "workflow": "w1_single_pass",
+            "error": None,
+            **saved_quality,
+        },
+        {"split": "test", "resume": _resume(), "jd": "", "keywords": []},
+        _resume(),
+        tmp_path,
+        JudgeConfig(),
+        skip_nli=True,
+        skip_judge=True,
+        trace=[],
+        totals=_totals(),
+    )
+    assert all(record[field] == value for field, value in saved_quality.items())
+    assert record["evaluation_failures"] == {}
+
+
 def test_tool_sequence_accuracy_and_recovery():
     trace = [
         {"type": "tool", "name": "validate_resume", "ok": True},

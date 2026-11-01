@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-11-01",
+  "workflow": "w1_single_pass",
+  "generation_records": 100,
+  "evaluation_failures": 0,
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "generation_scope": "96dc56a489fc",
+  "evaluator_hash": "c1eb4e83f6774c59",
+  "evaluation_schema_version": "2.1",
+  "evaluators": {
+    "claim_support": "claim-evidence-nli-v3",
+    "protected_fields": "protected-fields-v1",
+    "fabrication_bait": "keyword-bait-v1",
+    "nli_model": "cross-encoder/nli-deberta-v3-small",
+    "nli_model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "rubric_judge": "skipped"
+  },
+  "claim_support": {
+    "total_claims": 2872,
+    "supported_claims": 955,
+    "macro_mean_claim_faithfulness": 0.3355,
+    "macro_median_claim_faithfulness": 0.3226,
+    "micro_claim_faithfulness": 0.3325,
+    "macro_mean_unsupported_claim_rate": 0.6645,
+    "micro_unsupported_claim_rate": 0.6675,
+    "minimum_output_score": 0.1,
+    "maximum_output_score": 0.6429,
+    "decision_methods": {
+      "normalized_exact": 529,
+      "nli": 2343
+    }
+  },
+  "deterministic_components": {
+    "outputs_with_protected_field_violations": 5,
+    "outputs_with_fabrication_bait_violations": 60
+  },
+  "task_gate": {
+    "threshold": 0.8,
+    "successful_outputs": 0,
+    "unscored_outputs": 0
+  },
+  "by_fit_level": {
+    "strong": {
+      "outputs": 40,
+      "mean_claim_faithfulness": 0.4348,
+      "protected_field_violations": 1,
+      "fabrication_bait_violations": 0
+    },
+    "moderate": {
+      "outputs": 40,
+      "mean_claim_faithfulness": 0.2845,
+      "protected_field_violations": 4,
+      "fabrication_bait_violations": 40
+    },
+    "weak": {
+      "outputs": 20,
+      "mean_claim_faithfulness": 0.2389,
+      "protected_field_violations": 0,
+      "fabrication_bait_violations": 20
+    }
+  },
+  "local_artifacts": {
+    "root": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/c1eb4e83f6774c59",
+    "evaluations_sha256": "e47d25d2e32a2a79931c3504310d6af367ecf02f51c417aa837a9beb12606070",
+    "overall_summary_sha256": "cb29170cf9adb86881ba4a475d49f1b4e8f4b1d89950d9a0d3003604347f38f3",
+    "identity_sha256": "5a6c4bc648dc9024e2bba0f2fa36636622c4459b1b8037d364f9e2eb5dfcb653",
+    "committed": false,
+    "reason": "Detailed records and caches are reproducible local artifacts and total approximately 19 MB."
+  },
+  "limitations": [
+    "There are no human claim-support labels or calibration statistics.",
+    "The NLI decision is conservative for claims supported only by combining multiple source units.",
+    "The rubric quality judge was intentionally skipped because the local Ollama server was not required for this faithfulness-only rescore.",
+    "Saved generation-time similarity and keyword metrics were reused; model outputs were not regenerated."
+  ]
+}

@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: saved-output pilot and full W1 rescore
-- Last completed task: `F6` - integrate component metrics into records, task gates and reports
-- Next task: `F7` - run a saved-output pilot and full W1 rescore
+- Current phase: final verification and integration handoff
+- Last completed task: `F7` - run a saved-output pilot and full W1 rescore
+- Next task: `F8` - final verification, documentation and integration handoff
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -86,7 +86,7 @@ because not every workflow uses the same harness.
 | F4 | Add automatically derived fabrication-bait metrics | Complete | `89 passed`; detected absent-keyword copying in 60/100 saved W1 outputs |
 | F5 | Add semantic support adjudication and evaluator versioning | Complete | `95 passed`; NLI preflight and four-case regression pilot passed |
 | F6 | Integrate component metrics into records, task gates and reports | Complete | `98 passed`; component records, gates and separate report rows verified |
-| F7 | Run a saved-output pilot and full W1 rescore | Not started | Pending |
+| F7 | Run a saved-output pilot and full W1 rescore | Complete | 100/100 W1 outputs scored; zero evaluator failures; versioned summaries and blank review packet generated |
 | F8 | Final verification, documentation and integration handoff | Not started | Pending |
 
 ## Detailed tasks
@@ -348,3 +348,36 @@ Next action: execute F6 and update this file before beginning F7.
 
 Next action: execute F7 using a new versioned evaluation directory; never overwrite the original
 generation records or prior evaluator outputs.
+
+### 2026-11-01 - F7 complete
+
+- Found that the first six-record pilot (`f463c2d95982f124`) needlessly attempted to recompute
+  saved embedding metrics and recorded Ollama connection failures. Preserved that failed pilot
+  locally and advanced the evaluation schema from `2.0` to `2.1`.
+- Updated saved-output evaluation to reuse complete generation-time similarity, keyword and word-
+  count metrics. This makes faithfulness-only rescoring independent of the intentionally stopped
+  Ollama server.
+- The corrected six-record pilot (`c1eb4e83f6774c59`) had zero evaluator failures, complete claim
+  evidence, mean claim faithfulness `0.4561`, no protected-field violations and three fabrication-
+  bait violations.
+- Rescored all 100 committed W1 outputs without regenerating them. All 100 records are scored and
+  none is silently represented as zero or unscored.
+- Across 2,872 claims, 955 were supported: macro mean claim faithfulness `0.3355`, median `0.3226`,
+  range `0.1000` to `0.6429`; the micro claim-support rate is `0.3325`.
+- Mean claim faithfulness by fit: strong `0.4348`, moderate `0.2845`, weak `0.2389`.
+- Found five outputs with protected-field violations and 60 with fabrication-bait violations. All
+  40 moderate-fit and all 20 weak-fit outputs copied at least one absent evaluator keyword family;
+  no strong-fit output had eligible bait.
+- Zero outputs passed the strict composite task gate because no claim-faithfulness score reached
+  `0.8`. The threshold was not weakened.
+- Generated overall, category and fit-level JSON/CSV summaries plus a 20-record blinded review
+  packet with blank human rating fields. No manual labelling was performed.
+- Verified that `results/results.jsonl` and committed generation outputs have no Git diff.
+- Detailed records, NLI caches and review artifacts remain in the ignored local evaluation root
+  `results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/c1eb4e83f6774c59`.
+- Added `docs/evaluation/faithfulness-w1-v3-summary.json` with aggregate results, exact evaluator
+  identity, local paths and SHA-256 checksums. The detailed local output is approximately 19 MB and
+  is intentionally not added to Git.
+
+Next action: execute F8, including full tests, dataset validation, checksum verification, exact
+rerun commands, integration guidance for other workflow branches and a clean-worktree check.

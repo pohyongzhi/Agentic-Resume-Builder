@@ -79,9 +79,11 @@ def _evaluation_identity(judge_config, model_info, nli_model):
         "evidence_limit": config.NLI_EVIDENCE_LIMIT,
         "evidence_normalization": "markdown-nfkc-v1",
     }
+    judge = judge_identity(judge_config, model_info)
+    judge["status"] = model_info.get("status", "enabled")
     identity = {
         "schema_version": config.EVALUATOR_SCHEMA_VERSION,
-        "judge": judge_identity(judge_config, model_info),
+        "judge": judge,
         "nli": nli,
         "faithfulness_components": {
             "protected_fields": config.PROTECTED_FIELD_EVALUATOR_VERSION,
@@ -144,10 +146,15 @@ def _evaluate_output(
         "job_description": pair["jd"],
         "evaluation_failures": failures,
     }
-    try:
-        record.update(_quality(pair, tailored_resume))
-    except Exception as exc:
-        failures["embedding_or_keyword"] = f"{type(exc).__name__}: {exc}"
+    saved_quality_fields = {
+        "words", "sim_before", "sim_after", "sim_gain",
+        "kw_before", "kw_after", "kw_missing",
+    }
+    if not saved_quality_fields <= generation_row.keys():
+        try:
+            record.update(_quality(pair, tailored_resume))
+        except Exception as exc:
+            failures["embedding_or_keyword"] = f"{type(exc).__name__}: {exc}"
 
     try:
         record.update(metrics.protected_field_metrics(pair["resume"], tailored_resume))
@@ -461,7 +468,11 @@ def main(argv=None):
     _validate_generation_rows(generation_rows, pairs, validation["dataset_hash"])
 
     judge_config = JudgeConfig(model=args.judge_model)
-    model_info = installed_model(judge_config.model)
+    model_info = (
+        {"tag": judge_config.model, "status": "skipped"}
+        if args.skip_judge
+        else installed_model(judge_config.model)
+    )
     nli_model = metrics.nli_model_identity()
     identity = _evaluation_identity(judge_config, model_info, nli_model)
     generation_hashes = sorted({row["config_hash"] for row in generation_rows})
