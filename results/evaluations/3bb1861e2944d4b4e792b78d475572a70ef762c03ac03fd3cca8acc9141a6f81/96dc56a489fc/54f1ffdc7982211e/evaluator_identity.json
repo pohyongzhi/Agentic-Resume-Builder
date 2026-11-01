@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "judge": {
+    "model": "gemma4:e4b",
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 16384,
+    "think": false,
+    "max_retries": 2,
+    "prompt_version": "resume-rubric-v1",
+    "schema_version": "1.0",
+    "model_digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+    "prompt_hash": "f8fff79b410196ed5478fc9dd30234e73feadabab0bb04cd0d6f0d5d181c61ea",
+    "schema_hash": "53b08b8a64010c2bd22bed4663f5fa7acdb45587da355d0827d562d5c2aeeb8f",
+    "evaluator_hash": "9b3043f13a37c558"
+  },
+  "nli": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "version": "claim-nli-v2",
+    "threshold": 0.5,
+    "chunk_words": 60,
+    "chunk_overlap": 20
+  },
+  "embedding_model": "nomic-embed-text",
+  "task_gate": {
+    "faithfulness": 0.8,
+    "min_words": 200,
+    "max_words": 650
+  },
+  "evaluator_hash": "54f1ffdc7982211e",
+  "dataset": {
+    "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+    "counts": {
+      "categories": 5,
+      "job_descriptions": 20,
+      "resumes": 100,
+      "pairs": 100
+    },
+    "category_pairs": {
+      "software_engineering": 20,
+      "data_ai": 20,
+      "cybersecurity": 20,
+      "cloud_devops": 20,
+      "business_technology": 20
+    }
+  },
+  "generation_hashes": [
+    "84c72812e449"
+  ],
+  "judge_model_info": {
+    "tag": "gemma4:e4b",
+    "digest": "c6eb396dbd5992bbe3f5cdb947e8bbc0ee413d7c17e2beaae69f5d569cf982eb",
+    "architecture": "gemma4",
+    "parameters": 7996157674,
+    "quantization": 2
+  },
+  "judge_config": {
+    "model": "gemma4:e4b",
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 16384,
+    "think": false,
+    "max_retries": 2,
+    "prompt_version": "resume-rubric-v1",
+    "schema_version": "1.0"
+  }
+}

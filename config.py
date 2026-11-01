@@ -22,6 +22,26 @@ FETCH_TIMEOUT = 15            # seconds
 # NLI model used as an independent referee for faithfulness (runs on CPU, separate from the writer).
 NLI_MODEL = "cross-encoder/nli-deberta-v3-small"
 ENTAIL_THRESHOLD = 0.5   # a claim counts as "supported" if entailment prob >= this
+TASK_FAITHFULNESS_THRESHOLD = 0.8  # minimum claim support for evaluator task success
+TASK_MIN_WORDS = 200
+TASK_MAX_WORDS = 650
+
+# Offline evaluator configuration. These settings are deliberately separate from MODEL and do not
+# affect generation cache identity.
+JUDGE_MODEL = "gemma4:e4b"
+JUDGE_TEMPERATURE = 0.0
+JUDGE_SEED = 42
+JUDGE_NUM_CTX = 16384
+JUDGE_THINK = False
+JUDGE_MAX_RETRIES = 2
+JUDGE_PROMPT_VERSION = "resume-rubric-v1"
+EVALUATOR_SCHEMA_VERSION = "1.0"
+NLI_EVALUATOR_VERSION = "claim-nli-v2"
+NLI_CHUNK_WORDS = 60
+NLI_CHUNK_OVERLAP = 20
+ROBUSTNESS_SEED = 42
+REPORT_BOOTSTRAP_SEED = 42
+REPORT_BOOTSTRAP_SAMPLES = 2000
 
 DATA_DIR = "data"
 RESULTS_FILE = "results/results.jsonl"

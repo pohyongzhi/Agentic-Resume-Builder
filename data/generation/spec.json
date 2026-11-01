@@ -1,0 +1,194 @@
+{
+  "dataset_name": "synthetic_resume_jd_eval",
+  "version": "1.0.0",
+  "seed": 42,
+  "pairs_per_jd": 5,
+  "fit_pattern": ["strong", "strong", "moderate", "moderate", "weak"],
+  "categories": [
+    {
+      "id": "software_engineering",
+      "roles": [
+        {
+          "id": "frontend_engineer",
+          "title": "Frontend Engineer",
+          "seniority": "entry",
+          "skills": ["JavaScript", "TypeScript", "React", "HTML", "CSS", "REST APIs", "Git", "Jest"],
+          "preferred": ["Next.js", "accessibility", "design systems"],
+          "responsibilities": ["build accessible user interfaces", "translate designs into reusable components", "integrate frontend features with REST APIs", "write automated component tests", "review code and improve web performance"]
+        },
+        {
+          "id": "backend_engineer",
+          "title": "Backend Engineer",
+          "seniority": "mid",
+          "skills": ["Java", "Spring Boot", "REST APIs", "PostgreSQL", "microservices", "Docker", "Git", "unit testing"],
+          "preferred": ["Kafka", "Redis", "AWS"],
+          "responsibilities": ["design reliable backend services", "build and document REST APIs", "optimise database queries", "write automated tests", "operate containerised services"]
+        },
+        {
+          "id": "full_stack_engineer",
+          "title": "Full-Stack Engineer",
+          "seniority": "mid",
+          "skills": ["TypeScript", "React", "Node.js", "REST APIs", "PostgreSQL", "Docker", "Git", "CI/CD"],
+          "preferred": ["Next.js", "AWS", "Terraform"],
+          "responsibilities": ["deliver end-to-end product features", "design frontend components and backend APIs", "model relational data", "maintain delivery pipelines", "improve application reliability"]
+        },
+        {
+          "id": "mobile_engineer",
+          "title": "Senior Mobile Engineer",
+          "seniority": "senior",
+          "skills": ["Kotlin", "Android", "mobile architecture", "REST APIs", "unit testing", "Git", "CI/CD", "performance optimisation"],
+          "preferred": ["Jetpack Compose", "Firebase", "mentoring"],
+          "responsibilities": ["lead delivery of Android features", "define maintainable mobile architecture", "improve application performance", "establish automated testing practices", "mentor engineers through design and code reviews"]
+        }
+      ]
+    },
+    {
+      "id": "data_ai",
+      "roles": [
+        {
+          "id": "data_analyst",
+          "title": "Data Analyst",
+          "seniority": "entry",
+          "skills": ["SQL", "Excel", "Power BI", "data cleaning", "dashboarding", "statistics", "stakeholder communication", "Python"],
+          "preferred": ["Tableau", "A/B testing", "sales analytics"],
+          "responsibilities": ["clean and analyse operational data", "build decision-support dashboards", "define and monitor business metrics", "communicate findings to stakeholders", "automate recurring reports"]
+        },
+        {
+          "id": "data_engineer",
+          "title": "Data Engineer",
+          "seniority": "mid",
+          "skills": ["Python", "SQL", "ETL", "data pipelines", "PostgreSQL", "Airflow", "Docker", "cloud storage"],
+          "preferred": ["Spark", "dbt", "AWS"],
+          "responsibilities": ["build reliable batch data pipelines", "model analytics-ready datasets", "monitor data quality", "optimise transformation jobs", "work with analysts on trusted data products"]
+        },
+        {
+          "id": "machine_learning_engineer",
+          "title": "Machine Learning Engineer",
+          "seniority": "mid",
+          "skills": ["Python", "machine learning", "scikit-learn", "PyTorch", "model evaluation", "feature engineering", "Docker", "REST APIs"],
+          "preferred": ["MLflow", "AWS", "Kubernetes"],
+          "responsibilities": ["train and evaluate predictive models", "build reproducible feature pipelines", "deploy models behind APIs", "monitor model quality", "collaborate with product and data teams"]
+        },
+        {
+          "id": "llm_solutions_engineer",
+          "title": "Senior AI and LLM Solutions Engineer",
+          "seniority": "senior",
+          "skills": ["Python", "large language models", "RAG", "prompt engineering", "vector databases", "model evaluation", "Docker", "system architecture"],
+          "preferred": ["LangGraph", "Kubernetes", "AWS"],
+          "responsibilities": ["architect production LLM applications", "design retrieval and evaluation pipelines", "establish safety and observability controls", "optimise inference cost and latency", "guide engineers on reliable AI delivery"]
+        }
+      ]
+    },
+    {
+      "id": "cybersecurity",
+      "roles": [
+        {
+          "id": "soc_analyst",
+          "title": "SOC Analyst",
+          "seniority": "entry",
+          "skills": ["SIEM", "incident triage", "log analysis", "network security", "Linux", "threat detection", "ticketing", "technical writing"],
+          "preferred": ["Splunk", "Python", "Security+"],
+          "responsibilities": ["monitor security alerts", "triage suspicious activity", "analyse endpoint and network logs", "document incidents", "escalate confirmed threats"]
+        },
+        {
+          "id": "grc_analyst",
+          "title": "Cybersecurity GRC Analyst",
+          "seniority": "mid",
+          "skills": ["risk assessment", "ISO 27001", "security policies", "audit support", "control testing", "vendor risk", "stakeholder communication", "technical writing"],
+          "preferred": ["NIST", "cloud governance", "GRC tooling"],
+          "responsibilities": ["perform technology risk assessments", "maintain security policies and controls", "support internal and external audits", "track remediation actions", "advise teams on governance requirements"]
+        },
+        {
+          "id": "security_engineer",
+          "title": "Security Engineer",
+          "seniority": "mid",
+          "skills": ["cloud security", "IAM", "vulnerability management", "Python", "Linux", "network security", "incident response", "security automation"],
+          "preferred": ["AWS", "Terraform", "container security"],
+          "responsibilities": ["implement preventive security controls", "automate vulnerability and compliance checks", "harden cloud environments", "support incident response", "partner with engineers on secure design"]
+        },
+        {
+          "id": "threat_intelligence_lead",
+          "title": "Threat Intelligence Lead",
+          "seniority": "senior",
+          "skills": ["threat intelligence", "MITRE ATT&CK", "malware analysis", "incident response", "OSINT", "intelligence reporting", "stakeholder briefing", "team leadership"],
+          "preferred": ["Python", "SIEM", "threat hunting"],
+          "responsibilities": ["lead strategic and operational threat analysis", "prioritise intelligence requirements", "map adversary behaviour to MITRE ATT&CK", "brief technical and executive stakeholders", "mentor analysts and improve intelligence workflows"]
+        }
+      ]
+    },
+    {
+      "id": "cloud_devops",
+      "roles": [
+        {
+          "id": "cloud_engineer",
+          "title": "Junior Cloud Engineer",
+          "seniority": "entry",
+          "skills": ["AWS", "Linux", "networking", "Bash", "Docker", "monitoring", "Git", "infrastructure support"],
+          "preferred": ["Terraform", "Python", "AWS certification"],
+          "responsibilities": ["support cloud infrastructure operations", "troubleshoot Linux and network issues", "maintain monitoring dashboards", "document operational procedures", "assist with infrastructure automation"]
+        },
+        {
+          "id": "devops_engineer",
+          "title": "DevOps Engineer",
+          "seniority": "mid",
+          "skills": ["CI/CD", "Docker", "Kubernetes", "Terraform", "AWS", "Linux", "Git", "monitoring"],
+          "preferred": ["Argo CD", "Helm", "Python"],
+          "responsibilities": ["build reliable deployment pipelines", "manage container platforms", "automate infrastructure provisioning", "improve observability", "help development teams ship safely"]
+        },
+        {
+          "id": "site_reliability_engineer",
+          "title": "Site Reliability Engineer",
+          "seniority": "mid",
+          "skills": ["SRE", "observability", "incident response", "Linux", "Kubernetes", "Python", "service level objectives", "performance testing"],
+          "preferred": ["Prometheus", "Grafana", "AWS"],
+          "responsibilities": ["define service reliability targets", "improve monitoring and alerting", "lead incident analysis", "automate repetitive operations", "test and improve system performance"]
+        },
+        {
+          "id": "platform_engineering_lead",
+          "title": "Platform Engineering Lead",
+          "seniority": "senior",
+          "skills": ["platform engineering", "Kubernetes", "Terraform", "cloud architecture", "CI/CD", "observability", "security", "technical leadership"],
+          "preferred": ["Backstage", "multi-cloud", "FinOps"],
+          "responsibilities": ["set the internal platform strategy", "lead self-service infrastructure delivery", "standardise secure deployment patterns", "improve developer experience", "coach platform engineers and govern technical decisions"]
+        }
+      ]
+    },
+    {
+      "id": "business_technology",
+      "roles": [
+        {
+          "id": "business_analyst",
+          "title": "Junior Business Analyst",
+          "seniority": "entry",
+          "skills": ["requirements gathering", "process mapping", "Excel", "SQL", "stakeholder communication", "user stories", "data analysis", "documentation"],
+          "preferred": ["Power BI", "Agile", "UAT"],
+          "responsibilities": ["gather and document business requirements", "map current and future processes", "analyse operational data", "support user acceptance testing", "coordinate with business and technology teams"]
+        },
+        {
+          "id": "product_analyst",
+          "title": "Product Analyst",
+          "seniority": "mid",
+          "skills": ["product analytics", "SQL", "dashboarding", "A/B testing", "customer research", "KPI design", "stakeholder communication", "data storytelling"],
+          "preferred": ["Python", "Amplitude", "Tableau"],
+          "responsibilities": ["analyse product usage and funnels", "define product success metrics", "evaluate experiments", "translate customer evidence into recommendations", "partner with product managers on prioritisation"]
+        },
+        {
+          "id": "solutions_architect",
+          "title": "Solutions Architect",
+          "seniority": "mid",
+          "skills": ["solution architecture", "AWS", "REST APIs", "microservices", "security", "technical documentation", "stakeholder management", "system integration"],
+          "preferred": ["Terraform", "Kubernetes", "cost optimisation"],
+          "responsibilities": ["translate business needs into solution designs", "define integration and security patterns", "facilitate architecture decisions", "support delivery teams", "communicate trade-offs to technical and business stakeholders"]
+        },
+        {
+          "id": "technology_consultant",
+          "title": "Senior Technology Transformation Consultant",
+          "seniority": "senior",
+          "skills": ["technology strategy", "operating model", "programme delivery", "business case", "stakeholder management", "process improvement", "change management", "executive communication"],
+          "preferred": ["cloud transformation", "data strategy", "team leadership"],
+          "responsibilities": ["lead technology transformation engagements", "assess operating models and capabilities", "build investment roadmaps", "manage senior stakeholders", "guide multidisciplinary delivery teams"]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,361 @@
+{
+  "identity": {
+    "source_hash": "f1d2869e52d259ec9c2ea50480f05c56198d92accef4f1194d5abc6df2681253",
+    "tailored_hash": "6d352697d2937df097beda83c5d3620f5f5f7973298ab9c19a8061caf942e847",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.125,
+    "unsupported": [
+      "Proven track record of leading feature delivery, defining maintainable architectures, and improving application performance.",
+      "Skilled in establishing automated testing practices, mentoring engineers through design reviews, and communicating technical trade-offs to stakeholders.",
+      "Committed to evidence-based decision-making, clear documentation, and collaborative problem-solving within multidisciplinary teams.",
+      "Technology Associate** | Example Delta Operations (Jan 2021 \u2013 Present)",
+      "Lead delivery of Android features using Kotlin and modern architecture patterns, improving team turnaround by 21%.",
+      "Define maintainable mobile architecture for complex applications, documenting technical decisions for engineering and business reviewers.",
+      "Manage high-volume workloads (~87 items/month), implementing quality checks to ensure reliability and responsible delivery.",
+      "Collaborate with cross-functional teams to improve application performance, presenting progress and risks during regular stakeholder reviews.",
+      "Mentor junior engineers through design discussions and code reviews, fostering a culture of clear communication and technical excellence.",
+      "Technical Assistant** | Example Ember Technologies (Jun 2017 \u2013 Dec 2020)",
+      "Supported operational workflows using REST APIs, ensuring data integrity and system reliability.",
+      "Investigated service requests and escalated issues with clear supporting evidence, demonstrating strong analytical skills.",
+      "Developed reporting templates that reduced manual preparation time by 16%, showcasing ability to solve ambiguous problems efficiently.",
+      "Senior Mobile Engineer Practice Project**",
+      "Implemented comprehensive testing strategies to validate functionality across representative scenarios.",
+      "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Languages & Frameworks:** Kotlin, Android, Jetpack Compose, REST APIs.",
+      "Engineering Practices:** Mobile Architecture, Unit Testing, CI/CD pipelines, Git version control.",
+      "Soft Skills:** Clear written and verbal communication, Stakeholder Management, Mentoring, Collaborative Problem Solving.",
+      "Tools:** Documentation tools, Excel, Performance Analysis Tools."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Senior Mobile Engineer with extensive experience in Kotlin, Android development, and mobile architecture.",
+        "best_source_chunk": "# Samuel Tan samuel.tan@example.test | +65 6000 0019 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.001299,
+          "entailment": 0.970038,
+          "neutral": 0.028663
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.970038,
+        "supported": true
+      },
+      {
+        "claim": "Proven track record of leading feature delivery, defining maintainable architectures, and improving application performance.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.00498,
+          "entailment": 0.003416,
+          "neutral": 0.991604
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003416,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in establishing automated testing practices, mentoring engineers through design reviews, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "approximately 87 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000621,
+          "entailment": 0.001024,
+          "neutral": 0.998355
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001024,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making, clear documentation, and collaborative problem-solving within multidisciplinary teams.",
+        "best_source_chunk": "approximately 87 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000793,
+          "entailment": 0.003974,
+          "neutral": 0.995233
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003974,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Samuel Tan samuel.tan@example.test | +65 6000 0019 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.012685,
+          "entailment": 0.331256,
+          "neutral": 0.656059
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.331256,
+        "supported": false
+      },
+      {
+        "claim": "Lead delivery of Android features using Kotlin and modern architecture patterns, improving team turnaround by 21%.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.001496,
+          "entailment": 0.001091,
+          "neutral": 0.997414
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001091,
+        "supported": false
+      },
+      {
+        "claim": "Define maintainable mobile architecture for complex applications, documenting technical decisions for engineering and business reviewers.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000721,
+          "entailment": 0.002876,
+          "neutral": 0.996403
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002876,
+        "supported": false
+      },
+      {
+        "claim": "Manage high-volume workloads (~87 items/month), implementing quality checks to ensure reliability and responsible delivery.",
+        "best_source_chunk": "approximately 87 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000174,
+          "entailment": 0.002095,
+          "neutral": 0.997732
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002095,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with cross-functional teams to improve application performance, presenting progress and risks during regular stakeholder reviews.",
+        "best_source_chunk": "approximately 87 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001415,
+          "entailment": 0.004069,
+          "neutral": 0.994517
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004069,
+        "supported": false
+      },
+      {
+        "claim": "Mentor junior engineers through design discussions and code reviews, fostering a culture of clear communication and technical excellence.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001664,
+          "entailment": 0.003563,
+          "neutral": 0.994773
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003563,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "approximately 87 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001281,
+          "entailment": 0.001669,
+          "neutral": 0.99705
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001669,
+        "supported": false
+      },
+      {
+        "claim": "Supported operational workflows using REST APIs, ensuring data integrity and system reliability.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.008219,
+          "entailment": 0.014359,
+          "neutral": 0.977422
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014359,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests and escalated issues with clear supporting evidence, demonstrating strong analytical skills.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.00675,
+          "entailment": 0.004382,
+          "neutral": 0.988868
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004382,
+        "supported": false
+      },
+      {
+        "claim": "Developed reporting templates that reduced manual preparation time by 16%, showcasing ability to solve ambiguous problems efficiently.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.006026,
+          "entailment": 0.001858,
+          "neutral": 0.992116
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001858,
+        "supported": false
+      },
+      {
+        "claim": "Senior Mobile Engineer Practice Project**",
+        "best_source_chunk": "# Samuel Tan samuel.tan@example.test | +65 6000 0019 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.00455,
+          "entailment": 0.024376,
+          "neutral": 0.971073
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024376,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration application using Kotlin, Android, and mobile architecture principles.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.000265,
+          "entailment": 0.909801,
+          "neutral": 0.089934
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.909801,
+        "supported": true
+      },
+      {
+        "claim": "Implemented comprehensive testing strategies to validate functionality across representative scenarios.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001666,
+          "entailment": 0.006161,
+          "neutral": 0.992173
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006161,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+        "best_source_chunk": "### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)",
+        "probabilities": {
+          "contradiction": 0.000744,
+          "entailment": 0.008643,
+          "neutral": 0.990613
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008643,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.225432,
+          "entailment": 0.118863,
+          "neutral": 0.655705
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.118863,
+        "supported": false
+      },
+      {
+        "claim": "Relevant coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000105,
+          "entailment": 0.971153,
+          "neutral": 0.028742
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.971153,
+        "supported": true
+      },
+      {
+        "claim": "Languages & Frameworks:** Kotlin, Android, Jetpack Compose, REST APIs.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.019548,
+          "entailment": 0.153257,
+          "neutral": 0.827195
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.153257,
+        "supported": false
+      },
+      {
+        "claim": "Engineering Practices:** Mobile Architecture, Unit Testing, CI/CD pipelines, Git version control.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.003654,
+          "entailment": 0.024885,
+          "neutral": 0.971461
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024885,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, Stakeholder Management, Mentoring, Collaborative Problem Solving.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.009695,
+          "entailment": 0.003431,
+          "neutral": 0.986873
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003431,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Documentation tools, Excel, Performance Analysis Tools.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.041165,
+          "entailment": 0.009146,
+          "neutral": 0.949689
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009146,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b956e2aed29a26541b58dee84ba352330183c09fc641d1e6666cd40a1a1c3977"
+  }
+}

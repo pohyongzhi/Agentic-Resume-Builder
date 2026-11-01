@@ -1,0 +1,337 @@
+{
+  "identity": {
+    "source_hash": "d5551286fee582aafb0a7a26e62519f1aa7ed4410679499523303f6f4ad39853",
+    "tailored_hash": "687035bb8cc9f098042484ea5e4336496c49f66af1007c244fe6973524cfc819",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0455,
+    "unsupported": [
+      "Frontend Engineer with transferable experience in JavaScript, TypeScript, and React, seeking to deepen capability as a Frontend Engineer at Example Meridian Labs.",
+      "Proven ability to build accessible user interfaces, translate designs into reusable components, and integrate frontend features with REST APIs.",
+      "Adept at writing automated tests, reviewing code for performance, and communicating technical trade-offs to stakeholders.",
+      "Committed to delivering well-tested improvements through clear documentation and collaborative problem-solving.",
+      "Example Delta Operations (fictional)** | Jan 2025 \u2013 Present",
+      "Translated designs into reusable React components and documented technical decisions for business reviewers.",
+      "Integrated frontend features with REST APIs while collaborating with engineering and product stakeholders.",
+      "Managed approximately 72 work items per month, tracking quality checks and follow-up actions to ensure reliable delivery.",
+      "Presented progress, risks, and technical trade-offs during fortnightly reviews to relevant stakeholders.",
+      "Example Ember Technologies (fictional)** | May 2024 \u2013 Dec 2024",
+      "Supported operational workflows using HTML and CSS, creating clear documentation for step-by-step procedures.",
+      "Investigated service requests and escalated issues with clear supporting evidence to facilitate data-driven decisions.",
+      "Developed a reporting template that reduced manual preparation time by 35%, demonstrating ability to solve ambiguous problems efficiently.",
+      "Frontend Engineer Practice Project",
+      "Built a demonstration project using JavaScript, TypeScript, and React to validate frontend capabilities.",
+      "Implemented automated testing scenarios to ensure code reliability and identify limitations early.",
+      "Presented design outcomes and next steps to a five-person peer review group, refining technical approaches based on feedback.",
+      "Bachelor of Science in Information Systems",
+      "Example School of Computing (fictional)** | Aug 2020 \u2013 May 2024",
+      "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+      "JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, Documentation, Excel"
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Frontend Engineer with transferable experience in JavaScript, TypeScript, and React, seeking to deepen capability as a Frontend Engineer at Example Meridian Labs.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.387688,
+          "entailment": 0.039572,
+          "neutral": 0.57274
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.039572,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to build accessible user interfaces, translate designs into reusable components, and integrate frontend features with REST APIs.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001283,
+          "entailment": 0.003104,
+          "neutral": 0.995613
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003104,
+        "supported": false
+      },
+      {
+        "claim": "Adept at writing automated tests, reviewing code for performance, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001313,
+          "entailment": 0.00518,
+          "neutral": 0.993507
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00518,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering well-tested improvements through clear documentation and collaborative problem-solving.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.00021,
+          "entailment": 0.029802,
+          "neutral": 0.969988
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.029802,
+        "supported": false
+      },
+      {
+        "claim": "Example Delta Operations (fictional)** | Jan 2025 \u2013 Present",
+        "best_source_chunk": "# Daniel Tan daniel.tan@example.test | +65 6000 0004 | Singapore ## Summary Technology associate with transferable experience in JavaScript, TypeScript and React, seeking to deepen capability as a Frontend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 40%. - Applied",
+        "probabilities": {
+          "contradiction": 0.077274,
+          "entailment": 0.080149,
+          "neutral": 0.842577
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.080149,
+        "supported": false
+      },
+      {
+        "claim": "Built accessible user interfaces using JavaScript and TypeScript, improving team turnaround by 40%.",
+        "best_source_chunk": "# Daniel Tan daniel.tan@example.test | +65 6000 0004 | Singapore ## Summary Technology associate with transferable experience in JavaScript, TypeScript and React, seeking to deepen capability as a Frontend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 40%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000283,
+          "entailment": 0.996462,
+          "neutral": 0.003255
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996462,
+        "supported": true
+      },
+      {
+        "claim": "Translated designs into reusable React components and documented technical decisions for business reviewers.",
+        "best_source_chunk": "Frontend Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) -",
+        "probabilities": {
+          "contradiction": 0.000487,
+          "entailment": 0.000808,
+          "neutral": 0.998705
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000808,
+        "supported": false
+      },
+      {
+        "claim": "Integrated frontend features with REST APIs while collaborating with engineering and product stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000503,
+          "entailment": 0.001623,
+          "neutral": 0.997874
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001623,
+        "supported": false
+      },
+      {
+        "claim": "Managed approximately 72 work items per month, tracking quality checks and follow-up actions to ensure reliable delivery.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000306,
+          "entailment": 0.000514,
+          "neutral": 0.99918
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000514,
+        "supported": false
+      },
+      {
+        "claim": "Presented progress, risks, and technical trade-offs during fortnightly reviews to relevant stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001364,
+          "entailment": 0.000749,
+          "neutral": 0.997887
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000749,
+        "supported": false
+      },
+      {
+        "claim": "Example Ember Technologies (fictional)** | May 2024 \u2013 Dec 2024",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.002791,
+          "entailment": 0.002998,
+          "neutral": 0.99421
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002998,
+        "supported": false
+      },
+      {
+        "claim": "Supported operational workflows using HTML and CSS, creating clear documentation for step-by-step procedures.",
+        "best_source_chunk": "- Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 35%. ## Projects ### Frontend Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with",
+        "probabilities": {
+          "contradiction": 0.002524,
+          "entailment": 0.002913,
+          "neutral": 0.994564
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002913,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests and escalated issues with clear supporting evidence to facilitate data-driven decisions.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000438,
+          "entailment": 0.00207,
+          "neutral": 0.997492
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00207,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 35%, demonstrating ability to solve ambiguous problems efficiently.",
+        "best_source_chunk": "- Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 35%. ## Projects ### Frontend Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with",
+        "probabilities": {
+          "contradiction": 0.001407,
+          "entailment": 0.000873,
+          "neutral": 0.99772
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000873,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Engineer Practice Project",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.048023,
+          "entailment": 0.027141,
+          "neutral": 0.924836
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.027141,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project using JavaScript, TypeScript, and React to validate frontend capabilities.",
+        "best_source_chunk": "# Daniel Tan daniel.tan@example.test | +65 6000 0004 | Singapore ## Summary Technology associate with transferable experience in JavaScript, TypeScript and React, seeking to deepen capability as a Frontend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 40%. - Applied",
+        "probabilities": {
+          "contradiction": 0.00351,
+          "entailment": 0.293787,
+          "neutral": 0.702702
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.293787,
+        "supported": false
+      },
+      {
+        "claim": "Implemented automated testing scenarios to ensure code reliability and identify limitations early.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001152,
+          "entailment": 0.001554,
+          "neutral": 0.997294
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001554,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and next steps to a five-person peer review group, refining technical approaches based on feedback.",
+        "best_source_chunk": "Frontend Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) -",
+        "probabilities": {
+          "contradiction": 0.000941,
+          "entailment": 0.000807,
+          "neutral": 0.998252
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000807,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.006841,
+          "entailment": 0.002737,
+          "neutral": 0.990423
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002737,
+        "supported": false
+      },
+      {
+        "claim": "Example School of Computing (fictional)** | Aug 2020 \u2013 May 2024",
+        "best_source_chunk": "## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001992,
+          "entailment": 0.00416,
+          "neutral": 0.993848
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00416,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.008834,
+          "entailment": 0.070295,
+          "neutral": 0.92087
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.070295,
+        "supported": false
+      },
+      {
+        "claim": "JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, Documentation, Excel",
+        "best_source_chunk": "## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001644,
+          "entailment": 0.0119,
+          "neutral": 0.986456
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0119,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "ac580e31bf3ef32279f383813f42f0851024c19117c8de454d4d9d733acf2203"
+  }
+}

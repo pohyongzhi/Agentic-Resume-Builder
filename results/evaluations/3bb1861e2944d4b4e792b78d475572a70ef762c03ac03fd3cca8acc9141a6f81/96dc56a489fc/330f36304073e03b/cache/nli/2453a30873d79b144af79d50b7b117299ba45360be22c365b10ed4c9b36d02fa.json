@@ -1,0 +1,321 @@
+{
+  "identity": {
+    "source_hash": "e58026ceee120c6023a3e2130c7795e8afbd8a66a60e7f5424bc71ab0e3c0e15",
+    "tailored_hash": "757e5fd9fa7f84b8fd19f24ed9e245baaa96c34f07ad78008e45202d93efb1a7",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1905,
+    "unsupported": [
+      "Mid-level Backend Engineer with hands-on experience designing reliable backend services using Java, Spring Boot, and REST APIs.",
+      "Skilled in optimising database queries, writing automated tests, and operating containerised services within Docker environments.",
+      "Adept at communicating technical trade-offs and progress to stakeholders to ensure responsible delivery of high-quality outcomes.",
+      "Backend Engineer** | Example Atlas Solutions (Jul 2023 \u2013 Present)",
+      "Develop and document **REST APIs** with clear technical decisions for business and engineering reviewers.",
+      "Manage approximately 98 work items monthly, ensuring quality checks and follow-up actions are tracked rigorously.",
+      "Collaborate with cross-functional teams to optimise **PostgreSQL** queries and present progress during regular reviews.",
+      "Operate containerised services using **Docker** and maintain clear documentation for team planning.",
+      "Technical Assistant** | Example Beacon Services (Jan 2021 \u2013 Jun 2023)",
+      "Support recurring operational work using **PostgreSQL**, creating step-by-step procedures to ensure reliability.",
+      "Investigate service requests, record findings with evidence-based support, and escalate issues clearly.",
+      "Develop reporting templates that reduced manual preparation time by 18%, demonstrating ability to deliver measurable improvements.",
+      "Backend Engineer Practice Project**",
+      "Implemented **unit testing** with representative scenarios to validate functionality and record limitations.",
+      "Presented design and outcomes to a peer review group, showcasing clear communication of technical concepts.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+      "Coursework included software engineering, databases, cybersecurity, and applied analytics."
+    ],
+    "n_claims": 21,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Backend Engineer with hands-on experience designing reliable backend services using Java, Spring Boot, and REST APIs.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.001387,
+          "entailment": 0.011311,
+          "neutral": 0.987302
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011311,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn operational needs into documented, maintainable solutions while collaborating effectively with cross-functional teams.",
+        "best_source_chunk": "# Farhan Tan farhan.tan@example.test | +65 6000 0006 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 23%.",
+        "probabilities": {
+          "contradiction": 0.00015,
+          "entailment": 0.576981,
+          "neutral": 0.422868
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.576981,
+        "supported": true
+      },
+      {
+        "claim": "Skilled in optimising database queries, writing automated tests, and operating containerised services within Docker environments.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.000589,
+          "entailment": 0.0846,
+          "neutral": 0.914812
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0846,
+        "supported": false
+      },
+      {
+        "claim": "Adept at communicating technical trade-offs and progress to stakeholders to ensure responsible delivery of high-quality outcomes.",
+        "best_source_chunk": "Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.048449,
+          "entailment": 0.023294,
+          "neutral": 0.928257
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.023294,
+        "supported": false
+      },
+      {
+        "claim": "Backend Engineer** | Example Atlas Solutions (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.634184,
+          "entailment": 0.082875,
+          "neutral": 0.282941
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.082875,
+        "supported": false
+      },
+      {
+        "claim": "Design and build reliable backend services using **Java** and **Spring Boot**, improving team turnaround by 23%.",
+        "best_source_chunk": "# Farhan Tan farhan.tan@example.test | +65 6000 0006 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 23%.",
+        "probabilities": {
+          "contradiction": 0.000114,
+          "entailment": 0.994339,
+          "neutral": 0.005547
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994339,
+        "supported": true
+      },
+      {
+        "claim": "Develop and document **REST APIs** with clear technical decisions for business and engineering reviewers.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.001471,
+          "entailment": 0.003449,
+          "neutral": 0.995081
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003449,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 98 work items monthly, ensuring quality checks and follow-up actions are tracked rigorously.",
+        "best_source_chunk": "approximately 98 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000433,
+          "entailment": 0.004486,
+          "neutral": 0.995081
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004486,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with cross-functional teams to optimise **PostgreSQL** queries and present progress during regular reviews.",
+        "best_source_chunk": "approximately 98 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.003336,
+          "entailment": 0.273516,
+          "neutral": 0.723148
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.273516,
+        "supported": false
+      },
+      {
+        "claim": "Operate containerised services using **Docker** and maintain clear documentation for team planning.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.812753,
+          "entailment": 0.000891,
+          "neutral": 0.186356
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.000891,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Beacon Services (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "approximately 98 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001512,
+          "entailment": 0.001467,
+          "neutral": 0.997021
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001467,
+        "supported": false
+      },
+      {
+        "claim": "Support recurring operational work using **PostgreSQL**, creating step-by-step procedures to ensure reliability.",
+        "best_source_chunk": "Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.003722,
+          "entailment": 0.039058,
+          "neutral": 0.95722
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.039058,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with evidence-based support, and escalate issues clearly.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.003121,
+          "entailment": 0.004112,
+          "neutral": 0.992767
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004112,
+        "supported": false
+      },
+      {
+        "claim": "Develop reporting templates that reduced manual preparation time by 18%, demonstrating ability to deliver measurable improvements.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.000355,
+          "entailment": 0.002073,
+          "neutral": 0.997572
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002073,
+        "supported": false
+      },
+      {
+        "claim": "Backend Engineer Practice Project**",
+        "best_source_chunk": "Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.131359,
+          "entailment": 0.007949,
+          "neutral": 0.860692
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007949,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project using **Java**, **Spring Boot**, and **REST APIs**.",
+        "best_source_chunk": "# Farhan Tan farhan.tan@example.test | +65 6000 0006 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 23%.",
+        "probabilities": {
+          "contradiction": 0.000664,
+          "entailment": 0.918532,
+          "neutral": 0.080804
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.918532,
+        "supported": true
+      },
+      {
+        "claim": "Implemented **unit testing** with representative scenarios to validate functionality and record limitations.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.171008,
+          "entailment": 0.021085,
+          "neutral": 0.807908
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.021085,
+        "supported": false
+      },
+      {
+        "claim": "Presented design and outcomes to a peer review group, showcasing clear communication of technical concepts.",
+        "best_source_chunk": "approximately 98 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001488,
+          "entailment": 0.036675,
+          "neutral": 0.961837
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.036675,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.079701,
+          "entailment": 0.034021,
+          "neutral": 0.886278
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.034021,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.006461,
+          "entailment": 0.113236,
+          "neutral": 0.880303
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.113236,
+        "supported": false
+      },
+      {
+        "claim": "Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.006927,
+          "entailment": 0.907795,
+          "neutral": 0.085279
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.907795,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "2453a30873d79b144af79d50b7b117299ba45360be22c365b10ed4c9b36d02fa"
+  }
+}

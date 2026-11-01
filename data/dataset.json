@@ -1,0 +1,23 @@
+{
+  "name": "synthetic_resume_jd_eval",
+  "version": "1.0.0",
+  "created": "2026-10-27",
+  "generator": "scripts/generate_dataset.py",
+  "generation_spec": "data/generation/spec.json",
+  "seed": 42,
+  "frozen": true,
+  "counts": {
+    "categories": 5,
+    "job_descriptions": 20,
+    "resumes": 100,
+    "pairs": 100
+  },
+  "category_pairs": {
+    "software_engineering": 20,
+    "data_ai": 20,
+    "cybersecurity": 20,
+    "cloud_devops": 20,
+    "business_technology": 20
+  },
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81"
+}
