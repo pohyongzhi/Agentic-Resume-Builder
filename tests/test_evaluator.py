@@ -1,6 +1,8 @@
 import json
 
+import evaluate as offline_evaluation
 import evaluate_results
+from eval.judge import JudgeConfig
 from eval.operational import evaluate_operational
 from eval.robustness import perturb_pair, select_stratified_pairs, summarise_robustness
 
@@ -33,7 +35,13 @@ def test_task_success_and_cost_metrics_for_toolless_workflow():
         output,
         _totals(),
         [],
-        {"faithfulness": 0.9, "sim_after": 0.7, "kw_after": 0.8},
+        {
+            "faithfulness": 0.9,
+            "sim_after": 0.7,
+            "kw_after": 0.8,
+            "protected_field_violation": False,
+            "fabrication_bait_violation": False,
+        },
     )
     assert result["task_success"] is True
     assert result["tool_applicable"] is False
@@ -54,6 +62,57 @@ def test_task_success_unscored_without_faithfulness():
     )
     assert result["task_success"] is None
     assert "faithfulness_not_scored" in result["task_failure_reasons"]
+    assert "protected_fields_not_scored" in result["task_failure_reasons"]
+    assert "fabrication_bait_not_scored" in result["task_failure_reasons"]
+
+
+def test_task_success_fails_each_deterministic_faithfulness_gate():
+    output = {"resume_md": _resume(), "finished": True, "hit_budget": False}
+    for field, reason in (
+        ("protected_field_violation", "protected_field_violation"),
+        ("fabrication_bait_violation", "fabrication_bait_violation"),
+    ):
+        scores = {
+            "faithfulness": 1.0,
+            "protected_field_violation": False,
+            "fabrication_bait_violation": False,
+        }
+        scores[field] = True
+        result = evaluate_operational(
+            "w1_single_pass", {"split": "test"}, output, _totals(), [], scores,
+        )
+        assert result["task_success"] is False
+        assert reason in result["task_failure_reasons"]
+
+
+def test_offline_record_includes_deterministic_faithfulness_components(
+    monkeypatch, tmp_path,
+):
+    source = _resume()
+    tailored = source + "\nPython\n"
+    pair = {
+        "split": "test",
+        "resume": source,
+        "jd": "Need Python",
+        "keywords": [{"keyword": "Python", "synonyms": []}],
+    }
+    monkeypatch.setattr(offline_evaluation, "_quality", lambda *_: {})
+    record = offline_evaluation._evaluate_output(
+        {"workflow": "w1_single_pass", "error": None},
+        pair,
+        tailored,
+        tmp_path,
+        JudgeConfig(),
+        skip_nli=True,
+        skip_judge=True,
+        trace=[],
+        totals=_totals(),
+    )
+    assert record["protected_field_violation"] is False
+    assert record["protected_field_evaluator_version"] == "protected-fields-v1"
+    assert record["fabrication_bait_violation"] is True
+    assert record["fabrication_bait_evaluator_version"] == "keyword-bait-v1"
+    assert record["fabrication_bait_matches"][0]["keyword"] == "Python"
 
 
 def test_tool_sequence_accuracy_and_recovery():
@@ -138,6 +197,8 @@ def test_offline_evaluator_reads_saved_resume_and_trace(monkeypatch, tmp_path):
         "trace_path": str(trace_path),
         "metrics_path": str(metrics_path),
         "faithfulness": 0.9,
+        "protected_field_violation": False,
+        "fabrication_bait_violation": False,
         "sim_after": 0.7,
         "kw_after": 0.8,
         "error": None,

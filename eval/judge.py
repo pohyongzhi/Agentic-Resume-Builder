@@ -70,7 +70,7 @@ class JudgeConfig:
     think: bool = config.JUDGE_THINK
     max_retries: int = config.JUDGE_MAX_RETRIES
     prompt_version: str = config.JUDGE_PROMPT_VERSION
-    schema_version: str = config.EVALUATOR_SCHEMA_VERSION
+    schema_version: str = config.JUDGE_SCHEMA_VERSION
 
 
 def _sha(text: str) -> str:

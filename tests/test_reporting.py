@@ -27,6 +27,26 @@ def test_summary_has_explicit_denominators_and_missing_failures(monkeypatch):
     assert faithfulness["evaluation_failures"] == 1
 
 
+def test_summary_reports_faithfulness_components_separately(monkeypatch):
+    monkeypatch.setattr("config.REPORT_BOOTSTRAP_SAMPLES", 100)
+    rows = [{
+        "dataset_hash": "d",
+        "workflow": "w1",
+        "error": None,
+        "claim_faithfulness": 0.75,
+        "unsupported_claim_rate": 0.25,
+        "protected_field_violation": False,
+        "fabrication_bait_violation": True,
+        "evaluation_failures": {},
+    }]
+    table = summarise(rows, ("workflow",))
+    indexed = {row["metric"]: row for row in table}
+    assert indexed["claim_faithfulness"]["mean"] == 0.75
+    assert indexed["unsupported_claim_rate"]["mean"] == 0.25
+    assert indexed["protected_field_violation"]["numerator"] == 0
+    assert indexed["fabrication_bait_violation"]["numerator"] == 1
+
+
 def test_robustness_deltas_are_paired_and_separate():
     rows = [
         {"workflow": "w1", "base_pair_id": "p1", "variant": "original",

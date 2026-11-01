@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: evaluation-record and report integration
-- Last completed task: `F5` - add semantic support adjudication and evaluator versioning
-- Next task: `F6` - integrate component metrics into records, task gates and reports
+- Current phase: saved-output pilot and full W1 rescore
+- Last completed task: `F6` - integrate component metrics into records, task gates and reports
+- Next task: `F7` - run a saved-output pilot and full W1 rescore
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -85,7 +85,7 @@ because not every workflow uses the same harness.
 | F3 | Add deterministic protected-field violation metrics | Complete | `86 passed`; diagnostic scan found 5/100 high-confidence W1 violations |
 | F4 | Add automatically derived fabrication-bait metrics | Complete | `89 passed`; detected absent-keyword copying in 60/100 saved W1 outputs |
 | F5 | Add semantic support adjudication and evaluator versioning | Complete | `95 passed`; NLI preflight and four-case regression pilot passed |
-| F6 | Integrate component metrics into records, task gates and reports | Not started | Pending |
+| F6 | Integrate component metrics into records, task gates and reports | Complete | `98 passed`; component records, gates and separate report rows verified |
 | F7 | Run a saved-output pilot and full W1 rescore | Not started | Pending |
 | F8 | Final verification, documentation and integration handoff | Not started | Pending |
 
@@ -325,3 +325,26 @@ Next action: execute F5 and update this file before beginning F6.
 - Did not write or replace saved evaluation records.
 
 Next action: execute F6 and update this file before beginning F7.
+
+### 2026-11-01 - F6 complete
+
+- Added protected-field and fabrication-bait results to the main offline evaluator, legacy local
+  scorer and online/robustness score paths.
+- Corrected robustness scoring to compare each output with its actual meaning-preserving input
+  variant rather than the unmodified base pair.
+- Added stable component versions: `protected-fields-v1` and `keyword-bait-v1`.
+- Advanced the overall evaluation-record schema to `2.0` while retaining the rubric judge schema
+  at `1.0`, avoiding unnecessary invalidation of judge-only caches.
+- Existing cached records are reused only when the NLI and both deterministic component versions
+  match the current evaluator.
+- Updated task success to require: claim faithfulness at or above `0.8`, no protected-field
+  violation and no fabrication-bait violation. Missing component scores leave task success
+  unscored rather than silently passing or failing.
+- Added separate report rows for claim faithfulness, unsupported-claim rate, protected-field
+  violation rate/count and fabrication-bait violation rate/count. Binary component rates receive
+  Wilson confidence intervals and explicit numerators/denominators.
+- Added integration, task-gate and report tests; ran the complete suite: `98 passed`.
+- Did not write or replace saved evaluation records.
+
+Next action: execute F7 using a new versioned evaluation directory; never overwrite the original
+generation records or prior evaluator outputs.

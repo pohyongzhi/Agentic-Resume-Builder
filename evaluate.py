@@ -83,6 +83,10 @@ def _evaluation_identity(judge_config, model_info, nli_model):
         "schema_version": config.EVALUATOR_SCHEMA_VERSION,
         "judge": judge_identity(judge_config, model_info),
         "nli": nli,
+        "faithfulness_components": {
+            "protected_fields": config.PROTECTED_FIELD_EVALUATOR_VERSION,
+            "fabrication_bait": config.FABRICATION_BAIT_EVALUATOR_VERSION,
+        },
         "embedding_model": config.EMBED_MODEL,
         "task_gate": {
             "faithfulness": config.TASK_FAITHFULNESS_THRESHOLD,
@@ -144,6 +148,20 @@ def _evaluate_output(
         record.update(_quality(pair, tailored_resume))
     except Exception as exc:
         failures["embedding_or_keyword"] = f"{type(exc).__name__}: {exc}"
+
+    try:
+        record.update(metrics.protected_field_metrics(pair["resume"], tailored_resume))
+    except Exception as exc:
+        failures["protected_field_violation"] = f"{type(exc).__name__}: {exc}"
+        record["protected_field_violation"] = None
+
+    try:
+        record.update(metrics.fabrication_bait_metrics(
+            pair["resume"], tailored_resume, pair.get("keywords", []),
+        ))
+    except Exception as exc:
+        failures["fabrication_bait_violation"] = f"{type(exc).__name__}: {exc}"
+        record["fabrication_bait_violation"] = None
 
     if not skip_nli:
         started = time.perf_counter()
@@ -227,8 +245,14 @@ def evaluate_saved(
         if output_path.exists() and not force:
             existing = _json(output_path)
             nli_complete = skip_nli or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
+            components_complete = (
+                existing.get("protected_field_evaluator_version")
+                == config.PROTECTED_FIELD_EVALUATOR_VERSION
+                and existing.get("fabrication_bait_evaluator_version")
+                == config.FABRICATION_BAIT_EVALUATOR_VERSION
+            )
             judge_complete = skip_judge or existing.get("judge_status") in {"scored", "unscored"}
-            if nli_complete and judge_complete:
+            if nli_complete and components_complete and judge_complete:
                 evaluated.append(existing)
                 continue
         pair = pair_map[generation_row["pair_id"]]
@@ -295,10 +319,16 @@ def evaluate_robustness(
                         skip_nli
                         or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
                     )
+                    components_complete = (
+                        existing.get("protected_field_evaluator_version")
+                        == config.PROTECTED_FIELD_EVALUATOR_VERSION
+                        and existing.get("fabrication_bait_evaluator_version")
+                        == config.FABRICATION_BAIT_EVALUATOR_VERSION
+                    )
                     judge_complete = (
                         skip_judge or existing.get("judge_status") in {"scored", "unscored"}
                     )
-                    if nli_complete and judge_complete:
+                    if nli_complete and components_complete and judge_complete:
                         results.append(existing)
                         continue
                 if variant == "original":

@@ -77,6 +77,7 @@ def fabrication_bait_metrics(original_resume, tailored_resume, keywords):
                 ),
             })
     return {
+        "fabrication_bait_evaluator_version": config.FABRICATION_BAIT_EVALUATOR_VERSION,
         "fabrication_bait_violation": bool(matches),
         "fabrication_bait_term_count": len(bait_terms),
         "fabrication_bait_match_count": len(matches),
@@ -441,6 +442,7 @@ def protected_field_metrics(original_resume, tailored_resume):
             }, [{"value": value} for value in sorted(source_numbers)])
 
     return {
+        "protected_field_evaluator_version": config.PROTECTED_FIELD_EVALUATOR_VERSION,
         "protected_field_violation": bool(violations),
         "protected_field_violation_count": len(violations),
         "protected_field_violations": violations,

@@ -32,6 +32,10 @@ def _quality(pair, markdown, skip_faithfulness):
         "kw_after": round(after["coverage"], 4),
         "kw_missing": after["missing"],
     })
+    row.update(metrics.protected_field_metrics(pair["resume"], markdown))
+    row.update(metrics.fabrication_bait_metrics(
+        pair["resume"], markdown, pair.get("keywords", []),
+    ))
     if not skip_faithfulness:
         row.update(metrics.faithfulness(pair["resume"], markdown))
     return row
