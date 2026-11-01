@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: automatically derived fabrication-bait evaluation
-- Last completed task: `F3` - add deterministic protected-field violation metrics
-- Next task: `F4` - add automatically derived fabrication-bait metrics
+- Current phase: semantic claim-support evaluation
+- Last completed task: `F4` - add automatically derived fabrication-bait metrics
+- Next task: `F5` - add semantic support adjudication and evaluator versioning
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -83,7 +83,7 @@ because not every workflow uses the same harness.
 | F1 | Capture baseline tests and reproduce known false positives | Complete | `74 passed, 1 xfailed`; baseline JSON and four regression fixtures committed |
 | F2 | Repair claim extraction and source evidence segmentation | Complete | `79 passed`; known case reduced from 23 to 17 semantic claims and retrieved the correct source bullet |
 | F3 | Add deterministic protected-field violation metrics | Complete | `86 passed`; diagnostic scan found 5/100 high-confidence W1 violations |
-| F4 | Add automatically derived fabrication-bait metrics | Not started | Pending |
+| F4 | Add automatically derived fabrication-bait metrics | Complete | `89 passed`; detected absent-keyword copying in 60/100 saved W1 outputs |
 | F5 | Add semantic support adjudication and evaluator versioning | Not started | Pending |
 | F6 | Integrate component metrics into records, task gates and reports | Not started | Pending |
 | F7 | Run a saved-output pilot and full W1 rescore | Not started | Pending |
@@ -274,3 +274,21 @@ Next action: execute F3 and update this file before beginning F4.
 - Did not write or replace evaluation records.
 
 Next action: execute F4 and update this file before beginning F5.
+
+### 2026-11-01 - F4 complete
+
+- Added deterministic fabrication-bait derivation from each pair's evaluator keyword families.
+- A keyword is eligible as bait only when neither it nor any declared synonym occurs in the
+  original resume; matching uses whole words rather than substrings.
+- Added per-output bait counts, matched keyword families and exact output line spans.
+- Added regression tests for absent-skill injection, synonym support, whole-word boundaries and
+  unmentioned bait.
+- Ran a read-only diagnostic scan over all 100 saved W1 outputs. Sixty outputs had at least one
+  absent keyword family available as bait, and all 60 copied at least one such term: 40 moderate-
+  fit and 20 weak-fit outputs. Strong-fit outputs had no eligible absent-keyword bait.
+- Spot checks confirmed direct unsupported additions including Jest, statistics, audit support
+  and vendor risk. No manual labels were added.
+- Ran the complete suite: `89 passed`.
+- Did not write or replace saved evaluation records.
+
+Next action: execute F5 and update this file before beginning F6.

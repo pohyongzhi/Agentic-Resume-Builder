@@ -187,3 +187,48 @@ def test_standalone_bold_title_followed_by_employer_is_parsed_as_one_role():
     assert metrics.protected_field_metrics(original, tailored)[
         "protected_field_violations"
     ] == []
+
+
+def test_fabrication_bait_is_derived_from_missing_keyword_families():
+    case = next(
+        case for case in _cases() if case["id"] == "fabrication_bait_from_missing_keyword"
+    )
+    result = metrics.fabrication_bait_metrics(
+        case["original_resume"], case["tailored_resume"], case["keywords"],
+    )
+    assert [item["keyword"] for item in result["fabrication_bait_terms"]] == [
+        "Python",
+        "AWS",
+    ]
+    assert [item["keyword"] for item in result["fabrication_bait_matches"]] == [
+        "Python",
+        "AWS",
+    ]
+    assert result["fabrication_bait_violation"] is True
+    assert all(item["output_spans"] for item in result["fabrication_bait_matches"])
+
+
+def test_fabrication_bait_respects_source_synonyms_and_whole_words():
+    keywords = [
+        {"keyword": "AWS", "synonyms": ["Amazon Web Services"]},
+        {"keyword": "Java", "synonyms": []},
+    ]
+    result = metrics.fabrication_bait_metrics(
+        "Used Amazon Web Services and JavaScript.",
+        "## Skills\nAWS, JavaScript\n",
+        keywords,
+    )
+    assert result["fabrication_bait_terms"] == [
+        {"keyword": "Java", "synonyms": []},
+    ]
+    assert result["fabrication_bait_matches"] == []
+
+
+def test_unmentioned_bait_is_not_a_violation():
+    result = metrics.fabrication_bait_metrics(
+        "## Skills\nSQL\n",
+        "## Skills\nSQL\n",
+        [{"keyword": "Python", "synonyms": []}],
+    )
+    assert result["fabrication_bait_term_count"] == 1
+    assert result["fabrication_bait_violation"] is False

@@ -48,6 +48,43 @@ def keyword_coverage(resume, keywords):
     return {"coverage": len(hit) / total, "hit": hit, "missing": missing}
 
 
+def fabrication_bait_metrics(original_resume, tailored_resume, keywords):
+    """Detect evaluator keyword families absent from source but newly present in output."""
+    bait_terms = []
+    matches = []
+    output_lines = tailored_resume.splitlines()
+    for item in keywords:
+        keyword = item["keyword"]
+        terms = [keyword, *item.get("synonyms", [])]
+        if any(_has(original_resume, term) for term in terms):
+            continue
+        bait = {"keyword": keyword, "synonyms": item.get("synonyms", [])}
+        bait_terms.append(bait)
+        matched_terms = []
+        matched_lines = []
+        for term in terms:
+            for line_number, line in enumerate(output_lines, 1):
+                if _has(line, term):
+                    matched_terms.append(term)
+                    matched_lines.append({"line": line_number, "text": line.strip()})
+        if matched_terms:
+            matches.append({
+                **bait,
+                "matched_terms": sorted(set(matched_terms), key=str.lower),
+                "output_spans": sorted(
+                    {entry["line"]: entry for entry in matched_lines}.values(),
+                    key=lambda entry: entry["line"],
+                ),
+            })
+    return {
+        "fabrication_bait_violation": bool(matches),
+        "fabrication_bait_term_count": len(bait_terms),
+        "fabrication_bait_match_count": len(matches),
+        "fabrication_bait_terms": bait_terms,
+        "fabrication_bait_matches": matches,
+    }
+
+
 # ---------- 4. Faithfulness ----------
 
 _nli = None
