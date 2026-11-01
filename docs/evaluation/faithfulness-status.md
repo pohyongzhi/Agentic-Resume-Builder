@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: planning and baseline capture
-- Last completed task: `F0` - create the workstream and checkpoint plan
-- Next task: `F1` - reproduce the current evaluator and add regression fixtures
+- Current phase: claim extraction and evidence segmentation
+- Last completed task: `F1` - reproduce the current evaluator and add regression fixtures
+- Next task: `F2` - repair claim extraction and source evidence segmentation
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -49,8 +49,10 @@ The three components must be reported separately rather than hidden inside one c
 
 The evaluator in `origin/main` extracts Markdown role and education headers as claims and
 compares every claim with arbitrary 60-word source chunks using
-`cross-encoder/nli-deberta-v3-small`. The committed W1 summary reports mean faithfulness
-`0.208`, causing all 100 runs to fail the `0.8` task-success gate.
+`cross-encoder/nli-deberta-v3-small`. There are 100 committed W1 generations, but only one row
+in `results/results.jsonl` has a direct faithfulness score (`0.2083`); the other 99 remain
+unscored. The largest offline scoring scope contains 23 outputs with mean `0.1340`, range
+`0.0435` to `0.2917`, and none reaches the `0.8` task-success gate.
 
 That number is not trustworthy. In the inspected `da_resume_001__da_jd_01` output, supported
 employers, dates and paraphrased bullets were marked unsupported, and a preserved role header
@@ -78,7 +80,7 @@ because not every workflow uses the same harness.
 | ID | Task | Status | Completion evidence |
 | --- | --- | --- | --- |
 | F0 | Create dedicated branch and resumable status document | Complete | Branch created from `origin/main`; this document added |
-| F1 | Capture baseline tests and reproduce known false positives | Not started | Pending |
+| F1 | Capture baseline tests and reproduce known false positives | Complete | `74 passed, 1 xfailed`; baseline JSON and four regression fixtures committed |
 | F2 | Repair claim extraction and source evidence segmentation | Not started | Pending |
 | F3 | Add deterministic protected-field violation metrics | Not started | Pending |
 | F4 | Add automatically derived fabrication-bait metrics | Not started | Pending |
@@ -213,3 +215,21 @@ Gate: clean worktree, reproducible commands, and no missing handoff information.
 - Preserved the untracked top-level `runs/` directory without modification.
 
 Next action: execute F1 and update this file before beginning F2.
+
+### 2026-11-01 - F1 complete
+
+- Installed missing `pytest` and `trafilatura` packages in the ignored `venv/` only.
+- Ran the original `main` suite successfully: `73 passed`.
+- Recorded the exact partial-evaluation baseline in
+  `docs/evaluation/faithfulness-baseline.json`.
+- Corrected the earlier interpretation: 100 W1 generations exist, one is directly scored in
+  `results/results.jsonl`, and the largest offline scoring attempt covers 23 unique outputs.
+- Added four fictional regression fixtures covering formatting/paraphrase, mixed unsupported
+  clauses, altered protected fields and automatically derivable fabrication bait.
+- Added an expected-failure test proving that the legacy claim extractor treats protected-field
+  Markdown headers as semantic claims.
+- Ran the expanded suite: `74 passed, 1 xfailed`.
+- Did not change evaluator behavior, saved outputs, frozen data or workflow code.
+
+Next action: execute F2, remove the expected-failure marker when the repaired extractor passes,
+and update this file before beginning F3.
