@@ -76,8 +76,8 @@ def _evaluation_identity(judge_config, model_info, nli_model):
         **nli_model,
         "version": config.NLI_EVALUATOR_VERSION,
         "threshold": config.ENTAIL_THRESHOLD,
-        "chunk_words": config.NLI_CHUNK_WORDS,
-        "chunk_overlap": config.NLI_CHUNK_OVERLAP,
+        "evidence_limit": config.NLI_EVIDENCE_LIMIT,
+        "evidence_normalization": "markdown-nfkc-v1",
     }
     identity = {
         "schema_version": config.EVALUATOR_SCHEMA_VERSION,

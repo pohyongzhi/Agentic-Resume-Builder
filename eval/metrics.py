@@ -250,7 +250,7 @@ def retrieve_evidence_units(claim, evidence_units, limit=3):
     for unit in evidence_units:
         unit_norm = unit["normalized"]
         unit_tokens = _comparison_tokens(unit_norm)
-        if claim_norm and unit_norm and (claim_norm in unit_norm or unit_norm in claim_norm):
+        if claim_norm and unit_norm and claim_norm in unit_norm:
             score = 1.0
         else:
             common = claim_tokens & unit_tokens
@@ -493,24 +493,17 @@ def _load_nli():
 
 def extract_claims(resume_md):
     """Extract substantive output claims while excluding structure and protected headers."""
-    return [
-        sentence
-        for record in _line_records(resume_md)
-        if record["kind"] == "claim"
-        for sentence in _sentences(record["text"])
-    ]
-
-
-def _chunks(text, size=None, overlap=None):
-    size = size or config.NLI_CHUNK_WORDS
-    overlap = config.NLI_CHUNK_OVERLAP if overlap is None else overlap
-    if size <= overlap:
-        raise ValueError("NLI chunk size must be greater than overlap")
-    words = text.split()
-    if not words:
-        return [""]
-    step = size - overlap
-    return [" ".join(words[index:index + size]) for index in range(0, len(words), step)]
+    claims = []
+    for record in _line_records(resume_md):
+        if record["kind"] == "claim":
+            claims.extend(_sentences(record["text"]))
+        elif record["kind"] == "skill_list":
+            claims.extend(
+                value.strip()
+                for value in re.split(r"[,;]", record["text"])
+                if value.strip()
+            )
+    return claims
 
 
 def _probabilities(values):
@@ -580,19 +573,82 @@ def _nli_cache_key(original_resume, new_resume, metadata):
         "tailored_hash": hashlib.sha256(new_resume.encode()).hexdigest(),
         "model": metadata,
         "evaluator_version": config.NLI_EVALUATOR_VERSION,
-        "chunk_words": config.NLI_CHUNK_WORDS,
-        "chunk_overlap": config.NLI_CHUNK_OVERLAP,
+        "evidence_limit": config.NLI_EVIDENCE_LIMIT,
+        "evidence_normalization": "markdown-nfkc-v1",
         "entail_threshold": config.ENTAIL_THRESHOLD,
     }
     return hashlib.sha256(json.dumps(identity, sort_keys=True).encode()).hexdigest(), identity
 
 
+def _deterministic_support(claim, candidates):
+    """Return source evidence that contains the complete normalized claim, if any."""
+    claim_normalized = normalize_evidence_text(claim)
+    if not claim_normalized:
+        return None
+    return next(
+        (
+            candidate for candidate in candidates
+            if claim_normalized == candidate["normalized"]
+            or _has(candidate["normalized"], claim_normalized)
+        ),
+        None,
+    )
+
+
+def _evidence_candidate_record(candidate, probabilities=None, label2id=None):
+    record = {
+        "evidence_id": candidate["evidence_id"],
+        "text": candidate["text"],
+        "kind": candidate["kind"],
+        "line": candidate["line"],
+        "retrieval_score": candidate["retrieval_score"],
+    }
+    if probabilities is not None:
+        record["probabilities"] = {
+            label: round(float(probabilities[index]), 6)
+            for label, index in label2id.items()
+        }
+        record["predicted_relation"] = max(
+            label2id, key=lambda label: probabilities[label2id[label]]
+        )
+    return record
+
+
+def _claim_score(
+    claim, candidate, probabilities, label2id, method, evidence_candidates,
+):
+    entailment = float(probabilities[label2id["entailment"]])
+    return {
+        "claim": claim,
+        "support_method": method,
+        "best_evidence_id": candidate["evidence_id"],
+        "best_evidence_unit": candidate["text"],
+        "best_evidence_kind": candidate["kind"],
+        "best_evidence_line": candidate["line"],
+        "best_source_chunk": candidate["text"],
+        "retrieval_score": candidate["retrieval_score"],
+        "evidence_candidates": evidence_candidates,
+        "probabilities": {
+            label: round(float(probabilities[index]), 6)
+            for label, index in label2id.items()
+        },
+        "predicted_relation": max(
+            label2id, key=lambda label: probabilities[label2id[label]]
+        ),
+        "entailment": round(entailment, 6),
+        "supported": entailment >= config.ENTAIL_THRESHOLD,
+    }
+
+
 def faithfulness(original_resume, new_resume, cache_dir=None, force=False):
-    """Score every tailored claim against original-resume chunks and retain claim evidence."""
+    """Score output claims against retrieved source evidence and retain full provenance."""
     claims = extract_claims(new_resume)
     if not claims:
         return {
             "faithfulness": None,
+            "claim_faithfulness": None,
+            "unsupported_claim_rate": None,
+            "supported_claims": 0,
             "unsupported": [],
             "n_claims": 0,
             "claim_scores": [],
@@ -604,33 +660,87 @@ def faithfulness(original_resume, new_resume, cache_dir=None, force=False):
     if cache_path and cache_path.exists() and not force:
         return json.loads(cache_path.read_text(encoding="utf-8"))["result"]
 
-    chunks = _chunks(original_resume)
-    pairs = [(chunk, claim) for claim in claims for chunk in chunks]
-    probabilities = _probabilities(model.predict(pairs))
+    evidence_units = extract_evidence_units(original_resume)
+    candidates_by_claim = [
+        retrieve_evidence_units(claim, evidence_units, limit=config.NLI_EVIDENCE_LIMIT)
+        for claim in claims
+    ]
     label2id = metadata["label2id"]
+    claim_scores = [None] * len(claims)
+    nli_pairs = []
+    nli_locations = []
+    for claim_index, (claim, candidates) in enumerate(zip(claims, candidates_by_claim)):
+        exact = _deterministic_support(claim, candidates)
+        if exact is not None:
+            deterministic = np.zeros(3, dtype=float)
+            deterministic[label2id["entailment"]] = 1.0
+            claim_scores[claim_index] = _claim_score(
+                claim,
+                exact,
+                deterministic,
+                label2id,
+                "normalized_exact",
+                [_evidence_candidate_record(candidate) for candidate in candidates],
+            )
+            continue
+        for candidate_index, candidate in enumerate(candidates):
+            nli_pairs.append((candidate["text"], claim))
+            nli_locations.append((claim_index, candidate_index))
+
+    nli_results = _probabilities(model.predict(nli_pairs)) if nli_pairs else np.empty((0, 3))
+    probabilities_by_claim = [[] for _ in claims]
+    for location, probabilities in zip(nli_locations, nli_results):
+        claim_index, candidate_index = location
+        probabilities_by_claim[claim_index].append((candidate_index, probabilities))
+
     entailment_index = label2id["entailment"]
-    unsupported, claim_scores = [], []
     for claim_index, claim in enumerate(claims):
-        start = claim_index * len(chunks)
-        claim_probabilities = probabilities[start:start + len(chunks)]
-        best_index = int(np.argmax(claim_probabilities[:, entailment_index]))
-        best = claim_probabilities[best_index]
-        entailment = float(best[entailment_index])
-        supported = entailment >= config.ENTAIL_THRESHOLD
-        if not supported:
-            unsupported.append(claim)
-        claim_scores.append({
-            "claim": claim,
-            "best_source_chunk": chunks[best_index],
-            "probabilities": {
-                label: round(float(best[index]), 6) for label, index in label2id.items()
-            },
-            "predicted_relation": max(label2id, key=lambda label: best[label2id[label]]),
-            "entailment": round(entailment, 6),
-            "supported": supported,
-        })
+        if claim_scores[claim_index] is not None:
+            continue
+        candidate_results = probabilities_by_claim[claim_index]
+        if not candidate_results:
+            claim_scores[claim_index] = {
+                "claim": claim,
+                "support_method": "no_source_evidence",
+                "best_evidence_id": None,
+                "best_evidence_unit": None,
+                "best_evidence_kind": None,
+                "best_evidence_line": None,
+                "best_source_chunk": "",
+                "retrieval_score": None,
+                "evidence_candidates": [],
+                "probabilities": None,
+                "predicted_relation": "neutral",
+                "entailment": 0.0,
+                "supported": False,
+            }
+            continue
+        candidate_index, best = max(
+            candidate_results,
+            key=lambda result: float(result[1][entailment_index]),
+        )
+        claim_scores[claim_index] = _claim_score(
+            claim,
+            candidates_by_claim[claim_index][candidate_index],
+            best,
+            label2id,
+            "nli",
+            [
+                _evidence_candidate_record(
+                    candidates_by_claim[claim_index][index], probabilities, label2id,
+                )
+                for index, probabilities in candidate_results
+            ],
+        )
+
+    unsupported = [score["claim"] for score in claim_scores if not score["supported"]]
+    supported_count = len(claim_scores) - len(unsupported)
     result = {
-        "faithfulness": round(1 - len(unsupported) / len(claims), 4),
+        "faithfulness": round(supported_count / len(claims), 4),
+        "claim_faithfulness": round(supported_count / len(claims), 4),
+        "unsupported_claim_rate": round(len(unsupported) / len(claims), 4),
+        "supported_claims": supported_count,
+        "source_evidence_units": len(evidence_units),
         "unsupported": unsupported,
         "n_claims": len(claims),
         "claim_scores": claim_scores,

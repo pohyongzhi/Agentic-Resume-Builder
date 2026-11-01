@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: semantic claim-support evaluation
-- Last completed task: `F4` - add automatically derived fabrication-bait metrics
-- Next task: `F5` - add semantic support adjudication and evaluator versioning
+- Current phase: evaluation-record and report integration
+- Last completed task: `F5` - add semantic support adjudication and evaluator versioning
+- Next task: `F6` - integrate component metrics into records, task gates and reports
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -84,7 +84,7 @@ because not every workflow uses the same harness.
 | F2 | Repair claim extraction and source evidence segmentation | Complete | `79 passed`; known case reduced from 23 to 17 semantic claims and retrieved the correct source bullet |
 | F3 | Add deterministic protected-field violation metrics | Complete | `86 passed`; diagnostic scan found 5/100 high-confidence W1 violations |
 | F4 | Add automatically derived fabrication-bait metrics | Complete | `89 passed`; detected absent-keyword copying in 60/100 saved W1 outputs |
-| F5 | Add semantic support adjudication and evaluator versioning | Not started | Pending |
+| F5 | Add semantic support adjudication and evaluator versioning | Complete | `95 passed`; NLI preflight and four-case regression pilot passed |
 | F6 | Integrate component metrics into records, task gates and reports | Not started | Pending |
 | F7 | Run a saved-output pilot and full W1 rescore | Not started | Pending |
 | F8 | Final verification, documentation and integration handoff | Not started | Pending |
@@ -292,3 +292,36 @@ Next action: execute F4 and update this file before beginning F5.
 - Did not write or replace saved evaluation records.
 
 Next action: execute F5 and update this file before beginning F6.
+
+### 2026-11-01 - F5 complete
+
+- Replaced arbitrary 60-word source chunks with the top three deterministic source evidence
+  units for each claim.
+- Fixed retrieval so a one-word skill contained in a long claim cannot outrank a substantially
+  matching source bullet merely because it is a substring.
+- Added normalized exact-support decisions before NLI; exact claims do not consume an NLI
+  prediction.
+- Added individual skill-list items to semantic claim scoring.
+- Added `claim_faithfulness`, `unsupported_claim_rate`, supported-claim counts, evidence IDs,
+  source lines, retrieval scores, per-candidate NLI probabilities and decision methods.
+- Versioned the evaluator as `claim-evidence-nli-v3`; cache identity now includes the evidence
+  limit and normalization version rather than obsolete chunk settings.
+- Pinned the observed local NLI revision in diagnostic provenance as
+  `fa2804872c3b4bd748f38c0185cc85775361e735` with config hash
+  `d3bd21836bc007588a81182e86018ab036a54bf404d7acf38a5fa3892b282849`.
+- Downloaded the public NLI weights into the ignored user cache; no paid API was used and no model
+  file was added to Git.
+- The live NLI preflight passed entailment, contradiction and neutral examples.
+- The four-case regression pilot produced the expected directions: faithful paraphrase `1.0`,
+  mixed supported-plus-invented clause `0.0`, protected-field-only change `1.0`, and the skills
+  bait case `0.75` with `Python and AWS` unsupported.
+- A read-only six-output W1 pilot produced claim-faithfulness scores from `0.2692` to `0.5000`.
+  Inspection showed that many low-scoring claims combined valid source facts with unsupported
+  qualifiers such as automated testing, technical trade-offs, causality or feedback outcomes.
+- Did not add a local LLM fallback: the deterministic regression gate and NLI preflight passed,
+  while the absence of human calibration makes overriding conservative mixed-claim decisions
+  unjustified. This limitation remains visible for F7 diagnostics.
+- Added cache-reuse and provenance tests and ran the complete suite: `95 passed`.
+- Did not write or replace saved evaluation records.
+
+Next action: execute F6 and update this file before beginning F7.
