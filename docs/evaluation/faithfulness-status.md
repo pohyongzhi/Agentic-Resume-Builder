@@ -6,9 +6,10 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: final verification and integration handoff
-- Last completed task: `F7` - run a saved-output pilot and full W1 rescore
-- Next task: `F8` - final verification, documentation and integration handoff
+- Current phase: complete; ready for workflow-branch integration
+- Last completed task: `F8` - final verification, documentation and integration handoff
+- Next task: merge this evaluator after each workflow's saved outputs are available, then run the
+  documented pilot-first scoring procedure
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -87,7 +88,7 @@ because not every workflow uses the same harness.
 | F5 | Add semantic support adjudication and evaluator versioning | Complete | `95 passed`; NLI preflight and four-case regression pilot passed |
 | F6 | Integrate component metrics into records, task gates and reports | Complete | `98 passed`; component records, gates and separate report rows verified |
 | F7 | Run a saved-output pilot and full W1 rescore | Complete | 100/100 W1 outputs scored; zero evaluator failures; versioned summaries and blank review packet generated |
-| F8 | Final verification, documentation and integration handoff | Not started | Pending |
+| F8 | Final verification, documentation and integration handoff | Complete | `99 passed`; dataset, checksums, blank review forms and generation immutability verified |
 
 ## Detailed tasks
 
@@ -381,3 +382,24 @@ generation records or prior evaluator outputs.
 
 Next action: execute F8, including full tests, dataset validation, checksum verification, exact
 rerun commands, integration guidance for other workflow branches and a clean-worktree check.
+
+### 2026-11-01 - F8 complete
+
+- Updated the README to describe the three independent faithfulness components, strict composite
+  task gate and faithfulness-only commands that do not require Ollama.
+- Added `docs/evaluation/faithfulness-integration.md` with setup, pilot, full rescore, reporting and
+  W2-W7 integration procedures.
+- Added ignored paths for reproducible detailed evaluation artifacts and the pre-existing local
+  top-level `runs/` directory. No file under `runs/` was modified, staged or deleted.
+- Ran the complete suite: `99 passed`.
+- Revalidated the frozen dataset: five categories, 20 JDs, 100 resumes, 100 pairs, dataset hash
+  `3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81`.
+- Revalidated the committed aggregate summary JSON and all three recorded local SHA-256 checksums.
+- Verified 100 evaluation records, zero evaluator failures and a passed NLI preflight.
+- Verified that all 20 rubric-review rows and all 575 claim-review rows have blank human fields.
+- Verified no Git diff in `results/results.jsonl` or committed generation outputs.
+- Ran `git diff --check` successfully.
+
+Exact continuation commands and metric interpretation are in
+`docs/evaluation/faithfulness-integration.md`. The evaluator is ready to score W2-W7 after their
+implementations and saved outputs are merged; those workflows have not been scored on this branch.
