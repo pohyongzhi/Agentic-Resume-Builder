@@ -6,9 +6,9 @@ Last updated: 2026-11-01 (Asia/Singapore)
 
 - Working branch: `feature/faithfulness-evaluation`
 - Base: `origin/main` at `da23338`
-- Current phase: claim extraction and evidence segmentation
-- Last completed task: `F1` - reproduce the current evaluator and add regression fixtures
-- Next task: `F2` - repair claim extraction and source evidence segmentation
+- Current phase: deterministic protected-field evaluation
+- Last completed task: `F2` - repair claim extraction and source evidence segmentation
+- Next task: `F3` - add deterministic protected-field violation metrics
 - Do not modify or stage the untracked top-level `runs/` directory.
 - Do not regenerate workflow outputs. Existing saved outputs must be rescored.
 - Do not lower the faithfulness threshold to make results pass.
@@ -81,7 +81,7 @@ because not every workflow uses the same harness.
 | --- | --- | --- | --- |
 | F0 | Create dedicated branch and resumable status document | Complete | Branch created from `origin/main`; this document added |
 | F1 | Capture baseline tests and reproduce known false positives | Complete | `74 passed, 1 xfailed`; baseline JSON and four regression fixtures committed |
-| F2 | Repair claim extraction and source evidence segmentation | Not started | Pending |
+| F2 | Repair claim extraction and source evidence segmentation | Complete | `79 passed`; known case reduced from 23 to 17 semantic claims and retrieved the correct source bullet |
 | F3 | Add deterministic protected-field violation metrics | Not started | Pending |
 | F4 | Add automatically derived fabrication-bait metrics | Not started | Pending |
 | F5 | Add semantic support adjudication and evaluator versioning | Not started | Pending |
@@ -233,3 +233,23 @@ Next action: execute F1 and update this file before beginning F2.
 
 Next action: execute F2, remove the expected-failure marker when the repaired extractor passes,
 and update this file before beginning F3.
+
+### 2026-11-01 - F2 complete
+
+- Replaced minimum-length claim filtering with explicit Markdown line classification.
+- Excluded candidate names, contacts, section headings and protected-field headers from semantic
+  claim scoring.
+- Preserved short factual bullets such as `Built REST APIs.`.
+- Added stable evidence units for claims, skills, contact data, candidate names and protected
+  headers, retaining original text and source line numbers.
+- Added comparison-only normalization for Markdown emphasis, Unicode dash variants, whitespace
+  and explicit `(fictional)` markers.
+- Added deterministic evidence retrieval with lexical coverage, sequence similarity and number
+  mismatch penalties.
+- In the known W1 case, semantic claims fell from 23 to 17; five false header claims were removed,
+  and the supported 35% SQL/Excel claim retrieved its exact source bullet first.
+- Removed the F1 expected-failure marker after the repaired extractor passed.
+- Ran focused faithfulness tests and the complete suite: `79 passed`.
+- Did not rescore or overwrite saved evaluation records.
+
+Next action: execute F3 and update this file before beginning F4.

@@ -9,6 +9,8 @@
 import hashlib
 import json
 import re
+import unicodedata
+from difflib import SequenceMatcher
 from pathlib import Path
 
 import numpy as np
@@ -50,6 +52,178 @@ def keyword_coverage(resume, keywords):
 
 _nli = None
 _nli_metadata = None
+
+_SECTION_LABELS = {
+    "summary", "profile", "experience", "professional experience", "work experience",
+    "education", "skills", "technical skills", "projects", "certifications",
+    "achievements",
+}
+_SKILL_SECTIONS = {"skills", "technical skills"}
+_CONTACT_EMAIL = re.compile(r"[\w.+-]+@[\w.-]+\.\w+")
+_CONTACT_PHONE = re.compile(r"(?:\+?\d[\d\s().-]{7,}\d)")
+_MARKDOWN_BULLET = re.compile(r"^(?:[-*•]|\d+[.)])\s+")
+_DATE_RANGE = re.compile(
+    r"\b(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|"
+    r"jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|"
+    r"dec(?:ember)?|\d{4})\b.*(?:-|–|—|to).*"
+    r"\b(?:present|current|jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|"
+    r"jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:tember)?|oct(?:ober)?|nov(?:ember)?|"
+    r"dec(?:ember)?|\d{4})\b",
+    re.IGNORECASE,
+)
+_COMPARISON_STOPWORDS = {
+    "a", "an", "and", "as", "at", "by", "for", "from", "in", "into", "of",
+    "on", "or", "the", "to", "using", "with",
+}
+
+
+def normalize_evidence_text(text):
+    """Normalize formatting differences for comparison without changing retained evidence."""
+    text = unicodedata.normalize("NFKC", text or "")
+    text = text.replace("\u2013", "-").replace("\u2014", "-")
+    text = re.sub(r"\(\s*fictional\s*\)", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"[*_`]+", "", text)
+    text = re.sub(r"^#{1,6}\s*", "", text.strip())
+    text = _MARKDOWN_BULLET.sub("", text)
+    text = re.sub(r"[^\w+#.%@/-]+", " ", text.lower())
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _plain_markdown(text):
+    text = re.sub(r"^#{1,6}\s*", "", text.strip())
+    text = _MARKDOWN_BULLET.sub("", text)
+    text = re.sub(r"[*_`]+", "", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def _sentences(text):
+    """Return stable claim-sized sentences, including short factual bullets."""
+    text = _plain_markdown(text)
+    if not text:
+        return []
+    return [part.strip() for part in re.split(r"(?<=[.!?;])\s+", text) if part.strip()]
+
+
+def _line_records(resume_md):
+    """Classify Markdown lines without treating document structure as factual claims."""
+    records = []
+    section = ""
+    seen_section = False
+    for line_number, raw in enumerate(resume_md.splitlines(), 1):
+        stripped = raw.strip()
+        if not stripped:
+            continue
+        heading = re.match(r"^(#{1,6})\s*(.*)$", stripped)
+        if heading:
+            level = len(heading.group(1))
+            text = _plain_markdown(heading.group(2))
+            normalized = normalize_evidence_text(text)
+            if level == 2 and normalized in _SECTION_LABELS:
+                section = normalized
+                seen_section = True
+                kind = "section_heading"
+            elif level == 1 and not seen_section:
+                kind = "candidate_name"
+            else:
+                kind = "protected_header"
+            records.append({
+                "line": line_number,
+                "section": section,
+                "kind": kind,
+                "text": text,
+                "raw": raw,
+            })
+            continue
+
+        text = _plain_markdown(stripped)
+        is_bullet = bool(_MARKDOWN_BULLET.match(stripped))
+        if _CONTACT_EMAIL.search(text) or (
+            _CONTACT_PHONE.search(text) and not is_bullet and (not seen_section or "|" in text)
+        ):
+            kind = "contact"
+        elif section in _SKILL_SECTIONS:
+            kind = "skill_list"
+        elif stripped.startswith(("**", "__")) or (
+            not _MARKDOWN_BULLET.match(stripped) and _DATE_RANGE.search(text)
+        ):
+            kind = "protected_header"
+        elif not seen_section and len(text.split()) <= 12 and not re.search(r"[.!?]$", text):
+            kind = "candidate_name"
+        else:
+            kind = "claim"
+        records.append({
+            "line": line_number,
+            "section": section,
+            "kind": kind,
+            "text": text,
+            "raw": raw,
+        })
+    return records
+
+
+def extract_evidence_units(resume_md):
+    """Create stable source units for retrieval while retaining original source text."""
+    units = []
+    for record in _line_records(resume_md):
+        kind = record["kind"]
+        if kind == "section_heading":
+            continue
+        if kind == "skill_list":
+            values = [value.strip() for value in re.split(r"[,;]", record["text"]) if value.strip()]
+            parts = [("skill", value) for value in values]
+        elif kind == "claim":
+            parts = [("claim", sentence) for sentence in _sentences(record["text"])]
+        else:
+            parts = [(kind, record["text"])]
+        for unit_kind, text in parts:
+            if not text:
+                continue
+            units.append({
+                "evidence_id": f"evidence-{len(units) + 1:04d}",
+                "section": record["section"],
+                "kind": unit_kind,
+                "text": text,
+                "normalized": normalize_evidence_text(text),
+                "line": record["line"],
+            })
+    return units
+
+
+def _comparison_tokens(text):
+    return {
+        token for token in re.findall(r"[a-z0-9][a-z0-9+#.%/-]*", normalize_evidence_text(text))
+        if token not in _COMPARISON_STOPWORDS
+    }
+
+
+def retrieve_evidence_units(claim, evidence_units, limit=3):
+    """Rank source units deterministically for later semantic support evaluation."""
+    if limit < 1:
+        raise ValueError("evidence retrieval limit must be positive")
+    claim_norm = normalize_evidence_text(claim)
+    claim_tokens = _comparison_tokens(claim)
+    claim_numbers = set(re.findall(r"\d+(?:\.\d+)?%?", claim_norm))
+    ranked = []
+    for unit in evidence_units:
+        unit_norm = unit["normalized"]
+        unit_tokens = _comparison_tokens(unit_norm)
+        if claim_norm and unit_norm and (claim_norm in unit_norm or unit_norm in claim_norm):
+            score = 1.0
+        else:
+            common = claim_tokens & unit_tokens
+            coverage = len(common) / max(len(claim_tokens), 1)
+            union = claim_tokens | unit_tokens
+            jaccard = len(common) / max(len(union), 1)
+            sequence = SequenceMatcher(None, claim_norm, unit_norm).ratio()
+            score = 0.55 * coverage + 0.25 * jaccard + 0.20 * sequence
+            unit_numbers = set(re.findall(r"\d+(?:\.\d+)?%?", unit_norm))
+            if claim_numbers:
+                score += 0.10 if claim_numbers <= unit_numbers else -0.20
+        ranked.append({**unit, "retrieval_score": round(min(max(score, 0.0), 1.0), 6)})
+    return sorted(
+        ranked,
+        key=lambda unit: (-unit["retrieval_score"], unit["evidence_id"]),
+    )[:limit]
 
 
 def nli_model_identity():
@@ -93,26 +267,13 @@ def _load_nli():
 
 
 def extract_claims(resume_md):
-    """Extract substantive claims while excluding section labels and contact-only lines."""
-    claims = []
-    section_labels = {
-        "summary", "experience", "professional experience", "education", "skills",
-        "projects", "certifications", "achievements",
-    }
-    for raw_line in resume_md.splitlines():
-        raw_line = raw_line.strip()
-        if not raw_line or re.search(r"[\w.+-]+@[\w.-]+\.\w+", raw_line):
-            continue
-        if re.search(r"(?:\+?\d[\d\s().-]{7,}\d)", raw_line) and "|" in raw_line:
-            continue
-        line = re.sub(r"^#+\s*", "", raw_line)
-        if line.lower().strip("*_: ") in section_labels or len(line) < 25:
-            continue
-        line = re.sub(r"^[-*•\d.)\s]+", "", line).strip()
-        for sentence in re.split(r"(?<=[.;])\s+", line):
-            if len(sentence) >= 25:
-                claims.append(sentence)
-    return claims
+    """Extract substantive output claims while excluding structure and protected headers."""
+    return [
+        sentence
+        for record in _line_records(resume_md)
+        if record["kind"] == "claim"
+        for sentence in _sentences(record["text"])
+    ]
 
 
 def _chunks(text, size=None, overlap=None):
