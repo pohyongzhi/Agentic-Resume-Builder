@@ -1,0 +1,373 @@
+{
+  "identity": {
+    "source_hash": "296d742af3e1ffc14489b74f7ecebada9f90e1d12298d024e29da54d0a3ee52e",
+    "tailored_hash": "75f47da767e7c8e5f0fae92b32c9c50b2b15c6a49c63380f694e500e5a762ab4",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.16,
+    "unsupported": [
+      "Proven ability to design reliable backend services, document technical decisions, and collaborate across multidisciplinary teams.",
+      "Experienced in optimizing database queries, managing containerized environments, and delivering well-tested improvements that drive operational efficiency.",
+      "Committed to evidence-based decision-making and clear communication to bridge the gap between engineering requirements and business needs.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+      "API Development & Documentation:** Built and documented REST APIs using Excel-based workflows;",
+      "maintained clear documentation for technical and business reviewers to ensure traceability of decisions.",
+      "Database Performance:** Collaborated with engineering colleagues to optimize database queries, directly contributing to system reliability and data integrity.",
+      "Stakeholder Communication:** Managed 60+ monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews with relevant stakeholders.",
+      "Quality Assurance:** Implemented quality checks and follow-up actions to ensure all deliverables met defined standards before deployment.",
+      "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+      "Operational Support:** Supported recurring operational work by creating and maintaining clear, step-by-step documentation procedures.",
+      "Issue Resolution:** Investigated service requests, recorded findings with supporting evidence, and escalated complex issues to engineering teams.",
+      "Process Improvement:** Developed a reporting template that reduced manual preparation time by 15%, demonstrating ability to solve ambiguous problems through data-driven approaches.",
+      "Backend Engineer Practice Project** | Personal Initiative",
+      "Implemented automated testing scenarios to validate functionality and record system limitations.",
+      "Presented architecture design, outcomes, and next steps to a five-person peer review group, refining technical trade-offs based on feedback.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+      "Languages & Frameworks:** Java, Spring Boot",
+      "Databases:** PostgreSQL (Conceptual understanding via coursework and query optimization experience)",
+      "Tools:** Git, Excel, Docker (Containerization concepts applied in project delivery)",
+      "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, technical documentation, stakeholder management, evidence-based decision-making."
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional transitioning into Backend Engineering with a strong foundation in Java, Spring Boot, and stakeholder coordination.",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 0.000203,
+          "entailment": 0.801321,
+          "neutral": 0.198476
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.801321,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to design reliable backend services, document technical decisions, and collaborate across multidisciplinary teams.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001272,
+          "entailment": 0.00307,
+          "neutral": 0.995657
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00307,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in optimizing database queries, managing containerized environments, and delivering well-tested improvements that drive operational efficiency.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000796,
+          "entailment": 0.000763,
+          "neutral": 0.998441
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000763,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making and clear communication to bridge the gap between engineering requirements and business needs.",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 15%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.002699,
+          "entailment": 0.001412,
+          "neutral": 0.995889
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001412,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 0.000948,
+          "entailment": 0.006535,
+          "neutral": 0.992517
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006535,
+        "supported": false
+      },
+      {
+        "claim": "Backend Service Design & Optimization:** Utilized Java and Spring Boot to design and improve reliable backend services, increasing team turnaround by 20%.",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 8e-05,
+          "entailment": 0.991137,
+          "neutral": 0.008784
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.991137,
+        "supported": true
+      },
+      {
+        "claim": "API Development & Documentation:** Built and documented REST APIs using Excel-based workflows;",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 15%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.00928,
+          "entailment": 0.003082,
+          "neutral": 0.987638
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003082,
+        "supported": false
+      },
+      {
+        "claim": "maintained clear documentation for technical and business reviewers to ensure traceability of decisions.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000164,
+          "entailment": 0.003235,
+          "neutral": 0.996601
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003235,
+        "supported": false
+      },
+      {
+        "claim": "Database Performance:** Collaborated with engineering colleagues to optimize database queries, directly contributing to system reliability and data integrity.",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 0.003693,
+          "entailment": 0.034836,
+          "neutral": 0.961471
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.034836,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Managed 60+ monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews with relevant stakeholders.",
+        "best_source_chunk": "2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. - Applied Excel to build and document REST APIs and documented decisions for technical and business reviewers. - Managed approximately 60 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries",
+        "probabilities": {
+          "contradiction": 0.005032,
+          "entailment": 0.000831,
+          "neutral": 0.994137
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000831,
+        "supported": false
+      },
+      {
+        "claim": "Quality Assurance:** Implemented quality checks and follow-up actions to ensure all deliverables met defined standards before deployment.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001902,
+          "entailment": 0.001191,
+          "neutral": 0.996906
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001191,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.012532,
+          "entailment": 0.003447,
+          "neutral": 0.98402
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003447,
+        "supported": false
+      },
+      {
+        "claim": "Operational Support:** Supported recurring operational work by creating and maintaining clear, step-by-step documentation procedures.",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 15%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.058588,
+          "entailment": 0.177955,
+          "neutral": 0.763457
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.177955,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution:** Investigated service requests, recorded findings with supporting evidence, and escalated complex issues to engineering teams.",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 0.004096,
+          "entailment": 0.001252,
+          "neutral": 0.994653
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001252,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that reduced manual preparation time by 15%, demonstrating ability to solve ambiguous problems through data-driven approaches.",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 15%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.288166,
+          "entailment": 0.006893,
+          "neutral": 0.704941
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006893,
+        "supported": false
+      },
+      {
+        "claim": "Backend Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 0.013887,
+          "entailment": 0.008561,
+          "neutral": 0.977552
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008561,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration backend service using Java and Spring Boot.",
+        "best_source_chunk": "# Jonas Tan jonas.tan@example.test | +65 6000 0010 | Singapore ## Summary Operations support professional experienced in Java, Spring Boot, documentation and stakeholder coordination, transitioning toward Backend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 20%. -",
+        "probabilities": {
+          "contradiction": 0.000394,
+          "entailment": 0.828257,
+          "neutral": 0.171349
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.828257,
+        "supported": true
+      },
+      {
+        "claim": "Implemented automated testing scenarios to validate functionality and record system limitations.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.01382,
+          "entailment": 0.001845,
+          "neutral": 0.984334
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001845,
+        "supported": false
+      },
+      {
+        "claim": "Presented architecture design, outcomes, and next steps to a five-person peer review group, refining technical trade-offs based on feedback.",
+        "best_source_chunk": "Practice Project - Built a fictional demonstration project using Java, Spring Boot and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included",
+        "probabilities": {
+          "contradiction": 0.025051,
+          "entailment": 0.011851,
+          "neutral": 0.963098
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011851,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.484086,
+          "entailment": 0.002298,
+          "neutral": 0.513616
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002298,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 7.2e-05,
+          "entailment": 0.98374,
+          "neutral": 0.016188
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.98374,
+        "supported": true
+      },
+      {
+        "claim": "Languages & Frameworks:** Java, Spring Boot",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001849,
+          "entailment": 0.004006,
+          "neutral": 0.994145
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004006,
+        "supported": false
+      },
+      {
+        "claim": "Databases:** PostgreSQL (Conceptual understanding via coursework and query optimization experience)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.005712,
+          "entailment": 0.002831,
+          "neutral": 0.991457
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002831,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Git, Excel, Docker (Containerization concepts applied in project delivery)",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.004098,
+          "entailment": 0.006627,
+          "neutral": 0.989276
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006627,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, technical documentation, stakeholder management, evidence-based decision-making.",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 15%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.003762,
+          "entailment": 0.006118,
+          "neutral": 0.99012
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006118,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "49ee482485d34873b1fd7c2a2ed8093d226d50dc7008d39db27d29e4e97fa863"
+  }
+}

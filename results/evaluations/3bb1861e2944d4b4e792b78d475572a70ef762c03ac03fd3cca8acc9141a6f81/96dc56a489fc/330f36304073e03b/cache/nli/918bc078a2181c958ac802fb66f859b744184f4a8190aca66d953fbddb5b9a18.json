@@ -1,0 +1,323 @@
+{
+  "identity": {
+    "source_hash": "62006fe928f117eeb2b8903e68717e713c5bdc88785d5051506194b3e475b655",
+    "tailored_hash": "c336f125b51e266d7983cf35e61c2dcf86fd09c0c0f41729ee8e99b003be7721",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0952,
+    "unsupported": [
+      "Data Analyst with hands-on experience in SQL, Excel, and Power BI, specializing in cleaning operational data and building decision-support dashboards.",
+      "Proven ability to turn ambiguous problems into reliable, maintainable solutions through evidence-based decisions.",
+      "Adept at collaborating with engineering, product, and business stakeholders to define metrics, automate reports, and communicate technical trade-offs clearly.",
+      "Committed to delivering quality work with clear documentation and responsible delivery controls.",
+      "Data Analyst** | Example Beacon Services (Singapore)",
+      "Clean and analyze operational data using SQL and Excel, improving team turnaround by 42% through optimized data processing workflows.",
+      "Build decision-support dashboards in Power BI to visualize key business metrics;",
+      "document all decisions for technical and business reviewers to ensure transparency and maintainability.",
+      "Define and monitor business metrics while managing approximately 36 work items monthly, ensuring quality checks and follow-up actions are tracked rigorously.",
+      "Collaborate with cross-functional teams to present progress, risks, and technical trade-offs during fortnightly reviews, fostering trusted working relationships.",
+      "Technical Assistant** | Example Cedar Innovations (Singapore)",
+      "Support recurring operational work by performing data cleaning and documenting step-by-step procedures to ensure reproducibility and reduce manual errors.",
+      "Investigate service requests, record findings with clear supporting evidence, and escalate issues to stakeholders for resolution.",
+      "Create automated reporting templates that reduced manual preparation time by 37%, demonstrating the ability to automate recurring reports.",
+      "Data Analyst Practice Project**",
+      "Built a demonstration project utilizing SQL, Excel, and Power BI to simulate real-world data analysis scenarios.",
+      "Test the solution with representative cases, recording limitations and defining next steps for continuous improvement.",
+      "Present design and outcomes to a five-person peer review group, honing clear written and verbal communication skills.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)"
+    ],
+    "n_claims": 21,
+    "claim_scores": [
+      {
+        "claim": "Data Analyst with hands-on experience in SQL, Excel, and Power BI, specializing in cleaning operational data and building decision-support dashboards.",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 7.1e-05,
+          "entailment": 0.006002,
+          "neutral": 0.993926
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006002,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn ambiguous problems into reliable, maintainable solutions through evidence-based decisions.",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.001294,
+          "entailment": 0.001305,
+          "neutral": 0.9974
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001305,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating with engineering, product, and business stakeholders to define metrics, automate reports, and communicate technical trade-offs clearly.",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.001983,
+          "entailment": 0.010426,
+          "neutral": 0.987591
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010426,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering quality work with clear documentation and responsible delivery controls.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000371,
+          "entailment": 0.077821,
+          "neutral": 0.921808
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.077821,
+        "supported": false
+      },
+      {
+        "claim": "Data Analyst** | Example Beacon Services (Singapore)",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.451321,
+          "entailment": 0.022465,
+          "neutral": 0.526213
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.022465,
+        "supported": false
+      },
+      {
+        "claim": "Clean and analyze operational data using SQL and Excel, improving team turnaround by 42% through optimized data processing workflows.",
+        "best_source_chunk": "# Benjamin Lim benjamin.lim@example.test | +65 6000 0022 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Beacon Services (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 42%. -",
+        "probabilities": {
+          "contradiction": 0.000126,
+          "entailment": 0.000753,
+          "neutral": 0.999121
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000753,
+        "supported": false
+      },
+      {
+        "claim": "Build decision-support dashboards in Power BI to visualize key business metrics;",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.000206,
+          "entailment": 0.001683,
+          "neutral": 0.998112
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001683,
+        "supported": false
+      },
+      {
+        "claim": "document all decisions for technical and business reviewers to ensure transparency and maintainability.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000955,
+          "entailment": 0.001644,
+          "neutral": 0.9974
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001644,
+        "supported": false
+      },
+      {
+        "claim": "Define and monitor business metrics while managing approximately 36 work items monthly, ensuring quality checks and follow-up actions are tracked rigorously.",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.001218,
+          "entailment": 0.001834,
+          "neutral": 0.996949
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001834,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with cross-functional teams to present progress, risks, and technical trade-offs during fortnightly reviews, fostering trusted working relationships.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.003294,
+          "entailment": 0.00151,
+          "neutral": 0.995196
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00151,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Cedar Innovations (Singapore)",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.984046,
+          "entailment": 0.002638,
+          "neutral": 0.013316
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.002638,
+        "supported": false
+      },
+      {
+        "claim": "Support recurring operational work by performing data cleaning and documenting step-by-step procedures to ensure reproducibility and reduce manual errors.",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.000972,
+          "entailment": 0.001166,
+          "neutral": 0.997863
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001166,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with clear supporting evidence, and escalate issues to stakeholders for resolution.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.00018,
+          "entailment": 0.000624,
+          "neutral": 0.999196
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000624,
+        "supported": false
+      },
+      {
+        "claim": "Create automated reporting templates that reduced manual preparation time by 37%, demonstrating the ability to automate recurring reports.",
+        "best_source_chunk": "Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 37%. ## Projects ### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the project",
+        "probabilities": {
+          "contradiction": 0.114668,
+          "entailment": 0.010063,
+          "neutral": 0.875269
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010063,
+        "supported": false
+      },
+      {
+        "claim": "Data Analyst Practice Project**",
+        "best_source_chunk": "# Benjamin Lim benjamin.lim@example.test | +65 6000 0022 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Beacon Services (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 42%. -",
+        "probabilities": {
+          "contradiction": 0.000658,
+          "entailment": 0.002219,
+          "neutral": 0.997123
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002219,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing SQL, Excel, and Power BI to simulate real-world data analysis scenarios.",
+        "best_source_chunk": "# Benjamin Lim benjamin.lim@example.test | +65 6000 0022 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Beacon Services (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 42%. -",
+        "probabilities": {
+          "contradiction": 0.000314,
+          "entailment": 0.007431,
+          "neutral": 0.992254
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007431,
+        "supported": false
+      },
+      {
+        "claim": "Test the solution with representative cases, recording limitations and defining next steps for continuous improvement.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.005297,
+          "entailment": 0.002859,
+          "neutral": 0.991844
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002859,
+        "supported": false
+      },
+      {
+        "claim": "Present design and outcomes to a five-person peer review group, honing clear written and verbal communication skills.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.018378,
+          "entailment": 0.001021,
+          "neutral": 0.9806
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001021,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+        "best_source_chunk": "communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.113964,
+          "entailment": 0.07359,
+          "neutral": 0.812446
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.07359,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.007146,
+          "entailment": 0.650913,
+          "neutral": 0.341941
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.650913,
+        "supported": true
+      },
+      {
+        "claim": "SQL, Excel, Power BI, Python, data cleaning, dashboarding, statistics, Tableau, A/B testing, stakeholder communication",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.006242,
+          "entailment": 0.937497,
+          "neutral": 0.05626
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.937497,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "918bc078a2181c958ac802fb66f859b744184f4a8190aca66d953fbddb5b9a18"
+  }
+}

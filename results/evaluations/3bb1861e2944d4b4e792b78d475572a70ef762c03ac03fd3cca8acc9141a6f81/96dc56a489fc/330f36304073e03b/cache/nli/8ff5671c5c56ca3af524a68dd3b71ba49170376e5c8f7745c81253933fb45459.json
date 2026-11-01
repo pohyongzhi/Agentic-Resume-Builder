@@ -1,0 +1,362 @@
+{
+  "identity": {
+    "source_hash": "50dde25c2c2cb3c10c2b98b8c5c5fe724fcf148088d2bb7231270d0a74425afe",
+    "tailored_hash": "91c56a307a1ccfc0ed85fe9a681759eb3645da69d6e802cc4a937055324b839d",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0833,
+    "unsupported": [
+      "Mid-level Backend Engineer with a strong foundation in Java, Spring Boot, and REST API development.",
+      "Proven ability to design reliable backend services, optimize database queries, and build well-documented solutions that support operational efficiency.",
+      "Adept at collaborating with cross-functional stakeholders to translate technical requirements into maintainable code.",
+      "Committed to writing automated tests, maintaining clear documentation, and delivering evidence-based decisions to drive project success.",
+      "Backend Service Design:** Designed and implemented reliable backend services using Java and Spring Boot, improving team turnaround time by 13%.",
+      "API Development & Documentation:** Built and documented REST APIs with clear technical specifications to support business stakeholders.",
+      "Database Optimization:** Collaborated with the engineering team to optimize PostgreSQL queries, enhancing data retrieval performance for critical operational workflows.",
+      "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews to four colleagues and senior reviewers, ensuring alignment on project goals.",
+      "Quality Assurance:** Managed approximately 47 work items per month while enforcing quality checks and tracking follow-up actions to ensure delivery standards.",
+      "Technical Assistant** | Example Ember Technologies (Singapore)",
+      "Database Management:** Supported recurring operational tasks using PostgreSQL, ensuring data integrity and availability.",
+      "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence to facilitate rapid resolution.",
+      "Process Improvement:** Developed a reporting template that reduced manual preparation time by 8%, demonstrating an ability to solve ambiguous problems through practical application.",
+      "Backend Engineer Practice Project** | Personal Initiative",
+      "Architected a demonstration microservice using Java, Spring Boot, and REST APIs.",
+      "Implemented unit tests to validate representative scenarios and document system limitations.",
+      "Presented the design architecture and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+      "Languages & Frameworks:** Java, Spring Boot, PostgreSQL.",
+      "APIs:** RESTful Services design and documentation.",
+      "Tools & Practices:** Git, Docker (containerized services), Unit Testing, Excel.",
+      "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, technical documentation, evidence-based decision-making."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Backend Engineer with a strong foundation in Java, Spring Boot, and REST API development.",
+        "best_source_chunk": "# Inez Tan inez.tan@example.test | +65 6000 0009 | Singapore ## Summary Technology associate with transferable experience in Java, Spring Boot and REST APIs, seeking to deepen capability as a Backend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.002856,
+          "entailment": 0.273763,
+          "neutral": 0.723381
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.273763,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to design reliable backend services, optimize database queries, and build well-documented solutions that support operational efficiency.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.004478,
+          "entailment": 0.06724,
+          "neutral": 0.928281
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.06724,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating with cross-functional stakeholders to translate technical requirements into maintainable code.",
+        "best_source_chunk": "Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.007682,
+          "entailment": 0.014227,
+          "neutral": 0.978091
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014227,
+        "supported": false
+      },
+      {
+        "claim": "Committed to writing automated tests, maintaining clear documentation, and delivering evidence-based decisions to drive project success.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.001609,
+          "entailment": 0.03351,
+          "neutral": 0.964881
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.03351,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (Singapore)",
+        "best_source_chunk": "# Inez Tan inez.tan@example.test | +65 6000 0009 | Singapore ## Summary Technology associate with transferable experience in Java, Spring Boot and REST APIs, seeking to deepen capability as a Backend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.004021,
+          "entailment": 0.841713,
+          "neutral": 0.154266
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.841713,
+        "supported": true
+      },
+      {
+        "claim": "Backend Service Design:** Designed and implemented reliable backend services using Java and Spring Boot, improving team turnaround time by 13%.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.001173,
+          "entailment": 0.00098,
+          "neutral": 0.997848
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00098,
+        "supported": false
+      },
+      {
+        "claim": "API Development & Documentation:** Built and documented REST APIs with clear technical specifications to support business stakeholders.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.003571,
+          "entailment": 0.0027,
+          "neutral": 0.993729
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0027,
+        "supported": false
+      },
+      {
+        "claim": "Database Optimization:** Collaborated with the engineering team to optimize PostgreSQL queries, enhancing data retrieval performance for critical operational workflows.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.002263,
+          "entailment": 0.004974,
+          "neutral": 0.992763
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004974,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews to four colleagues and senior reviewers, ensuring alignment on project goals.",
+        "best_source_chunk": "Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.144264,
+          "entailment": 0.002133,
+          "neutral": 0.853604
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002133,
+        "supported": false
+      },
+      {
+        "claim": "Quality Assurance:** Managed approximately 47 work items per month while enforcing quality checks and tracking follow-up actions to ensure delivery standards.",
+        "best_source_chunk": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.011216,
+          "entailment": 0.002145,
+          "neutral": 0.986638
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002145,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (Singapore)",
+        "best_source_chunk": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.004672,
+          "entailment": 0.000664,
+          "neutral": 0.994664
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000664,
+        "supported": false
+      },
+      {
+        "claim": "Database Management:** Supported recurring operational tasks using PostgreSQL, ensuring data integrity and availability.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.633305,
+          "entailment": 0.006277,
+          "neutral": 0.360418
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.006277,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence to facilitate rapid resolution.",
+        "best_source_chunk": "# Inez Tan inez.tan@example.test | +65 6000 0009 | Singapore ## Summary Technology associate with transferable experience in Java, Spring Boot and REST APIs, seeking to deepen capability as a Backend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.003914,
+          "entailment": 0.001333,
+          "neutral": 0.994753
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001333,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that reduced manual preparation time by 8%, demonstrating an ability to solve ambiguous problems through practical application.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.807854,
+          "entailment": 0.021245,
+          "neutral": 0.170901
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.021245,
+        "supported": false
+      },
+      {
+        "claim": "Backend Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Inez Tan inez.tan@example.test | +65 6000 0009 | Singapore ## Summary Technology associate with transferable experience in Java, Spring Boot and REST APIs, seeking to deepen capability as a Backend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.00941,
+          "entailment": 0.037283,
+          "neutral": 0.953306
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.037283,
+        "supported": false
+      },
+      {
+        "claim": "Architected a demonstration microservice using Java, Spring Boot, and REST APIs.",
+        "best_source_chunk": "# Inez Tan inez.tan@example.test | +65 6000 0009 | Singapore ## Summary Technology associate with transferable experience in Java, Spring Boot and REST APIs, seeking to deepen capability as a Backend Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000509,
+          "entailment": 0.387821,
+          "neutral": 0.61167
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.387821,
+        "supported": false
+      },
+      {
+        "claim": "Implemented unit tests to validate representative scenarios and document system limitations.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.009672,
+          "entailment": 0.006202,
+          "neutral": 0.984126
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006202,
+        "supported": false
+      },
+      {
+        "claim": "Presented the design architecture and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+        "best_source_chunk": "### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 -",
+        "probabilities": {
+          "contradiction": 0.000502,
+          "entailment": 0.001279,
+          "neutral": 0.998219
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001279,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+        "best_source_chunk": "Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.18079,
+          "entailment": 0.062149,
+          "neutral": 0.757061
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.062149,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 9.1e-05,
+          "entailment": 0.979949,
+          "neutral": 0.01996
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.979949,
+        "supported": true
+      },
+      {
+        "claim": "Languages & Frameworks:** Java, Spring Boot, PostgreSQL.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.00655,
+          "entailment": 0.044591,
+          "neutral": 0.948859
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.044591,
+        "supported": false
+      },
+      {
+        "claim": "APIs:** RESTful Services design and documentation.",
+        "best_source_chunk": "Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.020019,
+          "entailment": 0.09202,
+          "neutral": 0.887961
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.09202,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Practices:** Git, Docker (containerized services), Unit Testing, Excel.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, Kafka, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.005069,
+          "entailment": 0.019364,
+          "neutral": 0.975567
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019364,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, technical documentation, evidence-based decision-making.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested",
+        "probabilities": {
+          "contradiction": 0.003464,
+          "entailment": 0.01,
+          "neutral": 0.986536
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "8ff5671c5c56ca3af524a68dd3b71ba49170376e5c8f7745c81253933fb45459"
+  }
+}

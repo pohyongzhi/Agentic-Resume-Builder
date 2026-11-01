@@ -107,16 +107,70 @@ python baseline_tailor.py --resume my_resume.pdf --jd job.txt
 ## Run experiments
 
 ```bash
-python run_all.py --limit 1 --repeats 1
+python scripts/validate_dataset.py
+python run_all.py --split test --limit 1 --repeats 1
 python summarise.py
 ```
 
 Evaluation uses saved JD snapshots rather than live URLs for reproducibility. Results are appended
-to `results/results.jsonl`; generated resumes go to `results/outputs/`. Runs are skipped only when
-workflow, pair, repeat, model and config/prompt hash all match. Failed runs remain in the summary's
-success rate.
+to `results/results.jsonl`; canonical per-run resumes, metrics and traces go under `results/runs/`.
+Runs are skipped only when workflow, pair, repeat, model, config/prompt hash and frozen dataset hash
+all match. Failed runs remain in the summary's success rate.
 
 The first faithfulness run downloads `cross-encoder/nli-deberta-v3-small`.
+
+### Evaluator metrics
+
+Every saved run records resume-quality metrics (JD similarity, keyword coverage and NLI
+faithfulness) plus operational metrics:
+
+- task success on the frozen test split, gated by completion, required sections, length and
+  faithfulness;
+- tool-call and argument accuracy, required sequence validity and recovery after failed calls;
+- workflow-aware step efficiency, repeated calls and budget utilisation;
+- input/output tokens, total tokens, model time and end-to-end latency;
+- robustness on formatting and section-order variants of a small shared test subset.
+
+Operational thresholds can be changed and applied to saved outputs without regenerating resumes:
+
+```bash
+python evaluate_results.py
+python summarise.py --results-file results/evaluated_results.jsonl
+python run_robustness.py --limit 20 --skip-faithfulness
+```
+
+Robustness results are written to `results/summaries/robustness.csv`. Tool metrics are `N/A` for
+workflows such as W1 that intentionally use no tools.
+
+### Reusable offline evaluation pipeline
+
+The full evaluator preserves generation artifacts and writes versioned records under
+`results/evaluations/<dataset_hash>/<generation_scope>/<evaluator_hash>/`. Run W1 faithfulness,
+the shared rubric judge, the fixed 20-pair robustness benchmark, reports and human-review packet:
+
+```bash
+python evaluate.py all \
+  --workflows w1_single_pass \
+  --judge-model gemma4:e4b \
+  --resume
+```
+
+The installed `gemma4:e4b` judge is an 8.0B Q4_K_M model, not a 3B model. The command requires the
+exact tag and never pulls or silently substitutes a judge. Use `--pilot` before a new configuration,
+`--limit N` for saved-output scoring, `--robustness-limit N` for perturbations, or the
+`--skip-faithfulness`, `--skip-judge`, `--skip-robustness`, `--skip-reports` and
+`--skip-human-review` flags to omit expensive stages.
+
+The judge sees the original resume, JD and tailored resume and applies the same five-dimension
+rubric to every workflow. Its score remains separate from NLI faithfulness, keyword coverage,
+embedding similarity and operational metrics. NLI and judge caches are content/configuration
+addressed, failed evaluations remain unscored rather than becoming zero, and task success is
+recalculated only from completion, structure, length and the predeclared faithfulness threshold.
+
+The evaluation directory contains `evaluations.jsonl`, `robustness/evaluations.jsonl`,
+`robustness/sample_manifest.json`, detailed CSV/JSON summaries, NLI preflight evidence, full judge
+provenance and a blinded `human_review/` packet. Human forms are blank; automated scores are not
+claimed as human-validated until independent ratings are completed.
 
 ## Code layout
 
@@ -138,8 +192,15 @@ workflows/
   w2_baseline.py          W2 agentic baseline creator
   w3_critic.py            parallel specialist critics + bounded revision loop
 eval/metrics.py           shared evaluator metrics
+eval/operational.py       task, tool, step and cost metrics
+eval/robustness.py        input perturbations and stability aggregation
 run_all.py                batch runner
+evaluate_results.py       rescore saved outputs without regeneration
+run_robustness.py         shared perturbation benchmark
 summarise.py              per-workflow summary
+scripts/
+  generate_dataset.py     deterministic synthetic dataset materialiser
+  validate_dataset.py     dataset integrity and leakage checks
 tests/                    harness, extraction-tool and graph tests
 ```
 
@@ -155,10 +216,19 @@ The test labels must never be shown to a workflow.
 
 ## Evaluation data
 
-- `data/resumes/*.md`: fictional candidates only.
-- `data/jds/*.md`: saved JD snapshots.
-- `data/jds/*.keywords.json`: hand-labelled must-have keywords and synonyms.
-- `data/pairs.csv`: resume/JD pairings and optional source URLs.
+- `data/resumes/*.md`: 100 fictional candidate resumes.
+- `data/jds/*.md`: 20 synthetic JD snapshots across five categories.
+- `data/jds/*.keywords.json`: evaluator-only must-have keywords and synonyms.
+- `data/pairs.csv`: 100 explicit resume/JD pairs with category, seniority and fit metadata.
+- `data/dataset.json`: frozen version, counts, provenance and content hash.
+- `data/generation/`: reproducible specification and raw generation records.
 
-The sample is a placeholder. Expand it before the final experiment and freeze all workflows before
-looking at test results.
+Each JD has two strong-fit, two moderate-fit and one weak-fit resume. Regenerate and verify with:
+
+```bash
+python scripts/generate_dataset.py --force
+python scripts/validate_dataset.py
+```
+
+Review every keyword file and a stratified sample of resume/JD pairs before treating the dataset as
+final. Workflows receive resume and JD Markdown only; keyword and fit labels stay in the evaluator.

@@ -2,7 +2,7 @@
 (`format=`), so the model's reply is constrained to this shape."""
 from typing import Literal
 
-from pydantic import BaseModel, Field, model_validator
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class Schema(BaseModel):
@@ -105,6 +105,33 @@ class CriticFeedback(Schema):
     score: int = Field(ge=1, le=5)
     summary: str
     issues: list[CriticIssue] = Field(default_factory=list)
+
+
+class JudgeQuotation(BaseModel):
+    """A verbatim quotation whose source is checked after model generation."""
+    model_config = ConfigDict(extra="forbid")
+
+    source: Literal["original_resume", "job_description", "tailored_resume"]
+    quote: str = Field(min_length=1)
+
+
+class JudgeDimension(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    score: int = Field(ge=1, le=5)
+    explanation: str = Field(min_length=1)
+    quotations: list[JudgeQuotation] = Field(min_length=1)
+
+
+class JudgeResponse(BaseModel):
+    """Workflow-neutral rubric output. The arithmetic mean is calculated by Python."""
+    model_config = ConfigDict(extra="forbid")
+
+    relevance_to_jd: JudgeDimension
+    prioritisation_of_supported_experience: JudgeDimension
+    clarity: JudgeDimension
+    concision: JudgeDimension
+    organisation_and_readability: JudgeDimension
 
 
 def llm_schema(model: type[BaseModel], exclude: tuple[str, ...] = ()) -> dict:

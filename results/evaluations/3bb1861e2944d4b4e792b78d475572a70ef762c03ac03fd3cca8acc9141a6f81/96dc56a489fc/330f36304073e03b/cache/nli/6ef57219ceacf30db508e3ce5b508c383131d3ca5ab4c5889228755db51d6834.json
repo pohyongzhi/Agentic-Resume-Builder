@@ -1,0 +1,362 @@
+{
+  "identity": {
+    "source_hash": "788a38b93c74fe3bd7072d590a13860bc1032ab6c2a037b9ec12a07a781bda4d",
+    "tailored_hash": "3868170ff338acb481bfa5000458bd0409b1146593bdb7c8450b2a5799669ebf",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0833,
+    "unsupported": [
+      "Mid-level Full-Stack Engineer with transferable experience in TypeScript, React, and Node.js, seeking to deepen capability within a multidisciplinary technology team.",
+      "Proven ability to deliver end-to-end product features while maintaining clear documentation and evidence-based decision-making.",
+      "Experienced in collaborating across engineering, product, and business stakeholders to solve ambiguous problems and improve application reliability.",
+      "Technology Associate** | Example Delta Operations (fictional)",
+      "End-to-End Delivery:** Designed frontend components and backend APIs using TypeScript, React, and Node.js to deliver meaningful product features, improving team turnaround by 17%.",
+      "Data Modeling & Collaboration:** Collaborated with four colleagues to model relational data structures, ensuring integrity for operational needs.",
+      "Presented technical trade-offs and progress during fortnightly reviews to stakeholders.",
+      "Documentation & Quality Control:** Documented technical decisions for both engineering and business reviewers;",
+      "managed approximately 22 work items per month while tracking quality checks and follow-up actions.",
+      "Technical Assistant** | Example Ember Technologies (fictional)",
+      "API Maintenance:** Supported recurring operational work using REST APIs, ensuring reliable service delivery and data consistency.",
+      "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence, fostering trusted working relationships within the team.",
+      "Process Optimization:** Created automated reporting templates that streamlined workflows and reduced manual effort by 12%.",
+      "Full-Stack Engineer Practice Project**",
+      "Built a demonstration project utilizing TypeScript, React, and Node.js to validate full-stack capabilities.",
+      "Executed rigorous testing with representative scenarios to identify limitations and define next steps for reliability improvements.",
+      "Presented design rationale and outcomes to a five-person peer review group, demonstrating clear communication of technical concepts.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (fictional)",
+      "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+      "Frontend:** React, REST APIs",
+      "Tools & Practices:** Git, Documentation, CI/CD pipelines, Relational Data Modeling",
+      "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, stakeholder management"
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Full-Stack Engineer with transferable experience in TypeScript, React, and Node.js, seeking to deepen capability within a multidisciplinary technology team.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.109478,
+          "entailment": 0.01561,
+          "neutral": 0.874911
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01561,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to deliver end-to-end product features while maintaining clear documentation and evidence-based decision-making.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002724,
+          "entailment": 0.012142,
+          "neutral": 0.985134
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012142,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in collaborating across engineering, product, and business stakeholders to solve ambiguous problems and improve application reliability.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00079,
+          "entailment": 0.002116,
+          "neutral": 0.997093
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002116,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (fictional)",
+        "best_source_chunk": "# Noah Tan noah.tan@example.test | +65 6000 0014 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.012306,
+          "entailment": 0.025792,
+          "neutral": 0.961902
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.025792,
+        "supported": false
+      },
+      {
+        "claim": "End-to-End Delivery:** Designed frontend components and backend APIs using TypeScript, React, and Node.js to deliver meaningful product features, improving team turnaround by 17%.",
+        "best_source_chunk": "# Noah Tan noah.tan@example.test | +65 6000 0014 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000403,
+          "entailment": 0.01623,
+          "neutral": 0.983367
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01623,
+        "supported": false
+      },
+      {
+        "claim": "Data Modeling & Collaboration:** Collaborated with four colleagues to model relational data structures, ensuring integrity for operational needs.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002684,
+          "entailment": 0.003246,
+          "neutral": 0.994071
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003246,
+        "supported": false
+      },
+      {
+        "claim": "Presented technical trade-offs and progress during fortnightly reviews to stakeholders.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.003572,
+          "entailment": 0.001121,
+          "neutral": 0.995307
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001121,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Quality Control:** Documented technical decisions for both engineering and business reviewers;",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000466,
+          "entailment": 0.000998,
+          "neutral": 0.998536
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000998,
+        "supported": false
+      },
+      {
+        "claim": "managed approximately 22 work items per month while tracking quality checks and follow-up actions.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00079,
+          "entailment": 0.000453,
+          "neutral": 0.998756
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000453,
+        "supported": false
+      },
+      {
+        "claim": "Reliability & Process Improvement:** Implemented clear step-by-step procedures for recurring operational tasks, reducing manual preparation time by 12% through efficient reporting templates.",
+        "best_source_chunk": "recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 12%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.000512,
+          "entailment": 0.741187,
+          "neutral": 0.258301
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.741187,
+        "supported": true
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (fictional)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.006028,
+          "entailment": 0.002767,
+          "neutral": 0.991206
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002767,
+        "supported": false
+      },
+      {
+        "claim": "API Maintenance:** Supported recurring operational work using REST APIs, ensuring reliable service delivery and data consistency.",
+        "best_source_chunk": "recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 12%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.012572,
+          "entailment": 0.002178,
+          "neutral": 0.98525
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002178,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence, fostering trusted working relationships within the team.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.017016,
+          "entailment": 0.000824,
+          "neutral": 0.98216
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000824,
+        "supported": false
+      },
+      {
+        "claim": "Process Optimization:** Created automated reporting templates that streamlined workflows and reduced manual effort by 12%.",
+        "best_source_chunk": "recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 12%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.005619,
+          "entailment": 0.214841,
+          "neutral": 0.779541
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.214841,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Engineer Practice Project**",
+        "best_source_chunk": "# Noah Tan noah.tan@example.test | +65 6000 0014 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.008233,
+          "entailment": 0.008659,
+          "neutral": 0.983109
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008659,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing TypeScript, React, and Node.js to validate full-stack capabilities.",
+        "best_source_chunk": "# Noah Tan noah.tan@example.test | +65 6000 0014 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000913,
+          "entailment": 0.011136,
+          "neutral": 0.987951
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011136,
+        "supported": false
+      },
+      {
+        "claim": "Executed rigorous testing with representative scenarios to identify limitations and define next steps for reliability improvements.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002213,
+          "entailment": 0.001565,
+          "neutral": 0.996222
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001565,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, demonstrating clear communication of technical concepts.",
+        "best_source_chunk": "Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included",
+        "probabilities": {
+          "contradiction": 0.001315,
+          "entailment": 0.007343,
+          "neutral": 0.991342
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007343,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (fictional)",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.003304,
+          "entailment": 0.007116,
+          "neutral": 0.989581
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007116,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.016434,
+          "entailment": 0.187685,
+          "neutral": 0.795881
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.187685,
+        "supported": false
+      },
+      {
+        "claim": "Languages:** TypeScript, Node.js",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.063032,
+          "entailment": 0.71372,
+          "neutral": 0.223249
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.71372,
+        "supported": true
+      },
+      {
+        "claim": "Frontend:** React, REST APIs",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.500833,
+          "entailment": 0.163808,
+          "neutral": 0.335359
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.163808,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Practices:** Git, Documentation, CI/CD pipelines, Relational Data Modeling",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.007354,
+          "entailment": 0.002334,
+          "neutral": 0.990312
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002334,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, stakeholder management",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.005815,
+          "entailment": 0.003451,
+          "neutral": 0.990734
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003451,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "6ef57219ceacf30db508e3ce5b508c383131d3ca5ab4c5889228755db51d6834"
+  }
+}

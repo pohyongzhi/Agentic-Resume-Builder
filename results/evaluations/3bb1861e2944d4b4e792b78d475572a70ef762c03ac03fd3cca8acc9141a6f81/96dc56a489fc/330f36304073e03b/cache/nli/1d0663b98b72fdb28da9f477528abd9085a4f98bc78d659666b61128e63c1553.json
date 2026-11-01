@@ -1,0 +1,374 @@
+{
+  "identity": {
+    "source_hash": "e28f8da665848ba0a2b006d64fd6de8652f76d7ee5c4c5df12afac6f44a5ae10",
+    "tailored_hash": "f7a93bac8902a21e4425e623b41a601a917021825c682d28dd64252b8bad54a0",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.12,
+    "unsupported": [
+      "Entry-level Data Analyst with a Bachelor of Science in Information Systems and transferable experience in SQL, Excel, Power BI, and data cleaning.",
+      "Proven ability to clean operational data, build decision-support dashboards, and automate recurring reports.",
+      "Skilled in collaborating with engineering and business stakeholders to define metrics, communicate findings, and deliver evidence-based solutions.",
+      "Committed to maintaining clear documentation and solving ambiguous problems through rigorous quality controls.",
+      "Technology Associate** | Example Cedar Innovations (Jan 2025 \u2013 Present)",
+      "Built decision-support dashboards in Power BI to visualize key performance indicators for technical and business reviewers.",
+      "Defined and monitored business metrics while managing approximately 49 work items monthly with strict quality checks.",
+      "Collaborated with four colleagues to present progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+      "Maintained clear documentation of processes and decisions to support team planning and audits.",
+      "Technical Assistant** | Example Delta Operations (May 2024 \u2013 Dec 2024)",
+      "Automated recurring operational tasks using data cleaning techniques, reducing manual preparation time by 13%.",
+      "Investigated service requests and escalated issues with clear supporting evidence to ensure reliable delivery.",
+      "Documented step-by-step procedures for complex workflows, enhancing team knowledge retention and process consistency.",
+      "Data Analyst Practice Project** | Personal Initiative",
+      "Developed a comprehensive demonstration project utilizing SQL, Excel, and Power BI to simulate end-to-end data analysis.",
+      "Tested scenarios against representative datasets to validate reliability and identify limitations.",
+      "Presented design rationale and outcomes to a five-person peer review group, demonstrating clear verbal and written communication skills.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Data Analysis:** SQL, Excel (Advanced), Data Cleaning, Statistics.",
+      "Visualization & Reporting:** Power BI, Tableau (Preferred), Dashboarding.",
+      "Collaboration:** Stakeholder Communication, Team Planning, Risk Management.",
+      "Tools:** Git, Documentation Standards."
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Entry-level Data Analyst with a Bachelor of Science in Information Systems and transferable experience in SQL, Excel, Power BI, and data cleaning.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000358,
+          "entailment": 0.496463,
+          "neutral": 0.50318
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.496463,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to clean operational data, build decision-support dashboards, and automate recurring reports.",
+        "best_source_chunk": "- Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 13%. ## Projects ### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the",
+        "probabilities": {
+          "contradiction": 0.00169,
+          "entailment": 0.002788,
+          "neutral": 0.995522
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002788,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in collaborating with engineering and business stakeholders to define metrics, communicate findings, and deliver evidence-based solutions.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000928,
+          "entailment": 0.003126,
+          "neutral": 0.995946
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003126,
+        "supported": false
+      },
+      {
+        "claim": "Committed to maintaining clear documentation and solving ambiguous problems through rigorous quality controls.",
+        "best_source_chunk": "- Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 13%. ## Projects ### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the",
+        "probabilities": {
+          "contradiction": 0.003149,
+          "entailment": 0.001218,
+          "neutral": 0.995632
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001218,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "# Chloe Lim chloe.lim@example.test | +65 6000 0023 | Singapore ## Summary Technology associate with transferable experience in SQL, Excel and Power BI, seeking to deepen capability as a Data Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+        "probabilities": {
+          "contradiction": 0.021436,
+          "entailment": 0.145722,
+          "neutral": 0.832842
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.145722,
+        "supported": false
+      },
+      {
+        "claim": "Cleaned and analysed operational data using SQL and Excel, improving team turnaround by 18%.",
+        "best_source_chunk": "# Chloe Lim chloe.lim@example.test | +65 6000 0023 | Singapore ## Summary Technology associate with transferable experience in SQL, Excel and Power BI, seeking to deepen capability as a Data Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+        "probabilities": {
+          "contradiction": 0.000201,
+          "entailment": 0.997363,
+          "neutral": 0.002437
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997363,
+        "supported": true
+      },
+      {
+        "claim": "Built decision-support dashboards in Power BI to visualize key performance indicators for technical and business reviewers.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000513,
+          "entailment": 0.0013,
+          "neutral": 0.998187
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0013,
+        "supported": false
+      },
+      {
+        "claim": "Defined and monitored business metrics while managing approximately 49 work items monthly with strict quality checks.",
+        "best_source_chunk": "(Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%. - Applied Power BI to build decision-support dashboards and documented decisions for technical and business reviewers. - Managed approximately 49 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor",
+        "probabilities": {
+          "contradiction": 0.000695,
+          "entailment": 0.000421,
+          "neutral": 0.998883
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000421,
+        "supported": false
+      },
+      {
+        "claim": "Collaborated with four colleagues to present progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.006922,
+          "entailment": 0.001235,
+          "neutral": 0.991843
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001235,
+        "supported": false
+      },
+      {
+        "claim": "Maintained clear documentation of processes and decisions to support team planning and audits.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.00052,
+          "entailment": 0.003426,
+          "neutral": 0.996054
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003426,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.003645,
+          "entailment": 0.001163,
+          "neutral": 0.995192
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001163,
+        "supported": false
+      },
+      {
+        "claim": "Automated recurring operational tasks using data cleaning techniques, reducing manual preparation time by 13%.",
+        "best_source_chunk": "- Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 13%. ## Projects ### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the",
+        "probabilities": {
+          "contradiction": 0.022267,
+          "entailment": 0.013956,
+          "neutral": 0.963777
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013956,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests and escalated issues with clear supporting evidence to ensure reliable delivery.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000442,
+          "entailment": 0.00094,
+          "neutral": 0.998617
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00094,
+        "supported": false
+      },
+      {
+        "claim": "Documented step-by-step procedures for complex workflows, enhancing team knowledge retention and process consistency.",
+        "best_source_chunk": "# Chloe Lim chloe.lim@example.test | +65 6000 0023 | Singapore ## Summary Technology associate with transferable experience in SQL, Excel and Power BI, seeking to deepen capability as a Data Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+        "probabilities": {
+          "contradiction": 0.000394,
+          "entailment": 0.000687,
+          "neutral": 0.99892
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000687,
+        "supported": false
+      },
+      {
+        "claim": "Data Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Chloe Lim chloe.lim@example.test | +65 6000 0023 | Singapore ## Summary Technology associate with transferable experience in SQL, Excel and Power BI, seeking to deepen capability as a Data Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+        "probabilities": {
+          "contradiction": 0.039574,
+          "entailment": 0.016895,
+          "neutral": 0.943531
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016895,
+        "supported": false
+      },
+      {
+        "claim": "Developed a comprehensive demonstration project utilizing SQL, Excel, and Power BI to simulate end-to-end data analysis.",
+        "best_source_chunk": "# Chloe Lim chloe.lim@example.test | +65 6000 0023 | Singapore ## Summary Technology associate with transferable experience in SQL, Excel and Power BI, seeking to deepen capability as a Data Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+        "probabilities": {
+          "contradiction": 0.000251,
+          "entailment": 0.006501,
+          "neutral": 0.993248
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006501,
+        "supported": false
+      },
+      {
+        "claim": "Tested scenarios against representative datasets to validate reliability and identify limitations.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.002361,
+          "entailment": 0.00051,
+          "neutral": 0.997129
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00051,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, demonstrating clear verbal and written communication skills.",
+        "best_source_chunk": "### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) -",
+        "probabilities": {
+          "contradiction": 0.000656,
+          "entailment": 0.00078,
+          "neutral": 0.998564
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00078,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000536,
+          "entailment": 0.001706,
+          "neutral": 0.997758
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001706,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 8.5e-05,
+          "entailment": 0.979431,
+          "neutral": 0.020484
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.979431,
+        "supported": true
+      },
+      {
+        "claim": "Developed foundational skills in data integrity, system documentation, and analytical problem-solving.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000104,
+          "entailment": 0.951921,
+          "neutral": 0.047975
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.951921,
+        "supported": true
+      },
+      {
+        "claim": "Data Analysis:** SQL, Excel (Advanced), Data Cleaning, Statistics.",
+        "best_source_chunk": "# Chloe Lim chloe.lim@example.test | +65 6000 0023 | Singapore ## Summary Technology associate with transferable experience in SQL, Excel and Power BI, seeking to deepen capability as a Data Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+        "probabilities": {
+          "contradiction": 0.005712,
+          "entailment": 0.017104,
+          "neutral": 0.977184
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017104,
+        "supported": false
+      },
+      {
+        "claim": "Visualization & Reporting:** Power BI, Tableau (Preferred), Dashboarding.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.006005,
+          "entailment": 0.009838,
+          "neutral": 0.984157
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009838,
+        "supported": false
+      },
+      {
+        "claim": "Collaboration:** Stakeholder Communication, Team Planning, Risk Management.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.003212,
+          "entailment": 0.001983,
+          "neutral": 0.994805
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001983,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Git, Documentation Standards.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, Tableau, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.002421,
+          "entailment": 0.00462,
+          "neutral": 0.992959
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00462,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "1d0663b98b72fdb28da9f477528abd9085a4f98bc78d659666b61128e63c1553"
+  }
+}

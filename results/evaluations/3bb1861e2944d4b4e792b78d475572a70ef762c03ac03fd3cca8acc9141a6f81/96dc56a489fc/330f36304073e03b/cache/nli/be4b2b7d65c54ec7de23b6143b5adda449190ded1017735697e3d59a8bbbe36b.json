@@ -1,0 +1,346 @@
+{
+  "identity": {
+    "source_hash": "23423f91a6d43b9131db7159afe4d6a97a2d9afb7d0ca9a9ff3cd19c250c659f",
+    "tailored_hash": "1b6a73bcf22114b516905356da4db93b47a046cb7dfb1eaad96254cc2be51cbb",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2174,
+    "unsupported": [
+      "Proven ability to clean operational data, build decision-support dashboards, and communicate technical trade-offs to stakeholders.",
+      "Committed to evidence-based decision-making, clear documentation, and maintaining quality controls while solving ambiguous problems in multidisciplinary environments.",
+      "Example Atlas Solutions** (Jan 2025 \u2013 Present)",
+      "Build decision-support dashboards in Power BI to visualize key metrics for engineering, product, and business stakeholders.",
+      "Define and monitor business metrics while managing approximately 23 work items monthly with rigorous quality checks.",
+      "Automate recurring reports to reduce manual effort and ensure reliable data delivery.",
+      "Collaborate with four colleagues to present progress, risks, and technical trade-offs during fortnightly reviews.",
+      "Maintain clear documentation of processes and decisions for technical and business reviewers.",
+      "Example Beacon Services** (May 2024 \u2013 Dec 2024)",
+      "Support operational workflows by performing data cleaning and documenting step-by-step procedures to ensure maintainability.",
+      "Investigate service requests, record findings with clear supporting evidence, and escalate issues effectively.",
+      "Create reporting templates that reduced manual preparation time by 30%, demonstrating ability to automate tasks.",
+      "Data Analyst Practice Project",
+      "Developed a demonstration project utilizing SQL, Excel, and Power BI to simulate real-world data analysis scenarios.",
+      "Test data integrity and reliability using representative scenarios, documenting limitations and next steps for future improvement.",
+      "Present design rationale and outcomes to a five-person peer review group, honing stakeholder communication skills.",
+      "Bachelor of Science in Information Systems",
+      "Example Institute of Technology** (Aug 2020 \u2013 May 2024)"
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Data Analyst with hands-on experience in SQL, Excel, and Power BI, delivering documented, measurable improvements through cross-functional collaboration.",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.003169,
+          "entailment": 0.828155,
+          "neutral": 0.168676
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.828155,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to clean operational data, build decision-support dashboards, and communicate technical trade-offs to stakeholders.",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.000689,
+          "entailment": 0.003333,
+          "neutral": 0.995978
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003333,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making, clear documentation, and maintaining quality controls while solving ambiguous problems in multidisciplinary environments.",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.000219,
+          "entailment": 0.002243,
+          "neutral": 0.997539
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002243,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions** (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.990176,
+          "entailment": 0.002114,
+          "neutral": 0.00771
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.002114,
+        "supported": false
+      },
+      {
+        "claim": "Clean and analyse operational data using SQL and Excel, improving team turnaround by 35%.",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.000297,
+          "entailment": 0.995255,
+          "neutral": 0.004448
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995255,
+        "supported": true
+      },
+      {
+        "claim": "Build decision-support dashboards in Power BI to visualize key metrics for engineering, product, and business stakeholders.",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.00024,
+          "entailment": 0.004437,
+          "neutral": 0.995323
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004437,
+        "supported": false
+      },
+      {
+        "claim": "Define and monitor business metrics while managing approximately 23 work items monthly with rigorous quality checks.",
+        "best_source_chunk": "stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.000718,
+          "entailment": 0.000718,
+          "neutral": 0.998564
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000718,
+        "supported": false
+      },
+      {
+        "claim": "Automate recurring reports to reduce manual effort and ensure reliable data delivery.",
+        "best_source_chunk": "Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 30%. ## Projects ### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the project",
+        "probabilities": {
+          "contradiction": 0.00079,
+          "entailment": 0.001137,
+          "neutral": 0.998073
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001137,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with four colleagues to present progress, risks, and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.015285,
+          "entailment": 0.003039,
+          "neutral": 0.981676
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003039,
+        "supported": false
+      },
+      {
+        "claim": "Maintain clear documentation of processes and decisions for technical and business reviewers.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000951,
+          "entailment": 0.156553,
+          "neutral": 0.842496
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.156553,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.721975,
+          "entailment": 0.00221,
+          "neutral": 0.275815
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.00221,
+        "supported": false
+      },
+      {
+        "claim": "Support operational workflows by performing data cleaning and documenting step-by-step procedures to ensure maintainability.",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.000226,
+          "entailment": 0.089124,
+          "neutral": 0.91065
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.089124,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with clear supporting evidence, and escalate issues effectively.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000215,
+          "entailment": 0.00199,
+          "neutral": 0.997794
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00199,
+        "supported": false
+      },
+      {
+        "claim": "Create reporting templates that reduced manual preparation time by 30%, demonstrating ability to automate tasks.",
+        "best_source_chunk": "Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 30%. ## Projects ### Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the project",
+        "probabilities": {
+          "contradiction": 0.000548,
+          "entailment": 0.002111,
+          "neutral": 0.997341
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002111,
+        "supported": false
+      },
+      {
+        "claim": "Data Analyst Practice Project",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.000925,
+          "entailment": 0.008318,
+          "neutral": 0.990757
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008318,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project utilizing SQL, Excel, and Power BI to simulate real-world data analysis scenarios.",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.00075,
+          "entailment": 0.062288,
+          "neutral": 0.936962
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.062288,
+        "supported": false
+      },
+      {
+        "claim": "Test data integrity and reliability using representative scenarios, documenting limitations and next steps for future improvement.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using data cleaning and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.00265,
+          "entailment": 0.002578,
+          "neutral": 0.994772
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002578,
+        "supported": false
+      },
+      {
+        "claim": "Present design rationale and outcomes to a five-person peer review group, honing stakeholder communication skills.",
+        "best_source_chunk": "Data Analyst Practice Project - Built a fictional demonstration project using SQL, Excel and Power BI. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024)",
+        "probabilities": {
+          "contradiction": 0.000441,
+          "entailment": 0.001152,
+          "neutral": 0.998408
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001152,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.003028,
+          "entailment": 0.002974,
+          "neutral": 0.993998
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002974,
+        "supported": false
+      },
+      {
+        "claim": "Example Institute of Technology** (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.087597,
+          "entailment": 0.03318,
+          "neutral": 0.879224
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.03318,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.00023,
+          "entailment": 0.996554,
+          "neutral": 0.003217
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996554,
+        "supported": true
+      },
+      {
+        "claim": "Developed foundational skills in statistics and data cleaning relevant to operational analysis.",
+        "best_source_chunk": "# Aisha Lim aisha.lim@example.test | +65 6000 0021 | Singapore ## Summary Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%. -",
+        "probabilities": {
+          "contradiction": 0.000176,
+          "entailment": 0.976299,
+          "neutral": 0.023526
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.976299,
+        "supported": true
+      },
+      {
+        "claim": "SQL, Excel, Power BI, Python, Tableau, A/B testing, data cleaning, dashboarding, statistics, stakeholder communication",
+        "best_source_chunk": "group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SQL, Excel, Power BI, data cleaning, dashboarding, statistics, stakeholder communication, Python, Tableau, A/B testing",
+        "probabilities": {
+          "contradiction": 0.004526,
+          "entailment": 0.955385,
+          "neutral": 0.040089
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.955385,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "be4b2b7d65c54ec7de23b6143b5adda449190ded1017735697e3d59a8bbbe36b"
+  }
+}
