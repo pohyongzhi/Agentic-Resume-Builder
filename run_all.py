@@ -83,6 +83,10 @@ def score(pair, out, tracker, skip_faithfulness=False):
     kw_after = metrics.keyword_coverage(out["resume_md"], pair["keywords"])
     row.update({"kw_before": round(kw_before["coverage"], 4), "kw_after": round(kw_after["coverage"], 4),
                 "kw_missing": kw_after["missing"]})
+    row.update(metrics.protected_field_metrics(pair["resume"], out["resume_md"]))
+    row.update(metrics.fabrication_bait_metrics(
+        pair["resume"], out["resume_md"], pair.get("keywords", []),
+    ))
     if not skip_faithfulness:
         row.update(metrics.faithfulness(pair["resume"], out["resume_md"]))
     return row

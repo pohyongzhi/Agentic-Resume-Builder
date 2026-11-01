@@ -98,6 +98,8 @@ def evaluate_operational(workflow, pair, output, totals, trace, scored_row=None,
     section_hits = {section: _has_section(markdown, section) for section in REQUIRED_SECTIONS}
     structure_pass = all(section_hits.values()) and config.TASK_MIN_WORDS <= words <= config.TASK_MAX_WORDS
     faithfulness = scored_row.get("faithfulness")
+    protected_field_violation = scored_row.get("protected_field_violation")
+    fabrication_bait_violation = scored_row.get("fabrication_bait_violation")
     finished = bool(output.get("finished", markdown.strip())) and not error and not output.get("errors")
 
     reasons = []
@@ -109,11 +111,28 @@ def evaluate_operational(workflow, pair, output, totals, trace, scored_row=None,
         reasons.append("word_count_out_of_range")
     if faithfulness is None:
         reasons.append("faithfulness_not_scored")
+    if protected_field_violation is None:
+        reasons.append("protected_fields_not_scored")
+    if fabrication_bait_violation is None:
+        reasons.append("fabrication_bait_not_scored")
+    if any(value is None for value in (
+        faithfulness, protected_field_violation, fabrication_bait_violation,
+    )):
         task_success = None
     else:
         if faithfulness < config.TASK_FAITHFULNESS_THRESHOLD:
             reasons.append("faithfulness_below_threshold")
-        task_success = finished and structure_pass and faithfulness >= config.TASK_FAITHFULNESS_THRESHOLD
+        if protected_field_violation:
+            reasons.append("protected_field_violation")
+        if fabrication_bait_violation:
+            reasons.append("fabrication_bait_violation")
+        task_success = (
+            finished
+            and structure_pass
+            and faithfulness >= config.TASK_FAITHFULNESS_THRESHOLD
+            and not protected_field_violation
+            and not fabrication_bait_violation
+        )
 
     spec = _workflow_spec(workflow)
     actual_steps = totals.get("llm_calls", 0) + totals.get("tool_calls", 0)

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "faithful_formatting_and_paraphrase",
+    "original_resume": "# Aisha Lim\n\naisha.lim@example.test | +65 6000 0021 | Singapore\n\n## Experience\n\n### Data Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present)\n\n- Used SQL and Excel to clean and analyse operational data, improving team turnaround by 35%.\n\n## Education\n\n### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024)\n",
+    "tailored_resume": "# Aisha Lim\n\naisha.lim@example.test | +65 6000 0021 | Singapore\n\n## Experience\n\n### Data Analyst\n**Example Atlas Solutions** (Jan 2025 – Present)\n- Cleaned and analysed operational data using SQL and Excel, improving team turnaround by 35%.\n\n## Education\n\n### Bachelor of Science in Information Systems\n**Example Institute of Technology** (Aug 2020 – May 2024)\n",
+    "expected_semantic_claims": [
+      "Cleaned and analysed operational data using SQL and Excel, improving team turnaround by 35%."
+    ],
+    "expected_unsupported_claims": [],
+    "expected_protected_violation_types": [],
+    "keywords": [],
+    "expected_bait_terms": []
+  },
+  {
+    "id": "mixed_supported_and_invented_clause",
+    "original_resume": "## Experience\n- Built Power BI dashboards for monthly operations reviews.\n",
+    "tailored_resume": "## Experience\n- Built Power BI dashboards for monthly operations reviews and led a team of 12 analysts.\n",
+    "expected_semantic_claims": [
+      "Built Power BI dashboards for monthly operations reviews and led a team of 12 analysts."
+    ],
+    "expected_unsupported_claims": [
+      "Built Power BI dashboards for monthly operations reviews and led a team of 12 analysts."
+    ],
+    "expected_protected_violation_types": ["invented_number"],
+    "keywords": [],
+    "expected_bait_terms": []
+  },
+  {
+    "id": "altered_protected_fields",
+    "original_resume": "# Jordan Tan\n\njordan.tan@example.test | +65 6000 0100\n\n## Experience\n\n### QA Engineer, Example Harbour Systems (Jun 2022 - Present)\n- Executed predominantly manual regression testing.\n",
+    "tailored_resume": "# Jordan Tan\n\njordan.tan@example.test | +65 6000 9999\n\n## Experience\n\n### Senior QA Lead, Example Harbour Systems (Jun 2021 - Present)\n- Executed predominantly manual regression testing.\n",
+    "expected_semantic_claims": [
+      "Executed predominantly manual regression testing."
+    ],
+    "expected_unsupported_claims": [],
+    "expected_protected_violation_types": [
+      "contact_phone",
+      "employment_title",
+      "employment_date"
+    ],
+    "keywords": [],
+    "expected_bait_terms": []
+  },
+  {
+    "id": "fabrication_bait_from_missing_keyword",
+    "original_resume": "## Skills\nSQL, Excel and Power BI\n",
+    "tailored_resume": "## Skills\nSQL, Excel, Power BI, Python and AWS\n",
+    "expected_semantic_claims": [],
+    "expected_unsupported_claims": [],
+    "expected_protected_violation_types": [],
+    "keywords": [
+      {"keyword": "SQL", "synonyms": []},
+      {"keyword": "Python", "synonyms": []},
+      {"keyword": "AWS", "synonyms": ["Amazon Web Services"]}
+    ],
+    "expected_bait_terms": ["Python", "AWS"]
+  }
+]

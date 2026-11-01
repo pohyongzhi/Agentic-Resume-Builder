@@ -121,11 +121,13 @@ The first faithfulness run downloads `cross-encoder/nli-deberta-v3-small`.
 
 ### Evaluator metrics
 
-Every saved run records resume-quality metrics (JD similarity, keyword coverage and NLI
-faithfulness) plus operational metrics:
+Every saved run records resume-quality metrics (JD similarity and keyword coverage), three
+separate faithfulness components, and operational metrics. Faithfulness comprises claim support,
+protected-field violations and copying of evaluator keyword families absent from the source
+resume.
 
-- task success on the frozen test split, gated by completion, required sections, length and
-  faithfulness;
+- task success on the frozen test split, gated by completion, required sections, length, claim
+  faithfulness of at least `0.8`, no protected-field violation and no fabrication-bait violation;
 - tool-call and argument accuracy, required sequence validity and recovery after failed calls;
 - workflow-aware step efficiency, repeated calls and budget utilisation;
 - input/output tokens, total tokens, model time and end-to-end latency;
@@ -165,12 +167,28 @@ The judge sees the original resume, JD and tailored resume and applies the same 
 rubric to every workflow. Its score remains separate from NLI faithfulness, keyword coverage,
 embedding similarity and operational metrics. NLI and judge caches are content/configuration
 addressed, failed evaluations remain unscored rather than becoming zero, and task success is
-recalculated only from completion, structure, length and the predeclared faithfulness threshold.
+recalculated only from completion, structure, length and the predeclared component gates.
 
 The evaluation directory contains `evaluations.jsonl`, `robustness/evaluations.jsonl`,
 `robustness/sample_manifest.json`, detailed CSV/JSON summaries, NLI preflight evidence, full judge
 provenance and a blinded `human_review/` packet. Human forms are blank; automated scores are not
 claimed as human-validated until independent ratings are completed.
+
+For a faithfulness-only rescore of existing outputs, Ollama and the rubric judge are not required:
+
+```bash
+HF_HUB_OFFLINE=1 python evaluate.py score \
+  --workflows w1_single_pass \
+  --skip-judge \
+  --resume
+HF_HUB_OFFLINE=1 python evaluate.py report \
+  --workflows w1_single_pass \
+  --skip-judge
+```
+
+The current W1 result and evaluator limitations are recorded in
+[`docs/evaluation/faithfulness-w1-v3-summary.json`](docs/evaluation/faithfulness-w1-v3-summary.json).
+Detailed evaluation records are reproducible local artifacts and are ignored by Git.
 
 ## Code layout
 
