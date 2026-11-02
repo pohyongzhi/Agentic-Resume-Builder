@@ -1,0 +1,285 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1066,
+    "output_tokens": 293,
+    "thinking_chars": 0,
+    "seconds": 3.4,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "195 words; target is roughly 350-500"
+      ],
+      "words": 195
+    },
+    "generation": {
+      "seconds": 3.4,
+      "input_tokens": 1066,
+      "output_tokens": 293
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1067,
+    "output_tokens": 294,
+    "thinking_chars": 0,
+    "seconds": 3.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "197 words; target is roughly 350-500"
+      ],
+      "words": 197
+    },
+    "generation": {
+      "seconds": 3.39,
+      "input_tokens": 1067,
+      "output_tokens": 294
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1079,
+    "output_tokens": 294,
+    "thinking_chars": 0,
+    "seconds": 3.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "195 words; target is roughly 350-500"
+      ],
+      "words": 195
+    },
+    "generation": {
+      "seconds": 3.52,
+      "input_tokens": 1079,
+      "output_tokens": 294
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2076,
+    "output_tokens": 262,
+    "thinking_chars": 0,
+    "seconds": 3.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume with minor formatting cleanup; all claims strictly supported. JD alignment slightly reduced by lack of explicit 'user stories' or 'UAT' mentions in bullets, though skills are listed.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume with minor formatting cleanup; all claims strictly supported. JD alignment slightly reduced by lack of explicit 'user stories' or 'UAT' mentions in bullets, though skills are listed.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume with minor wording changes (e.g., 'coordinated' instead of 'collaborated'); all claims strictly supported. JD alignment slightly reduced by lack of explicit 'user stories' or 'UAT' mentions in bullets, though skills are listed.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2076,
+    "output_tokens": 205,
+    "thinking_chars": 0,
+    "seconds": 2.74,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2076,
+    "output_tokens": 205,
+    "thinking_chars": 0,
+    "seconds": 2.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [
+      "impact_first",
+      "jd_wording_alignment",
+      "skills_first"
+    ],
+    "scores": {},
+    "step": 11
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume with minor formatting cleanup; all claims strictly supported. JD alignment slightly reduced by lack of explicit 'user stories' or 'UAT' mentions in bullets, though skills are listed.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.4,
+          "input_tokens": 1066,
+          "output_tokens": 293
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "197 words; target is roughly 350-500"
+          ],
+          "words": 197
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume with minor formatting cleanup; all claims strictly supported. JD alignment slightly reduced by lack of explicit 'user stories' or 'UAT' mentions in bullets, though skills are listed.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.39,
+          "input_tokens": 1067,
+          "output_tokens": 294
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume with minor wording changes (e.g., 'coordinated' instead of 'collaborated'); all claims strictly supported. JD alignment slightly reduced by lack of explicit 'user stories' or 'UAT' mentions in bullets, though skills are listed.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.52,
+          "input_tokens": 1079,
+          "output_tokens": 294
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 12
+  }
+]

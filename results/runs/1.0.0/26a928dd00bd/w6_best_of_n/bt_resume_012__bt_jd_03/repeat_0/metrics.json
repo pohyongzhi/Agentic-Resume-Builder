@@ -1,0 +1,1114 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7554,
+  "output_tokens": 1544,
+  "thinking_chars": 0,
+  "seconds": 18.07,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 183,
+  "sim_before": 0.8048,
+  "sim_after": 0.8205,
+  "sim_gain": 0.0157,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Leon Koh"
+    ],
+    "contact_email": [
+      "leon.koh@example.test"
+    ],
+    "contact_phone": [
+      "6560000092"
+    ],
+    "employment_title": [
+      "Solutions Architect",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Beacon Services",
+      "Example Cedar Innovations"
+    ],
+    "employment_date": [
+      "jul 2023 - present",
+      "jan 2021 - jun 2023"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example School of Computing"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 0,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [],
+  "fabrication_bait_matches": [],
+  "faithfulness": 0.8889,
+  "claim_faithfulness": 0.8889,
+  "unsupported_claim_rate": 0.1111,
+  "supported_claims": 16,
+  "source_evidence_units": 30,
+  "unsupported": [
+    "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs delivering documented improvements through cross-functional collaboration.",
+    "Facilitated architecture decisions and communicated progress to stakeholders during fortnightly reviews while managing approximately 46 work items per month with quality checks."
+  ],
+  "n_claims": 18,
+  "claim_scores": [
+    {
+      "claim": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs delivering documented improvements through cross-functional collaboration.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0015",
+      "best_evidence_unit": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 28,
+      "best_source_chunk": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+      "retrieval_score": 0.286989,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.559133,
+          "probabilities": {
+            "contradiction": 0.000285,
+            "entailment": 0.000785,
+            "neutral": 0.99893
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.286989,
+          "probabilities": {
+            "contradiction": 0.00053,
+            "entailment": 0.001792,
+            "neutral": 0.997678
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Delivers documented, measurable improvements with cross-functional teams.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.243974,
+          "probabilities": {
+            "contradiction": 0.000124,
+            "entailment": 0.001001,
+            "neutral": 0.998875
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.00053,
+        "entailment": 0.001792,
+        "neutral": 0.997678
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001792,
+      "supported": false
+    },
+    {
+      "claim": "Translated business needs into solution designs using solution architecture and AWS, improving team turnaround by 36%.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround by 36%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround by 36%.",
+      "retrieval_score": 0.928478,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround by 36%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.928478,
+          "probabilities": {
+            "contradiction": 0.000215,
+            "entailment": 0.997158,
+            "neutral": 0.002627
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.082788,
+          "probabilities": {
+            "contradiction": 0.000641,
+            "entailment": 0.000175,
+            "neutral": 0.999184
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.07802,
+          "probabilities": {
+            "contradiction": 0.000279,
+            "entailment": 0.000181,
+            "neutral": 0.99954
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000215,
+        "entailment": 0.997158,
+        "neutral": 0.002627
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.997158,
+      "supported": true
+    },
+    {
+      "claim": "Defined integration and security patterns via REST APIs and documented decisions for technical and business reviewers.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+      "retrieval_score": 0.807153,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.807153,
+          "probabilities": {
+            "contradiction": 0.000185,
+            "entailment": 0.998184,
+            "neutral": 0.001631
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "REST APIs",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.16168,
+          "probabilities": {
+            "contradiction": 0.000192,
+            "entailment": 0.001642,
+            "neutral": 0.998166
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.146842,
+          "probabilities": {
+            "contradiction": 0.000666,
+            "entailment": 0.000762,
+            "neutral": 0.998572
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000185,
+        "entailment": 0.998184,
+        "neutral": 0.001631
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.998184,
+      "supported": true
+    },
+    {
+      "claim": "Facilitated architecture decisions and communicated progress to stakeholders during fortnightly reviews while managing approximately 46 work items per month with quality checks.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0009",
+      "best_evidence_unit": "Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews.",
+      "retrieval_score": 0.100777,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 46 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.506549,
+          "probabilities": {
+            "contradiction": 0.000671,
+            "entailment": 0.000266,
+            "neutral": 0.999063
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.100777,
+          "probabilities": {
+            "contradiction": 9.5e-05,
+            "entailment": 0.000575,
+            "neutral": 0.99933
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Leon Koh",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.00112,
+            "entailment": 0.000554,
+            "neutral": 0.998327
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 9.5e-05,
+        "entailment": 0.000575,
+        "neutral": 0.99933
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000575,
+      "supported": false
+    },
+    {
+      "claim": "Supported operational work using microservices and documented step-by-step procedures.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+      "retrieval_score": 0.957761,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.957761,
+          "probabilities": {
+            "contradiction": 0.003019,
+            "entailment": 0.979415,
+            "neutral": 0.017566
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.183889,
+          "probabilities": {
+            "contradiction": 0.036829,
+            "entailment": 0.604206,
+            "neutral": 0.358965
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 46 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.167816,
+          "probabilities": {
+            "contradiction": 0.007435,
+            "entailment": 0.00065,
+            "neutral": 0.991915
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.003019,
+        "entailment": 0.979415,
+        "neutral": 0.017566
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.979415,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.076018
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a reporting template that reduced manual preparation time by 31%.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0013",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 31%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 31%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0013",
+          "text": "Created a simple reporting template that reduced manual preparation time by 31%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0,
+          "probabilities": {
+            "contradiction": 0.000814,
+            "entailment": 0.990217,
+            "neutral": 0.008969
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Leon Koh",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.000907,
+            "entailment": 0.000319,
+            "neutral": 0.998774
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "leon.koh@example.test | +65 6000 0092 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.000381,
+            "entailment": 0.00022,
+            "neutral": 0.999399
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000814,
+        "entailment": 0.990217,
+        "neutral": 0.008969
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.990217,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0019",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.136884
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 46 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.071351
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "solution architecture",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround by 36%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "AWS",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround by 36%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "REST APIs",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "microservices",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using microservices and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "microservices",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0024",
+          "text": "security",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.07619
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "security",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0024",
+          "text": "security",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "technical documentation",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0025",
+      "best_evidence_unit": "technical documentation",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "technical documentation",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0025",
+          "text": "technical documentation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023)",
+          "kind": "protected_header",
+          "line": 18,
+          "retrieval_score": 0.377273
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.332326
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "stakeholder management",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0026",
+      "best_evidence_unit": "stakeholder management",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "stakeholder management",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0026",
+          "text": "stakeholder management",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0029",
+          "text": "Kubernetes",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        },
+        {
+          "evidence_id": "evidence-0025",
+          "text": "technical documentation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.062222
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "system integration",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0027",
+      "best_evidence_unit": "system integration",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "system integration",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0027",
+          "text": "system integration",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied REST APIs to define integration and security patterns and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.336484
+        },
+        {
+          "evidence_id": "evidence-0025",
+          "text": "technical documentation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.097561
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Terraform",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0028",
+      "best_evidence_unit": "Terraform",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Terraform",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0028",
+          "text": "Terraform",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0027",
+          "text": "system integration",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.074074
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "stakeholder management",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.064516
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Kubernetes",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0029",
+      "best_evidence_unit": "Kubernetes",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Kubernetes",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0029",
+          "text": "Kubernetes",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "stakeholder management",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "microservices",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.069565
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "269f74f9cefd5c4f8862e2fb95e43ee315800a8abaa737e6e11eb05bb25c60af",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": false,
+  "task_success": false,
+  "task_failure_reasons": [
+    "word_count_out_of_range"
+  ],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 9098,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 10073.82,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "bt_resume_012__bt_jd_03",
+  "resume_id": "bt_resume_012",
+  "jd_id": "bt_jd_03",
+  "category": "business_technology",
+  "role_family": "solutions_architect",
+  "seniority": "mid",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 18.6,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\bt_resume_012__bt_jd_03\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\bt_resume_012__bt_jd_03\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\bt_resume_012__bt_jd_03\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "183 words; target is roughly 350-500"
+          ],
+          "words": 183
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a near-perfect rewrite of the original resume, rephrasing bullet points for flow without altering facts. It omits the 'Projects' and 'Certifications' sections found in the source, which technically makes it incomplete relative to the full data set, but the core experience claims are f",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to the original resume. Faithfulness is perfect. This candidate achieves the highest JD alignment by restructuring bullet points to explicitly use JD keywords ('translate business needs', 'define integration and security patterns', 'facilitate architecture decisions', 'communicate ",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.27,
+          "input_tokens": 1080,
+          "output_tokens": 281
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is identical to Candidate 1 and the original resume's content. It accurately reflects all skills, dates, and achievements from the source text without fabrication.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to the original resume. Faithfulness is perfect. Skills coverage is slightly lower than Candidate 3 because the summary omits 'cross-functional collaboration' which maps well to JD's stakeholder management, and the bullet points are less explicitly tied to specific JD verbs like 't",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.4,
+          "input_tokens": 1081,
+          "output_tokens": 297
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "247 words; target is roughly 350-500"
+          ],
+          "words": 247
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 is the most complete version, retaining all sections (Projects, Certifications) from the original resume. It aligns perfectly with the JD by using terminology like 'translate business needs' and 'define integration patterns' which are explicitly required in the job description.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Text is identical to the original resume. Faithfulness is perfect as no facts are invented. JD alignment is high but slightly lower than Candidate 3 because it lacks the specific phrasing of 'translate business needs' and 'communicate trade-offs' found in the original text, though these concepts are",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 4.1,
+          "input_tokens": 1093,
+          "output_tokens": 363
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

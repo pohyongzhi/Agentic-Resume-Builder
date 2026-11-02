@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1066,
+    "output_tokens": 290,
+    "thinking_chars": 0,
+    "seconds": 3.42,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "181 words; target is roughly 350-500"
+      ],
+      "words": 181
+    },
+    "generation": {
+      "seconds": 3.42,
+      "input_tokens": 1066,
+      "output_tokens": 290
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1067,
+    "output_tokens": 291,
+    "thinking_chars": 0,
+    "seconds": 3.34,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "181 words; target is roughly 350-500"
+      ],
+      "words": 181
+    },
+    "generation": {
+      "seconds": 3.34,
+      "input_tokens": 1067,
+      "output_tokens": 291
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1079,
+    "output_tokens": 288,
+    "thinking_chars": 0,
+    "seconds": 3.31,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "178 words; target is roughly 350-500"
+      ],
+      "words": 178
+    },
+    "generation": {
+      "seconds": 3.31,
+      "input_tokens": 1079,
+      "output_tokens": 288
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2064,
+    "output_tokens": 185,
+    "thinking_chars": 0,
+    "seconds": 2.51,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Content is identical to the original resume with only minor formatting adjustments; all claims are fully supported.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Content is identical to the original resume with only minor formatting adjustments; all claims are fully supported.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Content is identical to the original resume with rephrased bullet points that align perfectly with JD terminology while remaining fully supported.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2064,
+    "output_tokens": 292,
+    "thinking_chars": 0,
+    "seconds": 3.74,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is concise and mirrors the original resume's facts while explicitly using JD terminology (e.g., 'reliable deployment pipelines', 'container platforms'). Minor gap: Argo CD/Helm not mentioned in experience bullets despite being listed in skills.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with JD responsibilities (pipelines, containers, automation) using original data. Minor gap: Argo CD/Helm not mentioned in experience bullets despite being listed in skills.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Faithfully lists all resume skills. JD alignment is lower because the experience bullets do not explicitly map to specific JD responsibilities (e.g., 'improve observability', 'manage container platforms') as clearly as Candidate 1.",
+        "grounding_concern_in_justification": true
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "jd_wording_alignment",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "181 words; target is roughly 350-500"
+          ],
+          "words": 181
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Content is identical to the original resume with only minor formatting adjustments; all claims are fully supported.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully lists all resume skills. JD alignment is lower because the experience bullets do not explicitly map to specific JD responsibilities (e.g., 'improve observability', 'manage container platforms') as clearly as Candidate 1.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.42,
+          "input_tokens": 1066,
+          "output_tokens": 290
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "181 words; target is roughly 350-500"
+          ],
+          "words": 181
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Content is identical to the original resume with only minor formatting adjustments; all claims are fully supported.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD responsibilities (pipelines, containers, automation) using original data. Minor gap: Argo CD/Helm not mentioned in experience bullets despite being listed in skills.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.34,
+          "input_tokens": 1067,
+          "output_tokens": 291
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "178 words; target is roughly 350-500"
+          ],
+          "words": 178
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Content is identical to the original resume with rephrased bullet points that align perfectly with JD terminology while remaining fully supported.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is concise and mirrors the original resume's facts while explicitly using JD terminology (e.g., 'reliable deployment pipelines', 'container platforms'). Minor gap: Argo CD/Helm not mentioned in experience bullets despite being listed in skills.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.31,
+          "input_tokens": 1079,
+          "output_tokens": 288
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]
