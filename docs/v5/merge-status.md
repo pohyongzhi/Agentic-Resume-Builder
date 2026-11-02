@@ -14,19 +14,17 @@ Updated: 2026-11-02
 - Preserved the original V4 exclusion fixtures under `data/legacy/` while retaining main's current
   evaluation dataset at `data/pairs.csv`.
 - Updated setup and model-distribution documentation.
+- Merged PR #4 into `main` as `7d7c6f5` after its GitGuardian check passed.
 - Passed `327` tests and `21` subtests. The branch-owned code/documentation whitespace check
   passed; merged main evaluation artifacts retain pre-existing Markdown hard breaks and CSV line
   endings that a whole-index `git diff --check` reports as trailing whitespace.
 
-## Remaining before merging to main
+## Next work
 
-1. Commit the resolved merge on `v5-workflow`.
-2. Push `v5-workflow` and open or update its pull request.
-3. Confirm CI passes.
-4. Run one live identical-input W1/W5 smoke comparison when Ollama is running and both tags are
+1. Run one live identical-input W1/W5 smoke comparison when Ollama is running and both tags are
    installed. Unit routing is verified, but this merge session did not restart Ollama.
-5. Merge the pull request only after reviewing the 83-file branch diff, which includes the retained
-   V4 dataset/training provenance and reusable training code.
+2. Generate the full frozen-set W5 outputs.
+3. Apply the shared faithfulness and rubric evaluation to those saved outputs.
 
 ## Evaluation status
 
