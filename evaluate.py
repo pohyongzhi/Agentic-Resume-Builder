@@ -17,7 +17,7 @@ from common.data import dataset_hash, load_pairs
 from common.llm import Tracker
 from eval import metrics
 from eval.human_review import write_review_artifacts
-from eval.judge import JudgeConfig, evaluate_judge, installed_model, judge_identity
+from eval.judge import JudgeConfig, configured_model, evaluate_judge, judge_identity
 from eval.operational import evaluate_operational
 from eval.reporting import write_reports
 from eval.robustness import (
@@ -445,6 +445,7 @@ def main(argv=None):
     parser = argparse.ArgumentParser()
     parser.add_argument("command", choices=("all", "score", "robustness", "report"), default="all")
     parser.add_argument("--workflows", nargs="+", default=["w1_single_pass"])
+    parser.add_argument("--judge-provider", choices=("ollama", "groq"), default=config.JUDGE_PROVIDER)
     parser.add_argument("--judge-model", default=config.JUDGE_MODEL)
     parser.add_argument("--resume", action="store_true", help="reuse compatible checkpoints (default)")
     parser.add_argument("--force", action="store_true", help="ignore evaluation caches/checkpoints")
@@ -467,11 +468,11 @@ def main(argv=None):
     generation_rows = _generation_rows(args.workflows)
     _validate_generation_rows(generation_rows, pairs, validation["dataset_hash"])
 
-    judge_config = JudgeConfig(model=args.judge_model)
+    judge_config = JudgeConfig(provider=args.judge_provider, model=args.judge_model)
     model_info = (
-        {"tag": judge_config.model, "status": "skipped"}
+        {"provider": judge_config.provider, "tag": judge_config.model, "status": "skipped"}
         if args.skip_judge
-        else installed_model(judge_config.model)
+        else configured_model(judge_config)
     )
     nli_model = metrics.nli_model_identity()
     identity = _evaluation_identity(judge_config, model_info, nli_model)

@@ -208,7 +208,7 @@ python run_robustness.py --limit 20 --skip-faithfulness
 Robustness results are written to `results/summaries/robustness.csv`. Tool metrics are `N/A` for
 workflows such as W1 that intentionally use no tools.
 
-### Reusable offline evaluation pipeline
+### Reusable evaluation pipeline
 
 The full evaluator preserves generation artifacts and writes versioned records under
 `results/evaluations/<dataset_hash>/<generation_scope>/<evaluator_hash>/`. Run W1 faithfulness,
@@ -232,6 +232,39 @@ rubric to every workflow. Its score remains separate from NLI faithfulness, keyw
 embedding similarity and operational metrics. NLI and judge caches are content/configuration
 addressed, failed evaluations remain unscored rather than becoming zero, and task success is
 recalculated only from completion, structure, length and the predeclared component gates.
+
+For the shared hosted judge, use Groq's `openai/gpt-oss-120b`. Keep the API key in the environment
+only. First inspect the four-request dry run, then execute the fail-closed calibration:
+
+```bash
+python -m eval.judge_calibration
+
+export GROQ_API_KEY='replacement-key'
+python -m eval.judge_calibration \
+  --provider groq \
+  --model openai/gpt-oss-120b \
+  --reasoning-effort medium \
+  --output-dir results/judge-calibration/gpt-oss-120b-v1 \
+  --execute
+```
+
+Do not start bulk scoring unless `calibration-result.json` reports `"passed": true`. The hosted
+judge uses strict JSON Schema output and no model tools. Its API response ID, returned model,
+system fingerprint and reported token usage are archived with each judgment. To score saved
+outputs after calibration, requests are spaced by 15 seconds for the Groq free tier:
+
+```bash
+python evaluate.py score \
+  --workflows w5_fine_tuned \
+  --judge-provider groq \
+  --judge-model openai/gpt-oss-120b \
+  --skip-faithfulness \
+  --limit 6 \
+  --resume
+```
+
+Use the identical provider, model, rubric version and reasoning effort for every workflow. Never
+compare scores produced by different judge configurations as if they came from one leaderboard.
 
 The evaluation directory contains `evaluations.jsonl`, `robustness/evaluations.jsonl`,
 `robustness/sample_manifest.json`, detailed CSV/JSON summaries, NLI preflight evidence, full judge
