@@ -26,11 +26,16 @@ class DatasetValidationError(ValueError):
     pass
 
 
+def _relative_key(path, data_dir):
+    """Return the same manifest path on POSIX and Windows."""
+    return path.relative_to(data_dir).as_posix()
+
+
 def _dataset_hash(paths, data_dir):
     """Hash logical text content consistently across LF and CRLF checkouts."""
     digest = hashlib.sha256()
-    for path in sorted(paths, key=lambda p: str(p.relative_to(data_dir))):
-        digest.update(str(path.relative_to(data_dir)).encode())
+    for path in sorted(paths, key=lambda p: _relative_key(p, data_dir)):
+        digest.update(_relative_key(path, data_dir).encode())
         digest.update(b"\0")
         content = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
         digest.update(content)

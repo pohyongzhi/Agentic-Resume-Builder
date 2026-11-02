@@ -1,10 +1,16 @@
 import csv
 import shutil
+from pathlib import PureWindowsPath
 
 import pytest
 
 from common.data import dataset_hash, load_manifest, load_pairs
-from scripts.validate_dataset import DatasetValidationError, _dataset_hash, validate_dataset
+from scripts.validate_dataset import (
+    DatasetValidationError,
+    _dataset_hash,
+    _relative_key,
+    validate_dataset,
+)
 
 
 def test_frozen_dataset_has_expected_balanced_pairs():
@@ -43,6 +49,12 @@ def test_dataset_hash_is_stable_across_line_endings(tmp_path):
     lf_hash = _dataset_hash([path], tmp_path)
     path.write_bytes(b"first\r\nsecond\r\n")
     assert _dataset_hash([path], tmp_path) == lf_hash
+
+
+def test_dataset_hash_uses_portable_path_separators():
+    root = PureWindowsPath("C:/project/data")
+    path = root / "resumes" / "candidate.md"
+    assert _relative_key(path, root) == "resumes/candidate.md"
 
 
 def test_validation_rejects_missing_keyword_file(tmp_path):
