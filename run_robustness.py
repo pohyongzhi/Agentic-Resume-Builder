@@ -92,7 +92,7 @@ def main():
                         }
                     else:
                         row = run_all.score(
-                            base_pair, output, tracker, skip_faithfulness=args.skip_faithfulness
+                            pair, output, tracker, skip_faithfulness=args.skip_faithfulness
                         )
                         row["error"] = None
                 except Exception as exc:

@@ -18,6 +18,12 @@ METRICS = (
     "sim_gain",
     "kw_after",
     "faithfulness",
+    "claim_faithfulness",
+    "unsupported_claim_rate",
+    "protected_field_violation",
+    "protected_field_violation_count",
+    "fabrication_bait_violation",
+    "fabrication_bait_match_count",
     "judge_overall_mean",
     "judge_relevance_to_jd",
     "judge_prioritisation_of_supported_experience",
@@ -104,7 +110,12 @@ def summarise(rows, group_fields=()):
                 if metric in (row.get("evaluation_failures") or {})
             ]
             numeric = [float(value) for value in values]
-            binary = metric in {"execution_success", "task_success"}
+            binary = metric in {
+                "execution_success",
+                "task_success",
+                "protected_field_violation",
+                "fabrication_bait_violation",
+            }
             if binary:
                 successes = sum(bool(value) for value in values)
                 low, high = _wilson_ci(successes, len(values))

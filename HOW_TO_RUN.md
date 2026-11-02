@@ -44,6 +44,32 @@ text. Scanned PDFs are rejected clearly because OCR is outside the baseline scop
 Generated files are placed in `results/outputs/`. The harness refuses paths outside that directory,
 existing output files and the original resume.
 
+## W4: Evidence-grounded generation
+
+W4 ensures every claim in the generated resume cites source spans from the original resume and is
+verified for factual accuracy:
+
+```bash
+python -c "from workflows.w4_evidence import generate; from common.llm import Tracker; \
+    state = generate(Tracker(), 'fixtures/alex-markdown.md', \
+    pasted_jd='Data Analyst role. Need SQL, Python and Excel.'); \
+    print(state['resume_md']); print('Kept:', state['w4_stats']['kept'], \
+    'Dropped:', state['w4_stats']['dropped'])"
+```
+
+Each claim must:
+- Include project descriptions as cited claims, as well as summary sentences and bullets
+- Cite 1-3 source spans from the original resume
+- Only reference spans from the same resume section (for experience/education/projects)
+- Pass deterministic rule checks (no new numbers, skills, or inflation)
+- Pass LLM verification (claim is entailed by cited text)
+
+The workflow attempts up to 2 revision rounds. Unsupported claims are dropped from the final
+resume. The evidence report shows which claims were kept/dropped and why.
+
+In the web interface, select "W4 - Evidence-grounded" to see the evidence report with citation
+details for every claim.
+
 ## Single-pass control
 
 The old one-prompt implementation is kept as V0:

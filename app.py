@@ -16,11 +16,13 @@ from common.tools import ToolError, extract_resume_text, fetch_job_page
 from workflows import WORKFLOWS
 from workflows.w2_baseline import NAME as BASELINE_NAME, generate
 from workflows.w3_critic import NAME as CRITIC_NAME, generate as generate_w3
+from workflows.w4_evidence import NAME as W4_NAME, generate as generate_w4
 
 WORKFLOW_CHOICES = [
     ("W1 - Single pass: one prompt, no guardrails", "w1_single_pass"),
     ("W2 - Agentic baseline: extract, validate and render", "w2_baseline"),
     ("W3 - Multi-critic: fact, recruiter and formatting review", "w3_critic"),
+    ("W4 - Evidence-grounded: every bullet cites the original resume", "w4_evidence"),
 ]
 
 APP_CSS = """
@@ -158,6 +160,10 @@ MESSAGES = {
     "TOOL_BUDGET_EXCEEDED": "The agent couldn't produce a resume that passed validation within its tool-call limit.",
     "W3_FINAL_VALIDATION_FAILED": "The critics finished, but the final draft failed the factual validation harness.",
     "W3_STRUCTURED_OUTPUT_FAILED": "A critic or creator returned an invalid structured response.",
+    "W4_DRAFT_FAILED": "The creator couldn't produce a valid grounded resume draft.",
+    "W4_FINAL_VALIDATION_FAILED": "The final resume failed validation after grounding checks.",
+    "W4_NO_SPANS": "No citeable content found in the resume.",
+    "W4_FAILED": "The evidence-grounded workflow encountered an error.",
 }
 
 
@@ -179,11 +185,55 @@ def _save_markdown(markdown, workflow):
     return str(path)
 
 
+def _format_evidence(evidence, w4_stats):
+    """Format W4 evidence report as a Markdown table."""
+    if not evidence:
+        return ""
+
+    kept = w4_stats.get("kept", 0)
+    dropped = w4_stats.get("dropped", 0)
+    total = kept + dropped
+
+    # Build header
+    lines = [
+        "",
+        "### Evidence report (W4)",
+        f"Kept {kept} / {total} claims · {dropped} dropped",
+        "",
+        "| | Claim | Cited source |",
+        "|---|---|---|",
+    ]
+
+    # Add rows (truncate long text to ~90 chars)
+    for item in evidence:
+        status_icon = "✅" if item["status"] == "kept" else "❌"
+        claim_text = item["claim"][:90] + "…" if len(item["claim"]) > 90 else item["claim"]
+
+        # Build source text
+        if item.get("sources"):
+            source = item["sources"][0]  # Show first source
+            source_text = source.get("text", "")[:80] + "…" if len(source.get("text", "")) > 80 else source.get("text", "")
+            source_label = f"{source.get('id', '')}: \"{source_text}\""
+        else:
+            source_label = "(no sources)"
+
+        # Add problems if dropped
+        if item["status"] == "dropped" and item.get("problems"):
+            problems_str = "; ".join(item["problems"][:2])  # Show first 2 problems
+            source_label += f" — {problems_str}"
+
+        lines.append(f"| {status_icon} | {claim_text} | {source_label} |")
+
+    return "\n".join(lines)
+
+
 def _run_selected_workflow(workflow, path, job_url, pasted_jd, tracker):
     if workflow == BASELINE_NAME:
         return generate(tracker, path, job_url=job_url, pasted_jd=pasted_jd)
     if workflow == CRITIC_NAME:
         return generate_w3(tracker, path, job_url=job_url, pasted_jd=pasted_jd)
+    if workflow == W4_NAME:
+        return generate_w4(tracker, path, job_url=job_url, pasted_jd=pasted_jd)
 
     resume_text = extract_resume_text(path)
     jd_text = (pasted_jd or "").strip()
@@ -254,10 +304,23 @@ def run(workflow, resume_file, job_url, pasted_jd):
             gr.update(value=None, visible=False),
             highlight,
         )
+
+    # Add validation status
+    if workflow in (BASELINE_NAME, CRITIC_NAME):
+        stats += " &nbsp;·&nbsp; **Validation passed**"
+    elif workflow == W4_NAME:
+        stats += " &nbsp;·&nbsp; **Evidence-grounded**"
+    else:
+        stats += " &nbsp;·&nbsp; **Experimental workflow**"
+
+    # Add evidence report for W4
+    if workflow == W4_NAME and state.get("evidence"):
+        evidence_md = _format_evidence(state["evidence"], state.get("w4_stats", {}))
+        stats += evidence_md
+
     return (
         state["resume_md"],
-        stats + (" &nbsp;·&nbsp; **Validation passed**" if workflow in (BASELINE_NAME, CRITIC_NAME)
-                 else " &nbsp;·&nbsp; **Experimental workflow**"),
+        stats,
         gr.update(value=state["output_path"], visible=True),
         gr.update(),
     )

@@ -142,3 +142,140 @@ def llm_schema(model: type[BaseModel], exclude: tuple[str, ...] = ()) -> dict:
         if field in schema.get("required", []):
             schema["required"].remove(field)
     return schema
+
+
+# ========== W4 Evidence-grounded schemas ==========
+
+import re
+
+
+def _claims_before(v):
+    """Shared field_validator for bullets/details/summary that may be strings or missing."""
+    if v is None:
+        return []
+    if isinstance(v, str):
+        return [{"text": v, "sources": []}]
+    if isinstance(v, list):
+        return [{"text": item, "sources": []} if isinstance(item, str) else item for item in v]
+    return v
+
+
+class Claim(Schema):
+    """One sentence/bullet the creator wrote, plus the span IDs it is based on."""
+    text: str
+    sources: list[str] = Field(default_factory=list)
+
+    @model_validator(mode="before")
+    @classmethod
+    def _normalize_claim(cls, data):
+        # Accept a bare string as a Claim
+        if isinstance(data, str):
+            return {"text": data, "sources": []}
+        if not isinstance(data, dict):
+            return data
+
+        # Normalize sources field
+        sources = data.get("sources") or []
+        if isinstance(sources, str):
+            # Extract IDs from string like "S3, S4" or "[S3] [S4]"
+            sources = re.findall(r"[Ss]\s*(\d+)", sources)
+        elif isinstance(sources, list):
+            # Extract IDs from each item in the list
+            extracted = []
+            for item in sources:
+                if isinstance(item, str):
+                    ids = re.findall(r"[Ss]\s*(\d+)", item)
+                    extracted.extend(ids)
+            sources = extracted
+
+        # Normalize to ["S3", "S4"] format, deduplicate while preserving order
+        seen = set()
+        normalized = []
+        for s_id in sources:
+            normalized_id = f"S{s_id}"
+            if normalized_id not in seen:
+                seen.add(normalized_id)
+                normalized.append(normalized_id)
+
+        data["sources"] = normalized
+        return data
+
+
+class GroundedExperience(Schema):
+    employer: str
+    title: str
+    start: str = ""
+    end: str = ""
+    bullets: list[Claim] = Field(default_factory=list)
+
+    @classmethod
+    def _validate_bullets(cls, v):
+        return _claims_before(v)
+
+    # Register the field validator
+    _bullets_validator = model_validator(mode="before")(
+        lambda cls, data: {**data, "bullets": cls._validate_bullets(data.get("bullets"))}
+        if isinstance(data, dict) else data
+    )
+
+
+class GroundedEducation(Schema):
+    institution: str
+    degree: str
+    start: str = ""
+    end: str = ""
+    details: list[Claim] = Field(default_factory=list)
+
+    @classmethod
+    def _validate_details(cls, v):
+        return _claims_before(v)
+
+    _details_validator = model_validator(mode="before")(
+        lambda cls, data: {**data, "details": cls._validate_details(data.get("details"))}
+        if isinstance(data, dict) else data
+    )
+
+
+class GroundedProject(Schema):
+    name: str
+    description: Claim = Field(default_factory=lambda: Claim(text=""))
+    bullets: list[Claim] = Field(default_factory=list)
+
+    @classmethod
+    def _validate_bullets(cls, v):
+        return _claims_before(v)
+
+    _bullets_validator = model_validator(mode="before")(
+        lambda cls, data: {**data, "bullets": cls._validate_bullets(data.get("bullets"))}
+        if isinstance(data, dict) else data
+    )
+
+
+class GroundedResume(Schema):
+    name: str
+    contact: Contact = Field(default_factory=Contact)
+    summary: list[Claim] = Field(default_factory=list)
+    experience: list[GroundedExperience] = Field(default_factory=list)
+    education: list[GroundedEducation] = Field(default_factory=list)
+    projects: list[GroundedProject] = Field(default_factory=list)
+    skills: list[str] = Field(default_factory=list)
+    certifications: list[str] = Field(default_factory=list)
+
+    @classmethod
+    def _validate_summary(cls, v):
+        return _claims_before(v)
+
+    _summary_validator = model_validator(mode="before")(
+        lambda cls, data: {**data, "summary": cls._validate_summary(data.get("summary"))}
+        if isinstance(data, dict) else data
+    )
+
+
+class ClaimVerdict(Schema):
+    claim_id: str
+    supported: bool
+    reason: str = ""
+
+
+class VerifyBatch(Schema):
+    verdicts: list[ClaimVerdict] = Field(default_factory=list)

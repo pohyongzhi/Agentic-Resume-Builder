@@ -17,3 +17,5 @@ class ResumeState(TypedDict, total=False):
     output_path: str
     hit_budget: bool
     errors: Annotated[list[str], operator.add]
+    evidence: list  # W4 evidence report (unused by other workflows)
+    w4_stats: dict  # W4 summary numbers (unused by other workflows)
