@@ -98,6 +98,16 @@ all three approve with no major or critical issues, or after at most two revisio
 must still pass the same deterministic harness used by the baseline before it is rendered. This
 workflow is expected to improve quality and faithfulness at the cost of more model calls and time.
 
+W3 feedback is limited to five concise issues per critic. Critic responses have a 1,536-token
+budget and drafts a 4,096-token budget; invalid JSON/schema responses get one corrective retry.
+Failed responses are retained in traces for debugging. Protected-fact validation errors are also
+fed into the revision loop, while final rendering still requires successful harness validation.
+W3 delegates skill support and paraphrase checks to its LLM fact-checker; its harness does not
+require literal skill matches. Other protected fields, certifications, projects and file-safety
+checks remain enforced. W2 retains its original skill-matching check.
+These settings and `W3_GENERATION_VERSION` are included in the generation configuration hash,
+so results produced before this reliability change remain separate.
+
 `baseline_tailor.py` is intentionally still the non-agentic single-pass CLI, not the new baseline:
 
 ```bash

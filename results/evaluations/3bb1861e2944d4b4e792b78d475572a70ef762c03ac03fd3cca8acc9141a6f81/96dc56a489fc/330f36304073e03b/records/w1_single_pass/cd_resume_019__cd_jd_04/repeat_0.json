@@ -1,0 +1,364 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 821,
+  "output_tokens": 603,
+  "thinking_chars": 0,
+  "seconds": 24.15,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 375,
+  "sim_before": 0.8131,
+  "sim_after": 0.8102,
+  "sim_gain": -0.0029,
+  "kw_before": 0.5,
+  "kw_after": 0.875,
+  "kw_missing": [
+    "observability"
+  ],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": false,
+  "task_failure_reasons": [
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1424,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2465.37,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "cd_resume_019__cd_jd_04",
+  "resume_id": "cd_resume_019",
+  "jd_id": "cd_jd_04",
+  "category": "cloud_devops",
+  "role_family": "platform_engineering_lead",
+  "seniority": "senior",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 24.3,
+  "resume_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_019__cd_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_019__cd_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_019__cd_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Samuel Lee\nsamuel.lee@example.test | +65 6000 0079 | Singapore\n\n## Summary\nSenior-ready Platform Engineer with deep experience in platform engineering, Kubernetes, Terraform, and cloud architecture. Proven track record of setting internal platform strategy, leading self-service infrastructure delivery, and standardizing secure deployment patterns. Adept at translating operational needs into reliable solutions while improving developer experience and team turnaround by 38%. Committed to evidence-based decision-making, clear documentation, and collaborative problem-solving in multidisciplinary environments.\n\n## Experience\n\n**Technology Associate** | Example Delta Operations (fictional)\n*Jan 2021 – Present*\n\n*   **Platform Strategy & Self-Service:** Defined internal platform strategy using Kubernetes and Terraform to enable self-service infrastructure delivery, directly contributing to a 38% improvement in team turnaround.\n*   **Secure Deployment Standards:** Collaborated with engineering teams to standardize secure deployment patterns, ensuring quality controls were maintained across all critical workloads.\n*   **Stakeholder Communication & Governance:** Managed approximately 57 monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews for technical and business stakeholders.\n*   **Documentation & Decision Making:** Documented key decisions and procedures to ensure transparency and support evidence-based governance throughout the delivery lifecycle.\n\n**Technical Assistant** | Example Ember Technologies (fictional)\n*Jun 2017 – Dec 2020*\n\n*   **Cloud Architecture & Operations:** Supported recurring operational work using cloud architecture principles, creating clear step-by-step documentation to reduce manual preparation time by 33%.\n*   **Troubleshooting & Escalation:** Investigated complex service requests and escalated issues with clear supporting evidence, fostering a culture of accountability and technical rigor.\n\n## Projects\n\n**Platform Engineering Lead Practice Project**\n*   Designed and built a demonstration project leveraging platform engineering, Kubernetes, and Terraform to simulate real-world scenarios.\n*   Conducted rigorous testing against representative use cases to identify limitations and define next steps for scalability.\n*   Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.\n\n## Education\n\n**Bachelor of Science in Information Systems** | Example Polytechnic (fictional)\n*Aug 2020 – May 2024*\n*   Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.\n\n## Skills\n\n*   **Core Technologies:** Platform Engineering, Kubernetes, Terraform, Cloud Architecture, CI/CD pipelines.\n*   **Leadership & Soft Skills:** Technical Leadership, Stakeholder Management, Collaborative Problem Solving, Clear Written & Verbal Communication.\n*   **Tools & Practices:** Backstage, Git, Documentation Standards, Security Governance, FinOps principles (applied through cost-aware resource management).",
+  "original_resume": "# Samuel Lee\n\nsamuel.lee@example.test | +65 6000 0079 | Singapore\n\n## Summary\n\nTechnology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead.\n\n## Experience\n\n### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present)\n\n- Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 38%.\n- Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.\n- Managed approximately 57 work items per month while tracking quality checks and follow-up actions.\n- Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.\n\n### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020)\n\n- Supported recurring operational work using cloud architecture and documented step-by-step procedures.\n- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n- Created a simple reporting template that reduced manual preparation time by 33%.\n\n## Projects\n\n### Platform Engineering Lead Practice Project\n\n- Built a fictional demonstration project using platform engineering, Kubernetes and Terraform.\n- Tested the project with representative scenarios and recorded limitations and next steps.\n- Presented the design and outcomes to a five-person peer review group.\n\n## Education\n\n### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)\n\n- Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n## Skills\n\nplatform engineering, Kubernetes, Terraform, cloud architecture, Backstage, Excel, documentation, Git\n",
+  "job_description": "# Platform Engineering Lead\n\n**Company:** Example Orchard Technologies (fictional)  \n**Location:** Singapore  \n**Employment type:** Full-time  \n**Seniority:** Senior\n\n## About the role\n\nExample Orchard Technologies is seeking a Platform Engineering Lead to join a multidisciplinary technology team. The successful\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\nworks closely with engineering, product and business stakeholders, values clear documentation and\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\nappropriate review, security and quality controls.\n\n## Responsibilities\n\n- Set the internal platform strategy.\n- Lead self-service infrastructure delivery.\n- Standardise secure deployment patterns.\n- Improve developer experience.\n- Coach platform engineers and govern technical decisions.\n- Communicate progress, risks and technical trade-offs to relevant stakeholders.\n- Maintain clear documentation and contribute to team planning and reviews.\n\n## Required qualifications\n\n- platform engineering\n- Kubernetes\n- Terraform\n- cloud architecture\n- CI/CD\n- observability\n- security\n- technical leadership\n- Clear written and verbal communication\n- Ability to work collaboratively and solve ambiguous problems\n\n## Preferred qualifications\n\n- Backstage\n- multi-cloud\n- FinOps\n\n## What success looks like\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\nwell-tested improvements and build trusted working relationships. Success is measured through\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.0476,
+  "unsupported": [
+    "Senior-ready Platform Engineer with deep experience in platform engineering, Kubernetes, Terraform, and cloud architecture.",
+    "Proven track record of setting internal platform strategy, leading self-service infrastructure delivery, and standardizing secure deployment patterns.",
+    "Adept at translating operational needs into reliable solutions while improving developer experience and team turnaround by 38%.",
+    "Committed to evidence-based decision-making, clear documentation, and collaborative problem-solving in multidisciplinary environments.",
+    "Technology Associate** | Example Delta Operations (fictional)",
+    "Platform Strategy & Self-Service:** Defined internal platform strategy using Kubernetes and Terraform to enable self-service infrastructure delivery, directly contributing to a 38% improvement in team turnaround.",
+    "Secure Deployment Standards:** Collaborated with engineering teams to standardize secure deployment patterns, ensuring quality controls were maintained across all critical workloads.",
+    "Stakeholder Communication & Governance:** Managed approximately 57 monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews for technical and business stakeholders.",
+    "Documentation & Decision Making:** Documented key decisions and procedures to ensure transparency and support evidence-based governance throughout the delivery lifecycle.",
+    "Technical Assistant** | Example Ember Technologies (fictional)",
+    "Cloud Architecture & Operations:** Supported recurring operational work using cloud architecture principles, creating clear step-by-step documentation to reduce manual preparation time by 33%.",
+    "Troubleshooting & Escalation:** Investigated complex service requests and escalated issues with clear supporting evidence, fostering a culture of accountability and technical rigor.",
+    "Platform Engineering Lead Practice Project**",
+    "Designed and built a demonstration project leveraging platform engineering, Kubernetes, and Terraform to simulate real-world scenarios.",
+    "Conducted rigorous testing against representative use cases to identify limitations and define next steps for scalability.",
+    "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.",
+    "Bachelor of Science in Information Systems** | Example Polytechnic (fictional)",
+    "Core Technologies:** Platform Engineering, Kubernetes, Terraform, Cloud Architecture, CI/CD pipelines.",
+    "Leadership & Soft Skills:** Technical Leadership, Stakeholder Management, Collaborative Problem Solving, Clear Written & Verbal Communication.",
+    "Tools & Practices:** Backstage, Git, Documentation Standards, Security Governance, FinOps principles (applied through cost-aware resource management)."
+  ],
+  "n_claims": 21,
+  "claim_scores": [
+    {
+      "claim": "Senior-ready Platform Engineer with deep experience in platform engineering, Kubernetes, Terraform, and cloud architecture.",
+      "best_source_chunk": "# Samuel Lee samuel.lee@example.test | +65 6000 0079 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+      "probabilities": {
+        "contradiction": 0.0008,
+        "entailment": 0.004333,
+        "neutral": 0.994867
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004333,
+      "supported": false
+    },
+    {
+      "claim": "Proven track record of setting internal platform strategy, leading self-service infrastructure delivery, and standardizing secure deployment patterns.",
+      "best_source_chunk": "Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.009483,
+        "entailment": 0.003215,
+        "neutral": 0.987302
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.003215,
+      "supported": false
+    },
+    {
+      "claim": "Adept at translating operational needs into reliable solutions while improving developer experience and team turnaround by 38%.",
+      "best_source_chunk": "approximately 57 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+      "probabilities": {
+        "contradiction": 0.000425,
+        "entailment": 0.002586,
+        "neutral": 0.996989
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002586,
+      "supported": false
+    },
+    {
+      "claim": "Committed to evidence-based decision-making, clear documentation, and collaborative problem-solving in multidisciplinary environments.",
+      "best_source_chunk": "Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.002874,
+        "entailment": 0.004828,
+        "neutral": 0.992298
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004828,
+      "supported": false
+    },
+    {
+      "claim": "Technology Associate** | Example Delta Operations (fictional)",
+      "best_source_chunk": "# Samuel Lee samuel.lee@example.test | +65 6000 0079 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+      "probabilities": {
+        "contradiction": 0.008951,
+        "entailment": 0.030391,
+        "neutral": 0.960658
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.030391,
+      "supported": false
+    },
+    {
+      "claim": "Platform Strategy & Self-Service:** Defined internal platform strategy using Kubernetes and Terraform to enable self-service infrastructure delivery, directly contributing to a 38% improvement in team turnaround.",
+      "best_source_chunk": "(fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 38%. - Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers. - Managed approximately 57 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise",
+      "probabilities": {
+        "contradiction": 0.000154,
+        "entailment": 0.000655,
+        "neutral": 0.999191
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000655,
+      "supported": false
+    },
+    {
+      "claim": "Secure Deployment Standards:** Collaborated with engineering teams to standardize secure deployment patterns, ensuring quality controls were maintained across all critical workloads.",
+      "best_source_chunk": "# Samuel Lee samuel.lee@example.test | +65 6000 0079 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+      "probabilities": {
+        "contradiction": 0.00117,
+        "entailment": 0.003308,
+        "neutral": 0.995522
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.003308,
+      "supported": false
+    },
+    {
+      "claim": "Stakeholder Communication & Governance:** Managed approximately 57 monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews for technical and business stakeholders.",
+      "best_source_chunk": "Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.002971,
+        "entailment": 0.001886,
+        "neutral": 0.995143
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001886,
+      "supported": false
+    },
+    {
+      "claim": "Documentation & Decision Making:** Documented key decisions and procedures to ensure transparency and support evidence-based governance throughout the delivery lifecycle.",
+      "best_source_chunk": "# Samuel Lee samuel.lee@example.test | +65 6000 0079 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+      "probabilities": {
+        "contradiction": 0.000796,
+        "entailment": 0.001692,
+        "neutral": 0.997512
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001692,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Ember Technologies (fictional)",
+      "best_source_chunk": "approximately 57 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+      "probabilities": {
+        "contradiction": 0.001131,
+        "entailment": 0.006302,
+        "neutral": 0.992567
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.006302,
+      "supported": false
+    },
+    {
+      "claim": "Cloud Architecture & Operations:** Supported recurring operational work using cloud architecture principles, creating clear step-by-step documentation to reduce manual preparation time by 33%.",
+      "best_source_chunk": "2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Platform Engineering Lead Practice Project - Built a fictional demonstration project using platform engineering, Kubernetes and Terraform. -",
+      "probabilities": {
+        "contradiction": 0.021044,
+        "entailment": 0.053248,
+        "neutral": 0.925708
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.053248,
+      "supported": false
+    },
+    {
+      "claim": "Troubleshooting & Escalation:** Investigated complex service requests and escalated issues with clear supporting evidence, fostering a culture of accountability and technical rigor.",
+      "best_source_chunk": "approximately 57 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+      "probabilities": {
+        "contradiction": 0.000734,
+        "entailment": 0.002885,
+        "neutral": 0.996381
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002885,
+      "supported": false
+    },
+    {
+      "claim": "Platform Engineering Lead Practice Project**",
+      "best_source_chunk": "approximately 57 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+      "probabilities": {
+        "contradiction": 0.067476,
+        "entailment": 0.02156,
+        "neutral": 0.910964
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.02156,
+      "supported": false
+    },
+    {
+      "claim": "Designed and built a demonstration project leveraging platform engineering, Kubernetes, and Terraform to simulate real-world scenarios.",
+      "best_source_chunk": "2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Platform Engineering Lead Practice Project - Built a fictional demonstration project using platform engineering, Kubernetes and Terraform. -",
+      "probabilities": {
+        "contradiction": 0.014876,
+        "entailment": 0.002439,
+        "neutral": 0.982686
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002439,
+      "supported": false
+    },
+    {
+      "claim": "Conducted rigorous testing against representative use cases to identify limitations and define next steps for scalability.",
+      "best_source_chunk": "approximately 57 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+      "probabilities": {
+        "contradiction": 0.000856,
+        "entailment": 0.00218,
+        "neutral": 0.996964
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00218,
+      "supported": false
+    },
+    {
+      "claim": "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.",
+      "best_source_chunk": "Projects ### Platform Engineering Lead Practice Project - Built a fictional demonstration project using platform engineering, Kubernetes and Terraform. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May",
+      "probabilities": {
+        "contradiction": 0.001192,
+        "entailment": 0.003747,
+        "neutral": 0.995061
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.003747,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (fictional)",
+      "best_source_chunk": "Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.958241,
+        "entailment": 0.019811,
+        "neutral": 0.021948
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.019811,
+      "supported": false
+    },
+    {
+      "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+      "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills platform engineering, Kubernetes, Terraform, cloud architecture, Backstage, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.000159,
+        "entailment": 0.985718,
+        "neutral": 0.014122
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.985718,
+      "supported": true
+    },
+    {
+      "claim": "Core Technologies:** Platform Engineering, Kubernetes, Terraform, Cloud Architecture, CI/CD pipelines.",
+      "best_source_chunk": "Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.018626,
+        "entailment": 0.012502,
+        "neutral": 0.968872
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.012502,
+      "supported": false
+    },
+    {
+      "claim": "Leadership & Soft Skills:** Technical Leadership, Stakeholder Management, Collaborative Problem Solving, Clear Written & Verbal Communication.",
+      "best_source_chunk": "Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.018171,
+        "entailment": 0.012763,
+        "neutral": 0.969066
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.012763,
+      "supported": false
+    },
+    {
+      "claim": "Tools & Practices:** Backstage, Git, Documentation Standards, Security Governance, FinOps principles (applied through cost-aware resource management).",
+      "best_source_chunk": "# Samuel Lee samuel.lee@example.test | +65 6000 0079 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+      "probabilities": {
+        "contradiction": 0.118212,
+        "entailment": 0.009903,
+        "neutral": 0.871885
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.009903,
+      "supported": false
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "3bb7d767648231ced03eed850ba999c7abef0b5d7b0083ae8c102d6e3fdee715",
+  "nli_seconds": 1.1804,
+  "evaluator_hash": "330f36304073e03b"
+}

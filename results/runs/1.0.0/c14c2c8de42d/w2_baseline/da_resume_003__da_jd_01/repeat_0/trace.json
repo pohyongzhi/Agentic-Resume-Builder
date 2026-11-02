@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 371,
+    "output_tokens": 218,
+    "thinking_chars": 0,
+    "seconds": 8.06,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 474,
+    "output_tokens": 514,
+    "thinking_chars": 0,
+    "seconds": 26.51,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1396,
+    "output_tokens": 457,
+    "thinking_chars": 0,
+    "seconds": 19.89,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Chloe Lim\",\n  \"contact\": {\n    \"email\": \"chloe.lim@example.test\",\n    \"phone\": \"+65 6000 0023\",\n    \"location\": \"Singapore\"\n  },\n  \"summary\": \"Technology associate with transferable experience in SQL, Excel, and Power BI. Proven ability to clean operational data, build decision-support dashboards, and define business metrics while collaborating with stakeholders.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.\",\n        \"Applied Power BI to build decision-support dashboards and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using data cleaning and documented step-by-step procedures.\",\n        \"Created a reporting template that reduced manual preparation time by 13%.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"SQL\",\n    \"Excel\",\n    \"Power BI\",\n    \"data cleaning\",\n    \"Tableau\",\n    \"documentation\",\n    \"Git\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.002,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.003,
+    "step": 5
+  }
+]

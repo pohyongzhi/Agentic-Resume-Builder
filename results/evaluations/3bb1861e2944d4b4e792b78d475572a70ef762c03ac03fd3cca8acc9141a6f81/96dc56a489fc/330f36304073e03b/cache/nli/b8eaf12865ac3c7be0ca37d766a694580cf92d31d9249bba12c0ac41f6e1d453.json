@@ -1,0 +1,412 @@
+{
+  "identity": {
+    "source_hash": "130d4e4ce52a52e01b332d78f3b4c96302a746c2e052de4a0be9244b5b374694",
+    "tailored_hash": "de32b3d0611bf5205b14ee2a0724c9dc36c196cf198715d2914b5277f2434671",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1429,
+    "unsupported": [
+      "Senior AI and LLM Solutions Engineer with extensive experience architecting production-grade LLM applications, designing retrieval pipelines, and establishing safety controls.",
+      "Proven track record of translating operational needs into reliable, maintainable solutions using Python, RAG, and vector databases.",
+      "Expert in guiding engineering teams through ambiguous problems while delivering evidence-based decisions and clear documentation.",
+      "Committed to optimizing inference cost and latency while maintaining rigorous quality standards.",
+      "Architect Production LLM Applications:** Designed and deployed scalable LLM applications using Python, directly improving team turnaround by 16% through optimized system architecture.",
+      "Design Retrieval Pipelines:** Engineered robust RAG pipelines integrating vector databases to handle complex retrieval tasks, ensuring high accuracy for downstream AI models.",
+      "Establish Safety & Observability Controls:** Collaborated with cross-functional teams to implement comprehensive safety protocols and observability frameworks, mitigating risks in production environments.",
+      "Optimize Performance:** Focused on reducing inference latency and costs while maintaining solution reliability, aligning with enterprise-grade delivery standards.",
+      "Stakeholder Communication:** Presented technical trade-offs, progress updates, and risk assessments to engineering, product, and business stakeholders during fortnightly reviews.",
+      "Team Leadership:** Mentored four colleagues on reliable AI delivery practices, fostering a culture of clear documentation and collaborative problem-solving.",
+      "Example Beacon Services** | Singapore",
+      "Operational Efficiency:** Streamlined recurring operational workflows using advanced prompt engineering techniques, reducing manual preparation time by 11%.",
+      "Incident Management:** Investigated service requests and escalated complex issues with clear supporting evidence, ensuring transparent communication of findings.",
+      "Documentation:** Created standardized reporting templates that enhanced team clarity and reduced onboarding friction.",
+      "Senior AI and LLM Solutions Engineer Practice Project",
+      "Developed a demonstration project leveraging Python, large language models, and RAG to validate architectural hypotheses.",
+      "Conducted rigorous testing across representative scenarios to identify limitations and define next steps for production readiness.",
+      "Led a five-person peer review group to present design rationale and outcomes, demonstrating ability to communicate complex technical concepts clearly.",
+      "Bachelor of Science in Information Systems**",
+      "Example School of Computing | Singapore",
+      "Core Technologies:** Python, Large Language Models (LLMs), RAG, Vector Databases, Model Evaluation.",
+      "Infrastructure & DevOps:** Docker, Kubernetes, System Architecture.",
+      "Methodologies:** Prompt Engineering, Safety Controls, Observability, Agile Delivery.",
+      "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation."
+    ],
+    "n_claims": 28,
+    "claim_scores": [
+      {
+        "claim": "Senior AI and LLM Solutions Engineer**",
+        "best_source_chunk": "# Priya Lim priya.lim@example.test | +65 6000 0036 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.00199,
+          "entailment": 0.97835,
+          "neutral": 0.01966
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.97835,
+        "supported": true
+      },
+      {
+        "claim": "Senior AI and LLM Solutions Engineer with extensive experience architecting production-grade LLM applications, designing retrieval pipelines, and establishing safety controls.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.000631,
+          "entailment": 0.000723,
+          "neutral": 0.998647
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000723,
+        "supported": false
+      },
+      {
+        "claim": "Proven track record of translating operational needs into reliable, maintainable solutions using Python, RAG, and vector databases.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.007098,
+          "entailment": 0.000498,
+          "neutral": 0.992404
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000498,
+        "supported": false
+      },
+      {
+        "claim": "Expert in guiding engineering teams through ambiguous problems while delivering evidence-based decisions and clear documentation.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.001708,
+          "entailment": 0.003381,
+          "neutral": 0.994911
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003381,
+        "supported": false
+      },
+      {
+        "claim": "Committed to optimizing inference cost and latency while maintaining rigorous quality standards.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.00119,
+          "entailment": 0.001023,
+          "neutral": 0.997787
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001023,
+        "supported": false
+      },
+      {
+        "claim": "Senior AI and LLM Solutions Engineer",
+        "best_source_chunk": "# Priya Lim priya.lim@example.test | +65 6000 0036 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.001685,
+          "entailment": 0.984742,
+          "neutral": 0.013572
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.984742,
+        "supported": true
+      },
+      {
+        "claim": "Example Atlas Solutions** | Singapore",
+        "best_source_chunk": "# Priya Lim priya.lim@example.test | +65 6000 0036 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.002087,
+          "entailment": 0.950882,
+          "neutral": 0.047031
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.950882,
+        "supported": true
+      },
+      {
+        "claim": "Architect Production LLM Applications:** Designed and deployed scalable LLM applications using Python, directly improving team turnaround by 16% through optimized system architecture.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.014337,
+          "entailment": 0.001736,
+          "neutral": 0.983927
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001736,
+        "supported": false
+      },
+      {
+        "claim": "Design Retrieval Pipelines:** Engineered robust RAG pipelines integrating vector databases to handle complex retrieval tasks, ensuring high accuracy for downstream AI models.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.00111,
+          "entailment": 0.001068,
+          "neutral": 0.997822
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001068,
+        "supported": false
+      },
+      {
+        "claim": "Establish Safety & Observability Controls:** Collaborated with cross-functional teams to implement comprehensive safety protocols and observability frameworks, mitigating risks in production environments.",
+        "best_source_chunk": "# Priya Lim priya.lim@example.test | +65 6000 0036 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.000397,
+          "entailment": 0.010343,
+          "neutral": 0.989259
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010343,
+        "supported": false
+      },
+      {
+        "claim": "Optimize Performance:** Focused on reducing inference latency and costs while maintaining solution reliability, aligning with enterprise-grade delivery standards.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.00439,
+          "entailment": 0.002415,
+          "neutral": 0.993194
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002415,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented technical trade-offs, progress updates, and risk assessments to engineering, product, and business stakeholders during fortnightly reviews.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.011656,
+          "entailment": 0.001303,
+          "neutral": 0.987041
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001303,
+        "supported": false
+      },
+      {
+        "claim": "Team Leadership:** Mentored four colleagues on reliable AI delivery practices, fostering a culture of clear documentation and collaborative problem-solving.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.00811,
+          "entailment": 0.005536,
+          "neutral": 0.986354
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005536,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.00234,
+          "entailment": 0.000591,
+          "neutral": 0.997069
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000591,
+        "supported": false
+      },
+      {
+        "claim": "Operational Efficiency:** Streamlined recurring operational workflows using advanced prompt engineering techniques, reducing manual preparation time by 11%.",
+        "best_source_chunk": "Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 11%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.000273,
+          "entailment": 0.002018,
+          "neutral": 0.997709
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002018,
+        "supported": false
+      },
+      {
+        "claim": "Incident Management:** Investigated service requests and escalated complex issues with clear supporting evidence, ensuring transparent communication of findings.",
+        "best_source_chunk": "and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications, improving team turnaround by 16%. - Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up",
+        "probabilities": {
+          "contradiction": 0.090055,
+          "entailment": 0.001856,
+          "neutral": 0.908089
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001856,
+        "supported": false
+      },
+      {
+        "claim": "Documentation:** Created standardized reporting templates that enhanced team clarity and reduced onboarding friction.",
+        "best_source_chunk": "Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 11%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.000475,
+          "entailment": 0.001695,
+          "neutral": 0.99783
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001695,
+        "supported": false
+      },
+      {
+        "claim": "Senior AI and LLM Solutions Engineer Practice Project",
+        "best_source_chunk": "# Priya Lim priya.lim@example.test | +65 6000 0036 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.001935,
+          "entailment": 0.045887,
+          "neutral": 0.952178
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.045887,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project leveraging Python, large language models, and RAG to validate architectural hypotheses.",
+        "best_source_chunk": "and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications, improving team turnaround by 16%. - Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up",
+        "probabilities": {
+          "contradiction": 0.001127,
+          "entailment": 0.006878,
+          "neutral": 0.991994
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006878,
+        "supported": false
+      },
+      {
+        "claim": "Conducted rigorous testing across representative scenarios to identify limitations and define next steps for production readiness.",
+        "best_source_chunk": "template that reduced manual preparation time by 11%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project using Python, large language models and RAG. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ###",
+        "probabilities": {
+          "contradiction": 0.000925,
+          "entailment": 0.001516,
+          "neutral": 0.997558
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001516,
+        "supported": false
+      },
+      {
+        "claim": "Led a five-person peer review group to present design rationale and outcomes, demonstrating ability to communicate complex technical concepts clearly.",
+        "best_source_chunk": "template that reduced manual preparation time by 11%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project using Python, large language models and RAG. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ###",
+        "probabilities": {
+          "contradiction": 0.021336,
+          "entailment": 0.011609,
+          "neutral": 0.967055
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011609,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems**",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.004003,
+          "entailment": 0.001151,
+          "neutral": 0.994846
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001151,
+        "supported": false
+      },
+      {
+        "claim": "Example School of Computing | Singapore",
+        "best_source_chunk": "# Priya Lim priya.lim@example.test | +65 6000 0036 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.193323,
+          "entailment": 0.012432,
+          "neutral": 0.794246
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012432,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.*",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.000515,
+          "entailment": 0.975161,
+          "neutral": 0.024324
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.975161,
+        "supported": true
+      },
+      {
+        "claim": "Core Technologies:** Python, Large Language Models (LLMs), RAG, Vector Databases, Model Evaluation.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.027593,
+          "entailment": 0.017562,
+          "neutral": 0.954845
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017562,
+        "supported": false
+      },
+      {
+        "claim": "Infrastructure & DevOps:** Docker, Kubernetes, System Architecture.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.013396,
+          "entailment": 0.142321,
+          "neutral": 0.844284
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.142321,
+        "supported": false
+      },
+      {
+        "claim": "Methodologies:** Prompt Engineering, Safety Controls, Observability, Agile Delivery.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.021964,
+          "entailment": 0.005768,
+          "neutral": 0.972268
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005768,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 38 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.013673,
+          "entailment": 0.005585,
+          "neutral": 0.980741
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005585,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b8eaf12865ac3c7be0ca37d766a694580cf92d31d9249bba12c0ac41f6e1d453"
+  }
+}

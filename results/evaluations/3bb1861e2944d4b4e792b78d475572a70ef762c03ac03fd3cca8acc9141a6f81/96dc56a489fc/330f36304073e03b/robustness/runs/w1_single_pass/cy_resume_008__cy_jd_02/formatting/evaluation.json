@@ -1,0 +1,402 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 872,
+  "output_tokens": 636,
+  "thinking_chars": 0,
+  "seconds": 26.0,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 386,
+  "sim_before": 0.8307,
+  "sim_after": 0.821,
+  "sim_gain": -0.0097,
+  "kw_before": 0.5,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": false,
+  "task_failure_reasons": [
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1508,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2324.77,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "cy_resume_008__cy_jd_02__formatting",
+  "resume_id": "cy_resume_008",
+  "jd_id": "cy_jd_02",
+  "category": "cybersecurity",
+  "role_family": "grc_analyst",
+  "seniority": "mid",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 25.9967,
+  "resume_path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b/robustness/runs/w1_single_pass/cy_resume_008__cy_jd_02/formatting/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cy_resume_008__cy_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b/robustness/runs/w1_single_pass/cy_resume_008__cy_jd_02/formatting/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Hiro Ng\n\nhiro.ng@example.test | +65 6000 0048 | Singapore\n\n## SUMMARY\nMid-level Technology Associate with proven experience in risk assessment, ISO 27001 compliance, and security policy maintenance. Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation. Skilled in supporting internal and external audits, tracking remediation actions, and communicating technical trade-offs to diverse stakeholders. Seeking to leverage transferable expertise as a Cybersecurity GRC Analyst at Example Northstar Systems.\n\n## EXPERIENCE\n\n**Technology Associate** | Example Cedar Innovations (Singapore)\n*Jul 2023 – Present*\n\n*   **Risk Assessment & Governance:** Conducted technology risk assessments aligned with ISO 27001 standards, improving team turnaround by 38% through data-driven insights.\n*   **Policy Maintenance:** Applied security policies to maintain robust controls; documented all decisions for technical and business reviewers to ensure audit readiness.\n*   **Audit Support:** Collaborated with a cross-functional team of four colleagues to facilitate internal and external audits, presenting progress and findings during fortnightly stakeholder reviews.\n*   **Remediation Tracking:** Managed approximately 104 work items monthly, tracking quality checks and follow-up actions to ensure timely closure of identified risks.\n\n**Technical Assistant** | Example Delta Operations (Singapore)\n*Jan 2021 – Jun 2023*\n\n*   **Process Documentation:** Supported recurring operational workflows by documenting step-by-step procedures, enhancing team clarity and consistency.\n*   **Stakeholder Communication:** Investigated service requests, recorded findings with clear supporting evidence, and escalated issues to relevant stakeholders for resolution.\n*   **Efficiency Improvement:** Designed a reporting template that reduced manual preparation time by 33%, demonstrating ability to solve ambiguous problems through technical writing.\n\n## PROJECTS\n\n**Cybersecurity GRC Analyst Practice Project**\n*   Developed a demonstration project utilizing risk assessment, ISO 27001, and security policies to simulate real-world governance scenarios.\n*   Executed control testing using representative scenarios to identify limitations and define next steps for remediation.\n*   Presented design outcomes and technical trade-offs to a five-person peer review group, refining communication skills for complex audiences.\n\n## EDUCATION\n\n**Bachelor of Science in Information Systems** | Example School of Computing (Singapore)\n*Aug 2020 – May 2024*\n*   Relevant Coursework: Software engineering, databases, cybersecurity, and applied analytics.\n\n## SKILLS\n\n*   **Compliance & Standards:** Risk assessment, ISO 27001, Security policies, NIST framework awareness.\n*   **Audit & Controls:** Audit support, control testing, vendor risk management (transferable), remediation tracking.\n*   **Tools & Documentation:** Technical writing, clear written/verbal communication, Excel, Git.\n*   **Soft Skills:** Collaborative problem-solving, stakeholder engagement, evidence-based decision-making.",
+  "original_resume": "# Hiro Ng\n\n\n\nhiro.ng@example.test | +65 6000 0048 | Singapore\n\n\n\n## SUMMARY\n\n\n\nTechnology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst.\n\n\n\n## EXPERIENCE\n\n\n\n### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present)\n\n\n\n* Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 38%.\n\n* Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.\n\n* Managed approximately 104 work items per month while tracking quality checks and follow-up actions.\n\n* Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews.\n\n\n\n### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023)\n\n\n\n* Supported recurring operational work using audit support and documented step-by-step procedures.\n\n* Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n\n* Created a simple reporting template that reduced manual preparation time by 33%.\n\n\n\n## PROJECTS\n\n\n\n### Cybersecurity GRC Analyst Practice Project\n\n\n\n* Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.\n\n* Tested the project with representative scenarios and recorded limitations and next steps.\n\n* Presented the design and outcomes to a five-person peer review group.\n\n\n\n## EDUCATION\n\n\n\n### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024)\n\n\n\n* Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n\n\n## SKILLS\n\n\n\nrisk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git\n",
+  "job_description": "# Cybersecurity GRC Analyst\n\n\n\n**Company:** Example Northstar Systems (fictional)  \n\n**Location:** Singapore  \n\n**Employment type:** Full-time  \n\n**Seniority:** Mid\n\n\n\n## ABOUT THE ROLE\n\n\n\nExample Northstar Systems is seeking a Cybersecurity GRC Analyst to join a multidisciplinary technology team. The successful\n\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\n\nworks closely with engineering, product and business stakeholders, values clear documentation and\n\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\n\nappropriate review, security and quality controls.\n\n\n\n## RESPONSIBILITIES\n\n\n\n* Perform technology risk assessments.\n\n* Maintain security policies and controls.\n\n* Support internal and external audits.\n\n* Track remediation actions.\n\n* Advise teams on governance requirements.\n\n* Communicate progress, risks and technical trade-offs to relevant stakeholders.\n\n* Maintain clear documentation and contribute to team planning and reviews.\n\n\n\n## REQUIRED QUALIFICATIONS\n\n\n\n* risk assessment\n\n* ISO 27001\n\n* security policies\n\n* audit support\n\n* control testing\n\n* vendor risk\n\n* stakeholder communication\n\n* technical writing\n\n* Clear written and verbal communication\n\n* Ability to work collaboratively and solve ambiguous problems\n\n\n\n## PREFERRED QUALIFICATIONS\n\n\n\n* NIST\n\n* cloud governance\n\n* GRC tooling\n\n\n\n## WHAT SUCCESS LOOKS LIKE\n\n\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\n\nwell-tested improvements and build trusted working relationships. Success is measured through\n\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.125,
+  "unsupported": [
+    "Mid-level Technology Associate with proven experience in risk assessment, ISO 27001 compliance, and security policy maintenance.",
+    "Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+    "Skilled in supporting internal and external audits, tracking remediation actions, and communicating technical trade-offs to diverse stakeholders.",
+    "Seeking to leverage transferable expertise as a Cybersecurity GRC Analyst at Example Northstar Systems.",
+    "Risk Assessment & Governance:** Conducted technology risk assessments aligned with ISO 27001 standards, improving team turnaround by 38% through data-driven insights.",
+    "Policy Maintenance:** Applied security policies to maintain robust controls;",
+    "documented all decisions for technical and business reviewers to ensure audit readiness.",
+    "Audit Support:** Collaborated with a cross-functional team of four colleagues to facilitate internal and external audits, presenting progress and findings during fortnightly stakeholder reviews.",
+    "Remediation Tracking:** Managed approximately 104 work items monthly, tracking quality checks and follow-up actions to ensure timely closure of identified risks.",
+    "Technical Assistant** | Example Delta Operations (Singapore)",
+    "Process Documentation:** Supported recurring operational workflows by documenting step-by-step procedures, enhancing team clarity and consistency.",
+    "Stakeholder Communication:** Investigated service requests, recorded findings with clear supporting evidence, and escalated issues to relevant stakeholders for resolution.",
+    "Efficiency Improvement:** Designed a reporting template that reduced manual preparation time by 33%, demonstrating ability to solve ambiguous problems through technical writing.",
+    "Developed a demonstration project utilizing risk assessment, ISO 27001, and security policies to simulate real-world governance scenarios.",
+    "Executed control testing using representative scenarios to identify limitations and define next steps for remediation.",
+    "Presented design outcomes and technical trade-offs to a five-person peer review group, refining communication skills for complex audiences.",
+    "Bachelor of Science in Information Systems** | Example School of Computing (Singapore)",
+    "Compliance & Standards:** Risk assessment, ISO 27001, Security policies, NIST framework awareness.",
+    "Audit & Controls:** Audit support, control testing, vendor risk management (transferable), remediation tracking.",
+    "Tools & Documentation:** Technical writing, clear written/verbal communication, Excel, Git.",
+    "Soft Skills:** Collaborative problem-solving, stakeholder engagement, evidence-based decision-making."
+  ],
+  "n_claims": 24,
+  "claim_scores": [
+    {
+      "claim": "Mid-level Technology Associate with proven experience in risk assessment, ISO 27001 compliance, and security policy maintenance.",
+      "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.013495,
+        "entailment": 0.155632,
+        "neutral": 0.830873
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.155632,
+      "supported": false
+    },
+    {
+      "claim": "Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+      "best_source_chunk": "(fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using audit support and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 33%. ## PROJECTS ### Cybersecurity GRC Analyst Practice Project * Built a fictional demonstration project using risk",
+      "probabilities": {
+        "contradiction": 0.055699,
+        "entailment": 0.23828,
+        "neutral": 0.706021
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.23828,
+      "supported": false
+    },
+    {
+      "claim": "Skilled in supporting internal and external audits, tracking remediation actions, and communicating technical trade-offs to diverse stakeholders.",
+      "best_source_chunk": "Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 38%. * Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers. * Managed approximately 104 work items per month while tracking quality checks and follow-up actions. * Collaborated with",
+      "probabilities": {
+        "contradiction": 0.00035,
+        "entailment": 0.000931,
+        "neutral": 0.998718
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000931,
+      "supported": false
+    },
+    {
+      "claim": "Seeking to leverage transferable expertise as a Cybersecurity GRC Analyst at Example Northstar Systems.",
+      "best_source_chunk": "# Hiro Ng hiro.ng@example.test | +65 6000 0048 | Singapore ## SUMMARY Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+      "probabilities": {
+        "contradiction": 0.324583,
+        "entailment": 0.013013,
+        "neutral": 0.662404
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.013013,
+      "supported": false
+    },
+    {
+      "claim": "Technology Associate** | Example Cedar Innovations (Singapore)",
+      "best_source_chunk": "# Hiro Ng hiro.ng@example.test | +65 6000 0048 | Singapore ## SUMMARY Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+      "probabilities": {
+        "contradiction": 0.003558,
+        "entailment": 0.947985,
+        "neutral": 0.048457
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.947985,
+      "supported": true
+    },
+    {
+      "claim": "Risk Assessment & Governance:** Conducted technology risk assessments aligned with ISO 27001 standards, improving team turnaround by 38% through data-driven insights.",
+      "best_source_chunk": "Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 38%. * Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers. * Managed approximately 104 work items per month while tracking quality checks and follow-up actions. * Collaborated with",
+      "probabilities": {
+        "contradiction": 0.000226,
+        "entailment": 0.002522,
+        "neutral": 0.997252
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002522,
+      "supported": false
+    },
+    {
+      "claim": "Policy Maintenance:** Applied security policies to maintain robust controls;",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.015889,
+        "entailment": 0.047301,
+        "neutral": 0.93681
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.047301,
+      "supported": false
+    },
+    {
+      "claim": "documented all decisions for technical and business reviewers to ensure audit readiness.",
+      "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.000464,
+        "entailment": 0.002986,
+        "neutral": 0.99655
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002986,
+      "supported": false
+    },
+    {
+      "claim": "Audit Support:** Collaborated with a cross-functional team of four colleagues to facilitate internal and external audits, presenting progress and findings during fortnightly stakeholder reviews.",
+      "best_source_chunk": "business reviewers. * Managed approximately 104 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using audit support and documented step-by-step procedures. * Investigated",
+      "probabilities": {
+        "contradiction": 0.004311,
+        "entailment": 0.020795,
+        "neutral": 0.974895
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.020795,
+      "supported": false
+    },
+    {
+      "claim": "Remediation Tracking:** Managed approximately 104 work items monthly, tracking quality checks and follow-up actions to ensure timely closure of identified risks.",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.007741,
+        "entailment": 0.005936,
+        "neutral": 0.986323
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005936,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Delta Operations (Singapore)",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.974448,
+        "entailment": 0.002863,
+        "neutral": 0.022688
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.002863,
+      "supported": false
+    },
+    {
+      "claim": "Process Documentation:** Supported recurring operational workflows by documenting step-by-step procedures, enhancing team clarity and consistency.",
+      "best_source_chunk": "# Hiro Ng hiro.ng@example.test | +65 6000 0048 | Singapore ## SUMMARY Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+      "probabilities": {
+        "contradiction": 0.002535,
+        "entailment": 0.028884,
+        "neutral": 0.968581
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.028884,
+      "supported": false
+    },
+    {
+      "claim": "Stakeholder Communication:** Investigated service requests, recorded findings with clear supporting evidence, and escalated issues to relevant stakeholders for resolution.",
+      "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.006344,
+        "entailment": 0.001201,
+        "neutral": 0.992455
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001201,
+      "supported": false
+    },
+    {
+      "claim": "Efficiency Improvement:** Designed a reporting template that reduced manual preparation time by 33%, demonstrating ability to solve ambiguous problems through technical writing.",
+      "best_source_chunk": "(fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using audit support and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 33%. ## PROJECTS ### Cybersecurity GRC Analyst Practice Project * Built a fictional demonstration project using risk",
+      "probabilities": {
+        "contradiction": 0.002531,
+        "entailment": 0.005443,
+        "neutral": 0.992027
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005443,
+      "supported": false
+    },
+    {
+      "claim": "Cybersecurity GRC Analyst Practice Project**",
+      "best_source_chunk": "# Hiro Ng hiro.ng@example.test | +65 6000 0048 | Singapore ## SUMMARY Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+      "probabilities": {
+        "contradiction": 0.004587,
+        "entailment": 0.900302,
+        "neutral": 0.095111
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.900302,
+      "supported": true
+    },
+    {
+      "claim": "Developed a demonstration project utilizing risk assessment, ISO 27001, and security policies to simulate real-world governance scenarios.",
+      "best_source_chunk": "# Hiro Ng hiro.ng@example.test | +65 6000 0048 | Singapore ## SUMMARY Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+      "probabilities": {
+        "contradiction": 0.00217,
+        "entailment": 0.014144,
+        "neutral": 0.983686
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.014144,
+      "supported": false
+    },
+    {
+      "claim": "Executed control testing using representative scenarios to identify limitations and define next steps for remediation.",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.044396,
+        "entailment": 0.10727,
+        "neutral": 0.848333
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.10727,
+      "supported": false
+    },
+    {
+      "claim": "Presented design outcomes and technical trade-offs to a five-person peer review group, refining communication skills for complex audiences.",
+      "best_source_chunk": "preparation time by 33%. ## PROJECTS ### Cybersecurity GRC Analyst Practice Project * Built a fictional demonstration project using risk assessment, ISO 27001 and security policies. * Tested the project with representative scenarios and recorded limitations and next steps. * Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems,",
+      "probabilities": {
+        "contradiction": 0.000741,
+        "entailment": 0.000853,
+        "neutral": 0.998406
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000853,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Singapore)",
+      "best_source_chunk": "# Hiro Ng hiro.ng@example.test | +65 6000 0048 | Singapore ## SUMMARY Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+      "probabilities": {
+        "contradiction": 0.005648,
+        "entailment": 0.010373,
+        "neutral": 0.98398
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.010373,
+      "supported": false
+    },
+    {
+      "claim": "Relevant Coursework: Software engineering, databases, cybersecurity, and applied analytics.",
+      "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.000243,
+        "entailment": 0.990012,
+        "neutral": 0.009745
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.990012,
+      "supported": true
+    },
+    {
+      "claim": "Compliance & Standards:** Risk assessment, ISO 27001, Security policies, NIST framework awareness.",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.302684,
+        "entailment": 0.098089,
+        "neutral": 0.599227
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.098089,
+      "supported": false
+    },
+    {
+      "claim": "Audit & Controls:** Audit support, control testing, vendor risk management (transferable), remediation tracking.",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.667078,
+        "entailment": 0.024468,
+        "neutral": 0.308455
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.024468,
+      "supported": false
+    },
+    {
+      "claim": "Tools & Documentation:** Technical writing, clear written/verbal communication, Excel, Git.",
+      "best_source_chunk": "## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.004238,
+        "entailment": 0.049309,
+        "neutral": 0.946452
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.049309,
+      "supported": false
+    },
+    {
+      "claim": "Soft Skills:** Collaborative problem-solving, stakeholder engagement, evidence-based decision-making.",
+      "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.003213,
+        "entailment": 0.008796,
+        "neutral": 0.987992
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.008796,
+      "supported": false
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "2f642708b9e619c2712e47c3dbd208c1838edf7c90c6177f8a54517c6eca0e64",
+  "nli_seconds": 1.7032,
+  "base_pair_id": "cy_resume_008__cy_jd_02",
+  "variant": "formatting",
+  "transformation_version": "meaning-preserving-v1",
+  "evaluator_hash": "330f36304073e03b"
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 374,
+    "output_tokens": 222,
+    "thinking_chars": 0,
+    "seconds": 10.96,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 496,
+    "output_tokens": 366,
+    "thinking_chars": 0,
+    "seconds": 28.7,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1289,
+    "output_tokens": 506,
+    "thinking_chars": 0,
+    "seconds": 25.66,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Priya Lee\",\n  \"contact\": {\n    \"email\": \"priya.lee@example.test\",\n    \"phone\": \"+65 6000 0076\",\n    \"location\": \"Singapore\"\n  },\n  \"summary\": \"Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes, and Terraform. Proven ability to set internal strategy, lead self-service infrastructure delivery, and improve developer experience through documented, measurable improvements.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Platform Engineering Lead\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Set internal platform strategy using Kubernetes and platform engineering to improve team turnaround by 17%.\",\n        \"Led self-service infrastructure delivery with Terraform, documenting decisions for technical and business reviewers.\",\n        \"Standardised secure deployment patterns across the team while managing approximately 108 work items per month.\",\n        \"Improved developer experience by collaborating on fortnightly reviews to track quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Applied cloud architecture to support recurring operational work and documented step-by-step procedures.\",\n        \"Investigated service requests and escalated issues with clear supporting evidence, demonstrating strong problem-solving skills.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example School of Computing (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"platform engineering\",\n    \"Kubernetes\",\n    \"Terraform\",\n    \"cloud architecture\",\n    \"CI/CD\",\n    \"observability\",\n    \"security\",\n    \"technical leadership\",\n    \"Backstage\",\n    \"multi-cloud\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.002,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.003,
+    "step": 5
+  }
+]

@@ -1,0 +1,334 @@
+{
+  "identity": {
+    "source_hash": "901294ab6dee6c24b4c431b9bf2380d68e2c6d7be8bcac0746a2202ebe31306f",
+    "tailored_hash": "1cd721958dd50dd54fd1ae1b24759910ca35b037ba8c81bd971373eb53ebb7af",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1818,
+    "unsupported": [
+      "Senior Technology Transformation Consultant with a proven track record in technology strategy, operating model assessment, and programme delivery.",
+      "Expertise in building investment roadmaps, managing complex stakeholder engagements, and driving process improvements through evidence-based decision-making.",
+      "Adept at translating operational needs into reliable solutions while maintaining rigorous quality controls and clear documentation.",
+      "Committed to collaborative problem-solving and delivering high-quality outcomes that align with business objectives.",
+      "Manage multidisciplinary delivery teams, overseeing approximately 34 work items monthly with strict adherence to quality checks and follow-up actions.",
+      "Build investment roadmaps in collaboration with cross-functional colleagues;",
+      "present progress, risks, and technical trade-offs during fortnightly reviews to senior stakeholders.",
+      "Document all decisions clearly for technical and business reviewers, ensuring transparency and auditability throughout the project lifecycle.",
+      "Achieved a 16% improvement in team turnaround by optimizing operational models and refining delivery processes.",
+      "Technical Assistant** | Example Delta Operations (Jun 2017 \u2013 Dec 2020)",
+      "Support recurring operational work using structured business cases and documented step-by-step procedures to ensure consistency and reliability.",
+      "Investigate service requests, record findings with clear supporting evidence, and escalate issues effectively to relevant stakeholders.",
+      "Design and implement reporting templates that reduced manual preparation time by 11%, demonstrating a commitment to process improvement and efficiency gains.",
+      "Tested solutions against representative scenarios to validate reliability and identify limitations, documenting next steps for future scaling.",
+      "Presented design outcomes and strategic recommendations to a five-person peer review group, honing executive communication skills.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+      "Core coursework included software engineering, databases, cybersecurity, and applied analytics, providing a strong technical foundation for transformation initiatives.",
+      "Technology Strategy, Operating Model Design, Programme Delivery, Business Case Development, Cloud Transformation, Data Strategy, Process Improvement, Change Management, Executive Communication, Technical Documentation, Git, Excel, Stakeholder Management"
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Senior Technology Transformation Consultant with a proven track record in technology strategy, operating model assessment, and programme delivery.",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.004648,
+          "entailment": 0.005044,
+          "neutral": 0.990307
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005044,
+        "supported": false
+      },
+      {
+        "claim": "Expertise in building investment roadmaps, managing complex stakeholder engagements, and driving process improvements through evidence-based decision-making.",
+        "best_source_chunk": "and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using business case and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.002778,
+          "entailment": 0.001498,
+          "neutral": 0.995724
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001498,
+        "supported": false
+      },
+      {
+        "claim": "Adept at translating operational needs into reliable solutions while maintaining rigorous quality controls and clear documentation.",
+        "best_source_chunk": "and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using business case and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.003745,
+          "entailment": 0.017924,
+          "neutral": 0.978331
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017924,
+        "supported": false
+      },
+      {
+        "claim": "Committed to collaborative problem-solving and delivering high-quality outcomes that align with business objectives.",
+        "best_source_chunk": "and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using business case and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.00183,
+          "entailment": 0.008245,
+          "neutral": 0.989925
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008245,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.006744,
+          "entailment": 0.934061,
+          "neutral": 0.059195
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.934061,
+        "supported": true
+      },
+      {
+        "claim": "Lead technology transformation engagements by applying technology strategy and operating model frameworks to assess capabilities and define operational requirements.",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.000624,
+          "entailment": 0.559094,
+          "neutral": 0.440282
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.559094,
+        "supported": true
+      },
+      {
+        "claim": "Manage multidisciplinary delivery teams, overseeing approximately 34 work items monthly with strict adherence to quality checks and follow-up actions.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.000293,
+          "entailment": 0.005712,
+          "neutral": 0.993995
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005712,
+        "supported": false
+      },
+      {
+        "claim": "Build investment roadmaps in collaboration with cross-functional colleagues;",
+        "best_source_chunk": "and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using business case and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.001482,
+          "entailment": 0.033434,
+          "neutral": 0.965085
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.033434,
+        "supported": false
+      },
+      {
+        "claim": "present progress, risks, and technical trade-offs during fortnightly reviews to senior stakeholders.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.001105,
+          "entailment": 0.000336,
+          "neutral": 0.998559
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000336,
+        "supported": false
+      },
+      {
+        "claim": "Document all decisions clearly for technical and business reviewers, ensuring transparency and auditability throughout the project lifecycle.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.000762,
+          "entailment": 0.002316,
+          "neutral": 0.996922
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002316,
+        "supported": false
+      },
+      {
+        "claim": "Achieved a 16% improvement in team turnaround by optimizing operational models and refining delivery processes.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.000325,
+          "entailment": 0.005209,
+          "neutral": 0.994466
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005209,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "Skills technology strategy, operating model, programme delivery, business case, cloud transformation, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.413835,
+          "entailment": 0.011055,
+          "neutral": 0.575109
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011055,
+        "supported": false
+      },
+      {
+        "claim": "Support recurring operational work using structured business cases and documented step-by-step procedures to ensure consistency and reliability.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.003206,
+          "entailment": 0.008865,
+          "neutral": 0.987929
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008865,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with clear supporting evidence, and escalate issues effectively to relevant stakeholders.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.001134,
+          "entailment": 0.001232,
+          "neutral": 0.997635
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001232,
+        "supported": false
+      },
+      {
+        "claim": "Design and implement reporting templates that reduced manual preparation time by 11%, demonstrating a commitment to process improvement and efficiency gains.",
+        "best_source_chunk": "(Jun 2017 - Dec 2020) - Supported recurring operational work using business case and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 11%. ## Projects ### Senior Technology Transformation Consultant Practice Project - Built a fictional demonstration project using technology",
+        "probabilities": {
+          "contradiction": 0.001141,
+          "entailment": 0.001772,
+          "neutral": 0.997087
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001772,
+        "supported": false
+      },
+      {
+        "claim": "Senior Technology Transformation Consultant Practice Project**",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.016254,
+          "entailment": 0.805998,
+          "neutral": 0.177747
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.805998,
+        "supported": true
+      },
+      {
+        "claim": "Developed a comprehensive demonstration project integrating technology strategy, operating model analysis, and programme delivery methodologies.",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.005506,
+          "entailment": 0.772507,
+          "neutral": 0.221987
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.772507,
+        "supported": true
+      },
+      {
+        "claim": "Tested solutions against representative scenarios to validate reliability and identify limitations, documenting next steps for future scaling.",
+        "best_source_chunk": "Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 16%. - Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers. - Managed approximately 34 work items per month while tracking quality checks and follow-up actions. - Collaborated",
+        "probabilities": {
+          "contradiction": 0.000821,
+          "entailment": 0.001971,
+          "neutral": 0.997208
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001971,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and strategic recommendations to a five-person peer review group, honing executive communication skills.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills technology strategy, operating model, programme delivery, business case, cloud transformation, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.003311,
+          "entailment": 0.000801,
+          "neutral": 0.995888
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000801,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.123621,
+          "entailment": 0.02941,
+          "neutral": 0.846969
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.02941,
+        "supported": false
+      },
+      {
+        "claim": "Core coursework included software engineering, databases, cybersecurity, and applied analytics, providing a strong technical foundation for transformation initiatives.",
+        "best_source_chunk": "Skills technology strategy, operating model, programme delivery, business case, cloud transformation, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000538,
+          "entailment": 0.000488,
+          "neutral": 0.998974
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000488,
+        "supported": false
+      },
+      {
+        "claim": "Technology Strategy, Operating Model Design, Programme Delivery, Business Case Development, Cloud Transformation, Data Strategy, Process Improvement, Change Management, Executive Communication, Technical Documentation, Git, Excel, Stakeholder Management",
+        "best_source_chunk": "# Rina Koh rina.koh@example.test | +65 6000 0098 | Singapore ## Summary Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used technology strategy and operating model to lead technology transformation engagements,",
+        "probabilities": {
+          "contradiction": 0.003175,
+          "entailment": 0.002929,
+          "neutral": 0.993896
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002929,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "920f4f1a2ad521e8f5f3b7031f03281bc6271a466713e1ff4cd0a50642a5148b"
+  }
+}

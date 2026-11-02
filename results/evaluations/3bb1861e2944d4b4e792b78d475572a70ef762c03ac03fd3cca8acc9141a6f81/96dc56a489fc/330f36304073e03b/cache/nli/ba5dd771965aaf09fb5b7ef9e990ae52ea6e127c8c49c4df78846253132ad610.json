@@ -1,0 +1,371 @@
+{
+  "identity": {
+    "source_hash": "41cefc299d01210564f54c92f1061004c7909b7624a1f51cfe32a217b1a22f6e",
+    "tailored_hash": "66f2ea0bd30d45d142813967ba9a0ab8c00c4baac29d66b84aef5699d0211c87",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.24,
+    "unsupported": [
+      "Solutions Architect with hands-on experience translating business needs into reliable, maintainable solution designs using AWS and REST APIs.",
+      "Proven ability to define integration and security patterns while facilitating evidence-based architecture decisions.",
+      "Example Beacon Services (fictional)** | *Jul 2023 \u2013 Present*",
+      "Translate operational and customer needs into comprehensive solution designs, improving team turnaround by 36%.",
+      "Define integration and security patterns using AWS and REST APIs;",
+      "document all architecture decisions for technical and business reviewers.",
+      "Facilitate architecture decision records (ADRs) and communicate progress, risks, and trade-offs to stakeholders during fortnightly reviews.",
+      "Manage approximately 46 work items monthly, ensuring adherence to quality checks and follow-up actions.",
+      "Collaborate with engineering, product, and business teams to support delivery while maintaining appropriate review and security controls.",
+      "Example Cedar Innovations (fictional)** | *Jan 2021 \u2013 Jun 2023*",
+      "Supported recurring operational work involving microservices architecture, creating clear step-by-step documentation for maintainability.",
+      "Investigated service requests and escalated complex issues with clear supporting evidence to drive data-driven decisions.",
+      "Developed a reporting template that reduced manual preparation time by 31%, demonstrating ability to deliver measurable improvements.",
+      "Solutions Architect Practice Project",
+      "Tested the solution against representative scenarios to identify limitations and define next steps.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing clear verbal communication skills.",
+      "Bachelor of Science in Information Systems",
+      "Example School of Computing (fictional)** | *Aug 2020 \u2013 May 2024*",
+      "Soft Skills:** Stakeholder Management, Technical Documentation, Collaborative Problem Solving, Clear Written and Verbal Communication."
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Solutions Architect with hands-on experience translating business needs into reliable, maintainable solution designs using AWS and REST APIs.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000261,
+          "entailment": 0.024181,
+          "neutral": 0.975558
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024181,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to define integration and security patterns while facilitating evidence-based architecture decisions.",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000232,
+          "entailment": 0.00459,
+          "neutral": 0.995178
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00459,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in managing cross-functional teams, communicating technical trade-offs to stakeholders, and delivering documented improvements that enhance quality and operational efficiency.",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 8.5e-05,
+          "entailment": 0.639601,
+          "neutral": 0.360314
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.639601,
+        "supported": true
+      },
+      {
+        "claim": "Example Beacon Services (fictional)** | *Jul 2023 \u2013 Present*",
+        "best_source_chunk": "# Leon Koh leon.koh@example.test | +65 6000 0092 | Singapore ## Summary Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Solutions Architect, Example Beacon Services (fictional) (Jul 2023 - Present) - Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.000882,
+          "entailment": 0.006366,
+          "neutral": 0.992752
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006366,
+        "supported": false
+      },
+      {
+        "claim": "Translate operational and customer needs into comprehensive solution designs, improving team turnaround by 36%.",
+        "best_source_chunk": "Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 31%. ## Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. -",
+        "probabilities": {
+          "contradiction": 0.002422,
+          "entailment": 0.000741,
+          "neutral": 0.996837
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000741,
+        "supported": false
+      },
+      {
+        "claim": "Define integration and security patterns using AWS and REST APIs;",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.010644,
+          "entailment": 0.102752,
+          "neutral": 0.886604
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.102752,
+        "supported": false
+      },
+      {
+        "claim": "document all architecture decisions for technical and business reviewers.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000495,
+          "entailment": 0.00238,
+          "neutral": 0.997125
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00238,
+        "supported": false
+      },
+      {
+        "claim": "Facilitate architecture decision records (ADRs) and communicate progress, risks, and trade-offs to stakeholders during fortnightly reviews.",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.001601,
+          "entailment": 0.001138,
+          "neutral": 0.997261
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001138,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 46 work items monthly, ensuring adherence to quality checks and follow-up actions.",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000876,
+          "entailment": 0.391583,
+          "neutral": 0.607541
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.391583,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with engineering, product, and business teams to support delivery while maintaining appropriate review and security controls.",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000472,
+          "entailment": 0.046653,
+          "neutral": 0.952875
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.046653,
+        "supported": false
+      },
+      {
+        "claim": "Example Cedar Innovations (fictional)** | *Jan 2021 \u2013 Jun 2023*",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.003044,
+          "entailment": 0.012189,
+          "neutral": 0.984766
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012189,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work involving microservices architecture, creating clear step-by-step documentation for maintainability.",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000499,
+          "entailment": 0.018979,
+          "neutral": 0.980522
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018979,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests and escalated complex issues with clear supporting evidence to drive data-driven decisions.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.02244,
+          "entailment": 0.001499,
+          "neutral": 0.97606
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001499,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 31%, demonstrating ability to deliver measurable improvements.",
+        "best_source_chunk": "Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 31%. ## Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. -",
+        "probabilities": {
+          "contradiction": 0.000203,
+          "entailment": 0.000894,
+          "neutral": 0.998902
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000894,
+        "supported": false
+      },
+      {
+        "claim": "Solutions Architect Practice Project",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.166298,
+          "entailment": 0.044055,
+          "neutral": 0.789647
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.044055,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project utilizing AWS, REST APIs, and solution architecture principles.",
+        "best_source_chunk": "Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 31%. ## Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. -",
+        "probabilities": {
+          "contradiction": 0.000134,
+          "entailment": 0.995816,
+          "neutral": 0.004051
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995816,
+        "supported": true
+      },
+      {
+        "claim": "Tested the solution against representative scenarios to identify limitations and define next steps.",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.001711,
+          "entailment": 0.002281,
+          "neutral": 0.996008
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002281,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing clear verbal communication skills.",
+        "best_source_chunk": "Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020",
+        "probabilities": {
+          "contradiction": 0.001226,
+          "entailment": 0.001667,
+          "neutral": 0.997107
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001667,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.007063,
+          "entailment": 0.004096,
+          "neutral": 0.988841
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004096,
+        "supported": false
+      },
+      {
+        "claim": "Example School of Computing (fictional)** | *Aug 2020 \u2013 May 2024*",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.526817,
+          "entailment": 0.12125,
+          "neutral": 0.351933
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.12125,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000133,
+          "entailment": 0.989943,
+          "neutral": 0.009923
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.989943,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** Solution Architecture, AWS, REST APIs, Microservices, System Integration, Security.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.003293,
+          "entailment": 0.541131,
+          "neutral": 0.455576
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.541131,
+        "supported": true
+      },
+      {
+        "claim": "Tools & Platforms:** Terraform, Kubernetes.",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.006972,
+          "entailment": 0.665732,
+          "neutral": 0.327296
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.665732,
+        "supported": true
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Management, Technical Documentation, Collaborative Problem Solving, Clear Written and Verbal Communication.",
+        "best_source_chunk": "- Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.00716,
+          "entailment": 0.010478,
+          "neutral": 0.982362
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010478,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001404,
+          "entailment": 0.986105,
+          "neutral": 0.012491
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.986105,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "ba5dd771965aaf09fb5b7ef9e990ae52ea6e127c8c49c4df78846253132ad610"
+  }
+}

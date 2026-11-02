@@ -1,0 +1,372 @@
+{
+  "identity": {
+    "source_hash": "7fe704062cdf45f14a896759fc96b0b11cef54d8cc1016369716bcdcea2b599a",
+    "tailored_hash": "694153d266b9cdd15aaeeb4ea09991bde6df66c30d58a8519b334be279a5db2d",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2,
+    "unsupported": [
+      "Proven ability to clean operational data, build decision-support dashboards, and automate recurring reports.",
+      "Experienced in defining business metrics, collaborating with engineering and product stakeholders, and communicating technical trade-offs through clear documentation.",
+      "Committed to delivering reliable, maintainable solutions based on evidence-based decisions.",
+      "Build decision-support dashboards in Excel to visualize key performance indicators for technical and business reviewers.",
+      "Define and monitor business metrics while managing approximately 75 work items monthly with rigorous quality checks.",
+      "Collaborate with cross-functional teams to present progress, risks, and findings during fortnightly stakeholder reviews.",
+      "Maintain clear documentation of processes and decisions to support team planning and future maintenance.",
+      "Technical Assistant** | Example Atlas Solutions (May 2024 \u2013 Dec 2024)",
+      "Support recurring operational workflows by creating documented step-by-step procedures, ensuring consistency and reliability.",
+      "Investigate service requests, record findings with clear supporting evidence, and escalate issues to relevant stakeholders.",
+      "Develop reporting templates that reduced manual preparation time by 27%, demonstrating ability to automate data tasks.",
+      "Data Analyst Practice Project** | Personal Initiative",
+      "Test scenarios against representative datasets, documenting limitations and outlining next steps for improvement.",
+      "Present design rationale and outcomes to a five-person peer review group, honing verbal communication skills.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Developed strong analytical mindset through database management and system design projects.",
+      "Data Analysis:** SQL, Excel, Data Cleaning, Statistics",
+      "Visualization & Reporting:** Dashboarding (Excel), Report Automation",
+      "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Documentation",
+      "Tools:** Microsoft Office Suite, Database Management Systems"
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional transitioning into Data Analysis with a strong foundation in SQL, Excel, and data cleaning.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.00029,
+          "entailment": 0.94388,
+          "neutral": 0.05583
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.94388,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to clean operational data, build decision-support dashboards, and automate recurring reports.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.000334,
+          "entailment": 0.001036,
+          "neutral": 0.99863
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001036,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in defining business metrics, collaborating with engineering and product stakeholders, and communicating technical trade-offs through clear documentation.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS SQL, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000195,
+          "entailment": 0.0084,
+          "neutral": 0.991405
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0084,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering reliable, maintainable solutions based on evidence-based decisions.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000689,
+          "entailment": 0.004028,
+          "neutral": 0.995282
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004028,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.025326,
+          "entailment": 0.528679,
+          "neutral": 0.445995
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.528679,
+        "supported": true
+      },
+      {
+        "claim": "Clean and analyse operational data using SQL and Excel, improving team turnaround by 32%.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.001749,
+          "entailment": 0.983249,
+          "neutral": 0.015002
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.983249,
+        "supported": true
+      },
+      {
+        "claim": "Build decision-support dashboards in Excel to visualize key performance indicators for technical and business reviewers.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.000997,
+          "entailment": 0.000833,
+          "neutral": 0.99817
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000833,
+        "supported": false
+      },
+      {
+        "claim": "Define and monitor business metrics while managing approximately 75 work items monthly with rigorous quality checks.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.000213,
+          "entailment": 0.000652,
+          "neutral": 0.999135
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000652,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with cross-functional teams to present progress, risks, and findings during fortnightly stakeholder reviews.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.007258,
+          "entailment": 0.007639,
+          "neutral": 0.985103
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007639,
+        "supported": false
+      },
+      {
+        "claim": "Maintain clear documentation of processes and decisions to support team planning and future maintenance.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.001688,
+          "entailment": 0.00784,
+          "neutral": 0.990472
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00784,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.011105,
+          "entailment": 0.004108,
+          "neutral": 0.984786
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004108,
+        "supported": false
+      },
+      {
+        "claim": "Support recurring operational workflows by creating documented step-by-step procedures, ensuring consistency and reliability.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.012211,
+          "entailment": 0.0023,
+          "neutral": 0.985489
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0023,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with clear supporting evidence, and escalate issues to relevant stakeholders.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000155,
+          "entailment": 0.001389,
+          "neutral": 0.998457
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001389,
+        "supported": false
+      },
+      {
+        "claim": "Develop reporting templates that reduced manual preparation time by 27%, demonstrating ability to automate data tasks.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 27%. ## PROJECTS ### Data Analyst Practice Project * Built a fictional demonstration project using SQL, Excel and Excel. * Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.000506,
+          "entailment": 0.002547,
+          "neutral": 0.996947
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002547,
+        "supported": false
+      },
+      {
+        "claim": "Data Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.050311,
+          "entailment": 0.012792,
+          "neutral": 0.936898
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012792,
+        "supported": false
+      },
+      {
+        "claim": "Constructed a demonstration project utilizing SQL and Excel to simulate end-to-end data analysis workflows.",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.001076,
+          "entailment": 0.598707,
+          "neutral": 0.400217
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.598707,
+        "supported": true
+      },
+      {
+        "claim": "Test scenarios against representative datasets, documenting limitations and outlining next steps for improvement.",
+        "best_source_chunk": "Project * Built a fictional demonstration project using SQL, Excel and Excel. * Tested the project with representative scenarios and recorded limitations and next steps. * Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software",
+        "probabilities": {
+          "contradiction": 0.000111,
+          "entailment": 0.003597,
+          "neutral": 0.996291
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003597,
+        "supported": false
+      },
+      {
+        "claim": "Present design rationale and outcomes to a five-person peer review group, honing verbal communication skills.",
+        "best_source_chunk": "Project * Built a fictional demonstration project using SQL, Excel and Excel. * Tested the project with representative scenarios and recorded limitations and next steps. * Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software",
+        "probabilities": {
+          "contradiction": 0.000676,
+          "entailment": 0.003699,
+          "neutral": 0.995625
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003699,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS SQL, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.00094,
+          "entailment": 0.00349,
+          "neutral": 0.99557
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00349,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS SQL, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000271,
+          "entailment": 0.987772,
+          "neutral": 0.011957
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.987772,
+        "supported": true
+      },
+      {
+        "claim": "Developed strong analytical mindset through database management and system design projects.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 27%. ## PROJECTS ### Data Analyst Practice Project * Built a fictional demonstration project using SQL, Excel and Excel. * Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.000758,
+          "entailment": 0.004825,
+          "neutral": 0.994418
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004825,
+        "supported": false
+      },
+      {
+        "claim": "Data Analysis:** SQL, Excel, Data Cleaning, Statistics",
+        "best_source_chunk": "# Elena Lim elena.lim@example.test | +65 6000 0025 | Singapore ## SUMMARY Operations support professional experienced in SQL, Excel, documentation and stakeholder coordination, transitioning toward Data Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) * Used SQL and Excel to clean and analyse operational data, improving team turnaround by 32%. * Applied",
+        "probabilities": {
+          "contradiction": 0.01498,
+          "entailment": 0.043192,
+          "neutral": 0.941828
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.043192,
+        "supported": false
+      },
+      {
+        "claim": "Visualization & Reporting:** Dashboarding (Excel), Report Automation",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS SQL, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.004781,
+          "entailment": 0.003728,
+          "neutral": 0.99149
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003728,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Documentation",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.019333,
+          "entailment": 0.009676,
+          "neutral": 0.970991
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009676,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Microsoft Office Suite, Database Management Systems",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 27%. ## PROJECTS ### Data Analyst Practice Project * Built a fictional demonstration project using SQL, Excel and Excel. * Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.00243,
+          "entailment": 0.00312,
+          "neutral": 0.99445
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00312,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "3c87d5d7dca2e74e784f4f031e138cb86011490c10e137d10325ecc9a09acc5f"
+  }
+}

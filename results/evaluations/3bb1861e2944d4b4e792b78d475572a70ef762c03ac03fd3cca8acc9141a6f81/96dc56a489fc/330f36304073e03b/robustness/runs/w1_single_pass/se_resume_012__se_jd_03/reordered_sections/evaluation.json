@@ -1,0 +1,423 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 835,
+  "output_tokens": 618,
+  "thinking_chars": 0,
+  "seconds": 22.53,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 376,
+  "sim_before": 0.7871,
+  "sim_after": 0.814,
+  "sim_gain": 0.0269,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 0.75,
+  "structure_pass": false,
+  "task_success": false,
+  "task_failure_reasons": [
+    "missing_required_sections",
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1453,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2017.87,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "se_resume_012__se_jd_03__reordered_sections",
+  "resume_id": "se_resume_012",
+  "jd_id": "se_jd_03",
+  "category": "software_engineering",
+  "role_family": "full_stack_engineer",
+  "seniority": "mid",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 22.5293,
+  "resume_path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b/robustness/runs/w1_single_pass/se_resume_012__se_jd_03/reordered_sections/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/se_resume_012__se_jd_03/repeat_0/metrics.json",
+  "trace_path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b/robustness/runs/w1_single_pass/se_resume_012__se_jd_03/reordered_sections/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Leon Tan\nleon.tan@example.test | +65 6000 0012 | Singapore\n\n## Summary\nFull-Stack Engineer with hands-on experience in TypeScript, React, Node.js, and AWS. Proven ability to deliver end-to-end product features while maintaining clear documentation and measurable improvements. Skilled in collaborating across multidisciplinary teams to solve ambiguous problems, manage relational data models, and improve application reliability through rigorous testing and CI/CD practices.\n\n## Experience\n\n**Full-Stack Engineer** | Example Beacon Services (Singapore)\n*Jul 2023 – Present*\n\n*   **End-to-End Delivery:** Designed frontend components and backend APIs using TypeScript, React, and Node.js to deliver complex product features, improving team turnaround by 34%.\n*   **Data Modeling & Collaboration:** Collaborated with four colleagues to model relational data in PostgreSQL, ensuring integrity and supporting clear technical trade-offs during fortnightly reviews.\n*   **Pipeline Maintenance:** Managed approximately 86 work items per month while maintaining delivery pipelines and tracking quality checks to ensure reliable releases.\n*   **Communication & Documentation:** Documented design decisions and technical outcomes for both engineering and business stakeholders; presented project progress, risks, and next steps clearly during peer reviews.\n\n**Technical Assistant** | Example Cedar Innovations (Singapore)\n*Jan 2021 – Jun 2023*\n\n*   **Operational Support:** Supported recurring operational work using REST APIs, creating step-by-step documentation to reduce manual preparation time by 29%.\n*   **Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems within a collaborative environment.\n*   **Process Improvement:** Developed reporting templates that streamlined workflows and improved team efficiency.\n\n## Projects\n\n**Full-Stack Engineer Practice Project** | Personal Initiative\n*   Built a demonstration application using TypeScript, React, Node.js, and PostgreSQL.\n*   Implemented CI/CD pipelines to automate testing and deployment, recording limitations and defining next steps for future scalability.\n*   Presented the full design lifecycle and outcomes to a five-person peer review group, focusing on quality and reliability.\n\n## Education\n\n**Bachelor of Science in Information Systems** | Example School of Computing (Singapore)\n*Aug 2020 – May 2024*\n*   Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.\n\n## Certifications & Skills\n\n**Certifications**\n*   AWS Certified Cloud Practitioner\n\n**Technical Skills**\n*   **Languages:** TypeScript, JavaScript\n*   **Frontend:** React, Next.js\n*   **Backend:** Node.js, REST APIs\n*   **Database:** PostgreSQL (Relational Data Modeling)\n*   **DevOps & Cloud:** Docker, Git, CI/CD, AWS\n*   **Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation",
+  "original_resume": "# Leon Tan\n\nleon.tan@example.test | +65 6000 0012 | Singapore\n\n## Certifications\n\n- AWS Certified Cloud Practitioner\n\n## Skills\n\nTypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS\n\n## Education\n\n### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024)\n\n- Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n## Projects\n\n### Full-Stack Engineer Practice Project\n\n- Built a fictional demonstration project using TypeScript, React and Node.js.\n- Tested the project with representative scenarios and recorded limitations and next steps.\n- Presented the design and outcomes to a five-person peer review group.\n\n## Experience\n\n### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present)\n\n- Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.\n- Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.\n- Managed approximately 86 work items per month while tracking quality checks and follow-up actions.\n- Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews.\n\n### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023)\n\n- Supported recurring operational work using REST APIs and documented step-by-step procedures.\n- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n- Created a simple reporting template that reduced manual preparation time by 29%.\n\n## Summary\n\nFull-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.\n",
+  "job_description": "# Full-Stack Engineer\n\n**Company:** Example Harbour Digital (fictional)  \n**Location:** Singapore  \n**Employment type:** Full-time  \n**Seniority:** Mid\n\n## What success looks like\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\nwell-tested improvements and build trusted working relationships. Success is measured through\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n\n## Preferred qualifications\n\n- Next.js\n- AWS\n- Terraform\n\n## Required qualifications\n\n- TypeScript\n- React\n- Node.js\n- REST APIs\n- PostgreSQL\n- Docker\n- Git\n- CI/CD\n- Clear written and verbal communication\n- Ability to work collaboratively and solve ambiguous problems\n\n## Responsibilities\n\n- Deliver end-to-end product features.\n- Design frontend components and backend apis.\n- Model relational data.\n- Maintain delivery pipelines.\n- Improve application reliability.\n- Communicate progress, risks and technical trade-offs to relevant stakeholders.\n- Maintain clear documentation and contribute to team planning and reviews.\n\n## About the role\n\nExample Harbour Digital is seeking a Full-Stack Engineer to join a multidisciplinary technology team. The successful\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\nworks closely with engineering, product and business stakeholders, values clear documentation and\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\nappropriate review, security and quality controls.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.3462,
+  "unsupported": [
+    "Skilled in collaborating across multidisciplinary teams to solve ambiguous problems, manage relational data models, and improve application reliability through rigorous testing and CI/CD practices.",
+    "Full-Stack Engineer** | Example Beacon Services (Singapore)",
+    "Data Modeling & Collaboration:** Collaborated with four colleagues to model relational data in PostgreSQL, ensuring integrity and supporting clear technical trade-offs during fortnightly reviews.",
+    "Pipeline Maintenance:** Managed approximately 86 work items per month while maintaining delivery pipelines and tracking quality checks to ensure reliable releases.",
+    "Communication & Documentation:** Documented design decisions and technical outcomes for both engineering and business stakeholders;",
+    "presented project progress, risks, and next steps clearly during peer reviews.",
+    "Technical Assistant** | Example Cedar Innovations (Singapore)",
+    "Operational Support:** Supported recurring operational work using REST APIs, creating step-by-step documentation to reduce manual preparation time by 29%.",
+    "Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems within a collaborative environment.",
+    "Full-Stack Engineer Practice Project** | Personal Initiative",
+    "Built a demonstration application using TypeScript, React, Node.js, and PostgreSQL.",
+    "Implemented CI/CD pipelines to automate testing and deployment, recording limitations and defining next steps for future scalability.",
+    "Presented the full design lifecycle and outcomes to a five-person peer review group, focusing on quality and reliability.",
+    "Frontend:** React, Next.js",
+    "Backend:** Node.js, REST APIs",
+    "Database:** PostgreSQL (Relational Data Modeling)",
+    "DevOps & Cloud:** Docker, Git, CI/CD, AWS"
+  ],
+  "n_claims": 26,
+  "claim_scores": [
+    {
+      "claim": "Full-Stack Engineer with hands-on experience in TypeScript, React, Node.js, and AWS.",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.003971,
+        "entailment": 0.976623,
+        "neutral": 0.019406
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.976623,
+      "supported": true
+    },
+    {
+      "claim": "Proven ability to deliver end-to-end product features while maintaining clear documentation and measurable improvements.",
+      "best_source_chunk": "step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.000942,
+        "entailment": 0.686916,
+        "neutral": 0.312142
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.686916,
+      "supported": true
+    },
+    {
+      "claim": "Skilled in collaborating across multidisciplinary teams to solve ambiguous problems, manage relational data models, and improve application reliability through rigorous testing and CI/CD practices.",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.000509,
+        "entailment": 0.006606,
+        "neutral": 0.992885
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.006606,
+      "supported": false
+    },
+    {
+      "claim": "Full-Stack Engineer** | Example Beacon Services (Singapore)",
+      "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.051767,
+        "entailment": 0.149721,
+        "neutral": 0.798512
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.149721,
+      "supported": false
+    },
+    {
+      "claim": "End-to-End Delivery:** Designed frontend components and backend APIs using TypeScript, React, and Node.js to deliver complex product features, improving team turnaround by 34%.",
+      "best_source_chunk": "project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. - Applied Node.js to design frontend components and backend APIs",
+      "probabilities": {
+        "contradiction": 0.000279,
+        "entailment": 0.615877,
+        "neutral": 0.383844
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.615877,
+      "supported": true
+    },
+    {
+      "claim": "Data Modeling & Collaboration:** Collaborated with four colleagues to model relational data in PostgreSQL, ensuring integrity and supporting clear technical trade-offs during fortnightly reviews.",
+      "best_source_chunk": "and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting",
+      "probabilities": {
+        "contradiction": 0.004815,
+        "entailment": 0.006074,
+        "neutral": 0.989111
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.006074,
+      "supported": false
+    },
+    {
+      "claim": "Pipeline Maintenance:** Managed approximately 86 work items per month while maintaining delivery pipelines and tracking quality checks to ensure reliable releases.",
+      "best_source_chunk": "and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting",
+      "probabilities": {
+        "contradiction": 0.001631,
+        "entailment": 0.001065,
+        "neutral": 0.997305
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001065,
+      "supported": false
+    },
+    {
+      "claim": "Communication & Documentation:** Documented design decisions and technical outcomes for both engineering and business stakeholders;",
+      "best_source_chunk": "step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.000786,
+        "entailment": 0.005258,
+        "neutral": 0.993957
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005258,
+      "supported": false
+    },
+    {
+      "claim": "presented project progress, risks, and next steps clearly during peer reviews.",
+      "best_source_chunk": "and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting",
+      "probabilities": {
+        "contradiction": 0.001824,
+        "entailment": 0.264246,
+        "neutral": 0.73393
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.264246,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Cedar Innovations (Singapore)",
+      "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.695575,
+        "entailment": 0.019402,
+        "neutral": 0.285023
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.019402,
+      "supported": false
+    },
+    {
+      "claim": "Operational Support:** Supported recurring operational work using REST APIs, creating step-by-step documentation to reduce manual preparation time by 29%.",
+      "best_source_chunk": "step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.000857,
+        "entailment": 0.00458,
+        "neutral": 0.994563
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00458,
+      "supported": false
+    },
+    {
+      "claim": "Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems within a collaborative environment.",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.485275,
+        "entailment": 0.024944,
+        "neutral": 0.489781
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.024944,
+      "supported": false
+    },
+    {
+      "claim": "Process Improvement:** Developed reporting templates that streamlined workflows and improved team efficiency.",
+      "best_source_chunk": "step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.000274,
+        "entailment": 0.988869,
+        "neutral": 0.010858
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.988869,
+      "supported": true
+    },
+    {
+      "claim": "Full-Stack Engineer Practice Project** | Personal Initiative",
+      "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.891959,
+        "entailment": 0.003173,
+        "neutral": 0.104868
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.003173,
+      "supported": false
+    },
+    {
+      "claim": "Built a demonstration application using TypeScript, React, Node.js, and PostgreSQL.",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.000365,
+        "entailment": 0.00288,
+        "neutral": 0.996755
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00288,
+      "supported": false
+    },
+    {
+      "claim": "Implemented CI/CD pipelines to automate testing and deployment, recording limitations and defining next steps for future scalability.",
+      "best_source_chunk": "step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+      "probabilities": {
+        "contradiction": 0.000587,
+        "entailment": 0.005024,
+        "neutral": 0.994389
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005024,
+      "supported": false
+    },
+    {
+      "claim": "Presented the full design lifecycle and outcomes to a five-person peer review group, focusing on quality and reliability.",
+      "best_source_chunk": "School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer",
+      "probabilities": {
+        "contradiction": 0.000796,
+        "entailment": 0.002789,
+        "neutral": 0.996415
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002789,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Singapore)",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.007572,
+        "entailment": 0.928094,
+        "neutral": 0.064334
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.928094,
+      "supported": true
+    },
+    {
+      "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.000122,
+        "entailment": 0.954981,
+        "neutral": 0.044897
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.954981,
+      "supported": true
+    },
+    {
+      "claim": "AWS Certified Cloud Practitioner",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.011327,
+        "entailment": 0.506344,
+        "neutral": 0.482329
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.506344,
+      "supported": true
+    },
+    {
+      "claim": "Languages:** TypeScript, JavaScript",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.003568,
+        "entailment": 0.965489,
+        "neutral": 0.030943
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.965489,
+      "supported": true
+    },
+    {
+      "claim": "Frontend:** React, Next.js",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.048628,
+        "entailment": 0.158893,
+        "neutral": 0.792479
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.158893,
+      "supported": false
+    },
+    {
+      "claim": "Backend:** Node.js, REST APIs",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.486795,
+        "entailment": 0.110584,
+        "neutral": 0.402621
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.110584,
+      "supported": false
+    },
+    {
+      "claim": "Database:** PostgreSQL (Relational Data Modeling)",
+      "best_source_chunk": "and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting",
+      "probabilities": {
+        "contradiction": 0.008702,
+        "entailment": 0.002217,
+        "neutral": 0.98908
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002217,
+      "supported": false
+    },
+    {
+      "claim": "DevOps & Cloud:** Docker, Git, CI/CD, AWS",
+      "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## Certifications - AWS Certified Cloud Practitioner ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ##",
+      "probabilities": {
+        "contradiction": 0.003738,
+        "entailment": 0.087545,
+        "neutral": 0.908717
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.087545,
+      "supported": false
+    },
+    {
+      "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation",
+      "best_source_chunk": "and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting",
+      "probabilities": {
+        "contradiction": 0.017834,
+        "entailment": 0.657691,
+        "neutral": 0.324475
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.657691,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "08931ca8345a288252474effa446afd5415ffd68555b856192644734da3b5c8f",
+  "nli_seconds": 1.942,
+  "base_pair_id": "se_resume_012__se_jd_03",
+  "variant": "reordered_sections",
+  "transformation_version": "meaning-preserving-v1",
+  "evaluator_hash": "330f36304073e03b"
+}

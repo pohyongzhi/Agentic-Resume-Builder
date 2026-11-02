@@ -91,20 +91,20 @@ class GeneratedResume(Schema):
 
 
 class CriticIssue(Schema):
-    """One actionable problem found by a W3 critic."""
-    category: str
+    """One concise, actionable problem found by a W3 critic."""
+    category: str = Field(max_length=80)
     severity: Literal["minor", "major", "critical"]
-    evidence: str
-    recommendation: str
+    evidence: str = Field(max_length=600)
+    recommendation: str = Field(max_length=400)
 
 
 class CriticFeedback(Schema):
-    """Common structured response returned by every specialist critic."""
+    """Bounded response prevents runaway lists in small-model structured generation."""
     critic: Literal["fact_checker", "recruiter", "formatting"]
     approved: bool
     score: int = Field(ge=1, le=5)
-    summary: str
-    issues: list[CriticIssue] = Field(default_factory=list)
+    summary: str = Field(max_length=400)
+    issues: list[CriticIssue] = Field(default_factory=list, max_length=5)
 
 
 class JudgeQuotation(BaseModel):

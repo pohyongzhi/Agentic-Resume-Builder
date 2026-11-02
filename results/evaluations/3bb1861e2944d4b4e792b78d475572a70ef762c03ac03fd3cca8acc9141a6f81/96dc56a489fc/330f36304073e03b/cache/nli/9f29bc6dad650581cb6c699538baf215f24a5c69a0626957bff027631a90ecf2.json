@@ -1,0 +1,348 @@
+{
+  "identity": {
+    "source_hash": "a09312b51af9aa3fc950a2982fac1b26bf0708200fd625bd759e5f702408dc85",
+    "tailored_hash": "38795cf52a88583dac9bbcc3db372338c3e4006a43b55d06e8e4d34044f86686",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1304,
+    "unsupported": [
+      "Operations support professional with a Bachelor of Science in Information Systems, specializing in SIEM operations, incident triage, and log analysis.",
+      "Proven ability to monitor security alerts, analyze endpoint and network logs, and document incidents for technical and business stakeholders.",
+      "Experienced in collaborating across multidisciplinary teams to solve ambiguous problems while maintaining clear documentation and evidence-based decision-making processes.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jan 2025 \u2013 Present)",
+      "Monitor security alerts using SIEM tools to identify suspicious activity, improving team turnaround time by 17%.",
+      "Analyze endpoint and network logs to triage incidents, applying evidence-based reasoning for all technical decisions.",
+      "Document detailed incident reports and maintain clear records for review by engineering, product, and business stakeholders.",
+      "Escalate confirmed threats following established protocols while communicating progress, risks, and technical trade-offs during fortnightly reviews.",
+      "Manage a high volume of work items (approx.",
+      "65/month), ensuring quality checks and follow-up actions are completed accurately.",
+      "Technical Assistant** | Example Atlas Solutions (May 2024 \u2013 Dec 2024)",
+      "Develop and maintain documented step-by-step procedures to support recurring operational work, ensuring reliability and maintainability of solutions.",
+      "Create reporting templates that reduced manual preparation time by 12%, demonstrating ability to deliver well-tested improvements.",
+      "SOC Analyst Practice Project** | Personal Initiative",
+      "Analyze simulated endpoint and network logs to test threat detection capabilities within the fictional environment.",
+      "Present design outcomes and recorded limitations to a five-person peer review group, showcasing clear technical writing and communication skills.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Security Operations:** SIEM, Incident Triage, Threat Detection, Log Analysis (Endpoint & Network).",
+      "Tools & Platforms:** Excel, Ticketing Systems, Linux (via cybersecurity coursework).",
+      "Soft Skills:** Technical Writing, Stakeholder Communication, Collaborative Problem Solving."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional with a Bachelor of Science in Information Systems, specializing in SIEM operations, incident triage, and log analysis.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002333,
+          "entailment": 0.018092,
+          "neutral": 0.979575
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018092,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to monitor security alerts, analyze endpoint and network logs, and document incidents for technical and business stakeholders.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000893,
+          "entailment": 0.004261,
+          "neutral": 0.994846
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004261,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in collaborating across multidisciplinary teams to solve ambiguous problems while maintaining clear documentation and evidence-based decision-making processes.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000408,
+          "entailment": 0.002317,
+          "neutral": 0.997275
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002317,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "# Elena Ng elena.ng@example.test | +65 6000 0045 | Singapore ## Summary Operations support professional experienced in SIEM, incident triage, documentation and stakeholder coordination, transitioning toward SOC Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.004592,
+          "entailment": 0.037546,
+          "neutral": 0.957862
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.037546,
+        "supported": false
+      },
+      {
+        "claim": "Monitor security alerts using SIEM tools to identify suspicious activity, improving team turnaround time by 17%.",
+        "best_source_chunk": "# Elena Ng elena.ng@example.test | +65 6000 0045 | Singapore ## Summary Operations support professional experienced in SIEM, incident triage, documentation and stakeholder coordination, transitioning toward SOC Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 8.4e-05,
+          "entailment": 0.021578,
+          "neutral": 0.978338
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.021578,
+        "supported": false
+      },
+      {
+        "claim": "Analyze endpoint and network logs to triage incidents, applying evidence-based reasoning for all technical decisions.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.001174,
+          "entailment": 0.000921,
+          "neutral": 0.997905
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000921,
+        "supported": false
+      },
+      {
+        "claim": "Document detailed incident reports and maintain clear records for review by engineering, product, and business stakeholders.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000213,
+          "entailment": 0.002357,
+          "neutral": 0.99743
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002357,
+        "supported": false
+      },
+      {
+        "claim": "Escalate confirmed threats following established protocols while communicating progress, risks, and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000748,
+          "entailment": 0.009224,
+          "neutral": 0.990028
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009224,
+        "supported": false
+      },
+      {
+        "claim": "Manage a high volume of work items (approx.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.002771,
+          "entailment": 0.005093,
+          "neutral": 0.992136
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005093,
+        "supported": false
+      },
+      {
+        "claim": "65/month), ensuring quality checks and follow-up actions are completed accurately.",
+        "best_source_chunk": "# Elena Ng elena.ng@example.test | +65 6000 0045 | Singapore ## Summary Operations support professional experienced in SIEM, incident triage, documentation and stakeholder coordination, transitioning toward SOC Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000218,
+          "entailment": 0.002671,
+          "neutral": 0.997111
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002671,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.007762,
+          "entailment": 0.007142,
+          "neutral": 0.985096
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007142,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests and analyze logs to record findings, escalating issues with clear supporting evidence.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000288,
+          "entailment": 0.996873,
+          "neutral": 0.002839
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996873,
+        "supported": true
+      },
+      {
+        "claim": "Develop and maintain documented step-by-step procedures to support recurring operational work, ensuring reliability and maintainability of solutions.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000248,
+          "entailment": 0.004232,
+          "neutral": 0.995521
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004232,
+        "supported": false
+      },
+      {
+        "claim": "Create reporting templates that reduced manual preparation time by 12%, demonstrating ability to deliver well-tested improvements.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 12%. ## Projects ### SOC Analyst Practice Project - Built a fictional demonstration project using SIEM, incident triage and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.000436,
+          "entailment": 0.001816,
+          "neutral": 0.997748
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001816,
+        "supported": false
+      },
+      {
+        "claim": "SOC Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.039314,
+          "entailment": 0.003582,
+          "neutral": 0.957105
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003582,
+        "supported": false
+      },
+      {
+        "claim": "Designed a demonstration project utilizing SIEM for alert monitoring and incident triage workflows.",
+        "best_source_chunk": "# Elena Ng elena.ng@example.test | +65 6000 0045 | Singapore ## Summary Operations support professional experienced in SIEM, incident triage, documentation and stakeholder coordination, transitioning toward SOC Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000395,
+          "entailment": 0.990358,
+          "neutral": 0.009247
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.990358,
+        "supported": true
+      },
+      {
+        "claim": "Analyze simulated endpoint and network logs to test threat detection capabilities within the fictional environment.",
+        "best_source_chunk": "# Elena Ng elena.ng@example.test | +65 6000 0045 | Singapore ## Summary Operations support professional experienced in SIEM, incident triage, documentation and stakeholder coordination, transitioning toward SOC Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 17%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000277,
+          "entailment": 0.000753,
+          "neutral": 0.99897
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000753,
+        "supported": false
+      },
+      {
+        "claim": "Present design outcomes and recorded limitations to a five-person peer review group, showcasing clear technical writing and communication skills.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.007946,
+          "entailment": 0.001719,
+          "neutral": 0.990336
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001719,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002349,
+          "entailment": 0.001491,
+          "neutral": 0.996161
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001491,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000123,
+          "entailment": 0.987161,
+          "neutral": 0.012716
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.987161,
+        "supported": true
+      },
+      {
+        "claim": "Security Operations:** SIEM, Incident Triage, Threat Detection, Log Analysis (Endpoint & Network).",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002228,
+          "entailment": 0.017034,
+          "neutral": 0.980738
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017034,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Platforms:** Excel, Ticketing Systems, Linux (via cybersecurity coursework).",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.028279,
+          "entailment": 0.005886,
+          "neutral": 0.965835
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005886,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Technical Writing, Stakeholder Communication, Collaborative Problem Solving.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.024508,
+          "entailment": 0.003527,
+          "neutral": 0.971966
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003527,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "9f29bc6dad650581cb6c699538baf215f24a5c69a0626957bff027631a90ecf2"
+  }
+}

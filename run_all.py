@@ -32,6 +32,8 @@ def config_hash():
     generation_keys = (
         "MODEL", "TEMPERATURE", "SEED", "NUM_CTX", "THINK", "MAX_STEPS",
         "MAX_CRITIC_ROUNDS", "MAX_TOOL_CALLS", "PDF_MIN_CHARS_PER_PAGE",
+        "W3_GENERATION_VERSION", "W3_STRUCTURED_RETRIES",
+        "W3_DRAFT_MAX_TOKENS", "W3_CRITIC_MAX_TOKENS",
         "JD_MIN_CHARS", "FETCH_TIMEOUT",
     )
     settings = {key: getattr(config, key) for key in generation_keys}
@@ -94,6 +96,8 @@ def main():
     ap.add_argument("--repeats", type=int, default=1)
     ap.add_argument("--limit", type=int, default=None, help="only the first N pairs")
     ap.add_argument("--skip-faithfulness", action="store_true")
+    ap.add_argument("--outputs-only", action="store_true",
+                    help="save resumes and runtime traces without offline scoring")
     ap.add_argument("--split", default="test", help="dataset split to run (default: test)")
     ap.add_argument("--categories", nargs="*", help="optional category IDs to include")
     args = ap.parse_args()
@@ -120,21 +124,26 @@ def main():
                         row = {**tracker.totals(), "hit_budget": out.get("hit_budget", False), "finished": False,
                                "error": "; ".join(out.get("errors") or ["EMPTY_OUTPUT: no resume produced"])}
                     else:
-                        row = score(pair, out, tracker, args.skip_faithfulness)
+                        if args.outputs_only:
+                            row = {**tracker.totals(), "hit_budget": out.get("hit_budget", False),
+                                   "finished": out.get("finished", False), "evaluation_skipped": True}
+                        else:
+                            row = score(pair, out, tracker, args.skip_faithfulness)
                         row["error"] = None
                 except Exception as e:
                     out = {"resume_md": ""}
                     row = {**tracker.totals(), "error": f"{type(e).__name__}: {e}"}
                     traceback.print_exc()
-                row.update(evaluate_operational(
-                    wf,
-                    pair,
-                    out,
-                    tracker.totals(),
-                    tracker.events,
-                    scored_row=row,
-                    error=row.get("error"),
-                ))
+                if not args.outputs_only:
+                    row.update(evaluate_operational(
+                        wf,
+                        pair,
+                        out,
+                        tracker.totals(),
+                        tracker.events,
+                        scored_row=row,
+                        error=row.get("error"),
+                    ))
                 run_dir = _run_dir(manifest, chash, wf, pair["pair_id"], rep)
                 resume_path = run_dir / "resume.md"
                 metrics_path = run_dir / "metrics.json"

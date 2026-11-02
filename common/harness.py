@@ -35,7 +35,7 @@ def _in_text(term, raw_norm):
 
 # ---------- validate_resume ----------
 
-def validate_resume(data, candidate):
+def validate_resume(data, candidate, *, check_skills=True):
     """Returns a list of error strings (empty = valid). `data` is a dict or JSON string,
     `candidate` is the parsed CandidateData (dict or model)."""
     if isinstance(candidate, dict):
@@ -98,10 +98,11 @@ def validate_resume(data, candidate):
         if raw and not _in_text(e.institution, raw):
             errors.append(f"{label}: institution does not appear in the original resume text")
 
-    known_skills = {_norm(s) for s in candidate.skills}
-    for s in resume.skills:
-        if _norm(s) not in known_skills and not _in_text(s, raw):
-            errors.append(f"skill '{s}' is not in the original resume")
+    if check_skills:
+        known_skills = {_norm(s) for s in candidate.skills}
+        for s in resume.skills:
+            if _norm(s) not in known_skills and not _in_text(s, raw):
+                errors.append(f"skill '{s}' is not in the original resume")
     known_certs = {_norm(c) for c in candidate.certifications}
     for c in resume.certifications:
         if _norm(c) not in known_certs and not _in_text(c, raw):
@@ -203,8 +204,10 @@ def _hash(data):
 class ToolHarness:
     ALLOWED = ("validate_resume", "render_resume")
 
-    def __init__(self, candidate, resume_path=None, output_dir=None, max_calls=None, run_id=None):
+    def __init__(self, candidate, resume_path=None, output_dir=None, max_calls=None, run_id=None,
+                 check_skills=True):
         self.candidate = CandidateData.model_validate(candidate) if isinstance(candidate, dict) else candidate
+        self.check_skills = check_skills
         self.resume_path = resume_path
         self.output_dir = output_dir or config.OUTPUT_DIR
         self.max_calls = max_calls or config.MAX_TOOL_CALLS
@@ -257,7 +260,7 @@ class ToolHarness:
                 for key, value in original.items():
                     data["contact"].setdefault(key, value)
         self.draft = data
-        self.last_errors = validate_resume(data, self.candidate)
+        self.last_errors = validate_resume(data, self.candidate, check_skills=self.check_skills)
         if self.last_errors:
             self.validated_hash = None
             return True, json.dumps({"valid": False, "errors": self.last_errors}), False

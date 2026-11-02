@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 491,
+    "output_tokens": 540,
+    "thinking_chars": 0,
+    "seconds": 28.9,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 374,
+    "output_tokens": 222,
+    "thinking_chars": 0,
+    "seconds": 40.93,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1443,
+    "output_tokens": 550,
+    "thinking_chars": 0,
+    "seconds": 28.8,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Farhan Koh\",\n  \"contact\": {\n    \"email\": \"farhan.koh@example.test\",\n    \"phone\": \"+65 6000 0086\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Product Analyst with hands-on experience in product analytics, SQL, and dashboarding. Proven ability to define success metrics, evaluate experiments, and translate customer evidence into actionable recommendations for cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Product Analyst\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Utilized product analytics and SQL to analyze product usage and funnels, improving team turnaround by 25%.\",\n        \"Applied dashboarding to define product success metrics and documented decisions for technical and business reviewers.\",\n        \"Collaborated with colleagues to evaluate experiments and presented progress during fortnightly reviews.\",\n        \"Managed approximately 58 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using A/B testing and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.\",\n        \"Created a reporting template that reduced manual preparation time by 20%.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\"Coursework included software engineering, databases, cybersecurity and applied analytics.\"]\n    }\n  ],\n  \"skills\": [\n    \"product analytics\",\n    \"SQL\",\n    \"dashboarding\",\n    \"A/B testing\",\n    \"customer research\",\n    \"KPI design\",\n    \"stakeholder communication\",\n    \"data storytelling\",\n    \"Python\",\n    \"Amplitude\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.004,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.003,
+    "step": 5
+  }
+]

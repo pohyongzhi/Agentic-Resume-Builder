@@ -44,18 +44,21 @@ def _count_repeats(tool_events):
     return repeats
 
 
-def chat(messages, tracker, tools=None, think=None, format=None):
+def chat(messages, tracker, tools=None, think=None, format=None, num_predict=None):
     """Call the writer model once. Returns the ollama Message (has .content, .tool_calls, .thinking).
 
     format: optional JSON schema (dict). Ollama constrains the reply to match it."""
     start = time.time()
+    options = {"temperature": config.TEMPERATURE, "num_ctx": config.NUM_CTX, "seed": config.SEED}
+    if num_predict is not None:
+        options["num_predict"] = num_predict
     resp = _client.chat(
         model=config.MODEL,
         messages=messages,
         tools=tools,
         format=format,
         think=config.THINK if think is None else think,
-        options={"temperature": config.TEMPERATURE, "num_ctx": config.NUM_CTX, "seed": config.SEED},
+        options=options,
     )
     msg = resp.message
     tracker.log(
@@ -65,6 +68,7 @@ def chat(messages, tracker, tools=None, think=None, format=None):
         thinking_chars=len(msg.thinking or ""),
         seconds=round(time.time() - start, 2),
         asked_tools=[tc.function.name for tc in (msg.tool_calls or [])],
+        done_reason=getattr(resp, "done_reason", None),
     )
     return msg
 

@@ -1,0 +1,322 @@
+{
+  "identity": {
+    "source_hash": "7872de3c1ea970f64efcad1d4e79c2a38b9e53822e0422f25f3c9030d27f46a8",
+    "tailored_hash": "f9c18459849911046c4816b9023f78168d5420ff37571055ff113f127c7e1839",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1429,
+    "unsupported": [
+      "Entry-level Business Analyst with a Bachelor of Science in Information Systems and transferable experience in requirements gathering, process mapping, and data analysis.",
+      "Proven ability to gather business needs, map operational workflows, and collaborate with cross-functional teams to deliver reliable solutions.",
+      "Seeking to leverage strong analytical skills and clear communication abilities to support Example Meridian Labs in turning customer needs into maintainable technology solutions.",
+      "Technology Associate** | Example Delta Operations (Jan 2025 \u2013 Present)",
+      "Gathered and documented business requirements using structured processes, improving team turnaround by 42%.",
+      "Mapped current and future operational processes using Excel to identify bottlenecks and define clear decision points for technical and business reviewers.",
+      "Collaborated with four colleagues to analyse operational data, presenting progress, risks, and findings during fortnightly stakeholder reviews.",
+      "Managed approximately 32 work items per month while maintaining quality controls and tracking follow-up actions.",
+      "Technical Assistant** | Example Ember Technologies (May 2024 \u2013 Dec 2024)",
+      "Supported recurring operational workflows using SQL to extract and analyse data, ensuring evidence-based decision-making.",
+      "Investigated service requests by recording findings with clear supporting evidence and escalating issues to relevant stakeholders.",
+      "Developed a reporting template that reduced manual preparation time by 37%, demonstrating ability to create maintainable solutions.",
+      "Junior Business Analyst Practice Project** | Personal Initiative",
+      "Designed a demonstration project focusing on requirements gathering, process mapping, and data analysis.",
+      "Executed User Acceptance Testing (UAT) using representative scenarios to validate functionality and document limitations.",
+      "Presented design outcomes and next steps to a five-person peer review group, honing clear verbal and written communication skills.",
+      "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+      "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Written & Verbal Communication."
+    ],
+    "n_claims": 21,
+    "claim_scores": [
+      {
+        "claim": "Entry-level Business Analyst with a Bachelor of Science in Information Systems and transferable experience in requirements gathering, process mapping, and data analysis.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000906,
+          "entailment": 0.007845,
+          "neutral": 0.991249
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007845,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to gather business needs, map operational workflows, and collaborate with cross-functional teams to deliver reliable solutions.",
+        "best_source_chunk": "reviewers. - Managed approximately 32 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.002444,
+          "entailment": 0.010039,
+          "neutral": 0.987517
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010039,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage strong analytical skills and clear communication abilities to support Example Meridian Labs in turning customer needs into maintainable technology solutions.",
+        "best_source_chunk": "- Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 37%. ## Projects ### Junior Business Analyst Practice Project - Built a fictional demonstration project using requirements gathering, process mapping and",
+        "probabilities": {
+          "contradiction": 0.034986,
+          "entailment": 0.001964,
+          "neutral": 0.96305
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001964,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "# Daniel Koh daniel.koh@example.test | +65 6000 0084 | Singapore ## Summary Technology associate with transferable experience in requirements gathering, process mapping and Excel, seeking to deepen capability as a Junior Business Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used requirements gathering and process mapping to gather and document business requirements, improving",
+        "probabilities": {
+          "contradiction": 0.005574,
+          "entailment": 0.060425,
+          "neutral": 0.934001
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.060425,
+        "supported": false
+      },
+      {
+        "claim": "Gathered and documented business requirements using structured processes, improving team turnaround by 42%.",
+        "best_source_chunk": "Operations (fictional) (Jan 2025 - Present) - Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 42%. - Applied Excel to map current and future processes and documented decisions for technical and business reviewers. - Managed approximately 32 work items per month while tracking quality checks and follow-up actions. - Collaborated with four",
+        "probabilities": {
+          "contradiction": 0.000971,
+          "entailment": 0.000913,
+          "neutral": 0.998116
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000913,
+        "supported": false
+      },
+      {
+        "claim": "Mapped current and future operational processes using Excel to identify bottlenecks and define clear decision points for technical and business reviewers.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000531,
+          "entailment": 0.002621,
+          "neutral": 0.996848
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002621,
+        "supported": false
+      },
+      {
+        "claim": "Collaborated with four colleagues to analyse operational data, presenting progress, risks, and findings during fortnightly stakeholder reviews.",
+        "best_source_chunk": "reviewers. - Managed approximately 32 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.003587,
+          "entailment": 0.00168,
+          "neutral": 0.994734
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00168,
+        "supported": false
+      },
+      {
+        "claim": "Managed approximately 32 work items per month while maintaining quality controls and tracking follow-up actions.",
+        "best_source_chunk": "reviewers. - Managed approximately 32 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.003111,
+          "entailment": 0.004575,
+          "neutral": 0.992315
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004575,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "reviewers. - Managed approximately 32 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.002663,
+          "entailment": 0.002288,
+          "neutral": 0.995049
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002288,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational workflows using SQL to extract and analyse data, ensuring evidence-based decision-making.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001484,
+          "entailment": 0.001288,
+          "neutral": 0.997227
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001288,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests by recording findings with clear supporting evidence and escalating issues to relevant stakeholders.",
+        "best_source_chunk": "mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.01404,
+          "entailment": 0.002006,
+          "neutral": 0.983954
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002006,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 37%, demonstrating ability to create maintainable solutions.",
+        "best_source_chunk": "- Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 37%. ## Projects ### Junior Business Analyst Practice Project - Built a fictional demonstration project using requirements gathering, process mapping and",
+        "probabilities": {
+          "contradiction": 0.000606,
+          "entailment": 0.002541,
+          "neutral": 0.996853
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002541,
+        "supported": false
+      },
+      {
+        "claim": "Junior Business Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Daniel Koh daniel.koh@example.test | +65 6000 0084 | Singapore ## Summary Technology associate with transferable experience in requirements gathering, process mapping and Excel, seeking to deepen capability as a Junior Business Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used requirements gathering and process mapping to gather and document business requirements, improving",
+        "probabilities": {
+          "contradiction": 0.007322,
+          "entailment": 0.013261,
+          "neutral": 0.979417
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013261,
+        "supported": false
+      },
+      {
+        "claim": "Designed a demonstration project focusing on requirements gathering, process mapping, and data analysis.",
+        "best_source_chunk": "# Daniel Koh daniel.koh@example.test | +65 6000 0084 | Singapore ## Summary Technology associate with transferable experience in requirements gathering, process mapping and Excel, seeking to deepen capability as a Junior Business Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used requirements gathering and process mapping to gather and document business requirements, improving",
+        "probabilities": {
+          "contradiction": 0.006655,
+          "entailment": 0.172516,
+          "neutral": 0.820829
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.172516,
+        "supported": false
+      },
+      {
+        "claim": "Executed User Acceptance Testing (UAT) using representative scenarios to validate functionality and document limitations.",
+        "best_source_chunk": "mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.027731,
+          "entailment": 0.176567,
+          "neutral": 0.795702
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.176567,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and next steps to a five-person peer review group, honing clear verbal and written communication skills.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000912,
+          "entailment": 0.003374,
+          "neutral": 0.995713
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003374,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.042931,
+          "entailment": 0.041517,
+          "neutral": 0.915552
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.041517,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000123,
+          "entailment": 0.988768,
+          "neutral": 0.01111
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.988768,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** Requirements Gathering, Process Mapping, Data Analysis, Documentation.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.002317,
+          "entailment": 0.780161,
+          "neutral": 0.217522
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.780161,
+        "supported": true
+      },
+      {
+        "claim": "Tools & Technologies:** Excel, SQL, Power BI, Git.",
+        "best_source_chunk": "to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills requirements gathering, process mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.025867,
+          "entailment": 0.553775,
+          "neutral": 0.420358
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.553775,
+        "supported": true
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Written & Verbal Communication.",
+        "best_source_chunk": "mapping, Excel, SQL, Power BI, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.005011,
+          "entailment": 0.011683,
+          "neutral": 0.983306
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011683,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "177a3f98edd9e4ad70a5a8ee05cdac5fac420245f3f34c573b15989ec44dd509"
+  }
+}
