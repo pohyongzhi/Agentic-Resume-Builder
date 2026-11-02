@@ -1,0 +1,44 @@
+{
+  "captured_at": "2026-11-01",
+  "source_commit": "da233380a863623b62fadd30138ecd2e34d4b331",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "test_suite": {
+    "command": "venv/bin/python -m pytest -q",
+    "passed": 73,
+    "failed": 0
+  },
+  "generation_results": {
+    "path": "results/results.jsonl",
+    "rows": 100,
+    "workflow": "w1_single_pass",
+    "faithfulness_scored": 1,
+    "faithfulness_unscored": 99,
+    "only_direct_score": 0.2083,
+    "task_success_true": 0,
+    "task_success_false": 1,
+    "task_success_unscored": 99
+  },
+  "largest_offline_faithfulness_scope": {
+    "path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b",
+    "records": 23,
+    "unique_pairs": 23,
+    "mean": 0.134,
+    "minimum": 0.0435,
+    "maximum": 0.2917,
+    "scores_at_or_above_0_8": 0
+  },
+  "known_false_positive_case": {
+    "pair_id": "da_resume_001__da_jd_01",
+    "legacy_score": 0.2174,
+    "legacy_claims": 23,
+    "legacy_supported": 5,
+    "legacy_unsupported": 18,
+    "observed_failures": [
+      "Markdown employer and date headers were treated as semantic claims",
+      "a harmless omitted fictional marker and dash formatting contributed to contradiction labels",
+      "supported paraphrases of source bullets were classified as neutral",
+      "mixed clauses copied unsupported job-description language into otherwise supported claims"
+    ]
+  },
+  "interpretation": "The committed summary is partial and the legacy scores are not suitable for final workflow comparison. Saved generation outputs remain reusable for rescoring."
+}

@@ -1,0 +1,357 @@
+{
+  "identity": {
+    "source_hash": "128c74b7acf5dd9b9de7f8d6e993f3339cc7dbe26e2beaaa76bdc7006016a6f8",
+    "tailored_hash": "e0f47a21471deecdbc0377fd6f051127c9eb5b029e3ddf29d76eada143f73a38",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2917,
+    "unsupported": [
+      "Proven ability to design frontend components and backend APIs while modeling relational data.",
+      "Adept at maintaining delivery pipelines, improving application reliability, and communicating technical trade-offs to stakeholders.",
+      "Committed to evidence-based decision-making and clear documentation.",
+      "Design frontend components and backend APIs with Node.js;",
+      "document technical decisions for engineering and business reviewers.",
+      "Manage approximately 73 work items monthly, tracking quality checks and follow-up actions to ensure reliability.",
+      "Collaborate with cross-functional teams to model relational data in PostgreSQL, presenting progress during fortnightly reviews.",
+      "Example Beacon Services** | Singapore",
+      "Support operational workflows using REST APIs, documenting step-by-step procedures for future reference.",
+      "Investigate service requests, record findings with clear supporting evidence, and escalate issues to relevant stakeholders.",
+      "Create reporting templates that reduced manual preparation time by 22%, demonstrating ability to solve ambiguous problems efficiently.",
+      "Built a demonstration project utilizing TypeScript, React, and Node.js to validate full-stack capabilities.",
+      "Tested the application with representative scenarios to identify limitations and define next steps.",
+      "Presented design rationale and outcomes to a five-person peer review group, refining technical approach based on feedback.",
+      "Bachelor of Science in Information Systems",
+      "Example Polytechnic** | Singapore",
+      "TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS"
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Full-Stack Engineer with hands-on experience in TypeScript, React, and Node.js, delivering documented, measurable improvements within cross-functional teams.",
+        "best_source_chunk": "# Kavya Tan kavya.tan@example.test | +65 6000 0011 | Singapore ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Full-Stack Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 27%. - Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.00227,
+          "entailment": 0.887611,
+          "neutral": 0.110119
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.887611,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to design frontend components and backend APIs while modeling relational data.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001502,
+          "entailment": 0.003045,
+          "neutral": 0.995453
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003045,
+        "supported": false
+      },
+      {
+        "claim": "Adept at maintaining delivery pipelines, improving application reliability, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.002608,
+          "entailment": 0.012595,
+          "neutral": 0.984797
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012595,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 22%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.000553,
+          "entailment": 0.053124,
+          "neutral": 0.946323
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.053124,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions** | Singapore",
+        "best_source_chunk": "# Kavya Tan kavya.tan@example.test | +65 6000 0011 | Singapore ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Full-Stack Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 27%. - Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.000239,
+          "entailment": 0.932245,
+          "neutral": 0.067516
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.932245,
+        "supported": true
+      },
+      {
+        "claim": "Deliver end-to-end product features using TypeScript and React, improving team turnaround by 27%.",
+        "best_source_chunk": "# Kavya Tan kavya.tan@example.test | +65 6000 0011 | Singapore ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Full-Stack Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 27%. - Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.000489,
+          "entailment": 0.992432,
+          "neutral": 0.007079
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.992432,
+        "supported": true
+      },
+      {
+        "claim": "Design frontend components and backend APIs with Node.js;",
+        "best_source_chunk": "# Kavya Tan kavya.tan@example.test | +65 6000 0011 | Singapore ## Summary Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Full-Stack Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 27%. - Applied Node.js",
+        "probabilities": {
+          "contradiction": 9.6e-05,
+          "entailment": 0.033378,
+          "neutral": 0.966527
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.033378,
+        "supported": false
+      },
+      {
+        "claim": "document technical decisions for engineering and business reviewers.",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002344,
+          "entailment": 0.005079,
+          "neutral": 0.992576
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005079,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 73 work items monthly, tracking quality checks and follow-up actions to ensure reliability.",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000703,
+          "entailment": 0.000667,
+          "neutral": 0.99863
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000667,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with cross-functional teams to model relational data in PostgreSQL, presenting progress during fortnightly reviews.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.008784,
+          "entailment": 0.000735,
+          "neutral": 0.990481
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000735,
+        "supported": false
+      },
+      {
+        "claim": "Maintain clear documentation and contribute to team planning and technical reviews.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000771,
+          "entailment": 0.765541,
+          "neutral": 0.233689
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.765541,
+        "supported": true
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.804783,
+          "entailment": 0.027468,
+          "neutral": 0.167749
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.027468,
+        "supported": false
+      },
+      {
+        "claim": "Support operational workflows using REST APIs, documenting step-by-step procedures for future reference.",
+        "best_source_chunk": "operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 22%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.001669,
+          "entailment": 0.004683,
+          "neutral": 0.993648
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004683,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with clear supporting evidence, and escalate issues to relevant stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000204,
+          "entailment": 0.000851,
+          "neutral": 0.998945
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000851,
+        "supported": false
+      },
+      {
+        "claim": "Create reporting templates that reduced manual preparation time by 22%, demonstrating ability to solve ambiguous problems efficiently.",
+        "best_source_chunk": "operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 22%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.000932,
+          "entailment": 0.002038,
+          "neutral": 0.99703
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002038,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Engineer Practice Project",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.086593,
+          "entailment": 0.596319,
+          "neutral": 0.317088
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.596319,
+        "supported": true
+      },
+      {
+        "claim": "Built a demonstration project utilizing TypeScript, React, and Node.js to validate full-stack capabilities.",
+        "best_source_chunk": "operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 22%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.001052,
+          "entailment": 0.032633,
+          "neutral": 0.966315
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.032633,
+        "supported": false
+      },
+      {
+        "claim": "Tested the application with representative scenarios to identify limitations and define next steps.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.003761,
+          "entailment": 0.005974,
+          "neutral": 0.990265
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005974,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical approach based on feedback.",
+        "best_source_chunk": "Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering,",
+        "probabilities": {
+          "contradiction": 0.001095,
+          "entailment": 0.006527,
+          "neutral": 0.992378
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006527,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.039334,
+          "entailment": 0.038597,
+          "neutral": 0.922069
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.038597,
+        "supported": false
+      },
+      {
+        "claim": "Example Polytechnic** | Singapore",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.714885,
+          "entailment": 0.104903,
+          "neutral": 0.180212
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.104903,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000518,
+          "entailment": 0.985216,
+          "neutral": 0.014266
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.985216,
+        "supported": true
+      },
+      {
+        "claim": "TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.011151,
+          "entailment": 0.453531,
+          "neutral": 0.535318
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.453531,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.005676,
+          "entailment": 0.956409,
+          "neutral": 0.037915
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.956409,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "eb9aff4fee7ed8afa3b567b44c58c9bd787b452e09a5b7a1c13ff7752bf4a0a5"
+  }
+}
