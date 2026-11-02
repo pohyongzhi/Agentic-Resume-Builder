@@ -226,8 +226,8 @@ def _resume_markdown(role, fit, candidate_index, variant):
 def _dataset_hash(paths):
     """Hash logical text content consistently across LF and CRLF checkouts."""
     digest = hashlib.sha256()
-    for path in sorted(paths, key=lambda p: str(p.relative_to(DATA))):
-        digest.update(str(path.relative_to(DATA)).encode())
+    for path in sorted(paths, key=lambda p: p.relative_to(DATA).as_posix()):
+        digest.update(path.relative_to(DATA).as_posix().encode())
         digest.update(b"\0")
         content = path.read_bytes().replace(b"\r\n", b"\n").replace(b"\r", b"\n")
         digest.update(content)

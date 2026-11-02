@@ -284,3 +284,7 @@ tool trace in `results/results.jsonl`; do not simply remove validation.
 
 Do not run the experiment until every missing file, duplicate ID, invalid fit label, split leak or
 dataset-hash mismatch reported by `scripts/validate_dataset.py` is resolved.
+
+On Windows, first pull the latest `main`; dataset hashing uses portable `/` path keys and normalized
+line endings. If a mismatch remains, run `git status --short -- data` and review local dataset
+changes. Do not regenerate or replace the frozen dataset merely to make its hash pass.
