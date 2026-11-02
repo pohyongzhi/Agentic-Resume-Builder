@@ -1,0 +1,1083 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7753,
+  "output_tokens": 1460,
+  "thinking_chars": 0,
+  "seconds": 17.69,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 205,
+  "sim_before": 0.8348,
+  "sim_after": 0.8546,
+  "sim_gain": 0.0198,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Priya Lim"
+    ],
+    "contact_email": [
+      "priya.lim@example.test"
+    ],
+    "contact_phone": [
+      "6560000036"
+    ],
+    "employment_title": [
+      "Senior AI and LLM Solutions Engineer",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Atlas Solutions",
+      "Example Beacon Services"
+    ],
+    "employment_date": [
+      "jan 2021 - present",
+      "jun 2017 - dec 2020"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example School of Computing"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 0,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [],
+  "fabrication_bait_matches": [],
+  "faithfulness": 1.0,
+  "claim_faithfulness": 1.0,
+  "unsupported_claim_rate": 0.0,
+  "supported_claims": 20,
+  "source_evidence_units": 29,
+  "unsupported": [],
+  "n_claims": 20,
+  "claim_scores": [
+    {
+      "claim": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Senior AI and LLM Solutions Engineer Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 0.42942
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.428373
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Delivers documented, measurable improvements with cross-functional teams.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0004",
+      "best_evidence_unit": "Delivers documented, measurable improvements with cross-functional teams.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Delivers documented, measurable improvements with cross-functional teams.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.176576
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.168025
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Used Python and large language models to architect production LLM applications, improving team turnaround by 16%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Used Python and large language models to architect production LLM applications, improving team turnaround by 16%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used Python and large language models to architect production LLM applications, improving team turnaround by 16%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used Python and large language models to architect production LLM applications, improving team turnaround by 16%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.145066
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.100684
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.150431
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.139174
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0009",
+      "best_evidence_unit": "Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.111722
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.096
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Managed approximately 38 work items per month while tracking quality checks and follow-up actions.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Managed approximately 38 work items per month while tracking quality checks and follow-up actions.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 15,
+      "best_source_chunk": "Managed approximately 38 work items per month while tracking quality checks and follow-up actions.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 38 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Priya Lim",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "priya.lim@example.test | +65 6000 0036 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "prompt engineering",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.238282
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.168814
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.07574
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a simple reporting template that reduced manual preparation time by 11%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0013",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 11%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 11%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0013",
+          "text": "Created a simple reporting template that reduced manual preparation time by 11%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Priya Lim",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "priya.lim@example.test | +65 6000 0036 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0019",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.167354
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "prompt engineering",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.149861
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Python",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used Python and large language models to architect production LLM applications, improving team turnaround by 16%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "large language models",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used Python and large language models to architect production LLM applications, improving team turnaround by 16%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "RAG",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using Python, large language models and RAG.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "prompt engineering",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using prompt engineering and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "prompt engineering",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 0.359921
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "vector databases",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0024",
+      "best_evidence_unit": "vector databases",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "vector databases",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0024",
+          "text": "vector databases",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 0.353263
+        },
+        {
+          "evidence_id": "evidence-0029",
+          "text": "Kubernetes",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.061538
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "model evaluation",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0025",
+      "best_evidence_unit": "model evaluation",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "model evaluation",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0025",
+          "text": "model evaluation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.340278
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "prompt engineering",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.058824
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Docker",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0026",
+      "best_evidence_unit": "Docker",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Docker",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0026",
+          "text": "Docker",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0029",
+          "text": "Kubernetes",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "prompt engineering",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.05
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "system architecture",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0027",
+      "best_evidence_unit": "system architecture",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "system architecture",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0027",
+          "text": "system architecture",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0024",
+          "text": "vector databases",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.057143
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Senior AI and LLM Solutions Engineer Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 0.05
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "LangGraph",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0028",
+      "best_evidence_unit": "LangGraph",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "LangGraph",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0028",
+          "text": "LangGraph",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0021",
+          "text": "large language models",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.066667
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "RAG",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.066667
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Kubernetes",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0029",
+      "best_evidence_unit": "Kubernetes",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Kubernetes",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0029",
+          "text": "Kubernetes",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "Docker",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        },
+        {
+          "evidence_id": "evidence-0021",
+          "text": "large language models",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.051613
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "a3906ecce108f9ced2c01d28e051c5a1ad26b47d215472ad7e2f5776de3015a7",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": true,
+  "task_failure_reasons": [],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 9213,
+  "tokens_per_successful_task": 9213,
+  "seconds_per_successful_task": 17.69,
+  "cost_quality_ratio": 9682.27,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_016__da_jd_04",
+  "resume_id": "da_resume_016",
+  "jd_id": "da_jd_04",
+  "category": "data_ai",
+  "role_family": "llm_solutions_engineer",
+  "seniority": "senior",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 17.8,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\da_resume_016__da_jd_04\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\da_resume_016__da_jd_04\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\da_resume_016__da_jd_04\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "impact_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "213 words; target is roughly 350-500"
+          ],
+          "words": 213
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a faithful reproduction of the original resume with no invented facts. It covers all required skills and presents them clearly, though it omits the 'Projects' section found in the source.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original; summary sentence rephrased but fully supported by resume content and JD requirements.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.69,
+          "input_tokens": 1097,
+          "output_tokens": 318
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "205 words; target is roughly 350-500"
+          ],
+          "words": 205
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is faithful to the original data. It reorders bullet points for perceived impact but maintains all supported claims and covers relevant skills, missing only the Projects section.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original; bullet point reordering in the first role preserves all supported facts and JD alignment.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.43,
+          "input_tokens": 1098,
+          "output_tokens": 309
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "254 words; target is roughly 350-500"
+          ],
+          "words": 254
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 is faithful to the original resume. It includes the 'Projects' section which was present in the source, ensuring complete coverage of skills and experience while maintaining high writing quality.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original; minor reordering of bullet points in the first role does not alter factual claims or alignment with JD requirements.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 4.23,
+          "input_tokens": 1110,
+          "output_tokens": 371
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

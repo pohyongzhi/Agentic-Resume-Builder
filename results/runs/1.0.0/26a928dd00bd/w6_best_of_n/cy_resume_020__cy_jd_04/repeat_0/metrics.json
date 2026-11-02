@@ -1,0 +1,956 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 6107,
+  "output_tokens": 1296,
+  "thinking_chars": 0,
+  "seconds": 15.75,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 236,
+  "sim_before": 0.8362,
+  "sim_after": 0.8053,
+  "sim_gain": -0.0309,
+  "kw_before": 0.25,
+  "kw_after": 0.25,
+  "kw_missing": [
+    "malware analysis",
+    "incident response",
+    "OSINT",
+    "intelligence reporting",
+    "stakeholder briefing",
+    "team leadership"
+  ],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Talia Ng"
+    ],
+    "contact_email": [
+      "talia.ng@example.test"
+    ],
+    "contact_phone": [
+      "6560000060"
+    ],
+    "employment_title": [
+      "Operations Support Coordinator",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Ember Technologies",
+      "Example Atlas Solutions"
+    ],
+    "employment_date": [
+      "jan 2021 - present",
+      "jun 2017 - dec 2020"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example School of Computing"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 6,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [
+    {
+      "keyword": "malware analysis",
+      "synonyms": []
+    },
+    {
+      "keyword": "incident response",
+      "synonyms": [
+        "incident handling"
+      ]
+    },
+    {
+      "keyword": "OSINT",
+      "synonyms": []
+    },
+    {
+      "keyword": "intelligence reporting",
+      "synonyms": []
+    },
+    {
+      "keyword": "stakeholder briefing",
+      "synonyms": []
+    },
+    {
+      "keyword": "team leadership",
+      "synonyms": []
+    }
+  ],
+  "fabrication_bait_matches": [],
+  "faithfulness": 1.0,
+  "claim_faithfulness": 1.0,
+  "unsupported_claim_rate": 0.0,
+  "supported_claims": 17,
+  "source_evidence_units": 23,
+  "unsupported": [],
+  "n_claims": 17,
+  "claim_scores": [
+    {
+      "claim": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.321133
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.310222
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0005",
+      "best_evidence_unit": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.142592
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.141024
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.158385
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.145
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Managed approximately 80 work items per month while tracking quality checks and follow-up actions.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Managed approximately 80 work items per month while tracking quality checks and follow-up actions.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 15,
+      "best_source_chunk": "Managed approximately 80 work items per month while tracking quality checks and follow-up actions.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Managed approximately 80 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Talia Ng",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "talia.ng@example.test | +65 6000 0060 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.225794
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.224048
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0010",
+      "best_evidence_unit": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.160814
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Managed approximately 80 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.149291
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.07963
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a simple reporting template that reduced manual preparation time by 24%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 24%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 24%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Created a simple reporting template that reduced manual preparation time by 24%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Talia Ng",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "talia.ng@example.test | +65 6000 0060 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0014",
+      "best_evidence_unit": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 28,
+      "best_source_chunk": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.423032
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.421216
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Tested the project with representative scenarios and recorded limitations and next steps.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0015",
+      "best_evidence_unit": "Tested the project with representative scenarios and recorded limitations and next steps.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 29,
+      "best_source_chunk": "Tested the project with representative scenarios and recorded limitations and next steps.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 0.172345
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.153119
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Presented the design and outcomes to a five-person peer review group.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0016",
+      "best_evidence_unit": "Presented the design and outcomes to a five-person peer review group.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 30,
+      "best_source_chunk": "Presented the design and outcomes to a five-person peer review group.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.140051
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.075949
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0018",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0018",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.113013
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Managed approximately 80 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.071351
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "threat intelligence",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0013",
+          "text": "Threat Intelligence Lead Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "MITRE ATT&CK",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 29%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Excel",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0021",
+          "text": "Excel",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "documentation",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "documentation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "stakeholder communication",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0023",
+      "best_evidence_unit": "stakeholder communication",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "stakeholder communication",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0023",
+          "text": "stakeholder communication",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in threat intelligence, MITRE ATT&CK, documentation and stakeholder coordination, transitioning toward Threat Intelligence Lead work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.329907
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "documentation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.063158
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "0c7d81ff1c75d38143eed33dacaaec26a0f56281dcd064fcc8ba21e3e9ca8376",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": true,
+  "task_failure_reasons": [],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 7403,
+  "tokens_per_successful_task": 7403,
+  "seconds_per_successful_task": 15.75,
+  "cost_quality_ratio": 10805.72,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_020__cy_jd_04",
+  "resume_id": "cy_resume_020",
+  "jd_id": "cy_jd_04",
+  "category": "cybersecurity",
+  "role_family": "threat_intelligence_lead",
+  "seniority": "senior",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.9,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_020__cy_jd_04\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_020__cy_jd_04\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_020__cy_jd_04\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.0,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "236 words; target is roughly 350-500"
+          ],
+          "words": 236
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume, ensuring perfect faithfulness. Writing quality is high and concise. Skills coverage is strong for the core requirements (Threat Intel, MITRE ATT&CK), though it lacks explicit mentions of preferred skills like Python or SIEM found in the JD, which l",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume, ensuring perfect faithfulness. Writing quality is high and concise. Skills coverage is strong for the core requirements (Threat Intel, MITRE ATT&CK), though it lacks explicit mentions of preferred skills like Python or SIEM found in the JD, which l",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.94,
+          "input_tokens": 1079,
+          "output_tokens": 352
+        }
+      },
+      "impact_first": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "236 words; target is roughly 350-500"
+          ],
+          "words": 236
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 4.17,
+          "input_tokens": 1080,
+          "output_tokens": 352
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "236 words; target is roughly 350-500"
+          ],
+          "words": 236
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 4.26,
+          "input_tokens": 1092,
+          "output_tokens": 352
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1042,
+    "output_tokens": 261,
+    "thinking_chars": 0,
+    "seconds": 3.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "168 words; target is roughly 350-500"
+      ],
+      "words": 168
+    },
+    "generation": {
+      "seconds": 3.23,
+      "input_tokens": 1042,
+      "output_tokens": 261
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1043,
+    "output_tokens": 276,
+    "thinking_chars": 0,
+    "seconds": 3.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.19,
+      "input_tokens": 1043,
+      "output_tokens": 276
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1055,
+    "output_tokens": 279,
+    "thinking_chars": 0,
+    "seconds": 3.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "183 words; target is roughly 350-500"
+      ],
+      "words": 183
+    },
+    "generation": {
+      "seconds": 3.41,
+      "input_tokens": 1055,
+      "output_tokens": 279
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1987,
+    "output_tokens": 245,
+    "thinking_chars": 0,
+    "seconds": 3.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Faithfully extracts all resume facts. Adds 'containerised services' which is a reasonable inference from 'operating services' but not explicitly stated; otherwise high fidelity. Good coverage of JD skills like Kafka and Git.",
+        "grounding_concern_in_justification": true
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strictly faithful to original text, preserving all metrics and details. Lower JD alignment due to omission of containerisation, stakeholder communication, and specific documentation requirements found in the resume.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 3,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Highly faithful with minor inference on 'containerised services' (likely from context of ops). Excellent JD alignment by using terminology like 'technical trade-offs' and 'stakeholders'. Concise and professional formatting.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1987,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Perfectly maps resume facts to JD language (e.g., 'containerised services' for Docker, 'fortnightly reviews' for stakeholder communication) without adding unsupported claims.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text but lacks JD alignment; omits critical keywords like 'Docker', 'unit testing', and 'documentation' required by the role.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong skills coverage including Kafka (preferred) and Docker (implied via containerised services), with excellent JD alignment on documentation and trade-offs.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "jd_wording_alignment",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "168 words; target is roughly 350-500"
+          ],
+          "words": 168
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully extracts all resume facts. Adds 'containerised services' which is a reasonable inference from 'operating services' but not explicitly stated; otherwise high fidelity. Good coverage of JD skills like Kafka and Git.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong skills coverage including Kafka (preferred) and Docker (implied via containerised services), with excellent JD alignment on documentation and trade-offs.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.23,
+          "input_tokens": 1042,
+          "output_tokens": 261
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strictly faithful to original text, preserving all metrics and details. Lower JD alignment due to omission of containerisation, stakeholder communication, and specific documentation requirements found in the resume.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text but lacks JD alignment; omits critical keywords like 'Docker', 'unit testing', and 'documentation' required by the role.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.19,
+          "input_tokens": 1043,
+          "output_tokens": 276
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "183 words; target is roughly 350-500"
+          ],
+          "words": 183
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Highly faithful with minor inference on 'containerised services' (likely from context of ops). Excellent JD alignment by using terminology like 'technical trade-offs' and 'stakeholders'. Concise and professional formatting.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Perfectly maps resume facts to JD language (e.g., 'containerised services' for Docker, 'fortnightly reviews' for stakeholder communication) without adding unsupported claims.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.41,
+          "input_tokens": 1055,
+          "output_tokens": 279
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

@@ -1,0 +1,285 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1069,
+    "output_tokens": 289,
+    "thinking_chars": 0,
+    "seconds": 3.69,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.69,
+      "input_tokens": 1069,
+      "output_tokens": 289
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1070,
+    "output_tokens": 298,
+    "thinking_chars": 0,
+    "seconds": 3.69,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "194 words; target is roughly 350-500"
+      ],
+      "words": 194
+    },
+    "generation": {
+      "seconds": 3.69,
+      "input_tokens": 1070,
+      "output_tokens": 298
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1082,
+    "output_tokens": 321,
+    "thinking_chars": 0,
+    "seconds": 3.97,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "214 words; target is roughly 350-500"
+      ],
+      "words": 214
+    },
+    "generation": {
+      "seconds": 3.97,
+      "input_tokens": 1082,
+      "output_tokens": 321
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2106,
+    "output_tokens": 239,
+    "thinking_chars": 0,
+    "seconds": 3.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is nearly identical to the original resume with only minor phrasing changes; all claims are fully supported. JD alignment is strong but slightly less explicit than Candidate 3 regarding specific responsibilities like mentoring.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to the original resume text, ensuring perfect faithfulness. JD alignment is good but lacks the expanded responsibility mapping found in Candidate 3.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Perfectly aligns with JD responsibilities, but faithfulness is slightly reduced due to rephrasing that implies specific actions (e.g., 'Establish automated testing practices') not explicitly stated in the original resume bullet points, though strongly implied by context.",
+        "grounding_concern_in_justification": true
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2106,
+    "output_tokens": 220,
+    "thinking_chars": 0,
+    "seconds": 3.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2106,
+    "output_tokens": 220,
+    "thinking_chars": 0,
+    "seconds": 2.56,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [
+      "impact_first",
+      "jd_wording_alignment",
+      "skills_first"
+    ],
+    "scores": {},
+    "step": 11
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is nearly identical to the original resume with only minor phrasing changes; all claims are fully supported. JD alignment is strong but slightly less explicit than Candidate 3 regarding specific responsibilities like mentoring.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.69,
+          "input_tokens": 1069,
+          "output_tokens": 289
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "194 words; target is roughly 350-500"
+          ],
+          "words": 194
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to the original resume text, ensuring perfect faithfulness. JD alignment is good but lacks the expanded responsibility mapping found in Candidate 3.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.69,
+          "input_tokens": 1070,
+          "output_tokens": 298
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.0,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "214 words; target is roughly 350-500"
+          ],
+          "words": 214
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Perfectly aligns with JD responsibilities, but faithfulness is slightly reduced due to rephrasing that implies specific actions (e.g., 'Establish automated testing practices') not explicitly stated in the original resume bullet points, though strongly implied by context.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.97,
+          "input_tokens": 1082,
+          "output_tokens": 321
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 12
+  }
+]

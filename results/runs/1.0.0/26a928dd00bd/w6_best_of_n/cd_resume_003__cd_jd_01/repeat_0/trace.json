@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1053,
+    "output_tokens": 287,
+    "thinking_chars": 0,
+    "seconds": 3.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.41,
+      "input_tokens": 1053,
+      "output_tokens": 287
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1054,
+    "output_tokens": 344,
+    "thinking_chars": 0,
+    "seconds": 3.86,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "233 words; target is roughly 350-500"
+      ],
+      "words": 233
+    },
+    "generation": {
+      "seconds": 3.86,
+      "input_tokens": 1054,
+      "output_tokens": 344
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1066,
+    "output_tokens": 237,
+    "thinking_chars": 0,
+    "seconds": 2.73,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "146 words; target is roughly 350-500"
+      ],
+      "words": 146
+    },
+    "generation": {
+      "seconds": 2.73,
+      "input_tokens": 1066,
+      "output_tokens": 237
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2050,
+    "output_tokens": 223,
+    "thinking_chars": 0,
+    "seconds": 2.89,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data. Minor omission of 'Excel' from skills list compared to resume text, but otherwise accurate and complete.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data. Includes all resume content including 'Excel' which was omitted in Candidate 1, maintaining completeness.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 5,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Highly aligned with JD wording by splitting bullet points. Faithfulness reduced due to omission of 'Excel' from skills and removal of quantified metrics (19%, 29 items, 14%) present in the original resume.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2050,
+    "output_tokens": 273,
+    "thinking_chars": 0,
+    "seconds": 3.34,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Highly faithful and concise. Minor gap: removed 'Excel' from skills (present in original) and omitted specific metrics like '19%' and '29 items', slightly reducing JD alignment on quantifiable success.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data. Minor gap: 'Excel' removed from skills list (present in original). Metrics retained well.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data. Significant gap: 'Excel' removed from skills list (present in original). Missing specific metrics ('19%', '29 items') reduces JD alignment on quantifiable achievements.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "impact_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data. Minor omission of 'Excel' from skills list compared to resume text, but otherwise accurate and complete.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data. Significant gap: 'Excel' removed from skills list (present in original). Missing specific metrics ('19%', '29 items') reduces JD alignment on quantifiable achievements.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.41,
+          "input_tokens": 1053,
+          "output_tokens": 287
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "233 words; target is roughly 350-500"
+          ],
+          "words": 233
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data. Includes all resume content including 'Excel' which was omitted in Candidate 1, maintaining completeness.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data. Minor gap: 'Excel' removed from skills list (present in original). Metrics retained well.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.86,
+          "input_tokens": 1054,
+          "output_tokens": 344
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 4.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "146 words; target is roughly 350-500"
+          ],
+          "words": 146
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Highly aligned with JD wording by splitting bullet points. Faithfulness reduced due to omission of 'Excel' from skills and removal of quantified metrics (19%, 29 items, 14%) present in the original resume.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Highly faithful and concise. Minor gap: removed 'Excel' from skills (present in original) and omitted specific metrics like '19%' and '29 items', slightly reducing JD alignment on quantifiable success.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 2.73,
+          "input_tokens": 1066,
+          "output_tokens": 237
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

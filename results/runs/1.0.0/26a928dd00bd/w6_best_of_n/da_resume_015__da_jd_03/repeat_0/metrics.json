@@ -1,0 +1,129 @@
+{
+  "llm_calls": 7,
+  "input_tokens": 11611,
+  "output_tokens": 1876,
+  "thinking_chars": 0,
+  "seconds": 21.76,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "held_out": true,
+  "required_sections_rate": 0.0,
+  "structure_pass": false,
+  "task_success": null,
+  "task_failure_reasons": [
+    "workflow_failed",
+    "missing_required_sections",
+    "faithfulness_not_scored",
+    "protected_fields_not_scored",
+    "fabrication_bait_not_scored"
+  ],
+  "agent_steps": 7,
+  "expected_min_steps": 5,
+  "step_efficiency": 0.7143,
+  "budget_utilisation": 1.0,
+  "total_tokens": 13487,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": null,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_015__da_jd_03",
+  "resume_id": "da_resume_015",
+  "jd_id": "da_jd_03",
+  "category": "data_ai",
+  "role_family": "machine_learning_engineer",
+  "seniority": "mid",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 21.8,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\da_resume_015__da_jd_03\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\da_resume_015__da_jd_03\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\da_resume_015__da_jd_03\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "183 words; target is roughly 350-500"
+          ],
+          "words": 183
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.3,
+          "input_tokens": 1047,
+          "output_tokens": 276
+        }
+      },
+      "impact_first": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "228 words; target is roughly 350-500"
+          ],
+          "words": 228
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.69,
+          "input_tokens": 1048,
+          "output_tokens": 331
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "228 words; target is roughly 350-500"
+          ],
+          "words": 228
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.63,
+          "input_tokens": 1060,
+          "output_tokens": 331
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

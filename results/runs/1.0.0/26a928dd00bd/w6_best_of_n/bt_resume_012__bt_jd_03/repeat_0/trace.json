@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1080,
+    "output_tokens": 281,
+    "thinking_chars": 0,
+    "seconds": 3.27,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "183 words; target is roughly 350-500"
+      ],
+      "words": 183
+    },
+    "generation": {
+      "seconds": 3.27,
+      "input_tokens": 1080,
+      "output_tokens": 281
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1081,
+    "output_tokens": 297,
+    "thinking_chars": 0,
+    "seconds": 3.4,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "195 words; target is roughly 350-500"
+      ],
+      "words": 195
+    },
+    "generation": {
+      "seconds": 3.4,
+      "input_tokens": 1081,
+      "output_tokens": 297
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1093,
+    "output_tokens": 363,
+    "thinking_chars": 0,
+    "seconds": 4.1,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "247 words; target is roughly 350-500"
+      ],
+      "words": 247
+    },
+    "generation": {
+      "seconds": 4.1,
+      "input_tokens": 1093,
+      "output_tokens": 363
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2150,
+    "output_tokens": 273,
+    "thinking_chars": 0,
+    "seconds": 3.4,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 1 is a near-perfect rewrite of the original resume, rephrasing bullet points for flow without altering facts. It omits the 'Projects' and 'Certifications' sections found in the source, which technically makes it incomplete relative to the full data set, but the core experience claims are f",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 2 is identical to Candidate 1 and the original resume's content. It accurately reflects all skills, dates, and achievements from the source text without fabrication.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 3 is the most complete version, retaining all sections (Projects, Certifications) from the original resume. It aligns perfectly with the JD by using terminology like 'translate business needs' and 'define integration patterns' which are explicitly required in the job description.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2150,
+    "output_tokens": 330,
+    "thinking_chars": 0,
+    "seconds": 3.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Text is identical to the original resume. Faithfulness is perfect as no facts are invented. JD alignment is high but slightly lower than Candidate 3 because it lacks the specific phrasing of 'translate business needs' and 'communicate trade-offs' found in the original text, though these concepts are",
+        "grounding_concern_in_justification": true
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to the original resume. Faithfulness is perfect. Skills coverage is slightly lower than Candidate 3 because the summary omits 'cross-functional collaboration' which maps well to JD's stakeholder management, and the bullet points are less explicitly tied to specific JD verbs like 't",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to the original resume. Faithfulness is perfect. This candidate achieves the highest JD alignment by restructuring bullet points to explicitly use JD keywords ('translate business needs', 'define integration and security patterns', 'facilitate architecture decisions', 'communicate ",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "183 words; target is roughly 350-500"
+          ],
+          "words": 183
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a near-perfect rewrite of the original resume, rephrasing bullet points for flow without altering facts. It omits the 'Projects' and 'Certifications' sections found in the source, which technically makes it incomplete relative to the full data set, but the core experience claims are f",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to the original resume. Faithfulness is perfect. This candidate achieves the highest JD alignment by restructuring bullet points to explicitly use JD keywords ('translate business needs', 'define integration and security patterns', 'facilitate architecture decisions', 'communicate ",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.27,
+          "input_tokens": 1080,
+          "output_tokens": 281
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is identical to Candidate 1 and the original resume's content. It accurately reflects all skills, dates, and achievements from the source text without fabrication.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to the original resume. Faithfulness is perfect. Skills coverage is slightly lower than Candidate 3 because the summary omits 'cross-functional collaboration' which maps well to JD's stakeholder management, and the bullet points are less explicitly tied to specific JD verbs like 't",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.4,
+          "input_tokens": 1081,
+          "output_tokens": 297
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "247 words; target is roughly 350-500"
+          ],
+          "words": 247
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 is the most complete version, retaining all sections (Projects, Certifications) from the original resume. It aligns perfectly with the JD by using terminology like 'translate business needs' and 'define integration patterns' which are explicitly required in the job description.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Text is identical to the original resume. Faithfulness is perfect as no facts are invented. JD alignment is high but slightly lower than Candidate 3 because it lacks the specific phrasing of 'translate business needs' and 'communicate trade-offs' found in the original text, though these concepts are",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 4.1,
+          "input_tokens": 1093,
+          "output_tokens": 363
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

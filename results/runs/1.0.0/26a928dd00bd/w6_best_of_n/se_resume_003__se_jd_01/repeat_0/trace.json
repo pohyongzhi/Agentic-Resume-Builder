@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1047,
+    "output_tokens": 274,
+    "thinking_chars": 0,
+    "seconds": 3.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "184 words; target is roughly 350-500"
+      ],
+      "words": 184
+    },
+    "generation": {
+      "seconds": 3.37,
+      "input_tokens": 1047,
+      "output_tokens": 274
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1048,
+    "output_tokens": 276,
+    "thinking_chars": 0,
+    "seconds": 3.03,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "182 words; target is roughly 350-500"
+      ],
+      "words": 182
+    },
+    "generation": {
+      "seconds": 3.03,
+      "input_tokens": 1048,
+      "output_tokens": 276
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1060,
+    "output_tokens": 284,
+    "thinking_chars": 0,
+    "seconds": 3.25,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "191 words; target is roughly 350-500"
+      ],
+      "words": 191
+    },
+    "generation": {
+      "seconds": 3.25,
+      "input_tokens": 1060,
+      "output_tokens": 284
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2010,
+    "output_tokens": 316,
+    "thinking_chars": 0,
+    "seconds": 4.32,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Accurately reflects original resume content. Minor redundancy in summary by repeating JD keywords verbatim rather than synthesizing them.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all original data points. Lacks explicit mention of Next.js in the summary despite it being a listed skill, reducing JD alignment slightly.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 3,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with JD language. Writing quality is slightly lower due to dense sentence structures in the summary that sacrifice readability for keyword matching.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2010,
+    "output_tokens": 340,
+    "thinking_chars": 0,
+    "seconds": 3.95,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with JD phrasing (accessible UIs, REST APIs, stakeholders). Minor gap: 'Next.js' removed from skills list despite being in original resume.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data with quantified metrics. Weak JD alignment: lacks specific mention of 'accessible', 'REST APIs', or 'stakeholders' in bullet points.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data. Weak JD alignment: Summary lists skills but lacks context of 'accessible', 'REST APIs', or 'stakeholders' required by the role.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "184 words; target is roughly 350-500"
+          ],
+          "words": 184
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Accurately reflects original resume content. Minor redundancy in summary by repeating JD keywords verbatim rather than synthesizing them.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data. Weak JD alignment: Summary lists skills but lacks context of 'accessible', 'REST APIs', or 'stakeholders' required by the role.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.37,
+          "input_tokens": 1047,
+          "output_tokens": 274
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 4.0,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "182 words; target is roughly 350-500"
+          ],
+          "words": 182
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original data points. Lacks explicit mention of Next.js in the summary despite it being a listed skill, reducing JD alignment slightly.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data with quantified metrics. Weak JD alignment: lacks specific mention of 'accessible', 'REST APIs', or 'stakeholders' in bullet points.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.03,
+          "input_tokens": 1048,
+          "output_tokens": 276
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 3.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "191 words; target is roughly 350-500"
+          ],
+          "words": 191
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD language. Writing quality is slightly lower due to dense sentence structures in the summary that sacrifice readability for keyword matching.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD phrasing (accessible UIs, REST APIs, stakeholders). Minor gap: 'Next.js' removed from skills list despite being in original resume.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.25,
+          "input_tokens": 1060,
+          "output_tokens": 284
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

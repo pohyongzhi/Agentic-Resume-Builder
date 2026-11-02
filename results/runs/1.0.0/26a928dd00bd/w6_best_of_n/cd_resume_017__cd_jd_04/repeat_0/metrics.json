@@ -1,0 +1,1101 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7453,
+  "output_tokens": 1411,
+  "thinking_chars": 0,
+  "seconds": 17.73,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 203,
+  "sim_before": 0.8146,
+  "sim_after": 0.8405,
+  "sim_gain": 0.0259,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Quentin Lee"
+    ],
+    "contact_email": [
+      "quentin.lee@example.test"
+    ],
+    "contact_phone": [
+      "6560000077"
+    ],
+    "employment_title": [
+      "Platform Engineering Lead",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Beacon Services",
+      "Example Cedar Innovations"
+    ],
+    "employment_date": [
+      "jan 2021 - present",
+      "jun 2017 - dec 2020"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example Institute of Technology"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 0,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [],
+  "fabrication_bait_matches": [],
+  "faithfulness": 1.0,
+  "claim_faithfulness": 1.0,
+  "unsupported_claim_rate": 0.0,
+  "supported_claims": 20,
+  "source_evidence_units": 29,
+  "unsupported": [],
+  "n_claims": 20,
+  "claim_scores": [
+    {
+      "claim": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform;",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.413398
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Platform Engineering Lead Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 0.409828
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "set internal platform strategy and led self-service infrastructure delivery while documenting decisions for technical and business reviewers.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+      "retrieval_score": 0.53914,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.53914,
+          "probabilities": {
+            "contradiction": 0.003656,
+            "entailment": 0.52569,
+            "neutral": 0.470655
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.280651,
+          "probabilities": {
+            "contradiction": 0.000378,
+            "entailment": 0.000119,
+            "neutral": 0.999503
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 31 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.122541,
+          "probabilities": {
+            "contradiction": 0.000671,
+            "entailment": 0.000577,
+            "neutral": 0.998752
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.003656,
+        "entailment": 0.52569,
+        "neutral": 0.470655
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.52569,
+      "supported": true
+    },
+    {
+      "claim": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.08511
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.084906
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.128645
+        },
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Delivers documented, measurable improvements with cross-functional teams.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.128569
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Managed approximately 31 work items per month while tracking quality checks and follow-up actions.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Managed approximately 31 work items per month while tracking quality checks and follow-up actions.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 15,
+      "best_source_chunk": "Managed approximately 31 work items per month while tracking quality checks and follow-up actions.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 31 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Quentin Lee",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "quentin.lee@example.test | +65 6000 0077 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0009",
+      "best_evidence_unit": "Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.113056
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.090837
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "cloud architecture",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.238282
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.157455
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.076106
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a simple reporting template that reduced manual preparation time by 19%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0013",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 19%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 19%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0013",
+          "text": "Created a simple reporting template that reduced manual preparation time by 19%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Quentin Lee",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "quentin.lee@example.test | +65 6000 0077 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0019",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Platform Engineering Lead Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 0.1578
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.152917
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "platform engineering",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Platform Engineering Lead, Example Beacon Services (fictional) (Jan 2021 - Present)",
+          "kind": "protected_header",
+          "line": 11,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Kubernetes",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Terraform",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using platform engineering, Kubernetes and Terraform.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "cloud architecture",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using cloud architecture and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "cloud architecture",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "security",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.076923
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "CI/CD",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0024",
+      "best_evidence_unit": "CI/CD",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "CI/CD",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0024",
+          "text": "CI/CD",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0027",
+          "text": "technical leadership",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.064
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "security",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.061538
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "observability",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0025",
+      "best_evidence_unit": "observability",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "observability",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0025",
+          "text": "observability",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "security",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.114286
+        },
+        {
+          "evidence_id": "evidence-0021",
+          "text": "Kubernetes",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.069565
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "security",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0026",
+      "best_evidence_unit": "security",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "security",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "security",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0025",
+          "text": "observability",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.114286
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "technical leadership",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0027",
+      "best_evidence_unit": "technical leadership",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "technical leadership",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0027",
+          "text": "technical leadership",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020)",
+          "kind": "protected_header",
+          "line": 18,
+          "retrieval_score": 0.370588
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.334454
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Backstage",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0028",
+      "best_evidence_unit": "Backstage",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Backstage",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0028",
+          "text": "Backstage",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "cloud architecture",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.059259
+        },
+        {
+          "evidence_id": "evidence-0020",
+          "text": "platform engineering",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.055172
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "multi-cloud",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0029",
+      "best_evidence_unit": "multi-cloud",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "multi-cloud",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0029",
+          "text": "multi-cloud",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0024",
+          "text": "CI/CD",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Quentin Lee",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.072727
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "b2212248227b34f29ccfa5138f67aac8b5ed46150d330724965a26d46ea652a8",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": true,
+  "task_failure_reasons": [],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 8864,
+  "tokens_per_successful_task": 8864,
+  "seconds_per_successful_task": 17.73,
+  "cost_quality_ratio": 9361.73,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_017__cd_jd_04",
+  "resume_id": "cd_resume_017",
+  "jd_id": "cd_jd_04",
+  "category": "cloud_devops",
+  "role_family": "platform_engineering_lead",
+  "seniority": "senior",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 18.0,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_017__cd_jd_04\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_017__cd_jd_04\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_017__cd_jd_04\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Perfectly faithful to the original resume. The summary explicitly lists key skills (platform engineering, Kubernetes, Terraform) which aligns well with the JD's required qualifications.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Content is identical to original; summary condensation maintains all supported facts and JD-relevant keywords without fabrication.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.62,
+          "input_tokens": 1073,
+          "output_tokens": 308
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "193 words; target is roughly 350-500"
+          ],
+          "words": 193
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces all original data points. The bullet points are reordered to emphasize impact (e.g., moving the turnaround metric earlier), which aligns with the JD's focus on 'meaningful work' and 'useful outcomes', without inventing any facts.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Content is identical to original; bullet point order change in the first role does not alter factual support or alignment.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.75,
+          "input_tokens": 1074,
+          "output_tokens": 300
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "193 words; target is roughly 350-500"
+          ],
+          "words": 193
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces the original resume content. The summary mirrors the JD's language ('documented, measurable improvements', 'cross-functional teams'), effectively aligning the candidate's narrative with the role's requirements while remaining strictly grounded in the source text.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original; minor bullet reordering in Candidate 2 affects alignment slightly but content remains fully supported.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.85,
+          "input_tokens": 1086,
+          "output_tokens": 300
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

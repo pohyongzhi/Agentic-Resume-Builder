@@ -1,0 +1,1045 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 6690,
+  "output_tokens": 1293,
+  "thinking_chars": 0,
+  "seconds": 15.1,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 187,
+  "sim_before": 0.7715,
+  "sim_after": 0.7992,
+  "sim_gain": 0.0277,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Leon Tan"
+    ],
+    "contact_email": [
+      "leon.tan@example.test"
+    ],
+    "contact_phone": [
+      "6560000012"
+    ],
+    "employment_title": [
+      "Full-Stack Engineer",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Beacon Services",
+      "Example Cedar Innovations"
+    ],
+    "employment_date": [
+      "jul 2023 - present",
+      "jan 2021 - jun 2023"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example School of Computing"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 0,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [],
+  "fabrication_bait_matches": [],
+  "faithfulness": 0.9474,
+  "claim_faithfulness": 0.9474,
+  "unsupported_claim_rate": 0.0526,
+  "supported_claims": 18,
+  "source_evidence_units": 30,
+  "unsupported": [
+    "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js delivering documented, measurable improvements with cross-functional teams."
+  ],
+  "n_claims": 19,
+  "claim_scores": [
+    {
+      "claim": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js delivering documented, measurable improvements with cross-functional teams.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+      "retrieval_score": 0.198909,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.496077,
+          "probabilities": {
+            "contradiction": 0.000208,
+            "entailment": 0.000345,
+            "neutral": 0.999447
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Delivers documented, measurable improvements with cross-functional teams.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.428178,
+          "probabilities": {
+            "contradiction": 0.000222,
+            "entailment": 0.000544,
+            "neutral": 0.999234
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.198909,
+          "probabilities": {
+            "contradiction": 0.000111,
+            "entailment": 0.000797,
+            "neutral": 0.999092
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000111,
+        "entailment": 0.000797,
+        "neutral": 0.999092
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000797,
+      "supported": false
+    },
+    {
+      "claim": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Leon Tan",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "leon.tan@example.test | +65 6000 0012 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.197245
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.133949
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Managed approximately 86 work items per month while tracking quality checks and follow-up actions.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Managed approximately 86 work items per month while tracking quality checks and follow-up actions.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 15,
+      "best_source_chunk": "Managed approximately 86 work items per month while tracking quality checks and follow-up actions.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 86 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Leon Tan",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "leon.tan@example.test | +65 6000 0012 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0009",
+      "best_evidence_unit": "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.123133
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.087179
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.229644
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "REST APIs",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.213421
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.07574
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a simple reporting template that reduced manual preparation time by 29%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0013",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 29%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 29%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0013",
+          "text": "Created a simple reporting template that reduced manual preparation time by 29%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Leon Tan",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "leon.tan@example.test | +65 6000 0012 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0019",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.11021
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.071508
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "TypeScript",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "React",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Node.js",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using TypeScript, React and Node.js.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "REST APIs",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "REST APIs",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.318111
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "PostgreSQL",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0024",
+      "best_evidence_unit": "PostgreSQL",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "PostgreSQL",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0024",
+          "text": "PostgreSQL",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "REST APIs",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.063158
+        },
+        {
+          "evidence_id": "evidence-0020",
+          "text": "TypeScript",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.06
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Docker",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0025",
+      "best_evidence_unit": "Docker",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Docker",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0025",
+          "text": "Docker",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "Node.js",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.061538
+        },
+        {
+          "evidence_id": "evidence-0020",
+          "text": "TypeScript",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.05
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Git",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0026",
+      "best_evidence_unit": "Git",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Git",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0026",
+          "text": "Git",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0020",
+          "text": "TypeScript",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.061538
+        },
+        {
+          "evidence_id": "evidence-0021",
+          "text": "React",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.05
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "CI/CD",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0027",
+      "best_evidence_unit": "CI/CD",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "CI/CD",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0027",
+          "text": "CI/CD",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0020",
+          "text": "TypeScript",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.053333
+        },
+        {
+          "evidence_id": "evidence-0026",
+          "text": "Git",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.05
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Next.js",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0028",
+      "best_evidence_unit": "Next.js",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "Next.js",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0028",
+          "text": "Next.js",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "Node.js",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.142857
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "REST APIs",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "AWS",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0029",
+      "best_evidence_unit": "AWS",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "AWS",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0029",
+          "text": "AWS",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0030",
+          "text": "AWS Certified Cloud Practitioner",
+          "kind": "claim",
+          "line": 44,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "REST APIs",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.066667
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "e7eae299fd352662bd43daa9073d865ccc54878053b32defd8aa2db8420572f7",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": false,
+  "task_success": false,
+  "task_failure_reasons": [
+    "word_count_out_of_range"
+  ],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 7983,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 8719.51,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "se_resume_012__se_jd_03",
+  "resume_id": "se_resume_012",
+  "jd_id": "se_jd_03",
+  "category": "software_engineering",
+  "role_family": "full_stack_engineer",
+  "seniority": "mid",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 31.7,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\se_resume_012__se_jd_03\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\se_resume_012__se_jd_03\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\se_resume_012__se_jd_03\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. Minor formatting inconsistency (missing blank line after job title) compared to standard resume style.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is identical to Candidate 1 in content and fidelity to the original resume. It successfully lists all required skills (TypeScript, React, Node.js, PostgreSQL, Docker) in the Skills section, meeting coverage requirements. Formatting is consistent with professional standards.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.36,
+          "input_tokens": 1074,
+          "output_tokens": 295
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. Minor formatting inconsistency (missing blank line after job title) compared to standard resume style.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a near-perfect reconstruction of the original resume with only minor formatting adjustments (e.g., removing bolding from job titles). All claims are fully supported by the source text. The content aligns well with the JD requirements for Full-Stack engineering, though it lacks explici",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.46,
+          "input_tokens": 1075,
+          "output_tokens": 297
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.56,
+          "input_tokens": 1087,
+          "output_tokens": 297
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

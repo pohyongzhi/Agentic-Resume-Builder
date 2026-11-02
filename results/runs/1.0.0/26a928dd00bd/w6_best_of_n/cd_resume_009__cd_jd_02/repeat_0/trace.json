@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1048,
+    "output_tokens": 279,
+    "thinking_chars": 0,
+    "seconds": 3.42,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "180 words; target is roughly 350-500"
+      ],
+      "words": 180
+    },
+    "generation": {
+      "seconds": 3.42,
+      "input_tokens": 1048,
+      "output_tokens": 279
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1049,
+    "output_tokens": 280,
+    "thinking_chars": 0,
+    "seconds": 3.32,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "180 words; target is roughly 350-500"
+      ],
+      "words": 180
+    },
+    "generation": {
+      "seconds": 3.32,
+      "input_tokens": 1049,
+      "output_tokens": 280
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1061,
+    "output_tokens": 322,
+    "thinking_chars": 0,
+    "seconds": 3.72,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "213 words; target is roughly 350-500"
+      ],
+      "words": 213
+    },
+    "generation": {
+      "seconds": 3.72,
+      "input_tokens": 1061,
+      "output_tokens": 322
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2058,
+    "output_tokens": 241,
+    "thinking_chars": 0,
+    "seconds": 3.42,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume; all claims are fully supported. JD alignment is moderate as it lists skills but lacks explicit mapping to specific responsibilities like observability or monitoring.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume; all claims are fully supported. JD alignment is moderate as it lists skills but lacks explicit mapping to specific responsibilities like observability or monitoring.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume; all claims are fully supported. JD alignment improved by explicitly mentioning 'deployment pipelines' and 'container platforms' which map directly to JD responsibilities, though it still omits specific tools like AWS or monitoring mentioned in the JD.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2058,
+    "output_tokens": 229,
+    "thinking_chars": 0,
+    "seconds": 3.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Minor omission of 'Argo CD' from Skills section compared to original resume; otherwise faithful and well-aligned with JD responsibilities.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful but lacks the specific 'deployment pipelines' phrasing found in Candidate 1 which better matches JD responsibilities; missing 'Argo CD' from Skills.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful but omits 'Argo CD' from the Skills list present in the original resume; phrasing is less specific regarding JD responsibilities than Candidate 1.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "jd_wording_alignment",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "180 words; target is roughly 350-500"
+          ],
+          "words": 180
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. JD alignment is moderate as it lists skills but lacks explicit mapping to specific responsibilities like observability or monitoring.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful but omits 'Argo CD' from the Skills list present in the original resume; phrasing is less specific regarding JD responsibilities than Candidate 1.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.42,
+          "input_tokens": 1048,
+          "output_tokens": 279
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "180 words; target is roughly 350-500"
+          ],
+          "words": 180
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. JD alignment is moderate as it lists skills but lacks explicit mapping to specific responsibilities like observability or monitoring.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful but lacks the specific 'deployment pipelines' phrasing found in Candidate 1 which better matches JD responsibilities; missing 'Argo CD' from Skills.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.32,
+          "input_tokens": 1049,
+          "output_tokens": 280
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "213 words; target is roughly 350-500"
+          ],
+          "words": 213
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. JD alignment improved by explicitly mentioning 'deployment pipelines' and 'container platforms' which map directly to JD responsibilities, though it still omits specific tools like AWS or monitoring mentioned in the JD.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor omission of 'Argo CD' from Skills section compared to original resume; otherwise faithful and well-aligned with JD responsibilities.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.72,
+          "input_tokens": 1061,
+          "output_tokens": 322
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]
