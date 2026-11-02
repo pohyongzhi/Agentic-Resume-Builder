@@ -39,3 +39,74 @@ Status: implementation and zero-network verification complete; live calibration 
 
 Next checkpoint: run the complete test suite, install the pinned Groq SDK in the ignored virtual
 environment, then run live calibration only with a replacement environment credential.
+
+## 2026-11-02 — First live calibration
+
+Status: failed closed; preserved at `results/judge-calibration/gpt-oss-120b-v1`.
+
+- Groq connectivity and `openai/gpt-oss-120b` inference succeeded.
+- Four controls caused ten requests including retries; only the unsupported control was scored.
+- The unsupported control scored `2.8/5`, including `2/5` for prioritisation, so the judge did
+  penalise fabricated experience as intended.
+- The other controls were unscored because the model sometimes omitted a required source quotation,
+  changed one quotation's tense, or removed a Markdown line break from an otherwise exact quote.
+- This exposed two integration defects: the prompt did not state the per-dimension source
+  requirements, and exact quotation validation treated layout whitespace as semantic text.
+- Corrected both defects, added deterministic retry feedback, retained token metadata for invalid
+  responses and advanced to `resume-rubric-v3` / `resume-judge-calibration-v2`.
+
+Next checkpoint: run zero-network regression tests and rerun live calibration at a new `v2` path.
+
+## 2026-11-02 — Second live calibration
+
+Status: schema integration passed; quality calibration failed and is preserved at
+`results/judge-calibration/gpt-oss-120b-v2`.
+
+- All four controls received valid structured scores in exactly four requests.
+- Strong scored `3.6`, generic `2.4`, unsupported `3.8` and padded `2.6` before the new critical
+  failure rule.
+- The judge correctly gave unsupported experience `1/5` for prioritisation, but its simple mean was
+  inflated by `5/5` scores for clarity, concision and organisation.
+- The judge incorrectly reduced the strong control because it lacked preferred ERP and PMP
+  qualifications that were absent from the original resume.
+- Clarified that unsupported JD requirements must not reduce relevance for a fact-preserving resume.
+- Added a declared critical-failure cap: prioritisation `1/5` caps overall quality at `2.0`, and
+  `2/5` caps it at `3.0`. The unadjusted arithmetic mean remains recorded for transparency.
+- Advanced to `resume-rubric-v4` / `resume-judge-calibration-v3` rather than weakening the gate.
+
+Next checkpoint: run regression tests and a new live calibration at the `v3` path.
+
+## 2026-11-02 — Third live calibration
+
+Status: all substantive checks passed; preserved at `results/judge-calibration/gpt-oss-120b-v3`.
+
+- Strong scored `5.0`, generic `2.0`, unsupported `2.0` and padded `3.8`.
+- Strong-quality, generic-quality, unsupported-claim and padding checks all passed.
+- The sole failed assertion required generic to score strictly above unsupported. Both correctly
+  entered the same critical-failure band, so their relative order does not measure judge quality.
+- Corrected the ordering gate to require strong to beat both failure types. The independent maximum
+  scores and unsupported-prioritisation threshold remain unchanged.
+- Advanced the calibration implementation to `resume-judge-calibration-v4`; rubric and scoring
+  rules were not relaxed.
+
+Next checkpoint: run regression tests and the final live calibration at the `v4` path.
+
+## 2026-11-02 — Accepted live calibration
+
+Status: passed and preserved at `results/judge-calibration/gpt-oss-120b-v4`.
+
+- Calibration implementation: `resume-judge-calibration-v4`.
+- Judge: Groq `openai/gpt-oss-120b`, medium reasoning, rubric `resume-rubric-v4`.
+- All six gates passed: complete scoring, strong quality, generic penalty, unsupported-claim penalty,
+  strong/failure separation and padding penalty.
+- Scores: strong `5.0`, generic `2.0`, unsupported `2.0`, padded `3.8`.
+- Usage: six requests including two corrected retries, 9,111 prompt tokens, 7,349 output tokens,
+  5,302 reported reasoning tokens and 16,460 total tokens.
+- Result SHA-256:
+  `eca7d654de5c299f48aa68cfc34586015a0a23947f4f63cf0d38ba49955b7296`.
+- Generated calibration records are ignored under `results/judge-calibration/`.
+- The current branch's `results/results.jsonl` contains only 100 W1 records. The existing W5
+  100-output set remains in `/tmp/agentic-w5-smoke`; no bulk Groq evaluation was started.
+
+Next checkpoint: run a six-output W5 pilot using the accepted judge identity, review score spread
+and retry rate, then decide whether free-tier capacity is sufficient for the 100-output run.

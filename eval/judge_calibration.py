@@ -11,7 +11,7 @@ from typing import Any, Callable
 import config
 from eval.judge import JudgeConfig, configured_model, evaluate_judge, judge_identity
 
-CALIBRATION_VERSION = "resume-judge-calibration-v1"
+CALIBRATION_VERSION = "resume-judge-calibration-v4"
 
 ORIGINAL_RESUME = """## Summary
 Operations Coordinator supporting order tracking, supplier follow-up and monthly reporting.
@@ -125,7 +125,9 @@ def calibration_checks(records: dict[str, dict[str, Any]]) -> list[dict[str, Any
             and (_score(records["unsupported"], "prioritisation_of_supported_experience") or 5) <= 2
         ),
         "quality_order_resolves": (
-            None not in (strong, generic, unsupported) and strong > generic > unsupported
+            None not in (strong, generic, unsupported)
+            and strong > generic
+            and strong > unsupported
         ),
         "padding_is_not_rewarded": (
             None not in (strong, padded)

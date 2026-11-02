@@ -39,6 +39,7 @@ class FakeClient:
         self.responses = list(responses)
         self.digest = digest
         self.calls = 0
+        self.requests = []
 
     def list(self):
         return SimpleNamespace(models=[
@@ -53,6 +54,7 @@ class FakeClient:
 
     def chat(self, **kwargs):
         self.calls += 1
+        self.requests.append(kwargs)
         content = self.responses.pop(0)
         return SimpleNamespace(
             message=SimpleNamespace(content=content),
@@ -91,6 +93,19 @@ def test_judge_validates_scores_quotes_and_calculates_mean(tmp_path):
     assert client.calls == 1
 
 
+def test_judge_caps_overall_score_on_critical_supported_experience_failure(tmp_path):
+    payload = json.loads(_valid_response())
+    payload["prioritisation_of_supported_experience"]["score"] = 1
+    client = FakeClient([json.dumps(payload)])
+    record = evaluate_judge(
+        "Python developer", "Need Python", "Python developer",
+        tmp_path, _config(), client,
+    )
+    assert record["result"]["unadjusted_mean"] == 3.4
+    assert record["result"]["critical_failure_cap"] == 2.0
+    assert record["result"]["overall_mean"] == 2.0
+
+
 def test_judge_retries_invalid_quote_then_scores(tmp_path):
     client = FakeClient([_valid_response("invented"), _valid_response()])
     record = evaluate_judge(
@@ -100,6 +115,16 @@ def test_judge_retries_invalid_quote_then_scores(tmp_path):
     assert record["status"] == "scored"
     assert len(record["attempts"]) == 2
     assert record["attempts"][0]["status"] == "invalid"
+    assert "previous response was rejected" in client.requests[1]["messages"][1]["content"]
+
+
+def test_judge_accepts_verbatim_quote_across_layout_whitespace(tmp_path):
+    client = FakeClient([_valid_response()])
+    record = evaluate_judge(
+        "Python developer", "Need Python", "Python\ndeveloper",
+        tmp_path, _config(), client,
+    )
+    assert record["status"] == "scored"
 
 
 def test_judge_bounded_failures_are_unscored_not_zero(tmp_path):
