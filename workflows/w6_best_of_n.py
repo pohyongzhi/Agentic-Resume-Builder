@@ -13,7 +13,6 @@ Course references:
 """
 import json
 import re
-import time
 from typing import TypedDict
 
 from langgraph.graph import END, START, StateGraph
@@ -21,7 +20,6 @@ from langgraph.graph import END, START, StateGraph
 import config
 from common.llm import chat
 from common.prompts import BASE_RULES, task_prompt
-from eval.metrics import faithfulness
 
 NAME = "w6_best_of_n"
 
@@ -92,7 +90,12 @@ def _has_section(text, section):
 
 
 def validate_candidate(resume_md, original_resume=None):
-    """Run deterministic checks and, when supplied, the existing independent NLI validator."""
+    """Run generation-time structural checks before the two selector passes.
+
+    ``original_resume`` remains an optional compatibility argument for callers and tests. The
+    shared NLI faithfulness evaluator is deliberately not used inside W6: keeping it independent
+    avoids selecting with the same metric later used to compare all workflows.
+    """
     text = (resume_md or "").strip()
     words = len(text.split())
     errors = []
@@ -108,18 +111,7 @@ def validate_candidate(resume_md, original_resume=None):
             errors.append(f"missing {section} section")
     if text and not 350 <= words <= 500:
         warnings.append(f"{words} words; target is roughly 350-500")
-    result = {"valid": not errors, "errors": errors, "warnings": warnings, "words": words}
-    if original_resume is not None and result["valid"]:
-        started = time.time()
-        grounding = faithfulness(original_resume, text)
-        grounding["seconds"] = round(time.time() - started, 2)
-        result["grounding"] = grounding
-        if grounding["unsupported"]:
-            result["valid"] = False
-            result["errors"].append(
-                f"{len(grounding['unsupported'])} claim(s) were not supported by the original resume"
-            )
-    return result
+    return {"valid": not errors, "errors": errors, "warnings": warnings, "words": words}
 
 
 def _llm_event_since(tracker, start_index):
@@ -157,11 +149,8 @@ def _generate_node(tracker):
             resume_md = (msg.content or "").strip()
             fingerprint = re.sub(r"\s+", " ", resume_md).strip().lower()
             duplicate = fingerprint in seen
-            # Avoid an expensive NLI pass when exact duplicate detection can reject first.
-            check = validate_candidate(
-                resume_md,
-                None if duplicate else state["pair"]["resume"],
-            )
+            # Exact duplicate detection supplements the inexpensive structural checks.
+            check = validate_candidate(resume_md)
             if duplicate:
                 check["valid"] = False
                 check["errors"].append("duplicate of an earlier candidate")
@@ -354,7 +343,7 @@ def _select_node(tracker):
         winner, scores = _aggregate_and_select(state["candidates"], state["judge_passes"])
         selected = {
             "strategy": winner["strategy"] if winner else None,
-            "resume_md": winner["resume_md"] if winner else state["pair"]["resume"],
+            "resume_md": winner["resume_md"] if winner else "",
             "finished": winner is not None,
             "candidate_scores": scores,
             "reason": None if winner else "No candidate passed deterministic validation and both judge orders.",
@@ -404,5 +393,9 @@ def run(pair, tracker):
         "resume_md": selected["resume_md"],
         "hit_budget": False,
         "finished": selected["finished"],
+        "errors": (
+            [] if selected["finished"]
+            else [f"W6_NO_VALID_CANDIDATE: {selected['reason']}"]
+        ),
         "details": details,
     }

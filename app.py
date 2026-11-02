@@ -23,6 +23,7 @@ WORKFLOW_CHOICES = [
     ("W2 - Agentic baseline: extract, validate and render", "w2_baseline"),
     ("W3 - Multi-critic: fact, recruiter and formatting review", "w3_critic"),
     ("W4 - Evidence-grounded: every bullet cites the original resume", "w4_evidence"),
+    ("W6 - Best-of-N: generate three strategies and select the best", "w6_best_of_n"),
 ]
 
 APP_CSS = """
@@ -164,6 +165,7 @@ MESSAGES = {
     "W4_FINAL_VALIDATION_FAILED": "The final resume failed validation after grounding checks.",
     "W4_NO_SPANS": "No citeable content found in the resume.",
     "W4_FAILED": "The evidence-grounded workflow encountered an error.",
+    "W6_NO_VALID_CANDIDATE": "No W6 draft passed both validation and selector checks.",
 }
 
 

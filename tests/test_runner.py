@@ -11,6 +11,12 @@ def test_config_hash_changes_with_shared_prompt(monkeypatch):
     assert run_all.config_hash() != first
 
 
+def test_config_hash_changes_with_w6_candidate_count(monkeypatch):
+    first = run_all.config_hash()
+    monkeypatch.setattr(config, "W6_NUM_CANDIDATES", config.W6_NUM_CANDIDATES + 1)
+    assert run_all.config_hash() != first
+
+
 def test_done_keys_includes_model_config_and_dataset_hash(monkeypatch, tmp_path):
     path = tmp_path / "results.jsonl"
     path.write_text(json.dumps({

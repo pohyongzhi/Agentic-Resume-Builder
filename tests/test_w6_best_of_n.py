@@ -1,9 +1,11 @@
 import unittest
+from unittest.mock import patch
 
 from workflows.w6_best_of_n import (
     _aggregate_and_select,
     _extract_json,
     _normalise_judgments,
+    run,
     validate_candidate,
 )
 
@@ -81,6 +83,23 @@ class BestOfNTests(unittest.TestCase):
             ],
         )
         self.assertEqual(winner["strategy"], "impact_first")
+
+    @patch("workflows.w6_best_of_n.build_graph")
+    def test_failed_selection_returns_runner_error(self, build_graph):
+        build_graph.return_value.invoke.return_value = {
+            "candidates": [],
+            "selected": {
+                "strategy": None,
+                "resume_md": "",
+                "finished": False,
+                "candidate_scores": {},
+                "reason": "No candidate passed.",
+            },
+        }
+        result = run({"resume": "original"}, tracker=object())
+        self.assertFalse(result["finished"])
+        self.assertEqual(result["resume_md"], "")
+        self.assertTrue(result["errors"][0].startswith("W6_NO_VALID_CANDIDATE:"))
 
 
 if __name__ == "__main__":

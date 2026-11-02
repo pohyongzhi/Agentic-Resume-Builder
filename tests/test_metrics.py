@@ -19,7 +19,11 @@ class ExactMatchNLI:
 class FaithfulnessTests(unittest.TestCase):
     def test_source_claims_are_used_as_evidence_units(self):
         source = "- Built weekly sales dashboards in Excel and Power BI for the regional team."
-        with patch.object(metrics, "_nli", ExactMatchNLI()):
+        metadata = {
+            "model": "exact-match-test-double",
+            "label2id": {"contradiction": 0, "entailment": 1, "neutral": 2},
+        }
+        with patch.object(metrics, "_load_nli", return_value=(ExactMatchNLI(), metadata)):
             result = metrics.faithfulness(source, source)
         self.assertEqual(result["faithfulness"], 1.0)
         self.assertEqual(result["unsupported"], [])

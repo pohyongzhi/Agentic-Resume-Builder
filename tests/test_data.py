@@ -4,7 +4,7 @@ import shutil
 import pytest
 
 from common.data import dataset_hash, load_manifest, load_pairs
-from scripts.validate_dataset import DatasetValidationError, validate_dataset
+from scripts.validate_dataset import DatasetValidationError, _dataset_hash, validate_dataset
 
 
 def test_frozen_dataset_has_expected_balanced_pairs():
@@ -35,6 +35,14 @@ def test_checked_in_dataset_passes_validation():
         "resumes": 100,
         "pairs": 100,
     }
+
+
+def test_dataset_hash_is_stable_across_line_endings(tmp_path):
+    path = tmp_path / "sample.txt"
+    path.write_bytes(b"first\nsecond\n")
+    lf_hash = _dataset_hash([path], tmp_path)
+    path.write_bytes(b"first\r\nsecond\r\n")
+    assert _dataset_hash([path], tmp_path) == lf_hash
 
 
 def test_validation_rejects_missing_keyword_file(tmp_path):
