@@ -44,15 +44,19 @@ TASK_FAITHFULNESS_THRESHOLD = 0.8  # minimum claim support for evaluator task su
 TASK_MIN_WORDS = 200
 TASK_MAX_WORDS = 650
 
-# Offline evaluator configuration. These settings are deliberately separate from MODEL and do not
+# Evaluator configuration. These settings are deliberately separate from MODEL and do not
 # affect generation cache identity.
+JUDGE_PROVIDER = "ollama"
 JUDGE_MODEL = "gemma4:e4b"
 JUDGE_TEMPERATURE = 0.0
 JUDGE_SEED = 42
 JUDGE_NUM_CTX = 16384
 JUDGE_THINK = False
+JUDGE_REASONING_EFFORT = "medium"
+JUDGE_MAX_COMPLETION_TOKENS = 2048
+JUDGE_MIN_REQUEST_INTERVAL_SECONDS = 15.0
 JUDGE_MAX_RETRIES = 2
-JUDGE_PROMPT_VERSION = "resume-rubric-v1"
+JUDGE_PROMPT_VERSION = "resume-rubric-v4"
 JUDGE_SCHEMA_VERSION = "1.0"
 EVALUATOR_SCHEMA_VERSION = "2.1"
 NLI_EVALUATOR_VERSION = "claim-evidence-nli-v3"
