@@ -14,6 +14,7 @@ agentic baseline is `w2_baseline`.
 | `w2_baseline` | W2: parallel extraction agents + creator + validation/render harness | done |
 | `w3_critic` | W3: parallel fact, recruiter and formatting critics + rewrites | done |
 | `w4_evidence` | W4: source-span grounding and claim verification | done |
+| `w5_fine_tuned` | W5: one-pass generation with the selected V4.1 fine-tuned model | done |
 | `w6_best_of_n` | W6: three strategy drafts + two-order rubric selector | done |
 
 ## Architecture
@@ -54,6 +55,10 @@ sentence is accurate; the separate evaluation still measures claim-level faithfu
    ollama pull qwen3.5:4b-q4_K_M
    ollama pull nomic-embed-text
    ```
+
+   W5 additionally requires the public fine-tuned GGUF. Follow
+   [`HOW_TO_RUN.md`](HOW_TO_RUN.md#install-the-w5-fine-tuned-model) to import it as
+   `agentic-resume-v4-1:q4_K_M`. The base model remains the default for every other workflow.
 
 2. Create the environment:
 
@@ -115,6 +120,20 @@ so results produced before this reliability change remain separate.
 ```bash
 python baseline_tailor.py --resume my_resume.pdf --jd job.txt
 ```
+
+## W5 fine-tuned small generator
+
+`w5_fine_tuned` sends the same resume/JD contract and shared factuality prompt through the selected
+V4.1 fine-tuned model. It is an experimental comparison workflow, not the application default:
+
+```bash
+python run_all.py --workflows w5_fine_tuned --split test --limit 1 --repeats 1
+```
+
+Every call records the actual Ollama model tag. The current fine-tuned model works, but the limited
+development comparison did not show a consistent overall win over the base model and some outputs
+used undesirable negative framing. Compare it using the shared evaluator rather than assuming that
+fine-tuning alone improves every resume.
 
 ## Run experiments
 

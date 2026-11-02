@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0",
+  "model": {
+    "id": "Qwen/Qwen3.5-4B",
+    "revision": "851bf6e806efd8d0a36b00ddf55e13ccb7b8cd0a",
+    "architecture": "Qwen3_5ForConditionalGeneration",
+    "license": "Apache-2.0",
+    "text_backbone_prefix": "model.language_model.layers.",
+    "weight_index_file": "model.safetensors.index.json"
+  },
+  "data": {
+    "train": "runs/v4-dataset-500-v2/sft-train-450.jsonl",
+    "validation": "runs/v4-dataset-500-v2/sft-validation-50.jsonl",
+    "manifest": "runs/v4-dataset-500-v2/training-manifest.json",
+    "system_prompt": "runs/v4-dataset-500-v2/student-v1.txt"
+  },
+  "sequence": {
+    "max_length": 4096,
+    "padding_side": "right",
+    "packing": false,
+    "enable_thinking": false,
+    "completion_only_loss": true
+  },
+  "lora": {
+    "rank": 16,
+    "alpha": 32,
+    "dropout": 0.05,
+    "bias": "none",
+    "target_suffixes": {
+      "self_attn": ["q_proj", "k_proj", "v_proj", "o_proj"],
+      "linear_attn": ["in_proj_qkv", "in_proj_z", "in_proj_a", "in_proj_b", "out_proj"],
+      "mlp": ["gate_proj", "up_proj", "down_proj"]
+    },
+    "expected_counts": {
+      "self_attn": 32,
+      "linear_attn": 120,
+      "mlp": 96,
+      "total": 248
+    },
+    "forbidden_name_fragments": ["visual", "vision", "embed_tokens", "lm_head", "mtp"]
+  },
+  "training": {
+    "learning_rate": 0.0001,
+    "optimizer": "adamw_torch",
+    "weight_decay": 0.01,
+    "lr_scheduler_type": "cosine",
+    "warmup_ratio": 0.05,
+    "num_train_epochs": 3,
+    "per_device_train_batch_size": 1,
+    "per_device_eval_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "gradient_checkpointing": true,
+    "bf16": true,
+    "seed": 42,
+    "packing": false,
+    "use_cache": false
+  },
+  "smoke": {
+    "examples": 12,
+    "selection_seed": "v4-overfit-smoke-v1",
+    "max_steps": 200,
+    "gradient_accumulation_steps": 1,
+    "required_final_to_initial_loss_ratio": 0.5,
+    "generation_max_new_tokens": 384
+  }
+}

@@ -13,7 +13,27 @@ source venv/bin/activate                 # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-If you use a different Ollama model, change `MODEL` in `config.py` before running experiments.
+Model routing is explicit in `config.py`: `BASE_MODEL` is shared by W1, W2, W3, W4 and W6;
+`FINE_TUNED_MODEL` is used only by W5.
+
+## Install the W5 fine-tuned model
+
+Only W5 needs the public fine-tuned GGUF. No Hugging Face account is required. Keep the downloaded
+model outside this repository:
+
+```bash
+mkdir -p "$HOME/agentic-resume-models/v4-1"
+cd "$HOME/agentic-resume-models/v4-1"
+curl -L -C - -o agentic-resume-v4-1-no-nextn-q4_K_M.gguf \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+curl -L -o Modelfile \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
+ollama create agentic-resume-v4-1:q4_K_M -f Modelfile
+ollama show agentic-resume-v4-1:q4_K_M
+```
+
+Return to the repository before running the application. The base model remains the default; only
+`w5_fine_tuned` explicitly selects this tag.
 
 ## Verify the installation
 
@@ -110,6 +130,7 @@ python run_all.py --limit 1 --repeats 1
 python run_all.py --workflows w1_single_pass w2_baseline --limit 1 --repeats 1
 python run_all.py --categories cybersecurity data_ai --repeats 1
 python run_all.py --workflows w2_baseline --skip-faithfulness
+python run_all.py --workflows w5_fine_tuned --limit 1 --repeats 1
 ```
 
 ### W6 Best-of-N
@@ -215,7 +236,7 @@ similarity and operational metrics remain separate.
 
 Edit `config.py` before freezing the experiment:
 
-- `MODEL`, `EMBED_MODEL`: Ollama models;
+- `BASE_MODEL`, `FINE_TUNED_MODEL`, `EMBED_MODEL`: Ollama models and explicit workflow route;
 - `TEMPERATURE`, `SEED`, `NUM_CTX`, `THINK`: generation settings;
 - `MAX_STEPS`: ReAct model-step budget;
 - `W6_NUM_CANDIDATES`: number of W6 strategy drafts (1–6);

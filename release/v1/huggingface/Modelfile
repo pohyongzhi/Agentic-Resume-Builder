@@ -1,0 +1,5 @@
+FROM ./agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+
+PARAMETER stop <|im_end|>
+PARAMETER stop <|im_start|>
+PARAMETER stop <|endoftext|>

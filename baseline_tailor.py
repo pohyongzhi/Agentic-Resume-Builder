@@ -9,7 +9,7 @@ Use it from the terminal:
 import argparse
 
 from common.llm import Tracker, chat
-from common.prompts import BASE_RULES
+from common.prompts import BASE_RULES, clean_model_output
 from common.tools import ToolError, extract_resume_text
 
 
@@ -21,7 +21,7 @@ def read_file(path):
         return ""
 
 
-def tailor(resume_text, jd_text, tracker=None):
+def tailor(resume_text, jd_text, tracker=None, model=None):
     """One model call: original resume + job description -> tailored resume (Markdown).
     Returns (tailored_resume, stats)."""
     tracker = tracker or Tracker()
@@ -30,8 +30,8 @@ def tailor(resume_text, jd_text, tracker=None):
         {"role": "user", "content": f"JOB DESCRIPTION:\n{jd_text}\n\n"
                                     f"CANDIDATE'S ORIGINAL RESUME:\n{resume_text}\n\n"
                                     f"Tailor the resume to this job."},
-    ], tracker)
-    return (msg.content or "").strip(), tracker.totals()
+    ], tracker, model=model)
+    return clean_model_output(msg.content), tracker.totals()
 
 
 if __name__ == "__main__":

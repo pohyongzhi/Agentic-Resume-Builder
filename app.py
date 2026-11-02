@@ -23,6 +23,7 @@ WORKFLOW_CHOICES = [
     ("W2 - Agentic baseline: extract, validate and render", "w2_baseline"),
     ("W3 - Multi-critic: fact, recruiter and formatting review", "w3_critic"),
     ("W4 - Evidence-grounded: every bullet cites the original resume", "w4_evidence"),
+    ("W5 - Fine-tuned: selected V4.1 small generator", "w5_fine_tuned"),
     ("W6 - Best-of-N: generate three strategies and select the best", "w6_best_of_n"),
 ]
 
@@ -291,6 +292,7 @@ def run(workflow, resume_file, job_url, pasted_jd):
     t = tracker.totals()
     stats = (
         f"**{workflow.replace('_', ' ').title()}** &nbsp;·&nbsp; "
+        f"model `{next((e['model'] for e in tracker.events if e.get('type') == 'llm'), config.BASE_MODEL)}` &nbsp;·&nbsp; "
         f"completed in {t['seconds']}s &nbsp;·&nbsp; "
         f"{t['input_tokens'] + t['output_tokens']:,} tokens &nbsp;·&nbsp; "
         f"{t['tool_calls_ok']}/{t['tool_calls']} valid tool calls"

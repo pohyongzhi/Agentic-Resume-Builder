@@ -24,16 +24,17 @@ from common.data import dataset_hash, load_manifest, load_pairs
 from common.llm import Tracker
 from eval import metrics
 from eval.operational import evaluate_operational
-from workflows import WORKFLOWS
+from workflows import WORKFLOWS, WORKFLOW_MODELS
 
 
 def config_hash():
     """Generation-only identity. Offline evaluator settings must never invalidate writer outputs."""
     generation_keys = (
-        "MODEL", "TEMPERATURE", "SEED", "NUM_CTX", "THINK", "MAX_STEPS",
+        "BASE_MODEL", "FINE_TUNED_MODEL", "TEMPERATURE", "SEED", "NUM_CTX", "THINK", "MAX_STEPS",
         "MAX_CRITIC_ROUNDS", "MAX_TOOL_CALLS", "PDF_MIN_CHARS_PER_PAGE",
         "W3_GENERATION_VERSION", "W3_STRUCTURED_RETRIES",
         "W3_DRAFT_MAX_TOKENS", "W3_CRITIC_MAX_TOKENS",
+        "W6_NUM_CANDIDATES",
         "JD_MIN_CHARS", "FETCH_TIMEOUT",
     )
     settings = {key: getattr(config, key) for key in generation_keys}
@@ -114,9 +115,10 @@ def main():
     os.makedirs(os.path.dirname(config.RESULTS_FILE), exist_ok=True)
 
     for wf in args.workflows:
+        expected_model = WORKFLOW_MODELS[wf]
         for pair in pairs:
             for rep in range(args.repeats):
-                if (wf, pair["pair_id"], rep, config.MODEL, chash, dhash) in done:
+                if (wf, pair["pair_id"], rep, expected_model, chash, dhash) in done:
                     continue
                 tracker = Tracker()
                 print(f"[{wf}] {pair['pair_id']} repeat {rep} ...", end=" ", flush=True)
@@ -154,6 +156,11 @@ def main():
                 trace_path = run_dir / "trace.json"
                 _atomic_text(resume_path, out.get("resume_md", ""))
                 _atomic_text(trace_path, json.dumps(tracker.events, indent=2, ensure_ascii=False) + "\n")
+                actual_model = next(
+                    (event.get("model") for event in tracker.events
+                     if event.get("type") == "llm" and event.get("model")),
+                    expected_model,
+                )
                 row.update({
                     "workflow": wf,
                     "pair_id": pair["pair_id"],
@@ -165,7 +172,7 @@ def main():
                     "fit_level": pair["fit_level"],
                     "split": pair["split"],
                     "repeat": rep,
-                    "model": config.MODEL,
+                    "model": actual_model,
                     "config_hash": chash,
                     "dataset_version": manifest["version"],
                     "dataset_hash": dhash,
