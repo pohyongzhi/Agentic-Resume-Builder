@@ -13,6 +13,8 @@ agentic baseline is `w2_baseline`.
 | `w1_single_pass` | W1: one prompt, no tools or guardrails (lower-bound control) | done |
 | `w2_baseline` | W2: parallel extraction agents + creator + validation/render harness | done |
 | `w3_critic` | W3: parallel fact, recruiter and formatting critics + rewrites | done |
+| `w4_evidence` | W4: source-span grounding and claim verification | done |
+| `w6_best_of_n` | W6: three strategy drafts + two-order rubric selector | done |
 
 ## Architecture
 
@@ -129,6 +131,39 @@ all match. Failed runs remain in the summary's success rate.
 
 The first faithfulness run downloads `cross-encoder/nli-deberta-v3-small`.
 
+### W6 Best-of-N
+
+W6 generates skills-first, impact-first and JD-wording-alignment drafts by default. It rejects
+structurally incomplete drafts, scores the remaining drafts with the same rubric in forward and
+reverse order, and returns only a draft that passes both selector orders. The shared NLI evaluator
+is intentionally applied afterward, like every other workflow, so it remains an independent
+comparison metric.
+
+Run a one-pair smoke test before starting the full dataset:
+
+```bash
+python run_all.py --workflows w6_best_of_n --split test --limit 1 --repeats 1
+```
+
+Run all 100 frozen test pairs once:
+
+```bash
+python run_all.py --workflows w6_best_of_n --split test --repeats 1
+```
+
+`W6_NUM_CANDIDATES` in `config.py` accepts 1–6 strategies and is included in the generation
+configuration hash. Per-candidate scores and the selected strategy are stored in
+`workflow_details`; canonical resumes, metrics and traces are stored below `results/runs/`.
+Benchmark one pair on the evaluation machine before estimating the full runtime because W6 makes
+at least five model calls per pair and may retry incomplete selector responses.
+
+After generation, create operational summaries with `python summarise.py`. To apply the complete
+shared offline evaluator, including the independent rubric judge, run:
+
+```bash
+python evaluate.py all --workflows w6_best_of_n --judge-model gemma4:e4b --resume
+```
+
 ### Evaluator metrics
 
 Every saved run records resume-quality metrics (JD similarity and keyword coverage), three
@@ -219,6 +254,8 @@ workflows/
   w1_single_pass.py       W1 one-prompt control
   w2_baseline.py          W2 agentic baseline creator
   w3_critic.py            parallel specialist critics + bounded revision loop
+  w4_evidence.py          evidence-grounded generation
+  w6_best_of_n.py         W6 strategy drafts + two-order selector
 eval/metrics.py           shared evaluator metrics
 eval/operational.py       task, tool, step and cost metrics
 eval/robustness.py        input perturbations and stability aggregation

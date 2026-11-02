@@ -30,6 +30,13 @@ def _workflow_spec(workflow):
                 + config.MAX_CRITIC_ROUNDS + 2
             ),
         },
+        "w6_best_of_n": {
+            "tools": set(),
+            "sequence": [],
+            # N candidate generations, two judge orders, and at most one retry per order.
+            "min_steps": config.W6_NUM_CANDIDATES + 2,
+            "max_steps": config.W6_NUM_CANDIDATES + 4,
+        },
     }
     return specs.get(workflow, {"tools": None, "sequence": [], "min_steps": 1, "max_steps": None})
 

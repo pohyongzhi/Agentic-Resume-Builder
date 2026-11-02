@@ -112,6 +112,32 @@ python run_all.py --categories cybersecurity data_ai --repeats 1
 python run_all.py --workflows w2_baseline --skip-faithfulness
 ```
 
+### W6 Best-of-N
+
+Start with one frozen test pair:
+
+```bash
+python run_all.py --workflows w6_best_of_n --split test --limit 1 --repeats 1
+```
+
+Run all 100 pairs once:
+
+```bash
+python run_all.py --workflows w6_best_of_n --split test --repeats 1
+```
+
+W6 generates three strategy drafts by default and normally makes at least five model calls per
+pair. Change `W6_NUM_CANDIDATES` in `config.py` to select 1–6 strategies. Candidate scores and the
+selected strategy are stored in `workflow_details`; full artifacts are stored under
+`results/runs/<dataset_version>/<config_hash>/w6_best_of_n/`.
+
+Create the ordinary summaries with `python summarise.py`. For the complete shared offline
+evaluation, including the independent rubric judge, run:
+
+```bash
+python evaluate.py all --workflows w6_best_of_n --judge-model gemma4:e4b --resume
+```
+
 The evaluator uses the saved JD files in `data/jds/`, not live pages. Results append to
 `results/results.jsonl`. A run is skipped only if its workflow, input pair, repeat, model and
 configuration/prompt hash and frozen dataset hash already exist. Canonical outputs are stored under
@@ -192,6 +218,7 @@ Edit `config.py` before freezing the experiment:
 - `MODEL`, `EMBED_MODEL`: Ollama models;
 - `TEMPERATURE`, `SEED`, `NUM_CTX`, `THINK`: generation settings;
 - `MAX_STEPS`: ReAct model-step budget;
+- `W6_NUM_CANDIDATES`: number of W6 strategy drafts (1–6);
 - `MAX_TOOL_CALLS`: creator harness budget;
 - `OUTPUT_DIR`: only permitted render directory;
 - `PDF_MIN_CHARS_PER_PAGE`: scanned-PDF threshold;

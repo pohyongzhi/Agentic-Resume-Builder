@@ -174,6 +174,8 @@ def main():
                     "metrics_path": str(metrics_path),
                     "trace_path": str(trace_path),
                     "native_output_path": out.get("output_path"),
+                    # Technique-specific diagnostics remain separate from the shared scorecard.
+                    "workflow_details": out.get("details", {}),
                 })
                 _atomic_text(metrics_path, json.dumps(row, indent=2, ensure_ascii=False) + "\n")
                 with open(config.RESULTS_FILE, "a", encoding="utf-8") as f:
