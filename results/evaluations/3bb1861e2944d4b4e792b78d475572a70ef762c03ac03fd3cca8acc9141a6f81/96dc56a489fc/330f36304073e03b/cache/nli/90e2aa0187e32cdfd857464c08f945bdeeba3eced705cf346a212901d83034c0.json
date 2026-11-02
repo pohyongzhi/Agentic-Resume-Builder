@@ -1,0 +1,348 @@
+{
+  "identity": {
+    "source_hash": "1bf0f1a673767584347185b8fb7bc5fdf709ebde8699379678397a2f60762c3d",
+    "tailored_hash": "dd07a1fc92d017f662a0815996695f59309dbdce43f6cf9f1f8525efca92e561",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1304,
+    "unsupported": [
+      "Operations support professional with a strong foundation in risk assessment, ISO 27001 compliance, and evidence-based decision-making.",
+      "Proven ability to translate operational needs into reliable solutions through clear documentation and effective stakeholder coordination.",
+      "Seeking to leverage experience in technology risk management, audit support, and control tracking as a Cybersecurity GRC Analyst at Example Northstar Systems.",
+      "Risk Assessment & Policy Management:** Conducted technology risk assessments aligned with ISO 27001 standards, improving team turnaround efficiency by 21%.",
+      "Maintained security policies and controls using Excel to ensure data integrity for technical and business reviewers.",
+      "Audit Support:** Collaborated with a cross-functional team of four colleagues to facilitate internal and external audits.",
+      "Delivered clear progress updates on remediation actions during fortnightly stakeholder reviews.",
+      "Process Improvement & Documentation:** Managed approximately 40 work items monthly, tracking quality checks and follow-up actions.",
+      "Developed structured documentation that supported evidence-based decision-making for technical trade-offs.",
+      "Technical Assistant** | Example Atlas Solutions (Singapore)",
+      "Governance & Documentation:** Supported recurring operational workflows by creating and maintaining clear, step-by-step procedures to ensure consistent governance requirements were met.",
+      "Issue Resolution & Reporting:** Investigated service requests, recorded findings with supporting evidence, and escalated issues to relevant stakeholders.",
+      "Designed a reporting template that reduced manual preparation time by 16%, demonstrating an ability to solve ambiguous problems efficiently.",
+      "Cybersecurity GRC Analyst Practice Project**",
+      "Executed control testing across representative scenarios, documenting limitations and defining next steps for continuous improvement.",
+      "Presented design outcomes and technical trade-offs to a five-person peer review group, honing skills in clear communication and collaborative problem-solving.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+      "Compliance & Standards:** Risk Assessment, ISO 27001, Security Policies, Control Testing.",
+      "Tools & Methodologies:** Excel, Documentation Management, Vendor Risk Analysis (conceptual).",
+      "Soft Skills:** Stakeholder Communication, Technical Writing, Collaborative Problem Solving, Evidence-Based Decision Making."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional with a strong foundation in risk assessment, ISO 27001 compliance, and evidence-based decision-making.",
+        "best_source_chunk": "Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.060873,
+          "entailment": 0.019815,
+          "neutral": 0.919312
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019815,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to translate operational needs into reliable solutions through clear documentation and effective stakeholder coordination.",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.000172,
+          "entailment": 0.005261,
+          "neutral": 0.994566
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005261,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage experience in technology risk management, audit support, and control tracking as a Cybersecurity GRC Analyst at Example Northstar Systems.",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.056572,
+          "entailment": 0.046095,
+          "neutral": 0.897333
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.046095,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Singapore)",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.003697,
+          "entailment": 0.804307,
+          "neutral": 0.191996
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.804307,
+        "supported": true
+      },
+      {
+        "claim": "Risk Assessment & Policy Management:** Conducted technology risk assessments aligned with ISO 27001 standards, improving team turnaround efficiency by 21%.",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.000293,
+          "entailment": 0.000699,
+          "neutral": 0.999008
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000699,
+        "supported": false
+      },
+      {
+        "claim": "Maintained security policies and controls using Excel to ensure data integrity for technical and business reviewers.",
+        "best_source_chunk": "to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000516,
+          "entailment": 0.002223,
+          "neutral": 0.997261
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002223,
+        "supported": false
+      },
+      {
+        "claim": "Audit Support:** Collaborated with a cross-functional team of four colleagues to facilitate internal and external audits.",
+        "best_source_chunk": "Managed approximately 40 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.005295,
+          "entailment": 0.008839,
+          "neutral": 0.985866
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008839,
+        "supported": false
+      },
+      {
+        "claim": "Delivered clear progress updates on remediation actions during fortnightly stakeholder reviews.",
+        "best_source_chunk": "Managed approximately 40 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.001887,
+          "entailment": 0.001427,
+          "neutral": 0.996686
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001427,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement & Documentation:** Managed approximately 40 work items monthly, tracking quality checks and follow-up actions.",
+        "best_source_chunk": "Managed approximately 40 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.011752,
+          "entailment": 0.003504,
+          "neutral": 0.984744
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003504,
+        "supported": false
+      },
+      {
+        "claim": "Developed structured documentation that supported evidence-based decision-making for technical trade-offs.",
+        "best_source_chunk": "Managed approximately 40 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.001982,
+          "entailment": 0.002846,
+          "neutral": 0.995171
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002846,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Singapore)",
+        "best_source_chunk": "Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.916054,
+          "entailment": 0.028014,
+          "neutral": 0.055932
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.028014,
+        "supported": false
+      },
+      {
+        "claim": "Governance & Documentation:** Supported recurring operational workflows by creating and maintaining clear, step-by-step procedures to ensure consistent governance requirements were met.",
+        "best_source_chunk": "Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.013353,
+          "entailment": 0.044776,
+          "neutral": 0.941871
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.044776,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution & Reporting:** Investigated service requests, recorded findings with supporting evidence, and escalated issues to relevant stakeholders.",
+        "best_source_chunk": "to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.004758,
+          "entailment": 0.003689,
+          "neutral": 0.991553
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003689,
+        "supported": false
+      },
+      {
+        "claim": "Designed a reporting template that reduced manual preparation time by 16%, demonstrating an ability to solve ambiguous problems efficiently.",
+        "best_source_chunk": "- Jun 2023) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 16%. ## PROJECTS ### Cybersecurity GRC Analyst Practice Project * Built a fictional demonstration project using risk assessment, ISO 27001 and",
+        "probabilities": {
+          "contradiction": 0.01534,
+          "entailment": 0.000866,
+          "neutral": 0.983794
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000866,
+        "supported": false
+      },
+      {
+        "claim": "Cybersecurity GRC Analyst Practice Project**",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.006626,
+          "entailment": 0.250434,
+          "neutral": 0.74294
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.250434,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project utilizing risk assessment frameworks and ISO 27001 controls.",
+        "best_source_chunk": "- Jun 2023) * Supported recurring operational work using documentation and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 16%. ## PROJECTS ### Cybersecurity GRC Analyst Practice Project * Built a fictional demonstration project using risk assessment, ISO 27001 and",
+        "probabilities": {
+          "contradiction": 0.000907,
+          "entailment": 0.994152,
+          "neutral": 0.004941
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994152,
+        "supported": true
+      },
+      {
+        "claim": "Executed control testing across representative scenarios, documenting limitations and defining next steps for continuous improvement.",
+        "best_source_chunk": "to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.007535,
+          "entailment": 0.006261,
+          "neutral": 0.986204
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006261,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and technical trade-offs to a five-person peer review group, honing skills in clear communication and collaborative problem-solving.",
+        "best_source_chunk": "to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.00222,
+          "entailment": 0.004563,
+          "neutral": 0.993216
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004563,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+        "best_source_chunk": "Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.153941,
+          "entailment": 0.072801,
+          "neutral": 0.773258
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.072801,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000175,
+          "entailment": 0.989899,
+          "neutral": 0.009926
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.989899,
+        "supported": true
+      },
+      {
+        "claim": "Compliance & Standards:** Risk Assessment, ISO 27001, Security Policies, Control Testing.",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.00452,
+          "entailment": 0.0426,
+          "neutral": 0.952881
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0426,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Methodologies:** Excel, Documentation Management, Vendor Risk Analysis (conceptual).",
+        "best_source_chunk": "to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS risk assessment, ISO 27001, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.009764,
+          "entailment": 0.009366,
+          "neutral": 0.98087
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009366,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Technical Writing, Collaborative Problem Solving, Evidence-Based Decision Making.",
+        "best_source_chunk": "# Jonas Ng jonas.ng@example.test | +65 6000 0050 | Singapore ## SUMMARY Operations support professional experienced in risk assessment, ISO 27001, documentation and stakeholder coordination, transitioning toward Cybersecurity GRC Analyst work. ## EXPERIENCE ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) * Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.009689,
+          "entailment": 0.006362,
+          "neutral": 0.983949
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006362,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "90e2aa0187e32cdfd857464c08f945bdeeba3eced705cf346a212901d83034c0"
+  }
+}

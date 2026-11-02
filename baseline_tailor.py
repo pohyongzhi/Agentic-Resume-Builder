@@ -1,31 +1,24 @@
-"""BASELINE: the simplest possible resume tailor. One prompt, one model call, no tools, no LangGraph.
+"""SINGLE PASS (V0): the simplest possible resume tailor. One prompt, one model call, no tools, no LangGraph.
+Used by workflows/w1_single_pass.py as the lower bound. The agentic baseline is
+workflows/w2_baseline.py.
 
 Use it from the terminal:
     python baseline_tailor.py --resume my_resume.pdf --jd job.txt
     python baseline_tailor.py --resume my_resume.docx --jd job.txt --out tailored.md
-
-Or through the web page:  python app.py
-
-Every later workflow (W1-W5) should beat THIS. If it doesn't, the extra complexity isn't worth it.
 """
 import argparse
-import os
 
 from common.llm import Tracker, chat
-from common.prompts import BASE_RULES, task_prompt
+from common.prompts import BASE_RULES, clean_model_output
+from common.tools import ToolError, extract_resume_text
 
 
 def read_file(path):
-    """Turns a resume or job file into plain text. Supports .pdf, .docx, .txt, .md"""
-    ext = os.path.splitext(path)[1].lower()
-    if ext == ".pdf":
-        from pypdf import PdfReader
-        return "\n".join(page.extract_text() or "" for page in PdfReader(path).pages).strip()
-    if ext == ".docx":
-        from docx import Document
-        return "\n".join(p.text for p in Document(path).paragraphs).strip()
-    with open(path, encoding="utf-8", errors="ignore") as f:
-        return f.read().strip()
+    """Turns a resume or job file into plain text (.pdf, .docx, .txt, .md). Returns "" if unreadable."""
+    try:
+        return extract_resume_text(path)
+    except ToolError:
+        return ""
 
 
 def tailor(resume_text, jd_text, tracker=None, model=None):
@@ -34,9 +27,11 @@ def tailor(resume_text, jd_text, tracker=None, model=None):
     tracker = tracker or Tracker()
     msg = chat([
         {"role": "system", "content": BASE_RULES},
-        {"role": "user", "content": task_prompt({"resume": resume_text, "jd": jd_text})},
+        {"role": "user", "content": f"JOB DESCRIPTION:\n{jd_text}\n\n"
+                                    f"CANDIDATE'S ORIGINAL RESUME:\n{resume_text}\n\n"
+                                    f"Tailor the resume to this job."},
     ], tracker, model=model)
-    return (msg.content or "").strip(), tracker.totals()
+    return clean_model_output(msg.content), tracker.totals()
 
 
 if __name__ == "__main__":

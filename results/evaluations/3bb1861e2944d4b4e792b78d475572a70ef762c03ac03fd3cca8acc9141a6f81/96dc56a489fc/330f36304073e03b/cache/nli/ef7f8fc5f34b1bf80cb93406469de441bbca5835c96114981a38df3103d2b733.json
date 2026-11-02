@@ -1,0 +1,334 @@
+{
+  "identity": {
+    "source_hash": "1542efae1597de6c0b559353bd22d5aeb5e9f56c0c92ebe2d916e496963d2f27",
+    "tailored_hash": "ff9359a23b724081946a0eae66b2a63bed24e78accc312929609ad946948aecf",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1818,
+    "unsupported": [
+      "Proven ability to turn operational needs into documented, measurable solutions while collaborating effectively with cross-functional teams.",
+      "Skilled in optimising database queries, writing automated tests, and operating containerised services within a microservices architecture.",
+      "Committed to clear communication, evidence-based decision-making, and maintaining high-quality documentation.",
+      "Example Beacon Services** | Singapore",
+      "Develop and document **REST APIs** with clear technical specifications to support engineering, product, and business stakeholders.",
+      "Manage approximately 21 work items monthly, ensuring rigorous quality checks and tracking progress through fortnightly reviews.",
+      "Collaborate with a multidisciplinary team of four colleagues to optimise **PostgreSQL** queries and present technical trade-offs to relevant stakeholders.",
+      "Operate **containerised services** using **Docker**, maintaining appropriate review and security controls throughout the delivery lifecycle.",
+      "Example Cedar Innovations** | Singapore",
+      "Support recurring operational work by leveraging **PostgreSQL** and creating clear, step-by-step documentation for complex procedures.",
+      "Investigate service requests and escalate issues with clear supporting evidence, demonstrating strong analytical skills.",
+      "Develop reporting templates that reduce manual preparation time by 25%, showcasing ability to deliver well-tested improvements.",
+      "Backend Engineer Practice Project",
+      "Built a demonstration project using **Java**, **Spring Boot**, and **REST APIs** to validate design patterns.",
+      "Implemented **unit testing** with representative scenarios to ensure code reliability before deployment.",
+      "Presented design decisions and outcomes to a five-person peer review group, honing clear verbal and written communication skills.",
+      "Bachelor of Science in Information Systems",
+      "Example Polytechnic** | Singapore"
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Backend Engineer with hands-on experience designing reliable backend services using Java, Spring Boot, and REST APIs.",
+        "best_source_chunk": "# Grace Tan grace.tan@example.test | +65 6000 0007 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+        "probabilities": {
+          "contradiction": 0.000369,
+          "entailment": 0.960659,
+          "neutral": 0.038972
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.960659,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to turn operational needs into documented, measurable solutions while collaborating effectively with cross-functional teams.",
+        "best_source_chunk": "# Grace Tan grace.tan@example.test | +65 6000 0007 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+        "probabilities": {
+          "contradiction": 0.000122,
+          "entailment": 0.070657,
+          "neutral": 0.929221
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.070657,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in optimising database queries, writing automated tests, and operating containerised services within a microservices architecture.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.000234,
+          "entailment": 0.108197,
+          "neutral": 0.891569
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.108197,
+        "supported": false
+      },
+      {
+        "claim": "Committed to clear communication, evidence-based decision-making, and maintaining high-quality documentation.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.001744,
+          "entailment": 0.007808,
+          "neutral": 0.990448
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007808,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.065669,
+          "entailment": 0.006567,
+          "neutral": 0.927764
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006567,
+        "supported": false
+      },
+      {
+        "claim": "Design and build reliable backend services using **Java** and **Spring Boot**, improving team turnaround efficiency by 30%.",
+        "best_source_chunk": "# Grace Tan grace.tan@example.test | +65 6000 0007 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+        "probabilities": {
+          "contradiction": 9.4e-05,
+          "entailment": 0.994515,
+          "neutral": 0.00539
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994515,
+        "supported": true
+      },
+      {
+        "claim": "Develop and document **REST APIs** with clear technical specifications to support engineering, product, and business stakeholders.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.002265,
+          "entailment": 0.007771,
+          "neutral": 0.989963
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007771,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 21 work items monthly, ensuring rigorous quality checks and tracking progress through fortnightly reviews.",
+        "best_source_chunk": "approximately 21 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000571,
+          "entailment": 0.008523,
+          "neutral": 0.990905
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008523,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with a multidisciplinary team of four colleagues to optimise **PostgreSQL** queries and present technical trade-offs to relevant stakeholders.",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.009623,
+          "entailment": 0.005836,
+          "neutral": 0.984541
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005836,
+        "supported": false
+      },
+      {
+        "claim": "Operate **containerised services** using **Docker**, maintaining appropriate review and security controls throughout the delivery lifecycle.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.001158,
+          "entailment": 0.009373,
+          "neutral": 0.989469
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009373,
+        "supported": false
+      },
+      {
+        "claim": "Example Cedar Innovations** | Singapore",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.996744,
+          "entailment": 0.000691,
+          "neutral": 0.002565
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.000691,
+        "supported": false
+      },
+      {
+        "claim": "Support recurring operational work by leveraging **PostgreSQL** and creating clear, step-by-step documentation for complex procedures.",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.02395,
+          "entailment": 0.032976,
+          "neutral": 0.943074
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.032976,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests and escalate issues with clear supporting evidence, demonstrating strong analytical skills.",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.005763,
+          "entailment": 0.008359,
+          "neutral": 0.985878
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008359,
+        "supported": false
+      },
+      {
+        "claim": "Develop reporting templates that reduce manual preparation time by 25%, showcasing ability to deliver well-tested improvements.",
+        "best_source_chunk": "- Supported recurring operational work using PostgreSQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### Backend Engineer Practice Project - Built a fictional demonstration project using Java, Spring Boot and REST APIs. - Tested the",
+        "probabilities": {
+          "contradiction": 0.001463,
+          "entailment": 0.017985,
+          "neutral": 0.980552
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017985,
+        "supported": false
+      },
+      {
+        "claim": "Backend Engineer Practice Project",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.435985,
+          "entailment": 0.008595,
+          "neutral": 0.55542
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008595,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project using **Java**, **Spring Boot**, and **REST APIs** to validate design patterns.",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.582585,
+          "entailment": 0.08591,
+          "neutral": 0.331504
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.08591,
+        "supported": false
+      },
+      {
+        "claim": "Implemented **unit testing** with representative scenarios to ensure code reliability before deployment.",
+        "best_source_chunk": "# Grace Tan grace.tan@example.test | +65 6000 0007 | Singapore ## Summary Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Backend Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+        "probabilities": {
+          "contradiction": 0.000781,
+          "entailment": 0.006041,
+          "neutral": 0.993178
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006041,
+        "supported": false
+      },
+      {
+        "claim": "Presented design decisions and outcomes to a five-person peer review group, honing clear verbal and written communication skills.",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.051379,
+          "entailment": 0.001142,
+          "neutral": 0.947479
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001142,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.000713,
+          "entailment": 0.002228,
+          "neutral": 0.997059
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002228,
+        "supported": false
+      },
+      {
+        "claim": "Example Polytechnic** | Singapore",
+        "best_source_chunk": "unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.993363,
+          "entailment": 0.001735,
+          "neutral": 0.004902
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.001735,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.000239,
+          "entailment": 0.993232,
+          "neutral": 0.006529
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.993232,
+        "supported": true
+      },
+      {
+        "claim": "Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Java, Spring Boot, REST APIs, PostgreSQL, microservices, Docker, Git, unit testing, Kafka, Redis",
+        "probabilities": {
+          "contradiction": 0.006152,
+          "entailment": 0.927372,
+          "neutral": 0.066476
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.927372,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "ef7f8fc5f34b1bf80cb93406469de441bbca5835c96114981a38df3103d2b733"
+  }
+}

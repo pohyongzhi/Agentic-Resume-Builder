@@ -1,0 +1,360 @@
+{
+  "identity": {
+    "source_hash": "9d870f0809575cbd036340d3965919982a5e6c3784da37a2871c878f5413e91b",
+    "tailored_hash": "476905dcdd71a72fae7b39deadb0d0dc7d01224e2027a9f43023799cb08a386e",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1667,
+    "unsupported": [
+      "Mid-level Product Analyst with a Bachelor of Science in Information Systems and transferable experience in product analytics, SQL, and dashboarding.",
+      "Proven ability to turn operational needs into reliable solutions by analyzing product usage funnels and defining clear success metrics.",
+      "Skilled in translating customer evidence into actionable recommendations through A/B testing and data storytelling.",
+      "Committed to collaborative problem-solving, clear documentation, and delivering high-quality outcomes that drive business value.",
+      "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+      "Product Analytics & Metrics:** Utilized product analytics and SQL to analyze product usage and funnels, identifying bottlenecks that improved team turnaround by 39%.",
+      "Defined product success metrics using dashboarding tools to track performance against KPIs.",
+      "Experimentation & Evaluation:** Collaborated with cross-functional teams to evaluate experiments, presenting data-driven progress during fortnightly reviews to stakeholders.",
+      "Process Optimization:** Managed a portfolio of approximately 84 work items per month while maintaining rigorous quality checks and follow-up actions.",
+      "Developed clear documentation for technical and business reviewers to ensure maintainable solutions.",
+      "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+      "Data-Driven Decision Making:** Supported operational workflows by applying A/B testing methodologies to validate process improvements.",
+      "Reporting & Efficiency:** Created a custom reporting template that reduced manual preparation time by 34%, demonstrating the ability to streamline operations through analytical insight.",
+      "Product Analyst Practice Project**",
+      "Designed and executed a demonstration project utilizing product analytics, SQL, and dashboarding to simulate real-world scenarios.",
+      "Conducted rigorous testing with representative data sets to identify limitations and define next steps for scalability.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing skills in stakeholder communication and technical trade-off analysis.",
+      "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+      "Core Competencies:** Product Analytics, SQL, Dashboarding, A/B Testing, KPI Design, Data Storytelling.",
+      "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Written & Verbal Communication, Documentation."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Product Analyst with a Bachelor of Science in Information Systems and transferable experience in product analytics, SQL, and dashboarding.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.013536,
+          "entailment": 0.01635,
+          "neutral": 0.970114
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01635,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn operational needs into reliable solutions by analyzing product usage funnels and defining clear success metrics.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.014766,
+          "entailment": 0.010198,
+          "neutral": 0.975035
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010198,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in translating customer evidence into actionable recommendations through A/B testing and data storytelling.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.208626,
+          "entailment": 0.190695,
+          "neutral": 0.600678
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.190695,
+        "supported": false
+      },
+      {
+        "claim": "Committed to collaborative problem-solving, clear documentation, and delivering high-quality outcomes that drive business value.",
+        "best_source_chunk": "84 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000321,
+          "entailment": 0.006799,
+          "neutral": 0.99288
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006799,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Hiro Koh hiro.koh@example.test | +65 6000 0088 | Singapore ## Summary Technology associate with transferable experience in product analytics, SQL and dashboarding, seeking to deepen capability as a Product Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.015649,
+          "entailment": 0.215075,
+          "neutral": 0.769277
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.215075,
+        "supported": false
+      },
+      {
+        "claim": "Product Analytics & Metrics:** Utilized product analytics and SQL to analyze product usage and funnels, identifying bottlenecks that improved team turnaround by 39%.",
+        "best_source_chunk": "84 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.003814,
+          "entailment": 0.000762,
+          "neutral": 0.995425
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000762,
+        "supported": false
+      },
+      {
+        "claim": "Defined product success metrics using dashboarding tools to track performance against KPIs.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.140979,
+          "entailment": 0.05749,
+          "neutral": 0.801531
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.05749,
+        "supported": false
+      },
+      {
+        "claim": "Experimentation & Evaluation:** Collaborated with cross-functional teams to evaluate experiments, presenting data-driven progress during fortnightly reviews to stakeholders.",
+        "best_source_chunk": "84 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.003794,
+          "entailment": 0.003048,
+          "neutral": 0.993158
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003048,
+        "supported": false
+      },
+      {
+        "claim": "Process Optimization:** Managed a portfolio of approximately 84 work items per month while maintaining rigorous quality checks and follow-up actions.",
+        "best_source_chunk": "(Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 39%. - Applied dashboarding to define product success metrics and documented decisions for technical and business reviewers. - Managed approximately 84 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments",
+        "probabilities": {
+          "contradiction": 0.001191,
+          "entailment": 0.002687,
+          "neutral": 0.996122
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002687,
+        "supported": false
+      },
+      {
+        "claim": "Developed clear documentation for technical and business reviewers to ensure maintainable solutions.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.002673,
+          "entailment": 0.005139,
+          "neutral": 0.992188
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005139,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.995879,
+          "entailment": 0.00223,
+          "neutral": 0.001891
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.00223,
+        "supported": false
+      },
+      {
+        "claim": "Data-Driven Decision Making:** Supported operational workflows by applying A/B testing methodologies to validate process improvements.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.005993,
+          "entailment": 0.081346,
+          "neutral": 0.912661
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.081346,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests, recorded findings with clear supporting evidence, and escalated issues based on data analysis.",
+        "best_source_chunk": "recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and dashboarding. - Tested the project with",
+        "probabilities": {
+          "contradiction": 0.038694,
+          "entailment": 0.657966,
+          "neutral": 0.30334
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.657966,
+        "supported": true
+      },
+      {
+        "claim": "Reporting & Efficiency:** Created a custom reporting template that reduced manual preparation time by 34%, demonstrating the ability to streamline operations through analytical insight.",
+        "best_source_chunk": "recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and dashboarding. - Tested the project with",
+        "probabilities": {
+          "contradiction": 0.040013,
+          "entailment": 0.042434,
+          "neutral": 0.917553
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.042434,
+        "supported": false
+      },
+      {
+        "claim": "Product Analyst Practice Project**",
+        "best_source_chunk": "recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and dashboarding. - Tested the project with",
+        "probabilities": {
+          "contradiction": 0.010982,
+          "entailment": 0.009693,
+          "neutral": 0.979325
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009693,
+        "supported": false
+      },
+      {
+        "claim": "Designed and executed a demonstration project utilizing product analytics, SQL, and dashboarding to simulate real-world scenarios.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.029396,
+          "entailment": 0.012358,
+          "neutral": 0.958246
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012358,
+        "supported": false
+      },
+      {
+        "claim": "Conducted rigorous testing with representative data sets to identify limitations and define next steps for scalability.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.002135,
+          "entailment": 0.000661,
+          "neutral": 0.997205
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000661,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing skills in stakeholder communication and technical trade-off analysis.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.030225,
+          "entailment": 0.002443,
+          "neutral": 0.967332
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002443,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.224788,
+          "entailment": 0.159065,
+          "neutral": 0.616147
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.159065,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, dashboarding, A/B testing, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000248,
+          "entailment": 0.99012,
+          "neutral": 0.009632
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.99012,
+        "supported": true
+      },
+      {
+        "claim": "Developed foundational skills in data management, system design, and evidence-based problem solving.",
+        "best_source_chunk": "## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, dashboarding, A/B testing, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000609,
+          "entailment": 0.918456,
+          "neutral": 0.080934
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.918456,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** Product Analytics, SQL, Dashboarding, A/B Testing, KPI Design, Data Storytelling.",
+        "best_source_chunk": "Git",
+        "probabilities": {
+          "contradiction": 0.277597,
+          "entailment": 0.01306,
+          "neutral": 0.709344
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01306,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Languages:** Python, Excel, Git.",
+        "best_source_chunk": "## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, dashboarding, A/B testing, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.011465,
+          "entailment": 0.665977,
+          "neutral": 0.322558
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.665977,
+        "supported": true
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Written & Verbal Communication, Documentation.",
+        "best_source_chunk": "recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and dashboarding. - Tested the project with",
+        "probabilities": {
+          "contradiction": 0.120648,
+          "entailment": 0.006932,
+          "neutral": 0.87242
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006932,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "3a87c3e1d2a096ce0cf47bd6ca47108559816d6bf736734a23292e1ce1367740"
+  }
+}

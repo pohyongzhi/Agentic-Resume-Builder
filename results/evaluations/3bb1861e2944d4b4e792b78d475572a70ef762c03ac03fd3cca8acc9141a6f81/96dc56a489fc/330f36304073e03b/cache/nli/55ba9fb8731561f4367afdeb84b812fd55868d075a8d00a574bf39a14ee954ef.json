@@ -1,0 +1,374 @@
+{
+  "identity": {
+    "source_hash": "7079a5089f551d05a4764b2e8395ba6e9abd0aac459ec55d8a752c951418e93d",
+    "tailored_hash": "c71cc99e3f773ccfdfe8aa5be0e0579d46df888090085a04caabc9af18ed7586",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.12,
+    "unsupported": [
+      "Mid-level Security Engineer with a Bachelor of Science in Information Systems and hands-on experience in cloud security, IAM, and vulnerability management.",
+      "Proven ability to implement preventive controls, automate compliance checks, and harden environments while collaborating with engineering teams.",
+      "Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+      "Seeking to leverage Python scripting and Linux expertise to drive secure design and incident response capabilities at Example Harbour Digital.",
+      "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+      "Cloud Security & IAM:** Implemented preventive security controls using cloud security and Identity Access Management (IAM) frameworks, improving team turnaround by 42%.",
+      "Vulnerability Management:** Automated vulnerability and compliance checks to ensure continuous monitoring;",
+      "documented all technical and business decisions for stakeholder review.",
+      "Environment Hardening:** Collaborated with four colleagues to harden cloud environments, presenting progress and technical trade-offs during fortnightly reviews.",
+      "Process Optimization:** Managed approximately 79 work items monthly while tracking quality checks and follow-up actions to maintain high reliability standards.",
+      "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+      "Automation & Documentation:** Developed step-by-step procedures using Python to support recurring operational work, ensuring clear written communication for all stakeholders.",
+      "Incident Support:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating strong problem-solving skills in ambiguous situations.",
+      "Reporting Efficiency:** Created a reporting template that reduced manual preparation time by 37%, showcasing the ability to deliver well-tested improvements.",
+      "Security Engineer Practice Project**",
+      "Tested scenarios against representative environments to identify limitations and define next steps.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing verbal communication and collaborative planning skills.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Core Security:** Cloud Security, IAM, Vulnerability Management, Network Security Principles.",
+      "Automation & Tools:** Python Scripting, Linux Administration, Git Version Control.",
+      "Cloud & Infrastructure:** AWS (Certified Cloud Practitioner), Terraform concepts, Container Security awareness.",
+      "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation, Stakeholder Management."
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Security Engineer with a Bachelor of Science in Information Systems and hands-on experience in cloud security, IAM, and vulnerability management.",
+        "best_source_chunk": "AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.007219,
+          "entailment": 0.009861,
+          "neutral": 0.98292
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009861,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to implement preventive controls, automate compliance checks, and harden environments while collaborating with engineering teams.",
+        "best_source_chunk": "Managed approximately 79 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001523,
+          "entailment": 0.005285,
+          "neutral": 0.993192
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005285,
+        "supported": false
+      },
+      {
+        "claim": "Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 37%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested",
+        "probabilities": {
+          "contradiction": 0.012531,
+          "entailment": 0.194059,
+          "neutral": 0.79341
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.194059,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage Python scripting and Linux expertise to drive secure design and incident response capabilities at Example Harbour Digital.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001159,
+          "entailment": 0.00145,
+          "neutral": 0.997391
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00145,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Mei Ng mei.ng@example.test | +65 6000 0053 | Singapore ## Summary Technology associate with transferable experience in cloud security, IAM and vulnerability management, seeking to deepen capability as a Security Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.010529,
+          "entailment": 0.280878,
+          "neutral": 0.708593
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.280878,
+        "supported": false
+      },
+      {
+        "claim": "Cloud Security & IAM:** Implemented preventive security controls using cloud security and Identity Access Management (IAM) frameworks, improving team turnaround by 42%.",
+        "best_source_chunk": "2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 37%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested",
+        "probabilities": {
+          "contradiction": 0.003084,
+          "entailment": 0.000837,
+          "neutral": 0.996078
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000837,
+        "supported": false
+      },
+      {
+        "claim": "Vulnerability Management:** Automated vulnerability and compliance checks to ensure continuous monitoring;",
+        "best_source_chunk": "Managed approximately 79 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.03104,
+          "entailment": 0.005088,
+          "neutral": 0.963871
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005088,
+        "supported": false
+      },
+      {
+        "claim": "documented all technical and business decisions for stakeholder review.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000743,
+          "entailment": 0.001491,
+          "neutral": 0.997766
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001491,
+        "supported": false
+      },
+      {
+        "claim": "Environment Hardening:** Collaborated with four colleagues to harden cloud environments, presenting progress and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "Managed approximately 79 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.049704,
+          "entailment": 0.004422,
+          "neutral": 0.945874
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004422,
+        "supported": false
+      },
+      {
+        "claim": "Process Optimization:** Managed approximately 79 work items monthly while tracking quality checks and follow-up actions to maintain high reliability standards.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.007836,
+          "entailment": 0.001419,
+          "neutral": 0.990746
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001419,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "Managed approximately 79 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.002124,
+          "entailment": 0.001428,
+          "neutral": 0.996448
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001428,
+        "supported": false
+      },
+      {
+        "claim": "Automation & Documentation:** Developed step-by-step procedures using Python to support recurring operational work, ensuring clear written communication for all stakeholders.",
+        "best_source_chunk": "# Mei Ng mei.ng@example.test | +65 6000 0053 | Singapore ## Summary Technology associate with transferable experience in cloud security, IAM and vulnerability management, seeking to deepen capability as a Security Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.011796,
+          "entailment": 0.001948,
+          "neutral": 0.986256
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001948,
+        "supported": false
+      },
+      {
+        "claim": "Incident Support:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating strong problem-solving skills in ambiguous situations.",
+        "best_source_chunk": "AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.06427,
+          "entailment": 0.017006,
+          "neutral": 0.918724
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017006,
+        "supported": false
+      },
+      {
+        "claim": "Reporting Efficiency:** Created a reporting template that reduced manual preparation time by 37%, showcasing the ability to deliver well-tested improvements.",
+        "best_source_chunk": "2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 37%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested",
+        "probabilities": {
+          "contradiction": 0.009135,
+          "entailment": 0.0069,
+          "neutral": 0.983964
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0069,
+        "supported": false
+      },
+      {
+        "claim": "Security Engineer Practice Project**",
+        "best_source_chunk": "# Mei Ng mei.ng@example.test | +65 6000 0053 | Singapore ## Summary Technology associate with transferable experience in cloud security, IAM and vulnerability management, seeking to deepen capability as a Security Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.013294,
+          "entailment": 0.074547,
+          "neutral": 0.912159
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.074547,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project covering cloud security, IAM, and vulnerability management.",
+        "best_source_chunk": "### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 -",
+        "probabilities": {
+          "contradiction": 0.000355,
+          "entailment": 0.994513,
+          "neutral": 0.005132
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994513,
+        "supported": true
+      },
+      {
+        "claim": "Tested scenarios against representative environments to identify limitations and define next steps.",
+        "best_source_chunk": "Managed approximately 79 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.002556,
+          "entailment": 0.001585,
+          "neutral": 0.995859
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001585,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing verbal communication and collaborative planning skills.",
+        "best_source_chunk": "### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 -",
+        "probabilities": {
+          "contradiction": 0.000725,
+          "entailment": 0.001,
+          "neutral": 0.998275
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.397713,
+          "entailment": 0.031816,
+          "neutral": 0.570471
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.031816,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000153,
+          "entailment": 0.984632,
+          "neutral": 0.015215
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.984632,
+        "supported": true
+      },
+      {
+        "claim": "Core Security:** Cloud Security, IAM, Vulnerability Management, Network Security Principles.",
+        "best_source_chunk": "# Mei Ng mei.ng@example.test | +65 6000 0053 | Singapore ## Summary Technology associate with transferable experience in cloud security, IAM and vulnerability management, seeking to deepen capability as a Security Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.061709,
+          "entailment": 0.017472,
+          "neutral": 0.920819
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017472,
+        "supported": false
+      },
+      {
+        "claim": "Automation & Tools:** Python Scripting, Linux Administration, Git Version Control.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.028664,
+          "entailment": 0.005057,
+          "neutral": 0.966279
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005057,
+        "supported": false
+      },
+      {
+        "claim": "Cloud & Infrastructure:** AWS (Certified Cloud Practitioner), Terraform concepts, Container Security awareness.",
+        "best_source_chunk": "AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.060639,
+          "entailment": 0.010628,
+          "neutral": 0.928732
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010628,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation, Stakeholder Management.",
+        "best_source_chunk": "AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.0763,
+          "entailment": 0.011826,
+          "neutral": 0.911874
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011826,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "AWS, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.004056,
+          "entailment": 0.975393,
+          "neutral": 0.02055
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.975393,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "55ba9fb8731561f4367afdeb84b812fd55868d075a8d00a574bf39a14ee954ef"
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "identity": {
+    "source_hash": "450553b143631c10ea4556523d3376afb6b9a27395071c6792cc45d44fac0ec2",
+    "tailored_hash": "93a9802356b29328fe3e20d803c0cfe33d2810ebebc10bfa9a5873a156fa5922",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0435,
+    "unsupported": [
+      "Senior Mobile Engineer transitioning from Operations Support with a strong foundation in Kotlin and Android development.",
+      "Proven ability to lead feature delivery, define maintainable architectures, and drive performance improvements through data-driven decision-making.",
+      "Experienced in managing complex workloads, mentoring peers, and communicating technical trade-offs to stakeholders.",
+      "Committed to establishing robust automated testing practices and clear documentation to ensure reliable, high-quality mobile solutions.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jan 2021 \u2013 Present)",
+      "Lead Delivery & Architecture:** Directed the delivery of Android features using Kotlin, improving team turnaround by 28%.",
+      "Defined maintainable mobile architecture principles and documented technical decisions for engineering and business review.",
+      "Performance Optimization:** Collaborated with a cross-functional team to improve application performance, presenting progress and technical trade-offs during fortnightly stakeholder reviews.",
+      "Process & Quality Management:** Managed approximately 100 work items monthly, implementing quality checks and follow-up actions to ensure operational reliability.",
+      "Documentation & Communication:** Created clear step-by-step procedures and reporting templates that reduced manual preparation time by 23%, demonstrating a commitment to evidence-based workflows.",
+      "Technical Assistant** | Example Atlas Solutions (Jun 2017 \u2013 Dec 2020)",
+      "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, solving ambiguous problems through collaborative analysis.",
+      "Operational Excellence:** Supported recurring operational work by maintaining up-to-date documentation, ensuring consistency across the team.",
+      "Senior Mobile Engineer Practice Project** | Personal Initiative",
+      "Developed a demonstration application using Kotlin and Android to validate architectural concepts.",
+      "Implemented representative testing scenarios to identify limitations and define next steps for automation.",
+      "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+      "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+      "Languages & Frameworks:** Kotlin, Android, REST APIs.",
+      "Development Practices:** Unit Testing, Git, CI/CD pipelines, Performance Optimization.",
+      "Tools:** Excel (Data Analysis), Documentation Tools.",
+      "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Technical Documentation, Mentoring."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Senior Mobile Engineer transitioning from Operations Support with a strong foundation in Kotlin and Android development.",
+        "best_source_chunk": "# Talia Tan talia.tan@example.test | +65 6000 0020 | Singapore ## Summary Operations support professional experienced in Kotlin, Android, documentation and stakeholder coordination, transitioning toward Senior Mobile Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 28%. -",
+        "probabilities": {
+          "contradiction": 0.002046,
+          "entailment": 0.381554,
+          "neutral": 0.6164
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.381554,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to lead feature delivery, define maintainable architectures, and drive performance improvements through data-driven decision-making.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.003254,
+          "entailment": 0.002215,
+          "neutral": 0.994531
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002215,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in managing complex workloads, mentoring peers, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000652,
+          "entailment": 0.000944,
+          "neutral": 0.998404
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000944,
+        "supported": false
+      },
+      {
+        "claim": "Committed to establishing robust automated testing practices and clear documentation to ensure reliable, high-quality mobile solutions.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 23%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.000562,
+          "entailment": 0.001668,
+          "neutral": 0.997771
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001668,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Talia Tan talia.tan@example.test | +65 6000 0020 | Singapore ## Summary Operations support professional experienced in Kotlin, Android, documentation and stakeholder coordination, transitioning toward Senior Mobile Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 28%. -",
+        "probabilities": {
+          "contradiction": 0.001005,
+          "entailment": 0.002512,
+          "neutral": 0.996482
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002512,
+        "supported": false
+      },
+      {
+        "claim": "Lead Delivery & Architecture:** Directed the delivery of Android features using Kotlin, improving team turnaround by 28%.",
+        "best_source_chunk": "# Talia Tan talia.tan@example.test | +65 6000 0020 | Singapore ## Summary Operations support professional experienced in Kotlin, Android, documentation and stakeholder coordination, transitioning toward Senior Mobile Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 28%. -",
+        "probabilities": {
+          "contradiction": 0.011028,
+          "entailment": 0.290593,
+          "neutral": 0.698379
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.290593,
+        "supported": false
+      },
+      {
+        "claim": "Defined maintainable mobile architecture principles and documented technical decisions for engineering and business review.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002699,
+          "entailment": 0.001941,
+          "neutral": 0.995359
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001941,
+        "supported": false
+      },
+      {
+        "claim": "Performance Optimization:** Collaborated with a cross-functional team to improve application performance, presenting progress and technical trade-offs during fortnightly stakeholder reviews.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.013635,
+          "entailment": 0.00684,
+          "neutral": 0.979524
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00684,
+        "supported": false
+      },
+      {
+        "claim": "Process & Quality Management:** Managed approximately 100 work items monthly, implementing quality checks and follow-up actions to ensure operational reliability.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000744,
+          "entailment": 0.000487,
+          "neutral": 0.998768
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000487,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Communication:** Created clear step-by-step procedures and reporting templates that reduced manual preparation time by 23%, demonstrating a commitment to evidence-based workflows.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 23%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.001385,
+          "entailment": 0.001428,
+          "neutral": 0.997187
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001428,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.006297,
+          "entailment": 0.003269,
+          "neutral": 0.990434
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003269,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, solving ambiguous problems through collaborative analysis.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.021272,
+          "entailment": 0.001901,
+          "neutral": 0.976827
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001901,
+        "supported": false
+      },
+      {
+        "claim": "Operational Excellence:** Supported recurring operational work by maintaining up-to-date documentation, ensuring consistency across the team.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 23%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.166003,
+          "entailment": 0.004862,
+          "neutral": 0.829135
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004862,
+        "supported": false
+      },
+      {
+        "claim": "Senior Mobile Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Talia Tan talia.tan@example.test | +65 6000 0020 | Singapore ## Summary Operations support professional experienced in Kotlin, Android, documentation and stakeholder coordination, transitioning toward Senior Mobile Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 28%. -",
+        "probabilities": {
+          "contradiction": 0.010985,
+          "entailment": 0.001381,
+          "neutral": 0.987634
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001381,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration application using Kotlin and Android to validate architectural concepts.",
+        "best_source_chunk": "# Talia Tan talia.tan@example.test | +65 6000 0020 | Singapore ## Summary Operations support professional experienced in Kotlin, Android, documentation and stakeholder coordination, transitioning toward Senior Mobile Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 28%. -",
+        "probabilities": {
+          "contradiction": 0.000723,
+          "entailment": 0.000578,
+          "neutral": 0.998699
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000578,
+        "supported": false
+      },
+      {
+        "claim": "Implemented representative testing scenarios to identify limitations and define next steps for automation.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.0019,
+          "entailment": 0.000991,
+          "neutral": 0.997109
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000991,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+        "best_source_chunk": "Practice Project - Built a fictional demonstration project using Kotlin, Android and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included",
+        "probabilities": {
+          "contradiction": 0.000561,
+          "entailment": 0.003937,
+          "neutral": 0.995503
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003937,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001815,
+          "entailment": 0.001595,
+          "neutral": 0.99659
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001595,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 7.6e-05,
+          "entailment": 0.972692,
+          "neutral": 0.027232
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.972692,
+        "supported": true
+      },
+      {
+        "claim": "Languages & Frameworks:** Kotlin, Android, REST APIs.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.015785,
+          "entailment": 0.00198,
+          "neutral": 0.982235
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00198,
+        "supported": false
+      },
+      {
+        "claim": "Development Practices:** Unit Testing, Git, CI/CD pipelines, Performance Optimization.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.025762,
+          "entailment": 0.004291,
+          "neutral": 0.969947
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004291,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Excel (Data Analysis), Documentation Tools.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.003724,
+          "entailment": 0.00233,
+          "neutral": 0.993945
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00233,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Technical Documentation, Mentoring.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.013697,
+          "entailment": 0.002238,
+          "neutral": 0.984065
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002238,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "fa48d6d0e41e01f6ee6d9987f4370f8c59378bd809ac5dc6270d7b873f5a3e05"
+  }
+}

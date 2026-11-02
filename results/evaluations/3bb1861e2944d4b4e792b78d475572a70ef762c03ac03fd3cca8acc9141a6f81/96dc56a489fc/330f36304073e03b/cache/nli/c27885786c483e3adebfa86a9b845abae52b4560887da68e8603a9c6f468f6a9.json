@@ -1,0 +1,348 @@
+{
+  "identity": {
+    "source_hash": "e39c17216f341e443be9136d32835d8dc4c44680bfedc2cb393887ac9442599b",
+    "tailored_hash": "059278b7fc4b66acc15e513fbba6a8cfb029b3b800296b0d28fe06c72d8a32c2",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1304,
+    "unsupported": [
+      "Experienced in translating customer evidence into actionable recommendations and collaborating with cross-functional stakeholders to define success metrics.",
+      "Adept at evaluating experiments, maintaining clear documentation, and solving ambiguous problems through evidence-based analysis.",
+      "Committed to delivering reliable, maintainable solutions that drive operational efficiency and business growth.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+      "Product Analytics & Funnel Analysis:** Utilized product analytics and SQL to analyze usage patterns and funnels, identifying bottlenecks that improved team turnaround by 22%.",
+      "KPI Design & Metrics:** Defined product success metrics using Excel and documented decision-making processes for technical and business reviewers, ensuring transparency and traceability.",
+      "Experiment Evaluation:** Collaborated with a multidisciplinary team to evaluate experiments, presenting progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+      "Stakeholder Communication:** Partnered with product managers on prioritization by translating complex data findings into clear recommendations for relevant stakeholders.",
+      "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+      "Documentation & Process Improvement:** Created standardized step-by-step procedures and reporting templates, reducing manual preparation time by 17% while maintaining high-quality documentation standards.",
+      "Evidence-Based Problem Solving:** Investigated service requests to identify root causes, recording findings with clear supporting evidence to facilitate informed decision-making.",
+      "Collaborative Workflow:** Managed approximately 20 work items monthly, coordinating closely with colleagues to ensure quality controls and timely delivery of operational tasks.",
+      "Product Analyst Practice Project** | Personal Initiative",
+      "Developed a comprehensive demonstration project utilizing product analytics and SQL to simulate real-world scenarios.",
+      "Conducted rigorous testing against representative cases to validate hypotheses and document limitations.",
+      "Presented design rationale, outcomes, and next steps to a five-person peer review group, demonstrating strong data storytelling and communication skills.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+      "Core Competencies:** Product Analytics, SQL, Dashboarding (Excel), A/B Testing Evaluation, KPI Design.",
+      "Research & Strategy:** Customer Research, Data Storytelling, Experiment Evaluation, Success Metric Definition.",
+      "Soft Skills:** Stakeholder Communication, Clear Written/Verbal Communication, Collaborative Problem Solving, Documentation Management."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional transitioning into Product Analyst roles with proven expertise in product analytics, SQL, and data-driven decision-making.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%.",
+        "probabilities": {
+          "contradiction": 0.000538,
+          "entailment": 0.80162,
+          "neutral": 0.197842
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.80162,
+        "supported": true
+      },
+      {
+        "claim": "Experienced in translating customer evidence into actionable recommendations and collaborating with cross-functional stakeholders to define success metrics.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%.",
+        "probabilities": {
+          "contradiction": 0.000233,
+          "entailment": 0.018399,
+          "neutral": 0.981368
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018399,
+        "supported": false
+      },
+      {
+        "claim": "Adept at evaluating experiments, maintaining clear documentation, and solving ambiguous problems through evidence-based analysis.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.003903,
+          "entailment": 0.146682,
+          "neutral": 0.849415
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.146682,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering reliable, maintainable solutions that drive operational efficiency and business growth.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000608,
+          "entailment": 0.001666,
+          "neutral": 0.997726
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001666,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%.",
+        "probabilities": {
+          "contradiction": 0.016121,
+          "entailment": 0.257406,
+          "neutral": 0.726473
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.257406,
+        "supported": false
+      },
+      {
+        "claim": "Product Analytics & Funnel Analysis:** Utilized product analytics and SQL to analyze usage patterns and funnels, identifying bottlenecks that improved team turnaround by 22%.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%.",
+        "probabilities": {
+          "contradiction": 0.000263,
+          "entailment": 0.004725,
+          "neutral": 0.995012
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004725,
+        "supported": false
+      },
+      {
+        "claim": "KPI Design & Metrics:** Defined product success metrics using Excel and documented decision-making processes for technical and business reviewers, ensuring transparency and traceability.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001183,
+          "entailment": 0.002657,
+          "neutral": 0.996161
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002657,
+        "supported": false
+      },
+      {
+        "claim": "Experiment Evaluation:** Collaborated with a multidisciplinary team to evaluate experiments, presenting progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.007724,
+          "entailment": 0.003675,
+          "neutral": 0.988601
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003675,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Partnered with product managers on prioritization by translating complex data findings into clear recommendations for relevant stakeholders.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.373832,
+          "entailment": 0.004413,
+          "neutral": 0.621755
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004413,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.007441,
+          "entailment": 0.003445,
+          "neutral": 0.989114
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003445,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Process Improvement:** Created standardized step-by-step procedures and reporting templates, reducing manual preparation time by 17% while maintaining high-quality documentation standards.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.001091,
+          "entailment": 0.001749,
+          "neutral": 0.99716
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001749,
+        "supported": false
+      },
+      {
+        "claim": "Evidence-Based Problem Solving:** Investigated service requests to identify root causes, recording findings with clear supporting evidence to facilitate informed decision-making.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.001585,
+          "entailment": 0.001657,
+          "neutral": 0.996758
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001657,
+        "supported": false
+      },
+      {
+        "claim": "Collaborative Workflow:** Managed approximately 20 work items monthly, coordinating closely with colleagues to ensure quality controls and timely delivery of operational tasks.",
+        "best_source_chunk": "2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed approximately 20 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and",
+        "probabilities": {
+          "contradiction": 0.542334,
+          "entailment": 0.066541,
+          "neutral": 0.391125
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.066541,
+        "supported": false
+      },
+      {
+        "claim": "Product Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%.",
+        "probabilities": {
+          "contradiction": 0.704174,
+          "entailment": 0.001708,
+          "neutral": 0.294118
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.001708,
+        "supported": false
+      },
+      {
+        "claim": "Developed a comprehensive demonstration project utilizing product analytics and SQL to simulate real-world scenarios.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.065547,
+          "entailment": 0.011022,
+          "neutral": 0.923432
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011022,
+        "supported": false
+      },
+      {
+        "claim": "Conducted rigorous testing against representative cases to validate hypotheses and document limitations.",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and Excel. - Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.001793,
+          "entailment": 0.002814,
+          "neutral": 0.995393
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002814,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale, outcomes, and next steps to a five-person peer review group, demonstrating strong data storytelling and communication skills.",
+        "best_source_chunk": "2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed approximately 20 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and",
+        "probabilities": {
+          "contradiction": 0.339614,
+          "entailment": 0.000663,
+          "neutral": 0.659723
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000663,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.833049,
+          "entailment": 0.001519,
+          "neutral": 0.165432
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.001519,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000229,
+          "entailment": 0.968758,
+          "neutral": 0.031012
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.968758,
+        "supported": true
+      },
+      {
+        "claim": "Developed foundational skills in data management, system design, and analytical thinking required for product analysis roles.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%.",
+        "probabilities": {
+          "contradiction": 0.008681,
+          "entailment": 0.586658,
+          "neutral": 0.404661
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.586658,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** Product Analytics, SQL, Dashboarding (Excel), A/B Testing Evaluation, KPI Design.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.03934,
+          "entailment": 0.004955,
+          "neutral": 0.955704
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004955,
+        "supported": false
+      },
+      {
+        "claim": "Research & Strategy:** Customer Research, Data Storytelling, Experiment Evaluation, Success Metric Definition.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.525083,
+          "entailment": 0.013336,
+          "neutral": 0.461581
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.013336,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Clear Written/Verbal Communication, Collaborative Problem Solving, Documentation Management.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.018759,
+          "entailment": 0.025813,
+          "neutral": 0.955428
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.025813,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "c27885786c483e3adebfa86a9b845abae52b4560887da68e8603a9c6f468f6a9"
+  }
+}

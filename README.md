@@ -1,95 +1,318 @@
-# Agentic Resume Builder
+# Resume Agent Lab
 
-Agentic Resume Builder is a local experiment for comparing seven resume-tailoring variants under a shared input, output and evaluation contract.
+**Research question:** which agentic technique makes a small local model write the best tailored
+resume, at what cost, and without inventing facts?
 
-- Product: Agentic Resume Builder
-- Product version: `1.0.0`
-- Active experiment: `V5`
-- Shared base model: `qwen3.5:4b-q4_K_M`
-- Fine-tuned model: `agentic-resume-v4-1:q4_K_M`
+The shared baseline is now an end-to-end agentic system. A resume parser and JD retriever run in
+parallel, a creator tailors the resume, and a code harness requires validation before rendering.
+The original one-prompt implementation is `w1_single_pass`, the lower-bound control. The shared
+agentic baseline is `w2_baseline`.
 
-Product versioning, workflow-experiment versioning and historical model-experiment names are deliberately separate.
+| Workflow | Technique | Status |
+|---|---|---|
+| `w1_single_pass` | W1: one prompt, no tools or guardrails (lower-bound control) | done |
+| `w2_baseline` | W2: parallel extraction agents + creator + validation/render harness | done |
+| `w3_critic` | W3: parallel fact, recruiter and formatting critics + rewrites | done |
+| `w4_evidence` | W4: source-span grounding and claim verification | done |
+| `w5_fine_tuned` | W5: one-pass generation with the selected V4.1 fine-tuned model | done |
+| `w6_best_of_n` | W6: three strategy drafts + two-order rubric selector | done |
 
-## V5 variant design
+## Architecture
 
-| No. | Stable ID | Technique | Model | Status |
-| ---: | --- | --- | --- | --- |
-| 1 | `one_pass` | Resume and JD in one prompt | Base model | Implemented; default |
-| 2 | `agentic_baseline` | Resume parser, JD retriever, creator, validator and renderer | Base model | Planned |
-| 3 | `multi_critic_review` | Separate fact, recruiter and formatting critics | Base model | Planned |
-| 4 | `evidence_grounded_generation` | Claims linked to source-resume spans and verified | Base model | Planned |
-| 5 | `fine_tuned_small_generator` | Selected V4.1 LoRA-derived generator | Fine-tuned model | Implemented |
-| 6 | `multi_draft_selector` | Several drafts plus a selector | Base model | Planned |
-| 7 | `planner_section_writers` | Planner, parallel section writers and assembler | Base model | Planned |
+```text
+resume file ──> resume_parser ──┐
+                               ├─> check_extractions ─> resume_creator ─> harness
+JD URL/text ──> jd_retriever ──┘                              │
+                                                              ├─ validate_resume
+                                                              └─ render_resume -> results/outputs/
+```
 
-Only implemented variants are executable or shown in the application selector. The former V1 `baseline` name referred to the one-pass control; V5 names it `one_pass` so the distinct agentic baseline can occupy Variant 2. The legacy `w4_ats_optimiser` example is not registered as a V5 variant.
+LangGraph starts both extraction nodes in the same step and waits for both. The creator only sees
+their structured `CandidateData` and `JobData`. If either extraction fails, generation stops.
+
+The baseline creator uses Ollama's constrained `GeneratedResume` schema instead of putting a large,
+nested resume inside a tool argument. Python then invokes the harness operations. This avoids
+malformed JSON from small models while keeping every validation and file-safety rule.
+
+The harness enforces these rules in Python rather than relying on the prompt:
+
+- only `validate_resume` and `render_resume` are allowed;
+- rendering requires the exact latest draft to have passed validation;
+- employers, titles, dates, education, skills and certifications are checked against candidate data
+  and the original resume text;
+- tool calls are capped by `MAX_TOOL_CALLS`;
+- output files must stay inside `OUTPUT_DIR`, cannot overwrite the input, and cannot replace an
+  existing file.
+
+These checks catch structural and selected factual errors. They do not prove that every rewritten
+sentence is accurate; the separate evaluation still measures claim-level faithfulness.
 
 ## Setup
 
-Install Python 3.11 and [Ollama](https://ollama.com/), then create an isolated environment:
+1. Install [Ollama](https://ollama.com/download), then pull the configured models:
 
-```bash
-python3.11 -m venv .venv
-source .venv/bin/activate
-python -m pip install -r requirements.txt
-ollama pull qwen3.5:4b-q4_K_M
-```
+   ```bash
+   ollama pull qwen3.5:4b-q4_K_M
+   ollama pull nomic-embed-text
+   ```
 
-Install the fine-tuned model without a Hugging Face account:
+   W5 additionally requires the public fine-tuned GGUF. Follow
+   [`HOW_TO_RUN.md`](HOW_TO_RUN.md#install-the-w5-fine-tuned-model) to import it as
+   `agentic-resume-v4-1:q4_K_M`. The base model remains the default for every other workflow.
 
-```bash
-MODEL_DIR="$HOME/Agentic-Resume-Builder-Models/fine-tuned-v1"
-mkdir -p "$MODEL_DIR"
+2. Create the environment:
 
-curl -L -C - \
-  -o "$MODEL_DIR/agentic-resume-v4-1-no-nextn-q4_K_M.gguf" \
-  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+   ```bash
+   python -m venv venv
+   source venv/bin/activate          # Windows: venv\Scripts\activate
+   pip install -r requirements.txt
+   ```
 
-curl -L \
-  -o "$MODEL_DIR/Modelfile" \
-  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
+3. Check ordinary and nested-JSON tool calls:
 
-ollama create agentic-resume-v4-1:q4_K_M -f "$MODEL_DIR/Modelfile"
-```
+   ```bash
+   python smoke_test.py
+   ```
 
-## Run
+4. Run tests (they stub all LLM calls and do not need Ollama):
 
-Start the application:
+   ```bash
+   pytest -q
+   ```
+
+## Use the agentic baseline
 
 ```bash
 python app.py
 ```
 
-Open <http://127.0.0.1:7860>. Variant 1 One-pass is selected by default. Choose Variant 5 to run the fine-tuned model.
+Open http://127.0.0.1:7860, upload a text-based PDF, DOCX, TXT or Markdown resume, then provide a
+job URL or paste the JD. Pasted text takes precedence and is the fallback for pages that require
+login or JavaScript. Use the workflow selector to compare the single-pass control, agentic baseline
+and multi-critic workflow interactively. Harness-validated Markdown resumes can be
+previewed and downloaded; unguarded comparison workflows are clearly marked as experimental.
 
-Run both implemented variants on identical repository fixtures:
+## W3 multi-critic workflow
+
+`w3_critic` creates a structured draft, then runs three separate reviewers in parallel:
+
+- the fact-checker looks for claims unsupported by the original resume;
+- the recruiter checks role relevance, evidence and shortlist quality;
+- the formatting reviewer checks completeness, consistency, concision and scanability.
+
+Their structured feedback is combined and sent back to the creator. The workflow stops early when
+all three approve with no major or critical issues, or after at most two revisions. The latest draft
+must still pass the same deterministic harness used by the baseline before it is rendered. This
+workflow is expected to improve quality and faithfulness at the cost of more model calls and time.
+
+W3 feedback is limited to five concise issues per critic. Critic responses have a 1,536-token
+budget and drafts a 4,096-token budget; invalid JSON/schema responses get one corrective retry.
+Failed responses are retained in traces for debugging. Protected-fact validation errors are also
+fed into the revision loop, while final rendering still requires successful harness validation.
+W3 delegates skill support and paraphrase checks to its LLM fact-checker; its harness does not
+require literal skill matches. Other protected fields, certifications, projects and file-safety
+checks remain enforced. W2 retains its original skill-matching check.
+These settings and `W3_GENERATION_VERSION` are included in the generation configuration hash,
+so results produced before this reliability change remain separate.
+
+`baseline_tailor.py` is intentionally still the non-agentic single-pass CLI, not the new baseline:
 
 ```bash
-python run_all.py \
-  --workflows one_pass fine_tuned_small_generator \
-  --limit 2 --repeats 1
+python baseline_tailor.py --resume my_resume.pdf --jd job.txt
 ```
 
-The shared model wrapper uses the base model when no override is supplied. Only Variant 5 explicitly supplies the fine-tuned tag, and every call records the actual model used.
+## W5 fine-tuned small generator
 
-## Repository structure
+`w5_fine_tuned` sends the same resume/JD contract and shared factuality prompt through the selected
+V4.1 fine-tuned model. It is an experimental comparison workflow, not the application default:
+
+```bash
+python run_all.py --workflows w5_fine_tuned --split test --limit 1 --repeats 1
+```
+
+Every call records the actual Ollama model tag. The current fine-tuned model works, but the limited
+development comparison did not show a consistent overall win over the base model and some outputs
+used undesirable negative framing. Compare it using the shared evaluator rather than assuming that
+fine-tuning alone improves every resume.
+
+## Run experiments
+
+```bash
+python scripts/validate_dataset.py
+python run_all.py --split test --limit 1 --repeats 1
+python summarise.py
+```
+
+Evaluation uses saved JD snapshots rather than live URLs for reproducibility. Results are appended
+to `results/results.jsonl`; canonical per-run resumes, metrics and traces go under `results/runs/`.
+Runs are skipped only when workflow, pair, repeat, model, config/prompt hash and frozen dataset hash
+all match. Failed runs remain in the summary's success rate.
+
+The first faithfulness run downloads `cross-encoder/nli-deberta-v3-small`.
+
+### W6 Best-of-N
+
+W6 generates skills-first, impact-first and JD-wording-alignment drafts by default. It rejects
+structurally incomplete drafts, scores the remaining drafts with the same rubric in forward and
+reverse order, and returns only a draft that passes both selector orders. The shared NLI evaluator
+is intentionally applied afterward, like every other workflow, so it remains an independent
+comparison metric.
+
+Run a one-pair smoke test before starting the full dataset:
+
+```bash
+python run_all.py --workflows w6_best_of_n --split test --limit 1 --repeats 1
+```
+
+Run all 100 frozen test pairs once:
+
+```bash
+python run_all.py --workflows w6_best_of_n --split test --repeats 1
+```
+
+`W6_NUM_CANDIDATES` in `config.py` accepts 1–6 strategies and is included in the generation
+configuration hash. Per-candidate scores and the selected strategy are stored in
+`workflow_details`; canonical resumes, metrics and traces are stored below `results/runs/`.
+Benchmark one pair on the evaluation machine before estimating the full runtime because W6 makes
+at least five model calls per pair and may retry incomplete selector responses.
+
+After generation, create operational summaries with `python summarise.py`. To apply the complete
+shared offline evaluator, including the independent rubric judge, run:
+
+```bash
+python evaluate.py all --workflows w6_best_of_n --judge-model gemma4:e4b --resume
+```
+
+### Evaluator metrics
+
+Every saved run records resume-quality metrics (JD similarity and keyword coverage), three
+separate faithfulness components, and operational metrics. Faithfulness comprises claim support,
+protected-field violations and copying of evaluator keyword families absent from the source
+resume.
+
+- task success on the frozen test split, gated by completion, required sections, length, claim
+  faithfulness of at least `0.8`, no protected-field violation and no fabrication-bait violation;
+- tool-call and argument accuracy, required sequence validity and recovery after failed calls;
+- workflow-aware step efficiency, repeated calls and budget utilisation;
+- input/output tokens, total tokens, model time and end-to-end latency;
+- robustness on formatting and section-order variants of a small shared test subset.
+
+Operational thresholds can be changed and applied to saved outputs without regenerating resumes:
+
+```bash
+python evaluate_results.py
+python summarise.py --results-file results/evaluated_results.jsonl
+python run_robustness.py --limit 20 --skip-faithfulness
+```
+
+Robustness results are written to `results/summaries/robustness.csv`. Tool metrics are `N/A` for
+workflows such as W1 that intentionally use no tools.
+
+### Reusable offline evaluation pipeline
+
+The full evaluator preserves generation artifacts and writes versioned records under
+`results/evaluations/<dataset_hash>/<generation_scope>/<evaluator_hash>/`. Run W1 faithfulness,
+the shared rubric judge, the fixed 20-pair robustness benchmark, reports and human-review packet:
+
+```bash
+python evaluate.py all \
+  --workflows w1_single_pass \
+  --judge-model gemma4:e4b \
+  --resume
+```
+
+The installed `gemma4:e4b` judge is an 8.0B Q4_K_M model, not a 3B model. The command requires the
+exact tag and never pulls or silently substitutes a judge. Use `--pilot` before a new configuration,
+`--limit N` for saved-output scoring, `--robustness-limit N` for perturbations, or the
+`--skip-faithfulness`, `--skip-judge`, `--skip-robustness`, `--skip-reports` and
+`--skip-human-review` flags to omit expensive stages.
+
+The judge sees the original resume, JD and tailored resume and applies the same five-dimension
+rubric to every workflow. Its score remains separate from NLI faithfulness, keyword coverage,
+embedding similarity and operational metrics. NLI and judge caches are content/configuration
+addressed, failed evaluations remain unscored rather than becoming zero, and task success is
+recalculated only from completion, structure, length and the predeclared component gates.
+
+The evaluation directory contains `evaluations.jsonl`, `robustness/evaluations.jsonl`,
+`robustness/sample_manifest.json`, detailed CSV/JSON summaries, NLI preflight evidence, full judge
+provenance and a blinded `human_review/` packet. Human forms are blank; automated scores are not
+claimed as human-validated until independent ratings are completed.
+
+For a faithfulness-only rescore of existing outputs, Ollama and the rubric judge are not required:
+
+```bash
+HF_HUB_OFFLINE=1 python evaluate.py score \
+  --workflows w1_single_pass \
+  --skip-judge \
+  --resume
+HF_HUB_OFFLINE=1 python evaluate.py report \
+  --workflows w1_single_pass \
+  --skip-judge
+```
+
+The current W1 result and evaluator limitations are recorded in
+[`docs/evaluation/faithfulness-w1-v3-summary.json`](docs/evaluation/faithfulness-w1-v3-summary.json).
+Detailed evaluation records are reproducible local artifacts and are ignored by Git.
+
+## Code layout
 
 ```text
-common/          shared prompts, model wrapper, agent loop and data helpers
-workflows/       V5 implementations and planned-variant metadata
-eval/            shared comparison metrics
-docs/v5/         current seven-variant experiment record
-docs/v4/         historical fine-tuning research and training record
-v4_data/         reusable dataset contracts and validation
-v4_training/     reproducible LoRA training and evaluation tools
-release/v1/      frozen V1 release record and artifact checksums
-runs/            ignored local datasets and experiment artifacts
+app.py                    Gradio UI for the agentic baseline
+baseline_tailor.py        single-pass V0 CLI
+config.py                 shared model, harness and extraction settings
+common/
+  schemas.py              CandidateData, JobData and GeneratedResume
+  state.py                shared LangGraph state and parallel error reducer
+  tools.py                resume text extraction and JD page retrieval
+  extraction.py           resume-parser and JD-retriever agent nodes
+  pipeline.py             parallel fan-out/fan-in graph
+  harness.py              validation, rendering, permissions and budgets
+  agent.py                shared ReAct tool loop
+  llm.py                  only Ollama entry point; logs every call
+workflows/
+  w1_single_pass.py       W1 one-prompt control
+  w2_baseline.py          W2 agentic baseline creator
+  w3_critic.py            parallel specialist critics + bounded revision loop
+  w4_evidence.py          evidence-grounded generation
+  w6_best_of_n.py         W6 strategy drafts + two-order selector
+eval/metrics.py           shared evaluator metrics
+eval/operational.py       task, tool, step and cost metrics
+eval/robustness.py        input perturbations and stability aggregation
+run_all.py                batch runner
+evaluate_results.py       rescore saved outputs without regeneration
+run_robustness.py         shared perturbation benchmark
+summarise.py              per-workflow summary
+scripts/
+  generate_dataset.py     deterministic synthetic dataset materialiser
+  validate_dataset.py     dataset integrity and leakage checks
+tests/                    harness, extraction-tool and graph tests
 ```
 
-Model weights remain outside ordinary Git. The runnable GGUF is public on Hugging Face for school-project use; the adapter and training data remain private.
+## Adding a workflow
 
-## Limitations
+All variants should reuse `common/pipeline.py` so extraction and guardrails stay constant. Supply
+another creator factory in place of `workflows.w2_baseline.make_creator`, call the model only through
+`common.llm.chat`, return the standard workflow dictionary, and register it in
+`workflows/__init__.py`.
 
-Five V5 variants are not implemented yet and are marked planned. The fine-tuned model works and improved several constraint-retention cases, but it is not consistently superior to the base model and can produce undesirable negative framing. Generated resumes require human factual and editorial review and must not be used for autonomous hiring decisions.
+Keep `config.py`, extraction, `BASE_RULES`, the harness and evaluation data frozen across variants.
+The test labels must never be shown to a workflow.
 
-See [docs/v5/README.md](docs/v5/README.md) for V5 scope, [release/v1/README.md](release/v1/README.md) for the preserved V1 release, and [docs/v4/README.md](docs/v4/README.md) for historical fine-tuning research.
+## Evaluation data
+
+- `data/resumes/*.md`: 100 fictional candidate resumes.
+- `data/jds/*.md`: 20 synthetic JD snapshots across five categories.
+- `data/jds/*.keywords.json`: evaluator-only must-have keywords and synonyms.
+- `data/pairs.csv`: 100 explicit resume/JD pairs with category, seniority and fit metadata.
+- `data/dataset.json`: frozen version, counts, provenance and content hash.
+- `data/generation/`: reproducible specification and raw generation records.
+
+Each JD has two strong-fit, two moderate-fit and one weak-fit resume. Regenerate and verify with:
+
+```bash
+python scripts/generate_dataset.py --force
+python scripts/validate_dataset.py
+```
+
+Review every keyword file and a stratified sample of resume/JD pairs before treating the dataset as
+final. Workflows receive resume and JD Markdown only; keyword and fit labels stay in the evaluator.

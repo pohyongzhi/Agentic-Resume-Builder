@@ -1,0 +1,66 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 373,
+    "output_tokens": 221,
+    "thinking_chars": 0,
+    "seconds": 8.06,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 492,
+    "output_tokens": 534,
+    "thinking_chars": 0,
+    "seconds": 27.49,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1437,
+    "output_tokens": 524,
+    "thinking_chars": 0,
+    "seconds": 21.78,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Mei Lim\",\n  \"contact\": {\n    \"email\": \"mei.lim@example.test\",\n    \"phone\": \"+65 6000 0033\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in Python, machine learning, and scikit-learn. Proven ability to train predictive models, build reproducible feature pipelines, and deploy solutions via APIs while collaborating cross-functionally.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Trained and evaluated predictive models using Python and machine learning, improving team turnaround by 26%.\",\n        \"Built reproducible feature pipelines with scikit-learn and maintained clear documentation for technical and business reviewers.\",\n        \"Collaborated with product and data teams to deploy models behind REST APIs, presenting progress during fortnightly reviews.\",\n        \"Managed approximately 89 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational workflows using PyTorch and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"machine learning\",\n    \"scikit-learn\",\n    \"PyTorch\",\n    \"MLflow\",\n    \"documentation\",\n    \"Git\",\n    \"REST APIs\",\n    \"model evaluation\",\n    \"feature engineering\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.003,
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2041,
+    "output_tokens": 505,
+    "thinking_chars": 0,
+    "seconds": 18.68,
+    "asked_tools": [],
+    "step": 5
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Mei Lim\",\n  \"contact\": {\n    \"email\": \"mei.lim@example.test\",\n    \"phone\": \"+65 6000 0033\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in Python, machine learning, and scikit-learn. Proven ability to train predictive models, build reproducible feature pipelines, and deploy solutions via APIs while collaborating cross-functionally.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Trained and evaluated predictive models using Python and machine learning, improving team turnaround by 26%.\",\n        \"Built reproducible feature pipelines with scikit-learn and maintained clear documentation for technical and business reviewers.\",\n        \"Collaborated with product and data teams to deploy models behind APIs, presenting progress during fortnightly reviews.\",\n        \"Managed approximately 89 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational workflows using PyTorch and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"machine learning\",\n    \"scikit-learn\",\n    \"PyTorch\",\n    \"MLflow\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.002,
+    "step": 6
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.003,
+    "step": 7
+  }
+]

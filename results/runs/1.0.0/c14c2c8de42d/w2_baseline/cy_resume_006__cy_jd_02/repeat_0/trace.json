@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 524,
+    "output_tokens": 392,
+    "thinking_chars": 0,
+    "seconds": 19.31,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 388,
+    "output_tokens": 233,
+    "thinking_chars": 0,
+    "seconds": 30.66,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1354,
+    "output_tokens": 527,
+    "thinking_chars": 0,
+    "seconds": 26.83,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Farhan Ng\",\n  \"contact\": {\n    \"email\": \"farhan.ng@example.test\",\n    \"phone\": \"+65 6000 0046\",\n    \"location\": \"Singapore\"\n  },\n  \"summary\": \"Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001, and security policies. Proven ability to deliver documented, measurable improvements through cross-functional collaboration and clear stakeholder communication.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Cybersecurity GRC Analyst\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Performed technology risk assessments using ISO 27001 frameworks, improving team turnaround by 24%.\",\n        \"Maintained security policies and controls while documenting decisions for technical and business reviewers.\",\n        \"Supported internal and external audits by managing approximately 78 work items monthly, tracking quality checks and remediation actions.\",\n        \"Communicated progress, risks, and technical trade-offs to stakeholders during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Provided audit support by documenting step-by-step procedures and recording findings with clear supporting evidence.\",\n        \"Created reporting templates that reduced manual preparation time by 19%, demonstrating technical writing and process improvement skills.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"risk assessment\",\n    \"ISO 27001\",\n    \"security policies\",\n    \"audit support\",\n    \"control testing\",\n    \"vendor risk\",\n    \"stakeholder communication\",\n    \"technical writing\",\n    \"NIST\",\n    \"cloud governance\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.001,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

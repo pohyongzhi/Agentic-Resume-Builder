@@ -1,0 +1,348 @@
+{
+  "identity": {
+    "source_hash": "9b2b13e73be6f57dea13c5f5341b20909ebeb2f286b4c1f70f33df2feff62042",
+    "tailored_hash": "d5b7c99bb36f26e2887bde8d27b69699b06d3b0d8f14784e97fcba3a1631c805",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1304,
+    "unsupported": [
+      "Mid-level Full-Stack Engineer with a strong foundation in TypeScript, React, and Node.js, seeking to deliver reliable, maintainable solutions at Example Harbour Digital.",
+      "Proven ability to translate operational needs into end-to-end product features while maintaining clear documentation and evidence-based decision-making.",
+      "Experienced in collaborating across engineering, product, and business stakeholders to solve ambiguous problems and improve application reliability through structured delivery pipelines.",
+      "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+      "End-to-End Development:** Designed frontend components and backend APIs using TypeScript, React, and Node.js to deliver product features that improved team turnaround by 41%.",
+      "Data Modeling & Collaboration:** Collaborated with cross-functional teams to model relational data structures, ensuring alignment between technical requirements and business logic.",
+      "Documentation & Communication:** Documented technical decisions for review by engineering and business stakeholders;",
+      "presented progress, risks, and trade-offs during fortnightly reviews.",
+      "Pipeline Management:** Managed approximately 99 work items monthly, implementing quality checks to maintain delivery standards and reliability.",
+      "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+      "Troubleshooting & Evidence-Based Decisions:** Investigated service requests, recorded findings with clear supporting evidence, and escalated issues to engineering teams for resolution.",
+      "Process Improvement:** Developed a reporting template that reduced manual preparation time by 36%, demonstrating the ability to identify inefficiencies and implement data-driven solutions.",
+      "Full-Stack Engineer Practice Project**",
+      "Built a comprehensive demonstration application using TypeScript, React, and Node.js to validate full-stack capabilities.",
+      "Executed rigorous testing across representative scenarios to identify limitations and define next steps for scalability.",
+      "Presented architectural design and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Frontend:** React, REST APIs",
+      "DevOps & Tools:** Git, CI/CD pipelines, Docker (implied through pipeline management), Excel",
+      "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, technical documentation, stakeholder management"
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Full-Stack Engineer with a strong foundation in TypeScript, React, and Node.js, seeking to deliver reliable, maintainable solutions at Example Harbour Digital.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.186221,
+          "entailment": 0.019492,
+          "neutral": 0.794288
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019492,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to translate operational needs into end-to-end product features while maintaining clear documentation and evidence-based decision-making.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002718,
+          "entailment": 0.010659,
+          "neutral": 0.986623
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010659,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in collaborating across engineering, product, and business stakeholders to solve ambiguous problems and improve application reliability through structured delivery pipelines.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000967,
+          "entailment": 0.001996,
+          "neutral": 0.997037
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001996,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Mei Tan mei.tan@example.test | +65 6000 0013 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 41%. - Applied",
+        "probabilities": {
+          "contradiction": 0.036526,
+          "entailment": 0.05634,
+          "neutral": 0.907134
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.05634,
+        "supported": false
+      },
+      {
+        "claim": "End-to-End Development:** Designed frontend components and backend APIs using TypeScript, React, and Node.js to deliver product features that improved team turnaround by 41%.",
+        "best_source_chunk": "# Mei Tan mei.tan@example.test | +65 6000 0013 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 41%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000629,
+          "entailment": 0.01817,
+          "neutral": 0.981201
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01817,
+        "supported": false
+      },
+      {
+        "claim": "Data Modeling & Collaboration:** Collaborated with cross-functional teams to model relational data structures, ensuring alignment between technical requirements and business logic.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002901,
+          "entailment": 0.00543,
+          "neutral": 0.99167
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00543,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Communication:** Documented technical decisions for review by engineering and business stakeholders;",
+        "best_source_chunk": "# Mei Tan mei.tan@example.test | +65 6000 0013 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 41%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000429,
+          "entailment": 0.000559,
+          "neutral": 0.999012
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000559,
+        "supported": false
+      },
+      {
+        "claim": "presented progress, risks, and trade-offs during fortnightly reviews.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00867,
+          "entailment": 0.001606,
+          "neutral": 0.989723
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001606,
+        "supported": false
+      },
+      {
+        "claim": "Pipeline Management:** Managed approximately 99 work items monthly, implementing quality checks to maintain delivery standards and reliability.",
+        "best_source_chunk": "2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 41%. - Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers. - Managed approximately 99 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data",
+        "probabilities": {
+          "contradiction": 0.416667,
+          "entailment": 0.001295,
+          "neutral": 0.582038
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001295,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00536,
+          "entailment": 0.002329,
+          "neutral": 0.992311
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002329,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Supported recurring operational workflows by designing and maintaining REST API integrations.",
+        "best_source_chunk": "recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 36%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.001255,
+          "entailment": 0.946114,
+          "neutral": 0.052631
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.946114,
+        "supported": true
+      },
+      {
+        "claim": "Troubleshooting & Evidence-Based Decisions:** Investigated service requests, recorded findings with clear supporting evidence, and escalated issues to engineering teams for resolution.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.00147,
+          "entailment": 0.001334,
+          "neutral": 0.997196
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001334,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that reduced manual preparation time by 36%, demonstrating the ability to identify inefficiencies and implement data-driven solutions.",
+        "best_source_chunk": "recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 36%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.016095,
+          "entailment": 0.006846,
+          "neutral": 0.977059
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006846,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Engineer Practice Project**",
+        "best_source_chunk": "# Mei Tan mei.tan@example.test | +65 6000 0013 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 41%. - Applied",
+        "probabilities": {
+          "contradiction": 0.011998,
+          "entailment": 0.007412,
+          "neutral": 0.98059
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007412,
+        "supported": false
+      },
+      {
+        "claim": "Built a comprehensive demonstration application using TypeScript, React, and Node.js to validate full-stack capabilities.",
+        "best_source_chunk": "# Mei Tan mei.tan@example.test | +65 6000 0013 | Singapore ## Summary Technology associate with transferable experience in TypeScript, React and Node.js, seeking to deepen capability as a Full-Stack Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 41%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000581,
+          "entailment": 0.006124,
+          "neutral": 0.993295
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006124,
+        "supported": false
+      },
+      {
+        "claim": "Executed rigorous testing across representative scenarios to identify limitations and define next steps for scalability.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00231,
+          "entailment": 0.001313,
+          "neutral": 0.996377
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001313,
+        "supported": false
+      },
+      {
+        "claim": "Presented architectural design and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+        "best_source_chunk": "Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Node.js. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework",
+        "probabilities": {
+          "contradiction": 0.001246,
+          "entailment": 0.00347,
+          "neutral": 0.995284
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00347,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.002399,
+          "entailment": 0.008637,
+          "neutral": 0.988964
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008637,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000122,
+          "entailment": 0.987372,
+          "neutral": 0.012506
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.987372,
+        "supported": true
+      },
+      {
+        "claim": "Languages:** TypeScript, JavaScript",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.007718,
+          "entailment": 0.930925,
+          "neutral": 0.061357
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.930925,
+        "supported": true
+      },
+      {
+        "claim": "Frontend:** React, REST APIs",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Node.js, REST APIs, Next.js, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.705556,
+          "entailment": 0.102962,
+          "neutral": 0.191481
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.102962,
+        "supported": false
+      },
+      {
+        "claim": "DevOps & Tools:** Git, CI/CD pipelines, Docker (implied through pipeline management), Excel",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.027694,
+          "entailment": 0.005008,
+          "neutral": 0.967298
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005008,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, technical documentation, stakeholder management",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.003684,
+          "entailment": 0.002981,
+          "neutral": 0.993335
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002981,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "3cf1bd2354034b0aa68c4e5d976d2fec016078e642cc9fd1c6258f654e14be83"
+  }
+}

@@ -1,0 +1,386 @@
+{
+  "identity": {
+    "source_hash": "4b51f134838928c51990842ca2ebdf8955ac8b8d259f73dfe13aea491606e84c",
+    "tailored_hash": "74fd9cfb91a74ea6339d8eabe1d24474a7fb2848f8f20d49b1ac0808ddf44ef9",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1538,
+    "unsupported": [
+      "Senior AI and LLM Solutions Engineer with extensive experience architecting production LLM applications, designing retrieval pipelines, and establishing safety controls.",
+      "Proven track record of translating operational needs into reliable, maintainable solutions using Python, large language models (LLMs), and RAG architectures.",
+      "Expert in optimizing inference cost and latency while guiding engineering teams on responsible AI delivery.",
+      "Adept at communicating technical trade-offs to stakeholders and maintaining clear documentation for evidence-based decision-making.",
+      "Architect Production LLM Applications:** Designed and deployed scalable LLM solutions using Python, focusing on system architecture that balances performance with reliability.",
+      "Improved team turnaround by 23% through optimized delivery pipelines.",
+      "Design Retrieval & Evaluation Pipelines:** Implemented robust RAG architectures to handle complex retrieval tasks.",
+      "Established rigorous model evaluation frameworks to ensure solution quality before production deployment.",
+      "Optimize Cost & Latency:** Analyzed inference workloads to reduce operational costs and latency without compromising model accuracy, directly contributing to budget efficiency.",
+      "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews with senior leadership and product stakeholders.",
+      "Technical Assistant** | Example Cedar Innovations (Jun 2017 \u2013 Dec 2020)",
+      "Prompt Engineering & Documentation:** Developed standardized prompt engineering strategies and documented step-by-step procedures, creating a repository of reusable assets for the team.",
+      "Operational Support & Troubleshooting:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated critical issues to senior engineers.",
+      "Process Improvement:** Created automated reporting templates that reduced manual preparation time by 18%, demonstrating an ability to solve ambiguous problems through systematic analysis.",
+      "Senior AI and LLM Solutions Engineer Practice Project**",
+      "Architected a full-stack demonstration project leveraging Python, LLMs, and RAG to simulate production-grade workflows.",
+      "Conducted extensive testing across representative scenarios to identify limitations and define clear next steps for scalability.",
+      "Led a peer review session with five stakeholders to present design rationale, outcomes, and architectural decisions.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Core AI/LLM:** Python, Large Language Models (LLMs), Retrieval Augmented Generation (RAG), Prompt Engineering, Model Evaluation.",
+      "Infrastructure & DevOps:** Docker, System Architecture, Vector Databases, Kubernetes, AWS.",
+      "Soft Skills:** Clear Written & Verbal Communication, Collaborative Problem Solving, Technical Documentation, Stakeholder Management."
+    ],
+    "n_claims": 26,
+    "claim_scores": [
+      {
+        "claim": "Senior AI and LLM Solutions Engineer with extensive experience architecting production LLM applications, designing retrieval pipelines, and establishing safety controls.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.000541,
+          "entailment": 0.000828,
+          "neutral": 0.99863
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000828,
+        "supported": false
+      },
+      {
+        "claim": "Proven track record of translating operational needs into reliable, maintainable solutions using Python, large language models (LLMs), and RAG architectures.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.000398,
+          "entailment": 0.001168,
+          "neutral": 0.998434
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001168,
+        "supported": false
+      },
+      {
+        "claim": "Expert in optimizing inference cost and latency while guiding engineering teams on responsible AI delivery.",
+        "best_source_chunk": "and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications, improving team turnaround by 23%. - Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers. - Managed approximately 51 work items per month while tracking quality checks and follow-up",
+        "probabilities": {
+          "contradiction": 0.027533,
+          "entailment": 0.00134,
+          "neutral": 0.971127
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00134,
+        "supported": false
+      },
+      {
+        "claim": "Adept at communicating technical trade-offs to stakeholders and maintaining clear documentation for evidence-based decision-making.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.000362,
+          "entailment": 0.004326,
+          "neutral": 0.995312
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004326,
+        "supported": false
+      },
+      {
+        "claim": "Senior AI and LLM Solutions Engineer** | Example Beacon Services (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.001725,
+          "entailment": 0.972486,
+          "neutral": 0.025789
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.972486,
+        "supported": true
+      },
+      {
+        "claim": "Architect Production LLM Applications:** Designed and deployed scalable LLM solutions using Python, focusing on system architecture that balances performance with reliability.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.001936,
+          "entailment": 0.007582,
+          "neutral": 0.990482
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007582,
+        "supported": false
+      },
+      {
+        "claim": "Improved team turnaround by 23% through optimized delivery pipelines.",
+        "best_source_chunk": "Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.000889,
+          "entailment": 0.000504,
+          "neutral": 0.998607
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000504,
+        "supported": false
+      },
+      {
+        "claim": "Design Retrieval & Evaluation Pipelines:** Implemented robust RAG architectures to handle complex retrieval tasks.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.001866,
+          "entailment": 0.002636,
+          "neutral": 0.995498
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002636,
+        "supported": false
+      },
+      {
+        "claim": "Established rigorous model evaluation frameworks to ensure solution quality before production deployment.",
+        "best_source_chunk": "and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications, improving team turnaround by 23%. - Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers. - Managed approximately 51 work items per month while tracking quality checks and follow-up",
+        "probabilities": {
+          "contradiction": 0.002008,
+          "entailment": 0.001132,
+          "neutral": 0.99686
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001132,
+        "supported": false
+      },
+      {
+        "claim": "Establish Safety & Observability Controls:** Collaborated with cross-functional teams to define safety guardrails and observability metrics, ensuring responsible AI usage and transparent monitoring of system performance.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.001132,
+          "entailment": 0.615382,
+          "neutral": 0.383485
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.615382,
+        "supported": true
+      },
+      {
+        "claim": "Optimize Cost & Latency:** Analyzed inference workloads to reduce operational costs and latency without compromising model accuracy, directly contributing to budget efficiency.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.000268,
+          "entailment": 0.001132,
+          "neutral": 0.9986
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001132,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews with senior leadership and product stakeholders.",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 51 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.024973,
+          "entailment": 0.000765,
+          "neutral": 0.974263
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000765,
+        "supported": false
+      },
+      {
+        "claim": "Managed a portfolio of 51+ monthly work items with strict adherence to quality checks.",
+        "best_source_chunk": "and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications, improving team turnaround by 23%. - Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers. - Managed approximately 51 work items per month while tracking quality checks and follow-up",
+        "probabilities": {
+          "contradiction": 0.002108,
+          "entailment": 0.599401,
+          "neutral": 0.398491
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.599401,
+        "supported": true
+      },
+      {
+        "claim": "Technical Assistant** | Example Cedar Innovations (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.374951,
+          "entailment": 0.005373,
+          "neutral": 0.619677
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005373,
+        "supported": false
+      },
+      {
+        "claim": "Prompt Engineering & Documentation:** Developed standardized prompt engineering strategies and documented step-by-step procedures, creating a repository of reusable assets for the team.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.000604,
+          "entailment": 0.000864,
+          "neutral": 0.998532
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000864,
+        "supported": false
+      },
+      {
+        "claim": "Operational Support & Troubleshooting:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated critical issues to senior engineers.",
+        "best_source_chunk": "and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications, improving team turnaround by 23%. - Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers. - Managed approximately 51 work items per month while tracking quality checks and follow-up",
+        "probabilities": {
+          "contradiction": 0.001851,
+          "entailment": 0.000799,
+          "neutral": 0.99735
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000799,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Created automated reporting templates that reduced manual preparation time by 18%, demonstrating an ability to solve ambiguous problems through systematic analysis.",
+        "best_source_chunk": "Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 18%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.005099,
+          "entailment": 0.003504,
+          "neutral": 0.991397
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003504,
+        "supported": false
+      },
+      {
+        "claim": "Senior AI and LLM Solutions Engineer Practice Project**",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.002781,
+          "entailment": 0.032701,
+          "neutral": 0.964518
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.032701,
+        "supported": false
+      },
+      {
+        "claim": "Architected a full-stack demonstration project leveraging Python, LLMs, and RAG to simulate production-grade workflows.",
+        "best_source_chunk": "template that reduced manual preparation time by 18%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project using Python, large language models and RAG. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ###",
+        "probabilities": {
+          "contradiction": 0.002738,
+          "entailment": 0.001862,
+          "neutral": 0.995399
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001862,
+        "supported": false
+      },
+      {
+        "claim": "Conducted extensive testing across representative scenarios to identify limitations and define clear next steps for scalability.",
+        "best_source_chunk": "template that reduced manual preparation time by 18%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project using Python, large language models and RAG. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ###",
+        "probabilities": {
+          "contradiction": 0.000771,
+          "entailment": 0.000678,
+          "neutral": 0.99855
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000678,
+        "supported": false
+      },
+      {
+        "claim": "Led a peer review session with five stakeholders to present design rationale, outcomes, and architectural decisions.",
+        "best_source_chunk": "template that reduced manual preparation time by 18%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project using Python, large language models and RAG. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ###",
+        "probabilities": {
+          "contradiction": 0.005958,
+          "entailment": 0.001626,
+          "neutral": 0.992416
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001626,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "decisions for technical and business reviewers. - Managed approximately 51 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using prompt engineering and documented",
+        "probabilities": {
+          "contradiction": 0.530455,
+          "entailment": 0.003989,
+          "neutral": 0.465556
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.003989,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.000443,
+          "entailment": 0.976776,
+          "neutral": 0.022781
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.976776,
+        "supported": true
+      },
+      {
+        "claim": "Core AI/LLM:** Python, Large Language Models (LLMs), Retrieval Augmented Generation (RAG), Prompt Engineering, Model Evaluation.",
+        "best_source_chunk": "# Quentin Lim quentin.lim@example.test | +65 6000 0037 | Singapore ## Summary Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior AI and LLM Solutions Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Python and large language models to",
+        "probabilities": {
+          "contradiction": 0.004614,
+          "entailment": 0.045983,
+          "neutral": 0.949403
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.045983,
+        "supported": false
+      },
+      {
+        "claim": "Infrastructure & DevOps:** Docker, System Architecture, Vector Databases, Kubernetes, AWS.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.006598,
+          "entailment": 0.003172,
+          "neutral": 0.99023
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003172,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written & Verbal Communication, Collaborative Problem Solving, Technical Documentation, Stakeholder Management.",
+        "best_source_chunk": "engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, RAG, prompt engineering, vector databases, model evaluation, Docker, system architecture, LangGraph, Kubernetes",
+        "probabilities": {
+          "contradiction": 0.035146,
+          "entailment": 0.001725,
+          "neutral": 0.963129
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001725,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "993fe73deddcf9872c91d338fde3404d71371f105c7dde0be32837a9e797f0dc"
+  }
+}

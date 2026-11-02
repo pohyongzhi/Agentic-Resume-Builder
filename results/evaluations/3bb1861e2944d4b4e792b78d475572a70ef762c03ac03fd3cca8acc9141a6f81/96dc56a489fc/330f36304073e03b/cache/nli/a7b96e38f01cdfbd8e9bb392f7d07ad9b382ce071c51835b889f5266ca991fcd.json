@@ -1,0 +1,360 @@
+{
+  "identity": {
+    "source_hash": "0318e910f0e2f1e2143cc3f4915ca8b26616ef7ba78b1f3133b4ba772dadf1b1",
+    "tailored_hash": "fad2169ca94fbe058eec2ac5a8a05c43d16f9d0c268643b2339f08776966bbed",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1667,
+    "unsupported": [
+      "Proven track record of leading delivery of complex features while establishing automated testing practices and maintaining clear documentation.",
+      "Skilled in mentoring engineers through design reviews and code audits, translating operational needs into reliable, maintainable solutions.",
+      "Adept at communicating technical trade-offs to stakeholders and solving ambiguous problems within multidisciplinary teams.",
+      "Example Beacon Services** | Singapore",
+      "Lead Delivery & Architecture:** Spearheaded the delivery of critical Android features, defining a maintainable mobile architecture that improved team turnaround by 38%.",
+      "Performance Optimization:** Collaborated with cross-functional teams to improve application performance, ensuring high reliability and responsiveness.",
+      "Quality Assurance:** Established automated testing practices to validate feature stability;",
+      "managed approximately 61 work items monthly while enforcing rigorous quality checks.",
+      "Mentorship & Reviews:** Mentored junior engineers through design reviews and code audits, fostering a culture of evidence-based decision-making.",
+      "Stakeholder Communication:** Presented progress, risks, and technical trade-offs to engineering, product, and business stakeholders during fortnightly reviews.",
+      "Documentation:** Documented architectural decisions and operational procedures for technical and business reviewers, ensuring clarity and traceability.",
+      "Example Cedar Innovations** | Singapore",
+      "API Integration:** Supported recurring operational work using REST APIs, creating clear step-by-step documentation to streamline workflows.",
+      "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems.",
+      "Process Improvement:** Developed a reporting template that reduced manual preparation time by 33%, showcasing commitment to efficiency and measurable outcomes.",
+      "Senior Mobile Engineer Practice Project",
+      "Implemented unit testing with representative scenarios to validate functionality and identify limitations.",
+      "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+      "Bachelor of Science in Information Systems",
+      "Example Institute of Technology** | Singapore"
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Senior Mobile Engineer with extensive experience in Kotlin, Android development, and mobile architecture.",
+        "best_source_chunk": "# Quentin Tan quentin.tan@example.test | +65 6000 0017 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.00011,
+          "entailment": 0.95289,
+          "neutral": 0.047001
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.95289,
+        "supported": true
+      },
+      {
+        "claim": "Proven track record of leading delivery of complex features while establishing automated testing practices and maintaining clear documentation.",
+        "best_source_chunk": "approximately 61 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000991,
+          "entailment": 0.002402,
+          "neutral": 0.996607
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002402,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in mentoring engineers through design reviews and code audits, translating operational needs into reliable, maintainable solutions.",
+        "best_source_chunk": "approximately 61 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000629,
+          "entailment": 0.001663,
+          "neutral": 0.997708
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001663,
+        "supported": false
+      },
+      {
+        "claim": "Adept at communicating technical trade-offs to stakeholders and solving ambiguous problems within multidisciplinary teams.",
+        "best_source_chunk": "unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.055407,
+          "entailment": 0.010257,
+          "neutral": 0.934336
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010257,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "# Quentin Tan quentin.tan@example.test | +65 6000 0017 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000444,
+          "entailment": 0.013452,
+          "neutral": 0.986104
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013452,
+        "supported": false
+      },
+      {
+        "claim": "Lead Delivery & Architecture:** Spearheaded the delivery of critical Android features, defining a maintainable mobile architecture that improved team turnaround by 38%.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.030752,
+          "entailment": 0.003047,
+          "neutral": 0.966201
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003047,
+        "supported": false
+      },
+      {
+        "claim": "Performance Optimization:** Collaborated with cross-functional teams to improve application performance, ensuring high reliability and responsiveness.",
+        "best_source_chunk": "# Quentin Tan quentin.tan@example.test | +65 6000 0017 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000273,
+          "entailment": 0.037545,
+          "neutral": 0.962182
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.037545,
+        "supported": false
+      },
+      {
+        "claim": "Quality Assurance:** Established automated testing practices to validate feature stability;",
+        "best_source_chunk": "unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.006506,
+          "entailment": 0.01453,
+          "neutral": 0.978963
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01453,
+        "supported": false
+      },
+      {
+        "claim": "managed approximately 61 work items monthly while enforcing rigorous quality checks.",
+        "best_source_chunk": "approximately 61 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001729,
+          "entailment": 0.000839,
+          "neutral": 0.997432
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000839,
+        "supported": false
+      },
+      {
+        "claim": "Mentorship & Reviews:** Mentored junior engineers through design reviews and code audits, fostering a culture of evidence-based decision-making.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.001579,
+          "entailment": 0.002028,
+          "neutral": 0.996393
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002028,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented progress, risks, and technical trade-offs to engineering, product, and business stakeholders during fortnightly reviews.",
+        "best_source_chunk": "approximately 61 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.0593,
+          "entailment": 0.001715,
+          "neutral": 0.938985
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001715,
+        "supported": false
+      },
+      {
+        "claim": "Documentation:** Documented architectural decisions and operational procedures for technical and business reviewers, ensuring clarity and traceability.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.001242,
+          "entailment": 0.00601,
+          "neutral": 0.992748
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00601,
+        "supported": false
+      },
+      {
+        "claim": "Example Cedar Innovations** | Singapore",
+        "best_source_chunk": "# Quentin Tan quentin.tan@example.test | +65 6000 0017 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.030746,
+          "entailment": 0.003177,
+          "neutral": 0.966077
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003177,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Supported recurring operational work using REST APIs, creating clear step-by-step documentation to streamline workflows.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.013426,
+          "entailment": 0.017187,
+          "neutral": 0.969387
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017187,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.160386,
+          "entailment": 0.007456,
+          "neutral": 0.832157
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007456,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that reduced manual preparation time by 33%, showcasing commitment to efficiency and measurable outcomes.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.014656,
+          "entailment": 0.019595,
+          "neutral": 0.965749
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019595,
+        "supported": false
+      },
+      {
+        "claim": "Senior Mobile Engineer Practice Project",
+        "best_source_chunk": "# Quentin Tan quentin.tan@example.test | +65 6000 0017 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000732,
+          "entailment": 0.004444,
+          "neutral": 0.994824
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004444,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration application using Kotlin, Android, and mobile architecture principles.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.000285,
+          "entailment": 0.883835,
+          "neutral": 0.11588
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.883835,
+        "supported": true
+      },
+      {
+        "claim": "Implemented unit testing with representative scenarios to validate functionality and identify limitations.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 33%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.001633,
+          "entailment": 0.001688,
+          "neutral": 0.99668
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001688,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+        "best_source_chunk": "### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 -",
+        "probabilities": {
+          "contradiction": 0.000742,
+          "entailment": 0.005034,
+          "neutral": 0.994223
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005034,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.001739,
+          "entailment": 0.001636,
+          "neutral": 0.996624
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001636,
+        "supported": false
+      },
+      {
+        "claim": "Example Institute of Technology** | Singapore",
+        "best_source_chunk": "# Quentin Tan quentin.tan@example.test | +65 6000 0017 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Beacon Services (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.001703,
+          "entailment": 0.009157,
+          "neutral": 0.98914
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009157,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 9.8e-05,
+          "entailment": 0.985776,
+          "neutral": 0.014126
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.985776,
+        "supported": true
+      },
+      {
+        "claim": "Kotlin, Android, Mobile Architecture, Jetpack Compose, REST APIs, Unit Testing, Git, CI/CD, Performance Optimization, Firebase",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.002845,
+          "entailment": 0.956932,
+          "neutral": 0.040223
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.956932,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "a7b96e38f01cdfbd8e9bb392f7d07ad9b382ce071c51835b889f5266ca991fcd"
+  }
+}

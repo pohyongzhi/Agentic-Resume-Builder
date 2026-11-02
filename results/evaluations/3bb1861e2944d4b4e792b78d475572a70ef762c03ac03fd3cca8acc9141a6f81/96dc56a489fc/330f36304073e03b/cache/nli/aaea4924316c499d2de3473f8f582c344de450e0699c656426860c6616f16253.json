@@ -1,0 +1,361 @@
+{
+  "identity": {
+    "source_hash": "d59b7e5f68f2c8d795d7f139bf8b6a8985f59cdf6353fd8f6232f00b7bfae813",
+    "tailored_hash": "c8008ee354c995d86c578ee6a82971efc72efd69302e278a8d424eef799dd94a",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.125,
+    "unsupported": [
+      "Proven ability to turn operational and customer needs into reliable, maintainable solutions by delivering documented, measurable improvements.",
+      "Skilled at partnering with engineering and business stakeholders to define success metrics, evaluate experiments, and communicate technical trade-offs clearly.",
+      "Committed to evidence-based decision-making and collaborative problem-solving in ambiguous environments.",
+      "Example Beacon Services** | Singapore",
+      "Product Usage & Funnels:** Utilized product analytics and SQL to analyze product usage and funnels, driving a 32% improvement in team turnaround through data-backed insights.",
+      "Metrics & Documentation:** Defined product success metrics using dashboarding tools;",
+      "documented all decisions for technical and business reviewers to ensure clarity and maintainability.",
+      "Experiment Evaluation:** Collaborated with cross-functional teams to evaluate experiments, presenting progress, risks, and findings during fortnightly reviews.",
+      "Stakeholder Communication:** Managed approximately 71 work items monthly while tracking quality checks, effectively communicating progress and technical trade-offs to relevant stakeholders.",
+      "Example Cedar Innovations** | Singapore",
+      "A/B Testing & Research:** Supported recurring operational work by applying A/B testing methodologies and conducting customer research to validate hypotheses.",
+      "Evidence-Based Decisions:** Investigated service requests, recorded findings, and escalated issues with clear supporting evidence to facilitate informed decision-making.",
+      "Process Improvement:** Created a reporting template that reduced manual preparation time by 27%, demonstrating the ability to solve ambiguous problems efficiently.",
+      "Product Analyst Practice Project",
+      "Built a demonstration project utilizing product analytics, SQL, and dashboarding to simulate real-world scenarios.",
+      "Tested the project with representative cases, recording limitations and outlining next steps for scalability.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing data storytelling and communication skills.",
+      "Bachelor of Science in Information Systems",
+      "Example Polytechnic** | Singapore",
+      "Coursework covered software engineering, databases, cybersecurity, and applied analytics, providing a strong foundation for technical product analysis.",
+      "Soft Skills:** Stakeholder Communication, Customer Research, Collaborative Problem Solving, Clear Written/Verbal Communication."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Product Analyst with hands-on experience in product analytics, SQL, and dashboarding.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, dashboarding, A/B testing, customer research, KPI design, stakeholder communication, data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.001778,
+          "entailment": 0.52011,
+          "neutral": 0.478112
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.52011,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to turn operational and customer needs into reliable, maintainable solutions by delivering documented, measurable improvements.",
+        "best_source_chunk": "# Grace Koh grace.koh@example.test | +65 6000 0087 | Singapore ## Summary Product Analyst with hands-on experience in product analytics, SQL and dashboarding. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Product Analyst, Example Beacon Services (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 32%.",
+        "probabilities": {
+          "contradiction": 0.000285,
+          "entailment": 0.007062,
+          "neutral": 0.992653
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007062,
+        "supported": false
+      },
+      {
+        "claim": "Skilled at partnering with engineering and business stakeholders to define success metrics, evaluate experiments, and communicate technical trade-offs clearly.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, dashboarding, A/B testing, customer research, KPI design, stakeholder communication, data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.00123,
+          "entailment": 0.013852,
+          "neutral": 0.984918
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013852,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making and collaborative problem-solving in ambiguous environments.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.064658,
+          "entailment": 0.010607,
+          "neutral": 0.924734
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010607,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.60798,
+          "entailment": 0.019516,
+          "neutral": 0.372503
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.019516,
+        "supported": false
+      },
+      {
+        "claim": "Product Usage & Funnels:** Utilized product analytics and SQL to analyze product usage and funnels, driving a 32% improvement in team turnaround through data-backed insights.",
+        "best_source_chunk": "# Grace Koh grace.koh@example.test | +65 6000 0087 | Singapore ## Summary Product Analyst with hands-on experience in product analytics, SQL and dashboarding. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Product Analyst, Example Beacon Services (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 32%.",
+        "probabilities": {
+          "contradiction": 0.000223,
+          "entailment": 0.185646,
+          "neutral": 0.814131
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.185646,
+        "supported": false
+      },
+      {
+        "claim": "Metrics & Documentation:** Defined product success metrics using dashboarding tools;",
+        "best_source_chunk": "# Grace Koh grace.koh@example.test | +65 6000 0087 | Singapore ## Summary Product Analyst with hands-on experience in product analytics, SQL and dashboarding. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Product Analyst, Example Beacon Services (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 32%.",
+        "probabilities": {
+          "contradiction": 0.001178,
+          "entailment": 0.053221,
+          "neutral": 0.945601
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.053221,
+        "supported": false
+      },
+      {
+        "claim": "documented all decisions for technical and business reviewers to ensure clarity and maintainability.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000524,
+          "entailment": 0.004267,
+          "neutral": 0.995208
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004267,
+        "supported": false
+      },
+      {
+        "claim": "Experiment Evaluation:** Collaborated with cross-functional teams to evaluate experiments, presenting progress, risks, and findings during fortnightly reviews.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.006876,
+          "entailment": 0.011199,
+          "neutral": 0.981925
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011199,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Managed approximately 71 work items monthly while tracking quality checks, effectively communicating progress and technical trade-offs to relevant stakeholders.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.001394,
+          "entailment": 0.001559,
+          "neutral": 0.997047
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001559,
+        "supported": false
+      },
+      {
+        "claim": "Example Cedar Innovations** | Singapore",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.996615,
+          "entailment": 0.001257,
+          "neutral": 0.002128
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.001257,
+        "supported": false
+      },
+      {
+        "claim": "A/B Testing & Research:** Supported recurring operational work by applying A/B testing methodologies and conducting customer research to validate hypotheses.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.006074,
+          "entailment": 0.017073,
+          "neutral": 0.976853
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017073,
+        "supported": false
+      },
+      {
+        "claim": "Evidence-Based Decisions:** Investigated service requests, recorded findings, and escalated issues with clear supporting evidence to facilitate informed decision-making.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.016775,
+          "entailment": 0.026131,
+          "neutral": 0.957094
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.026131,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Created a reporting template that reduced manual preparation time by 27%, demonstrating the ability to solve ambiguous problems efficiently.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.037234,
+          "entailment": 0.001586,
+          "neutral": 0.96118
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001586,
+        "supported": false
+      },
+      {
+        "claim": "Product Analyst Practice Project",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.08522,
+          "entailment": 0.01326,
+          "neutral": 0.90152
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01326,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing product analytics, SQL, and dashboarding to simulate real-world scenarios.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.002599,
+          "entailment": 0.002997,
+          "neutral": 0.994404
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002997,
+        "supported": false
+      },
+      {
+        "claim": "Tested the project with representative cases, recording limitations and outlining next steps for scalability.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001495,
+          "entailment": 0.00176,
+          "neutral": 0.996745
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00176,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing data storytelling and communication skills.",
+        "best_source_chunk": "Practice Project - Built a fictional demonstration project using product analytics, SQL and dashboarding. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software",
+        "probabilities": {
+          "contradiction": 0.001132,
+          "entailment": 0.001393,
+          "neutral": 0.997474
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001393,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using A/B testing and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.007638,
+          "entailment": 0.001472,
+          "neutral": 0.99089
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001472,
+        "supported": false
+      },
+      {
+        "claim": "Example Polytechnic** | Singapore",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.973582,
+          "entailment": 0.006796,
+          "neutral": 0.019622
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.006796,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics, providing a strong foundation for technical product analysis.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.000733,
+          "entailment": 0.001266,
+          "neutral": 0.998001
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001266,
+        "supported": false
+      },
+      {
+        "claim": "Core Competencies:** Product Analytics, SQL, Dashboarding, A/B Testing, KPI Design, Data Storytelling.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills product analytics, SQL, dashboarding, A/B testing, customer research, KPI design, stakeholder communication, data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.002091,
+          "entailment": 0.874575,
+          "neutral": 0.123334
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.874575,
+        "supported": true
+      },
+      {
+        "claim": "Tools & Platforms:** Amplitude, Python.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.014558,
+          "entailment": 0.667366,
+          "neutral": 0.318076
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.667366,
+        "supported": true
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Customer Research, Collaborative Problem Solving, Clear Written/Verbal Communication.",
+        "best_source_chunk": "data storytelling, Python, Amplitude",
+        "probabilities": {
+          "contradiction": 0.645243,
+          "entailment": 0.174522,
+          "neutral": 0.180234
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.174522,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "aaea4924316c499d2de3473f8f582c344de450e0699c656426860c6616f16253"
+  }
+}

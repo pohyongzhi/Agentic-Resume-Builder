@@ -1,0 +1,375 @@
+{
+  "identity": {
+    "source_hash": "f7617ffa57106e9108cbfe0fb973503d59e3375badef36a90c26676c2d97a1e3",
+    "tailored_hash": "a89bc0dd9cb112be105c13e8a6e892683e178ae3df6bd037c587097fd9fe08fa",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.08,
+    "unsupported": [
+      "Proven track record of leading feature delivery, defining maintainable technical solutions, and improving application performance through data-driven decisions.",
+      "Adept at mentoring engineers, establishing automated testing practices, and communicating complex technical trade-offs to stakeholders.",
+      "Committed to delivering reliable, high-quality outcomes while maintaining clear documentation and rigorous quality controls.",
+      "Technology Associate** | Example Cedar Innovations (Jan 2021 \u2013 Present)",
+      "Lead Delivery & Architecture:** Spearheaded the delivery of critical Android features using Kotlin and established maintainable mobile architecture patterns.",
+      "Defined technical decisions with clear documentation for engineering and business reviewers, ensuring alignment with operational needs.",
+      "Performance Optimization:** Collaborated with a cross-functional team to improve application performance metrics, directly contributing to a 14% increase in team turnaround efficiency.",
+      "Quality & Process Management:** Managed approximately 74 work items monthly, implementing quality checks and follow-up actions to ensure reliable delivery.",
+      "Established practices for tracking progress and risks during fortnightly stakeholder reviews.",
+      "Mentorship & Collaboration:** Mentored four colleagues on design patterns and code standards;",
+      "facilitated collaborative problem-solving to address ambiguous technical challenges.",
+      "Technical Assistant** | Example Delta Operations (Jun 2017 \u2013 Dec 2020)",
+      "API Integration:** Supported recurring operational workflows by developing robust solutions using REST APIs, ensuring seamless data integration.",
+      "Documentation & Evidence-Based Decisions:** Documented step-by-step procedures and recorded findings with clear supporting evidence to facilitate troubleshooting and knowledge retention.",
+      "Process Improvement:** Designed a reporting template that reduced manual preparation time by 9%, demonstrating an ability to solve ambiguous problems through practical, measurable improvements.",
+      "Senior Mobile Engineer Practice Project**",
+      "Developed a comprehensive demonstration application using Kotlin, Android, and modern mobile architecture principles.",
+      "Implemented representative testing scenarios to validate functionality and identify limitations.",
+      "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+      "Languages & Frameworks:** Kotlin, Android, Jetpack Compose, REST APIs.",
+      "Development Practices:** Mobile Architecture, Unit Testing, Git, CI/CD pipelines, Performance Optimization.",
+      "Soft Skills:** Clear Written & Verbal Communication, Stakeholder Management, Collaborative Problem Solving, Technical Documentation."
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Senior Mobile Engineer with extensive experience in Kotlin, Android development, and mobile architecture.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.001463,
+          "entailment": 0.971269,
+          "neutral": 0.027268
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.971269,
+        "supported": true
+      },
+      {
+        "claim": "Proven track record of leading feature delivery, defining maintainable technical solutions, and improving application performance through data-driven decisions.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.005017,
+          "entailment": 0.002738,
+          "neutral": 0.992246
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002738,
+        "supported": false
+      },
+      {
+        "claim": "Adept at mentoring engineers, establishing automated testing practices, and communicating complex technical trade-offs to stakeholders.",
+        "best_source_chunk": "approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000692,
+          "entailment": 0.001012,
+          "neutral": 0.998296
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001012,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering reliable, high-quality outcomes while maintaining clear documentation and rigorous quality controls.",
+        "best_source_chunk": "approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000302,
+          "entailment": 0.003016,
+          "neutral": 0.996682
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003016,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.009072,
+          "entailment": 0.136925,
+          "neutral": 0.854003
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.136925,
+        "supported": false
+      },
+      {
+        "claim": "Lead Delivery & Architecture:** Spearheaded the delivery of critical Android features using Kotlin and established maintainable mobile architecture patterns.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.005478,
+          "entailment": 0.00592,
+          "neutral": 0.988602
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00592,
+        "supported": false
+      },
+      {
+        "claim": "Defined technical decisions with clear documentation for engineering and business reviewers, ensuring alignment with operational needs.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.003889,
+          "entailment": 0.007211,
+          "neutral": 0.988901
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007211,
+        "supported": false
+      },
+      {
+        "claim": "Performance Optimization:** Collaborated with a cross-functional team to improve application performance metrics, directly contributing to a 14% increase in team turnaround efficiency.",
+        "best_source_chunk": "(fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%. - Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers. - Managed approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve",
+        "probabilities": {
+          "contradiction": 0.000237,
+          "entailment": 0.001244,
+          "neutral": 0.998519
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001244,
+        "supported": false
+      },
+      {
+        "claim": "Quality & Process Management:** Managed approximately 74 work items monthly, implementing quality checks and follow-up actions to ensure reliable delivery.",
+        "best_source_chunk": "approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.00307,
+          "entailment": 0.003244,
+          "neutral": 0.993686
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003244,
+        "supported": false
+      },
+      {
+        "claim": "Established practices for tracking progress and risks during fortnightly stakeholder reviews.",
+        "best_source_chunk": "approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001636,
+          "entailment": 0.001511,
+          "neutral": 0.996853
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001511,
+        "supported": false
+      },
+      {
+        "claim": "Mentorship & Collaboration:** Mentored four colleagues on design patterns and code standards;",
+        "best_source_chunk": "approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.005065,
+          "entailment": 0.005776,
+          "neutral": 0.98916
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005776,
+        "supported": false
+      },
+      {
+        "claim": "facilitated collaborative problem-solving to address ambiguous technical challenges.",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000879,
+          "entailment": 0.012984,
+          "neutral": 0.986138
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012984,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.892678,
+          "entailment": 0.030612,
+          "neutral": 0.07671
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.030612,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Supported recurring operational workflows by developing robust solutions using REST APIs, ensuring seamless data integration.",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.00292,
+          "entailment": 0.004629,
+          "neutral": 0.992451
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004629,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Evidence-Based Decisions:** Documented step-by-step procedures and recorded findings with clear supporting evidence to facilitate troubleshooting and knowledge retention.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.0007,
+          "entailment": 0.002167,
+          "neutral": 0.997133
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002167,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Designed a reporting template that reduced manual preparation time by 9%, demonstrating an ability to solve ambiguous problems through practical, measurable improvements.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.037204,
+          "entailment": 0.018689,
+          "neutral": 0.944107
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018689,
+        "supported": false
+      },
+      {
+        "claim": "Senior Mobile Engineer Practice Project**",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.010434,
+          "entailment": 0.042549,
+          "neutral": 0.947017
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.042549,
+        "supported": false
+      },
+      {
+        "claim": "Developed a comprehensive demonstration application using Kotlin, Android, and modern mobile architecture principles.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000252,
+          "entailment": 0.012576,
+          "neutral": 0.987172
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012576,
+        "supported": false
+      },
+      {
+        "claim": "Implemented representative testing scenarios to validate functionality and identify limitations.",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.004031,
+          "entailment": 0.004163,
+          "neutral": 0.991806
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004163,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+        "best_source_chunk": "### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May",
+        "probabilities": {
+          "contradiction": 0.000499,
+          "entailment": 0.00315,
+          "neutral": 0.996351
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00315,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.233686,
+          "entailment": 0.06728,
+          "neutral": 0.699034
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.06728,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 7.5e-05,
+          "entailment": 0.972834,
+          "neutral": 0.027091
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.972834,
+        "supported": true
+      },
+      {
+        "claim": "Languages & Frameworks:** Kotlin, Android, Jetpack Compose, REST APIs.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.020878,
+          "entailment": 0.111953,
+          "neutral": 0.867169
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.111953,
+        "supported": false
+      },
+      {
+        "claim": "Development Practices:** Mobile Architecture, Unit Testing, Git, CI/CD pipelines, Performance Optimization.",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.009602,
+          "entailment": 0.011873,
+          "neutral": 0.978525
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011873,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written & Verbal Communication, Stakeholder Management, Collaborative Problem Solving, Technical Documentation.",
+        "best_source_chunk": "Compose, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.004074,
+          "entailment": 0.007905,
+          "neutral": 0.988021
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007905,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "75862373ead29bb0127c49aaff528abbf8e4544efcdb238c549371a42bf31185"
+  }
+}

@@ -1,0 +1,334 @@
+{
+  "identity": {
+    "source_hash": "2663b7017bfc971bdc2ee4b1017bf15f587f5a66f799b4e6e2c02f57f35600ca",
+    "tailored_hash": "07b172d23f8f040da4dbff3fdda5a5f5b9ce9b776eb3df7f73b681c0cf64e21e",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1818,
+    "unsupported": [
+      "Frontend Engineer with hands-on experience in JavaScript, TypeScript, and React.",
+      "Proven ability to translate designs into reusable components and build accessible user interfaces while maintaining clear documentation.",
+      "Delivers measurable improvements through automated testing and performance optimization.",
+      "Collaborative communicator skilled at presenting technical trade-offs to stakeholders and solving ambiguous problems within multidisciplinary teams.",
+      "Translated design requirements into reusable components and documented technical decisions for engineering and business reviewers.",
+      "Integrated frontend features with REST APIs while managing approximately 33 work items per month with rigorous quality checks.",
+      "Collaborated with cross-functional teams to present progress, risks, and technical trade-offs during fortnightly reviews.",
+      "Implemented automated component tests to ensure reliability and maintain code quality standards.",
+      "Example Beacon Services** | Singapore (May 2024 \u2013 Dec 2024)",
+      "Supported operational workflows using HTML and CSS, creating documented step-by-step procedures for recurring tasks.",
+      "Investigated service requests and escalated issues with clear supporting evidence, fostering trust through transparent communication.",
+      "Developed a reporting template that reduced manual preparation time by 14%, demonstrating ability to deliver well-tested improvements.",
+      "Frontend Engineer Practice Project",
+      "Built a demonstration application using JavaScript, TypeScript, and React.",
+      "Wrote automated tests covering representative scenarios to validate functionality and identify limitations.",
+      "Presented design rationale and outcomes to a five-person peer review group, refining technical approach based on feedback.",
+      "Bachelor of Science in Information Systems",
+      "Example Institute of Technology** | Singapore (Aug 2020 \u2013 May 2024)"
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Frontend Engineer with hands-on experience in JavaScript, TypeScript, and React.",
+        "best_source_chunk": "# Aisha Tan aisha.tan@example.test | +65 6000 0001 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.005507,
+          "entailment": 0.054049,
+          "neutral": 0.940444
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.054049,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to translate designs into reusable components and build accessible user interfaces while maintaining clear documentation.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.004074,
+          "entailment": 0.011024,
+          "neutral": 0.984903
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011024,
+        "supported": false
+      },
+      {
+        "claim": "Delivers measurable improvements through automated testing and performance optimization.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.010346,
+          "entailment": 0.012591,
+          "neutral": 0.977063
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012591,
+        "supported": false
+      },
+      {
+        "claim": "Collaborative communicator skilled at presenting technical trade-offs to stakeholders and solving ambiguous problems within multidisciplinary teams.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.08297,
+          "entailment": 0.03308,
+          "neutral": 0.88395
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.03308,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions** | Singapore (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "# Aisha Tan aisha.tan@example.test | +65 6000 0001 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.001173,
+          "entailment": 0.934744,
+          "neutral": 0.064083
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.934744,
+        "supported": true
+      },
+      {
+        "claim": "Built accessible user interfaces using JavaScript, TypeScript, and React, improving team turnaround by 19%.",
+        "best_source_chunk": "# Aisha Tan aisha.tan@example.test | +65 6000 0001 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.000233,
+          "entailment": 0.995652,
+          "neutral": 0.004115
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995652,
+        "supported": true
+      },
+      {
+        "claim": "Translated design requirements into reusable components and documented technical decisions for engineering and business reviewers.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.021376,
+          "entailment": 0.010102,
+          "neutral": 0.968522
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010102,
+        "supported": false
+      },
+      {
+        "claim": "Integrated frontend features with REST APIs while managing approximately 33 work items per month with rigorous quality checks.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.014427,
+          "entailment": 0.00066,
+          "neutral": 0.984913
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00066,
+        "supported": false
+      },
+      {
+        "claim": "Collaborated with cross-functional teams to present progress, risks, and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002905,
+          "entailment": 0.006145,
+          "neutral": 0.990951
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006145,
+        "supported": false
+      },
+      {
+        "claim": "Implemented automated component tests to ensure reliability and maintain code quality standards.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.013875,
+          "entailment": 0.010478,
+          "neutral": 0.975647
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010478,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.147496,
+          "entailment": 0.019762,
+          "neutral": 0.832742
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019762,
+        "supported": false
+      },
+      {
+        "claim": "Supported operational workflows using HTML and CSS, creating documented step-by-step procedures for recurring tasks.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.008483,
+          "entailment": 0.024282,
+          "neutral": 0.967235
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024282,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests and escalated issues with clear supporting evidence, fostering trust through transparent communication.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.207778,
+          "entailment": 0.095419,
+          "neutral": 0.696803
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.095419,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 14%, demonstrating ability to deliver well-tested improvements.",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.00138,
+          "entailment": 0.003322,
+          "neutral": 0.995298
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003322,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Engineer Practice Project",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.485364,
+          "entailment": 0.023024,
+          "neutral": 0.491612
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.023024,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration application using JavaScript, TypeScript, and React.",
+        "best_source_chunk": "# Aisha Tan aisha.tan@example.test | +65 6000 0001 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.000507,
+          "entailment": 0.18352,
+          "neutral": 0.815973
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.18352,
+        "supported": false
+      },
+      {
+        "claim": "Wrote automated tests covering representative scenarios to validate functionality and identify limitations.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002782,
+          "entailment": 0.002215,
+          "neutral": 0.995003
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002215,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical approach based on feedback.",
+        "best_source_chunk": "Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework",
+        "probabilities": {
+          "contradiction": 0.00082,
+          "entailment": 0.003759,
+          "neutral": 0.995421
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003759,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.479627,
+          "entailment": 0.055584,
+          "neutral": 0.46479
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.055584,
+        "supported": false
+      },
+      {
+        "claim": "Example Institute of Technology** | Singapore (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "accessibility",
+        "probabilities": {
+          "contradiction": 0.215262,
+          "entailment": 0.160205,
+          "neutral": 0.624533
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.160205,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.003602,
+          "entailment": 0.952241,
+          "neutral": 0.044158
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.952241,
+        "supported": true
+      },
+      {
+        "claim": "JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, Accessibility",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.006816,
+          "entailment": 0.822021,
+          "neutral": 0.171163
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.822021,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "e5d98fd4a42fb7a9854e6e5d457b638c3625056deb73d5a98eaeda9cafa75228"
+  }
+}

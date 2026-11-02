@@ -1,0 +1,333 @@
+{
+  "identity": {
+    "source_hash": "952579bacdfc02a47084cd47dae13e8d8393e66e7dad05714959733a54c00ef1",
+    "tailored_hash": "c71884048093bb7236a05f2c0287fa347576473f473a62344e4a5d8f3004aee4",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2273,
+    "unsupported": [
+      "Proven ability to troubleshoot technical issues, maintain monitoring dashboards, and document operational procedures for stakeholders.",
+      "Seeking to leverage transferable skills in automation, collaboration, and evidence-based decision-making as a Junior Cloud Engineer at Example Meridian Labs.",
+      "Troubleshoot Linux and network issues while documenting technical decisions for business reviewers.",
+      "Manage approximately 42 work items monthly, tracking quality checks and follow-up actions to ensure reliability.",
+      "Collaborate with engineering stakeholders to maintain monitoring dashboards and present progress during fortnightly reviews.",
+      "Technical Assistant** | Example Ember Technologies (May 2024 \u2013 Dec 2024)",
+      "Assist with infrastructure automation by supporting recurring operational work using Bash.",
+      "Investigate service requests, record findings, and escalate issues with clear supporting evidence to relevant stakeholders.",
+      "Document step-by-step procedures to ensure maintainability and reduce manual preparation time by 21%.",
+      "Junior Cloud Engineer Practice Project** | Personal Initiative",
+      "Built a demonstration project utilizing AWS, Linux, and networking to simulate real-world infrastructure scenarios.",
+      "Test systems with representative cases, recording limitations and defining next steps for improvement.",
+      "Present design rationale and outcomes to a five-person peer review group, demonstrating clear communication of technical trade-offs.",
+      "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+      "Cloud & Infrastructure:** AWS, Linux, Networking, Bash, Docker, Git, Terraform.",
+      "Operations & Tools:** Monitoring Dashboards, Excel, Documentation, Quality Control.",
+      "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making."
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Entry-level cloud engineer with a Bachelor of Science in Information Systems and hands-on experience supporting AWS, Linux, and networking infrastructure.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills AWS, Linux, networking, Bash, Terraform, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000168,
+          "entailment": 0.945996,
+          "neutral": 0.053836
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.945996,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to troubleshoot technical issues, maintain monitoring dashboards, and document operational procedures for stakeholders.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001199,
+          "entailment": 0.001522,
+          "neutral": 0.997279
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001522,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage transferable skills in automation, collaboration, and evidence-based decision-making as a Junior Cloud Engineer at Example Meridian Labs.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills AWS, Linux, networking, Bash, Terraform, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.01908,
+          "entailment": 0.018376,
+          "neutral": 0.962543
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018376,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.016847,
+          "entailment": 0.787654,
+          "neutral": 0.195499
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.787654,
+        "supported": true
+      },
+      {
+        "claim": "Support cloud infrastructure operations using AWS and Linux, improving team turnaround by 26%.",
+        "best_source_chunk": "# Daniel Lee daniel.lee@example.test | +65 6000 0064 | Singapore ## Summary Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%. -",
+        "probabilities": {
+          "contradiction": 0.000304,
+          "entailment": 0.995862,
+          "neutral": 0.003834
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995862,
+        "supported": true
+      },
+      {
+        "claim": "Troubleshoot Linux and network issues while documenting technical decisions for business reviewers.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.003481,
+          "entailment": 0.002136,
+          "neutral": 0.994383
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002136,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 42 work items monthly, tracking quality checks and follow-up actions to ensure reliability.",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.00089,
+          "entailment": 0.000866,
+          "neutral": 0.998244
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000866,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with engineering stakeholders to maintain monitoring dashboards and present progress during fortnightly reviews.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.224123,
+          "entailment": 0.0189,
+          "neutral": 0.756977
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0189,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.003184,
+          "entailment": 0.002346,
+          "neutral": 0.99447
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002346,
+        "supported": false
+      },
+      {
+        "claim": "Assist with infrastructure automation by supporting recurring operational work using Bash.",
+        "best_source_chunk": "recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 21%. ## Projects ### Junior Cloud Engineer Practice Project - Built a fictional demonstration project using AWS, Linux and networking. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.000945,
+          "entailment": 0.002722,
+          "neutral": 0.996333
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002722,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings, and escalate issues with clear supporting evidence to relevant stakeholders.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000145,
+          "entailment": 0.000901,
+          "neutral": 0.998954
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000901,
+        "supported": false
+      },
+      {
+        "claim": "Document step-by-step procedures to ensure maintainability and reduce manual preparation time by 21%.",
+        "best_source_chunk": "recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 21%. ## Projects ### Junior Cloud Engineer Practice Project - Built a fictional demonstration project using AWS, Linux and networking. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.001559,
+          "entailment": 0.010652,
+          "neutral": 0.987789
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010652,
+        "supported": false
+      },
+      {
+        "claim": "Junior Cloud Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Daniel Lee daniel.lee@example.test | +65 6000 0064 | Singapore ## Summary Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%. -",
+        "probabilities": {
+          "contradiction": 0.017188,
+          "entailment": 0.026386,
+          "neutral": 0.956426
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.026386,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing AWS, Linux, and networking to simulate real-world infrastructure scenarios.",
+        "best_source_chunk": "# Daniel Lee daniel.lee@example.test | +65 6000 0064 | Singapore ## Summary Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present) - Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%. -",
+        "probabilities": {
+          "contradiction": 0.000937,
+          "entailment": 0.004478,
+          "neutral": 0.994584
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004478,
+        "supported": false
+      },
+      {
+        "claim": "Test systems with representative cases, recording limitations and defining next steps for improvement.",
+        "best_source_chunk": "recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 21%. ## Projects ### Junior Cloud Engineer Practice Project - Built a fictional demonstration project using AWS, Linux and networking. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.000277,
+          "entailment": 0.011409,
+          "neutral": 0.988314
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011409,
+        "supported": false
+      },
+      {
+        "claim": "Present design rationale and outcomes to a five-person peer review group, demonstrating clear communication of technical trade-offs.",
+        "best_source_chunk": "Engineer Practice Project - Built a fictional demonstration project using AWS, Linux and networking. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework",
+        "probabilities": {
+          "contradiction": 0.000769,
+          "entailment": 0.010081,
+          "neutral": 0.989149
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010081,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.14323,
+          "entailment": 0.103825,
+          "neutral": 0.752944
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.103825,
+        "supported": false
+      },
+      {
+        "claim": "Coursework focused on software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills AWS, Linux, networking, Bash, Terraform, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.00082,
+          "entailment": 0.91484,
+          "neutral": 0.08434
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.91484,
+        "supported": true
+      },
+      {
+        "claim": "Cloud & Infrastructure:** AWS, Linux, Networking, Bash, Docker, Git, Terraform.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills AWS, Linux, networking, Bash, Terraform, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.017333,
+          "entailment": 0.020511,
+          "neutral": 0.962156
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.020511,
+        "supported": false
+      },
+      {
+        "claim": "Operations & Tools:** Monitoring Dashboards, Excel, Documentation, Quality Control.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills AWS, Linux, networking, Bash, Terraform, Excel, documentation, Git ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.003835,
+          "entailment": 0.01631,
+          "neutral": 0.979855
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01631,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using Bash and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.006203,
+          "entailment": 0.008503,
+          "neutral": 0.985294
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008503,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "- AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.005676,
+          "entailment": 0.956409,
+          "neutral": 0.037915
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.956409,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "3ae25a2698f072de4a97d0b2ba261a9bd0934fafd672b998a5b7e266b7b18c65"
+  }
+}

@@ -1,0 +1,402 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 808,
+  "output_tokens": 597,
+  "thinking_chars": 0,
+  "seconds": 26.82,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 382,
+  "sim_before": 0.794,
+  "sim_after": 0.8171,
+  "sim_gain": 0.023,
+  "kw_before": 0.25,
+  "kw_after": 0.625,
+  "kw_missing": [
+    "Linux",
+    "Kubernetes",
+    "Python"
+  ],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": false,
+  "task_failure_reasons": [
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1405,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2619.97,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "cd_resume_015__cd_jd_03",
+  "resume_id": "cd_resume_015",
+  "jd_id": "cd_jd_03",
+  "category": "cloud_devops",
+  "role_family": "site_reliability_engineer",
+  "seniority": "mid",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 27.0,
+  "resume_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_015__cd_jd_03/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_015__cd_jd_03/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_015__cd_jd_03/repeat_0/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Olivia Lee\nolivia.lee@example.test | +65 6000 0075 | Singapore\n\n## Summary\nOperations professional transitioning into Site Reliability Engineering with a strong foundation in defining service reliability targets, incident response, and stakeholder coordination. Proven ability to translate operational needs into maintainable solutions through clear documentation and evidence-based decision-making. Experienced in leading incident analysis, automating repetitive tasks, and communicating technical trade-offs to multidisciplinary teams. Committed to delivering quality, reliable outcomes while building trusted working relationships within engineering and product environments.\n\n## Experience\n\n**Operations Support Coordinator** | Example Ember Technologies (Jul 2023 – Present)\n*   **Service Reliability & Monitoring:** Defined service reliability targets using SRE and observability principles, improving team turnaround by 41%. Enhanced monitoring and alerting effectiveness through data-driven analysis.\n*   **Incident Response:** Led incident analysis for complex service requests, recording findings with clear supporting evidence to facilitate rapid resolution. Collaborated with four colleagues to present progress and risks during fortnightly stakeholder reviews.\n*   **Automation & Efficiency:** Automated repetitive operational workflows using documented step-by-step procedures, reducing manual preparation time by 36%. Managed approximately 95 work items monthly while maintaining rigorous quality checks.\n*   **Stakeholder Communication:** Communicated technical progress, risks, and trade-offs to business reviewers and engineering teams, ensuring alignment on service level objectives.\n\n**Technical Assistant** | Example Atlas Solutions (Jan 2021 – Jun 2023)\n*   **Documentation & Processes:** Maintained clear documentation for recurring operational work, creating standardized procedures that served as a reference for the team.\n*   **Problem Solving:** Investigated service requests and escalated ambiguous technical issues with documented evidence, demonstrating ability to solve problems collaboratively.\n\n## Projects\n\n**Site Reliability Engineer Practice Project** | Personal Initiative\n*   Designed and built a demonstration project focusing on SRE practices and observability.\n*   Conducted performance testing using representative scenarios to identify system limitations and define next steps for improvement.\n*   Presented design rationale, outcomes, and technical trade-offs to a five-person peer review group, refining documentation based on feedback.\n\n## Education\n\n**Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 – May 2024)\n*   Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.\n\n## Skills\n*   **Core Competencies:** SRE, Observability, Incident Response, Service Level Objectives (SLOs), Performance Testing.\n*   **Tools & Automation:** Excel (Data Analysis, Reporting Templates), Documentation Management.\n*   **Soft Skills:** Clear Written & Verbal Communication, Stakeholder Coordination, Collaborative Problem Solving, Evidence-Based Decision Making.",
+  "original_resume": "# Olivia Lee\n\nolivia.lee@example.test | +65 6000 0075 | Singapore\n\n## Summary\n\nOperations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work.\n\n## Experience\n\n### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present)\n\n- Used SRE and observability to define service reliability targets, improving team turnaround by 41%.\n- Applied Excel to improve monitoring and alerting and documented decisions for technical and business reviewers.\n- Managed approximately 95 work items per month while tracking quality checks and follow-up actions.\n- Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.\n\n### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023)\n\n- Supported recurring operational work using documentation and documented step-by-step procedures.\n- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n- Created a simple reporting template that reduced manual preparation time by 36%.\n\n## Projects\n\n### Site Reliability Engineer Practice Project\n\n- Built a fictional demonstration project using SRE, observability and Excel.\n- Tested the project with representative scenarios and recorded limitations and next steps.\n- Presented the design and outcomes to a five-person peer review group.\n\n## Education\n\n### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)\n\n- Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n## Skills\n\nSRE, observability, Excel, documentation, stakeholder communication\n",
+  "job_description": "# Site Reliability Engineer\n\n**Company:** Example Harbour Digital (fictional)  \n**Location:** Singapore  \n**Employment type:** Full-time  \n**Seniority:** Mid\n\n## About the role\n\nExample Harbour Digital is seeking a Site Reliability Engineer to join a multidisciplinary technology team. The successful\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\nworks closely with engineering, product and business stakeholders, values clear documentation and\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\nappropriate review, security and quality controls.\n\n## Responsibilities\n\n- Define service reliability targets.\n- Improve monitoring and alerting.\n- Lead incident analysis.\n- Automate repetitive operations.\n- Test and improve system performance.\n- Communicate progress, risks and technical trade-offs to relevant stakeholders.\n- Maintain clear documentation and contribute to team planning and reviews.\n\n## Required qualifications\n\n- SRE\n- observability\n- incident response\n- Linux\n- Kubernetes\n- Python\n- service level objectives\n- performance testing\n- Clear written and verbal communication\n- Ability to work collaboratively and solve ambiguous problems\n\n## Preferred qualifications\n\n- Prometheus\n- Grafana\n- AWS\n\n## What success looks like\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\nwell-tested improvements and build trusted working relationships. Success is measured through\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.1667,
+  "unsupported": [
+    "Operations professional transitioning into Site Reliability Engineering with a strong foundation in defining service reliability targets, incident response, and stakeholder coordination.",
+    "Proven ability to translate operational needs into maintainable solutions through clear documentation and evidence-based decision-making.",
+    "Experienced in leading incident analysis, automating repetitive tasks, and communicating technical trade-offs to multidisciplinary teams.",
+    "Committed to delivering quality, reliable outcomes while building trusted working relationships within engineering and product environments.",
+    "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 – Present)",
+    "Enhanced monitoring and alerting effectiveness through data-driven analysis.",
+    "Incident Response:** Led incident analysis for complex service requests, recording findings with clear supporting evidence to facilitate rapid resolution.",
+    "Collaborated with four colleagues to present progress and risks during fortnightly stakeholder reviews.",
+    "Automation & Efficiency:** Automated repetitive operational workflows using documented step-by-step procedures, reducing manual preparation time by 36%.",
+    "Managed approximately 95 work items monthly while maintaining rigorous quality checks.",
+    "Stakeholder Communication:** Communicated technical progress, risks, and trade-offs to business reviewers and engineering teams, ensuring alignment on service level objectives.",
+    "Technical Assistant** | Example Atlas Solutions (Jan 2021 – Jun 2023)",
+    "Documentation & Processes:** Maintained clear documentation for recurring operational work, creating standardized procedures that served as a reference for the team.",
+    "Problem Solving:** Investigated service requests and escalated ambiguous technical issues with documented evidence, demonstrating ability to solve problems collaboratively.",
+    "Site Reliability Engineer Practice Project** | Personal Initiative",
+    "Presented design rationale, outcomes, and technical trade-offs to a five-person peer review group, refining documentation based on feedback.",
+    "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 – May 2024)",
+    "Core Competencies:** SRE, Observability, Incident Response, Service Level Objectives (SLOs), Performance Testing.",
+    "Tools & Automation:** Excel (Data Analysis, Reporting Templates), Documentation Management.",
+    "Soft Skills:** Clear Written & Verbal Communication, Stakeholder Coordination, Collaborative Problem Solving, Evidence-Based Decision Making."
+  ],
+  "n_claims": 24,
+  "claim_scores": [
+    {
+      "claim": "Operations professional transitioning into Site Reliability Engineering with a strong foundation in defining service reliability targets, incident response, and stakeholder coordination.",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SRE, observability, Excel, documentation, stakeholder communication",
+      "probabilities": {
+        "contradiction": 0.181258,
+        "entailment": 0.014433,
+        "neutral": 0.804308
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.014433,
+      "supported": false
+    },
+    {
+      "claim": "Proven ability to translate operational needs into maintainable solutions through clear documentation and evidence-based decision-making.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.001145,
+        "entailment": 0.02029,
+        "neutral": 0.978564
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.02029,
+      "supported": false
+    },
+    {
+      "claim": "Experienced in leading incident analysis, automating repetitive tasks, and communicating technical trade-offs to multidisciplinary teams.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "probabilities": {
+        "contradiction": 0.00077,
+        "entailment": 0.002041,
+        "neutral": 0.997189
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002041,
+      "supported": false
+    },
+    {
+      "claim": "Committed to delivering quality, reliable outcomes while building trusted working relationships within engineering and product environments.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.000254,
+        "entailment": 0.013443,
+        "neutral": 0.986303
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.013443,
+      "supported": false
+    },
+    {
+      "claim": "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 – Present)",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.066356,
+        "entailment": 0.391499,
+        "neutral": 0.542145
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.391499,
+      "supported": false
+    },
+    {
+      "claim": "Service Reliability & Monitoring:** Defined service reliability targets using SRE and observability principles, improving team turnaround by 41%.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.001128,
+        "entailment": 0.982146,
+        "neutral": 0.016727
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.982146,
+      "supported": true
+    },
+    {
+      "claim": "Enhanced monitoring and alerting effectiveness through data-driven analysis.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "probabilities": {
+        "contradiction": 0.000734,
+        "entailment": 0.018584,
+        "neutral": 0.980682
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.018584,
+      "supported": false
+    },
+    {
+      "claim": "Incident Response:** Led incident analysis for complex service requests, recording findings with clear supporting evidence to facilitate rapid resolution.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.034338,
+        "entailment": 0.004494,
+        "neutral": 0.961168
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004494,
+      "supported": false
+    },
+    {
+      "claim": "Collaborated with four colleagues to present progress and risks during fortnightly stakeholder reviews.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "probabilities": {
+        "contradiction": 0.002629,
+        "entailment": 0.004817,
+        "neutral": 0.992554
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004817,
+      "supported": false
+    },
+    {
+      "claim": "Automation & Efficiency:** Automated repetitive operational workflows using documented step-by-step procedures, reducing manual preparation time by 36%.",
+      "best_source_chunk": "work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 36%. ## Projects ### Site Reliability Engineer Practice Project - Built a fictional demonstration project using SRE, observability and Excel. - Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.005843,
+        "entailment": 0.004005,
+        "neutral": 0.990151
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004005,
+      "supported": false
+    },
+    {
+      "claim": "Managed approximately 95 work items monthly while maintaining rigorous quality checks.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "probabilities": {
+        "contradiction": 0.000204,
+        "entailment": 0.000727,
+        "neutral": 0.99907
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000727,
+      "supported": false
+    },
+    {
+      "claim": "Stakeholder Communication:** Communicated technical progress, risks, and trade-offs to business reviewers and engineering teams, ensuring alignment on service level objectives.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.003283,
+        "entailment": 0.002646,
+        "neutral": 0.994071
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002646,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Atlas Solutions (Jan 2021 – Jun 2023)",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "probabilities": {
+        "contradiction": 0.004855,
+        "entailment": 0.004974,
+        "neutral": 0.990171
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004974,
+      "supported": false
+    },
+    {
+      "claim": "Documentation & Processes:** Maintained clear documentation for recurring operational work, creating standardized procedures that served as a reference for the team.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "probabilities": {
+        "contradiction": 0.000662,
+        "entailment": 0.134557,
+        "neutral": 0.864782
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.134557,
+      "supported": false
+    },
+    {
+      "claim": "Problem Solving:** Investigated service requests and escalated ambiguous technical issues with documented evidence, demonstrating ability to solve problems collaboratively.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.713941,
+        "entailment": 0.00369,
+        "neutral": 0.282369
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.00369,
+      "supported": false
+    },
+    {
+      "claim": "Site Reliability Engineer Practice Project** | Personal Initiative",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.411388,
+        "entailment": 0.026247,
+        "neutral": 0.562365
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.026247,
+      "supported": false
+    },
+    {
+      "claim": "Designed and built a demonstration project focusing on SRE practices and observability.",
+      "best_source_chunk": "work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 36%. ## Projects ### Site Reliability Engineer Practice Project - Built a fictional demonstration project using SRE, observability and Excel. - Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.003211,
+        "entailment": 0.749656,
+        "neutral": 0.247133
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.749656,
+      "supported": true
+    },
+    {
+      "claim": "Conducted performance testing using representative scenarios to identify system limitations and define next steps for improvement.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.001751,
+        "entailment": 0.974274,
+        "neutral": 0.023975
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.974274,
+      "supported": true
+    },
+    {
+      "claim": "Presented design rationale, outcomes, and technical trade-offs to a five-person peer review group, refining documentation based on feedback.",
+      "best_source_chunk": "Project - Built a fictional demonstration project using SRE, observability and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases,",
+      "probabilities": {
+        "contradiction": 0.00045,
+        "entailment": 0.002931,
+        "neutral": 0.996619
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002931,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 – May 2024)",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SRE, observability, Excel, documentation, stakeholder communication",
+      "probabilities": {
+        "contradiction": 0.002875,
+        "entailment": 0.004274,
+        "neutral": 0.992851
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004274,
+      "supported": false
+    },
+    {
+      "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SRE, observability, Excel, documentation, stakeholder communication",
+      "probabilities": {
+        "contradiction": 0.000191,
+        "entailment": 0.976831,
+        "neutral": 0.022977
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.976831,
+      "supported": true
+    },
+    {
+      "claim": "Core Competencies:** SRE, Observability, Incident Response, Service Level Objectives (SLOs), Performance Testing.",
+      "best_source_chunk": "# Olivia Lee olivia.lee@example.test | +65 6000 0075 | Singapore ## Summary Operations support professional experienced in SRE, observability, documentation and stakeholder coordination, transitioning toward Site Reliability Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used SRE and observability to define service reliability targets, improving team turnaround by 41%. - Applied",
+      "probabilities": {
+        "contradiction": 0.010671,
+        "entailment": 0.025765,
+        "neutral": 0.963564
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.025765,
+      "supported": false
+    },
+    {
+      "claim": "Tools & Automation:** Excel (Data Analysis, Reporting Templates), Documentation Management.",
+      "best_source_chunk": "work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 36%. ## Projects ### Site Reliability Engineer Practice Project - Built a fictional demonstration project using SRE, observability and Excel. - Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.012209,
+        "entailment": 0.007992,
+        "neutral": 0.979799
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.007992,
+      "supported": false
+    },
+    {
+      "claim": "Soft Skills:** Clear Written & Verbal Communication, Stakeholder Coordination, Collaborative Problem Solving, Evidence-Based Decision Making.",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SRE, observability, Excel, documentation, stakeholder communication",
+      "probabilities": {
+        "contradiction": 0.002646,
+        "entailment": 0.022239,
+        "neutral": 0.975115
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.022239,
+      "supported": false
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "dae9edf26b087f58ba350984cc2312627ee29ef9c2364f7ef21c0aab5b00f828",
+  "nli_seconds": 1.3562,
+  "evaluator_hash": "330f36304073e03b"
+}

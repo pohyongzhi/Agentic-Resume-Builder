@@ -1,0 +1,221 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 374,
+    "output_tokens": 222,
+    "thinking_chars": 0,
+    "seconds": 11.69,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 465,
+    "output_tokens": 500,
+    "thinking_chars": 0,
+    "seconds": 37.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1425,
+    "output_tokens": 462,
+    "thinking_chars": 0,
+    "seconds": 28.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2056,
+    "output_tokens": 529,
+    "thinking_chars": 0,
+    "seconds": 37.22,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2058,
+    "output_tokens": 574,
+    "thinking_chars": 0,
+    "seconds": 74.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2050,
+    "output_tokens": 625,
+    "thinking_chars": 0,
+    "seconds": 114.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "input_tokens": 3674,
+    "output_tokens": 572,
+    "thinking_chars": 0,
+    "seconds": 43.55,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2156,
+    "output_tokens": 610,
+    "thinking_chars": 0,
+    "seconds": 35.24,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2148,
+    "output_tokens": 520,
+    "thinking_chars": 0,
+    "seconds": 66.32,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2154,
+    "output_tokens": 464,
+    "thinking_chars": 0,
+    "seconds": 94.69,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "input_tokens": 3638,
+    "output_tokens": 570,
+    "thinking_chars": 0,
+    "seconds": 42.5,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2146,
+    "output_tokens": 537,
+    "thinking_chars": 0,
+    "seconds": 31.87,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2154,
+    "output_tokens": 569,
+    "thinking_chars": 0,
+    "seconds": 64.11,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2152,
+    "output_tokens": 540,
+    "thinking_chars": 0,
+    "seconds": 94.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Jonas Koh",
+        "contact": {
+          "email": "jonas.koh@example.test",
+          "phone": "+65 6000 0090",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Product Analyst candidate with experience in product analytics, SQL, and stakeholder coordination. Proven ability to analyze usage data, define success metrics, and translate evidence into actionable recommendations.",
+        "experience": [
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Operations Support Coordinator",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Utilized product analytics and SQL to analyze product usage and funnels, improving team turnaround by 22%.",
+              "Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews.",
+              "Applied Excel to define product success metrics and documented decisions for technical and business reviewers."
+            ]
+          },
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a reporting template that reduced manual preparation time by 17%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Metropolitan University (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Product Analyst Practice Project",
+            "description": "Built a fictional demonstration project using product analytics, SQL and Excel.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "product analytics",
+          "SQL",
+          "Excel",
+          "documentation",
+          "stakeholder communication"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.004,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.004,
+    "step": 16
+  }
+]

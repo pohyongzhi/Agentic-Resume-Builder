@@ -1,0 +1,349 @@
+{
+  "identity": {
+    "source_hash": "4789391fe445515760c0e94032dd056480d5848423e3fe431969fd1104ee7e37",
+    "tailored_hash": "42d5fc673545790dcdbfde8393b2387bdc584ccd1f2636f667f457145b56aa03",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.087,
+    "unsupported": [
+      "Proven ability to translate operational needs into reliable solutions through clear documentation and evidence-based decision-making.",
+      "Experienced in automating compliance checks, hardening environments, and collaborating with engineering teams to deliver secure designs.",
+      "Seeking to leverage expertise in security automation, vulnerability management, and stakeholder communication as a Security Engineer at Example Harbour Digital.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+      "Security Controls & Automation:** Implemented preventive security controls using cloud security and IAM frameworks, improving team turnaround by 25%.",
+      "Developed automated vulnerability and compliance checks to streamline monitoring.",
+      "Cloud Hardening:** Collaborated with engineering colleagues to harden cloud environments, ensuring alignment with security standards while maintaining operational efficiency.",
+      "Incident Support & Communication:** Managed approximately 105 work items monthly, tracking quality checks and follow-up actions.",
+      "Escalated complex issues with clear supporting evidence and documented findings for technical and business reviewers.",
+      "Stakeholder Management:** Presented progress, risks, and technical trade-offs during fortnightly reviews to diverse stakeholders, ensuring transparent communication of security posture.",
+      "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+      "Documentation & Process Improvement:** Created standardized step-by-step procedures and reporting templates that reduced manual preparation time by 20%.",
+      "Investigation & Analysis:** Investigated service requests, recorded detailed findings, and maintained clear documentation to support evidence-based troubleshooting.",
+      "Security Engineer Practice Project** | Personal Initiative",
+      "Designed and built a demonstration project focusing on cloud security and IAM best practices.",
+      "Executed representative testing scenarios to validate controls and document identified limitations.",
+      "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to solve ambiguous problems and communicate technical trade-offs.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Security:** Cloud Security, IAM, Vulnerability Management, Preventive Controls, Incident Response Support.",
+      "Tools & Automation:** Excel (for automation and reporting), Documentation Tools.",
+      "Soft Skills:** Clear Written/Verbal Communication, Stakeholder Coordination, Collaborative Problem Solving, Evidence-Based Decision Making."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Operations professional with a strong foundation in cloud security, Identity and Access Management (IAM), and preventive control implementation.",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.000684,
+          "entailment": 0.647789,
+          "neutral": 0.351527
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.647789,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to translate operational needs into reliable solutions through clear documentation and evidence-based decision-making.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.00883,
+          "entailment": 0.003283,
+          "neutral": 0.987888
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003283,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in automating compliance checks, hardening environments, and collaborating with engineering teams to deliver secure designs.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001065,
+          "entailment": 0.009791,
+          "neutral": 0.989144
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009791,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage expertise in security automation, vulnerability management, and stakeholder communication as a Security Engineer at Example Harbour Digital.",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.005811,
+          "entailment": 0.332779,
+          "neutral": 0.66141
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.332779,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.007975,
+          "entailment": 0.079125,
+          "neutral": 0.9129
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.079125,
+        "supported": false
+      },
+      {
+        "claim": "Security Controls & Automation:** Implemented preventive security controls using cloud security and IAM frameworks, improving team turnaround by 25%.",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.002673,
+          "entailment": 0.130115,
+          "neutral": 0.867212
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.130115,
+        "supported": false
+      },
+      {
+        "claim": "Developed automated vulnerability and compliance checks to streamline monitoring.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.008249,
+          "entailment": 0.002142,
+          "neutral": 0.989609
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002142,
+        "supported": false
+      },
+      {
+        "claim": "Cloud Hardening:** Collaborated with engineering colleagues to harden cloud environments, ensuring alignment with security standards while maintaining operational efficiency.",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.002942,
+          "entailment": 0.346731,
+          "neutral": 0.650327
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.346731,
+        "supported": false
+      },
+      {
+        "claim": "Incident Support & Communication:** Managed approximately 105 work items monthly, tracking quality checks and follow-up actions.",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.00098,
+          "entailment": 0.00093,
+          "neutral": 0.99809
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00093,
+        "supported": false
+      },
+      {
+        "claim": "Escalated complex issues with clear supporting evidence and documented findings for technical and business reviewers.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000298,
+          "entailment": 0.001192,
+          "neutral": 0.998509
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001192,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Management:** Presented progress, risks, and technical trade-offs during fortnightly reviews to diverse stakeholders, ensuring transparent communication of security posture.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.003323,
+          "entailment": 0.001146,
+          "neutral": 0.995531
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001146,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.020475,
+          "entailment": 0.004566,
+          "neutral": 0.97496
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004566,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Process Improvement:** Created standardized step-by-step procedures and reporting templates that reduced manual preparation time by 20%.",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 20%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.004307,
+          "entailment": 0.003557,
+          "neutral": 0.992136
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003557,
+        "supported": false
+      },
+      {
+        "claim": "Investigation & Analysis:** Investigated service requests, recorded detailed findings, and maintained clear documentation to support evidence-based troubleshooting.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.003352,
+          "entailment": 0.016858,
+          "neutral": 0.979791
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016858,
+        "supported": false
+      },
+      {
+        "claim": "Security Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.713012,
+          "entailment": 0.016993,
+          "neutral": 0.269995
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.016993,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project focusing on cloud security and IAM best practices.",
+        "best_source_chunk": "# Olivia Ng olivia.ng@example.test | +65 6000 0055 | Singapore ## Summary Operations support professional experienced in cloud security, IAM, documentation and stakeholder coordination, transitioning toward Security Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 25%. -",
+        "probabilities": {
+          "contradiction": 0.002792,
+          "entailment": 0.007469,
+          "neutral": 0.989739
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007469,
+        "supported": false
+      },
+      {
+        "claim": "Executed representative testing scenarios to validate controls and document identified limitations.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001657,
+          "entailment": 0.003721,
+          "neutral": 0.994622
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003721,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to solve ambiguous problems and communicate technical trade-offs.",
+        "best_source_chunk": "Practice Project - Built a fictional demonstration project using cloud security, IAM and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software",
+        "probabilities": {
+          "contradiction": 0.000865,
+          "entailment": 0.014431,
+          "neutral": 0.984705
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014431,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.290682,
+          "entailment": 0.00317,
+          "neutral": 0.706148
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00317,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.000147,
+          "entailment": 0.97801,
+          "neutral": 0.021843
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.97801,
+        "supported": true
+      },
+      {
+        "claim": "Security:** Cloud Security, IAM, Vulnerability Management, Preventive Controls, Incident Response Support.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.043594,
+          "entailment": 0.006336,
+          "neutral": 0.95007
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006336,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Automation:** Excel (for automation and reporting), Documentation Tools.",
+        "best_source_chunk": "recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 20%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.132228,
+          "entailment": 0.010066,
+          "neutral": 0.857705
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010066,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written/Verbal Communication, Stakeholder Coordination, Collaborative Problem Solving, Evidence-Based Decision Making.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.00168,
+          "entailment": 0.011681,
+          "neutral": 0.986639
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011681,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "d7cf92485e2eb084db33673b375054fcbadf90fd59bd32c1a235d78923a7749a"
+  }
+}

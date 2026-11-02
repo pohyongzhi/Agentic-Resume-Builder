@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 383,
+    "output_tokens": 228,
+    "thinking_chars": 0,
+    "seconds": 12.28,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 510,
+    "output_tokens": 560,
+    "thinking_chars": 0,
+    "seconds": 38.46,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1488,
+    "output_tokens": 527,
+    "thinking_chars": 0,
+    "seconds": 28.54,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Quentin Lim\",\n  \"contact\": {\n    \"email\": \"quentin.lim@example.test\",\n    \"phone\": \"+65 6000 0037\",\n    \"location\": \"Singapore\"\n  },\n  \"summary\": \"Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models, RAG, and system architecture. Proven track record of architecting production LLM applications, designing retrieval pipelines, and establishing safety controls while delivering measurable improvements to cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Senior AI and LLM Solutions Engineer\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Architected production LLM applications using Python and large language models, improving team turnaround by 23%.\",\n        \"Designed retrieval and evaluation pipelines leveraging RAG and vector databases to enhance application reliability.\",\n        \"Established safety and observability controls in collaboration with four colleagues, presenting progress during fortnightly reviews.\",\n        \"Optimized inference efficiency and guided engineers on reliable AI delivery while managing approximately 51 work items monthly.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Applied prompt engineering to support recurring operational work and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"large language models\",\n    \"RAG\",\n    \"prompt engineering\",\n    \"vector databases\",\n    \"model evaluation\",\n    \"Docker\",\n    \"system architecture\",\n    \"LangGraph\",\n    \"Kubernetes\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.006,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.005,
+    "step": 5
+  }
+]

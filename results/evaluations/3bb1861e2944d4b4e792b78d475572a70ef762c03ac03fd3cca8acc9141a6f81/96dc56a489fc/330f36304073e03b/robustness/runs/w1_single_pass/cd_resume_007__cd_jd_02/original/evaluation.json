@@ -1,0 +1,388 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 827,
+  "output_tokens": 613,
+  "thinking_chars": 0,
+  "seconds": 22.63,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 374,
+  "sim_before": 0.8133,
+  "sim_after": 0.8136,
+  "sim_gain": 0.0003,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": false,
+  "task_failure_reasons": [
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1440,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2173.58,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "cd_resume_007__cd_jd_02__original",
+  "resume_id": "cd_resume_007",
+  "jd_id": "cd_jd_02",
+  "category": "cloud_devops",
+  "role_family": "devops_engineer",
+  "seniority": "mid",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 22.8,
+  "resume_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_007__cd_jd_02/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_007__cd_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_007__cd_jd_02/repeat_0/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Grace Lee\n\ngrace.lee@example.test | +65 6000 0067 | Singapore\n\n## Summary\nDevOps Engineer with hands-on experience building reliable deployment pipelines and managing container platforms using CI/CD, Docker, Kubernetes, Terraform, and AWS. Proven ability to automate infrastructure provisioning and improve observability while maintaining clear documentation. Adept at collaborating with engineering and product stakeholders to solve ambiguous problems, deliver well-tested improvements, and ensure responsible delivery through evidence-based decision-making.\n\n## Experience\n\n**DevOps Engineer** | Example Beacon Services (Singapore)\n*Jul 2023 – Present*\n\n*   **Deployment Pipelines & Containers:** Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 16% to help development teams ship safely.\n*   **Container Management:** Managed container platforms on Kubernetes, ensuring high availability and security while documenting technical decisions for business reviewers.\n*   **Infrastructure Automation:** Collaborated with cross-functional teams to automate infrastructure provisioning using Terraform, reducing manual configuration errors.\n*   **Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews, translating operational needs into actionable solutions.\n*   **Quality & Process:** Managed approximately 81 work items per month, tracking quality checks and follow-up actions to maintain clear documentation and review standards.\n\n**Technical Assistant** | Example Cedar Innovations (Singapore)\n*Jan 2021 – Jun 2023*\n\n*   **Infrastructure as Code:** Supported recurring operational work by creating and maintaining Terraform configurations, establishing step-by-step procedures for team consistency.\n*   **Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.\n*   **Efficiency Improvements:** Developed a reporting template that reduced manual preparation time by 11%, contributing to measurable operational improvements.\n\n## Projects\n\n**DevOps Practice Project** | Personal Initiative\n*   Designed and implemented a demonstration project utilizing CI/CD, Docker, and Kubernetes.\n*   Enhanced observability by testing representative scenarios and recording system limitations.\n*   Presented design rationale and outcomes to a five-person peer review group, refining technical trade-offs based on feedback.\n\n## Education\n\n**Bachelor of Science in Information Systems** | Example Polytechnic (Singapore)\n*Aug 2020 – May 2024*\n*   Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.\n\n## Skills\n\n*   **Core Tools:** CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git.\n*   **Observability & Automation:** Monitoring, Argo CD, Helm, Python (preferred).\n*   **Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making, technical documentation.\n\n## Certifications\n\n*   AWS Certified Cloud Practitioner",
+  "original_resume": "# Grace Lee\n\ngrace.lee@example.test | +65 6000 0067 | Singapore\n\n## Summary\n\nDevOps Engineer with hands-on experience in CI/CD, Docker and Kubernetes. Delivers documented, measurable improvements with cross-functional teams.\n\n## Experience\n\n### DevOps Engineer, Example Beacon Services (fictional) (Jul 2023 - Present)\n\n- Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 16%.\n- Applied Kubernetes to manage container platforms and documented decisions for technical and business reviewers.\n- Managed approximately 81 work items per month while tracking quality checks and follow-up actions.\n- Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.\n\n### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023)\n\n- Supported recurring operational work using Terraform and documented step-by-step procedures.\n- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n- Created a simple reporting template that reduced manual preparation time by 11%.\n\n## Projects\n\n### DevOps Engineer Practice Project\n\n- Built a fictional demonstration project using CI/CD, Docker and Kubernetes.\n- Tested the project with representative scenarios and recorded limitations and next steps.\n- Presented the design and outcomes to a five-person peer review group.\n\n## Education\n\n### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)\n\n- Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n## Skills\n\nCI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git, monitoring, Argo CD, Helm\n\n## Certifications\n\n- AWS Certified Cloud Practitioner\n",
+  "job_description": "# DevOps Engineer\n\n**Company:** Example Northstar Systems (fictional)  \n**Location:** Singapore  \n**Employment type:** Full-time  \n**Seniority:** Mid\n\n## About the role\n\nExample Northstar Systems is seeking a DevOps Engineer to join a multidisciplinary technology team. The successful\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\nworks closely with engineering, product and business stakeholders, values clear documentation and\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\nappropriate review, security and quality controls.\n\n## Responsibilities\n\n- Build reliable deployment pipelines.\n- Manage container platforms.\n- Automate infrastructure provisioning.\n- Improve observability.\n- Help development teams ship safely.\n- Communicate progress, risks and technical trade-offs to relevant stakeholders.\n- Maintain clear documentation and contribute to team planning and reviews.\n\n## Required qualifications\n\n- CI/CD\n- Docker\n- Kubernetes\n- Terraform\n- AWS\n- Linux\n- Git\n- monitoring\n- Clear written and verbal communication\n- Ability to work collaboratively and solve ambiguous problems\n\n## Preferred qualifications\n\n- Argo CD\n- Helm\n- Python\n\n## What success looks like\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\nwell-tested improvements and build trusted working relationships. Success is measured through\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.1739,
+  "unsupported": [
+    "DevOps Engineer with hands-on experience building reliable deployment pipelines and managing container platforms using CI/CD, Docker, Kubernetes, Terraform, and AWS.",
+    "Proven ability to automate infrastructure provisioning and improve observability while maintaining clear documentation.",
+    "Adept at collaborating with engineering and product stakeholders to solve ambiguous problems, deliver well-tested improvements, and ensure responsible delivery through evidence-based decision-making.",
+    "Deployment Pipelines & Containers:** Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 16% to help development teams ship safely.",
+    "Container Management:** Managed container platforms on Kubernetes, ensuring high availability and security while documenting technical decisions for business reviewers.",
+    "Infrastructure Automation:** Collaborated with cross-functional teams to automate infrastructure provisioning using Terraform, reducing manual configuration errors.",
+    "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews, translating operational needs into actionable solutions.",
+    "Quality & Process:** Managed approximately 81 work items per month, tracking quality checks and follow-up actions to maintain clear documentation and review standards.",
+    "Technical Assistant** | Example Cedar Innovations (Singapore)",
+    "Infrastructure as Code:** Supported recurring operational work by creating and maintaining Terraform configurations, establishing step-by-step procedures for team consistency.",
+    "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+    "Efficiency Improvements:** Developed a reporting template that reduced manual preparation time by 11%, contributing to measurable operational improvements.",
+    "DevOps Practice Project** | Personal Initiative",
+    "Enhanced observability by testing representative scenarios and recording system limitations.",
+    "Presented design rationale and outcomes to a five-person peer review group, refining technical trade-offs based on feedback.",
+    "Bachelor of Science in Information Systems** | Example Polytechnic (Singapore)",
+    "Core Tools:** CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git.",
+    "Observability & Automation:** Monitoring, Argo CD, Helm, Python (preferred).",
+    "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making, technical documentation."
+  ],
+  "n_claims": 23,
+  "claim_scores": [
+    {
+      "claim": "DevOps Engineer with hands-on experience building reliable deployment pipelines and managing container platforms using CI/CD, Docker, Kubernetes, Terraform, and AWS.",
+      "best_source_chunk": "in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git, monitoring, Argo CD, Helm ## Certifications - AWS Certified Cloud Practitioner",
+      "probabilities": {
+        "contradiction": 0.000891,
+        "entailment": 0.024218,
+        "neutral": 0.97489
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.024218,
+      "supported": false
+    },
+    {
+      "claim": "Proven ability to automate infrastructure provisioning and improve observability while maintaining clear documentation.",
+      "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+      "probabilities": {
+        "contradiction": 0.002247,
+        "entailment": 0.032526,
+        "neutral": 0.965227
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.032526,
+      "supported": false
+    },
+    {
+      "claim": "Adept at collaborating with engineering and product stakeholders to solve ambiguous problems, deliver well-tested improvements, and ensure responsible delivery through evidence-based decision-making.",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.002784,
+        "entailment": 0.004545,
+        "neutral": 0.99267
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004545,
+      "supported": false
+    },
+    {
+      "claim": "DevOps Engineer** | Example Beacon Services (Singapore)",
+      "best_source_chunk": "# Grace Lee grace.lee@example.test | +65 6000 0067 | Singapore ## Summary DevOps Engineer with hands-on experience in CI/CD, Docker and Kubernetes. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### DevOps Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 16%. - Applied Kubernetes",
+      "probabilities": {
+        "contradiction": 0.000635,
+        "entailment": 0.954147,
+        "neutral": 0.045218
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.954147,
+      "supported": true
+    },
+    {
+      "claim": "Deployment Pipelines & Containers:** Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 16% to help development teams ship safely.",
+      "best_source_chunk": "# Grace Lee grace.lee@example.test | +65 6000 0067 | Singapore ## Summary DevOps Engineer with hands-on experience in CI/CD, Docker and Kubernetes. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### DevOps Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 16%. - Applied Kubernetes",
+      "probabilities": {
+        "contradiction": 7.1e-05,
+        "entailment": 0.002174,
+        "neutral": 0.997755
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002174,
+      "supported": false
+    },
+    {
+      "claim": "Container Management:** Managed container platforms on Kubernetes, ensuring high availability and security while documenting technical decisions for business reviewers.",
+      "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+      "probabilities": {
+        "contradiction": 0.187832,
+        "entailment": 0.014865,
+        "neutral": 0.797303
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.014865,
+      "supported": false
+    },
+    {
+      "claim": "Infrastructure Automation:** Collaborated with cross-functional teams to automate infrastructure provisioning using Terraform, reducing manual configuration errors.",
+      "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+      "probabilities": {
+        "contradiction": 0.01157,
+        "entailment": 0.00798,
+        "neutral": 0.980451
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00798,
+      "supported": false
+    },
+    {
+      "claim": "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews, translating operational needs into actionable solutions.",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.012717,
+        "entailment": 0.005426,
+        "neutral": 0.981857
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005426,
+      "supported": false
+    },
+    {
+      "claim": "Quality & Process:** Managed approximately 81 work items per month, tracking quality checks and follow-up actions to maintain clear documentation and review standards.",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.003445,
+        "entailment": 0.003538,
+        "neutral": 0.993017
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.003538,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Cedar Innovations (Singapore)",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.657008,
+        "entailment": 0.204067,
+        "neutral": 0.138925
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.204067,
+      "supported": false
+    },
+    {
+      "claim": "Infrastructure as Code:** Supported recurring operational work by creating and maintaining Terraform configurations, establishing step-by-step procedures for team consistency.",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.008384,
+        "entailment": 0.015288,
+        "neutral": 0.976327
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.015288,
+      "supported": false
+    },
+    {
+      "claim": "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.171086,
+        "entailment": 0.051645,
+        "neutral": 0.777269
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.051645,
+      "supported": false
+    },
+    {
+      "claim": "Efficiency Improvements:** Developed a reporting template that reduced manual preparation time by 11%, contributing to measurable operational improvements.",
+      "best_source_chunk": "Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 11%. ## Projects ### DevOps Engineer Practice Project - Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations and",
+      "probabilities": {
+        "contradiction": 0.000107,
+        "entailment": 0.002724,
+        "neutral": 0.997169
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002724,
+      "supported": false
+    },
+    {
+      "claim": "DevOps Practice Project** | Personal Initiative",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.511868,
+        "entailment": 0.037096,
+        "neutral": 0.451037
+      },
+      "predicted_relation": "contradiction",
+      "entailment": 0.037096,
+      "supported": false
+    },
+    {
+      "claim": "Designed and implemented a demonstration project utilizing CI/CD, Docker, and Kubernetes.",
+      "best_source_chunk": "Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 11%. ## Projects ### DevOps Engineer Practice Project - Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations and",
+      "probabilities": {
+        "contradiction": 8.1e-05,
+        "entailment": 0.995214,
+        "neutral": 0.004705
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.995214,
+      "supported": true
+    },
+    {
+      "claim": "Enhanced observability by testing representative scenarios and recording system limitations.",
+      "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+      "probabilities": {
+        "contradiction": 0.002785,
+        "entailment": 0.326616,
+        "neutral": 0.670599
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.326616,
+      "supported": false
+    },
+    {
+      "claim": "Presented design rationale and outcomes to a five-person peer review group, refining technical trade-offs based on feedback.",
+      "best_source_chunk": "a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied",
+      "probabilities": {
+        "contradiction": 0.00068,
+        "entailment": 0.004559,
+        "neutral": 0.994761
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004559,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Singapore)",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.273368,
+        "entailment": 0.153715,
+        "neutral": 0.572917
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.153715,
+      "supported": false
+    },
+    {
+      "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+      "best_source_chunk": "in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git, monitoring, Argo CD, Helm ## Certifications - AWS Certified Cloud Practitioner",
+      "probabilities": {
+        "contradiction": 0.000107,
+        "entailment": 0.990532,
+        "neutral": 0.009361
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.990532,
+      "supported": true
+    },
+    {
+      "claim": "Core Tools:** CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git.",
+      "best_source_chunk": "in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git, monitoring, Argo CD, Helm ## Certifications - AWS Certified Cloud Practitioner",
+      "probabilities": {
+        "contradiction": 0.003858,
+        "entailment": 0.008132,
+        "neutral": 0.988011
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.008132,
+      "supported": false
+    },
+    {
+      "claim": "Observability & Automation:** Monitoring, Argo CD, Helm, Python (preferred).",
+      "best_source_chunk": "Practitioner",
+      "probabilities": {
+        "contradiction": 0.460937,
+        "entailment": 0.056906,
+        "neutral": 0.482157
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.056906,
+      "supported": false
+    },
+    {
+      "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making, technical documentation.",
+      "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+      "probabilities": {
+        "contradiction": 0.008777,
+        "entailment": 0.155692,
+        "neutral": 0.835531
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.155692,
+      "supported": false
+    },
+    {
+      "claim": "AWS Certified Cloud Practitioner",
+      "best_source_chunk": "in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, AWS, Linux, Git, monitoring, Argo CD, Helm ## Certifications - AWS Certified Cloud Practitioner",
+      "probabilities": {
+        "contradiction": 0.001996,
+        "entailment": 0.954331,
+        "neutral": 0.043673
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.954331,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "ef24d6e1600340a4f456f90e4c462f09ab4815622db5a889f465350c036db4cd",
+  "nli_seconds": 0.0007,
+  "base_pair_id": "cd_resume_007__cd_jd_02",
+  "variant": "original",
+  "transformation_version": "meaning-preserving-v1",
+  "evaluator_hash": "330f36304073e03b"
+}
