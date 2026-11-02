@@ -1,0 +1,393 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 814,
+  "output_tokens": 653,
+  "thinking_chars": 0,
+  "seconds": 23.73,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 422,
+  "sim_before": 0.8067,
+  "sim_after": 0.8312,
+  "sim_gain": 0.0246,
+  "kw_before": 0.5,
+  "kw_after": 0.75,
+  "kw_missing": [
+    "PostgreSQL",
+    "Airflow"
+  ],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": false,
+  "task_failure_reasons": [
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1467,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2638.17,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "da_resume_009__da_jd_02__formatting",
+  "resume_id": "da_resume_009",
+  "jd_id": "da_jd_02",
+  "category": "data_ai",
+  "role_family": "data_engineer",
+  "seniority": "mid",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 23.7304,
+  "resume_path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b/robustness/runs/w1_single_pass/da_resume_009__da_jd_02/formatting/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/da_resume_009__da_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/96dc56a489fc/330f36304073e03b/robustness/runs/w1_single_pass/da_resume_009__da_jd_02/formatting/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Inez Lim\ninez.lim@example.test | +65 6000 0029 | Singapore\n\n## SUMMARY\nMid-level Data Engineer with a strong foundation in Python, SQL, and ETL, specializing in building reliable batch data pipelines and modeling analytics-ready datasets. Proven ability to optimize transformation jobs, monitor data quality, and deliver evidence-based solutions that improve team turnaround by nearly 30%. Adept at collaborating with engineering, product, and business stakeholders to communicate technical trade-offs and maintain clear documentation. Seeking to leverage experience in operational workflows and data pipeline management to drive responsible delivery at Example Northstar Systems.\n\n## EXPERIENCE\n\n**Technology Associate** | Example Delta Operations (Singapore)\n*Jul 2023 – Present*\n\n*   **Pipeline Development:** Designed and deployed reliable batch data pipelines using Python and SQL, directly contributing to a 29% improvement in team turnaround time.\n*   **Data Modeling:** Applied ETL processes to transform raw operational data into structured, analytics-ready datasets, ensuring consistency for downstream consumption.\n*   **Quality Assurance:** Implemented robust quality checks across approximately 37 monthly work items, tracking metrics and executing follow-up actions to maintain data integrity.\n*   **Stakeholder Communication:** Collaborated with four colleagues to monitor data health and presented progress, risks, and technical decisions during fortnightly reviews for technical and business stakeholders.\n*   **Documentation:** Documented all transformation logic and decision-making processes to ensure transparency and facilitate future maintenance.\n\n**Technical Assistant** | Example Ember Technologies (Singapore)\n*Jan 2021 – Jun 2023*\n\n*   **Operational Support:** Supported recurring operational workflows by developing and maintaining data pipelines, ensuring consistent service delivery.\n*   **Problem Solving:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to engineering teams for resolution.\n*   **Process Optimization:** Created a streamlined reporting template that reduced manual preparation time by 24%, demonstrating an ability to solve ambiguous problems through practical improvements.\n\n## PROJECTS\n\n**Data Engineer Practice Project** | Personal Initiative\n*   Built a comprehensive demonstration project utilizing Python, SQL, and ETL to simulate real-world data ingestion and transformation scenarios.\n*   Conducted rigorous testing with representative datasets to identify limitations and define next steps for scalability.\n*   Presented the system architecture, design patterns, and outcomes to a five-person peer review group, refining technical trade-offs based on feedback.\n\n## EDUCATION\n\n**Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)\n*Aug 2020 – May 2024*\n*   Relevant Coursework: Software Engineering, Database Management, Cybersecurity, and Applied Analytics.\n\n## SKILLS\n\n*   **Languages:** Python, SQL\n*   **Core Competencies:** ETL, Data Pipelines, Data Quality Monitoring, Analytics Modeling\n*   **Tools & Platforms:** Git, Excel, Cloud Storage (Conceptual), Docker (Familiarity)\n*   **Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation",
+  "original_resume": "# Inez Lim\n\n\n\ninez.lim@example.test | +65 6000 0029 | Singapore\n\n\n\n## SUMMARY\n\n\n\nTechnology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.\n\n\n\n## EXPERIENCE\n\n\n\n### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present)\n\n\n\n* Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.\n\n* Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.\n\n* Managed approximately 37 work items per month while tracking quality checks and follow-up actions.\n\n* Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews.\n\n\n\n### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023)\n\n\n\n* Supported recurring operational work using data pipelines and documented step-by-step procedures.\n\n* Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n\n* Created a simple reporting template that reduced manual preparation time by 24%.\n\n\n\n## PROJECTS\n\n\n\n### Data Engineer Practice Project\n\n\n\n* Built a fictional demonstration project using Python, SQL and ETL.\n\n* Tested the project with representative scenarios and recorded limitations and next steps.\n\n* Presented the design and outcomes to a five-person peer review group.\n\n\n\n## EDUCATION\n\n\n\n### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024)\n\n\n\n* Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n\n\n## SKILLS\n\n\n\nPython, SQL, ETL, data pipelines, Spark, Excel, documentation, Git\n",
+  "job_description": "# Data Engineer\n\n\n\n**Company:** Example Northstar Systems (fictional)  \n\n**Location:** Singapore  \n\n**Employment type:** Full-time  \n\n**Seniority:** Mid\n\n\n\n## ABOUT THE ROLE\n\n\n\nExample Northstar Systems is seeking a Data Engineer to join a multidisciplinary technology team. The successful\n\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\n\nworks closely with engineering, product and business stakeholders, values clear documentation and\n\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\n\nappropriate review, security and quality controls.\n\n\n\n## RESPONSIBILITIES\n\n\n\n* Build reliable batch data pipelines.\n\n* Model analytics-ready datasets.\n\n* Monitor data quality.\n\n* Optimise transformation jobs.\n\n* Work with analysts on trusted data products.\n\n* Communicate progress, risks and technical trade-offs to relevant stakeholders.\n\n* Maintain clear documentation and contribute to team planning and reviews.\n\n\n\n## REQUIRED QUALIFICATIONS\n\n\n\n* Python\n\n* SQL\n\n* ETL\n\n* data pipelines\n\n* PostgreSQL\n\n* Airflow\n\n* Docker\n\n* cloud storage\n\n* Clear written and verbal communication\n\n* Ability to work collaboratively and solve ambiguous problems\n\n\n\n## PREFERRED QUALIFICATIONS\n\n\n\n* Spark\n\n* dbt\n\n* AWS\n\n\n\n## WHAT SUCCESS LOOKS LIKE\n\n\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\n\nwell-tested improvements and build trusted working relationships. Success is measured through\n\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.087,
+  "unsupported": [
+    "Mid-level Data Engineer with a strong foundation in Python, SQL, and ETL, specializing in building reliable batch data pipelines and modeling analytics-ready datasets.",
+    "Proven ability to optimize transformation jobs, monitor data quality, and deliver evidence-based solutions that improve team turnaround by nearly 30%.",
+    "Adept at collaborating with engineering, product, and business stakeholders to communicate technical trade-offs and maintain clear documentation.",
+    "Seeking to leverage experience in operational workflows and data pipeline management to drive responsible delivery at Example Northstar Systems.",
+    "Technology Associate** | Example Delta Operations (Singapore)",
+    "Data Modeling:** Applied ETL processes to transform raw operational data into structured, analytics-ready datasets, ensuring consistency for downstream consumption.",
+    "Quality Assurance:** Implemented robust quality checks across approximately 37 monthly work items, tracking metrics and executing follow-up actions to maintain data integrity.",
+    "Stakeholder Communication:** Collaborated with four colleagues to monitor data health and presented progress, risks, and technical decisions during fortnightly reviews for technical and business stakeholders.",
+    "Documentation:** Documented all transformation logic and decision-making processes to ensure transparency and facilitate future maintenance.",
+    "Technical Assistant** | Example Ember Technologies (Singapore)",
+    "Operational Support:** Supported recurring operational workflows by developing and maintaining data pipelines, ensuring consistent service delivery.",
+    "Problem Solving:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to engineering teams for resolution.",
+    "Process Optimization:** Created a streamlined reporting template that reduced manual preparation time by 24%, demonstrating an ability to solve ambiguous problems through practical improvements.",
+    "Data Engineer Practice Project** | Personal Initiative",
+    "Built a comprehensive demonstration project utilizing Python, SQL, and ETL to simulate real-world data ingestion and transformation scenarios.",
+    "Conducted rigorous testing with representative datasets to identify limitations and define next steps for scalability.",
+    "Presented the system architecture, design patterns, and outcomes to a five-person peer review group, refining technical trade-offs based on feedback.",
+    "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+    "Core Competencies:** ETL, Data Pipelines, Data Quality Monitoring, Analytics Modeling",
+    "Tools & Platforms:** Git, Excel, Cloud Storage (Conceptual), Docker (Familiarity)",
+    "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation"
+  ],
+  "n_claims": 23,
+  "claim_scores": [
+    {
+      "claim": "Mid-level Data Engineer with a strong foundation in Python, SQL, and ETL, specializing in building reliable batch data pipelines and modeling analytics-ready datasets.",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.000352,
+        "entailment": 0.004445,
+        "neutral": 0.995203
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004445,
+      "supported": false
+    },
+    {
+      "claim": "Proven ability to optimize transformation jobs, monitor data quality, and deliver evidence-based solutions that improve team turnaround by nearly 30%.",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.005409,
+        "entailment": 0.004011,
+        "neutral": 0.99058
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004011,
+      "supported": false
+    },
+    {
+      "claim": "Adept at collaborating with engineering, product, and business stakeholders to communicate technical trade-offs and maintain clear documentation.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+      "probabilities": {
+        "contradiction": 0.000672,
+        "entailment": 0.011448,
+        "neutral": 0.98788
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.011448,
+      "supported": false
+    },
+    {
+      "claim": "Seeking to leverage experience in operational workflows and data pipeline management to drive responsible delivery at Example Northstar Systems.",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+      "probabilities": {
+        "contradiction": 0.244694,
+        "entailment": 0.005597,
+        "neutral": 0.749709
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005597,
+      "supported": false
+    },
+    {
+      "claim": "Technology Associate** | Example Delta Operations (Singapore)",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.015005,
+        "entailment": 0.233058,
+        "neutral": 0.751937
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.233058,
+      "supported": false
+    },
+    {
+      "claim": "Pipeline Development:** Designed and deployed reliable batch data pipelines using Python and SQL, directly contributing to a 29% improvement in team turnaround time.",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.000319,
+        "entailment": 0.986652,
+        "neutral": 0.013029
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.986652,
+      "supported": true
+    },
+    {
+      "claim": "Data Modeling:** Applied ETL processes to transform raw operational data into structured, analytics-ready datasets, ensuring consistency for downstream consumption.",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.005343,
+        "entailment": 0.001748,
+        "neutral": 0.992909
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001748,
+      "supported": false
+    },
+    {
+      "claim": "Quality Assurance:** Implemented robust quality checks across approximately 37 monthly work items, tracking metrics and executing follow-up actions to maintain data integrity.",
+      "best_source_chunk": "2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. * Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers. * Managed approximately 37 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to monitor data quality and presented",
+      "probabilities": {
+        "contradiction": 0.00033,
+        "entailment": 0.002046,
+        "neutral": 0.997624
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002046,
+      "supported": false
+    },
+    {
+      "claim": "Stakeholder Communication:** Collaborated with four colleagues to monitor data health and presented progress, risks, and technical decisions during fortnightly reviews for technical and business stakeholders.",
+      "best_source_chunk": "2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. * Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers. * Managed approximately 37 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to monitor data quality and presented",
+      "probabilities": {
+        "contradiction": 0.000538,
+        "entailment": 0.001104,
+        "neutral": 0.998359
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001104,
+      "supported": false
+    },
+    {
+      "claim": "Documentation:** Documented all transformation logic and decision-making processes to ensure transparency and facilitate future maintenance.",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.000547,
+        "entailment": 0.001096,
+        "neutral": 0.998357
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001096,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Ember Technologies (Singapore)",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+      "probabilities": {
+        "contradiction": 0.002397,
+        "entailment": 0.000728,
+        "neutral": 0.996876
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000728,
+      "supported": false
+    },
+    {
+      "claim": "Operational Support:** Supported recurring operational workflows by developing and maintaining data pipelines, ensuring consistent service delivery.",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.003745,
+        "entailment": 0.007742,
+        "neutral": 0.988513
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.007742,
+      "supported": false
+    },
+    {
+      "claim": "Problem Solving:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to engineering teams for resolution.",
+      "best_source_chunk": "work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 24%. ## PROJECTS ### Data Engineer Practice Project * Built a fictional demonstration project using Python, SQL and ETL. * Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.010981,
+        "entailment": 0.00089,
+        "neutral": 0.988129
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00089,
+      "supported": false
+    },
+    {
+      "claim": "Process Optimization:** Created a streamlined reporting template that reduced manual preparation time by 24%, demonstrating an ability to solve ambiguous problems through practical improvements.",
+      "best_source_chunk": "work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 24%. ## PROJECTS ### Data Engineer Practice Project * Built a fictional demonstration project using Python, SQL and ETL. * Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.004174,
+        "entailment": 0.00184,
+        "neutral": 0.993986
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00184,
+      "supported": false
+    },
+    {
+      "claim": "Data Engineer Practice Project** | Personal Initiative",
+      "best_source_chunk": "# Inez Lim inez.lim@example.test | +65 6000 0029 | Singapore ## SUMMARY Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## EXPERIENCE ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) * Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%. *",
+      "probabilities": {
+        "contradiction": 0.011547,
+        "entailment": 0.009114,
+        "neutral": 0.97934
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.009114,
+      "supported": false
+    },
+    {
+      "claim": "Built a comprehensive demonstration project utilizing Python, SQL, and ETL to simulate real-world data ingestion and transformation scenarios.",
+      "best_source_chunk": "work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 24%. ## PROJECTS ### Data Engineer Practice Project * Built a fictional demonstration project using Python, SQL and ETL. * Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.013128,
+        "entailment": 0.001911,
+        "neutral": 0.984961
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001911,
+      "supported": false
+    },
+    {
+      "claim": "Conducted rigorous testing with representative datasets to identify limitations and define next steps for scalability.",
+      "best_source_chunk": "work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 24%. ## PROJECTS ### Data Engineer Practice Project * Built a fictional demonstration project using Python, SQL and ETL. * Tested the project with representative scenarios and",
+      "probabilities": {
+        "contradiction": 0.000634,
+        "entailment": 0.00045,
+        "neutral": 0.998916
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00045,
+      "supported": false
+    },
+    {
+      "claim": "Presented the system architecture, design patterns, and outcomes to a five-person peer review group, refining technical trade-offs based on feedback.",
+      "best_source_chunk": "Project * Built a fictional demonstration project using Python, SQL and ETL. * Tested the project with representative scenarios and recorded limitations and next steps. * Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software",
+      "probabilities": {
+        "contradiction": 0.000733,
+        "entailment": 0.017138,
+        "neutral": 0.982128
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.017138,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.001428,
+        "entailment": 0.001016,
+        "neutral": 0.997556
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001016,
+      "supported": false
+    },
+    {
+      "claim": "Relevant Coursework: Software Engineering, Database Management, Cybersecurity, and Applied Analytics.",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.000103,
+        "entailment": 0.98639,
+        "neutral": 0.013507
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.98639,
+      "supported": true
+    },
+    {
+      "claim": "Core Competencies:** ETL, Data Pipelines, Data Quality Monitoring, Analytics Modeling",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.002551,
+        "entailment": 0.039952,
+        "neutral": 0.957498
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.039952,
+      "supported": false
+    },
+    {
+      "claim": "Tools & Platforms:** Git, Excel, Cloud Storage (Conceptual), Docker (Familiarity)",
+      "best_source_chunk": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.002798,
+        "entailment": 0.005111,
+        "neutral": 0.992092
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.005111,
+      "supported": false
+    },
+    {
+      "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation",
+      "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using data pipelines and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting",
+      "probabilities": {
+        "contradiction": 0.005307,
+        "entailment": 0.015469,
+        "neutral": 0.979224
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.015469,
+      "supported": false
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "e3f0ddb53d0b39bbed049eff270ea565905aed8ef83cfe0e6ba78eaa62ff7621",
+  "nli_seconds": 1.6528,
+  "base_pair_id": "da_resume_009__da_jd_02",
+  "variant": "formatting",
+  "transformation_version": "meaning-preserving-v1",
+  "evaluator_hash": "330f36304073e03b"
+}

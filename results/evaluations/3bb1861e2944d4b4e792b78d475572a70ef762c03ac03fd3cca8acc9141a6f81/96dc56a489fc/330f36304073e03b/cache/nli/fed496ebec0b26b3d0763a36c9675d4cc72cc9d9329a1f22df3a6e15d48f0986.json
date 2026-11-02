@@ -1,0 +1,310 @@
+{
+  "identity": {
+    "source_hash": "5dfe9cb8798b6d1d5539917c4e858d1427a06ace9f6e1aa4feedebc8d7d8d42e",
+    "tailored_hash": "331f8f901789c0baecec2e6b3964987cbbf236d79b8b961f4330fd1664318eaf",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1,
+    "unsupported": [
+      "Senior Threat Intelligence Lead with extensive experience leading strategic and operational threat analysis, mapping adversary behavior to MITRE ATT&CK, and delivering evidence-based decisions.",
+      "Proven track record of mentoring analysts, improving intelligence workflows, and bridging technical and executive stakeholder needs through clear documentation and effective communication.",
+      "Committed to responsible delivery, quality control, and solving ambiguous problems within multidisciplinary technology teams.",
+      "Threat Intelligence Lead** | Example Beacon Services (Jan 2021 \u2013 Present)",
+      "Lead strategic and operational threat analysis, prioritizing intelligence requirements to drive reliable, maintainable solutions for engineering and product stakeholders.",
+      "Map adversary behavior to MITRE ATT&CK frameworks, enabling data-driven decision-making and reducing team turnaround time by 39%.",
+      "Manage a portfolio of approximately 41 work items monthly, ensuring rigorous quality checks, security controls, and clear documentation of all findings.",
+      "Mentor analysts and improve intelligence workflows while presenting progress, risks, and technical trade-offs to both technical teams and executive leadership during fortnightly reviews.",
+      "Collaborate cross-functionally to translate operational needs into actionable intelligence, maintaining transparent communication throughout the lifecycle of investigations.",
+      "Technical Assistant** | Example Cedar Innovations (Jun 2017 \u2013 Dec 2020)",
+      "Supported recurring operational work using incident response procedures, ensuring all actions were documented with clear supporting evidence for escalation and review.",
+      "Investigated service requests to identify root causes, recording findings that facilitated accurate stakeholder briefings.",
+      "Designed and implemented a streamlined reporting template, reducing manual preparation time by 34% and establishing a standard for clear written communication.",
+      "Threat Intelligence Lead Practice Project**",
+      "Developed a comprehensive demonstration project integrating threat intelligence, MITRE ATT&CK mapping, and malware analysis techniques.",
+      "Presented design architecture and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Threat Intelligence, MITRE ATT&CK Mapping, Malware Analysis, Incident Response, OSINT, Intelligence Reporting, Stakeholder Briefing, Team Leadership, Python, SIEM, Clear Written & Verbal Communication."
+    ],
+    "n_claims": 20,
+    "claim_scores": [
+      {
+        "claim": "Senior Threat Intelligence Lead with extensive experience leading strategic and operational threat analysis, mapping adversary behavior to MITRE ATT&CK, and delivering evidence-based decisions.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.00863,
+          "entailment": 0.001042,
+          "neutral": 0.990329
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001042,
+        "supported": false
+      },
+      {
+        "claim": "Proven track record of mentoring analysts, improving intelligence workflows, and bridging technical and executive stakeholder needs through clear documentation and effective communication.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.000861,
+          "entailment": 0.000788,
+          "neutral": 0.998351
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000788,
+        "supported": false
+      },
+      {
+        "claim": "Committed to responsible delivery, quality control, and solving ambiguous problems within multidisciplinary technology teams.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, OSINT, intelligence reporting, stakeholder briefing, team leadership, Python, SIEM",
+        "probabilities": {
+          "contradiction": 0.002394,
+          "entailment": 0.015175,
+          "neutral": 0.98243
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.015175,
+        "supported": false
+      },
+      {
+        "claim": "Threat Intelligence Lead** | Example Beacon Services (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "Beacon Services (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 39%. - Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.000755,
+          "entailment": 0.007427,
+          "neutral": 0.991818
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007427,
+        "supported": false
+      },
+      {
+        "claim": "Lead strategic and operational threat analysis, prioritizing intelligence requirements to drive reliable, maintainable solutions for engineering and product stakeholders.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, OSINT, intelligence reporting, stakeholder briefing, team leadership, Python, SIEM",
+        "probabilities": {
+          "contradiction": 0.000511,
+          "entailment": 0.005072,
+          "neutral": 0.994417
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005072,
+        "supported": false
+      },
+      {
+        "claim": "Map adversary behavior to MITRE ATT&CK frameworks, enabling data-driven decision-making and reducing team turnaround time by 39%.",
+        "best_source_chunk": "Beacon Services (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 39%. - Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.000798,
+          "entailment": 0.003145,
+          "neutral": 0.996058
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003145,
+        "supported": false
+      },
+      {
+        "claim": "Manage a portfolio of approximately 41 work items monthly, ensuring rigorous quality checks, security controls, and clear documentation of all findings.",
+        "best_source_chunk": "Beacon Services (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 39%. - Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.001407,
+          "entailment": 0.018153,
+          "neutral": 0.98044
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018153,
+        "supported": false
+      },
+      {
+        "claim": "Mentor analysts and improve intelligence workflows while presenting progress, risks, and technical trade-offs to both technical teams and executive leadership during fortnightly reviews.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.001355,
+          "entailment": 0.002912,
+          "neutral": 0.995733
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002912,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate cross-functionally to translate operational needs into actionable intelligence, maintaining transparent communication throughout the lifecycle of investigations.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.001942,
+          "entailment": 0.004258,
+          "neutral": 0.993799
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004258,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Cedar Innovations (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.028023,
+          "entailment": 0.04588,
+          "neutral": 0.926097
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.04588,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work using incident response procedures, ensuring all actions were documented with clear supporting evidence for escalation and review.",
+        "best_source_chunk": "Beacon Services (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 39%. - Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.0036,
+          "entailment": 0.009267,
+          "neutral": 0.987134
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009267,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests to identify root causes, recording findings that facilitated accurate stakeholder briefings.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.009363,
+          "entailment": 0.002402,
+          "neutral": 0.988234
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002402,
+        "supported": false
+      },
+      {
+        "claim": "Designed and implemented a streamlined reporting template, reducing manual preparation time by 34% and establishing a standard for clear written communication.",
+        "best_source_chunk": "Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Threat Intelligence Lead Practice Project - Built a fictional demonstration project using",
+        "probabilities": {
+          "contradiction": 0.00057,
+          "entailment": 0.216562,
+          "neutral": 0.782868
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.216562,
+        "supported": false
+      },
+      {
+        "claim": "Threat Intelligence Lead Practice Project**",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.832079,
+          "entailment": 0.007622,
+          "neutral": 0.160299
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.007622,
+        "supported": false
+      },
+      {
+        "claim": "Developed a comprehensive demonstration project integrating threat intelligence, MITRE ATT&CK mapping, and malware analysis techniques.",
+        "best_source_chunk": "# Quentin Ng quentin.ng@example.test | +65 6000 0057 | Singapore ## Summary Threat Intelligence Lead with hands-on experience in threat intelligence, MITRE ATT&CK and malware analysis. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Threat Intelligence Lead, Example Beacon Services (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat",
+        "probabilities": {
+          "contradiction": 0.000484,
+          "entailment": 0.001953,
+          "neutral": 0.997563
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001953,
+        "supported": false
+      },
+      {
+        "claim": "Validated methodologies through representative scenarios, documenting limitations and defining next steps for continuous improvement.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.001901,
+          "entailment": 0.655442,
+          "neutral": 0.342657
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.655442,
+        "supported": true
+      },
+      {
+        "claim": "Presented design architecture and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, OSINT, intelligence reporting, stakeholder briefing, team leadership, Python, SIEM",
+        "probabilities": {
+          "contradiction": 0.001464,
+          "entailment": 0.002199,
+          "neutral": 0.996337
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002199,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, OSINT, intelligence reporting, stakeholder briefing, team leadership, Python, SIEM",
+        "probabilities": {
+          "contradiction": 0.007218,
+          "entailment": 0.075359,
+          "neutral": 0.917423
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.075359,
+        "supported": false
+      },
+      {
+        "claim": "Relevant coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, OSINT, intelligence reporting, stakeholder briefing, team leadership, Python, SIEM",
+        "probabilities": {
+          "contradiction": 0.000201,
+          "entailment": 0.993467,
+          "neutral": 0.006332
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.993467,
+        "supported": true
+      },
+      {
+        "claim": "Threat Intelligence, MITRE ATT&CK Mapping, Malware Analysis, Incident Response, OSINT, Intelligence Reporting, Stakeholder Briefing, Team Leadership, Python, SIEM, Clear Written & Verbal Communication.",
+        "best_source_chunk": "business reviewers. - Managed approximately 41 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.014591,
+          "entailment": 0.00595,
+          "neutral": 0.979459
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00595,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "fed496ebec0b26b3d0763a36c9675d4cc72cc9d9329a1f22df3a6e15d48f0986"
+  }
+}

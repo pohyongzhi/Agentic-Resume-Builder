@@ -1,0 +1,320 @@
+{
+  "identity": {
+    "source_hash": "c1f8485071f17ae36d73b41f9cc5efe55969af17bdb4303c9d50e97c20409ae4",
+    "tailored_hash": "07f0fc46c3ab4b9aee9ca10a40370cadf503342de6775c61e2df873a0d9ab990",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2381,
+    "unsupported": [
+      "SOC Analyst with hands-on experience in SIEM, incident triage, and log analysis.",
+      "Proven ability to turn operational needs into reliable solutions by delivering documented, measurable improvements through cross-functional collaboration.",
+      "Skilled in monitoring security alerts, analyzing endpoint and network logs, and communicating technical trade-offs to stakeholders.",
+      "Committed to evidence-based decision-making, clear documentation, and maintaining quality controls while solving ambiguous problems.",
+      "SOC Analyst** | Example Beacon Services (fictional)",
+      "Monitor security alerts using SIEM tools to triage suspicious activity, improving team turnaround time by 27%.",
+      "Analyze endpoint and network logs to identify threats, documenting all decisions for technical and business reviewers.",
+      "Manage approximately 26 work items monthly, ensuring quality checks and follow-up actions are completed before escalation.",
+      "Collaborate with engineering and product stakeholders to present progress, risks, and technical trade-offs during fortnightly reviews.",
+      "Technical Assistant** | Example Cedar Innovations (fictional)",
+      "Investigated service requests by recording findings and escalating confirmed issues with clear supporting evidence.",
+      "Developed a reporting template that reduced manual preparation time by 22%, demonstrating ability to deliver well-tested improvements.",
+      "SOC Analyst Practice Project** | Personal Initiative",
+      "Tested scenarios to validate threat detection capabilities and recorded limitations for future improvement.",
+      "Presented design outcomes and next steps to a five-person peer review group, honing clear communication skills.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (fictional)"
+    ],
+    "n_claims": 21,
+    "claim_scores": [
+      {
+        "claim": "SOC Analyst with hands-on experience in SIEM, incident triage, and log analysis.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.19457,
+          "entailment": 0.022763,
+          "neutral": 0.782667
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.022763,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn operational needs into reliable solutions by delivering documented, measurable improvements through cross-functional collaboration.",
+        "best_source_chunk": "# Benjamin Ng benjamin.ng@example.test | +65 6000 0042 | Singapore ## Summary SOC Analyst with hands-on experience in SIEM, incident triage and log analysis. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### SOC Analyst, Example Beacon Services (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 27%. -",
+        "probabilities": {
+          "contradiction": 0.000158,
+          "entailment": 0.005658,
+          "neutral": 0.994184
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005658,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in monitoring security alerts, analyzing endpoint and network logs, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000305,
+          "entailment": 0.002577,
+          "neutral": 0.997118
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002577,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making, clear documentation, and maintaining quality controls while solving ambiguous problems.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000492,
+          "entailment": 0.002001,
+          "neutral": 0.997507
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002001,
+        "supported": false
+      },
+      {
+        "claim": "SOC Analyst** | Example Beacon Services (fictional)",
+        "best_source_chunk": "threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.191296,
+          "entailment": 0.039104,
+          "neutral": 0.7696
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.039104,
+        "supported": false
+      },
+      {
+        "claim": "Monitor security alerts using SIEM tools to triage suspicious activity, improving team turnaround time by 27%.",
+        "best_source_chunk": "# Benjamin Ng benjamin.ng@example.test | +65 6000 0042 | Singapore ## Summary SOC Analyst with hands-on experience in SIEM, incident triage and log analysis. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### SOC Analyst, Example Beacon Services (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 27%. -",
+        "probabilities": {
+          "contradiction": 5.7e-05,
+          "entailment": 0.011015,
+          "neutral": 0.988928
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011015,
+        "supported": false
+      },
+      {
+        "claim": "Analyze endpoint and network logs to identify threats, documenting all decisions for technical and business reviewers.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Linux, threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.000225,
+          "entailment": 0.001502,
+          "neutral": 0.998273
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001502,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 26 work items monthly, ensuring quality checks and follow-up actions are completed before escalation.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000653,
+          "entailment": 0.001733,
+          "neutral": 0.997613
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001733,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with engineering and product stakeholders to present progress, risks, and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.002957,
+          "entailment": 0.001138,
+          "neutral": 0.995905
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001138,
+        "supported": false
+      },
+      {
+        "claim": "Maintain clear documentation of incidents and contribute to team planning and review processes.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000239,
+          "entailment": 0.945479,
+          "neutral": 0.054282
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.945479,
+        "supported": true
+      },
+      {
+        "claim": "Technical Assistant** | Example Cedar Innovations (fictional)",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.005859,
+          "entailment": 0.005777,
+          "neutral": 0.988364
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005777,
+        "supported": false
+      },
+      {
+        "claim": "Supported operational workflows using network security principles, creating documented step-by-step procedures for recurring tasks.",
+        "best_source_chunk": "Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 22%. ## Projects ### SOC Analyst Practice Project - Built a fictional demonstration project using SIEM, incident triage and log analysis. - Tested the",
+        "probabilities": {
+          "contradiction": 0.00647,
+          "entailment": 0.825851,
+          "neutral": 0.167679
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.825851,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests by recording findings and escalating confirmed issues with clear supporting evidence.",
+        "best_source_chunk": "threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.060229,
+          "entailment": 0.024713,
+          "neutral": 0.915059
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024713,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 22%, demonstrating ability to deliver well-tested improvements.",
+        "best_source_chunk": "Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 22%. ## Projects ### SOC Analyst Practice Project - Built a fictional demonstration project using SIEM, incident triage and log analysis. - Tested the",
+        "probabilities": {
+          "contradiction": 0.000694,
+          "entailment": 0.010721,
+          "neutral": 0.988584
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010721,
+        "supported": false
+      },
+      {
+        "claim": "SOC Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.875979,
+          "entailment": 0.005007,
+          "neutral": 0.119014
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.005007,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing SIEM, incident triage, and log analysis techniques.",
+        "best_source_chunk": "# Benjamin Ng benjamin.ng@example.test | +65 6000 0042 | Singapore ## Summary SOC Analyst with hands-on experience in SIEM, incident triage and log analysis. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### SOC Analyst, Example Beacon Services (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 27%. -",
+        "probabilities": {
+          "contradiction": 0.000831,
+          "entailment": 0.949701,
+          "neutral": 0.049468
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.949701,
+        "supported": true
+      },
+      {
+        "claim": "Tested scenarios to validate threat detection capabilities and recorded limitations for future improvement.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001305,
+          "entailment": 0.0019,
+          "neutral": 0.996794
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0019,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and next steps to a five-person peer review group, honing clear communication skills.",
+        "best_source_chunk": "threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.010959,
+          "entailment": 0.000607,
+          "neutral": 0.988433
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000607,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (fictional)",
+        "best_source_chunk": "threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.030943,
+          "entailment": 0.022072,
+          "neutral": 0.946985
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.022072,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Linux, threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.010152,
+          "entailment": 0.637214,
+          "neutral": 0.352634
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.637214,
+        "supported": true
+      },
+      {
+        "claim": "SIEM, Splunk, incident triage, log analysis, network security, Linux, threat detection, ticketing, technical writing, Python.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Linux, threat detection, ticketing, technical writing, Splunk, Python",
+        "probabilities": {
+          "contradiction": 0.002811,
+          "entailment": 0.975155,
+          "neutral": 0.022034
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.975155,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "9e23f376351450a4e24b0e767d6fddfb312e554de3f91f6e92a70199dea356c8"
+  }
+}

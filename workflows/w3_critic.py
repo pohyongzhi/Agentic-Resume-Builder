@@ -8,10 +8,12 @@ import json
 import time
 from typing import TypedDict
 
+from pydantic import ValidationError
+
 from langgraph.graph import END, START, StateGraph
 
 import config
-from common.harness import ToolHarness
+from common.harness import ToolHarness, validate_resume
 from common.llm import chat
 from common.pipeline import run_pipeline
 from common.prompts import STRUCTURED_CREATOR_SYSTEM, creator_prompt
@@ -54,15 +56,62 @@ class CriticState(TypedDict, total=False):
 
 
 def _structured(system, user, model, tracker, forced_fields=None):
-    msg = chat(
-        [{"role": "system", "content": system}, {"role": "user", "content": user}],
-        tracker,
-        format=llm_schema(model),
+    is_review = model is CriticFeedback
+    limit = config.W3_CRITIC_MAX_TOKENS if is_review else config.W3_DRAFT_MAX_TOKENS
+    instruction = (
+        " Return at most five distinct issues, with short evidence and one concrete recommendation "
+        "per issue. Do not repeat issues. Stop after the JSON object."
+        if is_review else
+        " Return one complete concise resume JSON object. Do not repeat entries or add commentary. "
+        "Use [] for missing certifications and other empty lists; never write placeholders such as "
+        "None listed or Not applicable as a list item. Retain the candidate education entries."
     )
-    data = json.loads(msg.content or "")
-    if forced_fields:
-        data.update(forced_fields)
-    return model.model_validate(data)
+    messages = [{"role": "system", "content": system},
+                {"role": "user", "content": user + instruction}]
+    failures = []
+    for attempt in range(config.W3_STRUCTURED_RETRIES + 1):
+        msg = chat(messages, tracker, format=llm_schema(model), num_predict=limit)
+        raw = msg.content or ""
+        try:
+            data = json.loads(raw)
+            if not isinstance(data, dict):
+                raise ValueError("expected one JSON object")
+            if forced_fields:
+                data.update(forced_fields)
+            return model.model_validate(data)
+        except (json.JSONDecodeError, ValidationError, ValueError) as exc:
+            detail = str(exc)[:1000]
+            failures.append(detail)
+            tracker.log(type="structured_output", schema=model.__name__,
+                        critic=(forced_fields or {}).get("critic"), attempt=attempt + 1,
+                        ok=False, error=detail, response_chars=len(raw), raw_response=raw)
+            # Start a fresh bounded request rather than feeding a runaway response back in.
+            messages = [{"role": "system", "content": system},
+                        {"role": "user", "content": user + instruction +
+                         "\n\nYour previous response failed validation: " + detail +
+                         "\nReturn a shorter, complete JSON object matching the schema. "
+                         "Preserve source facts; do not repair or continue the previous JSON."}]
+    raise ValueError(f"{model.__name__} failed after {len(failures)} attempts: {failures[-1]}")
+
+
+def _prepare_draft(draft, candidate):
+    """Remove explicit absence markers and retain source education when a writer omits it.
+
+    This does not remove unknown credentials or alter supplied education facts: the harness
+    must still reject those when they are unsupported.
+    """
+    draft = dict(draft)
+    absence_markers = {
+        "none", "n/a", "not applicable", "not provided", "none listed",
+        "none listed in original resume data", "no certifications listed",
+    }
+    draft["certifications"] = [
+        value for value in draft.get("certifications", [])
+        if value.strip().rstrip(".").casefold() not in absence_markers
+    ]
+    if not draft.get("education") and candidate.get("education"):
+        draft["education"] = candidate["education"]
+    return draft
 
 
 def _context(candidate, job, draft):
@@ -92,7 +141,7 @@ def build_critic_graph(tracker, resume_path=None, run_id=None):
             GeneratedResume,
             tracker,
         )
-        return {"draft": draft.model_dump(), "revisions": 0}
+        return {"draft": _prepare_draft(draft.model_dump(), state["candidate_data"]), "revisions": 0}
 
     def critic_node(name, system, output_key):
         def review(state):
@@ -103,7 +152,18 @@ def build_critic_graph(tracker, resume_path=None, run_id=None):
                 tracker,
                 forced_fields={"critic": name},
             )
-            return {output_key: feedback.model_dump()}
+            review_data = feedback.model_dump()
+            if name == "fact_checker":
+                # Feed the same protected-fact checks used by finalisation into the revision loop.
+                errors = validate_resume(state["draft"], state["candidate_data"], check_skills=False)
+                if errors:
+                    review_data["approved"] = False
+                    review_data["issues"] = [{
+                        "category": "protected_facts", "severity": "critical",
+                        "evidence": error,
+                        "recommendation": "Restore the source facts or remove unsupported content.",
+                    } for error in errors] + review_data["issues"]
+            return {output_key: review_data}
         return review
 
     def aggregate(state):
@@ -141,10 +201,12 @@ def build_critic_graph(tracker, resume_path=None, run_id=None):
             GeneratedResume,
             tracker,
         )
-        return {"draft": draft.model_dump(), "revisions": state["revisions"] + 1}
+        return {"draft": _prepare_draft(draft.model_dump(), state["candidate_data"]),
+                "revisions": state["revisions"] + 1}
 
     def finalise(state):
-        harness = ToolHarness(state["candidate_data"], resume_path=resume_path, run_id=run_id)
+        harness = ToolHarness(state["candidate_data"], resume_path=resume_path, run_id=run_id,
+                              check_skills=False)
         _, result, _ = _tracked_execute(
             harness, tracker, "validate_resume", {"resume": state["draft"]}
         )

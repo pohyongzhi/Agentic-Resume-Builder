@@ -1,0 +1,362 @@
+{
+  "identity": {
+    "source_hash": "5f12c5c336ba6223e6b86edaf37f15b2012d35ea99938320375359a62ae4b7db",
+    "tailored_hash": "0e6b0531812af7ebe7bf446ec9e190676b1abbb4434c5414d59b94528fac6da5",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0833,
+    "unsupported": [
+      "Entry-level SOC Analyst with transferable experience in SIEM operations, incident triage, and log analysis.",
+      "Proven ability to monitor security alerts, analyze endpoint and network logs, and document incidents for technical and business stakeholders.",
+      "Adept at collaborating across multidisciplinary teams to solve ambiguous problems while maintaining clear documentation and evidence-based decision-making processes.",
+      "Seeking to apply foundational skills in Linux, threat detection, and ticketing systems to deliver reliable security solutions at Example Meridian Labs.",
+      "Technology Associate** | Example Cedar Innovations (Jan 2025 \u2013 Present)",
+      "Monitor security alerts using SIEM tools to triage suspicious activity, improving team turnaround time by 34%.",
+      "Analyze endpoint and network logs to identify threats;",
+      "document all findings and technical trade-offs for review.",
+      "Manage approximately 39 work items monthly, tracking quality checks and escalating confirmed threats with clear supporting evidence.",
+      "Collaborate with engineering and product stakeholders to present progress and risks during fortnightly reviews.",
+      "Technical Assistant** | Example Delta Operations (May 2024 \u2013 Dec 2024)",
+      "Support operational workflows using network security principles;",
+      "document step-by-step procedures for maintainability.",
+      "Investigate service requests, record detailed findings, and escalate issues based on evidence gathered from logs.",
+      "Create reporting templates that reduced manual preparation time by 29%, demonstrating commitment to quality and efficiency.",
+      "SOC Analyst Practice Project** | Personal Initiative",
+      "Built a demonstration project utilizing SIEM, incident triage, and log analysis to simulate real-world threat detection scenarios.",
+      "Tested the solution with representative cases, documenting limitations and defining next steps for improvement.",
+      "Presented design outcomes and technical decisions to a five-person peer review group, refining communication skills.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Tools & Platforms:** Splunk, Linux, Ticketing Systems, Git.",
+      "Soft Skills:** Technical Writing, Clear Written/Verbal Communication, Collaborative Problem Solving, Evidence-Based Decision Making."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Entry-level SOC Analyst with transferable experience in SIEM operations, incident triage, and log analysis.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Splunk, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.014217,
+          "entailment": 0.315451,
+          "neutral": 0.670333
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.315451,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to monitor security alerts, analyze endpoint and network logs, and document incidents for technical and business stakeholders.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000462,
+          "entailment": 0.001759,
+          "neutral": 0.99778
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001759,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating across multidisciplinary teams to solve ambiguous problems while maintaining clear documentation and evidence-based decision-making processes.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001378,
+          "entailment": 0.009382,
+          "neutral": 0.98924
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009382,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to apply foundational skills in Linux, threat detection, and ticketing systems to deliver reliable security solutions at Example Meridian Labs.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.044814,
+          "entailment": 0.004405,
+          "neutral": 0.950781
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004405,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "# Chloe Ng chloe.ng@example.test | +65 6000 0043 | Singapore ## Summary Technology associate with transferable experience in SIEM, incident triage and log analysis, seeking to deepen capability as a SOC Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 34%.",
+        "probabilities": {
+          "contradiction": 0.003391,
+          "entailment": 0.030865,
+          "neutral": 0.965744
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.030865,
+        "supported": false
+      },
+      {
+        "claim": "Monitor security alerts using SIEM tools to triage suspicious activity, improving team turnaround time by 34%.",
+        "best_source_chunk": "# Chloe Ng chloe.ng@example.test | +65 6000 0043 | Singapore ## Summary Technology associate with transferable experience in SIEM, incident triage and log analysis, seeking to deepen capability as a SOC Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 34%.",
+        "probabilities": {
+          "contradiction": 7.2e-05,
+          "entailment": 0.015547,
+          "neutral": 0.984382
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.015547,
+        "supported": false
+      },
+      {
+        "claim": "Analyze endpoint and network logs to identify threats;",
+        "best_source_chunk": "# Chloe Ng chloe.ng@example.test | +65 6000 0043 | Singapore ## Summary Technology associate with transferable experience in SIEM, incident triage and log analysis, seeking to deepen capability as a SOC Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 34%.",
+        "probabilities": {
+          "contradiction": 0.000331,
+          "entailment": 0.002789,
+          "neutral": 0.99688
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002789,
+        "supported": false
+      },
+      {
+        "claim": "document all findings and technical trade-offs for review.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.005251,
+          "entailment": 0.01278,
+          "neutral": 0.981969
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01278,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 39 work items monthly, tracking quality checks and escalating confirmed threats with clear supporting evidence.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000676,
+          "entailment": 0.000902,
+          "neutral": 0.998422
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000902,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with engineering and product stakeholders to present progress and risks during fortnightly reviews.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.005203,
+          "entailment": 0.001021,
+          "neutral": 0.993776
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001021,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.004005,
+          "entailment": 0.003572,
+          "neutral": 0.992423
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003572,
+        "supported": false
+      },
+      {
+        "claim": "Support operational workflows using network security principles;",
+        "best_source_chunk": "- Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Projects ### SOC Analyst Practice Project - Built a fictional demonstration project using SIEM, incident triage and log analysis. - Tested",
+        "probabilities": {
+          "contradiction": 0.01699,
+          "entailment": 0.255369,
+          "neutral": 0.727642
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.255369,
+        "supported": false
+      },
+      {
+        "claim": "document step-by-step procedures for maintainability.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.003081,
+          "entailment": 0.002599,
+          "neutral": 0.99432
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002599,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record detailed findings, and escalate issues based on evidence gathered from logs.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000229,
+          "entailment": 0.278222,
+          "neutral": 0.721549
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.278222,
+        "supported": false
+      },
+      {
+        "claim": "Create reporting templates that reduced manual preparation time by 29%, demonstrating commitment to quality and efficiency.",
+        "best_source_chunk": "- Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 29%. ## Projects ### SOC Analyst Practice Project - Built a fictional demonstration project using SIEM, incident triage and log analysis. - Tested",
+        "probabilities": {
+          "contradiction": 0.000524,
+          "entailment": 0.003116,
+          "neutral": 0.996359
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003116,
+        "supported": false
+      },
+      {
+        "claim": "SOC Analyst Practice Project** | Personal Initiative",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.58444,
+          "entailment": 0.007442,
+          "neutral": 0.408118
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.007442,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing SIEM, incident triage, and log analysis to simulate real-world threat detection scenarios.",
+        "best_source_chunk": "# Chloe Ng chloe.ng@example.test | +65 6000 0043 | Singapore ## Summary Technology associate with transferable experience in SIEM, incident triage and log analysis, seeking to deepen capability as a SOC Analyst. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present) - Used SIEM and incident triage to monitor security alerts, improving team turnaround by 34%.",
+        "probabilities": {
+          "contradiction": 0.008168,
+          "entailment": 0.017779,
+          "neutral": 0.974053
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017779,
+        "supported": false
+      },
+      {
+        "claim": "Tested the solution with representative cases, documenting limitations and defining next steps for improvement.",
+        "best_source_chunk": "work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using network security and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.017416,
+          "entailment": 0.033045,
+          "neutral": 0.949538
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.033045,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and technical decisions to a five-person peer review group, refining communication skills.",
+        "best_source_chunk": "### SOC Analyst Practice Project - Built a fictional demonstration project using SIEM, incident triage and log analysis. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)",
+        "probabilities": {
+          "contradiction": 0.000693,
+          "entailment": 0.000772,
+          "neutral": 0.998535
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000772,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.225433,
+          "entailment": 0.118863,
+          "neutral": 0.655704
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.118863,
+        "supported": false
+      },
+      {
+        "claim": "Coursework focused on software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Splunk, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000227,
+          "entailment": 0.988721,
+          "neutral": 0.011052
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.988721,
+        "supported": true
+      },
+      {
+        "claim": "Security Operations:** SIEM, Incident Triage, Threat Detection, Log Analysis, Network Security.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Splunk, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.005285,
+          "entailment": 0.925845,
+          "neutral": 0.06887
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.925845,
+        "supported": true
+      },
+      {
+        "claim": "Tools & Platforms:** Splunk, Linux, Ticketing Systems, Git.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills SIEM, incident triage, log analysis, network security, Splunk, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.006369,
+          "entailment": 0.004959,
+          "neutral": 0.988671
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004959,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Technical Writing, Clear Written/Verbal Communication, Collaborative Problem Solving, Evidence-Based Decision Making.",
+        "best_source_chunk": "Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.240684,
+          "entailment": 0.049803,
+          "neutral": 0.709512
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.049803,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "d1389cf092effd9b889a42e4be1085f9880005df9c68e41595fd22397d09c26d"
+  }
+}

@@ -1,0 +1,398 @@
+{
+  "identity": {
+    "source_hash": "0a019594c23bc39140bf99b0415748740e7d15bf5fb83049f4dce00de08d4006",
+    "tailored_hash": "319f1058504eac97d579e12196f6ef1ef62cfb7974c7630cebaaac905c6e0314",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1852,
+    "unsupported": [
+      "Proven ability to design frontend components and backend APIs while modeling relational data.",
+      "Adept at maintaining delivery pipelines, improving application reliability, and communicating technical trade-offs to stakeholders.",
+      "Committed to evidence-based decision-making and clear documentation within a collaborative environment.",
+      "Design frontend components and backend **REST APIs**;",
+      "model relational data in **PostgreSQL** to support operational needs.",
+      "Maintain delivery pipelines and improve application reliability while managing approximately 86 work items per month with rigorous quality checks.",
+      "Collaborate closely with engineering, product, and business stakeholders to present progress, risks, and technical trade-offs during fortnightly reviews.",
+      "Ensure all technical decisions are clearly documented for review by both technical and business teams.",
+      "Technical Assistant** | Example Cedar Innovations (Singapore)",
+      "Support recurring operational work using **REST APIs**, creating clear step-by-step documentation to ensure maintainability.",
+      "Develop reporting templates that reduced manual preparation time by 29%, demonstrating ability to solve ambiguous problems through data-driven approaches.",
+      "Full-Stack Engineer Practice Project**",
+      "Built a demonstration project utilizing **TypeScript**, **React**, and **Node.js**.",
+      "Implemented testing scenarios to validate reliability and document limitations for future improvements.",
+      "Presented design decisions and outcomes to a peer review group, honing communication skills regarding technical trade-offs.",
+      "Bachelor of Science in Information Systems** | Example School of Computing",
+      "Coursework focused on software engineering, databases, cybersecurity, and applied analytics.",
+      "Frontend:** React, Next.js",
+      "Backend:** Node.js, REST APIs",
+      "Database:** PostgreSQL, Relational Data Modeling",
+      "DevOps & Tools:** Docker, Git, CI/CD pipelines, AWS (Cloud Practitioner)",
+      "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, stakeholder management"
+    ],
+    "n_claims": 27,
+    "claim_scores": [
+      {
+        "claim": "Full-Stack Engineer with hands-on experience in TypeScript, React, and Node.js, delivering documented, measurable improvements for cross-functional teams.",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.003515,
+          "entailment": 0.889097,
+          "neutral": 0.107388
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.889097,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to design frontend components and backend APIs while modeling relational data.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001373,
+          "entailment": 0.003659,
+          "neutral": 0.994967
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003659,
+        "supported": false
+      },
+      {
+        "claim": "Adept at maintaining delivery pipelines, improving application reliability, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.002572,
+          "entailment": 0.01757,
+          "neutral": 0.979858
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01757,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making and clear documentation within a collaborative environment.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001159,
+          "entailment": 0.091753,
+          "neutral": 0.907087
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.091753,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Engineer** | Example Beacon Services (Singapore)",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.000196,
+          "entailment": 0.979155,
+          "neutral": 0.020649
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.979155,
+        "supported": true
+      },
+      {
+        "claim": "Deliver end-to-end product features using **TypeScript**, **React**, and **Node.js**, improving team turnaround by 34%.",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.001511,
+          "entailment": 0.980025,
+          "neutral": 0.018465
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.980025,
+        "supported": true
+      },
+      {
+        "claim": "Design frontend components and backend **REST APIs**;",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001775,
+          "entailment": 0.011645,
+          "neutral": 0.98658
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011645,
+        "supported": false
+      },
+      {
+        "claim": "model relational data in **PostgreSQL** to support operational needs.",
+        "best_source_chunk": "## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.01306,
+          "entailment": 0.004068,
+          "neutral": 0.982872
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004068,
+        "supported": false
+      },
+      {
+        "claim": "Maintain delivery pipelines and improve application reliability while managing approximately 86 work items per month with rigorous quality checks.",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.000125,
+          "entailment": 0.001211,
+          "neutral": 0.998664
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001211,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate closely with engineering, product, and business stakeholders to present progress, risks, and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001499,
+          "entailment": 0.00177,
+          "neutral": 0.996731
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00177,
+        "supported": false
+      },
+      {
+        "claim": "Ensure all technical decisions are clearly documented for review by both technical and business teams.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000444,
+          "entailment": 0.00239,
+          "neutral": 0.997166
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00239,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Cedar Innovations (Singapore)",
+        "best_source_chunk": "## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.976927,
+          "entailment": 0.005917,
+          "neutral": 0.017156
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.005917,
+        "supported": false
+      },
+      {
+        "claim": "Support recurring operational work using **REST APIs**, creating clear step-by-step documentation to ensure maintainability.",
+        "best_source_chunk": "operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 29%. ## PROJECTS ### Full-Stack Engineer Practice Project * Built a fictional demonstration project using TypeScript, React and Node.js. * Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.001559,
+          "entailment": 0.007923,
+          "neutral": 0.990517
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007923,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings with supporting evidence, and escalate issues effectively.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.000961,
+          "entailment": 0.723399,
+          "neutral": 0.27564
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.723399,
+        "supported": true
+      },
+      {
+        "claim": "Develop reporting templates that reduced manual preparation time by 29%, demonstrating ability to solve ambiguous problems through data-driven approaches.",
+        "best_source_chunk": "operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 29%. ## PROJECTS ### Full-Stack Engineer Practice Project * Built a fictional demonstration project using TypeScript, React and Node.js. * Tested the project with representative scenarios",
+        "probabilities": {
+          "contradiction": 0.000297,
+          "entailment": 0.003957,
+          "neutral": 0.995746
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003957,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Engineer Practice Project**",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.946608,
+          "entailment": 0.016202,
+          "neutral": 0.03719
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.016202,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration project utilizing **TypeScript**, **React**, and **Node.js**.",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.00039,
+          "entailment": 0.109577,
+          "neutral": 0.890033
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.109577,
+        "supported": false
+      },
+      {
+        "claim": "Implemented testing scenarios to validate reliability and document limitations for future improvements.",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.000869,
+          "entailment": 0.002991,
+          "neutral": 0.99614
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002991,
+        "supported": false
+      },
+      {
+        "claim": "Presented design decisions and outcomes to a peer review group, honing communication skills regarding technical trade-offs.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.001973,
+          "entailment": 0.007741,
+          "neutral": 0.990286
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007741,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing",
+        "best_source_chunk": "## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.078789,
+          "entailment": 0.043916,
+          "neutral": 0.877295
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.043916,
+        "supported": false
+      },
+      {
+        "claim": "Coursework focused on software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001857,
+          "entailment": 0.441015,
+          "neutral": 0.557128
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.441015,
+        "supported": false
+      },
+      {
+        "claim": "Languages:** TypeScript, JavaScript",
+        "best_source_chunk": "# Leon Tan leon.tan@example.test | +65 6000 0012 | Singapore ## SUMMARY Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Full-Stack Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) * Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 34%. * Applied Node.js",
+        "probabilities": {
+          "contradiction": 0.000823,
+          "entailment": 0.847404,
+          "neutral": 0.151774
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.847404,
+        "supported": true
+      },
+      {
+        "claim": "Frontend:** React, Next.js",
+        "best_source_chunk": "## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.251549,
+          "entailment": 0.03134,
+          "neutral": 0.717111
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.03134,
+        "supported": false
+      },
+      {
+        "claim": "Backend:** Node.js, REST APIs",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.079367,
+          "entailment": 0.180625,
+          "neutral": 0.740008
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.180625,
+        "supported": false
+      },
+      {
+        "claim": "Database:** PostgreSQL, Relational Data Modeling",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.010012,
+          "entailment": 0.008966,
+          "neutral": 0.981022
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008966,
+        "supported": false
+      },
+      {
+        "claim": "DevOps & Tools:** Docker, Git, CI/CD pipelines, AWS (Cloud Practitioner)",
+        "best_source_chunk": "### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS TypeScript, React, Node.js, REST APIs, PostgreSQL, Docker, Git, CI/CD, Next.js, AWS ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001536,
+          "entailment": 0.02195,
+          "neutral": 0.976514
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.02195,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, stakeholder management",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using REST APIs and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear",
+        "probabilities": {
+          "contradiction": 0.002151,
+          "entailment": 0.003914,
+          "neutral": 0.993935
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003914,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "cc798dd17fc06b2556dfe183d89bcdac30fe6479d009ab053c3e142de04357fa"
+  }
+}

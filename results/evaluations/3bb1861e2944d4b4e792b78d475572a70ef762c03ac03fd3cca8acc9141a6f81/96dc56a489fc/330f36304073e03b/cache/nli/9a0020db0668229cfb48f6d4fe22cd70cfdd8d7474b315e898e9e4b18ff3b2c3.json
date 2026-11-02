@@ -1,0 +1,357 @@
+{
+  "identity": {
+    "source_hash": "ba98e3ddd11b4ce97d26647f5b8511b55c27d422fdb94ef7a7c0c5e88a0b62e1",
+    "tailored_hash": "a555020adb2264a515c5adcd70f84f584c6445798ef77fdcb3445b896c3c5126",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2917,
+    "unsupported": [
+      "Junior Business Analyst with hands-on experience in requirements gathering, process mapping, and data analysis.",
+      "Proven ability to deliver documented, measurable improvements through cross-functional collaboration.",
+      "Junior Business Analyst** | Example Atlas Solutions (Jan 2025 \u2013 Present)",
+      "Gathered and documented business requirements using structured techniques, improving team turnaround by 21%.",
+      "Mapped current and future processes in Excel to support technical and business reviewers, ensuring clear decision documentation.",
+      "Analyzed operational data for eight colleagues to identify trends and support user acceptance testing (UAT) scenarios.",
+      "Coordinated with engineering and product stakeholders to track quality checks, manage risks, and communicate progress during fortnightly reviews.",
+      "Managed approximately 83 work items per month while maintaining clear documentation and resolving ambiguous problems collaboratively.",
+      "Technical Assistant** | Example Beacon Services (May 2024 \u2013 Dec 2024)",
+      "Supported recurring operational workflows using SQL to extract and analyze data, creating step-by-step procedures for future reference.",
+      "Investigated service requests, recorded findings with clear supporting evidence, and escalated issues effectively.",
+      "Developed a reporting template that reduced manual preparation time by 16%, demonstrating ability to deliver well-tested improvements.",
+      "Junior Business Analyst Practice Project** | Self-Directed",
+      "Designed a demonstration project utilizing requirements gathering, process mapping, and Excel to simulate real-world business scenarios.",
+      "Conducted user acceptance testing with representative scenarios, recording limitations and defining next steps for future iterations.",
+      "Presented design outcomes and data analysis findings to a five-person peer review group, honing clear written and verbal communication skills.",
+      "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Written/Verbal Communication, Risk Management."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping, and data analysis.",
+        "best_source_chunk": "SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Summary Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.001184,
+          "entailment": 0.008123,
+          "neutral": 0.990693
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008123,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to deliver documented, measurable improvements through cross-functional collaboration.",
+        "best_source_chunk": "requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.000267,
+          "entailment": 0.050706,
+          "neutral": 0.949027
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.050706,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in translating operational needs into reliable solutions using SQL, Excel, and Power BI.",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.000221,
+          "entailment": 0.988582,
+          "neutral": 0.011197
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.988582,
+        "supported": true
+      },
+      {
+        "claim": "Committed to evidence-based decision-making, clear documentation, and building trusted working relationships within multidisciplinary teams.",
+        "best_source_chunk": "requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.000177,
+          "entailment": 0.823398,
+          "neutral": 0.176425
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.823398,
+        "supported": true
+      },
+      {
+        "claim": "Junior Business Analyst** | Example Atlas Solutions (Jan 2025 \u2013 Present)",
+        "best_source_chunk": "requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.28009,
+          "entailment": 0.046332,
+          "neutral": 0.673577
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.046332,
+        "supported": false
+      },
+      {
+        "claim": "Gathered and documented business requirements using structured techniques, improving team turnaround by 21%.",
+        "best_source_chunk": "the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Junior Business Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%. - Applied Excel to map",
+        "probabilities": {
+          "contradiction": 0.001773,
+          "entailment": 0.002011,
+          "neutral": 0.996215
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002011,
+        "supported": false
+      },
+      {
+        "claim": "Mapped current and future processes in Excel to support technical and business reviewers, ensuring clear decision documentation.",
+        "best_source_chunk": "SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Summary Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.000154,
+          "entailment": 0.014516,
+          "neutral": 0.98533
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014516,
+        "supported": false
+      },
+      {
+        "claim": "Analyzed operational data for eight colleagues to identify trends and support user acceptance testing (UAT) scenarios.",
+        "best_source_chunk": "the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Junior Business Analyst, Example Atlas Solutions (fictional) (Jan 2025 - Present) - Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%. - Applied Excel to map",
+        "probabilities": {
+          "contradiction": 0.829742,
+          "entailment": 0.000474,
+          "neutral": 0.169784
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.000474,
+        "supported": false
+      },
+      {
+        "claim": "Coordinated with engineering and product stakeholders to track quality checks, manage risks, and communicate progress during fortnightly reviews.",
+        "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+        "probabilities": {
+          "contradiction": 0.000551,
+          "entailment": 0.001298,
+          "neutral": 0.998151
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001298,
+        "supported": false
+      },
+      {
+        "claim": "Managed approximately 83 work items per month while maintaining clear documentation and resolving ambiguous problems collaboratively.",
+        "best_source_chunk": "gathering and process mapping to gather and document business requirements, improving team turnaround by 21%. - Applied Excel to map current and future processes and documented decisions for technical and business reviewers. - Managed approximately 83 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during",
+        "probabilities": {
+          "contradiction": 0.000397,
+          "entailment": 0.000383,
+          "neutral": 0.99922
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000383,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Beacon Services (May 2024 \u2013 Dec 2024)",
+        "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+        "probabilities": {
+          "contradiction": 0.020761,
+          "entailment": 0.086418,
+          "neutral": 0.892821
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.086418,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational workflows using SQL to extract and analyze data, creating step-by-step procedures for future reference.",
+        "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+        "probabilities": {
+          "contradiction": 0.001099,
+          "entailment": 0.084895,
+          "neutral": 0.914007
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.084895,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests, recorded findings with clear supporting evidence, and escalated issues effectively.",
+        "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+        "probabilities": {
+          "contradiction": 0.001939,
+          "entailment": 0.007575,
+          "neutral": 0.990486
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007575,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 16%, demonstrating ability to deliver well-tested improvements.",
+        "best_source_chunk": "SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 16%. ## Summary Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.000202,
+          "entailment": 0.022123,
+          "neutral": 0.977675
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.022123,
+        "supported": false
+      },
+      {
+        "claim": "Junior Business Analyst Practice Project** | Self-Directed",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.06321,
+          "entailment": 0.033046,
+          "neutral": 0.903744
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.033046,
+        "supported": false
+      },
+      {
+        "claim": "Designed a demonstration project utilizing requirements gathering, process mapping, and Excel to simulate real-world business scenarios.",
+        "best_source_chunk": "while tracking quality checks and follow-up actions. - Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using SQL and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created",
+        "probabilities": {
+          "contradiction": 0.660371,
+          "entailment": 0.004041,
+          "neutral": 0.335588
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.004041,
+        "supported": false
+      },
+      {
+        "claim": "Conducted user acceptance testing with representative scenarios, recording limitations and defining next steps for future iterations.",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.001947,
+          "entailment": 0.016189,
+          "neutral": 0.981864
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016189,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and data analysis findings to a five-person peer review group, honing clear written and verbal communication skills.",
+        "best_source_chunk": "Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Junior Business Analyst Practice Project - Built a fictional demonstration project using requirements gathering, process mapping and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person",
+        "probabilities": {
+          "contradiction": 0.000435,
+          "entailment": 0.000817,
+          "neutral": 0.998748
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000817,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.008602,
+          "entailment": 0.579419,
+          "neutral": 0.411979
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.579419,
+        "supported": true
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.000255,
+          "entailment": 0.952551,
+          "neutral": 0.047194
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.952551,
+        "supported": true
+      },
+      {
+        "claim": "Developed foundational skills in data analysis, system documentation, and collaborative problem-solving.",
+        "best_source_chunk": "requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "probabilities": {
+          "contradiction": 0.000162,
+          "entailment": 0.991348,
+          "neutral": 0.008491
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.991348,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** Requirements Gathering, Process Mapping, Data Analysis, Documentation, User Stories.",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.002198,
+          "entailment": 0.83536,
+          "neutral": 0.162442
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.83536,
+        "supported": true
+      },
+      {
+        "claim": "Tools & Technologies:** SQL, Excel, Power BI, Agile Methodology.",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.007743,
+          "entailment": 0.853556,
+          "neutral": 0.138701
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.853556,
+        "supported": true
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Written/Verbal Communication, Risk Management.",
+        "best_source_chunk": "# Aisha Koh aisha.koh@example.test | +65 6000 0081 | Singapore ## Skills requirements gathering, process mapping, Excel, SQL, stakeholder communication, user stories, data analysis, documentation, Power BI, Agile ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ###",
+        "probabilities": {
+          "contradiction": 0.007823,
+          "entailment": 0.134203,
+          "neutral": 0.857975
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.134203,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "9a0020db0668229cfb48f6d4fe22cd70cfdd8d7474b315e898e9e4b18ff3b2c3"
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "identity": {
+    "source_hash": "591a6b2cd10f23801ca6f0ef31ac7ae284f134229e3544f43d6c49f4aec367b7",
+    "tailored_hash": "0523f75c469d98efa022d857b42691d1c5e9e7fc5f9648a0a41fab317f863ab5",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0833,
+    "unsupported": [
+      "Proven ability to translate customer needs into reliable, maintainable solutions through evidence-based decision-making and clear documentation.",
+      "Expertise in architecting production-grade applications, managing complex workloads, and collaborating with engineering, product, and business stakeholders to deliver high-quality outcomes.",
+      "Committed to establishing safety controls, optimizing performance, and driving responsible AI delivery within multidisciplinary environments.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jan 2021 \u2013 Present)",
+      "Architected Production LLM Applications:** Leveraged Python and large language models to design and deploy production-grade applications, improving team turnaround efficiency by 13%.",
+      "Designed Retrieval Pipelines:** Developed retrieval and evaluation pipelines using data analysis techniques;",
+      "documented technical decisions and trade-offs for review by engineering and business stakeholders.",
+      "Established Safety & Observability Controls:** Collaborated with a cross-functional team of four to implement safety protocols and observability frameworks, ensuring quality checks and follow-up actions were tracked effectively.",
+      "Managed Workload & Stakeholder Communication:** Orchestrated approximately 90 monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews to senior leadership.",
+      "Technical Assistant** | Example Atlas Solutions (Jun 2017 \u2013 Dec 2020)",
+      "Operational Excellence:** Supported recurring operational workflows by creating clear, step-by-step documentation procedures that reduced manual preparation time by 8%.",
+      "Issue Resolution & Evidence-Based Delivery:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to ensure reliable resolution.",
+      "Reporting & Analysis:** Designed automated reporting templates to streamline data collection and analysis for technical reviews.",
+      "Senior AI and LLM Solutions Engineer Practice Project** | Personal Initiative",
+      "End-to-End Development:** Built a demonstration project utilizing Python, large language models, and data retrieval logic to simulate production scenarios.",
+      "Evaluation & Iteration:** Conducted rigorous testing with representative scenarios to identify limitations, define next steps, and validate model performance.",
+      "Peer Review & Presentation:** Presented system architecture and outcomes to a five-person peer review group, demonstrating clear communication of technical concepts and project status.",
+      "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+      "Languages & Frameworks:** Python, Large Language Models (LLMs), Prompt Engineering.",
+      "Data & Systems:** Retrieval Augmented Generation (RAG), Vector Databases, System Architecture, Data Analysis.",
+      "Operations & Tools:** Documentation Management, Stakeholder Coordination, Process Optimization, Issue Escalation.",
+      "Soft Skills:** Clear Written and Verbal Communication, Collaborative Problem Solving, Evidence-Based Decision Making."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Senior AI and LLM Solutions Engineer with extensive experience in Python, large language models (LLMs), and operational support for technical teams.",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.002764,
+          "entailment": 0.945145,
+          "neutral": 0.05209
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.945145,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to translate customer needs into reliable, maintainable solutions through evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002057,
+          "entailment": 0.003189,
+          "neutral": 0.994754
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003189,
+        "supported": false
+      },
+      {
+        "claim": "Expertise in architecting production-grade applications, managing complex workloads, and collaborating with engineering, product, and business stakeholders to deliver high-quality outcomes.",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 6.6e-05,
+          "entailment": 0.01101,
+          "neutral": 0.988924
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01101,
+        "supported": false
+      },
+      {
+        "claim": "Committed to establishing safety controls, optimizing performance, and driving responsible AI delivery within multidisciplinary environments.",
+        "best_source_chunk": "analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.006461,
+          "entailment": 0.004794,
+          "neutral": 0.988745
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004794,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.015174,
+          "entailment": 0.431416,
+          "neutral": 0.55341
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.431416,
+        "supported": false
+      },
+      {
+        "claim": "Architected Production LLM Applications:** Leveraged Python and large language models to design and deploy production-grade applications, improving team turnaround efficiency by 13%.",
+        "best_source_chunk": "business reviewers. - Managed approximately 90 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.119179,
+          "entailment": 0.005442,
+          "neutral": 0.875378
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005442,
+        "supported": false
+      },
+      {
+        "claim": "Designed Retrieval Pipelines:** Developed retrieval and evaluation pipelines using data analysis techniques;",
+        "best_source_chunk": "analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001028,
+          "entailment": 0.26766,
+          "neutral": 0.731312
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.26766,
+        "supported": false
+      },
+      {
+        "claim": "documented technical decisions and trade-offs for review by engineering and business stakeholders.",
+        "best_source_chunk": "analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001147,
+          "entailment": 0.007486,
+          "neutral": 0.991367
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007486,
+        "supported": false
+      },
+      {
+        "claim": "Established Safety & Observability Controls:** Collaborated with a cross-functional team of four to implement safety protocols and observability frameworks, ensuring quality checks and follow-up actions were tracked effectively.",
+        "best_source_chunk": "business reviewers. - Managed approximately 90 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.004633,
+          "entailment": 0.219132,
+          "neutral": 0.776236
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.219132,
+        "supported": false
+      },
+      {
+        "claim": "Managed Workload & Stakeholder Communication:** Orchestrated approximately 90 monthly work items while presenting progress, risks, and technical trade-offs during fortnightly reviews to senior leadership.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002605,
+          "entailment": 0.001252,
+          "neutral": 0.996144
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001252,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "business reviewers. - Managed approximately 90 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.017644,
+          "entailment": 0.009379,
+          "neutral": 0.972977
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009379,
+        "supported": false
+      },
+      {
+        "claim": "Operational Excellence:** Supported recurring operational workflows by creating clear, step-by-step documentation procedures that reduced manual preparation time by 8%.",
+        "best_source_chunk": "(fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 8%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.005788,
+          "entailment": 0.020928,
+          "neutral": 0.973284
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.020928,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution & Evidence-Based Delivery:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to ensure reliable resolution.",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.000682,
+          "entailment": 0.001366,
+          "neutral": 0.997951
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001366,
+        "supported": false
+      },
+      {
+        "claim": "Reporting & Analysis:** Designed automated reporting templates to streamline data collection and analysis for technical reviews.",
+        "best_source_chunk": "business reviewers. - Managed approximately 90 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.017885,
+          "entailment": 0.003152,
+          "neutral": 0.978963
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003152,
+        "supported": false
+      },
+      {
+        "claim": "Senior AI and LLM Solutions Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.023033,
+          "entailment": 0.02186,
+          "neutral": 0.955107
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.02186,
+        "supported": false
+      },
+      {
+        "claim": "End-to-End Development:** Built a demonstration project utilizing Python, large language models, and data retrieval logic to simulate production scenarios.",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.009463,
+          "entailment": 0.02186,
+          "neutral": 0.968677
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.02186,
+        "supported": false
+      },
+      {
+        "claim": "Evaluation & Iteration:** Conducted rigorous testing with representative scenarios to identify limitations, define next steps, and validate model performance.",
+        "best_source_chunk": "business reviewers. - Managed approximately 90 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service",
+        "probabilities": {
+          "contradiction": 0.067053,
+          "entailment": 0.008364,
+          "neutral": 0.924582
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008364,
+        "supported": false
+      },
+      {
+        "claim": "Peer Review & Presentation:** Presented system architecture and outcomes to a five-person peer review group, demonstrating clear communication of technical concepts and project status.",
+        "best_source_chunk": "time by 8%. ## Projects ### Senior AI and LLM Solutions Engineer Practice Project - Built a fictional demonstration project using Python, large language models and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information",
+        "probabilities": {
+          "contradiction": 0.005577,
+          "entailment": 0.008178,
+          "neutral": 0.986245
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008178,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.028687,
+          "entailment": 0.025034,
+          "neutral": 0.946279
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.025034,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 9.8e-05,
+          "entailment": 0.975222,
+          "neutral": 0.02468
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.975222,
+        "supported": true
+      },
+      {
+        "claim": "Languages & Frameworks:** Python, Large Language Models (LLMs), Prompt Engineering.",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.09062,
+          "entailment": 0.101483,
+          "neutral": 0.807897
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.101483,
+        "supported": false
+      },
+      {
+        "claim": "Data & Systems:** Retrieval Augmented Generation (RAG), Vector Databases, System Architecture, Data Analysis.",
+        "best_source_chunk": "# Talia Lim talia.lim@example.test | +65 6000 0040 | Singapore ## Summary Operations support professional experienced in Python, large language models, documentation and stakeholder coordination, transitioning toward Senior AI and LLM Solutions Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present) - Used Python and large language models to architect production LLM applications,",
+        "probabilities": {
+          "contradiction": 0.02614,
+          "entailment": 0.025665,
+          "neutral": 0.948195
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.025665,
+        "supported": false
+      },
+      {
+        "claim": "Operations & Tools:** Documentation Management, Stakeholder Coordination, Process Optimization, Issue Escalation.",
+        "best_source_chunk": "analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.034514,
+          "entailment": 0.007275,
+          "neutral": 0.958211
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007275,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written and Verbal Communication, Collaborative Problem Solving, Evidence-Based Decision Making.",
+        "best_source_chunk": "analytics. ## Skills Python, large language models, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.011895,
+          "entailment": 0.014673,
+          "neutral": 0.973432
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014673,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "6a6c615d6167d0ee863ad2e8233a36739a380107cef651d18d100424380bcb33"
+  }
+}

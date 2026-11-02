@@ -1,0 +1,360 @@
+{
+  "identity": {
+    "source_hash": "54663787360d8838e892df4c3a838ca5cc8f20ab9e8faa0a6ace2ca570c2632e",
+    "tailored_hash": "7ffdad355f822df280b7218e6bcb97ec1ee7849fbd3cbc87ccc0f1e31b975eb2",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1667,
+    "unsupported": [
+      "Senior-ready Threat Intelligence professional with extensive experience leading strategic and operational threat analysis, mapping adversary behavior to MITRE ATT&CK, and delivering evidence-based intelligence.",
+      "Proven track record of mentoring analysts, improving team workflows, and translating complex technical findings into clear documentation for executive stakeholders.",
+      "Adept at solving ambiguous problems through collaborative problem-solving while maintaining rigorous quality controls.",
+      "Seeking to leverage deep expertise in threat intelligence, malware analysis, and incident response as a Threat Intelligence Lead at Example Orchard Technologies.",
+      "Strategic Threat Analysis:** Lead operational and customer needs into reliable solutions by prioritizing intelligence requirements and mapping adversary behavior to MITRE ATT&CK frameworks.",
+      "Stakeholder Communication:** Brief technical and executive stakeholders on progress, risks, and technical trade-offs;",
+      "present fortnightly reviews with clear documentation of decisions.",
+      "Workflow Optimization:** Mentor analysts and improve intelligence workflows, resulting in a 22% improvement in team turnaround time.",
+      "Incident Response & OSINT:** Manage approximately 67 work items monthly, applying incident response protocols to investigate service requests and record findings supported by clear evidence.",
+      "Documentation & Reporting:** Create maintainable solutions by documenting step-by-step procedures and contributing to team planning;",
+      "Technical Assistant** | Example Ember Technologies (Jun 2017 \u2013 Dec 2020)",
+      "Supported recurring operational work using incident response frameworks, ensuring all actions were documented with clear supporting evidence.",
+      "Escalated complex issues to relevant stakeholders with concise, fact-based reports.",
+      "Threat Intelligence Lead Practice Project**",
+      "Designed and executed a comprehensive demonstration project utilizing threat intelligence, MITRE ATT&CK, and malware analysis techniques.",
+      "Tested scenarios against representative adversary behaviors, recording limitations and defining next steps for future improvements.",
+      "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate technical trade-offs clearly.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Core Competencies:** Threat Intelligence, MITRE ATT&CK Mapping, Malware Analysis, Incident Response, OSINT, Intelligence Reporting.",
+      "Leadership & Soft Skills:** Team Leadership, Stakeholder Briefing, Collaborative Problem Solving, Clear Written/Verbal Communication."
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Senior-ready Threat Intelligence professional with extensive experience leading strategic and operational threat analysis, mapping adversary behavior to MITRE ATT&CK, and delivering evidence-based intelligence.",
+        "best_source_chunk": "# Samuel Ng samuel.ng@example.test | +65 6000 0059 | Singapore ## Summary Technology associate with transferable experience in threat intelligence, MITRE ATT&CK and malware analysis, seeking to deepen capability as a Threat Intelligence Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat",
+        "probabilities": {
+          "contradiction": 0.000367,
+          "entailment": 0.002112,
+          "neutral": 0.997521
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002112,
+        "supported": false
+      },
+      {
+        "claim": "Proven track record of mentoring analysts, improving team workflows, and translating complex technical findings into clear documentation for executive stakeholders.",
+        "best_source_chunk": "business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.000492,
+          "entailment": 0.000815,
+          "neutral": 0.998693
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000815,
+        "supported": false
+      },
+      {
+        "claim": "Adept at solving ambiguous problems through collaborative problem-solving while maintaining rigorous quality controls.",
+        "best_source_chunk": "Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Threat Intelligence Lead Practice Project - Built a fictional demonstration project using",
+        "probabilities": {
+          "contradiction": 0.004259,
+          "entailment": 0.003156,
+          "neutral": 0.992585
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003156,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage deep expertise in threat intelligence, malware analysis, and incident response as a Threat Intelligence Lead at Example Orchard Technologies.",
+        "best_source_chunk": "# Samuel Ng samuel.ng@example.test | +65 6000 0059 | Singapore ## Summary Technology associate with transferable experience in threat intelligence, MITRE ATT&CK and malware analysis, seeking to deepen capability as a Threat Intelligence Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat",
+        "probabilities": {
+          "contradiction": 0.002014,
+          "entailment": 0.005296,
+          "neutral": 0.99269
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005296,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.180549,
+          "entailment": 0.773628,
+          "neutral": 0.045823
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.773628,
+        "supported": true
+      },
+      {
+        "claim": "Strategic Threat Analysis:** Lead operational and customer needs into reliable solutions by prioritizing intelligence requirements and mapping adversary behavior to MITRE ATT&CK frameworks.",
+        "best_source_chunk": "Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.089561,
+          "entailment": 0.01341,
+          "neutral": 0.897029
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01341,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Brief technical and executive stakeholders on progress, risks, and technical trade-offs;",
+        "best_source_chunk": "business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.001823,
+          "entailment": 0.003813,
+          "neutral": 0.994364
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003813,
+        "supported": false
+      },
+      {
+        "claim": "present fortnightly reviews with clear documentation of decisions.",
+        "best_source_chunk": "business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.022942,
+          "entailment": 0.430804,
+          "neutral": 0.546254
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.430804,
+        "supported": false
+      },
+      {
+        "claim": "Workflow Optimization:** Mentor analysts and improve intelligence workflows, resulting in a 22% improvement in team turnaround time.",
+        "best_source_chunk": "Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Threat Intelligence Lead Practice Project - Built a fictional demonstration project using",
+        "probabilities": {
+          "contradiction": 0.004895,
+          "entailment": 0.003541,
+          "neutral": 0.991564
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003541,
+        "supported": false
+      },
+      {
+        "claim": "Incident Response & OSINT:** Manage approximately 67 work items monthly, applying incident response protocols to investigate service requests and record findings supported by clear evidence.",
+        "best_source_chunk": "Delta Operations (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 22%. - Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.00336,
+          "entailment": 0.01678,
+          "neutral": 0.97986
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01678,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Reporting:** Create maintainable solutions by documenting step-by-step procedures and contributing to team planning;",
+        "best_source_chunk": "business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.002265,
+          "entailment": 0.003549,
+          "neutral": 0.994186
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003549,
+        "supported": false
+      },
+      {
+        "claim": "developed a reporting template that reduced manual preparation time by 17%.",
+        "best_source_chunk": "Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Threat Intelligence Lead Practice Project - Built a fictional demonstration project using",
+        "probabilities": {
+          "contradiction": 0.000848,
+          "entailment": 0.978944,
+          "neutral": 0.020208
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.978944,
+        "supported": true
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.01501,
+          "entailment": 0.01597,
+          "neutral": 0.96902
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01597,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work using incident response frameworks, ensuring all actions were documented with clear supporting evidence.",
+        "best_source_chunk": "Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Threat Intelligence Lead Practice Project - Built a fictional demonstration project using",
+        "probabilities": {
+          "contradiction": 0.002835,
+          "entailment": 0.012623,
+          "neutral": 0.984541
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012623,
+        "supported": false
+      },
+      {
+        "claim": "Escalated complex issues to relevant stakeholders with concise, fact-based reports.",
+        "best_source_chunk": "Delta Operations (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 22%. - Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.010776,
+          "entailment": 0.000334,
+          "neutral": 0.98889
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000334,
+        "supported": false
+      },
+      {
+        "claim": "Threat Intelligence Lead Practice Project**",
+        "best_source_chunk": "# Samuel Ng samuel.ng@example.test | +65 6000 0059 | Singapore ## Summary Technology associate with transferable experience in threat intelligence, MITRE ATT&CK and malware analysis, seeking to deepen capability as a Threat Intelligence Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat",
+        "probabilities": {
+          "contradiction": 0.001521,
+          "entailment": 0.017706,
+          "neutral": 0.980772
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017706,
+        "supported": false
+      },
+      {
+        "claim": "Designed and executed a comprehensive demonstration project utilizing threat intelligence, MITRE ATT&CK, and malware analysis techniques.",
+        "best_source_chunk": "# Samuel Ng samuel.ng@example.test | +65 6000 0059 | Singapore ## Summary Technology associate with transferable experience in threat intelligence, MITRE ATT&CK and malware analysis, seeking to deepen capability as a Threat Intelligence Lead. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jan 2021 - Present) - Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat",
+        "probabilities": {
+          "contradiction": 0.00212,
+          "entailment": 0.016181,
+          "neutral": 0.981699
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016181,
+        "supported": false
+      },
+      {
+        "claim": "Tested scenarios against representative adversary behaviors, recording limitations and defining next steps for future improvements.",
+        "best_source_chunk": "business reviewers. - Managed approximately 67 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using incident response and documented step-by-step procedures. -",
+        "probabilities": {
+          "contradiction": 0.00471,
+          "entailment": 0.162446,
+          "neutral": 0.832843
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.162446,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate technical trade-offs clearly.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001389,
+          "entailment": 0.002989,
+          "neutral": 0.995622
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002989,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.006153,
+          "entailment": 0.067573,
+          "neutral": 0.926274
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.067573,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "- Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000109,
+          "entailment": 0.990061,
+          "neutral": 0.00983
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.990061,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** Threat Intelligence, MITRE ATT&CK Mapping, Malware Analysis, Incident Response, OSINT, Intelligence Reporting.",
+        "best_source_chunk": "Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.019656,
+          "entailment": 0.023201,
+          "neutral": 0.957143
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.023201,
+        "supported": false
+      },
+      {
+        "claim": "Leadership & Soft Skills:** Team Leadership, Stakeholder Briefing, Collaborative Problem Solving, Clear Written/Verbal Communication.",
+        "best_source_chunk": "Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.041782,
+          "entailment": 0.073442,
+          "neutral": 0.884776
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.073442,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Technologies:** Python, SIEM (familiarity), Excel, Git, Documentation Tools.",
+        "best_source_chunk": "Skills threat intelligence, MITRE ATT&CK, malware analysis, incident response, Python, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.048731,
+          "entailment": 0.83849,
+          "neutral": 0.112779
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.83849,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b42116ca89012ee5ca0ab78b2a4fcb2f7db538f7dd7c62995b32ec1821a69c5a"
+  }
+}

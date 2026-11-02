@@ -1,0 +1,312 @@
+{
+  "identity": {
+    "source_hash": "03d02bc082fdfb511115719c5e7983960e8b090ed7a78dca9d61b0f2ed618aed",
+    "tailored_hash": "89c5f7642fb50972091bc8b1236fcecfacb9f469335298e278e467fcf8f777cb",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0,
+    "unsupported": [
+      "Machine Learning Engineer with hands-on experience in Python, machine learning, and scikit-learn.",
+      "Proven ability to turn operational needs into reliable, maintainable solutions by training predictive models, building reproducible feature pipelines, and deploying them via REST APIs.",
+      "Adept at collaborating with product and data teams to deliver documented, measurable improvements while maintaining clear communication of technical trade-offs to stakeholders.",
+      "Machine Learning Engineer** | Example Atlas Solutions (Jul 2023 \u2013 Present)",
+      "Train and evaluate predictive models using Python and scikit-learn, improving team turnaround by 12% through data-driven decision-making.",
+      "Build reproducible feature pipelines and deploy models behind REST APIs, ensuring quality control and security standards are met.",
+      "Monitor model performance and manage approximately 63 work items monthly, tracking quality checks and follow-up actions to ensure reliability.",
+      "Collaborate with cross-functional teams to present progress, risks, and technical trade-offs during fortnightly reviews, fostering trusted working relationships.",
+      "Maintain clear documentation for all technical decisions, contributing effectively to team planning and code reviews.",
+      "Technical Assistant** | Example Beacon Services (Jan 2021 \u2013 Jun 2023)",
+      "Support operational workflows using PyTorch, documenting step-by-step procedures to ensure reproducibility and knowledge transfer.",
+      "Investigate service requests and escalate issues with clear supporting evidence, demonstrating strong problem-solving skills in ambiguous situations.",
+      "Create reporting templates that reduced manual preparation time by 7%, showcasing an ability to deliver useful outcomes through process optimization.",
+      "Machine Learning Engineer Practice Project**",
+      "Developed a demonstration project utilizing Python, machine learning, and scikit-learn to simulate real-world scenarios.",
+      "Conducted rigorous testing and documented limitations and next steps, ensuring evidence-based conclusions.",
+      "Presented design and outcomes to a five-person peer review group, refining technical communication skills.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+      "Python, Machine Learning, scikit-learn, PyTorch, Model Evaluation, Feature Engineering, Docker, REST APIs, MLflow, AWS (Certified Cloud Practitioner), Clear Written & Verbal Communication, Collaborative Problem Solving"
+    ],
+    "n_claims": 20,
+    "claim_scores": [
+      {
+        "claim": "Machine Learning Engineer with hands-on experience in Python, machine learning, and scikit-learn.",
+        "best_source_chunk": "# Kavya Lim kavya.lim@example.test | +65 6000 0031 | Singapore ## Summary Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Machine Learning Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.004194,
+          "entailment": 0.354782,
+          "neutral": 0.641024
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.354782,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn operational needs into reliable, maintainable solutions by training predictive models, building reproducible feature pipelines, and deploying them via REST APIs.",
+        "best_source_chunk": "engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000281,
+          "entailment": 0.002339,
+          "neutral": 0.99738
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002339,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating with product and data teams to deliver documented, measurable improvements while maintaining clear communication of technical trade-offs to stakeholders.",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000762,
+          "entailment": 0.018244,
+          "neutral": 0.980994
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.018244,
+        "supported": false
+      },
+      {
+        "claim": "Machine Learning Engineer** | Example Atlas Solutions (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Kavya Lim kavya.lim@example.test | +65 6000 0031 | Singapore ## Summary Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Machine Learning Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.006859,
+          "entailment": 0.237901,
+          "neutral": 0.75524
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.237901,
+        "supported": false
+      },
+      {
+        "claim": "Train and evaluate predictive models using Python and scikit-learn, improving team turnaround by 12% through data-driven decision-making.",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.531507,
+          "entailment": 0.002589,
+          "neutral": 0.465904
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.002589,
+        "supported": false
+      },
+      {
+        "claim": "Build reproducible feature pipelines and deploy models behind REST APIs, ensuring quality control and security standards are met.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, model evaluation, feature engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000209,
+          "entailment": 0.001905,
+          "neutral": 0.997886
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001905,
+        "supported": false
+      },
+      {
+        "claim": "Monitor model performance and manage approximately 63 work items monthly, tracking quality checks and follow-up actions to ensure reliability.",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000318,
+          "entailment": 0.002377,
+          "neutral": 0.997305
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002377,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with cross-functional teams to present progress, risks, and technical trade-offs during fortnightly reviews, fostering trusted working relationships.",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.002378,
+          "entailment": 0.00201,
+          "neutral": 0.995612
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00201,
+        "supported": false
+      },
+      {
+        "claim": "Maintain clear documentation for all technical decisions, contributing effectively to team planning and code reviews.",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000485,
+          "entailment": 0.006265,
+          "neutral": 0.99325
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006265,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Beacon Services (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001273,
+          "entailment": 0.001732,
+          "neutral": 0.996995
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001732,
+        "supported": false
+      },
+      {
+        "claim": "Support operational workflows using PyTorch, documenting step-by-step procedures to ensure reproducibility and knowledge transfer.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, model evaluation, feature engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000826,
+          "entailment": 0.001585,
+          "neutral": 0.997589
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001585,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests and escalate issues with clear supporting evidence, demonstrating strong problem-solving skills in ambiguous situations.",
+        "best_source_chunk": "engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001901,
+          "entailment": 0.001999,
+          "neutral": 0.9961
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001999,
+        "supported": false
+      },
+      {
+        "claim": "Create reporting templates that reduced manual preparation time by 7%, showcasing an ability to deliver useful outcomes through process optimization.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 7%. ## Projects ### Machine Learning Engineer Practice Project - Built a fictional demonstration project using Python, machine learning and scikit-learn. - Tested",
+        "probabilities": {
+          "contradiction": 0.00061,
+          "entailment": 0.001117,
+          "neutral": 0.998274
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001117,
+        "supported": false
+      },
+      {
+        "claim": "Machine Learning Engineer Practice Project**",
+        "best_source_chunk": "# Kavya Lim kavya.lim@example.test | +65 6000 0031 | Singapore ## Summary Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Machine Learning Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.010864,
+          "entailment": 0.229337,
+          "neutral": 0.7598
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.229337,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project utilizing Python, machine learning, and scikit-learn to simulate real-world scenarios.",
+        "best_source_chunk": "# Kavya Lim kavya.lim@example.test | +65 6000 0031 | Singapore ## Summary Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Machine Learning Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.00073,
+          "entailment": 0.00662,
+          "neutral": 0.99265
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00662,
+        "supported": false
+      },
+      {
+        "claim": "Conducted rigorous testing and documented limitations and next steps, ensuring evidence-based conclusions.",
+        "best_source_chunk": "approximately 63 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000482,
+          "entailment": 0.005301,
+          "neutral": 0.994217
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005301,
+        "supported": false
+      },
+      {
+        "claim": "Presented design and outcomes to a five-person peer review group, refining technical communication skills.",
+        "best_source_chunk": "### Machine Learning Engineer Practice Project - Built a fictional demonstration project using Python, machine learning and scikit-learn. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)",
+        "probabilities": {
+          "contradiction": 0.00196,
+          "entailment": 0.000694,
+          "neutral": 0.997346
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000694,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.063471,
+          "entailment": 0.0243,
+          "neutral": 0.912228
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0243,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, model evaluation, feature engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002658,
+          "entailment": 0.014044,
+          "neutral": 0.983298
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014044,
+        "supported": false
+      },
+      {
+        "claim": "Python, Machine Learning, scikit-learn, PyTorch, Model Evaluation, Feature Engineering, Docker, REST APIs, MLflow, AWS (Certified Cloud Practitioner), Clear Written & Verbal Communication, Collaborative Problem Solving",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, model evaluation, feature engineering, Docker, REST APIs, MLflow, AWS ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001131,
+          "entailment": 0.002729,
+          "neutral": 0.99614
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002729,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "594ab94c8eb63bfa0a25cbe7845eb5003693fe0664d3108ab1ab1ab269305a10"
+  }
+}

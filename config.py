@@ -9,6 +9,10 @@ NUM_CTX = 16384       # Ollama's default context is small and silently cuts off 
 THINK = False         # Qwen thinking mode. Same for all workflows (or make it its own experiment).
 MAX_STEPS = 8         # step budget for agent loops (Topic 7: budgets stop runaway loops)
 MAX_CRITIC_ROUNDS = 2  # W3 may revise at most twice after the initial three-critic review
+W3_GENERATION_VERSION = 4
+W3_STRUCTURED_RETRIES = 1
+W3_DRAFT_MAX_TOKENS = 4096
+W3_CRITIC_MAX_TOKENS = 1536
 
 # Harness around the resume creator (common/harness.py)
 MAX_TOOL_CALLS = 6        # creator tool calls allowed before the run fails with TOOL_BUDGET_EXCEEDED

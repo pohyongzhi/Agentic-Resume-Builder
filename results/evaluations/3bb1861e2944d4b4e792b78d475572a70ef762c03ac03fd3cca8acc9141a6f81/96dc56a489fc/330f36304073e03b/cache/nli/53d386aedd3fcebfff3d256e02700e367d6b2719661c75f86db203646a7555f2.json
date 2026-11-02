@@ -1,0 +1,335 @@
+{
+  "identity": {
+    "source_hash": "092448263f46d7c7130e397653b3153488bf8f4a4a88650664eb8c116ba98efb",
+    "tailored_hash": "8310044e477a1d45f6b7c72e772261fa8086dd4f90586f1f15911cd73e4282a8",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1364,
+    "unsupported": [
+      "Data Engineer with hands-on experience building reliable batch data pipelines and modeling analytics-ready datasets using Python, SQL, ETL, PostgreSQL, Airflow, Docker, and cloud storage.",
+      "Skilled in monitoring data quality, optimizing transformation jobs, and communicating technical trade-offs to stakeholders.",
+      "Committed to delivering trusted data products through evidence-based decision-making and clear documentation.",
+      "Example Atlas Solutions** | Singapore",
+      "Modeled analytics-ready datasets via ETL processes and documented all technical decisions for business and engineering reviewers.",
+      "Optimized transformation jobs while managing approximately 88 work items monthly, ensuring rigorous quality checks and follow-up actions.",
+      "Collaborated with four colleagues to monitor data quality and presented progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+      "Maintained clear documentation to support team planning and ensure maintainable solutions for operational and customer needs.",
+      "Example Beacon Services** | Singapore",
+      "Supported recurring operational work by designing and maintaining data pipelines, reducing manual preparation time by 34%.",
+      "Investigated service requests to identify root causes, recorded findings with clear supporting evidence, and escalated issues effectively.",
+      "Created step-by-step documentation procedures that enhanced team collaboration and reduced ambiguity in problem-solving.",
+      "Data Engineer Practice Project",
+      "Developed a demonstration project utilizing Python, SQL, and ETL to simulate production-grade data workflows.",
+      "Tested the pipeline with representative scenarios to validate reliability and recorded limitations for future improvements.",
+      "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.",
+      "Bachelor of Science in Information Systems",
+      "Example Metropolitan University** | Singapore",
+      "Coursework covered software engineering, databases, cybersecurity, and applied analytics, providing a strong foundation for data engineering roles."
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Data Engineer with hands-on experience building reliable batch data pipelines and modeling analytics-ready datasets using Python, SQL, ETL, PostgreSQL, Airflow, Docker, and cloud storage.",
+        "best_source_chunk": "of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, PostgreSQL, Airflow, Docker, cloud storage, Spark, dbt",
+        "probabilities": {
+          "contradiction": 0.000421,
+          "entailment": 0.005366,
+          "neutral": 0.994212
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005366,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn operational needs into documented, measurable solutions while collaborating with cross-functional teams.",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000418,
+          "entailment": 0.877306,
+          "neutral": 0.122276
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.877306,
+        "supported": true
+      },
+      {
+        "claim": "Skilled in monitoring data quality, optimizing transformation jobs, and communicating technical trade-offs to stakeholders.",
+        "best_source_chunk": "using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and recorded",
+        "probabilities": {
+          "contradiction": 0.000502,
+          "entailment": 0.003562,
+          "neutral": 0.995936
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003562,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering trusted data products through evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "probabilities": {
+          "contradiction": 0.000321,
+          "entailment": 0.413955,
+          "neutral": 0.585724
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.413955,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions** | Singapore",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000272,
+          "entailment": 0.001302,
+          "neutral": 0.998426
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001302,
+        "supported": false
+      },
+      {
+        "claim": "Built reliable batch data pipelines using Python and SQL, improving team turnaround by 39%.",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000168,
+          "entailment": 0.996196,
+          "neutral": 0.003636
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996196,
+        "supported": true
+      },
+      {
+        "claim": "Modeled analytics-ready datasets via ETL processes and documented all technical decisions for business and engineering reviewers.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "probabilities": {
+          "contradiction": 0.000212,
+          "entailment": 0.001965,
+          "neutral": 0.997823
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001965,
+        "supported": false
+      },
+      {
+        "claim": "Optimized transformation jobs while managing approximately 88 work items monthly, ensuring rigorous quality checks and follow-up actions.",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000169,
+          "entailment": 0.000431,
+          "neutral": 0.9994
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000431,
+        "supported": false
+      },
+      {
+        "claim": "Collaborated with four colleagues to monitor data quality and presented progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "probabilities": {
+          "contradiction": 0.002625,
+          "entailment": 0.001546,
+          "neutral": 0.995829
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001546,
+        "supported": false
+      },
+      {
+        "claim": "Maintained clear documentation to support team planning and ensure maintainable solutions for operational and customer needs.",
+        "best_source_chunk": "using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and recorded",
+        "probabilities": {
+          "contradiction": 0.000805,
+          "entailment": 0.003822,
+          "neutral": 0.995373
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003822,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.088931,
+          "entailment": 0.000666,
+          "neutral": 0.910403
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000666,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work by designing and maintaining data pipelines, reducing manual preparation time by 34%.",
+        "best_source_chunk": "using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and recorded",
+        "probabilities": {
+          "contradiction": 0.002422,
+          "entailment": 0.30492,
+          "neutral": 0.692658
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.30492,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests to identify root causes, recorded findings with clear supporting evidence, and escalated issues effectively.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "probabilities": {
+          "contradiction": 0.00024,
+          "entailment": 0.002165,
+          "neutral": 0.997596
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002165,
+        "supported": false
+      },
+      {
+        "claim": "Created step-by-step documentation procedures that enhanced team collaboration and reduced ambiguity in problem-solving.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "probabilities": {
+          "contradiction": 0.000438,
+          "entailment": 0.004144,
+          "neutral": 0.995418
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004144,
+        "supported": false
+      },
+      {
+        "claim": "Data Engineer Practice Project",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.00045,
+          "entailment": 0.00361,
+          "neutral": 0.99594
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00361,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project utilizing Python, SQL, and ETL to simulate production-grade data workflows.",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000197,
+          "entailment": 0.031732,
+          "neutral": 0.968071
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.031732,
+        "supported": false
+      },
+      {
+        "claim": "Tested the pipeline with representative scenarios to validate reliability and recorded limitations for future improvements.",
+        "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "probabilities": {
+          "contradiction": 0.001415,
+          "entailment": 0.000903,
+          "neutral": 0.997682
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000903,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, demonstrating ability to communicate complex technical concepts clearly.",
+        "best_source_chunk": "- Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases,",
+        "probabilities": {
+          "contradiction": 0.000984,
+          "entailment": 0.009307,
+          "neutral": 0.989708
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009307,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 34%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and recorded",
+        "probabilities": {
+          "contradiction": 0.012879,
+          "entailment": 0.003295,
+          "neutral": 0.983826
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003295,
+        "supported": false
+      },
+      {
+        "claim": "Example Metropolitan University** | Singapore",
+        "best_source_chunk": "of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, PostgreSQL, Airflow, Docker, cloud storage, Spark, dbt",
+        "probabilities": {
+          "contradiction": 0.001279,
+          "entailment": 0.000683,
+          "neutral": 0.998039
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000683,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics, providing a strong foundation for data engineering roles.",
+        "best_source_chunk": "# Farhan Lim farhan.lim@example.test | +65 6000 0026 | Singapore ## Summary Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Data Engineer, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 39%. - Applied",
+        "probabilities": {
+          "contradiction": 0.000141,
+          "entailment": 0.00085,
+          "neutral": 0.999009
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00085,
+        "supported": false
+      },
+      {
+        "claim": "Python, SQL, ETL, Data Pipelines, PostgreSQL, Airflow, Docker, Cloud Storage, Spark, dbt",
+        "best_source_chunk": "of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, PostgreSQL, Airflow, Docker, cloud storage, Spark, dbt",
+        "probabilities": {
+          "contradiction": 0.001735,
+          "entailment": 0.978743,
+          "neutral": 0.019521
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.978743,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "53d386aedd3fcebfff3d256e02700e367d6b2719661c75f86db203646a7555f2"
+  }
+}

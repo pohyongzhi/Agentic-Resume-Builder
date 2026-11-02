@@ -125,7 +125,9 @@ def test_final_harness_rejects_unsupported_fact(
     monkeypatch, tmp_path, candidate, good_resume
 ):
     monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
-    fabricated = dict(good_resume, skills=["Airflow"])
+    import copy
+    fabricated = copy.deepcopy(good_resume)
+    fabricated["experience"][0]["employer"] = "Invented Employer"
 
     def fake_chat(messages, tracker, format=None, **kwargs):
         system = messages[0]["content"]
@@ -139,5 +141,138 @@ def test_final_harness_rejects_unsupported_fact(
     )
 
     assert result["errors"][0].startswith("W3_FINAL_VALIDATION_FAILED")
-    assert "Airflow" in result["errors"][0]
+    assert "Invented Employer" in result["errors"][0]
     assert "resume_md" not in result
+
+
+def test_malformed_response_gets_one_bounded_corrective_retry(monkeypatch, good_resume):
+    calls = []
+    replies = iter([SimpleNamespace(content='{"name":'), _message(good_resume)])
+
+    def fake_chat(messages, tracker, **kwargs):
+        calls.append((messages, kwargs))
+        return next(replies)
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    tracker = Tracker()
+    result = w3_critic._structured("creator", "source", w3_critic.GeneratedResume, tracker)
+    assert result.name == good_resume["name"]
+    assert len(calls) == 2
+    assert calls[0][1]["num_predict"] == config.W3_DRAFT_MAX_TOKENS
+    assert "previous response failed validation" in calls[1][0][1]["content"]
+    assert tracker.events[0]["raw_response"] == '{"name":'
+
+
+def test_invalid_critic_stops_after_retry_budget(monkeypatch):
+    import pytest
+    calls = []
+
+    def fake_chat(*args, **kwargs):
+        calls.append(kwargs)
+        return SimpleNamespace(content="{")
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    with pytest.raises(ValueError, match="CriticFeedback failed after 2 attempts"):
+        w3_critic._structured("critic", "source", w3_critic.CriticFeedback, Tracker())
+    assert len(calls) == 2
+    assert all(c["num_predict"] == config.W3_CRITIC_MAX_TOKENS for c in calls)
+
+
+def test_runaway_critic_issue_list_rejected():
+    import pytest
+    from pydantic import ValidationError
+    data = _feedback("fact_checker", False, "major")
+    data["issues"] *= 6
+    with pytest.raises(ValidationError):
+        w3_critic.CriticFeedback.model_validate(data)
+
+
+def test_harness_errors_trigger_revision_even_when_critics_approve(
+    monkeypatch, tmp_path, candidate, good_resume
+):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    revision_prompts = []
+
+    def fake_chat(messages, tracker, **kwargs):
+        system, prompt = messages[0]["content"], messages[1]["content"]
+        if system == w3_critic.STRUCTURED_CREATOR_SYSTEM:
+            if "CURRENT DRAFT" in prompt:
+                revision_prompts.append(prompt)
+                return _message(good_resume)
+            import copy
+            draft = copy.deepcopy(good_resume)
+            draft["experience"][0]["employer"] = "Invented Employer"
+            return _message(draft)
+        return _message(_feedback(_critic_name(system)))
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    result = w3_critic.build_critic_graph(Tracker(), run_id="fact-revision").invoke(
+        {"candidate_data": candidate, "job_data": {"title": "Analyst"}}
+    )
+    assert result["revisions"] == 1
+    assert "Invented Employer" in revision_prompts[0]
+    assert "not in the original resume" in revision_prompts[0]
+    assert result["resume_md"]
+
+
+def test_absence_marker_and_omitted_education_are_normalised(candidate, good_resume):
+    draft = dict(good_resume, education=[], certifications=["None listed in original resume data."])
+    prepared = w3_critic._prepare_draft(draft, candidate)
+    assert prepared["certifications"] == []
+    assert prepared["education"] == candidate["education"]
+    assert w3_critic.validate_resume(prepared, candidate) == []
+
+
+def test_real_unknown_certification_is_still_rejected(candidate, good_resume):
+    draft = dict(good_resume, certifications=["N/A", "AWS Certified Solutions Architect"])
+    prepared = w3_critic._prepare_draft(draft, candidate)
+    assert prepared["certifications"] == ["AWS Certified Solutions Architect"]
+    assert any("certification" in error for error in w3_critic.validate_resume(prepared, candidate))
+
+
+def test_supplied_education_is_not_silently_replaced(candidate, good_resume):
+    import copy
+    draft = copy.deepcopy(good_resume)
+    draft["education"][0]["degree"] = "Invented PhD"
+    prepared = w3_critic._prepare_draft(draft, candidate)
+    assert prepared["education"][0]["degree"] == "Invented PhD"
+    assert any("education" in error for error in w3_critic.validate_resume(prepared, candidate))
+
+
+def test_placeholder_regression_runs_through_graph(monkeypatch, tmp_path, candidate, good_resume):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+
+    def fake_chat(messages, tracker, **kwargs):
+        system = messages[0]["content"]
+        if system == w3_critic.STRUCTURED_CREATOR_SYSTEM:
+            return _message(dict(good_resume, education=[],
+                                 certifications=["None listed in original resume data."]))
+        return _message(_feedback(_critic_name(system)))
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    result = w3_critic.build_critic_graph(Tracker(), run_id="absence-fix").invoke(
+        {"candidate_data": candidate, "job_data": {"title": "Analyst"}}
+    )
+    assert not result.get("errors")
+    assert "## Education" in result["resume_md"]
+    assert "None listed" not in result["resume_md"]
+
+
+def test_w3_leaves_skill_support_to_llm_critics(monkeypatch, tmp_path, candidate, good_resume):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+    draft = dict(good_resume, skills=["Accessibility", "Design Systems"])
+
+    def fake_chat(messages, tracker, **kwargs):
+        system = messages[0]["content"]
+        if system == w3_critic.STRUCTURED_CREATOR_SYSTEM:
+            return _message(draft)
+        return _message(_feedback(_critic_name(system)))
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    result = w3_critic.build_critic_graph(Tracker(), run_id="llm-skill-check").invoke(
+        {"candidate_data": candidate, "job_data": {"title": "Analyst"}}
+    )
+    assert not result.get("errors")
+    assert "Design Systems" in result["resume_md"]
+    # W2/default callers still use strict skill checks.
+    assert any("skill" in e for e in w3_critic.validate_resume(draft, candidate))

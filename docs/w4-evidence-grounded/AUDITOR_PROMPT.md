@@ -38,15 +38,15 @@ This is a research project implementing 7 resume generation workflows (W1-W7). W
 1. **`common/schemas.py`** - Search for "W4" schemas (Claim, GroundedResume, etc.)
    - Check: §3.2 in spec
    - Verify: Claim accepts bare strings, normalizes sources
-   
+
 2. **`common/spans.py`** - Span splitting logic
    - Check: §4.1 in spec (10 rules)
    - Verify: PDF artifact handling, metadata assignment
-   
+
 3. **`common/grounding.py`** - Citation validation and verification
    - Check: §4.3 (5 citation rules), §4.4 (3 deterministic rules), §4.5 (LLM verifier)
    - Verify: check_citations(), rule_check(), llm_verify()
-   
+
 4. **`workflows/w4_evidence.py`** - Main workflow graph
    - Check: §4 (complete workflow)
    - Verify: Graph structure, revision loop, evidence generation
@@ -71,7 +71,7 @@ This is a research project implementing 7 resume generation workflows (W1-W7). W
    ```bash
    # All LLM calls must use common.llm.chat()
    grep -n "from common.llm import chat" workflows/w4_evidence.py common/grounding.py
-   
+
    # Model should be qwen3.5:4b-q4_K_M from config.py
    grep "^MODEL" config.py
    ```

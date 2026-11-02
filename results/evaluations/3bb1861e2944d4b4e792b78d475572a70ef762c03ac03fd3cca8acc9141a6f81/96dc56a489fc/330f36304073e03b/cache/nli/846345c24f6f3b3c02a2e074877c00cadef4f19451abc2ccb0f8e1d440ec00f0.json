@@ -1,0 +1,363 @@
+{
+  "identity": {
+    "source_hash": "6aedf80cf4321414e6a22a87d5a02180781cb185026f982375a24dc52cad866d",
+    "tailored_hash": "12d30233c1739d485f95461cc4b5d22d6bd1f7ab4318808ef883338da7be69a9",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0417,
+    "unsupported": [
+      "Senior Mobile Engineer with over three years of experience leading Android feature delivery, defining maintainable architectures, and optimizing application performance.",
+      "Proven track record of mentoring peers through design reviews and code analysis while establishing automated testing practices.",
+      "Expert in Kotlin, Jetpack Compose, REST APIs, and Git workflows.",
+      "Adept at translating operational needs into reliable solutions, managing ambiguous technical challenges, and communicating clear trade-offs to stakeholders.",
+      "Committed to delivering high-quality, well-tested improvements that drive team efficiency and business outcomes.",
+      "Technology Associate** | Example Cedar Innovations (Singapore)",
+      "Lead Delivery & Architecture:** Spearheaded the delivery of critical Android features using Kotlin and Jetpack Compose, defining a maintainable mobile architecture that reduced technical debt and improved long-term scalability.",
+      "Performance Optimization:** Collaborated with four colleagues to identify bottlenecks and implement strategies that significantly improved application performance, directly contributing to a 14% increase in team turnaround time.",
+      "Testing & Quality Assurance:** Established rigorous quality checks within the CI/CD pipeline;",
+      "managed approximately 74 work items monthly while ensuring all deliverables met strict unit testing standards before release.",
+      "Mentorship & Collaboration:** Conducted regular design and code reviews to guide junior engineers, fostering a culture of best practices and collective problem-solving.",
+      "Stakeholder Communication:** Presented technical progress, risks, and architectural trade-offs during fortnightly reviews with technical and business stakeholders, ensuring alignment on project goals.",
+      "Technical Assistant** | Example Delta Operations (Singapore)",
+      "API Integration & Documentation:** Supported recurring operational workflows by integrating REST APIs and creating comprehensive, clear documentation for step-by-step procedures used by the team.",
+      "Problem Solving:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to engineering leads to resolve ambiguous technical blockers.",
+      "Process Improvement:** Designed a reporting template that streamlined data collection, reducing manual preparation time by 9% and establishing a foundation for future automated reporting tools.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+      "Capstone Project:** Led the development of a full-stack Android application using Kotlin and mobile architecture patterns.",
+      "Defined the system design, implemented unit tests for representative scenarios, and presented outcomes to a five-person peer review group demonstrating readiness for senior-level responsibilities.",
+      "Languages & Frameworks:** Kotlin, Jetpack Compose, REST APIs",
+      "Core Competencies:** Android Development, Mobile Architecture, Unit Testing, CI/CD Pipelines, Git Version Control",
+      "Soft Skills:** Technical Mentoring, Stakeholder Communication, Collaborative Problem Solving, Clear Documentation",
+      "Tools & Practices:** Performance Optimization, Agile Methodologies, Code Review Processes"
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Senior Mobile Engineer with over three years of experience leading Android feature delivery, defining maintainable architectures, and optimizing application performance.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.000233,
+          "entailment": 0.001072,
+          "neutral": 0.998695
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001072,
+        "supported": false
+      },
+      {
+        "claim": "Proven track record of mentoring peers through design reviews and code analysis while establishing automated testing practices.",
+        "best_source_chunk": "four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time",
+        "probabilities": {
+          "contradiction": 0.000607,
+          "entailment": 0.000609,
+          "neutral": 0.998784
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000609,
+        "supported": false
+      },
+      {
+        "claim": "Expert in Kotlin, Jetpack Compose, REST APIs, and Git workflows.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.00153,
+          "entailment": 0.008373,
+          "neutral": 0.990097
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008373,
+        "supported": false
+      },
+      {
+        "claim": "Adept at translating operational needs into reliable solutions, managing ambiguous technical challenges, and communicating clear trade-offs to stakeholders.",
+        "best_source_chunk": "four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time",
+        "probabilities": {
+          "contradiction": 0.004525,
+          "entailment": 0.011663,
+          "neutral": 0.983811
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011663,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering high-quality, well-tested improvements that drive team efficiency and business outcomes.",
+        "best_source_chunk": "limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%. - Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and",
+        "probabilities": {
+          "contradiction": 0.000276,
+          "entailment": 0.001909,
+          "neutral": 0.997815
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001909,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Singapore)",
+        "best_source_chunk": "a Senior Mobile Engineer.",
+        "probabilities": {
+          "contradiction": 0.855759,
+          "entailment": 0.0504,
+          "neutral": 0.093841
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.0504,
+        "supported": false
+      },
+      {
+        "claim": "Lead Delivery & Architecture:** Spearheaded the delivery of critical Android features using Kotlin and Jetpack Compose, defining a maintainable mobile architecture that reduced technical debt and improved long-term scalability.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.00048,
+          "entailment": 0.002336,
+          "neutral": 0.997184
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002336,
+        "supported": false
+      },
+      {
+        "claim": "Performance Optimization:** Collaborated with four colleagues to identify bottlenecks and implement strategies that significantly improved application performance, directly contributing to a 14% increase in team turnaround time.",
+        "best_source_chunk": "improving team turnaround by 14%. - Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers. - Managed approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun",
+        "probabilities": {
+          "contradiction": 0.000591,
+          "entailment": 0.000755,
+          "neutral": 0.998654
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000755,
+        "supported": false
+      },
+      {
+        "claim": "Testing & Quality Assurance:** Established rigorous quality checks within the CI/CD pipeline;",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.001544,
+          "entailment": 0.003479,
+          "neutral": 0.994977
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003479,
+        "supported": false
+      },
+      {
+        "claim": "managed approximately 74 work items monthly while ensuring all deliverables met strict unit testing standards before release.",
+        "best_source_chunk": "improving team turnaround by 14%. - Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers. - Managed approximately 74 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun",
+        "probabilities": {
+          "contradiction": 0.000622,
+          "entailment": 0.000257,
+          "neutral": 0.999121
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000257,
+        "supported": false
+      },
+      {
+        "claim": "Mentorship & Collaboration:** Conducted regular design and code reviews to guide junior engineers, fostering a culture of best practices and collective problem-solving.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.001357,
+          "entailment": 0.003317,
+          "neutral": 0.995326
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003317,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented technical progress, risks, and architectural trade-offs during fortnightly reviews with technical and business stakeholders, ensuring alignment on project goals.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.001691,
+          "entailment": 0.000944,
+          "neutral": 0.997365
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000944,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Singapore)",
+        "best_source_chunk": "recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer.",
+        "probabilities": {
+          "contradiction": 0.88875,
+          "entailment": 0.02048,
+          "neutral": 0.090769
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.02048,
+        "supported": false
+      },
+      {
+        "claim": "API Integration & Documentation:** Supported recurring operational workflows by integrating REST APIs and creating comprehensive, clear documentation for step-by-step procedures used by the team.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.004034,
+          "entailment": 0.019906,
+          "neutral": 0.97606
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019906,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated complex service requests, recorded detailed findings with supporting evidence, and escalated issues to engineering leads to resolve ambiguous technical blockers.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.004253,
+          "entailment": 0.002114,
+          "neutral": 0.993634
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002114,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Designed a reporting template that streamlined data collection, reducing manual preparation time by 9% and establishing a foundation for future automated reporting tools.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.001809,
+          "entailment": 0.001759,
+          "neutral": 0.996432
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001759,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.004478,
+          "entailment": 0.013652,
+          "neutral": 0.981871
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013652,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.000125,
+          "entailment": 0.969048,
+          "neutral": 0.030827
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.969048,
+        "supported": true
+      },
+      {
+        "claim": "Capstone Project:** Led the development of a full-stack Android application using Kotlin and mobile architecture patterns.",
+        "best_source_chunk": "limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%. - Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and",
+        "probabilities": {
+          "contradiction": 0.000161,
+          "entailment": 0.022787,
+          "neutral": 0.977052
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.022787,
+        "supported": false
+      },
+      {
+        "claim": "Defined the system design, implemented unit tests for representative scenarios, and presented outcomes to a five-person peer review group demonstrating readiness for senior-level responsibilities.",
+        "best_source_chunk": "2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Technology",
+        "probabilities": {
+          "contradiction": 0.106998,
+          "entailment": 0.064294,
+          "neutral": 0.828708
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.064294,
+        "supported": false
+      },
+      {
+        "claim": "Languages & Frameworks:** Kotlin, Jetpack Compose, REST APIs",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.002729,
+          "entailment": 0.008375,
+          "neutral": 0.988896
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008375,
+        "supported": false
+      },
+      {
+        "claim": "Core Competencies:** Android Development, Mobile Architecture, Unit Testing, CI/CD Pipelines, Git Version Control",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.006408,
+          "entailment": 0.143718,
+          "neutral": 0.849874
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.143718,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Technical Mentoring, Stakeholder Communication, Collaborative Problem Solving, Clear Documentation",
+        "best_source_chunk": "recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Summary Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer.",
+        "probabilities": {
+          "contradiction": 0.005137,
+          "entailment": 0.003713,
+          "neutral": 0.991149
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003713,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Practices:** Performance Optimization, Agile Methodologies, Code Review Processes",
+        "best_source_chunk": "# Rina Tan rina.tan@example.test | +65 6000 0018 | Singapore ## Skills Kotlin, Android, mobile architecture, REST APIs, Jetpack Compose, Excel, documentation, Git ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Senior Mobile Engineer Practice Project -",
+        "probabilities": {
+          "contradiction": 0.012234,
+          "entailment": 0.011314,
+          "neutral": 0.976452
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011314,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "846345c24f6f3b3c02a2e074877c00cadef4f19451abc2ccb0f8e1d440ec00f0"
+  }
+}
