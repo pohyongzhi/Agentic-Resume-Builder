@@ -18,11 +18,11 @@
 
 ## Pending integration
 
-- [ ] Add shared version/config constants and evaluator identity fields.
-- [ ] Integrate coverage into saved-output scoring and checkpoint completeness.
-- [ ] Integrate injection command, manifest, resumable artifact paths, and normal scoring diagnostics.
-- [ ] Add report tables/files for coverage and injection.
-- [ ] Add CLI/integration tests.
+- [x] Add shared version/config constants and evaluator identity fields. (integration branch `feature/eval-metrics-integration`)
+- [x] Integrate coverage into saved-output scoring and checkpoint completeness. (integration branch `feature/eval-metrics-integration`)
+- [x] Integrate injection command, manifest, resumable artifact paths, and normal scoring diagnostics. (integration branch `feature/eval-metrics-integration`)
+- [x] Add report tables/files for coverage and injection. (integration branch `feature/eval-metrics-integration`)
+- [x] Add CLI/integration tests. (integration branch `feature/eval-metrics-integration`)
 - [ ] Run a small model-backed pilot and manually audit semantic decisions.
 - [ ] Run the approved full evaluation only after pilot acceptance.
 
