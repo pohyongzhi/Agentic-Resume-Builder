@@ -20,6 +20,8 @@ from common.schemas import llm_schema
 from eval.judge import DIMENSIONS, RUBRIC, JudgeConfig, configured_model
 
 
+# Local constants; the integration branch may promote these to config.py.
+PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v1"
 PAIRWISE_PROMPT_VERSION = "pairwise-v1"
 PAIRWISE_SCHEMA_VERSION = "1"
 PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
@@ -139,6 +141,9 @@ def pairwise_identity(
     schema = llm_schema(PairwiseJudgeResponse)
     identity = {
         **asdict(judge_config),
+        "pairwise_evaluator_version": PAIRWISE_EVALUATOR_VERSION,
+        "model_provider": model_info.get("provider"),
+        "model_tag": model_info.get("tag"),
         "pairwise_prompt_version": PAIRWISE_PROMPT_VERSION,
         "pairwise_schema_version": PAIRWISE_SCHEMA_VERSION,
         "pairing_policy_version": PAIRING_POLICY_VERSION,
@@ -230,8 +235,11 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
             },
         )
         message = getattr(response, "message", None)
-        raw = getattr(message, "content", None) or message["content"]
-        return raw, {
+        if isinstance(message, dict):
+            raw = message.get("content")
+        else:
+            raw = getattr(message, "content", None)
+        return (raw or "").strip(), {
             "response_id": None,
             "returned_model": judge_config.model,
             "system_fingerprint": None,
@@ -267,6 +275,22 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
     return (response.choices[0].message.content or "").strip(), _response_metadata(response)
 
 
+FAILURE_JUDGE = "judge_failed"
+FAILURE_INVALID = "invalid_output"
+FAILURE_GENERATION = "generation_unavailable"
+
+
+def _normalise_position(
+    position: str, role_at_a: Literal["challenger", "baseline"]
+) -> str:
+    """Map a positional label (candidate_a/candidate_b/tie) to challenger/baseline/tie."""
+    if position == "tie":
+        return "tie"
+    if position == "candidate_a":
+        return role_at_a
+    return "baseline" if role_at_a == "challenger" else "challenger"
+
+
 def _evaluate_order(
     candidate_a: str,
     candidate_b: str,
@@ -276,6 +300,7 @@ def _evaluate_order(
     judge_config: JudgeConfig,
     client,
 ) -> dict[str, Any]:
+    """Judge one ordering. Judge-call errors and invalid output both end unscored."""
     user_prompt = _user_prompt(original_resume, job_description, candidate_a, candidate_b)
     sources = {
         "original_resume": original_resume,
@@ -285,6 +310,7 @@ def _evaluate_order(
     }
     attempts = []
     parsed = None
+    failure_kind = None
     request_prompt = user_prompt
     for attempt in range(1, judge_config.max_retries + 2):
         started = time.perf_counter()
@@ -292,19 +318,23 @@ def _evaluate_order(
         response_metadata = {}
         try:
             raw, response_metadata = _call_judge(client, judge_config, request_prompt)
-            candidate = PairwiseJudgeResponse.model_validate_json(raw)
-            _validate_quotations(candidate, sources)
-            parsed = candidate
+        except Exception as exc:
+            # Transport/provider failure: no judgement was produced. Retry the original prompt.
+            failure_kind = FAILURE_JUDGE
             attempts.append({
                 "attempt": attempt,
-                "status": "scored",
-                "raw_response": raw,
-                "error": None,
+                "status": "failed",
+                "raw_response": None,
+                "error": _safe_error(exc),
                 "seconds": round(time.perf_counter() - started, 4),
-                **response_metadata,
             })
-            break
+            request_prompt = user_prompt
+            continue
+        try:
+            candidate = PairwiseJudgeResponse.model_validate_json(raw or "")
+            _validate_quotations(candidate, sources)
         except Exception as exc:
+            failure_kind = FAILURE_INVALID
             error = _safe_error(exc)
             attempts.append({
                 "attempt": attempt,
@@ -320,36 +350,61 @@ def _evaluate_order(
                 + error
                 + "\nReturn corrected JSON with exact quotations from every required source."
             )
+            continue
+        parsed = candidate
+        failure_kind = None
+        attempts.append({
+            "attempt": attempt,
+            "status": "scored",
+            "raw_response": raw,
+            "error": None,
+            "seconds": round(time.perf_counter() - started, 4),
+            **response_metadata,
+        })
+        break
 
     if parsed is None:
         return {
             "status": "unscored",
+            "failure_kind": failure_kind,
             "failure_reason": attempts[-1]["error"],
             "role_at_a": role_at_a,
             "winner_position": None,
             "normalized_winner": None,
+            "normalized_dimensions": None,
             "result": None,
             "attempts": attempts,
             "prompt": user_prompt,
         }
 
-    position_winner = parsed.winner
-    if position_winner == "tie":
-        normalized_winner = "tie"
-    elif position_winner == "candidate_a":
-        normalized_winner = role_at_a
-    else:
-        normalized_winner = "baseline" if role_at_a == "challenger" else "challenger"
     return {
         "status": "scored",
+        "failure_kind": None,
         "failure_reason": None,
         "role_at_a": role_at_a,
-        "winner_position": position_winner,
-        "normalized_winner": normalized_winner,
+        "winner_position": parsed.winner,
+        "normalized_winner": _normalise_position(parsed.winner, role_at_a),
+        "normalized_dimensions": {
+            name: _normalise_position(getattr(parsed, name).preferred, role_at_a)
+            for name in DIMENSIONS
+        },
         "result": parsed.model_dump(),
         "attempts": attempts,
         "prompt": user_prompt,
     }
+
+
+def _read_cache(cache_path: Path, cache_key: str) -> dict[str, Any] | None:
+    """Return a cached record, or None when absent, corrupt, or for another identity."""
+    if not cache_path.exists():
+        return None
+    try:
+        record = json.loads(cache_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+    if not isinstance(record, dict) or record.get("cache_key") != cache_key:
+        return None
+    return record
 
 
 def evaluate_pairwise(
@@ -368,14 +423,33 @@ def evaluate_pairwise(
     baseline_config_hash: str | None = None,
     judge_config: JudgeConfig | None = None,
     client=None,
+    model_info: dict[str, Any] | None = None,
     force: bool = False,
 ) -> dict[str, Any]:
-    """Judge challenger against baseline in both positions and normalize the outcomes."""
+    """Judge challenger against baseline in both positions and normalize the outcomes.
+
+    The record is ``scored`` only when both orders produce validated judgements. A judge
+    failure or invalid output in either order leaves the record ``unscored`` with no
+    winner; it is never converted into a loss or a score. Records that contain a judge
+    call failure are not cached, so a resumed run retries them.
+
+    Pass ``model_info`` (resolved once per run) to avoid per-call model lookups; when it
+    is supplied, no client is created unless the cache misses.
+    """
     if challenger_workflow == baseline_workflow:
         raise ValueError("challenger_workflow must differ from baseline_workflow")
+    for name, text in (
+        ("original_resume", original_resume),
+        ("job_description", job_description),
+        ("challenger_resume", challenger_resume),
+        ("baseline_resume", baseline_resume),
+    ):
+        if not isinstance(text, str) or not text.strip():
+            raise ValueError(f"{name} must be non-empty text")
     judge_config = judge_config or JudgeConfig()
-    client = client or _default_client(judge_config)
-    model_info = configured_model(judge_config, client)
+    if model_info is None:
+        client = client or _default_client(judge_config)
+        model_info = configured_model(judge_config, client)
     identity = pairwise_identity(judge_config, model_info)
     input_hashes = {
         "original_resume": _sha(original_resume),
@@ -398,9 +472,12 @@ def evaluate_pairwise(
         "evaluator": identity,
     }, sort_keys=True))
     cache_path = Path(cache_dir) / f"{cache_key}.json"
-    if cache_path.exists() and not force:
-        return json.loads(cache_path.read_text(encoding="utf-8"))
+    if not force:
+        cached = _read_cache(cache_path, cache_key)
+        if cached is not None:
+            return cached
 
+    client = client or _default_client(judge_config)
     forward = _evaluate_order(
         challenger_resume, baseline_resume, original_resume, job_description,
         "challenger", judge_config, client,
@@ -409,29 +486,116 @@ def evaluate_pairwise(
         baseline_resume, challenger_resume, original_resume, job_description,
         "baseline", judge_config, client,
     )
-    both_scored = forward["status"] == "scored" and swapped["status"] == "scored"
+    orders = (forward, swapped)
+    both_scored = all(order["status"] == "scored" for order in orders)
     consistent = (
         forward["normalized_winner"] == swapped["normalized_winner"]
         if both_scored else None
     )
+    dimension_consistency = (
+        {
+            name: forward["normalized_dimensions"][name]
+            == swapped["normalized_dimensions"][name]
+            for name in DIMENSIONS
+        }
+        if both_scored else None
+    )
+    failure_kinds = {order["failure_kind"] for order in orders if order["failure_kind"]}
+    if FAILURE_JUDGE in failure_kinds:
+        failure_kind = FAILURE_JUDGE
+    elif failure_kinds:
+        failure_kind = FAILURE_INVALID
+    else:
+        failure_kind = None
     failure_reasons = [
-        order["failure_reason"] for order in (forward, swapped)
+        f"{label}: {order['failure_reason']}"
+        for label, order in (("forward", forward), ("swapped", swapped))
         if order["failure_reason"]
     ]
     record = {
         **comparison,
         "status": "scored" if both_scored else "unscored",
+        "failure_kind": failure_kind,
         "failure_reason": "; ".join(failure_reasons) if failure_reasons else None,
         "evaluator": identity,
         "model_info": model_info,
         "input_hashes": input_hashes,
         "cache_key": cache_key,
+        "orders_scored": sum(order["status"] == "scored" for order in orders),
         "position_swap_consistent": consistent,
         "consensus_winner": forward["normalized_winner"] if consistent else None,
+        "dimension_position_swap_consistent": dimension_consistency,
+        "dimension_consensus": (
+            {
+                name: forward["normalized_dimensions"][name] if agrees else None
+                for name, agrees in dimension_consistency.items()
+            }
+            if dimension_consistency is not None else None
+        ),
+        "system_prompt": SYSTEM_PROMPT,
         "orders": {"forward": forward, "swapped": swapped},
     }
-    _atomic_json(cache_path, record)
+    if failure_kind != FAILURE_JUDGE:
+        _atomic_json(cache_path, record)
     return record
+
+
+def generation_unavailable_record(pair: dict[str, Any], reason: str | None = None) -> dict[str, Any]:
+    """Represent a pair whose saved generations cannot be judged; never scored or cached."""
+    return {
+        "dataset_hash": pair.get("dataset_hash"),
+        "pair_id": pair.get("pair_id"),
+        "repeat": pair.get("repeat", 0),
+        "challenger_workflow": pair.get("challenger_workflow"),
+        "baseline_workflow": pair.get("baseline_workflow"),
+        "challenger_config_hash": (pair.get("challenger_row") or {}).get("config_hash"),
+        "baseline_config_hash": (pair.get("baseline_row") or {}).get("config_hash"),
+        "status": FAILURE_GENERATION,
+        "failure_kind": FAILURE_GENERATION,
+        "failure_reason": reason or pair.get("failure_reason") or FAILURE_GENERATION,
+        "position_swap_consistent": None,
+        "consensus_winner": None,
+        "orders": None,
+    }
+
+
+def evaluate_generation_pair(
+    pair: dict[str, Any],
+    original_resume: str,
+    job_description: str,
+    cache_dir: str | Path,
+    **kwargs: Any,
+) -> dict[str, Any]:
+    """Judge one entry from ``build_generation_pairs``.
+
+    Unavailable or unreadable generations produce a ``generation_unavailable`` record
+    without any judge call. Remaining keyword arguments go to ``evaluate_pairwise``.
+    """
+    if pair.get("status") != "ready":
+        return generation_unavailable_record(pair)
+    try:
+        challenger_resume = candidate_text(pair["challenger_row"])
+    except (OSError, ValueError) as exc:
+        return generation_unavailable_record(pair, f"challenger_unreadable: {exc}")
+    try:
+        baseline_resume = candidate_text(pair["baseline_row"])
+    except (OSError, ValueError) as exc:
+        return generation_unavailable_record(pair, f"baseline_unreadable: {exc}")
+    return evaluate_pairwise(
+        original_resume,
+        job_description,
+        challenger_resume,
+        baseline_resume,
+        cache_dir,
+        challenger_workflow=pair["challenger_workflow"],
+        baseline_workflow=pair["baseline_workflow"],
+        pair_id=pair["pair_id"],
+        repeat=pair.get("repeat", 0),
+        dataset_hash=pair.get("dataset_hash"),
+        challenger_config_hash=pair["challenger_row"].get("config_hash"),
+        baseline_config_hash=pair["baseline_row"].get("config_hash"),
+        **kwargs,
+    )
 
 
 def _selected_rows(
@@ -568,15 +732,45 @@ def _wilson_ci(successes: int, total: int) -> tuple[float | None, float | None]:
 def summarise_pairwise(
     records: list[dict[str, Any]], group_fields: tuple[str, ...] = ()
 ) -> list[dict[str, Any]]:
-    """Aggregate explicit pairwise and position-consistency denominators."""
+    """Aggregate pairwise outcomes with explicit denominators.
+
+    Denominators per group:
+
+    - ``total_pairs``: every record supplied.
+    - ``generation_unavailable``: pairs with a missing/failed saved generation (not eligible).
+    - ``eligible``: pairs submitted to the judge.
+    - ``scored``: eligible pairs with validated judgements in both orders.
+    - ``unscored``: eligible minus scored; split into ``failed`` (judge call failure) and
+      ``invalid`` (judge output rejected by schema or quotation validation).
+
+    Rates use ``scored`` as the denominator; ``None`` when nothing was scored. Inconsistent
+    (order-dependent) outcomes count as neither a win nor a loss in strict rates and as a
+    tie in ``position_neutral_score``.
+    """
     grouped: dict[tuple[Any, ...], list[dict[str, Any]]] = defaultdict(list)
     for record in records:
         grouped[tuple(record.get(field, "") for field in group_fields)].append(record)
+
+    def ratio(numerator: float, denominator: int) -> float | None:
+        return round(numerator / denominator, 6) if denominator else None
+
+    def interval(successes: int, total: int) -> tuple[float | None, float | None]:
+        low, high = _wilson_ci(successes, total)
+        return (
+            round(low, 6) if low is not None else None,
+            round(high, 6) if high is not None else None,
+        )
+
     summaries = []
     for group_key, group in sorted(grouped.items(), key=lambda item: str(item[0])):
-        scored = [record for record in group if record.get("status") == "scored"]
-        consistent = [record for record in scored if record.get("position_swap_consistent")]
-        outcomes = Counter(record.get("consensus_winner") for record in consistent)
+        unavailable = [r for r in group if r.get("status") == FAILURE_GENERATION]
+        eligible = [r for r in group if r.get("status") != FAILURE_GENERATION]
+        scored = [r for r in eligible if r.get("status") == "scored"]
+        unscored = [r for r in eligible if r.get("status") != "scored"]
+        failed = [r for r in unscored if r.get("failure_kind") == FAILURE_JUDGE]
+        consistent = [r for r in scored if r.get("position_swap_consistent")]
+        inconsistent = len(scored) - len(consistent)
+        outcomes = Counter(r.get("consensus_winner") for r in consistent)
         order_judgments = [
             order
             for record in scored
@@ -586,45 +780,53 @@ def summarise_pairwise(
         first_position = sum(
             order["winner_position"] == "candidate_a" for order in order_judgments
         )
-        consistency_low, consistency_high = _wilson_ci(len(consistent), len(scored))
-        win_low, win_high = _wilson_ci(outcomes["challenger"], len(scored))
+        dimension_consistency = {}
+        for name in DIMENSIONS:
+            flags = [
+                (r.get("dimension_position_swap_consistent") or {}).get(name)
+                for r in scored
+            ]
+            flags = [flag for flag in flags if flag is not None]
+            dimension_consistency[name] = {
+                "consistent": sum(flags),
+                "scored": len(flags),
+                "rate": ratio(sum(flags), len(flags)),
+            }
+        consistency_low, consistency_high = interval(len(consistent), len(scored))
+        win_low, win_high = interval(outcomes["challenger"], len(scored))
         failure_reasons = Counter(
-            record.get("failure_reason") or "unspecified"
-            for record in group if record.get("status") != "scored"
+            r.get("failure_reason") or "unspecified"
+            for r in group if r.get("status") != "scored"
         )
         summaries.append({
             **dict(zip(group_fields, group_key)),
-            "eligible_pairs": len(group),
-            "two_order_scored": len(scored),
-            "unscored": len(group) - len(scored),
+            "total_pairs": len(group),
+            "generation_unavailable": len(unavailable),
+            "eligible": len(eligible),
+            "scored": len(scored),
+            "unscored": len(unscored),
+            "failed": len(failed),
+            "invalid": len(unscored) - len(failed),
             "consistent": len(consistent),
-            "inconsistent": len(scored) - len(consistent),
-            "position_swap_consistency": (
-                round(len(consistent) / len(scored), 6) if scored else None
-            ),
-            "position_swap_consistency_ci_95_low": (
-                round(consistency_low, 6) if consistency_low is not None else None
-            ),
-            "position_swap_consistency_ci_95_high": (
-                round(consistency_high, 6) if consistency_high is not None else None
-            ),
+            "inconsistent": inconsistent,
+            "position_swap_consistency": ratio(len(consistent), len(scored)),
+            "position_swap_consistency_ci_95_low": consistency_low,
+            "position_swap_consistency_ci_95_high": consistency_high,
             "challenger_wins": outcomes["challenger"],
             "baseline_wins": outcomes["baseline"],
             "ties": outcomes["tie"],
-            "strict_win_rate": (
-                round(outcomes["challenger"] / len(scored), 6) if scored else None
-            ),
-            "strict_win_rate_ci_95_low": round(win_low, 6) if win_low is not None else None,
-            "strict_win_rate_ci_95_high": round(win_high, 6) if win_high is not None else None,
-            "half_tie_consensus_score": (
-                round((outcomes["challenger"] + 0.5 * outcomes["tie"]) / len(scored), 6)
-                if scored else None
+            "strict_win_rate": ratio(outcomes["challenger"], len(scored)),
+            "strict_win_rate_ci_95_low": win_low,
+            "strict_win_rate_ci_95_high": win_high,
+            "strict_loss_rate": ratio(outcomes["baseline"], len(scored)),
+            "position_neutral_score": ratio(
+                outcomes["challenger"] + 0.5 * (outcomes["tie"] + inconsistent),
+                len(scored),
             ),
             "first_position_selections": first_position,
             "non_tie_order_judgments": len(order_judgments),
-            "first_position_selection_rate": (
-                round(first_position / len(order_judgments), 6) if order_judgments else None
-            ),
+            "first_position_selection_rate": ratio(first_position, len(order_judgments)),
+            "dimension_position_swap_consistency": dimension_consistency,
             "failure_reasons": dict(sorted(failure_reasons.items())),
         })
     return summaries

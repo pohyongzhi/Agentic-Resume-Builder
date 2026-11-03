@@ -1,15 +1,31 @@
 import json
+import socket
 from types import SimpleNamespace
 
 import pytest
 
+import eval.pairwise as pairwise
 from eval.judge import JudgeConfig
 from eval.pairwise import (
     build_generation_pairs,
     candidate_text,
+    evaluate_generation_pair,
     evaluate_pairwise,
     summarise_pairwise,
 )
+
+
+@pytest.fixture(autouse=True)
+def _no_network(monkeypatch):
+    def refuse(*args, **kwargs):
+        raise AssertionError("network access attempted in a unit test")
+
+    monkeypatch.setattr(socket.socket, "connect", refuse)
+    monkeypatch.setattr(socket, "create_connection", refuse)
+    monkeypatch.setattr(
+        pairwise, "_default_client",
+        lambda judge_config: (_ for _ in ()).throw(AssertionError("default client used")),
+    )
 
 
 ORIGINAL = "Built Python systems"
@@ -64,8 +80,11 @@ class FakeClient:
 
     def chat(self, **kwargs):
         self.calls.append(kwargs)
+        response = self.responses.pop(0)
+        if isinstance(response, Exception):
+            raise response
         return SimpleNamespace(
-            message=SimpleNamespace(content=self.responses.pop(0)),
+            message=SimpleNamespace(content=response),
             prompt_eval_count=10,
             eval_count=20,
         )
@@ -163,6 +182,8 @@ def test_invalid_quotes_retry_then_fail_closed_without_consensus(tmp_path):
     assert record["position_swap_consistent"] is None
     assert record["consensus_winner"] is None
     assert len(record["orders"]["forward"]["attempts"]) == 2
+    assert record["failure_kind"] == "invalid_output"
+    assert record["orders_scored"] == 1
     assert "unverifiable quotation" in record["failure_reason"]
     retry_prompt = client.calls[1]["messages"][1]["content"]
     assert "previous response was rejected" in retry_prompt
@@ -259,13 +280,16 @@ def test_candidate_text_rejects_failed_and_empty_outputs():
         candidate_text({"error": None, "resume_md": "  "})
 
 
-def test_summary_uses_two_order_denominators_and_reports_position_bias():
+def test_summary_uses_explicit_denominators_and_reports_position_bias():
     def record(consistency, winner, forward="candidate_a", swapped="candidate_b"):
         return {
             "challenger_workflow": "w3_critic",
             "status": "scored",
             "position_swap_consistent": consistency,
             "consensus_winner": winner,
+            "dimension_position_swap_consistent": {
+                name: consistency for name in pairwise.DIMENSIONS
+            },
             "orders": {
                 "forward": {"status": "scored", "winner_position": forward},
                 "swapped": {"status": "scored", "winner_position": swapped},
@@ -279,18 +303,207 @@ def test_summary_uses_two_order_denominators_and_reports_position_bias():
         {
             "challenger_workflow": "w3_critic",
             "status": "unscored",
+            "failure_kind": "invalid_output",
             "failure_reason": "invalid quote",
+        },
+        {
+            "challenger_workflow": "w3_critic",
+            "status": "unscored",
+            "failure_kind": "judge_failed",
+            "failure_reason": "timeout",
+        },
+        {
+            "challenger_workflow": "w3_critic",
+            "status": "generation_unavailable",
+            "failure_kind": "generation_unavailable",
+            "failure_reason": "challenger_missing",
         },
     ]
     summary = summarise_pairwise(rows, ("challenger_workflow",))[0]
 
-    assert summary["eligible_pairs"] == 4
-    assert summary["two_order_scored"] == 3
+    assert summary["total_pairs"] == 6
+    assert summary["generation_unavailable"] == 1
+    assert summary["eligible"] == 5
+    assert summary["scored"] == 3
+    assert summary["unscored"] == 2
+    assert summary["failed"] == 1
+    assert summary["invalid"] == 1
     assert summary["consistent"] == 2
     assert summary["inconsistent"] == 1
     assert summary["challenger_wins"] == 1
+    assert summary["baseline_wins"] == 0
     assert summary["ties"] == 1
     assert summary["strict_win_rate"] == pytest.approx(1 / 3, abs=1e-6)
-    assert summary["half_tie_consensus_score"] == 0.5
+    assert summary["strict_loss_rate"] == 0
+    # Inconsistent outcome counts as a tie: (1 + 0.5 * (1 + 1)) / 3.
+    assert summary["position_neutral_score"] == pytest.approx(2 / 3, abs=1e-6)
     assert summary["first_position_selection_rate"] == 0.75
-    assert summary["failure_reasons"] == {"invalid quote": 1}
+    assert summary["dimension_position_swap_consistency"]["clarity"] == {
+        "consistent": 2, "scored": 3, "rate": pytest.approx(2 / 3, abs=1e-6),
+    }
+    assert summary["failure_reasons"] == {
+        "challenger_missing": 1, "invalid quote": 1, "timeout": 1,
+    }
+
+
+def test_summary_with_nothing_scored_reports_none_rates():
+    rows = [{"status": "unscored", "failure_kind": "judge_failed", "failure_reason": "down"}]
+    summary = summarise_pairwise(rows)[0]
+    assert summary["eligible"] == 1
+    assert summary["scored"] == 0
+    assert summary["failed"] == 1
+    assert summary["strict_win_rate"] is None
+    assert summary["position_swap_consistency"] is None
+    assert summary["position_neutral_score"] is None
+    assert summary["first_position_selection_rate"] is None
+
+
+def test_judge_failure_stays_unscored_and_is_not_cached(tmp_path):
+    client = FakeClient([
+        ConnectionError("judge unavailable"),
+        ConnectionError("judge unavailable"),
+        _valid_response("candidate_b", BASELINE, CHALLENGER),
+    ])
+    record = _evaluate(tmp_path, client)
+
+    assert record["status"] == "unscored"
+    assert record["failure_kind"] == "judge_failed"
+    assert record["consensus_winner"] is None
+    assert record["position_swap_consistent"] is None
+    forward = record["orders"]["forward"]
+    assert forward["normalized_winner"] is None
+    assert [a["status"] for a in forward["attempts"]] == ["failed", "failed"]
+    assert "judge unavailable" in record["failure_reason"]
+    # Transport retries resend the original prompt, not a validation correction.
+    assert "previous response was rejected" not in client.calls[1]["messages"][1]["content"]
+    assert list(tmp_path.glob("*.json")) == []
+
+    retry = _evaluate(tmp_path, FakeClient([
+        _valid_response("candidate_a", CHALLENGER, BASELINE),
+        _valid_response("candidate_b", BASELINE, CHALLENGER),
+    ]))
+    assert retry["status"] == "scored"
+    assert retry["consensus_winner"] == "challenger"
+
+
+def test_empty_judge_output_is_invalid_not_failed(tmp_path):
+    client = FakeClient(["", "", "", ""])
+    record = _evaluate(tmp_path, client)
+    assert record["status"] == "unscored"
+    assert record["failure_kind"] == "invalid_output"
+    assert record["orders_scored"] == 0
+    assert record["orders"]["swapped"]["attempts"][0]["status"] == "invalid"
+
+
+def test_dimension_preferences_are_normalised_and_checked_for_consistency(tmp_path):
+    forward = json.loads(_valid_response("candidate_a", CHALLENGER, BASELINE))
+    swapped = json.loads(_valid_response("candidate_b", BASELINE, CHALLENGER))
+    swapped["clarity"]["preferred"] = "candidate_a"  # baseline under swap: disagrees
+    record = _evaluate(tmp_path, FakeClient([json.dumps(forward), json.dumps(swapped)]))
+
+    assert record["orders"]["swapped"]["normalized_dimensions"]["clarity"] == "baseline"
+    assert record["dimension_position_swap_consistent"]["clarity"] is False
+    assert record["dimension_position_swap_consistent"]["concision"] is True
+    assert record["dimension_consensus"]["clarity"] is None
+    assert record["dimension_consensus"]["concision"] == "challenger"
+
+
+def test_preresolved_model_info_skips_lookup_and_cache_hit_needs_no_client(tmp_path):
+    model_info = {"provider": "ollama", "tag": "gemma-test", "digest": "digest-a"}
+
+    class NoListClient(FakeClient):
+        def list(self):
+            raise AssertionError("model lookup should be skipped")
+
+    first = _evaluate(tmp_path, NoListClient([
+        _valid_response("candidate_a", CHALLENGER, BASELINE),
+        _valid_response("candidate_b", BASELINE, CHALLENGER),
+    ]), model_info=model_info)
+    cached = _evaluate(tmp_path, None, model_info=model_info)
+    assert cached == first
+
+
+def test_cache_identity_covers_versions_provider_and_comparison(tmp_path, monkeypatch):
+    model_info = {"provider": "ollama", "tag": "gemma-test", "digest": "digest-a"}
+
+    def run(**changes):
+        return _evaluate(tmp_path, FakeClient([
+            _valid_response("candidate_a", CHALLENGER, BASELINE),
+            _valid_response("candidate_b", BASELINE, CHALLENGER),
+        ]), **{"model_info": model_info, **changes})
+
+    base = run()["cache_key"]
+    assert run(judge_config=_config(temperature=0.5))["cache_key"] != base
+    assert run(repeat=1)["cache_key"] != base
+    assert run(challenger_config_hash="other")["cache_key"] != base
+    assert run(model_info={**model_info, "provider": "other"})["cache_key"] != base
+    monkeypatch.setattr(pairwise, "PAIRWISE_PROMPT_VERSION", "pairwise-v2")
+    assert run()["cache_key"] != base
+    monkeypatch.setattr(pairwise, "PAIRWISE_PROMPT_VERSION", "pairwise-v1")
+    monkeypatch.setattr(pairwise, "PAIRWISE_SCHEMA_VERSION", "2")
+    assert run()["cache_key"] != base
+    monkeypatch.setattr(pairwise, "PAIRWISE_SCHEMA_VERSION", "1")
+    monkeypatch.setattr(pairwise, "PAIRWISE_EVALUATOR_VERSION", "other")
+    assert run()["cache_key"] != base
+
+
+def test_corrupt_cache_is_recomputed(tmp_path):
+    first = _evaluate(tmp_path, FakeClient([
+        _valid_response("candidate_a", CHALLENGER, BASELINE),
+        _valid_response("candidate_b", BASELINE, CHALLENGER),
+    ]))
+    (tmp_path / f"{first['cache_key']}.json").write_text("{not json", encoding="utf-8")
+    client = FakeClient([
+        _valid_response("tie", CHALLENGER, BASELINE),
+        _valid_response("tie", BASELINE, CHALLENGER),
+    ])
+    again = _evaluate(tmp_path, client)
+    assert len(client.calls) == 2
+    assert again["consensus_winner"] == "tie"
+
+
+def test_rejects_empty_inputs_and_same_workflow(tmp_path):
+    with pytest.raises(ValueError, match="challenger_resume"):
+        _evaluate(tmp_path, FakeClient([]), challenger_resume="  ")
+    with pytest.raises(ValueError, match="must differ"):
+        _evaluate(tmp_path, FakeClient([]), challenger_workflow="w2_baseline")
+
+
+def test_generation_pair_runner_skips_unavailable_and_judges_ready(tmp_path):
+    rows = [
+        _row("w2_baseline", "p1", resume_md=BASELINE),
+        _row("w3_critic", "p1", resume_md=CHALLENGER),
+        _row("w2_baseline", "p2"),
+        _row("w3_critic", "p2", resume_md="   "),
+        _row("w2_baseline", "p3"),
+    ]
+    pairs = build_generation_pairs(rows, challenger_workflows=["w3_critic"])
+    idle = FakeClient([])
+    unavailable = evaluate_generation_pair(
+        pairs[2], ORIGINAL, JD, tmp_path, judge_config=_config(), client=idle,
+    )
+    unreadable = evaluate_generation_pair(
+        pairs[1], ORIGINAL, JD, tmp_path, judge_config=_config(), client=idle,
+    )
+    assert idle.calls == []
+    assert unavailable["status"] == "generation_unavailable"
+    assert unavailable["failure_reason"] == "challenger_missing"
+    assert unreadable["status"] == "generation_unavailable"
+    assert unreadable["failure_reason"].startswith("challenger_unreadable")
+
+    ready = evaluate_generation_pair(
+        pairs[0], ORIGINAL, JD, tmp_path, judge_config=_config(),
+        client=FakeClient([
+            _valid_response("candidate_a", CHALLENGER, BASELINE),
+            _valid_response("candidate_b", BASELINE, CHALLENGER),
+        ]),
+    )
+    assert ready["status"] == "scored"
+    assert ready["challenger_config_hash"] == "config-w3_critic"
+    assert ready["baseline_config_hash"] == "config-w2_baseline"
+
+    summary = summarise_pairwise([ready, unavailable, unreadable])[0]
+    assert summary["total_pairs"] == 3
+    assert summary["eligible"] == 1
+    assert summary["scored"] == 1
+    assert summary["generation_unavailable"] == 2
