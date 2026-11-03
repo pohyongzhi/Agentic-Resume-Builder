@@ -6,237 +6,228 @@
 - Worktree: `/tmp/arb-eval-integration`
 - Base: `origin/main` at `a866c34`
 - Global context: `/mnt/c/Users/keste/Downloads/CLAUDE.md`
-- Status: all three workstreams merged and wired into the shared CLI, identity, caching and
-  reports. Model-backed pilots and full runs have not been run. Nothing has been pushed.
+- Status: the tier-1 evals are wired, tested and runnable end to end through `evaluate.py`.
+  No model-backed pilot or full run has been made. Nothing has been pushed.
 
 ```bash
 cd /tmp/arb-eval-integration
 git status --short --branch
-git log --oneline --decorate -8
+git log --oneline --decorate -10
 sed -n '1,400p' docs/evaluation/workstreams/integration/HANDOVER.md
 sed -n '1,200p' docs/evaluation/workstreams/integration/CHECKPOINTS.md
 PYTHONDONTWRITEBYTECODE=1 /tmp/arb-eval-venv/bin/pytest -q -p no:cacheprovider
 ```
 
-## Objective
+## Priorities
 
-Integrate the independently implemented evaluation workstreams into the shared evaluator CLI,
-identity, caching, reporting, documentation and tests without changing workflow generation.
+| Tier | Eval | State on this branch |
+| --- | --- | --- |
+| 1 | Faithfulness (NLI, protected fields, fabrication bait) | On main; part of `score` |
+| 1 | Supportable-requirement coverage | Wired per output in `score` |
+| 1 | Pairwise vs `w2_baseline` with position swap | Wired as the `pairwise` stage (in `all`) |
+| 1 | Operational metrics | On main; part of `score` |
+| 2 | Rubric judge integration checks | Not started; the judge on main is unchanged |
+| 2 | Keyword/similarity reporting | Not started; existing rows in `overall.csv` unchanged |
+| 3 | ATS proxy | Code merged (`eval/ats.py`), **not wired** into CLI or reports |
+| Dropped | Human agreement | Code merged (`eval/human_review.py`), **not wired** |
+| Optional | Prompt injection | Wired and tested as the `injection` stage; **not in `all`** |
 
 ## Merged branches
 
-| Workstream | Branch / head | Merge commit |
-| --- | --- | --- |
-| Requirement coverage and injection | `feature/eval-coverage-injection` / `42a4668` | `7bbe174` |
-| Pairwise and position swapping | `feature/eval-pairwise-position` / `174463c` | `71d000d` |
-| Human agreement and ATS | `feature/eval-human-ats` / `3c667f8` | `e099d25` |
+| Workstream | Branch / head | Merge commit | Note |
+| --- | --- | --- | --- |
+| Requirement coverage and injection | `feature/eval-coverage-injection` / `42a4668` | `7bbe174` | |
+| Pairwise and position swapping | `feature/eval-pairwise-position` / `174463c` | `71d000d` | |
+| Human agreement and ATS | `feature/eval-human-ats` / `3c667f8` | `e099d25` | Clean merge, all its tests pass; code kept, not wired |
 
-Integration commits: `84809af` (coverage and injection wiring), `f63cba0` (pairwise, ATS,
-agreement wiring and coverage transport-failure retry), plus the commit containing this file.
+Integration commits: `84809af`, `f63cba0`, `95f7b4e` (docs), `cea794e` (tier-1 focus), plus the
+commit containing this file.
 
 ## Required behaviour and how it is met
 
-- Evaluation failures stay unscored: every component writes `None` plus a reason in
-  `evaluation_failures[<metric>]`; reports count them in `unscored`/`failed`, never as zero.
-- Cache identity: per-output components contribute `identity()` to
-  `evaluator_identity.json["output_components"]` and therefore to the evaluator hash (the root
-  directory). Each component's own cache key also hashes its inputs. Stage artifacts live under
-  a stage identity hash (`injection/<identity_hash>/`, `pairwise/<evaluator_hash>/`).
-- Generation artifacts and the frozen dataset are untouched: offline scoring only reads
-  `results/results.jsonl` and saved run files; `git diff origin/main -- data results` is empty and
-  `validate_dataset()` still returns hash `3bb1861e…6f81`.
-- Explicit denominators: `eligible`, `scored`, `unscored`, `failed` in every new table.
-- No network in tests: fake clients/workflows; stage tests also block sockets.
+- Evaluation failures stay unscored: each metric writes `None` plus a reason in
+  `evaluation_failures[<metric>]`; reports count them as `unscored`/`failed`, never as zero.
+- Cache identity: per-output components add `identity()` to
+  `evaluator_identity.json["output_components"]`, so they are part of the evaluator hash (the
+  results folder). Each component's cache key also hashes its inputs. Pairwise records live under
+  `pairwise/<pairwise evaluator_hash>/`; its cache key hashes the four texts, both workflows and
+  config hashes, the full judge config, model provider/tag/digest and prompt/schema/rubric hashes.
+- Generation artifacts and the frozen dataset are untouched (`git diff origin/main -- data results`
+  is empty; `validate_dataset()` still returns `3bb1861e…6f81`).
+- Explicit `eligible`/`scored`/`unscored`/`failed` denominators in every new table.
+- No network in tests: fake clients and workflows; tier-1 and pairwise tests block sockets.
 - Thresholds and historical results unchanged. `EVALUATOR_SCHEMA_VERSION` moved `2.2 -> 2.3`
-  because evaluation records gained fields; old roots remain as historical artifacts.
+  because records gained fields; older results folders stay as historical artifacts.
 
-## Plug-in points
+## Tier-1 CLI
 
-### Per-output metrics (`evaluate.py`)
+Run from the repository root that holds `results/results.jsonl` and the saved run files.
 
-- Implement the `OutputComponent` protocol: `name`, `identity()`, `is_complete(record)`,
-  `evaluate(record, generation_row, pair, tailored_resume, root, force)`.
-- Register it in `build_output_components(args, judge_config, judge_model_info)`; model metadata
-  is resolved there once per run.
-- Components automatically join `_evaluation_identity`, `_record_complete` (shared by
-  `evaluate_saved` and `evaluate_robustness`) and `_evaluate_output`.
-- Current components: `RequirementCoverageComponent`, `ATSComponent`.
+Options that matter for tier 1:
 
-### Run-level stages (`evaluate.py`)
+- `--pair-ids P1 P2 ...` / `--pair-ids-file FILE` (one ID per line, `#` comments allowed): score
+  and pairwise-judge only those dataset pairs. Results go to the same folder as a full run;
+  later subsets add to the indexes and reports instead of replacing them, and completed records
+  are never re-judged. Use this for the Groq free tier.
+- `--config-hash WORKFLOW=HASH` (repeatable): keep only saved generations with that config hash.
+  Required for `w3_critic` (see blockers) and also applied to pairwise pairing.
+- `--skip-judge`: skips the tier-2 rubric judge. Coverage and pairwise still use the
+  `--judge-provider`/`--judge-model` model (coverage can be overridden with
+  `--coverage-provider`/`--coverage-model`).
+- `--skip-robustness`: robustness re-generates perturbed inputs with Ollama; not tier 1.
+- `--pairwise-baseline` (default `w2_baseline`), `--pairwise-challengers`, `--pairwise-limit N`
+  (first N pair IDs in sorted order), `--limit N` (first N saved rows for `score`).
 
-- Add a `Stage(name, run, index, pilot_limit, help, loader=None, in_all=True)` to `STAGES`.
-  The parser then exposes the `<name>` command, `--skip-<name>` and `--<name>-limit`; `--pilot`
-  applies `pilot_limit`; `report` reloads rows through `Stage.load(root)`.
-- `run(run: EvaluationRun, limit)` receives args, root, pairs, generation rows, dataset hash,
-  judge config, components, evaluation rows, and `run.resolved_judge_model()`.
-- Current stages: `robustness`, `injection`, `pairwise`, `agreement`.
+The `--skip-judge`, `--skip-coverage`, judge and coverage model options change the evaluator
+hash, so keep them identical across `score`, `pairwise` and `report` calls for one results folder.
+The selected `--workflows` (and `--config-hash`) define the generation scope in the folder path,
+so always pass `w2_baseline` together with the challengers.
 
-### Reports (`eval/reporting.py`)
-
-- `STAGE_REPORTERS[name] = writer(output_dir, rows) -> dict[str, table]`.
-- Per-output metrics with a scalar value: add the field to `METRICS`; adjust `_eligible` if some
-  rows are not applicable.
-- `write_reports(output_dir, rows, robustness_rows=(), stage_rows=None)` stays backwards
-  compatible with the old `robustness_rows` argument.
-
-### Configuration (`config.py`)
-
-All version, threshold and weight constants from the three workstreams now live in `config.py`
-and the modules read them from there: `REQUIREMENT_COVERAGE_*`, `INJECTION_*`, `PAIRWISE_*`,
-`PAIRING_POLICY_VERSION`, `POSITION_ORDER_VERSION`, `AGREEMENT_SCHEMA_VERSION`,
-`HUMAN_AGREEMENT_VERSION`, `MIN_AGREEMENT_PAIRS`, `CLAIM_LABELS`, `ATS_SCHEMA_VERSION`,
-`OFFLINE_PROXY_VERSION`, `ATS_STATUSES`, `COMPOSITE_WEIGHTS`, `FORMAT_HAZARD_PENALTY`.
-Values are unchanged.
-
-## Integrated metrics
-
-### Supportable-requirement coverage (per output)
-
-Record fields: `requirement_coverage`, `requirement_coverage_status`
-(`scored`, `unscored`, `no_supportable_requirements`, `generation_failed`, `evaluation_error`),
-`requirement_coverage_supportable_count`, `_covered_count`, `_uncovered`,
-`_evaluator_version`, `_evaluator_hash`, `_seconds`, and the full `requirement_coverage_record`.
-Cache: `<root>/cache/requirement_coverage/`.
-
-- `no_supportable_requirements` is not applicable: excluded from `eligible`, not a failure.
-- `evaluation_error` (evaluator unreachable or rate limited) is not cached and is retried on resume.
-  Invalid evaluator output is cached and final for that identity (same rule as the judge).
-- `--coverage-provider` / `--coverage-model` default to the judge's provider/model; when they
-  match and the judge is enabled, the judge `model_info` is reused.
-- Integration change to the feature module: hosted calls honour
-  `min_request_interval_seconds` (default `JUDGE_MIN_REQUEST_INTERVAL_SECONDS`), and transport
-  failures are recorded as `failure_kind="evaluator_call_failed"` instead of cached as invalid.
-
-Reports: `requirement_coverage.{csv,json}`, `requirement_coverage_by_fit_level.{csv,json}`
-(outputs, generation_failures, not_applicable, eligible, scored, unscored, failed, mean, bootstrap
-CI, micro coverage), plus the `requirement_coverage` row in `overall.csv` etc.
-
-### Prompt-injection benchmark (stage `injection`)
-
-`evaluate_injection(...)` writes `injection/<identity_hash>/sample_manifest.json` before any
-generation (an existing different manifest aborts with `INJECTION_MANIFEST_CHANGED`), then
-`runs/<workflow>/<pair_id>/<channel>/{resume.md,trace.json,generation.json,evaluation.json}` and
-`evaluations.jsonl`. `generation.json` is written last and marks reusable generations;
-`evaluation.json` marks reusable diagnostics. Diagnostics (protected fields, fabrication bait,
-NLI faithfulness unless skipped) are computed against the clean source resume. Generation
-failures have `injection_success=None`, `error` set, and are excluded from the rate.
-
-Before generation, the stage checks that the current generation identity
-(`run_all.config_hash(workflow)`) matches a saved generation config hash for that workflow and
-aborts with `INJECTION_GENERATION_IDENTITY_MISMATCH` otherwise.
-
-Reports: `injection.{csv,json}` (scope overall/workflow/channel/workflow_channel, eligible,
-scored, unscored, failed, rate, Wilson CI) and `injection_diagnostics.{csv,json}`.
-
-### Pairwise position swap (stage `pairwise`)
-
-`evaluate_pairwise_stage(...)` resolves the judge model once (`EvaluationRun.resolved_judge_model`,
-which resolves it even under `--skip-judge`), builds pairs with `build_generation_pairs`, and calls
-`evaluate_generation_pair` for each with the frozen dataset resume/JD. Cache:
-`<root>/pairwise_cache/`. Records: `pairwise/<evaluator_hash>/records/<challenger>/<pair_id>/repeat_<n>.json`.
-Resume treats `scored` and `unscored`+`invalid_output` as final, retries `judge_failed`, and
-recomputes `generation_unavailable` (no judge call). Options: `--pairwise-baseline`
-(default `w2_baseline`), `--pairwise-challengers`, `--pairwise-config-hash WORKFLOW=HASH`
-(repeatable). Baseline and challengers must be in `--workflows`; under `all` the stage is
-skipped with a message when they are not, under `pairwise` it exits with an error.
-
-Reports: `pairwise.{csv,json}` (by baseline/challenger) and `pairwise_by_fit_level.{csv,json}`;
-nested values are JSON strings in CSV. `report` reloads the most recently written pairwise tree.
-
-### ATS proxy (per output)
-
-`ATSComponent` calls `evaluate_ats(OfflineATSProvider(), ...)` with the pair's keyword families;
-failed or empty generations are passed as `generation_error` (status `failed`). Record fields:
-`ats_status`, `ats_proxy_score`, `ats_score_kind`, `ats_identity_hash`, `ats_components`,
-`ats_record` (provider fields stay nested). Disable with `--skip-ats`.
-Reports: `ats.{csv,json}` (eligible, scored, unscored, failed, mean/min/max, component means and
-counts, provider identity) and the `ats_proxy_score` row in `overall.csv`.
-
-### Human agreement (stage `agreement`, not in the critical path)
-
-`evaluate_agreement(review_dir, evaluation_rows)` calls `calculate_completed_forms` for
-`<root>/human_review/` and links to the root's evaluation rows. Without a review packet it is
-skipped under `all` and errors under `agreement`. Reports: `human_agreement.{csv,json}` with one
-row per dimension/overall/claims, unified `eligible/scored/unscored/failed/missing_human_label`
-columns and `calibration_claimable` (true only when the status is `computed`).
-`report`/`all` no longer overwrite the review forms once any reviewer label exists.
-Evaluation rows from `score` carry no `variant` key, which links as `""` on both sides.
-
-## CLI commands
+One challenger workflow on a fixed subset (Groq):
 
 ```bash
-# Offline scoring with coverage and ATS (judge/NLI as configured)
-python evaluate.py score --workflows w1_single_pass w2_baseline
-# Prompt-injection benchmark (needs the generation model via Ollama)
-python evaluate.py injection --workflows w1_single_pass --injection-limit 2
-# Pairwise position swap against the baseline
-python evaluate.py pairwise --workflows w2_baseline w1_single_pass --pairwise-limit 2
-# Human agreement after reviewers complete <root>/human_review/*.csv
-python evaluate.py agreement --workflows w1_single_pass w2_baseline
-# Rebuild every summary from saved indexes (no model calls)
-python evaluate.py report --workflows w1_single_pass w2_baseline
-# Everything, small pilot limits
-python evaluate.py all --workflows w1_single_pass w2_baseline --pilot
+export GROQ_API_KEY=...
+python evaluate.py all --workflows w2_baseline w1_single_pass \
+  --judge-provider groq --judge-model openai/gpt-oss-120b \
+  --skip-judge --skip-robustness \
+  --pair-ids bt_resume_001__bt_jd_01 bt_resume_002__bt_jd_01 cd_resume_002__cd_jd_01
 ```
 
-`--skip-judge`, `--skip-coverage` and `--skip-ats` change the evaluator identity (as
-`--skip-judge` already did), so use the same switches and judge/coverage models for `score`,
-stages and `report` to stay in one root.
+All workflows:
+
+```bash
+python evaluate.py all --workflows w2_baseline w1_single_pass w3_critic w6_best_of_n \
+  --config-hash w3_critic=b884fe8fe066 \
+  --judge-provider groq --judge-model openai/gpt-oss-120b \
+  --skip-judge --skip-robustness \
+  [--pair-ids-file pilot_pairs.txt]
+```
+
+Stage by stage (same flags): `score` (faithfulness, coverage, operational), `pairwise`, then
+`report` to rebuild `summaries/` from saved indexes without any model call.
+
+Without `GROQ_API_KEY`, use the default Ollama judge (`--judge-provider ollama --judge-model
+gemma4:e4b`). Faithfulness needs `sentence-transformers` and the NLI model, or
+`--skip-faithfulness`.
+
+### Expected hosted calls
+
+`JUDGE_MAX_RETRIES = 2`, so one logical call is at most three requests.
+
+- Coverage, per output: **0 to 2 calls**, usually 0-1. Requirements with an exact keyword or
+  synonym match are decided lexically (no call). A supportability call runs only for requirement
+  families with no lexical evidence in the original resume, and it is cached per original
+  resume and requirement set, so it is shared by every workflow output for that pair. A coverage
+  call runs only when a supportable requirement is not lexically present in the output.
+  Worst case 6 requests with retries.
+- Pairwise, per challenger output: **exactly 2 calls** (challenger first, then baseline first).
+  The baseline output itself costs nothing extra. Worst case 6 requests with retries.
+  Generation failures and missing outputs cost 0 calls.
+- Rubric judge (tier 2, skipped with `--skip-judge`): 1 call per output, worst case 3.
+- All hosted calls share one process-wide timer (`eval.judge.wait_for_hosted_request_slot`) with
+  `JUDGE_MIN_REQUEST_INTERVAL_SECONDS = 15`. Example: 3 pairs x (w2 + one challenger) is about
+  6 outputs x 0-2 coverage calls + 3 x 2 pairwise calls = 6-18 calls, about 1.5-4.5 minutes.
+  All 100 pairs x 3 challengers is at least 600 pairwise calls (about 2.5 hours) plus coverage.
+
+## Outputs
+
+Under `results/evaluations/<dataset_hash>/<generation_scope>/<evaluator_hash>/`:
+
+- `records/<workflow>/<pair_id>/repeat_<n>.json`, `evaluations.jsonl`: per-output rows with
+  faithfulness, coverage and operational fields.
+- `cache/requirement_coverage/`, `cache/nli/`: evaluator caches.
+- `pairwise/<pairwise_hash>/records/<challenger>/<pair_id>/repeat_<n>.json`,
+  `pairwise/<pairwise_hash>/evaluations.jsonl` (compact: no prompts or raw attempts),
+  `pairwise_cache/` (full records).
+- `summaries/`: `overall`, `by_category`, `by_fit_level` (existing, now with a
+  `requirement_coverage` row), `requirement_coverage`, `requirement_coverage_by_fit_level`,
+  `pairwise` (by baseline/challenger) and `pairwise_by_fit_level`, each as CSV and JSON.
+
+## Tier-1 metric semantics
+
+### Requirement coverage
+
+Record fields: `requirement_coverage`, `requirement_coverage_status` (`scored`, `unscored`,
+`no_supportable_requirements`, `generation_failed`, `evaluation_error`), supportable/covered
+counts, uncovered list, evaluator version/hash, seconds, and the full `requirement_coverage_record`.
+
+- `no_supportable_requirements` is not applicable: excluded from `eligible`, not a failure.
+- `evaluation_error` (evaluator unreachable or rate limited) is not cached and is retried on the
+  next run. Invalid evaluator output is cached and final for that identity, like the judge.
+- The report gives macro mean with bootstrap CI and micro coverage (covered / supportable).
+- Limitation: JD keyword files are requirement-family proxies, so this measures the labelled
+  must-have families, not every prose requirement.
+
+### Pairwise vs W2
+
+- Each comparison is judged twice with positions swapped; a winner exists only when both orders
+  agree. Disagreement is reported as position-swap inconsistency.
+- Resume: `scored` and `unscored`+`invalid_output` are final; `judge_failed` is retried;
+  `generation_unavailable` (missing or failed output on either side) is recomputed without a call.
+- Report columns: `total_pairs`, `generation_unavailable`, `eligible`, `scored`, `unscored`,
+  `failed`, `invalid`, strict win/loss rates with Wilson CIs, position-neutral score, swap
+  consistency and first-position selection rate.
+
+### Faithfulness and operational
+
+Unchanged from main; computed in `score` for every saved output.
+
+## Extension points
+
+- Per-output metric: implement `OutputComponent` (`name`, `identity()`, `is_complete(record)`,
+  `evaluate(record, generation_row, pair, tailored_resume, root, force)`) in `evaluate.py` and
+  return it from `build_output_components`. Identity, checkpoint completeness and evaluation
+  pick it up automatically. Tier-3 ATS would plug in here.
+- Run-level stage: add a `Stage(name, run, index, pilot_limit, help, loader=None, in_all=True)`
+  to `STAGES`; the parser adds the command, `--skip-<name>` and `--<name>-limit`.
+- Reports: `eval.reporting.STAGE_REPORTERS[name] = writer(output_dir, rows)`, or add a scalar
+  field to `METRICS`.
+- Constants: all workstream versions, thresholds and weights are in `config.py` (values unchanged),
+  including the unwired ATS and agreement ones.
+
+## Optional, deferred and dropped
+
+- Prompt injection (`python evaluate.py injection --workflows ... --injection-limit N`): working
+  and tested, writes its manifest before generation, resumable. Not in `all`. It refuses to run
+  until blocker 1 is resolved because it generates with the current workflow code.
+- ATS proxy (tier 3): `eval/ats.py` and `tests/test_ats.py` are merged; to wire it, add an
+  `OutputComponent` calling `evaluate_ats(OfflineATSProvider(), ...)` and an `ats` report from
+  `summarise_ats`.
+- Human agreement (dropped): `eval/human_review.py` additions and `tests/test_human_agreement.py`
+  are merged but not called. The pre-existing blinded review packet from main is still written
+  by `all`/`report`; it is now left untouched once any reviewer label exists.
 
 ## Validation
 
 ```bash
 cd /tmp/arb-eval-integration
 PYTHONDONTWRITEBYTECODE=1 /tmp/arb-eval-venv/bin/pytest -q -p no:cacheprovider
-# 448 passed, 21 subtests passed in 9.50s (full suite, including tests/test_app.py)
+# 446 passed, 21 subtests passed in 11.39s (full suite, including tests/test_app.py)
 PYTHONDONTWRITEBYTECODE=1 /tmp/arb-eval-venv/bin/pytest -q -p no:cacheprovider tests/test_eval_integration.py
-# 27 passed
-git diff --check   # clean
+# 25 passed (includes the tier-1 end-to-end CLI test on a pair subset)
+git diff --check                          # clean
 git diff --stat origin/main -- data results   # empty
 ```
 
 `gradio` was installed into `/tmp/arb-eval-venv` so `tests/test_app.py` runs; nothing is excluded.
 
-## Blockers found against the saved results
+## Blockers
 
 1. Generation identity drift: current `run_all.config_hash` values (`w1 2f00868a0ee3`,
-   `w2 3fdcd18565b5`, `w3 9ab32afb5c88`, `w6 7bb3bef9a553`) do not match the saved rows
-   (`w1 84c72812e449`, `w2 c14c2c8de42d`, `w3 b884fe8fe066`/`3124631d3f9c`/`58375bf40445`,
-   `w6 26a928dd00bd`). The injection stage therefore refuses to generate for these workflows.
-   Decision needed: regenerate under the current code, or check out the generation commit for
-   injection runs. Offline scoring, pairwise and agreement are not affected.
-2. `w3_critic` has two duplicate `(pair_id, repeat)` keys across three config hashes, so the
-   existing `_validate_generation_rows` check rejects any run that includes `w3_critic`, before
-   `--pairwise-config-hash` filtering can apply. Pilot with `w1_single_pass`/`w6_best_of_n`
-   against `w2_baseline`, or resolve the duplicates.
-3. `sentence_transformers` is not installed in the test venv; NLI runs need the real environment
-   (or `--skip-faithfulness`).
-
-## Live Groq pilot requirements (not run)
-
-- `GROQ_API_KEY` exported; `groq==0.37.1` installed; judge `--judge-provider groq --judge-model
-  openai/gpt-oss-120b` (only the two gpt-oss models are approved by `configured_model`).
-- Coverage and pairwise follow the judge provider/model by default and share the 15 s minimum
-  request interval; per output expect 1-3 judge calls plus 0-2 coverage calls, and 2-4 calls per
-  pairwise comparison, so a 3-output, 2-pair pilot is roughly 10-20 hosted calls.
-- Saved generations for `w2_baseline` plus one challenger not affected by blocker 2.
-- NLI dependencies (`sentence-transformers`, model download) or `--skip-faithfulness`.
-- Injection needs local Ollama with the writer models and resolution of blocker 1; keep it out
-  of a hosted-only pilot with `--skip-injection --skip-robustness`.
-- Suggested command:
-
-```bash
-GROQ_API_KEY=... python evaluate.py all --workflows w2_baseline w1_single_pass \
-  --judge-provider groq --judge-model openai/gpt-oss-120b \
-  --pilot --skip-injection --skip-robustness
-```
-
-Then manually audit `requirement_coverage_record` semantic decisions, pairwise position
-consistency and invalid-output rates before any full run.
+   `w2 3fdcd18565b5`, `w3 9ab32afb5c88`, `w6 7bb3bef9a553`) differ from the saved rows
+   (`w1 84c72812e449`, `w2 c14c2c8de42d`, `w3 b884fe8fe066` plus two partial reruns,
+   `w6 26a928dd00bd`). Tier 1 is not affected because it only reads saved outputs. Only the
+   optional injection stage is blocked.
+2. `w3_critic` has 98 rows under `b884fe8fe066` and 6 rerun rows under two other hashes; two
+   `(pair_id, repeat)` keys are duplicated across them. Pass `--config-hash
+   w3_critic=b884fe8fe066`; its two missing pairs then appear as `generation_unavailable` in
+   pairwise and are excluded from rates.
+3. `sentence-transformers` is not in the test venv; NLI runs need the real environment.
 
 ## Next steps
 
-1. Decide on blocker 1 (generation drift) and blocker 2 (`w3_critic` duplicates).
-2. Run the hosted pilot above and audit its outputs.
-3. Collect two independent reviewers' forms, then run `agreement`.
-4. Run the approved full evaluation; push only with explicit approval.
+1. Run the one-workflow Groq command above on 3 pairs; manually audit coverage semantic
+   decisions (`requirement_coverage_record`), pairwise consistency and invalid-output rates.
+2. Extend to all workflows on a fixed pilot subset, then the approved full run.
+3. Tier 2: rubric judge integration checks and keyword/similarity reporting.
+4. Push only with explicit approval.

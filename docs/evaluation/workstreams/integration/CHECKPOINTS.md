@@ -57,3 +57,24 @@ Status: complete; pilots not run.
   `HANDOVER.md`.
 
 Next checkpoint: user decision on the blockers, then the hosted Groq pilot.
+
+## 2026-11-04 — Re-scoped to tier-1 evals
+
+Status: complete; pilots not run.
+
+- Priority change: tier 1 is faithfulness, requirement coverage, pairwise vs `w2_baseline` and
+  operational metrics. Human agreement dropped; ATS deferred to tier 3; injection optional.
+- Removed the ATS component and the agreement stage from the CLI and reports (module code and
+  tests from `feature/eval-human-ats` stay merged; the merge was clean).
+- Took `injection` out of `all`; it remains its own working, tested stage.
+- Added `--pair-ids` / `--pair-ids-file` (fixed pair subsets for score and pairwise; indexes
+  and reports merge across subsets) and `--config-hash WORKFLOW=HASH` (filters saved generations
+  before validation, which resolves the `w3_critic` duplicates).
+- Pairwise index now keeps a compact per-order summary so `report` reproduces
+  first-position rates without the full records.
+- Judge, pairwise and coverage now share one hosted request timer
+  (`eval.judge.wait_for_hosted_request_slot`, 15 s).
+- Added a tier-1 end-to-end CLI test (subset, resume, report rebuild).
+- Full suite: `446 passed, 21 subtests passed in 11.39s`. Commit `cea794e`.
+
+Next checkpoint: 3-pair Groq pilot for one challenger, then manual audit.
