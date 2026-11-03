@@ -1,7 +1,16 @@
-"""One resumable entry point for offline quality, robustness and review evaluation.
+"""One resumable entry point for offline quality, robustness, injection and review evaluation.
 
 Example:
     python evaluate.py all --workflows w1_single_pass --judge-model gemma4:e4b --resume
+
+Extension points (see docs/evaluation/workstreams/integration/HANDOVER.md):
+
+- Per-output metrics implement the ``OutputComponent`` protocol and are added in
+  ``build_output_components``. Their identity joins the evaluator hash and their
+  ``is_complete`` check joins checkpoint completeness for scoring and robustness records.
+- Run-level stages (robustness, injection, ...) are ``Stage`` entries in ``STAGES``. Each one
+  automatically gets a CLI command, ``--skip-<name>``, ``--<name>-limit`` and a JSONL index that
+  ``report`` reloads; ``eval.reporting.STAGE_REPORTERS`` writes its summary files.
 """
 from __future__ import annotations
 
@@ -9,17 +18,29 @@ import argparse
 import hashlib
 import json
 import time
-from dataclasses import asdict
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
+from typing import Any, Callable, Protocol
 
 import config
 from common.data import dataset_hash, load_pairs
 from common.llm import Tracker
 from eval import metrics
 from eval.human_review import write_review_artifacts
+from eval.injection import (
+    injection_identity,
+    injection_manifest,
+    run_injection_attack,
+    write_injection_manifest,
+)
 from eval.judge import JudgeConfig, configured_model, evaluate_judge, judge_identity
 from eval.operational import evaluate_operational
 from eval.reporting import write_reports
+from eval.requirement_coverage import (
+    RequirementCoverageConfig,
+    coverage_identity,
+    evaluate_requirement_coverage,
+)
 from eval.robustness import (
     VARIANTS,
     perturb_pair,
@@ -71,7 +92,133 @@ def _validate_generation_rows(rows, pairs, expected_dataset_hash):
         raise RuntimeError("RUN_COMPATIBILITY_FAILED:\n" + "\n".join(errors))
 
 
-def _evaluation_identity(judge_config, model_info, nli_model):
+class OutputComponent(Protocol):
+    """A per-output metric evaluated alongside NLI, judge and deterministic checks."""
+
+    name: str
+
+    def identity(self) -> dict[str, Any]:
+        """Cache identity: inputs are hashed by the component; this covers versions/models."""
+
+    def is_complete(self, record: dict[str, Any]) -> bool:
+        """Whether a saved record already carries a final result for this identity."""
+
+    def evaluate(self, record, generation_row, pair, tailored_resume, root, force) -> None:
+        """Update ``record`` in place; put failures in ``record['evaluation_failures']``."""
+
+
+# A coverage result in one of these states is final for its identity and is not recomputed on
+# resume. Exceptions outside the evaluator (for example a missing client) are retried.
+COVERAGE_FINAL_STATUSES = {"scored", "unscored", "no_supportable_requirements", "generation_failed"}
+
+
+class RequirementCoverageComponent:
+    """Supportable-requirement coverage; failures stay unscored and are never zero."""
+
+    name = "requirement_coverage"
+
+    def __init__(self, enabled=True, coverage_config=None, model_info=None, client=None):
+        self.enabled = enabled
+        self.config = coverage_config or RequirementCoverageConfig()
+        self.model_info = model_info or {
+            "provider": self.config.provider, "tag": self.config.model, "digest": None,
+        }
+        self.client = client
+        self._identity = None
+
+    def identity(self):
+        if not self.enabled:
+            return {"status": "skipped"}
+        if self._identity is None:
+            self._identity = {
+                **coverage_identity(self.config, self.model_info),
+                "status": "enabled",
+            }
+        return self._identity
+
+    def is_complete(self, record):
+        if not self.enabled:
+            return True
+        return (
+            record.get("requirement_coverage_evaluator_hash") == self.identity()["evaluator_hash"]
+            and record.get("requirement_coverage_status") in COVERAGE_FINAL_STATUSES
+        )
+
+    def evaluate(self, record, generation_row, pair, tailored_resume, root, force):
+        if not self.enabled:
+            return
+        failures = record.setdefault("evaluation_failures", {})
+        failures.pop(self.name, None)
+        record["requirement_coverage_evaluator_version"] = self.config.evaluator_version
+        record["requirement_coverage_evaluator_hash"] = self.identity()["evaluator_hash"]
+        record["requirement_coverage"] = None
+        if generation_row.get("error") or not tailored_resume.strip():
+            record["requirement_coverage_status"] = "generation_failed"
+            return
+        started = time.perf_counter()
+        try:
+            result = evaluate_requirement_coverage(
+                pair["resume"],
+                tailored_resume,
+                pair.get("keywords", []),
+                Path(root) / "cache" / "requirement_coverage",
+                evaluator_config=self.config,
+                client=self.client,
+                model_info=self.model_info,
+                force=force,
+            )
+        except Exception as exc:
+            record["requirement_coverage_status"] = "evaluation_error"
+            failures[self.name] = f"{type(exc).__name__}: {exc}"
+        else:
+            record.update({
+                "requirement_coverage": result["coverage"],
+                "requirement_coverage_status": result["status"],
+                "requirement_coverage_supportable_count": result.get(
+                    "supportable_requirement_count"
+                ),
+                "requirement_coverage_covered_count": result.get("covered_requirement_count"),
+                "requirement_coverage_uncovered": result.get(
+                    "uncovered_supportable_requirements", []
+                ),
+                "requirement_coverage_record": result,
+            })
+            if result["status"] == "unscored":
+                failures[self.name] = result["failure_reason"]
+        record["requirement_coverage_seconds"] = round(time.perf_counter() - started, 4)
+
+
+def build_output_components(args, judge_config, judge_model_info):
+    """Construct every registered per-output component for one run.
+
+    Model metadata is resolved once here so every row carries the same evaluator identity.
+    New per-output metrics are appended to the returned tuple.
+    """
+    coverage_enabled = not getattr(args, "skip_coverage", False)
+    coverage_config = RequirementCoverageConfig(
+        provider=getattr(args, "coverage_provider", None) or judge_config.provider,
+        model=getattr(args, "coverage_model", None) or judge_config.model,
+    )
+    coverage_model_info = None
+    if coverage_enabled:
+        same_model = (
+            (coverage_config.provider, coverage_config.model)
+            == (judge_config.provider, judge_config.model)
+            and judge_model_info.get("status") != "skipped"
+        )
+        coverage_model_info = (
+            judge_model_info if same_model else configured_model(coverage_config)
+        )
+    return (
+        RequirementCoverageComponent(
+            enabled=coverage_enabled,
+            coverage_config=coverage_config,
+            model_info=coverage_model_info,
+        ),
+    )
+
+
+def _evaluation_identity(judge_config, model_info, nli_model, components=()):
     nli = {
         **nli_model,
         "version": config.NLI_EVALUATOR_VERSION,
@@ -88,6 +235,9 @@ def _evaluation_identity(judge_config, model_info, nli_model):
         "faithfulness_components": {
             "protected_fields": config.PROTECTED_FIELD_EVALUATOR_VERSION,
             "fabrication_bait": config.FABRICATION_BAIT_EVALUATOR_VERSION,
+        },
+        "output_components": {
+            component.name: component.identity() for component in components
         },
         "embedding_model": config.EMBED_MODEL,
         "task_gate": {
@@ -137,6 +287,7 @@ def _evaluate_output(
     force=False,
     trace=None,
     totals=None,
+    components=(),
 ):
     failures = {}
     record = {
@@ -169,6 +320,12 @@ def _evaluate_output(
     except Exception as exc:
         failures["fabrication_bait_violation"] = f"{type(exc).__name__}: {exc}"
         record["fabrication_bait_violation"] = None
+
+    for component in components:
+        try:
+            component.evaluate(record, generation_row, pair, tailored_resume, root, force)
+        except Exception as exc:
+            failures[component.name] = f"{type(exc).__name__}: {exc}"
 
     if not skip_nli:
         started = time.perf_counter()
@@ -231,11 +388,46 @@ def _evaluate_output(
 
 def _write_index(root, rows, name="evaluations.jsonl"):
     rows = sorted(rows, key=lambda row: (
-        row["workflow"], row["pair_id"], row.get("repeat", 0), row.get("variant", "")
+        row["workflow"], row["pair_id"], row.get("repeat", 0), row.get("variant", ""),
+        row.get("channel", ""),
     ))
     _atomic_text(
         root / name,
         "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows),
+    )
+
+
+def _read_index(path):
+    path = Path(path)
+    if not path.exists():
+        return []
+    return [
+        json.loads(line)
+        for line in path.read_text(encoding="utf-8").splitlines()
+        if line.strip()
+    ]
+
+
+def _deterministic_components_complete(existing):
+    return (
+        existing.get("protected_field_evaluator_version")
+        == config.PROTECTED_FIELD_EVALUATOR_VERSION
+        and existing.get("fabrication_bait_evaluator_version")
+        == config.FABRICATION_BAIT_EVALUATOR_VERSION
+    )
+
+
+def _record_complete(existing, skip_nli=False, skip_judge=False, components=()):
+    """Checkpoint completeness shared by saved-output scoring and robustness."""
+    nli_complete = (
+        skip_nli or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
+    )
+    judge_complete = skip_judge or existing.get("judge_status") in {"scored", "unscored"}
+    return (
+        nli_complete
+        and _deterministic_components_complete(existing)
+        and judge_complete
+        and all(component.is_complete(existing) for component in components)
     )
 
 
@@ -248,35 +440,29 @@ def evaluate_saved(
     skip_judge=False,
     limit=None,
     force=False,
+    components=(),
 ):
     evaluated = []
     for generation_row in rows[:limit]:
         output_path = _record_path(root, generation_row)
         if output_path.exists() and not force:
             existing = _json(output_path)
-            nli_complete = skip_nli or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
-            components_complete = (
-                existing.get("protected_field_evaluator_version")
-                == config.PROTECTED_FIELD_EVALUATOR_VERSION
-                and existing.get("fabrication_bait_evaluator_version")
-                == config.FABRICATION_BAIT_EVALUATOR_VERSION
-            )
-            judge_complete = skip_judge or existing.get("judge_status") in {"scored", "unscored"}
-            if nli_complete and components_complete and judge_complete:
+            if _record_complete(existing, skip_nli, skip_judge, components):
                 evaluated.append(existing)
                 continue
         pair = pair_map[generation_row["pair_id"]]
         tailored = Path(generation_row["resume_path"]).read_text(encoding="utf-8")
         record = _evaluate_output(
             generation_row, pair, tailored, root, judge_config,
-            skip_nli=skip_nli, skip_judge=skip_judge, force=force,
+            skip_nli=skip_nli, skip_judge=skip_judge, force=force, components=components,
         )
         record["evaluator_hash"] = root.name
         _atomic_text(output_path, json.dumps(record, indent=2, ensure_ascii=False) + "\n")
         evaluated.append(record)
         print(
             f"[evaluate] {record['workflow']} {record['pair_id']}: "
-            f"faithfulness={record.get('faithfulness')} judge={record.get('judge_overall_mean')}",
+            f"faithfulness={record.get('faithfulness')} judge={record.get('judge_overall_mean')} "
+            f"coverage={record.get('requirement_coverage')}",
             flush=True,
         )
     _write_index(root, evaluated)
@@ -302,13 +488,13 @@ def evaluate_robustness(
     skip_judge=False,
     force=False,
     limit=None,
+    components=(),
 ):
     manifest = robustness_manifest(pairs, dataset_hash(), config.ROBUSTNESS_SEED)
     _write_manifest(root / "robustness" / "sample_manifest.json", manifest)
     selected = select_stratified_pairs(pairs, config.ROBUSTNESS_SEED)
     if limit is not None:
         selected = selected[:limit]
-    pair_map = {pair["pair_id"]: pair for pair in pairs}
     base_by_key = {
         (row["workflow"], row["pair_id"]): row for row in base_rows
     }
@@ -325,20 +511,7 @@ def evaluate_robustness(
                 record_path = variant_dir / "evaluation.json"
                 if record_path.exists() and not force:
                     existing = _json(record_path)
-                    nli_complete = (
-                        skip_nli
-                        or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
-                    )
-                    components_complete = (
-                        existing.get("protected_field_evaluator_version")
-                        == config.PROTECTED_FIELD_EVALUATOR_VERSION
-                        and existing.get("fabrication_bait_evaluator_version")
-                        == config.FABRICATION_BAIT_EVALUATOR_VERSION
-                    )
-                    judge_complete = (
-                        skip_judge or existing.get("judge_status") in {"scored", "unscored"}
-                    )
-                    if nli_complete and components_complete and judge_complete:
+                    if _record_complete(existing, skip_nli, skip_judge, components):
                         results.append(existing)
                         continue
                 if variant == "original":
@@ -375,6 +548,7 @@ def evaluate_robustness(
                             force=force,
                             trace=trace,
                             totals=totals,
+                            components=components,
                         )
                         record.update({
                             "base_pair_id": base_pair["pair_id"],
@@ -425,6 +599,7 @@ def evaluate_robustness(
                     force=force,
                     trace=trace,
                     totals=totals,
+                    components=components,
                 )
                 record.update({
                     "base_pair_id": base_pair["pair_id"],
@@ -444,23 +619,283 @@ def evaluate_robustness(
     return results
 
 
-def main(argv=None):
+def injection_root(root):
+    """Injection artifacts live under the attack identity so attack changes never mix trees."""
+    return Path(root) / "injection" / injection_identity()["identity_hash"]
+
+
+def _injection_diagnostics(pair, output, root, skip_nli=False, force=False):
+    """Protected-field, bait and faithfulness checks against the clean (unattacked) source."""
+    failures = {}
+    diagnostics = {"evaluation_failures": failures}
+    try:
+        diagnostics.update(metrics.protected_field_metrics(pair["resume"], output))
+    except Exception as exc:
+        failures["protected_field_violation"] = f"{type(exc).__name__}: {exc}"
+        diagnostics["protected_field_violation"] = None
+    try:
+        diagnostics.update(metrics.fabrication_bait_metrics(
+            pair["resume"], output, pair.get("keywords", []),
+        ))
+    except Exception as exc:
+        failures["fabrication_bait_violation"] = f"{type(exc).__name__}: {exc}"
+        diagnostics["fabrication_bait_violation"] = None
+    if not skip_nli:
+        try:
+            diagnostics.update(metrics.faithfulness(
+                pair["resume"], output, cache_dir=Path(root) / "cache" / "nli", force=force,
+            ))
+        except Exception as exc:
+            failures["faithfulness"] = f"{type(exc).__name__}: {exc}"
+            diagnostics["faithfulness"] = None
+    return diagnostics
+
+
+def _injection_record_complete(existing, attack, manifest_hash, skip_nli):
+    if existing.get("canary") != attack["canary"] or existing.get("manifest_hash") != manifest_hash:
+        return False
+    if not existing.get("generation_completed"):
+        return True
+    return _deterministic_components_complete(existing) and (
+        skip_nli or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
+    )
+
+
+def evaluate_injection(
+    workflows,
+    pairs,
+    root,
+    dataset_hash_value,
+    skip_nli=False,
+    force=False,
+    limit=None,
+    workflow_registry=None,
+    generation_config_hashes=None,
+):
+    """Run the prompt-injection benchmark with a manifest frozen before any generation.
+
+    Layout under ``injection/<identity_hash>/``: ``sample_manifest.json``,
+    ``runs/<workflow>/<pair_id>/<channel>/{resume.md,trace.json,generation.json,evaluation.json}``
+    and ``evaluations.jsonl``. ``generation.json`` is written last and marks a reusable
+    generation; ``evaluation.json`` marks reusable diagnostics. Generation failures keep
+    ``injection_success=None`` and are excluded from the success-rate denominator.
+    """
+    workflow_registry = workflow_registry or WORKFLOWS
+    stage_root = injection_root(root)
+    identity = injection_identity()
+    manifest = injection_manifest(
+        pairs, dataset_hash_value, config.INJECTION_SEED, identity["attack_version"],
+    )
+    # Written (or verified) before any generation so the sample cannot drift mid-run.
+    write_injection_manifest(stage_root / "sample_manifest.json", manifest)
+    _atomic_text(stage_root / "identity.json", json.dumps(identity, indent=2) + "\n")
+
+    generation_config_hashes = generation_config_hashes or {}
+    current_hashes = {}
+    for workflow in workflows:
+        if workflow in generation_config_hashes:
+            from run_all import config_hash as _generation_hash
+
+            current_hashes[workflow] = _generation_hash(workflow)
+            if current_hashes[workflow] not in generation_config_hashes[workflow]:
+                raise RuntimeError(
+                    f"INJECTION_GENERATION_IDENTITY_MISMATCH: {workflow} code/config is "
+                    f"{current_hashes[workflow]}, saved generations are "
+                    f"{sorted(generation_config_hashes[workflow])}"
+                )
+
+    pair_map = {pair["pair_id"]: pair for pair in pairs}
+    selected_ids = manifest["pair_ids"][:limit] if limit is not None else manifest["pair_ids"]
+    attacks = {(attack["pair_id"], attack["channel"]): attack for attack in manifest["attacks"]}
+    results = []
+    for workflow in workflows:
+        for pair_id in selected_ids:
+            pair = pair_map[pair_id]
+            for channel in manifest["channels"]:
+                attack = attacks[(pair_id, channel)]
+                run_dir = stage_root / "runs" / workflow / pair_id / channel
+                evaluation_path = run_dir / "evaluation.json"
+                generation_path = run_dir / "generation.json"
+                if evaluation_path.exists() and not force:
+                    existing = _json(evaluation_path)
+                    if _injection_record_complete(
+                        existing, attack, manifest["manifest_hash"], skip_nli
+                    ):
+                        results.append(existing)
+                        continue
+                generation = None
+                if generation_path.exists() and not force:
+                    saved = _json(generation_path)
+                    if saved.get("canary") == attack["canary"]:
+                        generation = saved
+                        output = (run_dir / "resume.md").read_text(encoding="utf-8")
+                if generation is None:
+                    tracker = Tracker()
+                    generation = run_injection_attack(
+                        workflow,
+                        workflow_registry[workflow],
+                        pair,
+                        dataset_hash_value,
+                        channel,
+                        tracker,
+                        identity["attack_version"],
+                    )
+                    output = generation.pop("resume_md")
+                    _atomic_text(run_dir / "resume.md", output)
+                    _atomic_text(
+                        run_dir / "trace.json",
+                        json.dumps(tracker.events, indent=2, ensure_ascii=False) + "\n",
+                    )
+                    generation.update({
+                        **tracker.totals(),
+                        "manifest_hash": manifest["manifest_hash"],
+                        "injection_identity_hash": identity["identity_hash"],
+                        "config_hash": current_hashes.get(workflow),
+                        "dataset_hash": dataset_hash_value,
+                        "resume_path": str(run_dir / "resume.md"),
+                        "trace_path": str(run_dir / "trace.json"),
+                    })
+                    _atomic_text(
+                        generation_path,
+                        json.dumps(generation, indent=2, ensure_ascii=False) + "\n",
+                    )
+                record = {
+                    **generation,
+                    "category": pair.get("category", ""),
+                    "fit_level": pair.get("fit_level", ""),
+                    # Shared reporting treats ``error`` as a generation failure.
+                    "error": None if generation["generation_completed"] else (
+                        generation.get("generation_error") or "generation failed"
+                    ),
+                    "evaluation_failures": {},
+                }
+                if generation["generation_completed"]:
+                    record.update(_injection_diagnostics(pair, output, root, skip_nli, force))
+                _atomic_text(
+                    evaluation_path, json.dumps(record, indent=2, ensure_ascii=False) + "\n"
+                )
+                results.append(record)
+                print(
+                    f"[injection] {workflow} {pair_id} {channel}: "
+                    f"success={record['injection_success']}",
+                    flush=True,
+                )
+    _write_index(stage_root, results)
+    return results
+
+
+@dataclass
+class EvaluationRun:
+    """Shared state handed to every run-level stage."""
+
+    args: argparse.Namespace
+    root: Path
+    pairs: list
+    pair_map: dict
+    generation_rows: list
+    dataset_hash: str
+    judge_config: JudgeConfig
+    components: tuple = ()
+    evaluation_rows: list = field(default_factory=list)
+
+
+@dataclass(frozen=True)
+class Stage:
+    """A run-level evaluation stage.
+
+    ``run(run, limit)`` computes rows (resumably) and ``index(root)`` is the JSONL file it
+    writes, which ``report`` reloads when the stage is not executed in this invocation.
+    Rows are passed to ``eval.reporting.STAGE_REPORTERS[name]`` if one is registered.
+    """
+
+    name: str
+    run: Callable[[EvaluationRun, int | None], list]
+    index: Callable[[Path], Path]
+    pilot_limit: int
+    help: str
+
+
+def _run_robustness(run, limit):
+    return evaluate_robustness(
+        run.args.workflows,
+        run.generation_rows,
+        run.pairs,
+        run.root,
+        run.judge_config,
+        skip_nli=run.args.skip_faithfulness,
+        skip_judge=run.args.skip_judge,
+        force=run.args.force,
+        limit=limit,
+        components=run.components,
+    )
+
+
+def _run_injection(run, limit):
+    saved_hashes = {}
+    for row in run.generation_rows:
+        saved_hashes.setdefault(row["workflow"], set()).add(row["config_hash"])
+    return evaluate_injection(
+        run.args.workflows,
+        run.pairs,
+        run.root,
+        run.dataset_hash,
+        skip_nli=run.args.skip_faithfulness,
+        force=run.args.force,
+        limit=limit,
+        generation_config_hashes=saved_hashes,
+    )
+
+
+STAGES = {
+    "robustness": Stage(
+        name="robustness",
+        run=_run_robustness,
+        index=lambda root: Path(root) / "robustness" / "evaluations.jsonl",
+        pilot_limit=2,
+        help="meaning-preserving perturbation runs on the stratified sample",
+    ),
+    "injection": Stage(
+        name="injection",
+        run=_run_injection,
+        index=lambda root: injection_root(root) / "evaluations.jsonl",
+        pilot_limit=2,
+        help="resume/JD prompt-injection canary attacks on the stratified sample",
+    ),
+}
+
+
+def build_parser():
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=("all", "score", "robustness", "report"), default="all")
+    parser.add_argument(
+        "command", choices=("all", "score", *STAGES, "report"), default="all",
+    )
     parser.add_argument("--workflows", nargs="+", default=["w1_single_pass"])
     parser.add_argument("--judge-provider", choices=("ollama", "groq"), default=config.JUDGE_PROVIDER)
     parser.add_argument("--judge-model", default=config.JUDGE_MODEL)
+    parser.add_argument(
+        "--coverage-provider", choices=("ollama", "groq"),
+        help="requirement-coverage evaluator provider (default: judge provider)",
+    )
+    parser.add_argument(
+        "--coverage-model", help="requirement-coverage evaluator model (default: judge model)",
+    )
     parser.add_argument("--resume", action="store_true", help="reuse compatible checkpoints (default)")
     parser.add_argument("--force", action="store_true", help="ignore evaluation caches/checkpoints")
     parser.add_argument("--skip-faithfulness", action="store_true")
     parser.add_argument("--skip-judge", action="store_true")
-    parser.add_argument("--skip-robustness", action="store_true")
+    parser.add_argument("--skip-coverage", action="store_true")
     parser.add_argument("--skip-reports", action="store_true")
     parser.add_argument("--skip-human-review", action="store_true")
     parser.add_argument("--pilot", action="store_true")
     parser.add_argument("--limit", type=int)
-    parser.add_argument("--robustness-limit", type=int)
-    args = parser.parse_args(argv)
+    for stage in STAGES.values():
+        parser.add_argument(f"--skip-{stage.name}", action="store_true", help=f"skip {stage.help}")
+        parser.add_argument(f"--{stage.name}-limit", type=int, help=f"pairs for {stage.help}")
+    return parser
+
+
+def main(argv=None):
+    args = build_parser().parse_args(argv)
 
     unknown = sorted(set(args.workflows) - set(WORKFLOWS))
     if unknown:
@@ -477,8 +912,9 @@ def main(argv=None):
         if args.skip_judge
         else configured_model(judge_config)
     )
+    components = build_output_components(args, judge_config, model_info)
     nli_model = metrics.nli_model_identity()
-    identity = _evaluation_identity(judge_config, model_info, nli_model)
+    identity = _evaluation_identity(judge_config, model_info, nli_model, components)
     generation_hashes = sorted({row["config_hash"] for row in generation_rows})
     generation_scope = hashlib.sha256(
         json.dumps(generation_hashes).encode()
@@ -493,21 +929,37 @@ def main(argv=None):
         "generation_hashes": generation_hashes,
         "judge_model_info": model_info,
         "judge_config": asdict(judge_config),
+        "output_component_model_info": {
+            component.name: getattr(component, "model_info", None)
+            for component in components
+            if getattr(component, "enabled", True)
+        },
     }, indent=2) + "\n")
 
-    if not args.skip_faithfulness and args.command in {"all", "score", "robustness"}:
+    if not args.skip_faithfulness and args.command in {"all", "score", *STAGES}:
         preflight = metrics.nli_preflight()
         _atomic_text(root / "nli_preflight.json", json.dumps(preflight, indent=2) + "\n")
 
     limit = args.limit
-    robustness_limit = args.robustness_limit
+    stage_limits = {name: getattr(args, f"{name}_limit") for name in STAGES}
     if args.pilot:
         limit = limit or 3
-        robustness_limit = robustness_limit or 2
+        stage_limits = {
+            name: value or STAGES[name].pilot_limit for name, value in stage_limits.items()
+        }
 
-    evaluation_rows = []
+    run = EvaluationRun(
+        args=args,
+        root=root,
+        pairs=pairs,
+        pair_map=pair_map,
+        generation_rows=generation_rows,
+        dataset_hash=validation["dataset_hash"],
+        judge_config=judge_config,
+        components=components,
+    )
     if args.command in {"all", "score"}:
-        evaluation_rows = evaluate_saved(
+        run.evaluation_rows = evaluate_saved(
             generation_rows,
             pair_map,
             root,
@@ -516,48 +968,27 @@ def main(argv=None):
             skip_judge=args.skip_judge,
             limit=limit,
             force=args.force,
+            components=components,
         )
-    elif (root / "evaluations.jsonl").exists():
-        evaluation_rows = [
-            json.loads(line)
-            for line in (root / "evaluations.jsonl").read_text(encoding="utf-8").splitlines()
-        ]
+    else:
+        run.evaluation_rows = _read_index(root / "evaluations.jsonl")
 
-    robustness_rows = []
-    if args.command in {"all", "robustness"} and not args.skip_robustness:
-        robustness_rows = evaluate_robustness(
-            args.workflows,
-            generation_rows,
-            pairs,
-            root,
-            judge_config,
-            skip_nli=args.skip_faithfulness,
-            skip_judge=args.skip_judge,
-            force=args.force,
-            limit=robustness_limit,
-        )
-    elif (root / "robustness" / "evaluations.jsonl").exists():
-        robustness_rows = [
-            json.loads(line)
-            for line in (root / "robustness" / "evaluations.jsonl").read_text(
-                encoding="utf-8"
-            ).splitlines()
-        ]
+    stage_rows = {}
+    for stage in STAGES.values():
+        if args.command in {"all", stage.name} and not getattr(args, f"skip_{stage.name}"):
+            stage_rows[stage.name] = stage.run(run, stage_limits[stage.name])
+        else:
+            stage_rows[stage.name] = _read_index(stage.index(root))
 
     if args.command in {"all", "report"} and not args.skip_reports:
-        if not evaluation_rows and (root / "evaluations.jsonl").exists():
-            evaluation_rows = [
-                json.loads(line)
-                for line in (root / "evaluations.jsonl").read_text(encoding="utf-8").splitlines()
-            ]
-        write_reports(root / "summaries", evaluation_rows, robustness_rows)
-    if args.command in {"all", "report"} and not args.skip_human_review and evaluation_rows:
-        write_review_artifacts(root / "human_review", evaluation_rows)
+        write_reports(root / "summaries", run.evaluation_rows, stage_rows=stage_rows)
+    if args.command in {"all", "report"} and not args.skip_human_review and run.evaluation_rows:
+        write_review_artifacts(root / "human_review", run.evaluation_rows)
 
     print(json.dumps({
         "output_root": str(root),
-        "evaluated": len(evaluation_rows),
-        "robustness_rows": len(robustness_rows),
+        "evaluated": len(run.evaluation_rows),
+        **{f"{name}_rows": len(rows) for name, rows in stage_rows.items()},
         "evaluator_hash": identity["evaluator_hash"],
     }, indent=2))
     return root

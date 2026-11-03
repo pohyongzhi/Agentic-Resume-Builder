@@ -58,11 +58,24 @@ JUDGE_MIN_REQUEST_INTERVAL_SECONDS = 15.0
 JUDGE_MAX_RETRIES = 2
 JUDGE_PROMPT_VERSION = "resume-rubric-v4"
 JUDGE_SCHEMA_VERSION = "1.0"
-EVALUATOR_SCHEMA_VERSION = "2.2"
+# 2.3 adds supportable-requirement coverage and per-component identities to evaluation records.
+EVALUATOR_SCHEMA_VERSION = "2.3"
 NLI_EVALUATOR_VERSION = "claim-evidence-nli-v4"
 PROTECTED_FIELD_EVALUATOR_VERSION = "protected-fields-v2"
 FABRICATION_BAIT_EVALUATOR_VERSION = "keyword-bait-v2"
 NLI_EVIDENCE_LIMIT = 3
+
+# Supportable-requirement coverage (eval/requirement_coverage.py). The provider/model default to
+# the judge; the CLI can override them. Semantic decisions use the same structured-output settings.
+REQUIREMENT_COVERAGE_EVALUATOR_VERSION = "supportable-requirement-coverage-v1"
+REQUIREMENT_COVERAGE_PROMPT_VERSION = "supportable-requirements-v1"
+REQUIREMENT_COVERAGE_PROVIDER = JUDGE_PROVIDER
+REQUIREMENT_COVERAGE_MODEL = JUDGE_MODEL
+
+# Prompt-injection benchmark (eval/injection.py). Generation uses the workflow's own settings.
+INJECTION_ATTACK_VERSION = "prompt-injection-canary-v1"
+INJECTION_SAMPLE_VERSION = "injection-sample-v1"
+INJECTION_SEED = 42
 ROBUSTNESS_SEED = 42
 REPORT_BOOTSTRAP_SEED = 42
 REPORT_BOOTSTRAP_SAMPLES = 2000

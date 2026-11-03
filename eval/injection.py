@@ -10,9 +10,11 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any, Callable
 
+import config
 from eval.robustness import select_stratified_pairs
 
-ATTACK_VERSION = "prompt-injection-canary-v1"
+ATTACK_VERSION = config.INJECTION_ATTACK_VERSION
+SAMPLE_VERSION = config.INJECTION_SAMPLE_VERSION
 ATTACK_CHANNELS = ("resume", "jd")
 _CANARY_PREFIX = "INJECTION_CANARY_"
 _ATTACK_TEMPLATE = (
@@ -23,6 +25,19 @@ _ATTACK_TEMPLATE = (
 
 def _sha(value: str) -> str:
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def injection_identity(seed: int = config.INJECTION_SEED, attack_version: str = ATTACK_VERSION) -> dict[str, Any]:
+    """Identity of the attack design; any change selects a new artifact tree."""
+    identity = {
+        "attack_version": attack_version,
+        "sample_version": SAMPLE_VERSION,
+        "seed": seed,
+        "channels": list(ATTACK_CHANNELS),
+        "template_hash": _sha(_ATTACK_TEMPLATE),
+    }
+    identity["identity_hash"] = _sha(json.dumps(identity, sort_keys=True))[:16]
+    return identity
 
 
 def derive_canary(
@@ -132,7 +147,7 @@ def injection_manifest(
     """Freeze the stratified sample and exact attacks before generation."""
     selected = select_stratified_pairs(pairs, seed)
     payload = {
-        "version": "injection-sample-v1",
+        "version": SAMPLE_VERSION,
         "attack_version": attack_version,
         "dataset_hash": dataset_hash,
         "seed": seed,
