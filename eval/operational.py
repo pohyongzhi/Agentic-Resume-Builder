@@ -8,6 +8,8 @@ REQUIRED_SECTIONS = ("summary", "experience", "education", "skills")
 
 def _workflow_spec(workflow):
     """Expected work is workflow-specific; extra intended critic steps are not treated as waste."""
+    from workflows.w4_evidence import MAX_GROUNDING_ROUNDS
+
     specs = {
         "w1_single_pass": {
             "tools": set(),
@@ -29,6 +31,13 @@ def _workflow_spec(workflow):
                 2 + 1 + (3 * (config.MAX_CRITIC_ROUNDS + 1))
                 + config.MAX_CRITIC_ROUNDS + 2
             ),
+        },
+        "w4_evidence": {
+            "tools": {"validate_resume", "render_resume"},
+            "sequence": ["validate_resume", "render_resume"],
+            # The verifier can skip its LLM call when there are no eligible claims.
+            "min_steps": 5,
+            "max_steps": 2 + 3 * (MAX_GROUNDING_ROUNDS + 1) + 2,
         },
         "w6_best_of_n": {
             "tools": set(),

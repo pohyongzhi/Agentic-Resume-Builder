@@ -2,6 +2,7 @@ import json
 
 import evaluate as offline_evaluation
 import evaluate_results
+import config
 from eval.judge import JudgeConfig
 from eval.operational import evaluate_operational
 from eval.robustness import perturb_pair, select_stratified_pairs, summarise_robustness
@@ -109,9 +110,9 @@ def test_offline_record_includes_deterministic_faithfulness_components(
         totals=_totals(),
     )
     assert record["protected_field_violation"] is False
-    assert record["protected_field_evaluator_version"] == "protected-fields-v1"
+    assert record["protected_field_evaluator_version"] == config.PROTECTED_FIELD_EVALUATOR_VERSION
     assert record["fabrication_bait_violation"] is True
-    assert record["fabrication_bait_evaluator_version"] == "keyword-bait-v1"
+    assert record["fabrication_bait_evaluator_version"] == config.FABRICATION_BAIT_EVALUATOR_VERSION
     assert record["fabrication_bait_matches"][0]["keyword"] == "Python"
 
 
@@ -149,6 +150,33 @@ def test_offline_record_reuses_complete_saved_quality_metrics(monkeypatch, tmp_p
     assert record["evaluation_failures"] == {}
 
 
+def test_offline_record_isolates_operational_evaluator_failure(monkeypatch, tmp_path):
+    monkeypatch.setattr(offline_evaluation, "_quality", lambda *_: {})
+    monkeypatch.setattr(
+        offline_evaluation,
+        "evaluate_operational",
+        lambda *_args, **_kwargs: (_ for _ in ()).throw(RuntimeError("ops unavailable")),
+    )
+    record = offline_evaluation._evaluate_output(
+        {
+            "workflow": "w1_single_pass",
+            "error": None,
+            "trace_path": str(tmp_path / "unused-trace.json"),
+        },
+        {"split": "test", "resume": _resume(), "jd": "", "keywords": []},
+        _resume(),
+        tmp_path,
+        JudgeConfig(),
+        skip_nli=True,
+        skip_judge=True,
+        trace=[],
+        totals=_totals(),
+    )
+    assert record["evaluation_failures"]["operational"] == (
+        "RuntimeError: ops unavailable"
+    )
+
+
 def test_tool_sequence_accuracy_and_recovery():
     trace = [
         {"type": "tool", "name": "validate_resume", "ok": True},
@@ -166,6 +194,30 @@ def test_tool_sequence_accuracy_and_recovery():
     assert result["tool_sequence_valid"] is True
     assert result["tool_call_accuracy"] == 0.6667
     assert result["tool_recovery_rate"] == 1.0
+
+
+def test_w4_operational_spec_has_real_tool_and_step_budgets():
+    trace = [
+        {"type": "tool", "name": "validate_resume", "ok": True},
+        {"type": "tool", "name": "render_resume", "ok": True},
+    ]
+    result = evaluate_operational(
+        "w4_evidence",
+        {"split": "test"},
+        {"resume_md": _resume(), "finished": True},
+        _totals(llm=4, tools=2),
+        trace,
+        {
+            "faithfulness": 0.9,
+            "protected_field_violation": False,
+            "fabrication_bait_violation": False,
+        },
+    )
+    assert result["tool_applicable"] is True
+    assert result["tool_sequence_valid"] is True
+    assert result["expected_min_steps"] == 5
+    assert result["step_efficiency"] == round(5 / 6, 4)
+    assert result["budget_utilisation"] == round(6 / 13, 4)
 
 
 def test_robustness_variants_and_summary():

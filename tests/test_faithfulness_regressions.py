@@ -134,6 +134,60 @@ def test_protected_field_omissions_are_not_violations():
     assert result["protected_field_violation"] is False
 
 
+def test_protected_fields_keep_employers_and_dates_with_their_jobs():
+    original = (
+        "## Experience\n"
+        "### Analyst, Example Alpha (Jan 2022 - Dec 2023)\n"
+        "- Prepared reports.\n"
+        "### Engineer, Example Beta (Jan 2024 - Present)\n"
+        "- Built services.\n"
+    )
+    reordered = (
+        "## Experience\n"
+        "### Engineer, Example Beta (Jan 2024 - Present)\n"
+        "- Built services.\n"
+        "### Analyst, Example Alpha (Jan 2022 - Dec 2023)\n"
+        "- Prepared reports.\n"
+    )
+    swapped = (
+        "## Experience\n"
+        "### Analyst, Example Beta (Jan 2024 - Present)\n"
+        "- Prepared reports.\n"
+        "### Engineer, Example Alpha (Jan 2022 - Dec 2023)\n"
+        "- Built services.\n"
+    )
+    assert metrics.protected_field_metrics(original, reordered)[
+        "protected_field_violations"
+    ] == []
+    result = metrics.protected_field_metrics(original, swapped)
+    assert {
+        item["type"] for item in result["protected_field_violations"]
+    } == {"employment_entry_mismatch"}
+
+
+def test_protected_fields_keep_institution_with_degree_and_allow_entry_omission():
+    original = (
+        "## Education\n"
+        "### Bachelor of Science, Example University (Aug 2018 - May 2022)\n"
+        "### Diploma in Design, Example College (Aug 2015 - May 2018)\n"
+    )
+    faithful_omission = (
+        "## Education\n"
+        "### Diploma in Design, Example College (Aug 2015 - May 2018)\n"
+    )
+    swapped = (
+        "## Education\n"
+        "### Bachelor of Science, Example College (Aug 2015 - May 2018)\n"
+    )
+    assert metrics.protected_field_metrics(original, faithful_omission)[
+        "protected_field_violations"
+    ] == []
+    result = metrics.protected_field_metrics(original, swapped)
+    assert [
+        item["type"] for item in result["protected_field_violations"]
+    ] == ["education_entry_mismatch"]
+
+
 def test_split_headers_ignore_location_and_accept_bold_degree_layout():
     original = (
         "# Casey Lim\ncasey@example.test | +65 6000 0101 | Singapore\n"
@@ -222,6 +276,43 @@ def test_fabrication_bait_respects_source_synonyms_and_whole_words():
         {"keyword": "Java", "synonyms": []},
     ]
     assert result["fabrication_bait_matches"] == []
+
+
+def test_fabrication_bait_does_not_treat_denials_as_positive_mentions():
+    keywords = [{"keyword": "AWS", "synonyms": []}]
+    denied_output = metrics.fabrication_bait_metrics(
+        "## Skills\nSQL\n", "## Summary\nNo experience with AWS.\n", keywords,
+    )
+    assert denied_output["fabrication_bait_terms"] == [
+        {"keyword": "AWS", "synonyms": []}
+    ]
+    assert denied_output["fabrication_bait_matches"] == []
+
+    trailing_denial = metrics.fabrication_bait_metrics(
+        "## Skills\nSQL\n", "## Skills\nAWS: no experience\n", keywords,
+    )
+    assert trailing_denial["fabrication_bait_matches"] == []
+
+    denied_source_positive_output = metrics.fabrication_bait_metrics(
+        "## Summary\nNo experience with AWS.\n",
+        "## Skills\nAWS\n",
+        keywords,
+    )
+    assert denied_source_positive_output["fabrication_bait_violation"] is True
+
+
+def test_fabrication_bait_keeps_positive_mentions_after_contrast():
+    result = metrics.fabrication_bait_metrics(
+        "## Skills\nSQL\n",
+        "## Summary\nNo AWS experience, but used Python in production.\n",
+        [
+            {"keyword": "AWS", "synonyms": []},
+            {"keyword": "Python", "synonyms": []},
+        ],
+    )
+    assert [
+        item["keyword"] for item in result["fabrication_bait_matches"]
+    ] == ["Python"]
 
 
 def test_unmentioned_bait_is_not_a_violation():

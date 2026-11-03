@@ -108,6 +108,24 @@ def test_deterministic_support_does_not_use_partial_word_matches(monkeypatch):
     assert model.pairs
 
 
+def test_deterministic_support_does_not_turn_negated_evidence_into_support(monkeypatch):
+    model = FakeNLI()
+    metadata = {
+        "model": "fake",
+        "model_revision": "r1",
+        "id2label": {"0": "entailment", "1": "neutral", "2": "contradiction"},
+        "label2id": {"entailment": 0, "neutral": 1, "contradiction": 2},
+    }
+    monkeypatch.setattr(metrics, "_load_nli", lambda: (model, metadata))
+    result = metrics.faithfulness(
+        "## Summary\nNo experience with AWS.\n",
+        "## Skills\nAWS\n",
+    )
+    assert result["faithfulness"] == 0
+    assert result["claim_scores"][0]["support_method"] == "nli"
+    assert model.pairs
+
+
 def test_extract_claims_includes_individual_skill_items():
     assert metrics.extract_claims("## Skills\nPython, SQL; AWS\n") == [
         "Python", "SQL", "AWS",
@@ -152,7 +170,7 @@ def test_faithfulness_cache_records_evidence_identity_and_reuses_result(
     assert second == first
     assert len(model.pairs) == prediction_count
     assert cache_record["identity"]["evidence_limit"] == metrics.config.NLI_EVIDENCE_LIMIT
-    assert cache_record["identity"]["evaluator_version"] == "claim-evidence-nli-v3"
+    assert cache_record["identity"]["evaluator_version"] == metrics.config.NLI_EVALUATOR_VERSION
 
 
 def test_claim_extraction_ignores_contact_and_section_labels():

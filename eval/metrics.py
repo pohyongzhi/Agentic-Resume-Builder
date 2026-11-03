@@ -48,25 +48,55 @@ def keyword_coverage(resume, keywords):
     return {"coverage": len(hit) / total, "hit": hit, "missing": missing}
 
 
+def _positive_term_lines(text, term):
+    """Return asserted mentions, excluding explicit local denials.
+
+    This is a narrow lexical filter, not a semantic proof of proficiency. Contrast
+    clauses reset negation so 'no AWS experience, but used Python' retains Python.
+    """
+    pattern = re.compile(r"(?<![\w])" + re.escape(term) + r"(?![\w])", re.IGNORECASE)
+    for line_number, line in enumerate(text.splitlines(), 1):
+        for clause in re.split(r"[;!?]|\.\s+|\b(?:but|however|yet)\b", line, flags=re.IGNORECASE):
+            for match in pattern.finditer(clause):
+                prefix = clause[:match.start()]
+                suffix = clause[match.end():]
+                denied_before = re.search(
+                    r"\b(?:no|never|without|lack(?:s|ed|ing)?|not(?!\s+only\b))\b"
+                    r"(?:[\s,:/-]+[\w'-]+){0,8}[\s,:/-]*$", prefix, re.IGNORECASE,
+                )
+                denied_after = re.match(
+                    r"(?:"
+                    r"\s*[:(-]?\s*(?:(?:is|was|are)\s+)?"
+                    r"(?:none|absent|not\s+(?:known|used|available|supported))"
+                    r"|\s+(?:experience|skills?|proficiency)\s*(?::|(?:is|was|are))?\s*"
+                    r"(?:none|absent|not\s+(?:known|used|available|supported))"
+                    r"|\s*[:(-]?\s*no\s+(?:experience|skills?|proficiency)"
+                    r")\b",
+                    suffix, re.IGNORECASE,
+                )
+                if not denied_before and not denied_after:
+                    yield {"line": line_number, "text": line.strip()}
+                    break
+
+
 def fabrication_bait_metrics(original_resume, tailored_resume, keywords):
     """Detect evaluator keyword families absent from source but newly present in output."""
     bait_terms = []
     matches = []
-    output_lines = tailored_resume.splitlines()
     for item in keywords:
         keyword = item["keyword"]
         terms = [keyword, *item.get("synonyms", [])]
-        if any(_has(original_resume, term) for term in terms):
+        if any(list(_positive_term_lines(original_resume, term)) for term in terms):
             continue
         bait = {"keyword": keyword, "synonyms": item.get("synonyms", [])}
         bait_terms.append(bait)
         matched_terms = []
         matched_lines = []
         for term in terms:
-            for line_number, line in enumerate(output_lines, 1):
-                if _has(line, term):
-                    matched_terms.append(term)
-                    matched_lines.append({"line": line_number, "text": line.strip()})
+            lines = list(_positive_term_lines(tailored_resume, term))
+            if lines:
+                matched_terms.append(term)
+                matched_lines.extend(lines)
         if matched_terms:
             matches.append({
                 **bait,
@@ -295,8 +325,8 @@ def _header_parts(text):
     return [core]
 
 
-def _protected_entities(resume_md):
-    """Extract comparable protected values from the project's Markdown resume contract."""
+def _protected_structure(resume_md):
+    """Extract protected values and the employment/education entries they belong to."""
     entities = {
         "candidate_name": [],
         "contact_email": [],
@@ -309,7 +339,14 @@ def _protected_entities(resume_md):
         "education_date": [],
     }
 
-    def add(kind, value, line):
+    entries = {"employment": [], "education": []}
+
+    def new_entry(group, line):
+        entry = {"line": line, "fields": {}}
+        entries[group].append(entry)
+        return entry
+
+    def add(kind, value, line, entry=None):
         normalized = normalize_evidence_text(value)
         if normalized and all(item["normalized"] != normalized for item in entities[kind]):
             entities[kind].append({
@@ -317,9 +354,21 @@ def _protected_entities(resume_md):
                 "normalized": normalized,
                 "line": line,
             })
+        if entry is not None and normalized:
+            entry["fields"].setdefault(kind, [])
+            if normalized not in {
+                item["normalized"] for item in entry["fields"][kind]
+            }:
+                entry["fields"][kind].append({
+                    "value": value.strip(),
+                    "normalized": normalized,
+                    "line": line,
+                })
 
     pending_experience_title = False
     pending_education_degree = False
+    current_experience_entry = None
+    current_education_entry = None
     active_section = None
     for record in _line_records(resume_md):
         raw = record["raw"]
@@ -327,6 +376,8 @@ def _protected_entities(resume_md):
             active_section = record["section"]
             pending_experience_title = False
             pending_education_degree = False
+            current_experience_entry = None
+            current_education_entry = None
         if record["kind"] == "candidate_name":
             add("candidate_name", record["text"], record["line"])
         for match in _CONTACT_EMAIL.finditer(raw):
@@ -343,8 +394,6 @@ def _protected_entities(resume_md):
         parts = _header_parts(record["text"])
         is_heading = raw.lstrip().startswith("#")
         if section in {"experience", "professional experience", "work experience"}:
-            for value in dates:
-                add("employment_date", value, record["line"])
             looks_like_project = any(
                 "project" in normalize_evidence_text(part) for part in parts
             ) or any(
@@ -353,43 +402,72 @@ def _protected_entities(resume_md):
             )
             if looks_like_project:
                 pending_experience_title = False
+                current_experience_entry = None
                 continue
             if len(parts) >= 2:
                 if pending_experience_title:
-                    add("employer", parts[0], record["line"])
+                    entry = current_experience_entry
+                    add("employer", parts[0], record["line"], entry)
                     pending_experience_title = False
                 else:
-                    add("employment_title", parts[0], record["line"])
-                    add("employer", parts[1], record["line"])
+                    entry = new_entry("employment", record["line"])
+                    current_experience_entry = entry
+                    add("employment_title", parts[0], record["line"], entry)
+                    add("employer", parts[1], record["line"], entry)
             elif parts and (
                 is_heading or (raw.lstrip().startswith(("**", "__")) and not dates)
             ):
-                add("employment_title", parts[0], record["line"])
+                entry = new_entry("employment", record["line"])
+                current_experience_entry = entry
+                add("employment_title", parts[0], record["line"], entry)
                 pending_experience_title = True
             elif parts:
-                add("employer", parts[0], record["line"])
+                entry = current_experience_entry or new_entry("employment", record["line"])
+                current_experience_entry = entry
+                add("employer", parts[0], record["line"], entry)
                 pending_experience_title = False
-        elif section == "education":
+            else:
+                entry = current_experience_entry
             for value in dates:
-                add("education_date", value, record["line"])
+                add("employment_date", value, record["line"], entry)
+        elif section == "education":
             if len(parts) >= 2:
                 if pending_education_degree:
-                    add("institution", parts[0], record["line"])
+                    entry = current_education_entry
+                    add("institution", parts[0], record["line"], entry)
                     pending_education_degree = False
                 else:
-                    add("degree", parts[0], record["line"])
-                    add("institution", parts[1], record["line"])
+                    entry = new_entry("education", record["line"])
+                    current_education_entry = entry
+                    add("degree", parts[0], record["line"], entry)
+                    add("institution", parts[1], record["line"], entry)
             elif parts and pending_education_degree:
-                add("institution", parts[0], record["line"])
+                entry = current_education_entry
+                add("institution", parts[0], record["line"], entry)
                 pending_education_degree = False
             elif parts:
                 is_bold_degree = raw.lstrip().startswith(("**", "__")) and not dates
                 if is_heading or is_bold_degree:
-                    add("degree", parts[0], record["line"])
+                    entry = new_entry("education", record["line"])
+                    current_education_entry = entry
+                    add("degree", parts[0], record["line"], entry)
                     pending_education_degree = True
                 else:
-                    add("institution", parts[0], record["line"])
-    return entities
+                    entry = current_education_entry or new_entry(
+                        "education", record["line"]
+                    )
+                    current_education_entry = entry
+                    add("institution", parts[0], record["line"], entry)
+            else:
+                entry = current_education_entry
+            for value in dates:
+                add("education_date", value, record["line"], entry)
+    return entities, entries
+
+
+def _protected_entities(resume_md):
+    """Extract comparable protected values from the project's Markdown resume contract."""
+    return _protected_structure(resume_md)[0]
 
 
 def _normalized_number(value):
@@ -400,8 +478,8 @@ def _normalized_number(value):
 
 def protected_field_metrics(original_resume, tailored_resume):
     """Return high-confidence protected-field changes without penalizing omissions."""
-    source = _protected_entities(original_resume)
-    output = _protected_entities(tailored_resume)
+    source, source_entries = _protected_structure(original_resume)
+    output, output_entries = _protected_structure(tailored_resume)
     violations = []
     seen = set()
 
@@ -423,6 +501,65 @@ def protected_field_metrics(original_resume, tailored_resume):
         for item in output_items:
             if item["normalized"] not in allowed:
                 add(kind, item, source[kind])
+
+    relationship_fields = {
+        "employment": ("employment_title", "employer", "employment_date"),
+        "education": ("degree", "institution", "education_date"),
+    }
+    for group, fields in relationship_fields.items():
+        globally_allowed = {
+            field: {item["normalized"] for item in source[field]}
+            for field in fields
+        }
+        for entry in output_entries[group]:
+            present = {
+                field: entry["fields"].get(field, []) for field in fields
+                if entry["fields"].get(field)
+            }
+            if len(present) < 2:
+                continue
+            if any(
+                item["normalized"] not in globally_allowed[field]
+                for field, items in present.items() for item in items
+            ):
+                continue
+            compatible = any(
+                all(
+                    {item["normalized"] for item in items}
+                    <= {
+                        item["normalized"]
+                        for item in source_entry["fields"].get(field, [])
+                    }
+                    for field, items in present.items()
+                )
+                for source_entry in source_entries[group]
+            )
+            if compatible:
+                continue
+            values = [
+                item["value"] for field in fields
+                for item in present.get(field, [])
+            ]
+            expected = [
+                {
+                    "value": " | ".join(
+                        item["value"] for field in fields
+                        for item in source_entry["fields"].get(field, [])
+                    )
+                }
+                for source_entry in source_entries[group]
+            ]
+            add(
+                f"{group}_entry_mismatch",
+                {
+                    "value": " | ".join(values),
+                    "normalized": " | ".join(
+                        normalize_evidence_text(value) for value in values
+                    ),
+                    "line": entry["line"],
+                },
+                expected,
+            )
 
     source_numbers = {
         _normalized_number(match.group(0))
@@ -583,7 +720,7 @@ def _nli_cache_key(original_resume, new_resume, metadata):
 
 
 def _deterministic_support(claim, candidates):
-    """Return source evidence that contains the complete normalized claim, if any."""
+    """Approve only complete equivalent units; a substring may be negated or qualified."""
     claim_normalized = normalize_evidence_text(claim)
     if not claim_normalized:
         return None
@@ -591,7 +728,6 @@ def _deterministic_support(claim, candidates):
         (
             candidate for candidate in candidates
             if claim_normalized == candidate["normalized"]
-            or _has(candidate["normalized"], claim_normalized)
         ),
         None,
     )

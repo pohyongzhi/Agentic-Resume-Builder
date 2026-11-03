@@ -20,10 +20,19 @@ RUBRIC_DIMENSIONS = (
 )
 
 
-def _blind_id(dataset_hash, pair_id, repeat):
+def _blind_id(dataset_hash, pair_id, repeat, workflow, generation_identity):
     return "review_" + hashlib.sha256(
-        f"{dataset_hash}:{pair_id}:{repeat}".encode()
+        f"{dataset_hash}:{pair_id}:{repeat}:{workflow}:{generation_identity}".encode()
     ).hexdigest()[:12]
+
+
+def _row_blind_id(row):
+    content_hash = hashlib.sha256(row.get("resume_md", "").encode()).hexdigest()
+    generation_identity = f"{row.get('config_hash', '')}:{content_hash}"
+    return _blind_id(
+        row["dataset_hash"], row["pair_id"], row.get("repeat", 0),
+        row["workflow"], generation_identity,
+    )
 
 
 def select_review_sample(rows, limit=20, seed=42):
@@ -66,7 +75,7 @@ def write_review_artifacts(output_dir, rows, limit=20, seed=42):
     mapping = []
     with packet_path.open("w", encoding="utf-8") as packet:
         for row in sample:
-            review_id = _blind_id(row["dataset_hash"], row["pair_id"], row.get("repeat", 0))
+            review_id = _row_blind_id(row)
             packet.write(json.dumps({
                 "review_id": review_id,
                 "original_resume": row["original_resume"],
@@ -98,7 +107,7 @@ def write_review_artifacts(output_dir, rows, limit=20, seed=42):
         )
         writer.writeheader()
         for row in sample:
-            review_id = _blind_id(row["dataset_hash"], row["pair_id"], row.get("repeat", 0))
+            review_id = _row_blind_id(row)
             for index, _ in enumerate(row.get("claim_scores", [])):
                 writer.writerow({"review_id": review_id, "claim_index": index})
     (output_dir / "review_mapping.private.json").write_text(
@@ -116,9 +125,7 @@ def write_review_artifacts(output_dir, rows, limit=20, seed=42):
     for label, candidates in (("automated_failure", ranked[:3]), ("automated_success", ranked[-3:])):
         for row in candidates:
             qualitative.append({
-                "review_id": _blind_id(
-                    row["dataset_hash"], row["pair_id"], row.get("repeat", 0)
-                ),
+                "review_id": _row_blind_id(row),
                 "selection": label,
                 "human_confirmed": False,
                 "task_success": row.get("task_success"),

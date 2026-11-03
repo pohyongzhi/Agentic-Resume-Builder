@@ -4,13 +4,15 @@
     python run_all.py --workflows w2_baseline # just one workflow
     python run_all.py --limit 2 --repeats 1   # quick test on 2 pairs
 
-Safe to stop and restart: runs already in results.jsonl with the same model and config are skipped.
-Changing config.py or the shared prompts changes the config hash, so those runs are redone.
+Safe to stop and restart: runs already in results.jsonl with the same model and generation
+identity are skipped. Changing generation settings, shared code/prompts, or workflow source changes
+that identity; evaluator-only changes are handled by offline rescoring.
 Workflows run one after another (not in parallel) so they don't fight over the GPU,
 otherwise the timing numbers would be meaningless.
 """
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -27,8 +29,36 @@ from eval.operational import evaluate_operational
 from workflows import WORKFLOWS, WORKFLOW_MODELS
 
 
-def config_hash():
-    """Generation-only identity. Offline evaluator settings must never invalidate writer outputs."""
+def _generation_source_paths(workflow=None):
+    """Return generation code that can change a saved writer output."""
+    root = Path(__file__).resolve().parent
+    paths = list((root / "common").glob("*.py"))
+    workflow_names = [workflow] if workflow else sorted(WORKFLOWS)
+    for name in workflow_names:
+        module_name = WORKFLOWS[name].__module__
+        spec = importlib.util.find_spec(module_name)
+        if spec and spec.origin:
+            paths.append(Path(spec.origin))
+    return sorted(set(paths), key=lambda path: str(path))
+
+
+def _generation_source_fingerprint(workflow=None):
+    digest = hashlib.sha256()
+    root = Path(__file__).resolve().parent
+    for path in _generation_source_paths(workflow):
+        try:
+            label = str(path.resolve().relative_to(root))
+        except ValueError:
+            label = str(path.resolve())
+        digest.update(label.encode())
+        digest.update(b"\0")
+        digest.update(path.read_bytes())
+        digest.update(b"\0")
+    return digest.hexdigest()
+
+
+def config_hash(workflow=None):
+    """Generation-only identity; evaluator changes do not invalidate writer outputs."""
     generation_keys = (
         "BASE_MODEL", "FINE_TUNED_MODEL", "TEMPERATURE", "SEED", "NUM_CTX", "THINK", "MAX_STEPS",
         "MAX_CRITIC_ROUNDS", "MAX_TOOL_CALLS", "PDF_MIN_CHARS_PER_PAGE",
@@ -43,6 +73,8 @@ def config_hash():
         prompts.CREATOR_SYSTEM,
         prompts.STRUCTURED_CREATOR_SYSTEM,
     ]
+    settings["workflow"] = workflow
+    settings["generation_source"] = _generation_source_fingerprint(workflow)
     return hashlib.sha256(json.dumps(settings, sort_keys=True, default=str).encode()).hexdigest()[:12]
 
 
@@ -79,19 +111,87 @@ def score(pair, out, tracker, skip_faithfulness=False):
     totals = tracker.totals()
     row = {**totals,
            "tool_success": metrics.tool_success(totals),
-           "hit_budget": out["hit_budget"], "finished": out["finished"],
-           "words": len(out["resume_md"].split())}
-    row.update(metrics.jd_similarity(pair["resume"], out["resume_md"], pair["jd"]))
-    kw_before = metrics.keyword_coverage(pair["resume"], pair["keywords"])
-    kw_after = metrics.keyword_coverage(out["resume_md"], pair["keywords"])
-    row.update({"kw_before": round(kw_before["coverage"], 4), "kw_after": round(kw_after["coverage"], 4),
-                "kw_missing": kw_after["missing"]})
-    row.update(metrics.protected_field_metrics(pair["resume"], out["resume_md"]))
-    row.update(metrics.fabrication_bait_metrics(
-        pair["resume"], out["resume_md"], pair.get("keywords", []),
-    ))
+           "hit_budget": out.get("hit_budget", False),
+           "finished": out.get("finished", bool(out.get("resume_md", "").strip())),
+           "words": len(out["resume_md"].split()), "evaluation_failures": {}}
+
+    def evaluate_component(name, function):
+        try:
+            row.update(function())
+        except Exception as exc:
+            row["evaluation_failures"][name] = f"{type(exc).__name__}: {exc}"
+            traceback.print_exc()
+
+    evaluate_component(
+        "relevance",
+        lambda: metrics.jd_similarity(pair["resume"], out["resume_md"], pair["jd"]),
+    )
+
+    def keyword_scores():
+        before = metrics.keyword_coverage(pair["resume"], pair["keywords"])
+        after = metrics.keyword_coverage(out["resume_md"], pair["keywords"])
+        return {
+            "kw_before": round(before["coverage"], 4),
+            "kw_after": round(after["coverage"], 4),
+            "kw_missing": after["missing"],
+        }
+
+    evaluate_component("keywords", keyword_scores)
+    evaluate_component(
+        "protected_fields",
+        lambda: metrics.protected_field_metrics(pair["resume"], out["resume_md"]),
+    )
+    evaluate_component(
+        "fabrication_bait",
+        lambda: metrics.fabrication_bait_metrics(
+            pair["resume"], out["resume_md"], pair.get("keywords", []),
+        ),
+    )
     if not skip_faithfulness:
-        row.update(metrics.faithfulness(pair["resume"], out["resume_md"]))
+        evaluate_component(
+            "faithfulness", lambda: metrics.faithfulness(pair["resume"], out["resume_md"])
+        )
+    return row
+
+
+def score_generated_output(pair, out, tracker, skip_faithfulness=False):
+    """Score a successful generation without converting evaluator errors into run errors."""
+    try:
+        row = score(pair, out, tracker, skip_faithfulness)
+    except Exception as exc:
+        # Preserve the generation and trace even if an unexpected failure escapes
+        # the component-level isolation in score().
+        row = {
+            **tracker.totals(),
+            "hit_budget": out.get("hit_budget", False),
+            "finished": out.get("finished", True),
+            "words": len(out["resume_md"].split()),
+            "evaluation_failures": {
+                "online_score": f"{type(exc).__name__}: {exc}"
+            },
+        }
+        traceback.print_exc()
+    row["error"] = None
+    return row
+
+
+def add_operational_scores(workflow, pair, out, tracker, row):
+    """Add operational metrics without losing artifacts if that evaluator fails."""
+    try:
+        row.update(evaluate_operational(
+            workflow,
+            pair,
+            out,
+            tracker.totals(),
+            tracker.events,
+            scored_row=row,
+            error=row.get("error"),
+        ))
+    except Exception as exc:
+        row.setdefault("evaluation_failures", {})["operational"] = (
+            f"{type(exc).__name__}: {exc}"
+        )
+        traceback.print_exc()
     return row
 
 
@@ -111,11 +211,11 @@ def main():
     manifest = load_manifest()
     dhash = dataset_hash()
     done = done_keys()
-    chash = config_hash()
     os.makedirs(os.path.dirname(config.RESULTS_FILE), exist_ok=True)
 
     for wf in args.workflows:
         expected_model = WORKFLOW_MODELS[wf]
+        chash = config_hash(wf)
         for pair in pairs:
             for rep in range(args.repeats):
                 if (wf, pair["pair_id"], rep, expected_model, chash, dhash) in done:
@@ -123,33 +223,44 @@ def main():
                 tracker = Tracker()
                 print(f"[{wf}] {pair['pair_id']} repeat {rep} ...", end=" ", flush=True)
                 t0 = time.time()
+                generation_started = time.time()
+                evaluation_seconds = 0.0
+                out = {"resume_md": "", "finished": False, "hit_budget": False}
                 try:
                     out = WORKFLOWS[wf](pair, tracker)
-                    if out.get("errors") or not out["resume_md"].strip():
-                        # the workflow stopped with a clear error (e.g. TOOL_BUDGET_EXCEEDED): a failed run
-                        row = {**tracker.totals(), "hit_budget": out.get("hit_budget", False), "finished": False,
-                               "error": "; ".join(out.get("errors") or ["EMPTY_OUTPUT: no resume produced"])}
-                    else:
-                        if args.outputs_only:
-                            row = {**tracker.totals(), "hit_budget": out.get("hit_budget", False),
-                                   "finished": out.get("finished", False), "evaluation_skipped": True}
-                        else:
-                            row = score(pair, out, tracker, args.skip_faithfulness)
-                        row["error"] = None
                 except Exception as e:
-                    out = {"resume_md": ""}
+                    generation_seconds = time.time() - generation_started
                     row = {**tracker.totals(), "error": f"{type(e).__name__}: {e}"}
                     traceback.print_exc()
+                else:
+                    generation_seconds = time.time() - generation_started
+                    if out.get("errors") or not out.get("resume_md", "").strip():
+                        # A clear workflow error is a generation failure, not an evaluator failure.
+                        row = {
+                            **tracker.totals(),
+                            "hit_budget": out.get("hit_budget", False),
+                            "finished": False,
+                            "error": "; ".join(
+                                out.get("errors") or ["EMPTY_OUTPUT: no resume produced"]
+                            ),
+                        }
+                    else:
+                        if args.outputs_only:
+                            row = {
+                                **tracker.totals(),
+                                "hit_budget": out.get("hit_budget", False),
+                                "finished": out.get("finished", False),
+                                "evaluation_skipped": True,
+                                "error": None,
+                            }
+                        else:
+                            evaluation_started = time.time()
+                            row = score_generated_output(
+                                pair, out, tracker, args.skip_faithfulness
+                            )
+                            evaluation_seconds = time.time() - evaluation_started
                 if not args.outputs_only:
-                    row.update(evaluate_operational(
-                        wf,
-                        pair,
-                        out,
-                        tracker.totals(),
-                        tracker.events,
-                        scored_row=row,
-                        error=row.get("error"),
-                    ))
+                    add_operational_scores(wf, pair, out, tracker, row)
                 run_dir = _run_dir(manifest, chash, wf, pair["pair_id"], rep)
                 resume_path = run_dir / "resume.md"
                 metrics_path = run_dir / "metrics.json"
@@ -177,6 +288,8 @@ def main():
                     "dataset_version": manifest["version"],
                     "dataset_hash": dhash,
                     "wall_seconds": round(time.time() - t0, 1),
+                    "generation_seconds": round(generation_seconds, 3),
+                    "evaluation_seconds": round(evaluation_seconds, 3),
                     "resume_path": str(resume_path),
                     "metrics_path": str(metrics_path),
                     "trace_path": str(trace_path),
@@ -187,7 +300,12 @@ def main():
                 _atomic_text(metrics_path, json.dumps(row, indent=2, ensure_ascii=False) + "\n")
                 with open(config.RESULTS_FILE, "a", encoding="utf-8") as f:
                     f.write(json.dumps(row, ensure_ascii=False) + "\n")
-                print("ok" if not row["error"] else "ERROR", f"({row['wall_seconds']}s)")
+                status = (
+                    "ERROR" if row["error"] else
+                    "EVAL_ERROR" if row.get("evaluation_failures") else
+                    "ok"
+                )
+                print(status, f"({row['wall_seconds']}s)")
 
 
 if __name__ == "__main__":
