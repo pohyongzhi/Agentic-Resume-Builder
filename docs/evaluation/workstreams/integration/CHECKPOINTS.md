@@ -78,3 +78,29 @@ Status: complete; pilots not run.
 - Full suite: `446 passed, 21 subtests passed in 11.39s`. Commit `cea794e`.
 
 Next checkpoint: 3-pair Groq pilot for one challenger, then manual audit.
+
+## 2026-11-04 — Input robustness v2
+
+Status: complete; no generation run.
+
+- `eval/robustness.py`: seeded variant families. Noisy: `typos`, `pdf_extraction`,
+  `web_clutter`. Format: `formatting`, `reordered_sections` (v1), `plain_text`,
+  `heading_aliases`. Out of scope: `mismatched_jd` (cross-category, recorded in the manifest),
+  `degenerate_jd` (title only, very short or non-job text). Per-variant content-preservation
+  checks (`variant_content_problems`) run on every build.
+- Faithfulness, protected fields and bait are scored against the clean original resume; in-scope
+  variants use the clean JD/keywords. Fixed two v1 issues: variant rows inherited the original's
+  saved `kw_after`/`sim_after`, and W2/W3/W4 read the clean `resume_path` instead of the
+  perturbed input.
+- Out-of-scope expected behaviour: `crashed` fails, `handled_error`/`refused` pass, completed
+  outputs pass only with no fabrication and preserved protected fields; unscored checks stay
+  unscored.
+- Reports: `robustness_variants`, `robustness_families`, `robustness_deltas`,
+  `robustness_out_of_scope`, `robustness_out_of_scope_families` with explicit denominators.
+- `config.py`: `ROBUSTNESS_SAMPLE_VERSION` v2, `ROBUSTNESS_VARIANT_VERSION` v2, typo rate and
+  stability tolerance. v2 artifacts under `robustness/<identity_hash>/`; v1 kept as history.
+- CLI: `--robustness-variants`, `--robustness-families`; `--robustness-limit` unchanged.
+- Added `tests/test_robustness.py` (39 tests, offline, fake workflows).
+- Full suite: `485 passed, 21 subtests passed in 13.60s`. Commit `205e3af`.
+
+Next checkpoint: decide on regenerating originals (blocker 1), then a 2-pair out-of-scope pilot.
