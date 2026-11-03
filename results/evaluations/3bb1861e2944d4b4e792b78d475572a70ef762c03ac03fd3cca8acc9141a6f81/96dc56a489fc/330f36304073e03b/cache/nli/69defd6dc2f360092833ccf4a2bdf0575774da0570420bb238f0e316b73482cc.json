@@ -1,0 +1,337 @@
+{
+  "identity": {
+    "source_hash": "5b3205c38bbb9bff5922208448276908f5e1a028721c6a59c90157e20797f991",
+    "tailored_hash": "e6bd384e08658b328870b091c93f97dbb99318d160955e643ff8eb2e95fb105d",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0455,
+    "unsupported": [
+      "Mid-level Full-Stack Engineer transitioning from Operations Support with a strong foundation in TypeScript, React, and relational data modeling.",
+      "Proven ability to deliver end-to-end product features while maintaining clear documentation and managing stakeholder expectations.",
+      "Experienced in collaborating across multidisciplinary teams to solve ambiguous problems and improve application reliability through evidence-based decision-making.",
+      "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+      "Full-Stack Delivery:** Designed frontend components and backend APIs using TypeScript and React, delivering end-to-end product features that improved team turnaround by 24%.",
+      "Data Modeling & Documentation:** Collaborated with engineering peers to model relational data structures.",
+      "Authored clear technical documentation for business and technical reviewers, ensuring traceable decision-making processes.",
+      "Pipeline & Quality Management:** Managed a portfolio of approximately 35 work items monthly, implementing quality checks and tracking delivery pipelines to ensure reliable releases.",
+      "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews with four colleagues, fostering collaborative problem-solving in ambiguous environments.",
+      "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+      "Operational Reliability:** Investigated service requests and escalated issues using clear supporting evidence to maintain system stability.",
+      "Process Improvement:** Developed a reporting template that reduced manual preparation time by 19%, demonstrating an ability to optimize workflows and deliver measurable outcomes.",
+      "Full-Stack Engineer Practice Project** | Personal Portfolio",
+      "Built a demonstration application utilizing TypeScript, React, and relational data modeling.",
+      "Executed rigorous testing across representative scenarios to identify limitations and define next steps for scalability.",
+      "Presented design architecture and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+      "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+      "Languages:** TypeScript, SQL (Relational Data Modeling)",
+      "Backend & APIs:** Node.js concepts, REST API design",
+      "Tools & Processes:** Git, Documentation Standards, CI/CD principles, Docker basics",
+      "Soft Skills:** Clear Written & Verbal Communication, Stakeholder Management, Collaborative Problem Solving"
+    ],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Full-Stack Engineer transitioning from Operations Support with a strong foundation in TypeScript, React, and relational data modeling.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.114557,
+          "entailment": 0.000888,
+          "neutral": 0.884555
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000888,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to deliver end-to-end product features while maintaining clear documentation and managing stakeholder expectations.",
+        "best_source_chunk": "# Olivia Tan olivia.tan@example.test | +65 6000 0015 | Singapore ## Summary Operations support professional experienced in TypeScript, React, documentation and stakeholder coordination, transitioning toward Full-Stack Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 24%. - Applied Excel",
+        "probabilities": {
+          "contradiction": 0.003193,
+          "entailment": 0.003083,
+          "neutral": 0.993724
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003083,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in collaborating across multidisciplinary teams to solve ambiguous problems and improve application reliability through evidence-based decision-making.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.004489,
+          "entailment": 0.002296,
+          "neutral": 0.993215
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002296,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 19%. ## Projects ### Full-Stack Engineer Practice Project - Built a fictional demonstration project using TypeScript, React and Excel. - Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.753316,
+          "entailment": 0.001093,
+          "neutral": 0.24559
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.001093,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Delivery:** Designed frontend components and backend APIs using TypeScript and React, delivering end-to-end product features that improved team turnaround by 24%.",
+        "best_source_chunk": "# Olivia Tan olivia.tan@example.test | +65 6000 0015 | Singapore ## Summary Operations support professional experienced in TypeScript, React, documentation and stakeholder coordination, transitioning toward Full-Stack Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 24%. - Applied Excel",
+        "probabilities": {
+          "contradiction": 0.005609,
+          "entailment": 0.004021,
+          "neutral": 0.990371
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004021,
+        "supported": false
+      },
+      {
+        "claim": "Data Modeling & Documentation:** Collaborated with engineering peers to model relational data structures.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.002956,
+          "entailment": 0.004582,
+          "neutral": 0.992462
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004582,
+        "supported": false
+      },
+      {
+        "claim": "Authored clear technical documentation for business and technical reviewers, ensuring traceable decision-making processes.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.00024,
+          "entailment": 0.019477,
+          "neutral": 0.980283
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.019477,
+        "supported": false
+      },
+      {
+        "claim": "Pipeline & Quality Management:** Managed a portfolio of approximately 35 work items monthly, implementing quality checks and tracking delivery pipelines to ensure reliable releases.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000947,
+          "entailment": 0.000987,
+          "neutral": 0.998066
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000987,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews with four colleagues, fostering collaborative problem-solving in ambiguous environments.",
+        "best_source_chunk": "Project - Built a fictional demonstration project using TypeScript, React and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases,",
+        "probabilities": {
+          "contradiction": 0.003822,
+          "entailment": 0.000427,
+          "neutral": 0.995751
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000427,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.010579,
+          "entailment": 0.004197,
+          "neutral": 0.985224
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004197,
+        "supported": false
+      },
+      {
+        "claim": "Operational Reliability:** Investigated service requests and escalated issues using clear supporting evidence to maintain system stability.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.142877,
+          "entailment": 0.012849,
+          "neutral": 0.844274
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012849,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that reduced manual preparation time by 19%, demonstrating an ability to optimize workflows and deliver measurable outcomes.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.028776,
+          "entailment": 0.00182,
+          "neutral": 0.969404
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00182,
+        "supported": false
+      },
+      {
+        "claim": "Full-Stack Engineer Practice Project** | Personal Portfolio",
+        "best_source_chunk": "# Olivia Tan olivia.tan@example.test | +65 6000 0015 | Singapore ## Summary Operations support professional experienced in TypeScript, React, documentation and stakeholder coordination, transitioning toward Full-Stack Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 24%. - Applied Excel",
+        "probabilities": {
+          "contradiction": 0.610917,
+          "entailment": 0.00051,
+          "neutral": 0.388574
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.00051,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration application utilizing TypeScript, React, and relational data modeling.",
+        "best_source_chunk": "Project - Built a fictional demonstration project using TypeScript, React and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases,",
+        "probabilities": {
+          "contradiction": 0.000611,
+          "entailment": 0.001545,
+          "neutral": 0.997844
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001545,
+        "supported": false
+      },
+      {
+        "claim": "Executed rigorous testing across representative scenarios to identify limitations and define next steps for scalability.",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.004803,
+          "entailment": 0.000617,
+          "neutral": 0.99458
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000617,
+        "supported": false
+      },
+      {
+        "claim": "Presented design architecture and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+        "best_source_chunk": "Project - Built a fictional demonstration project using TypeScript, React and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases,",
+        "probabilities": {
+          "contradiction": 0.000722,
+          "entailment": 0.003792,
+          "neutral": 0.995486
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003792,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Polytechnic (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.633092,
+          "entailment": 0.002877,
+          "neutral": 0.364031
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.002877,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 8.9e-05,
+          "entailment": 0.98209,
+          "neutral": 0.017821
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.98209,
+        "supported": true
+      },
+      {
+        "claim": "Languages:** TypeScript, SQL (Relational Data Modeling)",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.176587,
+          "entailment": 0.01158,
+          "neutral": 0.811833
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01158,
+        "supported": false
+      },
+      {
+        "claim": "Backend & APIs:** Node.js concepts, REST API design",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.013682,
+          "entailment": 0.010963,
+          "neutral": 0.975355
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010963,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Processes:** Git, Documentation Standards, CI/CD principles, Docker basics",
+        "best_source_chunk": "items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.004934,
+          "entailment": 0.00117,
+          "neutral": 0.993896
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00117,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written & Verbal Communication, Stakeholder Management, Collaborative Problem Solving",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills TypeScript, React, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.001211,
+          "entailment": 0.007161,
+          "neutral": 0.991628
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007161,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "69defd6dc2f360092833ccf4a2bdf0575774da0570420bb238f0e316b73482cc"
+  }
+}

@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1060,
+    "output_tokens": 291,
+    "thinking_chars": 0,
+    "seconds": 3.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "191 words; target is roughly 350-500"
+      ],
+      "words": 191
+    },
+    "generation": {
+      "seconds": 3.37,
+      "input_tokens": 1060,
+      "output_tokens": 291
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1061,
+    "output_tokens": 285,
+    "thinking_chars": 0,
+    "seconds": 3.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.29,
+      "input_tokens": 1061,
+      "output_tokens": 285
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1073,
+    "output_tokens": 286,
+    "thinking_chars": 0,
+    "seconds": 3.31,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.31,
+      "input_tokens": 1073,
+      "output_tokens": 286
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2051,
+    "output_tokens": 249,
+    "thinking_chars": 0,
+    "seconds": 3.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all resume data. Slightly rephrased bullet points for conciseness without losing meaning. JD alignment is moderate as it focuses on skills rather than specific role responsibilities.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all resume data. Reordered bullet points to prioritize impact metrics (turnaround, time reduction) which aligns with 'What success looks like' in the JD, though not explicitly listed as a requirement.",
+        "grounding_concern_in_justification": true
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all resume data. Uses phrasing closer to the JD's language (e.g., 'set internal platform strategy', 'lead self-service infrastructure delivery'), improving alignment with responsibilities while maintaining factual accuracy.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2051,
+    "output_tokens": 265,
+    "thinking_chars": 0,
+    "seconds": 3.34,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume, ensuring perfect faithfulness. Minor JD alignment gap: 'Backstage' and 'FinOps' are preferred skills not explicitly mentioned in the candidate's experience or summary, though they appear in the Skills list.",
+        "grounding_concern_in_justification": true
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume. Faithfulness is perfect. JD alignment is strong but lacks explicit mention of 'Backstage' and 'FinOps' in the narrative, relying on the Skills section.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume. Faithfulness is perfect. JD alignment is strong but lacks explicit mention of 'Backstage' and 'FinOps' in the narrative, relying on the Skills section.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "191 words; target is roughly 350-500"
+          ],
+          "words": 191
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all resume data. Slightly rephrased bullet points for conciseness without losing meaning. JD alignment is moderate as it focuses on skills rather than specific role responsibilities.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume. Faithfulness is perfect. JD alignment is strong but lacks explicit mention of 'Backstage' and 'FinOps' in the narrative, relying on the Skills section.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.37,
+          "input_tokens": 1060,
+          "output_tokens": 291
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all resume data. Reordered bullet points to prioritize impact metrics (turnaround, time reduction) which aligns with 'What success looks like' in the JD, though not explicitly listed as a requirement.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume. Faithfulness is perfect. JD alignment is strong but lacks explicit mention of 'Backstage' and 'FinOps' in the narrative, relying on the Skills section.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.29,
+          "input_tokens": 1061,
+          "output_tokens": 285
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all resume data. Uses phrasing closer to the JD's language (e.g., 'set internal platform strategy', 'lead self-service infrastructure delivery'), improving alignment with responsibilities while maintaining factual accuracy.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume, ensuring perfect faithfulness. Minor JD alignment gap: 'Backstage' and 'FinOps' are preferred skills not explicitly mentioned in the candidate's experience or summary, though they appear in the Skills list.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.31,
+          "input_tokens": 1073,
+          "output_tokens": 286
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

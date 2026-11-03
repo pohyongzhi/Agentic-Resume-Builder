@@ -1,0 +1,32 @@
+# Talia Ng
+talia.ng@example.test | +65 6000 0060 | Singapore
+
+## Summary
+Operations professional with practical application of threat intelligence and MITRE ATT&CK frameworks. Experienced in stakeholder coordination, documentation, and collaborative analysis to improve team workflows.
+
+## Experience
+
+### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2021 - Present)
+- Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.
+- Applied threat intelligence to support strategic and operational analysis, improving team turnaround by 29%.
+- Prioritized intelligence requirements using Excel and documented decisions for technical and business reviewers.
+- Managed approximately 80 work items per month while tracking quality checks and follow-up actions.
+
+### Technical Assistant, Example Atlas Solutions (fictional) (Jun 2017 - Dec 2020)
+- Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.
+- Created a reporting template that reduced manual preparation time by 24%.
+
+## Education
+
+### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024)
+- Coursework included software engineering, databases, cybersecurity and applied analytics.
+
+## Projects
+
+### Threat Intelligence Lead Practice Project
+- Built a demonstration project using threat intelligence, MITRE ATT&CK and Excel.
+- Tested the project with representative scenarios and recorded limitations and next steps.
+- Presented the design and outcomes to a five-person peer review group.
+
+## Skills
+threat intelligence, MITRE ATT&CK, Excel, documentation, stakeholder communication

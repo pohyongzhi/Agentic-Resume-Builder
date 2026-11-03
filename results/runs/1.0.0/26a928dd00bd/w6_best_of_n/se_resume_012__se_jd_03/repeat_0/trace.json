@@ -1,0 +1,294 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1074,
+    "output_tokens": 295,
+    "thinking_chars": 0,
+    "seconds": 3.36,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.36,
+      "input_tokens": 1074,
+      "output_tokens": 295
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1075,
+    "output_tokens": 297,
+    "thinking_chars": 0,
+    "seconds": 3.46,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.46,
+      "input_tokens": 1075,
+      "output_tokens": 297
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1087,
+    "output_tokens": 297,
+    "thinking_chars": 0,
+    "seconds": 3.56,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": false,
+      "errors": [
+        "duplicate of an earlier candidate"
+      ],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.56,
+      "input_tokens": 1087,
+      "output_tokens": 297
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1727,
+    "output_tokens": 168,
+    "thinking_chars": 0,
+    "seconds": 2.05,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume; all claims are fully supported. Minor formatting inconsistency (missing blank line after job title) compared to standard resume style.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Text is identical to original resume; all claims are fully supported. Minor formatting inconsistency (missing blank line after job title) compared to standard resume style.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1727,
+    "output_tokens": 236,
+    "thinking_chars": 0,
+    "seconds": 2.67,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 1 is a near-perfect reconstruction of the original resume with only minor formatting adjustments (e.g., removing bolding from job titles). All claims are fully supported by the source text. The content aligns well with the JD requirements for Full-Stack engineering, though it lacks explici",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 2 is identical to Candidate 1 in content and fidelity to the original resume. It successfully lists all required skills (TypeScript, React, Node.js, PostgreSQL, Docker) in the Skills section, meeting coverage requirements. Formatting is consistent with professional standards.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. Minor formatting inconsistency (missing blank line after job title) compared to standard resume style.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is identical to Candidate 1 in content and fidelity to the original resume. It successfully lists all required skills (TypeScript, React, Node.js, PostgreSQL, Docker) in the Skills section, meeting coverage requirements. Formatting is consistent with professional standards.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.36,
+          "input_tokens": 1074,
+          "output_tokens": 295
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original resume; all claims are fully supported. Minor formatting inconsistency (missing blank line after job title) compared to standard resume style.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a near-perfect reconstruction of the original resume with only minor formatting adjustments (e.g., removing bolding from job titles). All claims are fully supported by the source text. The content aligns well with the JD requirements for Full-Stack engineering, though it lacks explici",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.46,
+          "input_tokens": 1075,
+          "output_tokens": 297
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.56,
+          "input_tokens": 1087,
+          "output_tokens": 297
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

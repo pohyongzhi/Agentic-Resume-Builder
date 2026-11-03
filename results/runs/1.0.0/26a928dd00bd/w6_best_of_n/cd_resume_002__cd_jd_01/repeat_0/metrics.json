@@ -1,0 +1,173 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 6734,
+  "output_tokens": 1455,
+  "thinking_chars": 0,
+  "seconds": 16.99,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "held_out": true,
+  "required_sections_rate": 0.0,
+  "structure_pass": false,
+  "task_success": null,
+  "task_failure_reasons": [
+    "workflow_failed",
+    "missing_required_sections",
+    "faithfulness_not_scored",
+    "protected_fields_not_scored",
+    "fabrication_bait_not_scored"
+  ],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 8189,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": null,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_002__cd_jd_01",
+  "resume_id": "cd_resume_002",
+  "jd_id": "cd_jd_01",
+  "category": "cloud_devops",
+  "role_family": "cloud_engineer",
+  "seniority": "entry",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 17.0,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_002__cd_jd_01\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_002__cd_jd_01\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_002__cd_jd_01\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "197 words; target is roughly 350-500"
+          ],
+          "words": 197
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a faithful rewrite of the original resume with no invented facts. It maintains all specific numbers (12%, 106 items, 7%) and entities exactly as they appear in the source. The writing quality is high, using concise Markdown suitable for a professional document.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is also fully faithful to the original data. However, it has a minor writing quality issue: the Summary section lacks proper Markdown formatting (missing '##' header) and uses a semicolon instead of a period, which slightly reduces readability compared to Candidate 1. Otherwise, content ",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.48,
+          "input_tokens": 1060,
+          "output_tokens": 298
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "237 words; target is roughly 350-500"
+          ],
+          "words": 237
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is also a faithful rewrite with no invented facts or unsupported claims. It preserves all original data points and entities. The writing quality is excellent, adhering to professional resume standards.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a faithful reproduction of the original resume with no invented facts. It covers all required skills (AWS, Linux, networking, Bash, Docker, monitoring, Git) and preferred ones (Terraform, Python). The writing is concise and professional. JD alignment is strong on core responsibilities",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.9,
+          "input_tokens": 1061,
+          "output_tokens": 351
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "237 words; target is roughly 350-500"
+          ],
+          "words": 237
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.92,
+          "input_tokens": 1073,
+          "output_tokens": 351
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

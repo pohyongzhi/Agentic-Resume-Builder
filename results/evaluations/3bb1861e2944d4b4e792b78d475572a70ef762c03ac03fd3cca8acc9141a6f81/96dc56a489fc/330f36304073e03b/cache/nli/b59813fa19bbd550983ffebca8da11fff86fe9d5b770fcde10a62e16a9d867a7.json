@@ -1,0 +1,376 @@
+{
+  "identity": {
+    "source_hash": "ba8ac3aa92b829cfaf7d71abef58fe2d357a4dc3bfe947ca04f0c1a9e06b17b3",
+    "tailored_hash": "2c8be5d85e571a9bc724ce374d65a8b46163a3875849691a1be3a3b49315b67d",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.04,
+    "unsupported": [
+      "Mid-level Machine Learning Engineer with a strong foundation in Python, scikit-learn, and PyTorch.",
+      "Proven ability to train predictive models, build reproducible feature pipelines, and deploy solutions via REST APIs.",
+      "Experienced in collaborating with cross-functional teams to deliver reliable, maintainable technical solutions while maintaining clear documentation.",
+      "Seeking to leverage expertise in model evaluation and feature engineering at Example Harbour Digital to drive evidence-based decision-making and operational efficiency.",
+      "Technology Associate** | Example Delta Operations (fictional)",
+      "Model Training & Evaluation:** Train and evaluate predictive models using Python and scikit-learn, directly contributing to a 33% improvement in team turnaround times through data-driven insights.",
+      "Pipeline Development:** Construct reproducible feature pipelines that ensure consistency and reliability for downstream applications.",
+      "API Deployment:** Collaborate with engineering peers to deploy trained models behind REST APIs, ensuring seamless integration with existing systems.",
+      "Stakeholder Collaboration:** Work closely with product and business stakeholders to translate operational needs into technical requirements;",
+      "present progress, risks, and technical trade-offs during fortnightly reviews.",
+      "Quality & Documentation:** Maintain clear documentation of technical decisions and quality checks for team planning and audits;",
+      "manage approximately 102 work items monthly with a focus on evidence-based problem solving.",
+      "Technical Assistant** | Example Ember Technologies (fictional)",
+      "Deep Learning Support:** Supported operational workflows using PyTorch, documenting step-by-step procedures to ensure reproducibility and knowledge transfer.",
+      "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating strong analytical skills in solving ambiguous problems.",
+      "Process Improvement:** Designed and implemented a reporting template that reduced manual preparation time by 28%, showcasing the ability to deliver well-tested improvements.",
+      "Machine Learning Engineer Practice Project**",
+      "Developed a demonstration project utilizing Python, machine learning, and scikit-learn to simulate real-world scenarios.",
+      "Conducted rigorous testing against representative cases to identify limitations and define next steps for model refinement.",
+      "Presented design architecture and outcomes to a five-person peer review group, honing clear verbal communication skills.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (fictional)",
+      "Machine Learning:** scikit-learn, PyTorch, Model Evaluation, Feature Engineering",
+      "Deployment & Tools:** REST APIs, Docker, Git, MLflow (Preferred)",
+      "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation"
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Machine Learning Engineer with a strong foundation in Python, scikit-learn, and PyTorch.",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.006377,
+          "entailment": 0.003863,
+          "neutral": 0.98976
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003863,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to train predictive models, build reproducible feature pipelines, and deploy solutions via REST APIs.",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.068814,
+          "entailment": 0.001726,
+          "neutral": 0.929461
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001726,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in collaborating with cross-functional teams to deliver reliable, maintainable technical solutions while maintaining clear documentation.",
+        "best_source_chunk": "approximately 102 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000737,
+          "entailment": 0.005199,
+          "neutral": 0.994063
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005199,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage expertise in model evaluation and feature engineering at Example Harbour Digital to drive evidence-based decision-making and operational efficiency.",
+        "best_source_chunk": "# Noah Lim noah.lim@example.test | +65 6000 0034 | Singapore ## Summary Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.00107,
+          "entailment": 0.041505,
+          "neutral": 0.957425
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.041505,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (fictional)",
+        "best_source_chunk": "# Noah Lim noah.lim@example.test | +65 6000 0034 | Singapore ## Summary Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.02331,
+          "entailment": 0.359066,
+          "neutral": 0.617623
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.359066,
+        "supported": false
+      },
+      {
+        "claim": "Model Training & Evaluation:** Train and evaluate predictive models using Python and scikit-learn, directly contributing to a 33% improvement in team turnaround times through data-driven insights.",
+        "best_source_chunk": "approximately 102 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001113,
+          "entailment": 0.000349,
+          "neutral": 0.998538
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000349,
+        "supported": false
+      },
+      {
+        "claim": "Pipeline Development:** Construct reproducible feature pipelines that ensure consistency and reliability for downstream applications.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 28%. ## Projects ### Machine Learning Engineer Practice Project - Built a fictional demonstration project using Python, machine learning and scikit-learn. - Tested",
+        "probabilities": {
+          "contradiction": 0.01001,
+          "entailment": 0.005161,
+          "neutral": 0.984829
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005161,
+        "supported": false
+      },
+      {
+        "claim": "API Deployment:** Collaborate with engineering peers to deploy trained models behind REST APIs, ensuring seamless integration with existing systems.",
+        "best_source_chunk": "# Noah Lim noah.lim@example.test | +65 6000 0034 | Singapore ## Summary Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.001346,
+          "entailment": 0.001633,
+          "neutral": 0.997021
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001633,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Collaboration:** Work closely with product and business stakeholders to translate operational needs into technical requirements;",
+        "best_source_chunk": "approximately 102 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.019815,
+          "entailment": 0.003549,
+          "neutral": 0.976636
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003549,
+        "supported": false
+      },
+      {
+        "claim": "present progress, risks, and technical trade-offs during fortnightly reviews.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, MLflow, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.035277,
+          "entailment": 0.002047,
+          "neutral": 0.962676
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002047,
+        "supported": false
+      },
+      {
+        "claim": "Quality & Documentation:** Maintain clear documentation of technical decisions and quality checks for team planning and audits;",
+        "best_source_chunk": "# Noah Lim noah.lim@example.test | +65 6000 0034 | Singapore ## Summary Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.001577,
+          "entailment": 0.003681,
+          "neutral": 0.994742
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003681,
+        "supported": false
+      },
+      {
+        "claim": "manage approximately 102 work items monthly with a focus on evidence-based problem solving.",
+        "best_source_chunk": "approximately 102 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000352,
+          "entailment": 0.001336,
+          "neutral": 0.998312
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001336,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (fictional)",
+        "best_source_chunk": "approximately 102 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.001492,
+          "entailment": 0.001642,
+          "neutral": 0.996866
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001642,
+        "supported": false
+      },
+      {
+        "claim": "Deep Learning Support:** Supported operational workflows using PyTorch, documenting step-by-step procedures to ensure reproducibility and knowledge transfer.",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.094282,
+          "entailment": 0.056525,
+          "neutral": 0.849193
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.056525,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating strong analytical skills in solving ambiguous problems.",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.863764,
+          "entailment": 0.008845,
+          "neutral": 0.127391
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.008845,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Designed and implemented a reporting template that reduced manual preparation time by 28%, showcasing the ability to deliver well-tested improvements.",
+        "best_source_chunk": "2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 28%. ## Projects ### Machine Learning Engineer Practice Project - Built a fictional demonstration project using Python, machine learning and scikit-learn. - Tested",
+        "probabilities": {
+          "contradiction": 0.246757,
+          "entailment": 0.11638,
+          "neutral": 0.636863
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.11638,
+        "supported": false
+      },
+      {
+        "claim": "Machine Learning Engineer Practice Project**",
+        "best_source_chunk": "# Noah Lim noah.lim@example.test | +65 6000 0034 | Singapore ## Summary Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.008711,
+          "entailment": 0.069274,
+          "neutral": 0.922015
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.069274,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project utilizing Python, machine learning, and scikit-learn to simulate real-world scenarios.",
+        "best_source_chunk": "# Noah Lim noah.lim@example.test | +65 6000 0034 | Singapore ## Summary Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used Python and machine learning to train and evaluate predictive models, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.002393,
+          "entailment": 0.008329,
+          "neutral": 0.989277
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008329,
+        "supported": false
+      },
+      {
+        "claim": "Conducted rigorous testing against representative cases to identify limitations and define next steps for model refinement.",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.002633,
+          "entailment": 0.000911,
+          "neutral": 0.996456
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000911,
+        "supported": false
+      },
+      {
+        "claim": "Presented design architecture and outcomes to a five-person peer review group, honing clear verbal communication skills.",
+        "best_source_chunk": "### Machine Learning Engineer Practice Project - Built a fictional demonstration project using Python, machine learning and scikit-learn. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May",
+        "probabilities": {
+          "contradiction": 0.002555,
+          "entailment": 0.001014,
+          "neutral": 0.99643
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001014,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (fictional)",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.800527,
+          "entailment": 0.073814,
+          "neutral": 0.125659
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.073814,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, MLflow, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 8.6e-05,
+          "entailment": 0.984129,
+          "neutral": 0.015785
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.984129,
+        "supported": true
+      },
+      {
+        "claim": "Machine Learning:** scikit-learn, PyTorch, Model Evaluation, Feature Engineering",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, machine learning, scikit-learn, PyTorch, MLflow, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.785193,
+          "entailment": 0.024221,
+          "neutral": 0.190586
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.024221,
+        "supported": false
+      },
+      {
+        "claim": "Deployment & Tools:** REST APIs, Docker, Git, MLflow (Preferred)",
+        "best_source_chunk": "approximately 102 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using PyTorch and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.265224,
+          "entailment": 0.003298,
+          "neutral": 0.731478
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003298,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation",
+        "best_source_chunk": "documentation, Git",
+        "probabilities": {
+          "contradiction": 0.02039,
+          "entailment": 0.037845,
+          "neutral": 0.941765
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.037845,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b59813fa19bbd550983ffebca8da11fff86fe9d5b770fcde10a62e16a9d867a7"
+  }
+}

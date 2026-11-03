@@ -1,0 +1,227 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 366,
+    "output_tokens": 216,
+    "thinking_chars": 0,
+    "seconds": 9.59,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 484,
+    "output_tokens": 355,
+    "thinking_chars": 0,
+    "seconds": 26.64,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1308,
+    "output_tokens": 556,
+    "thinking_chars": 0,
+    "seconds": 29.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2015,
+    "output_tokens": 596,
+    "thinking_chars": 0,
+    "seconds": 33.97,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2023,
+    "output_tokens": 562,
+    "thinking_chars": 0,
+    "seconds": 66.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2021,
+    "output_tokens": 561,
+    "thinking_chars": 0,
+    "seconds": 99.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "input_tokens": 3636,
+    "output_tokens": 624,
+    "thinking_chars": 0,
+    "seconds": 40.79,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2085,
+    "output_tokens": 642,
+    "thinking_chars": 0,
+    "seconds": 33.27,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2083,
+    "output_tokens": 567,
+    "thinking_chars": 0,
+    "seconds": 62.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2077,
+    "output_tokens": 630,
+    "thinking_chars": 0,
+    "seconds": 94.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "input_tokens": 3820,
+    "output_tokens": 621,
+    "thinking_chars": 0,
+    "seconds": 41.06,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2082,
+    "output_tokens": 633,
+    "thinking_chars": 0,
+    "seconds": 31.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2080,
+    "output_tokens": 458,
+    "thinking_chars": 0,
+    "seconds": 55.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2074,
+    "output_tokens": 544,
+    "thinking_chars": 0,
+    "seconds": 83.58,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Noah Ng",
+        "contact": {
+          "email": "noah.ng@example.test",
+          "phone": "+65 6000 0054",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in cloud security, IAM, and vulnerability management. Seeking to deepen capability as a Security Engineer by implementing preventive controls, automating checks, and hardening environments.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Implemented preventive security controls using cloud security and IAM, improving team turnaround efficiency.",
+              "Automated vulnerability and compliance checks to support technical and business reviews.",
+              "Collaborated with engineers on secure design and hardening cloud environments.",
+              "Communicated progress, risks, and technical trade-offs during fortnightly reviews to relevant stakeholders.",
+              "Maintained clear documentation for technical and business reviewers while managing approximately 92 work items monthly."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported secure operational workflows using Python and documented step-by-step procedures.",
+              "Investigated service requests and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Metropolitan University (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity, and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Security Engineer Practice Project",
+            "description": "Designed a demonstration project applying cloud security principles, IAM policies, and vulnerability management.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "cloud security",
+          "IAM",
+          "vulnerability management",
+          "Python",
+          "AWS",
+          "documentation",
+          "Git"
+        ],
+        "certifications": [
+          "AWS Certified Cloud Practitioner"
+        ]
+      }
+    },
+    "ok": true,
+    "seconds": 0.001,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.004,
+    "step": 16
+  }
+]

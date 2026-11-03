@@ -1,0 +1,389 @@
+{
+  "llm_calls": 1,
+  "input_tokens": 809,
+  "output_tokens": 614,
+  "thinking_chars": 0,
+  "seconds": 24.39,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 393,
+  "sim_before": 0.8009,
+  "sim_after": 0.812,
+  "sim_gain": 0.0111,
+  "kw_before": 0.625,
+  "kw_after": 0.875,
+  "kw_missing": [
+    "monitoring"
+  ],
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": true,
+  "task_success": false,
+  "task_failure_reasons": [
+    "faithfulness_below_threshold"
+  ],
+  "agent_steps": 1,
+  "expected_min_steps": 1,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 1.0,
+  "total_tokens": 1423,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 2406.43,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w1_single_pass",
+  "pair_id": "cd_resume_009__cd_jd_02",
+  "resume_id": "cd_resume_009",
+  "jd_id": "cd_jd_02",
+  "category": "cloud_devops",
+  "role_family": "devops_engineer",
+  "seniority": "mid",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "84c72812e449",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 24.5,
+  "resume_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_009__cd_jd_02/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_009__cd_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/84c72812e449/w1_single_pass/cd_resume_009__cd_jd_02/repeat_0/trace.json",
+  "native_output_path": null,
+  "resume_md": "# Inez Lee\ninez.lee@example.test | +65 6000 0069 | Singapore\n\n## Summary\nMid-level DevOps Engineer with transferable experience in CI/CD, container orchestration, and infrastructure automation. Proven ability to build reliable deployment pipelines and manage container platforms while maintaining clear documentation for technical and business stakeholders. Adept at collaborating across multidisciplinary teams to solve ambiguous problems, improve observability, and deliver well-tested improvements that enhance quality and reliability.\n\n## Experience\n\n**Technology Associate** | Example Delta Operations (Singapore)\n*Jul 2023 – Present*\n\n*   **CI/CD & Container Management:** Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 30%. Managed container platforms via Kubernetes to ensure consistent environments across development and production.\n*   **Infrastructure Automation:** Collaborated with engineering teams to automate infrastructure provisioning, reducing manual intervention and accelerating delivery cycles.\n*   **Stakeholder Communication & Documentation:** Maintained clear documentation of technical decisions for review by both technical leads and business stakeholders. Presented progress, risks, and trade-offs during fortnightly reviews to keep the team aligned on project status.\n*   **Operational Efficiency:** Managed approximately 107 work items per month, tracking quality checks and follow-up actions to ensure responsible delivery and safe shipping of code.\n\n**Technical Assistant** | Example Ember Technologies (Singapore)\n*Jan 2021 – Jun 2023*\n\n*   **Infrastructure as Code:** Supported recurring operational work using Terraform to provision and manage cloud resources, ensuring reproducible environments.\n*   **Problem Solving & Evidence-Based Decisions:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating the ability to solve ambiguous technical problems collaboratively.\n*   **Process Improvement:** Created a reporting template that reduced manual preparation time by 25%, contributing to more efficient team planning and reviews.\n\n## Projects\n\n**DevOps Engineer Practice Project** | Personal Initiative\n*   Designed and implemented a demonstration project utilizing CI/CD, Docker, and Kubernetes to simulate enterprise-grade deployment workflows.\n*   Conducted rigorous testing with representative scenarios to identify limitations and define next steps for scalability.\n*   Presented the architecture design and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.\n\n## Education\n\n**Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)\n*Aug 2020 – May 2024*\n*   Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.\n\n## Skills\n\n*   **Core Technologies:** CI/CD, Docker, Kubernetes, Terraform, Git, Linux, AWS.\n*   **Tools & Platforms:** Argo CD, Helm, Excel.\n*   **Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making, technical documentation.",
+  "original_resume": "# Inez Lee\n\ninez.lee@example.test | +65 6000 0069 | Singapore\n\n## Summary\n\nTechnology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer.\n\n## Experience\n\n### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present)\n\n- Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%.\n- Applied Kubernetes to manage container platforms and documented decisions for technical and business reviewers.\n- Managed approximately 107 work items per month while tracking quality checks and follow-up actions.\n- Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.\n\n### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023)\n\n- Supported recurring operational work using Terraform and documented step-by-step procedures.\n- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\n- Created a simple reporting template that reduced manual preparation time by 25%.\n\n## Projects\n\n### DevOps Engineer Practice Project\n\n- Built a fictional demonstration project using CI/CD, Docker and Kubernetes.\n- Tested the project with representative scenarios and recorded limitations and next steps.\n- Presented the design and outcomes to a five-person peer review group.\n\n## Education\n\n### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024)\n\n- Coursework included software engineering, databases, cybersecurity and applied analytics.\n\n## Skills\n\nCI/CD, Docker, Kubernetes, Terraform, Argo CD, Excel, documentation, Git\n",
+  "job_description": "# DevOps Engineer\n\n**Company:** Example Northstar Systems (fictional)  \n**Location:** Singapore  \n**Employment type:** Full-time  \n**Seniority:** Mid\n\n## About the role\n\nExample Northstar Systems is seeking a DevOps Engineer to join a multidisciplinary technology team. The successful\ncandidate will turn operational and customer needs into reliable, maintainable solutions. This role\nworks closely with engineering, product and business stakeholders, values clear documentation and\nexpects evidence-based decisions. The position offers ownership of meaningful work while maintaining\nappropriate review, security and quality controls.\n\n## Responsibilities\n\n- Build reliable deployment pipelines.\n- Manage container platforms.\n- Automate infrastructure provisioning.\n- Improve observability.\n- Help development teams ship safely.\n- Communicate progress, risks and technical trade-offs to relevant stakeholders.\n- Maintain clear documentation and contribute to team planning and reviews.\n\n## Required qualifications\n\n- CI/CD\n- Docker\n- Kubernetes\n- Terraform\n- AWS\n- Linux\n- Git\n- monitoring\n- Clear written and verbal communication\n- Ability to work collaboratively and solve ambiguous problems\n\n## Preferred qualifications\n\n- Argo CD\n- Helm\n- Python\n\n## What success looks like\n\nIn the first six months, the successful candidate will understand the existing environment, deliver\nwell-tested improvements and build trusted working relationships. Success is measured through\nquality, reliability, responsible delivery and useful outcomes rather than activity alone.\n",
+  "evaluation_failures": {},
+  "faithfulness": 0.087,
+  "unsupported": [
+    "Mid-level DevOps Engineer with transferable experience in CI/CD, container orchestration, and infrastructure automation.",
+    "Proven ability to build reliable deployment pipelines and manage container platforms while maintaining clear documentation for technical and business stakeholders.",
+    "Adept at collaborating across multidisciplinary teams to solve ambiguous problems, improve observability, and deliver well-tested improvements that enhance quality and reliability.",
+    "Technology Associate** | Example Delta Operations (Singapore)",
+    "Managed container platforms via Kubernetes to ensure consistent environments across development and production.",
+    "Infrastructure Automation:** Collaborated with engineering teams to automate infrastructure provisioning, reducing manual intervention and accelerating delivery cycles.",
+    "Stakeholder Communication & Documentation:** Maintained clear documentation of technical decisions for review by both technical leads and business stakeholders.",
+    "Presented progress, risks, and trade-offs during fortnightly reviews to keep the team aligned on project status.",
+    "Operational Efficiency:** Managed approximately 107 work items per month, tracking quality checks and follow-up actions to ensure responsible delivery and safe shipping of code.",
+    "Technical Assistant** | Example Ember Technologies (Singapore)",
+    "Infrastructure as Code:** Supported recurring operational work using Terraform to provision and manage cloud resources, ensuring reproducible environments.",
+    "Problem Solving & Evidence-Based Decisions:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating the ability to solve ambiguous technical problems collaboratively.",
+    "Process Improvement:** Created a reporting template that reduced manual preparation time by 25%, contributing to more efficient team planning and reviews.",
+    "DevOps Engineer Practice Project** | Personal Initiative",
+    "Designed and implemented a demonstration project utilizing CI/CD, Docker, and Kubernetes to simulate enterprise-grade deployment workflows.",
+    "Conducted rigorous testing with representative scenarios to identify limitations and define next steps for scalability.",
+    "Presented the architecture design and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+    "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+    "Core Technologies:** CI/CD, Docker, Kubernetes, Terraform, Git, Linux, AWS.",
+    "Tools & Platforms:** Argo CD, Helm, Excel.",
+    "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making, technical documentation."
+  ],
+  "n_claims": 23,
+  "claim_scores": [
+    {
+      "claim": "Mid-level DevOps Engineer with transferable experience in CI/CD, container orchestration, and infrastructure automation.",
+      "best_source_chunk": "# Inez Lee inez.lee@example.test | +65 6000 0069 | Singapore ## Summary Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied",
+      "probabilities": {
+        "contradiction": 0.001869,
+        "entailment": 0.032777,
+        "neutral": 0.965355
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.032777,
+      "supported": false
+    },
+    {
+      "claim": "Proven ability to build reliable deployment pipelines and manage container platforms while maintaining clear documentation for technical and business stakeholders.",
+      "best_source_chunk": "using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### DevOps Engineer Practice Project - Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations",
+      "probabilities": {
+        "contradiction": 0.000479,
+        "entailment": 0.001862,
+        "neutral": 0.997659
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001862,
+      "supported": false
+    },
+    {
+      "claim": "Adept at collaborating across multidisciplinary teams to solve ambiguous problems, improve observability, and deliver well-tested improvements that enhance quality and reliability.",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.065332,
+        "entailment": 0.037934,
+        "neutral": 0.896734
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.037934,
+      "supported": false
+    },
+    {
+      "claim": "Technology Associate** | Example Delta Operations (Singapore)",
+      "best_source_chunk": "# Inez Lee inez.lee@example.test | +65 6000 0069 | Singapore ## Summary Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied",
+      "probabilities": {
+        "contradiction": 0.012943,
+        "entailment": 0.182833,
+        "neutral": 0.804224
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.182833,
+      "supported": false
+    },
+    {
+      "claim": "CI/CD & Container Management:** Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 30%.",
+      "best_source_chunk": "# Inez Lee inez.lee@example.test | +65 6000 0069 | Singapore ## Summary Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied",
+      "probabilities": {
+        "contradiction": 0.000224,
+        "entailment": 0.992628,
+        "neutral": 0.007147
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.992628,
+      "supported": true
+    },
+    {
+      "claim": "Managed container platforms via Kubernetes to ensure consistent environments across development and production.",
+      "best_source_chunk": "# Inez Lee inez.lee@example.test | +65 6000 0069 | Singapore ## Summary Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied",
+      "probabilities": {
+        "contradiction": 0.000127,
+        "entailment": 0.011072,
+        "neutral": 0.988801
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.011072,
+      "supported": false
+    },
+    {
+      "claim": "Infrastructure Automation:** Collaborated with engineering teams to automate infrastructure provisioning, reducing manual intervention and accelerating delivery cycles.",
+      "best_source_chunk": "using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### DevOps Engineer Practice Project - Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations",
+      "probabilities": {
+        "contradiction": 0.059375,
+        "entailment": 0.067084,
+        "neutral": 0.873541
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.067084,
+      "supported": false
+    },
+    {
+      "claim": "Stakeholder Communication & Documentation:** Maintained clear documentation of technical decisions for review by both technical leads and business stakeholders.",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.000984,
+        "entailment": 0.001338,
+        "neutral": 0.997677
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001338,
+      "supported": false
+    },
+    {
+      "claim": "Presented progress, risks, and trade-offs during fortnightly reviews to keep the team aligned on project status.",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.000674,
+        "entailment": 0.001188,
+        "neutral": 0.998138
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001188,
+      "supported": false
+    },
+    {
+      "claim": "Operational Efficiency:** Managed approximately 107 work items per month, tracking quality checks and follow-up actions to ensure responsible delivery and safe shipping of code.",
+      "best_source_chunk": "2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied Kubernetes to manage container platforms and documented decisions for technical and business reviewers. - Managed approximately 107 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress",
+      "probabilities": {
+        "contradiction": 0.00393,
+        "entailment": 0.000624,
+        "neutral": 0.995445
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000624,
+      "supported": false
+    },
+    {
+      "claim": "Technical Assistant** | Example Ember Technologies (Singapore)",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.013985,
+        "entailment": 0.00212,
+        "neutral": 0.983895
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00212,
+      "supported": false
+    },
+    {
+      "claim": "Infrastructure as Code:** Supported recurring operational work using Terraform to provision and manage cloud resources, ensuring reproducible environments.",
+      "best_source_chunk": "Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, Argo CD, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.002596,
+        "entailment": 0.002471,
+        "neutral": 0.994932
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.002471,
+      "supported": false
+    },
+    {
+      "claim": "Problem Solving & Evidence-Based Decisions:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating the ability to solve ambiguous technical problems collaboratively.",
+      "best_source_chunk": "Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, Argo CD, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.022063,
+        "entailment": 0.006617,
+        "neutral": 0.971321
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.006617,
+      "supported": false
+    },
+    {
+      "claim": "Process Improvement:** Created a reporting template that reduced manual preparation time by 25%, contributing to more efficient team planning and reviews.",
+      "best_source_chunk": "using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### DevOps Engineer Practice Project - Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations",
+      "probabilities": {
+        "contradiction": 0.005913,
+        "entailment": 0.006593,
+        "neutral": 0.987494
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.006593,
+      "supported": false
+    },
+    {
+      "claim": "DevOps Engineer Practice Project** | Personal Initiative",
+      "best_source_chunk": "# Inez Lee inez.lee@example.test | +65 6000 0069 | Singapore ## Summary Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied",
+      "probabilities": {
+        "contradiction": 0.007558,
+        "entailment": 0.00939,
+        "neutral": 0.983052
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00939,
+      "supported": false
+    },
+    {
+      "claim": "Designed and implemented a demonstration project utilizing CI/CD, Docker, and Kubernetes to simulate enterprise-grade deployment workflows.",
+      "best_source_chunk": "# Inez Lee inez.lee@example.test | +65 6000 0069 | Singapore ## Summary Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 30%. - Applied",
+      "probabilities": {
+        "contradiction": 0.000269,
+        "entailment": 0.00733,
+        "neutral": 0.992401
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.00733,
+      "supported": false
+    },
+    {
+      "claim": "Conducted rigorous testing with representative scenarios to identify limitations and define next steps for scalability.",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.001109,
+        "entailment": 0.001382,
+        "neutral": 0.997509
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001382,
+      "supported": false
+    },
+    {
+      "claim": "Presented the architecture design and outcomes to a five-person peer review group, refining technical approaches based on constructive feedback.",
+      "best_source_chunk": "Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases,",
+      "probabilities": {
+        "contradiction": 0.00268,
+        "entailment": 0.001977,
+        "neutral": 0.995344
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001977,
+      "supported": false
+    },
+    {
+      "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.04529,
+        "entailment": 0.001857,
+        "neutral": 0.952853
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.001857,
+      "supported": false
+    },
+    {
+      "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+      "best_source_chunk": "Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, Argo CD, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.000253,
+        "entailment": 0.987225,
+        "neutral": 0.012522
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.987225,
+      "supported": true
+    },
+    {
+      "claim": "Core Technologies:** CI/CD, Docker, Kubernetes, Terraform, Git, Linux, AWS.",
+      "best_source_chunk": "using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 25%. ## Projects ### DevOps Engineer Practice Project - Built a fictional demonstration project using CI/CD, Docker and Kubernetes. - Tested the project with representative scenarios and recorded limitations",
+      "probabilities": {
+        "contradiction": 0.00337,
+        "entailment": 0.004513,
+        "neutral": 0.992117
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.004513,
+      "supported": false
+    },
+    {
+      "claim": "Tools & Platforms:** Argo CD, Helm, Excel.",
+      "best_source_chunk": "Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills CI/CD, Docker, Kubernetes, Terraform, Argo CD, Excel, documentation, Git",
+      "probabilities": {
+        "contradiction": 0.022634,
+        "entailment": 0.446072,
+        "neutral": 0.531294
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.446072,
+      "supported": false
+    },
+    {
+      "claim": "Soft Skills:** Clear written and verbal communication, collaborative problem-solving, evidence-based decision-making, technical documentation.",
+      "best_source_chunk": "month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Terraform and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. -",
+      "probabilities": {
+        "contradiction": 0.007484,
+        "entailment": 0.051996,
+        "neutral": 0.94052
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.051996,
+      "supported": false
+    }
+  ],
+  "nli_evaluator_version": "claim-nli-v2",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "0617f21fd3b197a7092014f62b8a9df0729ad0b0521beca76ea4ecec1bf07aba",
+  "nli_seconds": 1.3235,
+  "evaluator_hash": "330f36304073e03b"
+}

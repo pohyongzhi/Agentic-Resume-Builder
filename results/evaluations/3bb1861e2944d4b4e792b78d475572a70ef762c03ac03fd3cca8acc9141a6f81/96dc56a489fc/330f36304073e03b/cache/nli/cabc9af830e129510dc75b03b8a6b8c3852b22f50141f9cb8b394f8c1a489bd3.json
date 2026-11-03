@@ -1,0 +1,362 @@
+{
+  "identity": {
+    "source_hash": "7439b72f0f3a313bfcb27af0fe8643ea8ef3f2c8fd4781c76ba6fdfb8699c5ba",
+    "tailored_hash": "7ea3e14b732f5cf75df12013cd05332169156a21a9b6b02428a1d4517235c475",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0833,
+    "unsupported": [
+      "Operations support professional transitioning into Frontend Engineering with a strong foundation in JavaScript, TypeScript, and stakeholder coordination.",
+      "Proven ability to translate operational needs into reliable solutions through clear documentation and evidence-based decision-making.",
+      "Experienced in building accessible user interfaces, integrating frontend features with REST APIs, and managing complex workloads while maintaining high quality standards.",
+      "Committed to collaborative problem-solving and delivering well-tested improvements within multidisciplinary teams.",
+      "Operations Support Coordinator",
+      "Example Ember Technologies (fictional)** | Jan 2025 \u2013 Present",
+      "Frontend Development:** Utilized JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+      "API Integration:** Collaborated with engineering colleagues to integrate frontend features with REST APIs, ensuring seamless data flow.",
+      "Stakeholder Communication:** Presented project progress, risks, and technical trade-offs during fortnightly reviews to diverse stakeholders.",
+      "Documentation & Quality:** Maintained clear documentation for technical and business reviewers;",
+      "tracked quality checks across 85 monthly work items.",
+      "Design Translation:** Applied design principles to create reusable components, bridging the gap between visual requirements and functional code.",
+      "Example Atlas Solutions (fictional)** | May 2024 \u2013 Dec 2024",
+      "Process Optimization:** Created a reporting template that reduced manual preparation time by 11%, demonstrating ability to deliver well-tested improvements.",
+      "Troubleshooting:** Investigated service requests and escalated issues with clear supporting evidence, fostering trust through responsible delivery.",
+      "Collaboration:** Worked collaboratively to document step-by-step procedures, ensuring maintainable solutions for recurring operational tasks.",
+      "Frontend Engineer Practice Project",
+      "Implemented automated testing scenarios to validate functionality and record limitations.",
+      "Presented design decisions and outcomes to a five-person peer review group, showcasing clear written and verbal communication skills.",
+      "Bachelor of Science in Information Systems**",
+      "Example Institute of Technology (fictional) | Aug 2020 \u2013 May 2024",
+      "JavaScript, TypeScript, HTML, CSS, REST APIs, Git, Documentation, Stakeholder Communication, Problem Solving"
+    ],
+    "n_claims": 24,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional transitioning into Frontend Engineering with a strong foundation in JavaScript, TypeScript, and stakeholder coordination.",
+        "best_source_chunk": "# Elena Tan elena.tan@example.test | +65 6000 0005 | Singapore ## Summary Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%. - Applied Excel",
+        "probabilities": {
+          "contradiction": 0.02578,
+          "entailment": 0.030448,
+          "neutral": 0.943772
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.030448,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to translate operational needs into reliable solutions through clear documentation and evidence-based decision-making.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.004908,
+          "entailment": 0.002797,
+          "neutral": 0.992295
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002797,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in building accessible user interfaces, integrating frontend features with REST APIs, and managing complex workloads while maintaining high quality standards.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000394,
+          "entailment": 0.006323,
+          "neutral": 0.993283
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006323,
+        "supported": false
+      },
+      {
+        "claim": "Committed to collaborative problem-solving and delivering well-tested improvements within multidisciplinary teams.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000713,
+          "entailment": 0.005,
+          "neutral": 0.994287
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.902942,
+          "entailment": 0.004313,
+          "neutral": 0.092745
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.004313,
+        "supported": false
+      },
+      {
+        "claim": "Example Ember Technologies (fictional)** | Jan 2025 \u2013 Present",
+        "best_source_chunk": "- Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%. - Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers. - Managed approximately 85 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST",
+        "probabilities": {
+          "contradiction": 0.067537,
+          "entailment": 0.000558,
+          "neutral": 0.931905
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000558,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Development:** Utilized JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+        "best_source_chunk": "# Elena Tan elena.tan@example.test | +65 6000 0005 | Singapore ## Summary Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%. - Applied Excel",
+        "probabilities": {
+          "contradiction": 0.887121,
+          "entailment": 0.088095,
+          "neutral": 0.024784
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.088095,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Collaborated with engineering colleagues to integrate frontend features with REST APIs, ensuring seamless data flow.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.003275,
+          "entailment": 0.002084,
+          "neutral": 0.994641
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002084,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented project progress, risks, and technical trade-offs during fortnightly reviews to diverse stakeholders.",
+        "best_source_chunk": "- Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%. - Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers. - Managed approximately 85 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST",
+        "probabilities": {
+          "contradiction": 0.698037,
+          "entailment": 0.000417,
+          "neutral": 0.301546
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.000417,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Quality:** Maintained clear documentation for technical and business reviewers;",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000322,
+          "entailment": 0.005261,
+          "neutral": 0.994417
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005261,
+        "supported": false
+      },
+      {
+        "claim": "tracked quality checks across 85 monthly work items.",
+        "best_source_chunk": "- Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%. - Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers. - Managed approximately 85 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST",
+        "probabilities": {
+          "contradiction": 0.0116,
+          "entailment": 0.00102,
+          "neutral": 0.987381
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00102,
+        "supported": false
+      },
+      {
+        "claim": "Design Translation:** Applied design principles to create reusable components, bridging the gap between visual requirements and functional code.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.322394,
+          "entailment": 0.008056,
+          "neutral": 0.66955
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008056,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions (fictional)** | May 2024 \u2013 Dec 2024",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.005326,
+          "entailment": 0.002653,
+          "neutral": 0.992021
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002653,
+        "supported": false
+      },
+      {
+        "claim": "Process Optimization:** Created a reporting template that reduced manual preparation time by 11%, demonstrating ability to deliver well-tested improvements.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.026575,
+          "entailment": 0.002411,
+          "neutral": 0.971014
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002411,
+        "supported": false
+      },
+      {
+        "claim": "Troubleshooting:** Investigated service requests and escalated issues with clear supporting evidence, fostering trust through responsible delivery.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.013101,
+          "entailment": 0.005248,
+          "neutral": 0.981651
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005248,
+        "supported": false
+      },
+      {
+        "claim": "Collaboration:** Worked collaboratively to document step-by-step procedures, ensuring maintainable solutions for recurring operational tasks.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000703,
+          "entailment": 0.032195,
+          "neutral": 0.967101
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.032195,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Engineer Practice Project",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.370389,
+          "entailment": 0.024733,
+          "neutral": 0.604878
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024733,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration application using JavaScript and TypeScript.",
+        "best_source_chunk": "Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 11%. ## Projects ### Frontend Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and Excel. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.000796,
+          "entailment": 0.985736,
+          "neutral": 0.013469
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.985736,
+        "supported": true
+      },
+      {
+        "claim": "Implemented automated testing scenarios to validate functionality and record limitations.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.028927,
+          "entailment": 0.004522,
+          "neutral": 0.966551
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004522,
+        "supported": false
+      },
+      {
+        "claim": "Presented design decisions and outcomes to a five-person peer review group, showcasing clear written and verbal communication skills.",
+        "best_source_chunk": "Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework",
+        "probabilities": {
+          "contradiction": 0.000767,
+          "entailment": 0.001571,
+          "neutral": 0.997662
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001571,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems**",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using documentation and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.012672,
+          "entailment": 0.002701,
+          "neutral": 0.984627
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002701,
+        "supported": false
+      },
+      {
+        "claim": "Example Institute of Technology (fictional) | Aug 2020 \u2013 May 2024",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.003099,
+          "entailment": 0.000819,
+          "neutral": 0.996083
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000819,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 9.6e-05,
+          "entailment": 0.986532,
+          "neutral": 0.013372
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.986532,
+        "supported": true
+      },
+      {
+        "claim": "JavaScript, TypeScript, HTML, CSS, REST APIs, Git, Documentation, Stakeholder Communication, Problem Solving",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, Excel, documentation, stakeholder communication",
+        "probabilities": {
+          "contradiction": 0.002846,
+          "entailment": 0.005223,
+          "neutral": 0.991931
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005223,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "cabc9af830e129510dc75b03b8a6b8c3852b22f50141f9cb8b394f8c1a489bd3"
+  }
+}

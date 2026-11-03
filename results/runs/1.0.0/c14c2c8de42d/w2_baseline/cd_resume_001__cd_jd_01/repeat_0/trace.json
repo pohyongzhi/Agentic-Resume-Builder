@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 366,
+    "output_tokens": 218,
+    "thinking_chars": 0,
+    "seconds": 10.73,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 491,
+    "output_tokens": 545,
+    "thinking_chars": 0,
+    "seconds": 36.03,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1444,
+    "output_tokens": 505,
+    "thinking_chars": 0,
+    "seconds": 26.35,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Aisha Lee\",\n  \"contact\": {\n    \"email\": \"aisha.lee@example.test\",\n    \"phone\": \"+65 6000 0061\",\n    \"location\": \"Singapore\"\n  },\n  \"summary\": \"Junior Cloud Engineer with hands-on experience in AWS, Linux, and networking. Proven ability to deliver documented, measurable improvements while collaborating with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Junior Cloud Engineer\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Supported cloud infrastructure operations using AWS and Linux, improving team turnaround by 36%.\",\n        \"Troubleshooted Linux and network issues while documenting decisions for technical and business reviewers.\",\n        \"Maintained monitoring dashboards in collaboration with four colleagues and presented progress during fortnightly reviews.\",\n        \"Managed approximately 93 work items per month, tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using Bash and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"AWS\",\n    \"Linux\",\n    \"networking\",\n    \"Bash\",\n    \"Docker\",\n    \"monitoring\",\n    \"Git\",\n    \"infrastructure support\",\n    \"Terraform\",\n    \"Python\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.002,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.004,
+    "step": 5
+  }
+]

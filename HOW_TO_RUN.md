@@ -1,132 +1,290 @@
-# How to Run - Agentic Resume Builder
-
-This project uses local LLMs via Ollama to tailor resumes to job descriptions. It includes a baseline approach and multiple agentic workflows.
+# How to Run
 
 ## Prerequisites
 
-### 1. Install Ollama
-Download and install Ollama from [https://ollama.ai](https://ollama.ai)
+Install [Ollama](https://ollama.com/download), then:
 
-### 2. Pull Required Models
 ```bash
-# Writer model (used by all workflows)
 ollama pull qwen3.5:4b-q4_K_M
-
-# Embedding model (for similarity calculations)
 ollama pull nomic-embed-text
-```
 
-### 3. Install Python Dependencies
-```bash
+python -m venv venv
+source venv/bin/activate                 # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## Running the Application
+Model routing is explicit in `config.py`: `BASE_MODEL` is shared by W1, W2, W3, W4 and W6;
+`FINE_TUNED_MODEL` is used only by W5.
 
-### Option 1: Web Interface (Recommended for Quick Testing)
-Launch the Gradio web interface:
+## Install the W5 fine-tuned model
+
+Only W5 needs the public fine-tuned GGUF. No Hugging Face account is required. Keep the downloaded
+model outside this repository:
+
+```bash
+mkdir -p "$HOME/agentic-resume-models/v4-1"
+cd "$HOME/agentic-resume-models/v4-1"
+curl -L -C - -o agentic-resume-v4-1-no-nextn-q4_K_M.gguf \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/agentic-resume-v4-1-no-nextn-q4_K_M.gguf
+curl -L -o Modelfile \
+  https://huggingface.co/echokes/agentic-resume-finetuned-v1-GGUF/resolve/main/Modelfile
+ollama create agentic-resume-v4-1:q4_K_M -f Modelfile
+ollama show agentic-resume-v4-1:q4_K_M
+```
+
+Return to the repository before running the application. The base model remains the default; only
+`w5_fine_tuned` explicitly selects this tag.
+
+## Verify the installation
+
+```bash
+python smoke_test.py
+pytest -q
+```
+
+`smoke_test.py` checks ordinary and structured model output. The pytest suite uses fake model
+responses, so it does not require Ollama.
+
+## Web interface
+
 ```bash
 python app.py
 ```
 
-Then open your browser to: **http://127.0.0.1:7860**
+Open http://127.0.0.1:7860 and:
 
-**Usage:**
-1. Upload your resume (.pdf, .docx, .txt, or .md)
-2. Paste the job description
-3. Optionally add comma-separated keywords to track (e.g., "SQL, Power BI, Python")
-4. Click "Tailor my resume"
-5. Download the tailored resume as Markdown
+1. upload a text-based `.pdf`, `.docx`, `.txt` or `.md` resume;
+2. enter a job URL or paste the full job description;
+3. click **Generate**;
+4. preview and download the validated Markdown result.
 
-### Option 2: Command Line (Baseline)
-Tailor a resume directly from the terminal:
+Pasted text takes precedence over the URL. If the website blocks retrieval, the app asks for pasted
+text. Scanned PDFs are rejected clearly because OCR is outside the baseline scope.
+
+Generated files are placed in `results/outputs/`. The harness refuses paths outside that directory,
+existing output files and the original resume.
+
+## W4: Evidence-grounded generation
+
+W4 ensures every claim in the generated resume cites source spans from the original resume and is
+verified for factual accuracy:
+
 ```bash
-python baseline_tailor.py --resume my_resume.pdf --jd job.txt
+python -c "from workflows.w4_evidence import generate; from common.llm import Tracker; \
+    state = generate(Tracker(), 'fixtures/alex-markdown.md', \
+    pasted_jd='Data Analyst role. Need SQL, Python and Excel.'); \
+    print(state['resume_md']); print('Kept:', state['w4_stats']['kept'], \
+    'Dropped:', state['w4_stats']['dropped'])"
 ```
 
-With custom output file:
+Each claim must:
+- Include project descriptions as cited claims, as well as summary sentences and bullets
+- Cite 1-3 source spans from the original resume
+- Only reference spans from the same resume section (for experience/education/projects)
+- Pass deterministic rule checks (no new numbers, skills, or inflation)
+- Pass LLM verification (claim is entailed by cited text)
+
+The workflow attempts up to 2 revision rounds. Unsupported claims are dropped from the final
+resume. The evidence report shows which claims were kept/dropped and why.
+
+In the web interface, select "W4 - Evidence-grounded" to see the evidence report with citation
+details for every claim.
+
+## Single-pass control
+
+The old one-prompt implementation is kept as V0:
+
 ```bash
+python baseline_tailor.py --resume my_resume.pdf --jd job.txt
 python baseline_tailor.py --resume my_resume.docx --jd job.txt --out tailored.md
 ```
 
-## Running Evaluations
+This does not use the parser agents or harness. Use it only as the control.
 
-### Full Evaluation Suite
-Run all workflows on all test pairs with 2 repeats each:
+## Batch evaluation
+
+The checked-in synthetic evaluation set contains 100 Markdown resumes paired with 20 Markdown JDs.
+Validate it before a run:
+
 ```bash
-python run_all.py
+python scripts/validate_dataset.py
 ```
 
-### Quick Test
-Run on first 2 pairs with 1 repeat:
+To reproduce the exact files from the versioned specification:
+
 ```bash
-python run_all.py --limit 2 --repeats 1
+python scripts/generate_dataset.py --force
+python scripts/validate_dataset.py
 ```
 
-### Run Specific Workflow
+Run all registered workflows on all pairs:
+
 ```bash
-python run_all.py --workflows baseline
+python run_all.py --split test --repeats 1
 ```
 
-### Skip Faithfulness Check (Faster)
+Useful smaller runs:
+
 ```bash
-python run_all.py --skip-faithfulness
+python run_all.py --limit 1 --repeats 1
+python run_all.py --workflows w1_single_pass w2_baseline --limit 1 --repeats 1
+python run_all.py --categories cybersecurity data_ai --repeats 1
+python run_all.py --workflows w2_baseline --skip-faithfulness
+python run_all.py --workflows w5_fine_tuned --limit 1 --repeats 1
 ```
 
-**Note:** Results are saved to `results/results.jsonl`. The script is safe to stop and restart - completed runs are automatically skipped.
+### W6 Best-of-N
 
-## Configuration
+Start with one frozen test pair:
 
-Edit `config.py` to change:
-- **MODEL**: The writer model (default: qwen3.5:4b-q4_K_M)
-- **EMBED_MODEL**: Embedding model (default: nomic-embed-text)
-- **TEMPERATURE**: Generation randomness (default: 0.0 for consistency)
-- **NUM_CTX**: Context window size (default: 16384)
-- **MAX_STEPS**: Agent step budget (default: 8)
-
-## Project Structure
-
-```
-.
-├── app.py                      # Gradio web interface
-├── baseline_tailor.py          # Simple CLI tailor (no agents)
-├── run_all.py                  # Evaluation runner
-├── config.py                   # Shared configuration
-├── requirements.txt            # Python dependencies
-├── common/                     # Shared utilities (LLM, data, prompts)
-├── workflows/                  # Different agentic approaches (W1-W5)
-├── eval/                       # Metrics and evaluation code
-├── data/                       # Test pairs (resume + JD + keywords)
-└── results/                    # Evaluation outputs
+```bash
+python run_all.py --workflows w6_best_of_n --split test --limit 1 --repeats 1
 ```
 
-## Troubleshooting
+Run all 100 pairs once:
 
-### "Model not found" error
-Make sure you've pulled the models:
+```bash
+python run_all.py --workflows w6_best_of_n --split test --repeats 1
+```
+
+W6 generates three strategy drafts by default and normally makes at least five model calls per
+pair. Change `W6_NUM_CANDIDATES` in `config.py` to select 1–6 strategies. Candidate scores and the
+selected strategy are stored in `workflow_details`; full artifacts are stored under
+`results/runs/<dataset_version>/<config_hash>/w6_best_of_n/`.
+
+Create the ordinary summaries with `python summarise.py`. For the complete shared offline
+evaluation, including the independent rubric judge, run:
+
+```bash
+python evaluate.py all --workflows w6_best_of_n --judge-model gemma4:e4b --resume
+```
+
+The evaluator uses the saved JD files in `data/jds/`, not live pages. Results append to
+`results/results.jsonl`. A run is skipped only if its workflow, input pair, repeat, model and
+configuration/prompt hash and frozen dataset hash already exist. Canonical outputs are stored under
+`results/runs/<dataset_version>/<config_hash>/<workflow>/<pair_id>/repeat_<n>/`.
+
+Create the summary:
+
+```bash
+python summarise.py
+```
+
+The backwards-compatible summary is written to `results/summary.csv`. Detailed summaries are in
+`results/summaries/overall.csv`, `by_category.csv` and `by_fit_level.csv`. Failed runs remain in
+`success_%`; metric averages use successful outputs only.
+
+## Operational evaluation
+
+Task success, tool accuracy, step efficiency, token cost and latency are recorded during each run.
+To apply changed evaluator thresholds to existing outputs without calling the writer model again:
+
+```bash
+python evaluate_results.py
+python summarise.py --results-file results/evaluated_results.jsonl
+```
+
+Task success requires completion, all required resume sections, 200–650 words and faithfulness at or
+above `TASK_FAITHFULNESS_THRESHOLD`. If faithfulness was skipped, task success remains unscored
+rather than being treated as a pass.
+
+Run the robustness benchmark on a small shared subset:
+
+```bash
+python run_robustness.py --limit 20
+```
+
+For a faster smoke test, add `--skip-faithfulness`. The runner tests the original pair, formatting
+changes and reordered sections, then writes `results/summaries/robustness.csv`.
+
+## Complete reusable evaluation
+
+To evaluate the 100 existing W1 outputs without regenerating them:
+
+```bash
+python evaluate.py all \
+  --workflows w1_single_pass \
+  --judge-model gemma4:e4b \
+  --resume
+```
+
+Before the full run, use:
+
+```bash
+python evaluate.py all --workflows w1_single_pass --judge-model gemma4:e4b --pilot
+```
+
+The command validates the frozen dataset and saved-run compatibility, runs the NLI preflight,
+scores missing faithfulness, applies the workflow-neutral rubric judge, creates only missing
+formatting/section-order variants for the fixed stratified 20-pair sample, and writes reports and
+blank human-review forms. Existing `results/results.jsonl` and `results/runs/` files are not changed.
+
+Useful controls are `--limit N`, `--robustness-limit N`, `--force`, and
+`--skip-faithfulness`, `--skip-judge`, `--skip-robustness`, `--skip-reports` or
+`--skip-human-review`. Compatible stage caches are reused automatically; `--resume` documents that
+intent. Results live under:
+
+```text
+results/evaluations/<dataset_hash>/<generation_scope>/<evaluator_hash>/
+```
+
+The exact installed judge tag must exist. No model is pulled or substituted. `gemma4:e4b` reports
+8.0B parameters with Q4_K_M quantization. Judge scores, NLI faithfulness, keyword coverage, JD
+similarity and operational metrics remain separate.
+
+## Main configuration
+
+Edit `config.py` before freezing the experiment:
+
+- `BASE_MODEL`, `FINE_TUNED_MODEL`, `EMBED_MODEL`: Ollama models and explicit workflow route;
+- `TEMPERATURE`, `SEED`, `NUM_CTX`, `THINK`: generation settings;
+- `MAX_STEPS`: ReAct model-step budget;
+- `W6_NUM_CANDIDATES`: number of W6 strategy drafts (1–6);
+- `MAX_TOOL_CALLS`: creator harness budget;
+- `OUTPUT_DIR`: only permitted render directory;
+- `PDF_MIN_CHARS_PER_PAGE`: scanned-PDF threshold;
+- `JD_MIN_CHARS`, `FETCH_TIMEOUT`: page retrieval thresholds.
+- `TASK_FAITHFULNESS_THRESHOLD`, `TASK_MIN_WORDS`, `TASK_MAX_WORDS`: task-success gates.
+- `JUDGE_*`: independent rubric judge model and deterministic settings;
+- `NLI_*`: faithfulness model, version and chunking settings;
+- `ROBUSTNESS_SEED`, `REPORT_BOOTSTRAP_*`: fixed sampling and confidence-interval settings.
+
+Changing the configuration or shared prompts changes the experiment hash, so old rows are not
+silently reused.
+
+## Common failures
+
+**Model not found**
+
 ```bash
 ollama pull qwen3.5:4b-q4_K_M
-ollama pull nomic-embed-text
 ```
 
-### "Connection refused" error
-Ensure Ollama is running:
+**Ollama connection refused**
+
 ```bash
 ollama serve
 ```
 
-### PDF/DOCX reading issues
-If you get errors reading files, make sure pypdf and python-docx are installed:
-```bash
-pip install pypdf python-docx
-```
+**`SCANNED_PDF`**
 
-### First run is slow
-The first model call takes longer as Ollama loads the model into memory. Subsequent calls are much faster.
+Upload a resume with a text layer, or export it as DOCX/TXT. OCR is deliberately not part of this
+baseline.
 
-## Next Steps
+**`JD_FETCH_FAILED`**
 
-- Compare different workflows by running `python run_all.py`
-- Analyze results with the summarization scripts in the project
-- Experiment with different models by editing `config.py`
-- Test with your own resume and job descriptions using the web interface
+Paste the JD. LinkedIn and other sites often require login or client-side JavaScript.
+
+**`TOOL_BUDGET_EXCEEDED`**
+
+The creator did not produce a draft that passed validation within `MAX_TOOL_CALLS`. Inspect the
+tool trace in `results/results.jsonl`; do not simply remove validation.
+
+**Dataset validation failed**
+
+Do not run the experiment until every missing file, duplicate ID, invalid fit label, split leak or
+dataset-hash mismatch reported by `scripts/validate_dataset.py` is resolved.
+
+On Windows, first pull the latest `main`; dataset hashing uses portable `/` path keys and normalized
+line endings. If a mismatch remains, run `git status --short -- data` and review local dataset
+changes. Do not regenerate or replace the frozen dataset merely to make its hash pass.

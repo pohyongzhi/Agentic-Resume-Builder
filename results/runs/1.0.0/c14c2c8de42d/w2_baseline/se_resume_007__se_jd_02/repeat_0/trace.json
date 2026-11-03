@@ -1,0 +1,47 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 364,
+    "output_tokens": 213,
+    "thinking_chars": 0,
+    "seconds": 7.7,
+    "asked_tools": [],
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 484,
+    "output_tokens": 534,
+    "thinking_chars": 0,
+    "seconds": 27.28,
+    "asked_tools": [],
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1421,
+    "output_tokens": 479,
+    "thinking_chars": 0,
+    "seconds": 20.07,
+    "asked_tools": [],
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Grace Tan\",\n  \"contact\": {\n    \"email\": \"grace.tan@example.test\",\n    \"phone\": \"+65 6000 0007\",\n    \"location\": \"Singapore\"\n  },\n  \"summary\": \"Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Backend Engineer\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Designed reliable backend services using Java and Spring Boot, improving team turnaround by 30%.\",\n        \"Built and documented REST APIs while managing approximately 21 work items per month with rigorous quality checks.\",\n        \"Optimised database queries in collaboration with four colleagues, presenting technical trade-offs during fortnightly reviews.\",\n        \"Operated containerised services using Docker and maintained clear documentation for stakeholders.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using PostgreSQL and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\"\n    }\n  ],\n  \"skills\": [\n    \"Java\",\n    \"Spring Boot\",\n    \"REST APIs\",\n    \"PostgreSQL\",\n    \"microservices\",\n    \"Docker\",\n    \"Git\",\n    \"unit testing\",\n    \"Kafka\",\n    \"Redis\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.001,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.004,
+    "step": 5
+  }
+]

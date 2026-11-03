@@ -1,0 +1,400 @@
+{
+  "identity": {
+    "source_hash": "9ebb60ebb8f94185805236f4be28d6b612bf13ae1edcc717b47f51af91319f10",
+    "tailored_hash": "d675735799af2ccd5da224377432c5928d5049e9526ce049dffdcb405e4667a3",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1111,
+    "unsupported": [
+      "Security Engineer with hands-on experience in cloud security, IAM, and vulnerability management.",
+      "Proven ability to turn operational needs into reliable, maintainable solutions by implementing preventive controls and automating compliance checks.",
+      "Adept at partnering with engineering teams on secure design while communicating technical trade-offs and risks clearly to stakeholders.",
+      "Committed to evidence-based decision-making, clear documentation, and delivering high-quality outcomes through collaborative problem-solving.",
+      "Example Beacon Services (fictional)** | *Jul 2023 \u2013 Present*",
+      "Preventive Controls & Automation:** Implemented preventive security controls using cloud security and IAM frameworks, improving team turnaround by 35%.",
+      "Automated vulnerability and compliance checks to ensure continuous monitoring and rapid remediation.",
+      "Cloud Hardening:** Collaborated with engineering colleagues to harden cloud environments, ensuring alignment with security standards and operational requirements.",
+      "Incident Response & Support:** Supported incident response workflows by investigating service requests and escalating issues with clear supporting evidence.",
+      "Managed approximately 66 work items monthly while tracking quality checks and follow-up actions.",
+      "Communication & Documentation:** Documented all technical decisions for review by both technical and business stakeholders.",
+      "Presented progress, risks, and trade-offs during fortnightly reviews to maintain transparency and drive informed decision-making.",
+      "Example Cedar Innovations (fictional)** | *Jan 2021 \u2013 Jun 2023*",
+      "Secure Design Support:** Assisted in recurring operational work using Python to automate tasks, creating documented step-by-step procedures that reduced manual preparation time by 30%.",
+      "Problem Solving:** Investigated complex service requests and solved ambiguous problems by recording findings and escalating issues with clear evidence.",
+      "Process Improvement:** Developed a reporting template that streamlined data collection and analysis, demonstrating the ability to deliver well-tested improvements within existing processes.",
+      "Security Engineer Practice Project",
+      "Tested scenarios to validate controls and recorded limitations alongside actionable next steps.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing skills in technical communication and receiving constructive feedback.",
+      "Bachelor of Science in Information Systems",
+      "Example School of Computing (fictional)** | *Aug 2020 \u2013 May 2024*",
+      "Core Security:** Cloud Security, IAM, Vulnerability Management, Network Security, Incident Response, Security Automation.",
+      "Tools & Languages:** Python, Linux, AWS, Terraform.",
+      "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Stakeholder Management, Evidence-Based Decision Making."
+    ],
+    "n_claims": 27,
+    "claim_scores": [
+      {
+        "claim": "Security Engineer with hands-on experience in cloud security, IAM, and vulnerability management.",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.0024,
+          "entailment": 0.383678,
+          "neutral": 0.613922
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.383678,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to turn operational needs into reliable, maintainable solutions by implementing preventive controls and automating compliance checks.",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.00077,
+          "entailment": 0.006154,
+          "neutral": 0.993076
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006154,
+        "supported": false
+      },
+      {
+        "claim": "Adept at partnering with engineering teams on secure design while communicating technical trade-offs and risks clearly to stakeholders.",
+        "best_source_chunk": "approximately 66 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001298,
+          "entailment": 0.01628,
+          "neutral": 0.982422
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01628,
+        "supported": false
+      },
+      {
+        "claim": "Committed to evidence-based decision-making, clear documentation, and delivering high-quality outcomes through collaborative problem-solving.",
+        "best_source_chunk": "approximately 66 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000831,
+          "entailment": 0.012226,
+          "neutral": 0.986944
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012226,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services (fictional)** | *Jul 2023 \u2013 Present*",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, Linux, network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.181162,
+          "entailment": 0.004822,
+          "neutral": 0.814016
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004822,
+        "supported": false
+      },
+      {
+        "claim": "Preventive Controls & Automation:** Implemented preventive security controls using cloud security and IAM frameworks, improving team turnaround by 35%.",
+        "best_source_chunk": "# Leon Ng leon.ng@example.test | +65 6000 0052 | Singapore ## Summary Security Engineer with hands-on experience in cloud security, IAM and vulnerability management. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Security Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 35%.",
+        "probabilities": {
+          "contradiction": 0.002886,
+          "entailment": 0.041271,
+          "neutral": 0.955843
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.041271,
+        "supported": false
+      },
+      {
+        "claim": "Automated vulnerability and compliance checks to ensure continuous monitoring and rapid remediation.",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000179,
+          "entailment": 0.008046,
+          "neutral": 0.991774
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008046,
+        "supported": false
+      },
+      {
+        "claim": "Cloud Hardening:** Collaborated with engineering colleagues to harden cloud environments, ensuring alignment with security standards and operational requirements.",
+        "best_source_chunk": "# Leon Ng leon.ng@example.test | +65 6000 0052 | Singapore ## Summary Security Engineer with hands-on experience in cloud security, IAM and vulnerability management. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Security Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 35%.",
+        "probabilities": {
+          "contradiction": 0.000473,
+          "entailment": 0.00468,
+          "neutral": 0.994848
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00468,
+        "supported": false
+      },
+      {
+        "claim": "Incident Response & Support:** Supported incident response workflows by investigating service requests and escalating issues with clear supporting evidence.",
+        "best_source_chunk": "- Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 30%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the",
+        "probabilities": {
+          "contradiction": 0.032924,
+          "entailment": 0.159574,
+          "neutral": 0.807502
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.159574,
+        "supported": false
+      },
+      {
+        "claim": "Managed approximately 66 work items monthly while tracking quality checks and follow-up actions.",
+        "best_source_chunk": "approximately 66 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.001063,
+          "entailment": 0.009707,
+          "neutral": 0.98923
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009707,
+        "supported": false
+      },
+      {
+        "claim": "Communication & Documentation:** Documented all technical decisions for review by both technical and business stakeholders.",
+        "best_source_chunk": "# Leon Ng leon.ng@example.test | +65 6000 0052 | Singapore ## Summary Security Engineer with hands-on experience in cloud security, IAM and vulnerability management. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Security Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 35%.",
+        "probabilities": {
+          "contradiction": 0.000347,
+          "entailment": 0.00073,
+          "neutral": 0.998923
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00073,
+        "supported": false
+      },
+      {
+        "claim": "Presented progress, risks, and trade-offs during fortnightly reviews to maintain transparency and drive informed decision-making.",
+        "best_source_chunk": "approximately 66 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.000848,
+          "entailment": 0.000655,
+          "neutral": 0.998498
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000655,
+        "supported": false
+      },
+      {
+        "claim": "Example Cedar Innovations (fictional)** | *Jan 2021 \u2013 Jun 2023*",
+        "best_source_chunk": "approximately 66 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues",
+        "probabilities": {
+          "contradiction": 0.003092,
+          "entailment": 0.002415,
+          "neutral": 0.994493
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002415,
+        "supported": false
+      },
+      {
+        "claim": "Secure Design Support:** Assisted in recurring operational work using Python to automate tasks, creating documented step-by-step procedures that reduced manual preparation time by 30%.",
+        "best_source_chunk": "# Leon Ng leon.ng@example.test | +65 6000 0052 | Singapore ## Summary Security Engineer with hands-on experience in cloud security, IAM and vulnerability management. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Security Engineer, Example Beacon Services (fictional) (Jul 2023 - Present) - Used cloud security and IAM to implement preventive security controls, improving team turnaround by 35%.",
+        "probabilities": {
+          "contradiction": 0.016663,
+          "entailment": 0.003566,
+          "neutral": 0.97977
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003566,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated complex service requests and solved ambiguous problems by recording findings and escalating issues with clear evidence.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, Linux, network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.060312,
+          "entailment": 0.01052,
+          "neutral": 0.929168
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01052,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that streamlined data collection and analysis, demonstrating the ability to deliver well-tested improvements within existing processes.",
+        "best_source_chunk": "- Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 30%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the",
+        "probabilities": {
+          "contradiction": 0.158904,
+          "entailment": 0.013624,
+          "neutral": 0.827472
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013624,
+        "supported": false
+      },
+      {
+        "claim": "Security Engineer Practice Project",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.040853,
+          "entailment": 0.48813,
+          "neutral": 0.471017
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.48813,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project focusing on cloud security, IAM, and vulnerability management.",
+        "best_source_chunk": "Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May",
+        "probabilities": {
+          "contradiction": 0.000316,
+          "entailment": 0.993603,
+          "neutral": 0.006081
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.993603,
+        "supported": true
+      },
+      {
+        "claim": "Tested scenarios to validate controls and recorded limitations alongside actionable next steps.",
+        "best_source_chunk": "- Supported recurring operational work using Python and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 30%. ## Projects ### Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the",
+        "probabilities": {
+          "contradiction": 0.001035,
+          "entailment": 0.00753,
+          "neutral": 0.991435
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00753,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing skills in technical communication and receiving constructive feedback.",
+        "best_source_chunk": "Security Engineer Practice Project - Built a fictional demonstration project using cloud security, IAM and vulnerability management. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May",
+        "probabilities": {
+          "contradiction": 0.000404,
+          "entailment": 0.001362,
+          "neutral": 0.998234
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001362,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, Linux, network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002754,
+          "entailment": 0.006822,
+          "neutral": 0.990425
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006822,
+        "supported": false
+      },
+      {
+        "claim": "Example School of Computing (fictional)** | *Aug 2020 \u2013 May 2024*",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.353058,
+          "entailment": 0.122631,
+          "neutral": 0.524311
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.122631,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, Linux, network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000122,
+          "entailment": 0.989049,
+          "neutral": 0.010829
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.989049,
+        "supported": true
+      },
+      {
+        "claim": "Core Security:** Cloud Security, IAM, Vulnerability Management, Network Security, Incident Response, Security Automation.",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.043358,
+          "entailment": 0.042605,
+          "neutral": 0.914036
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.042605,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Languages:** Python, Linux, AWS, Terraform.",
+        "best_source_chunk": "review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills cloud security, IAM, vulnerability management, Python, Linux, network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.01138,
+          "entailment": 0.151645,
+          "neutral": 0.836975
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.151645,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Stakeholder Management, Evidence-Based Decision Making.",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.106339,
+          "entailment": 0.009226,
+          "neutral": 0.884434
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009226,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "network security, incident response, security automation, AWS, Terraform ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001353,
+          "entailment": 0.986792,
+          "neutral": 0.011855
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.986792,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "16c305456e41ffa00c95c2e12653b8661e38e4b07eab032e2289ccc22c3563e8"
+  }
+}

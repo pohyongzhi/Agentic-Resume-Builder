@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1082,
+    "output_tokens": 294,
+    "thinking_chars": 0,
+    "seconds": 3.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "196 words; target is roughly 350-500"
+      ],
+      "words": 196
+    },
+    "generation": {
+      "seconds": 3.37,
+      "input_tokens": 1082,
+      "output_tokens": 294
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1083,
+    "output_tokens": 293,
+    "thinking_chars": 0,
+    "seconds": 3.27,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "195 words; target is roughly 350-500"
+      ],
+      "words": 195
+    },
+    "generation": {
+      "seconds": 3.27,
+      "input_tokens": 1083,
+      "output_tokens": 293
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1095,
+    "output_tokens": 355,
+    "thinking_chars": 0,
+    "seconds": 3.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "244 words; target is roughly 350-500"
+      ],
+      "words": 244
+    },
+    "generation": {
+      "seconds": 3.9,
+      "input_tokens": 1095,
+      "output_tokens": 355
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2153,
+    "output_tokens": 205,
+    "thinking_chars": 0,
+    "seconds": 2.69,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text; minor omission of 'Git' in skills list compared to original resume, but otherwise complete and accurate.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text; reordering of bullet points does not alter factual claims. Includes 'Git' in skills, matching original.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text; includes all original details including 'Excel'. Reordering of bullet points is acceptable and does not constitute fabrication.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2153,
+    "output_tokens": 308,
+    "thinking_chars": 0,
+    "seconds": 3.63,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 1 is a faithful copy of the original resume with excellent formatting. It covers most JD skills (Python, LLMs, RAG) but omits LangGraph from the Skills section found in the source, resulting in a minor coverage gap.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 2 is faithful but reorders bullet points in the first role (moving 'Managed approximately 64 work items...' to the end), which slightly disrupts the original narrative flow. It also omits LangGraph from Skills.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 2,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 3 is faithful but has significant formatting issues (missing headers like '## Experience' and inconsistent indentation). It critically omits LangGraph from the Skills section entirely, failing to represent a key preferred qualification.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "jd_wording_alignment",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "196 words; target is roughly 350-500"
+          ],
+          "words": 196
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text; minor omission of 'Git' in skills list compared to original resume, but otherwise complete and accurate.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 2,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 is faithful but has significant formatting issues (missing headers like '## Experience' and inconsistent indentation). It critically omits LangGraph from the Skills section entirely, failing to represent a key preferred qualification.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.37,
+          "input_tokens": 1082,
+          "output_tokens": 294
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text; reordering of bullet points does not alter factual claims. Includes 'Git' in skills, matching original.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is faithful but reorders bullet points in the first role (moving 'Managed approximately 64 work items...' to the end), which slightly disrupts the original narrative flow. It also omits LangGraph from Skills.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.27,
+          "input_tokens": 1083,
+          "output_tokens": 293
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "244 words; target is roughly 350-500"
+          ],
+          "words": 244
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text; includes all original details including 'Excel'. Reordering of bullet points is acceptable and does not constitute fabrication.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a faithful copy of the original resume with excellent formatting. It covers most JD skills (Python, LLMs, RAG) but omits LangGraph from the Skills section found in the source, resulting in a minor coverage gap.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.9,
+          "input_tokens": 1095,
+          "output_tokens": 355
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

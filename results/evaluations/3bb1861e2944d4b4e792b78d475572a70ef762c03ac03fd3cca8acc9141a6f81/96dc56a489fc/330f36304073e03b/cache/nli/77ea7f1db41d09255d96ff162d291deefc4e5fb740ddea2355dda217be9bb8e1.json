@@ -1,0 +1,346 @@
+{
+  "identity": {
+    "source_hash": "a667e56a3ab09bcceba5147b06259060e460cda0da34617755f4f27fbcf7578d",
+    "tailored_hash": "76fe9241dfb4a5d295bcc5cdffbb07ddece967373a1d9834c151e116181810c3",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2174,
+    "unsupported": [
+      "Frontend Engineer with hands-on experience in JavaScript, TypeScript, and React.",
+      "Proven ability to translate designs into reusable components and build accessible user interfaces that drive measurable improvements.",
+      "Committed to delivering reliable, maintainable solutions through automated testing and continuous performance optimization.",
+      "Component Reusability:** Applied React to translate designs into reusable components, ensuring consistency across the application.",
+      "Documentation & Communication:** Documented technical decisions for both technical and business reviewers;",
+      "presented progress, risks, and trade-offs during fortnightly stakeholder reviews.",
+      "API Integration:** Collaborated with engineering and product stakeholders to integrate frontend features with REST APIs.",
+      "Quality & Performance:** Managed approximately 46 work items per month while tracking quality checks, implementing automated component tests, and reviewing code to improve web performance.",
+      "Example Cedar Innovations (fictional)** | May 2024 \u2013 Dec 2024",
+      "Operational Support:** Supported recurring operational work using HTML and CSS, creating clear step-by-step documentation for complex procedures.",
+      "Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+      "Process Improvement:** Created a reporting template that reduced manual preparation time by 21%, showcasing commitment to efficiency and measurable outcomes.",
+      "Frontend Engineer Practice Project",
+      "Developed a demonstration project using JavaScript, TypeScript, and React to validate technical skills.",
+      "Implemented automated testing scenarios to ensure code reliability and recorded limitations for future iteration.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing communication and presentation skills.",
+      "Bachelor of Science in Information Systems",
+      "Example Metropolitan University (fictional)** | Aug 2020 \u2013 May 2024"
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Frontend Engineer with hands-on experience in JavaScript, TypeScript, and React.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.006105,
+          "entailment": 0.026042,
+          "neutral": 0.967853
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.026042,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to translate designs into reusable components and build accessible user interfaces that drive measurable improvements.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.000149,
+          "entailment": 0.010555,
+          "neutral": 0.989296
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010555,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating with cross-functional teams to integrate frontend features with REST APIs while maintaining clear documentation and evidence-based decision-making.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000793,
+          "entailment": 0.702037,
+          "neutral": 0.29717
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.702037,
+        "supported": true
+      },
+      {
+        "claim": "Committed to delivering reliable, maintainable solutions through automated testing and continuous performance optimization.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.001284,
+          "entailment": 0.003864,
+          "neutral": 0.994852
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003864,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services (fictional)** | Jan 2025 \u2013 Present",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.002146,
+          "entailment": 0.701802,
+          "neutral": 0.296052
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.701802,
+        "supported": true
+      },
+      {
+        "claim": "Accessible User Interfaces:** Built accessible user interfaces using JavaScript and TypeScript, improving team turnaround by 26%.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.000425,
+          "entailment": 0.994115,
+          "neutral": 0.005461
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994115,
+        "supported": true
+      },
+      {
+        "claim": "Component Reusability:** Applied React to translate designs into reusable components, ensuring consistency across the application.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.012238,
+          "entailment": 0.004488,
+          "neutral": 0.983274
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004488,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Communication:** Documented technical decisions for both technical and business reviewers;",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000514,
+          "entailment": 0.00128,
+          "neutral": 0.998207
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00128,
+        "supported": false
+      },
+      {
+        "claim": "presented progress, risks, and trade-offs during fortnightly stakeholder reviews.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.004578,
+          "entailment": 0.00121,
+          "neutral": 0.994212
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00121,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Collaborated with engineering and product stakeholders to integrate frontend features with REST APIs.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00198,
+          "entailment": 0.002496,
+          "neutral": 0.995524
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002496,
+        "supported": false
+      },
+      {
+        "claim": "Quality & Performance:** Managed approximately 46 work items per month while tracking quality checks, implementing automated component tests, and reviewing code to improve web performance.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.000618,
+          "entailment": 0.000821,
+          "neutral": 0.998562
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000821,
+        "supported": false
+      },
+      {
+        "claim": "Example Cedar Innovations (fictional)** | May 2024 \u2013 Dec 2024",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002567,
+          "entailment": 0.002772,
+          "neutral": 0.994661
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002772,
+        "supported": false
+      },
+      {
+        "claim": "Operational Support:** Supported recurring operational work using HTML and CSS, creating clear step-by-step documentation for complex procedures.",
+        "best_source_chunk": "- Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. - Applied React to translate designs into reusable components and documented decisions for technical and business reviewers. - Managed approximately 46 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST",
+        "probabilities": {
+          "contradiction": 0.454038,
+          "entailment": 0.002162,
+          "neutral": 0.5438
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002162,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.345383,
+          "entailment": 0.03684,
+          "neutral": 0.617776
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.03684,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Created a reporting template that reduced manual preparation time by 21%, showcasing commitment to efficiency and measurable outcomes.",
+        "best_source_chunk": "Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 21%. ## Projects ### Frontend Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.551508,
+          "entailment": 0.013013,
+          "neutral": 0.435479
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.013013,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Engineer Practice Project",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.41116,
+          "entailment": 0.026588,
+          "neutral": 0.562252
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.026588,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project using JavaScript, TypeScript, and React to validate technical skills.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## Summary Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) - Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. - Applied React",
+        "probabilities": {
+          "contradiction": 0.000942,
+          "entailment": 0.014291,
+          "neutral": 0.984767
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014291,
+        "supported": false
+      },
+      {
+        "claim": "Implemented automated testing scenarios to ensure code reliability and recorded limitations for future iteration.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) - Supported recurring operational work using HTML and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.001796,
+          "entailment": 0.002548,
+          "neutral": 0.995656
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002548,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing communication and presentation skills.",
+        "best_source_chunk": "Engineer Practice Project - Built a fictional demonstration project using JavaScript, TypeScript and React. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included",
+        "probabilities": {
+          "contradiction": 0.00065,
+          "entailment": 0.002315,
+          "neutral": 0.997035
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002315,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.001927,
+          "entailment": 0.012384,
+          "neutral": 0.985688
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012384,
+        "supported": false
+      },
+      {
+        "claim": "Example Metropolitan University (fictional)** | Aug 2020 \u2013 May 2024",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.00439,
+          "entailment": 0.032039,
+          "neutral": 0.963571
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.032039,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.000108,
+          "entailment": 0.987686,
+          "neutral": 0.012206
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.987686,
+        "supported": true
+      },
+      {
+        "claim": "JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, Accessibility",
+        "best_source_chunk": "Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.011729,
+          "entailment": 0.691294,
+          "neutral": 0.296976
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.691294,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "77ea7f1db41d09255d96ff162d291deefc4e5fb740ddea2355dda217be9bb8e1"
+  }
+}

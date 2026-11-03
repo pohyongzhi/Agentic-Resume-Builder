@@ -1,0 +1,192 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7449,
+  "output_tokens": 1431,
+  "thinking_chars": 0,
+  "seconds": 17.03,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "held_out": true,
+  "required_sections_rate": 0.0,
+  "structure_pass": false,
+  "task_success": null,
+  "task_failure_reasons": [
+    "workflow_failed",
+    "missing_required_sections",
+    "faithfulness_not_scored",
+    "protected_fields_not_scored",
+    "fabrication_bait_not_scored"
+  ],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 8880,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": null,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_005__cd_jd_01",
+  "resume_id": "cd_resume_005",
+  "jd_id": "cd_jd_01",
+  "category": "cloud_devops",
+  "role_family": "cloud_engineer",
+  "seniority": "entry",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 17.0,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_005__cd_jd_01\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_005__cd_jd_01\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_005__cd_jd_01\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 2.5,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "237 words; target is roughly 350-500"
+          ],
+          "words": 237
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original facts. Skills section adds Bash, Docker, Git, and infrastructure support which are not in the original resume, but these are minor additions that do not constitute major unsupported claims compared to the other drafts.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 1,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Missing critical JD skills (Bash, Docker, Git); restructured content but failed to prioritize JD-aligned keywords in Skills section.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.99,
+          "input_tokens": 1047,
+          "output_tokens": 350
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 2.5,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "232 words; target is roughly 350-500"
+          ],
+          "words": 232
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original facts. Skills section adds Bash, Docker, Git, and infrastructure support which are not in the original resume, but these are minor additions that do not constitute major unsupported claims compared to the other drafts.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 1,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Missing critical JD skills (AWS, Linux, networking, Bash, Docker, Git) entirely; relies on outdated impact metrics over JD requirements.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.81,
+          "input_tokens": 1048,
+          "output_tokens": 338
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 4.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "179 words; target is roughly 350-500"
+          ],
+          "words": 179
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original facts. Skills section adds Bash, Docker, Git, and infrastructure support which are not in the original resume, but these are minor additions that do not constitute major unsupported claims compared to the other drafts.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Added JD keywords (Bash, Docker, Git) to Skills section without resume evidence; otherwise faithful and well-aligned.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.27,
+          "input_tokens": 1060,
+          "output_tokens": 283
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

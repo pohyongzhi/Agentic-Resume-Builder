@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1082,
+    "output_tokens": 294,
+    "thinking_chars": 0,
+    "seconds": 3.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "195 words; target is roughly 350-500"
+      ],
+      "words": 195
+    },
+    "generation": {
+      "seconds": 3.41,
+      "input_tokens": 1082,
+      "output_tokens": 294
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1083,
+    "output_tokens": 293,
+    "thinking_chars": 0,
+    "seconds": 3.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "194 words; target is roughly 350-500"
+      ],
+      "words": 194
+    },
+    "generation": {
+      "seconds": 3.29,
+      "input_tokens": 1083,
+      "output_tokens": 293
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1095,
+    "output_tokens": 253,
+    "thinking_chars": 0,
+    "seconds": 2.84,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "164 words; target is roughly 350-500"
+      ],
+      "words": 164
+    },
+    "generation": {
+      "seconds": 2.84,
+      "input_tokens": 1095,
+      "output_tokens": 253
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2051,
+    "output_tokens": 208,
+    "thinking_chars": 0,
+    "seconds": 2.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text; minor omission of 'Git' from skills list and slight reordering of bullet points in Experience section.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text; minor omission of 'Git' from skills list and slight reordering of bullet points in Experience section.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original text; omits two bullet points from the resume (work items management and reporting template reduction) and excludes 'Git' from skills.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2051,
+    "output_tokens": 231,
+    "thinking_chars": 0,
+    "seconds": 2.83,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data; minor gap in skills list (missing Git) compared to resume.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data; lower JD alignment due to omission of 'managed work items' bullet which relates to operational delivery.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithful to original data; lower JD alignment due to omission of 'managed work items' bullet and slightly less polished formatting.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "impact_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text; minor omission of 'Git' from skills list and slight reordering of bullet points in Experience section.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data; lower JD alignment due to omission of 'managed work items' bullet and slightly less polished formatting.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.41,
+          "input_tokens": 1082,
+          "output_tokens": 294
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "194 words; target is roughly 350-500"
+          ],
+          "words": 194
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text; minor omission of 'Git' from skills list and slight reordering of bullet points in Experience section.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data; lower JD alignment due to omission of 'managed work items' bullet which relates to operational delivery.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.29,
+          "input_tokens": 1083,
+          "output_tokens": 293
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.0,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "164 words; target is roughly 350-500"
+          ],
+          "words": 164
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text; omits two bullet points from the resume (work items management and reporting template reduction) and excludes 'Git' from skills.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data; minor gap in skills list (missing Git) compared to resume.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 2.84,
+          "input_tokens": 1095,
+          "output_tokens": 253
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

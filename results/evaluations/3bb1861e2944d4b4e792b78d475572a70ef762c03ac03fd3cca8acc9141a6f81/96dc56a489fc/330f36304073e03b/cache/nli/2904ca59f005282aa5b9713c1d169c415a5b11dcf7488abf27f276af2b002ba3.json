@@ -1,0 +1,383 @@
+{
+  "identity": {
+    "source_hash": "c4d8e6e06ec840ce9f7c117485c65ef16692fe53219fe46fe90d0bcdf0f30236",
+    "tailored_hash": "c3965514ef0859a9a0fb3b59181c9b7e1070d2eb9a6decd325b5d28fa651abc5",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2692,
+    "unsupported": [
+      "Proven ability to translate business needs into reliable, maintainable solutions while managing complex stakeholder requirements.",
+      "Seeking to leverage transferable skills as a Mid-level Solutions Architect at Example Harbour Digital to drive quality, reliability, and responsible delivery.",
+      "Technology Associate** | Example Cedar Innovations (Singapore)",
+      "Solution Design & Translation:** Translate operational and customer needs into robust solution designs using AWS and solution architecture principles, improving team turnaround by 12%.",
+      "Integration & Security:** Define integration and security patterns utilizing REST APIs;",
+      "document all architectural decisions for technical and business reviewers to ensure clarity and auditability.",
+      "Stakeholder Management:** Collaborate with engineering, product, and business stakeholders to facilitate architecture decisions and communicate progress, risks, and trade-offs during fortnightly reviews.",
+      "Delivery & Quality Control:** Manage approximately 59 work items monthly while enforcing quality checks and follow-up actions to ensure evidence-based decision-making and reliable delivery.",
+      "Technical Assistant** | Example Delta Operations (Singapore)",
+      "Microservices Support:** Supported recurring operational workflows involving microservices, ensuring system stability and maintainability.",
+      "Documentation & Process Improvement:** Created clear step-by-step documentation for service requests;",
+      "developed a reporting template that reduced manual preparation time by 7%.",
+      "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+      "Solutions Architect Practice Project**",
+      "Executed representative testing scenarios to validate design limitations and define next steps.",
+      "Presented final design outcomes and trade-offs to a five-person peer review group, honing communication skills for technical audiences.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+      "Soft Skills:** Stakeholder Management, Technical Documentation, Clear Verbal/Written Communication, Collaborative Problem Solving.",
+      "Tools:** Git, Excel, Jira/Work Item Tracking."
+    ],
+    "n_claims": 26,
+    "claim_scores": [
+      {
+        "claim": "Results-oriented Technology Associate with proven experience in solution architecture, AWS, and REST APIs.",
+        "best_source_chunk": "a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS solution architecture, AWS, REST APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000253,
+          "entailment": 0.963212,
+          "neutral": 0.036535
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.963212,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to translate business needs into reliable, maintainable solutions while managing complex stakeholder requirements.",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000197,
+          "entailment": 0.002586,
+          "neutral": 0.997217
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002586,
+        "supported": false
+      },
+      {
+        "claim": "Adept at defining integration patterns, facilitating architecture decisions, and delivering clear technical documentation.",
+        "best_source_chunk": "- Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 7%. ## PROJECTS ### Solutions Architect Practice Project * Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+        "probabilities": {
+          "contradiction": 0.001272,
+          "entailment": 0.909689,
+          "neutral": 0.089039
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.909689,
+        "supported": true
+      },
+      {
+        "claim": "Seeking to leverage transferable skills as a Mid-level Solutions Architect at Example Harbour Digital to drive quality, reliability, and responsible delivery.",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.004295,
+          "entailment": 0.009444,
+          "neutral": 0.986261
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009444,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Singapore)",
+        "best_source_chunk": "# Mei Koh mei.koh@example.test | +65 6000 0093 | Singapore ## SUMMARY Technology associate with transferable experience in solution architecture, AWS and REST APIs, seeking to deepen capability as a Solutions Architect. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used solution architecture and AWS to translate business needs into solution designs, improving team",
+        "probabilities": {
+          "contradiction": 0.020527,
+          "entailment": 0.488734,
+          "neutral": 0.490739
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.488734,
+        "supported": false
+      },
+      {
+        "claim": "Solution Design & Translation:** Translate operational and customer needs into robust solution designs using AWS and solution architecture principles, improving team turnaround by 12%.",
+        "best_source_chunk": "# Mei Koh mei.koh@example.test | +65 6000 0093 | Singapore ## SUMMARY Technology associate with transferable experience in solution architecture, AWS and REST APIs, seeking to deepen capability as a Solutions Architect. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used solution architecture and AWS to translate business needs into solution designs, improving team",
+        "probabilities": {
+          "contradiction": 0.000117,
+          "entailment": 0.000802,
+          "neutral": 0.999082
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000802,
+        "supported": false
+      },
+      {
+        "claim": "Integration & Security:** Define integration and security patterns utilizing REST APIs;",
+        "best_source_chunk": "# Mei Koh mei.koh@example.test | +65 6000 0093 | Singapore ## SUMMARY Technology associate with transferable experience in solution architecture, AWS and REST APIs, seeking to deepen capability as a Solutions Architect. ## EXPERIENCE ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) * Used solution architecture and AWS to translate business needs into solution designs, improving team",
+        "probabilities": {
+          "contradiction": 0.000788,
+          "entailment": 0.258635,
+          "neutral": 0.740578
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.258635,
+        "supported": false
+      },
+      {
+        "claim": "document all architectural decisions for technical and business reviewers to ensure clarity and auditability.",
+        "best_source_chunk": "a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS solution architecture, AWS, REST APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000904,
+          "entailment": 0.000979,
+          "neutral": 0.998116
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000979,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Management:** Collaborate with engineering, product, and business stakeholders to facilitate architecture decisions and communicate progress, risks, and trade-offs during fortnightly reviews.",
+        "best_source_chunk": "reviewers. * Managed approximately 59 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.13432,
+          "entailment": 0.013926,
+          "neutral": 0.851754
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013926,
+        "supported": false
+      },
+      {
+        "claim": "Delivery & Quality Control:** Manage approximately 59 work items monthly while enforcing quality checks and follow-up actions to ensure evidence-based decision-making and reliable delivery.",
+        "best_source_chunk": "a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS solution architecture, AWS, REST APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.004026,
+          "entailment": 0.004128,
+          "neutral": 0.991846
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004128,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Singapore)",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.959369,
+          "entailment": 0.013369,
+          "neutral": 0.027261
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.013369,
+        "supported": false
+      },
+      {
+        "claim": "Microservices Support:** Supported recurring operational workflows involving microservices, ensuring system stability and maintainability.",
+        "best_source_chunk": "reviewers. * Managed approximately 59 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.001394,
+          "entailment": 0.00323,
+          "neutral": 0.995375
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00323,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Process Improvement:** Created clear step-by-step documentation for service requests;",
+        "best_source_chunk": "- Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 7%. ## PROJECTS ### Solutions Architect Practice Project * Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+        "probabilities": {
+          "contradiction": 0.065184,
+          "entailment": 0.112882,
+          "neutral": 0.821933
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.112882,
+        "supported": false
+      },
+      {
+        "claim": "developed a reporting template that reduced manual preparation time by 7%.",
+        "best_source_chunk": "- Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 7%. ## PROJECTS ### Solutions Architect Practice Project * Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+        "probabilities": {
+          "contradiction": 0.082802,
+          "entailment": 0.417299,
+          "neutral": 0.499899
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.417299,
+        "supported": false
+      },
+      {
+        "claim": "Issue Resolution:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.165636,
+          "entailment": 0.0058,
+          "neutral": 0.828565
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0058,
+        "supported": false
+      },
+      {
+        "claim": "Solutions Architect Practice Project**",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.036624,
+          "entailment": 0.02141,
+          "neutral": 0.941967
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.02141,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project leveraging AWS, solution architecture, and REST APIs.",
+        "best_source_chunk": "- Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 7%. ## PROJECTS ### Solutions Architect Practice Project * Built a fictional demonstration project using solution architecture, AWS and REST APIs.",
+        "probabilities": {
+          "contradiction": 0.000157,
+          "entailment": 0.997325,
+          "neutral": 0.002518
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997325,
+        "supported": true
+      },
+      {
+        "claim": "Executed representative testing scenarios to validate design limitations and define next steps.",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002223,
+          "entailment": 0.002404,
+          "neutral": 0.995373
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002404,
+        "supported": false
+      },
+      {
+        "claim": "Presented final design outcomes and trade-offs to a five-person peer review group, honing communication skills for technical audiences.",
+        "best_source_chunk": "a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS solution architecture, AWS, REST APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.010809,
+          "entailment": 0.00218,
+          "neutral": 0.987011
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00218,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Singapore)",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.02247,
+          "entailment": 0.014114,
+          "neutral": 0.963416
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014114,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS solution architecture, AWS, REST APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000162,
+          "entailment": 0.989151,
+          "neutral": 0.010687
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.989151,
+        "supported": true
+      },
+      {
+        "claim": "Architecture:** Solution Architecture, System Integration, Microservices Design.",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001054,
+          "entailment": 0.92596,
+          "neutral": 0.072986
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.92596,
+        "supported": true
+      },
+      {
+        "claim": "Cloud & APIs:** AWS (Certified Cloud Practitioner), REST APIs, Terraform.",
+        "best_source_chunk": "a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS solution architecture, AWS, REST APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.004777,
+          "entailment": 0.947896,
+          "neutral": 0.047327
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.947896,
+        "supported": true
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Management, Technical Documentation, Clear Verbal/Written Communication, Collaborative Problem Solving.",
+        "best_source_chunk": "reviewers. * Managed approximately 59 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.033052,
+          "entailment": 0.006162,
+          "neutral": 0.960787
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006162,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Git, Excel, Jira/Work Item Tracking.",
+        "best_source_chunk": "reviewers. * Managed approximately 59 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) * Supported recurring operational work using microservices and documented step-by-step procedures. * Investigated service requests, recorded findings",
+        "probabilities": {
+          "contradiction": 0.002962,
+          "entailment": 0.001168,
+          "neutral": 0.99587
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001168,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "APIs, microservices, Terraform, Excel, documentation, Git ## CERTIFICATIONS * AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002763,
+          "entailment": 0.984162,
+          "neutral": 0.013074
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.984162,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "2904ca59f005282aa5b9713c1d169c415a5b11dcf7488abf27f276af2b002ba3"
+  }
+}

@@ -1,0 +1,223 @@
+[
+  {
+    "type": "llm",
+    "input_tokens": 373,
+    "output_tokens": 221,
+    "thinking_chars": 0,
+    "seconds": 9.93,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "input_tokens": 491,
+    "output_tokens": 534,
+    "thinking_chars": 0,
+    "seconds": 34.88,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "input_tokens": 1484,
+    "output_tokens": 534,
+    "thinking_chars": 0,
+    "seconds": 29.1,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2180,
+    "output_tokens": 613,
+    "thinking_chars": 0,
+    "seconds": 36.01,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2186,
+    "output_tokens": 505,
+    "thinking_chars": 0,
+    "seconds": 67.63,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2188,
+    "output_tokens": 540,
+    "thinking_chars": 0,
+    "seconds": 100.95,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "input_tokens": 3735,
+    "output_tokens": 620,
+    "thinking_chars": 0,
+    "seconds": 39.99,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2262,
+    "output_tokens": 585,
+    "thinking_chars": 0,
+    "seconds": 31.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2254,
+    "output_tokens": 552,
+    "thinking_chars": 0,
+    "seconds": 60.02,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2260,
+    "output_tokens": 474,
+    "thinking_chars": 0,
+    "seconds": 85.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "input_tokens": 3759,
+    "output_tokens": 608,
+    "thinking_chars": 0,
+    "seconds": 39.65,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2242,
+    "output_tokens": 656,
+    "thinking_chars": 0,
+    "seconds": 33.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2250,
+    "output_tokens": 603,
+    "thinking_chars": 0,
+    "seconds": 63.82,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "input_tokens": 2248,
+    "output_tokens": 571,
+    "thinking_chars": 0,
+    "seconds": 93.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Noah Lim",
+        "contact": {
+          "email": "noah.lim@example.test",
+          "phone": "+65 6000 0034",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with experience in Python, machine learning, and scikit-learn. Developed reproducible feature pipelines and deployed models via APIs while collaborating cross-functionally.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Trained and evaluated predictive models using Python, scikit-learn, and PyTorch to improve team turnaround by 33%.",
+              "Built reproducible feature pipelines with scikit-learn and maintained clear documentation of technical and business decisions.",
+              "Collaborated with cross-functional team members to deploy models behind APIs and presented progress during fortnightly reviews.",
+              "Managed approximately 102 monthly tasks, directly correlating process improvements with a 33% increase in team turnaround."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported operational workflows using PyTorch and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings, and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Metropolitan University (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Machine Learning Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a demonstration project using Python, machine learning, and scikit-learn.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "Python",
+          "machine learning",
+          "scikit-learn",
+          "PyTorch",
+          "MLflow",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.001,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.003,
+    "step": 16
+  }
+]

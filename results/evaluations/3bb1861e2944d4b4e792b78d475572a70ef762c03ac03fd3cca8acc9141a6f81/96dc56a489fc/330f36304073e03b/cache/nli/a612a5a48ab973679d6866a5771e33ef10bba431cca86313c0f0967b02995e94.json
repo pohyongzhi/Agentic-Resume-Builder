@@ -1,0 +1,346 @@
+{
+  "identity": {
+    "source_hash": "69f126017ef2b8194349292eb97eea8e56d03cedd1d15a3a17fe5f8797f60fc2",
+    "tailored_hash": "ed8469011cc2070d774c5aea79b96edd03f0f49f82a372ab96f77a2c76f79ca4",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.2174,
+    "unsupported": [
+      "Frontend Engineer with hands-on experience in JavaScript, TypeScript, and React.",
+      "Proven ability to translate designs into reusable components and build accessible user interfaces that drive measurable improvements.",
+      "Adept at collaborating with cross-functional teams to deliver documented, reliable solutions while maintaining clear communication on technical trade-offs.",
+      "Committed to writing automated tests and improving web performance through evidence-based decisions.",
+      "Component Architecture:** Translated designs into reusable React components and maintained clear documentation for technical and business reviewers to ensure maintainability.",
+      "API Integration:** Collaborated with engineering and product stakeholders to integrate frontend features with REST APIs, ensuring reliable data flow.",
+      "Quality & Performance:** Managed approximately 46 work items per month while implementing automated component tests using Jest to improve code quality and reduce technical debt.",
+      "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews, fostering trust through transparent reporting.",
+      "Technical Assistant** | Example Cedar Innovations (Singapore)",
+      "Documentation & Processes:** Supported operational workflows by creating clear, step-by-step documentation in HTML, reducing manual preparation time by 21%.",
+      "Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems collaboratively.",
+      "Reporting:** Developed a simple reporting template that streamlined data collection and analysis for stakeholders.",
+      "Frontend Engineer Practice Project**",
+      "Built a demonstration application using JavaScript, TypeScript, and React to showcase component reusability.",
+      "Implemented automated testing scenarios to validate functionality and recorded limitations for future iteration.",
+      "Presented design decisions and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+      "Core Competencies:** REST APIs, Web Performance Optimization, Accessibility (a11y), Design Systems, Technical Documentation, Cross-functional Collaboration"
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Frontend Engineer with hands-on experience in JavaScript, TypeScript, and React.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## SUMMARY Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) * Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. * Applied React",
+        "probabilities": {
+          "contradiction": 0.009766,
+          "entailment": 0.04296,
+          "neutral": 0.947275
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.04296,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to translate designs into reusable components and build accessible user interfaces that drive measurable improvements.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## SUMMARY Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) * Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. * Applied React",
+        "probabilities": {
+          "contradiction": 0.000188,
+          "entailment": 0.008832,
+          "neutral": 0.99098
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008832,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating with cross-functional teams to deliver documented, reliable solutions while maintaining clear communication on technical trade-offs.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000946,
+          "entailment": 0.134938,
+          "neutral": 0.864116
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.134938,
+        "supported": false
+      },
+      {
+        "claim": "Committed to writing automated tests and improving web performance through evidence-based decisions.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.002086,
+          "entailment": 0.005952,
+          "neutral": 0.991962
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005952,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Engineer** | Example Beacon Services (Singapore)",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## SUMMARY Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) * Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. * Applied React",
+        "probabilities": {
+          "contradiction": 0.000344,
+          "entailment": 0.983539,
+          "neutral": 0.016116
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.983539,
+        "supported": true
+      },
+      {
+        "claim": "Accessible UI Development:** Built accessible user interfaces using JavaScript and TypeScript, resulting in a 26% improvement in team turnaround time.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## SUMMARY Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) * Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. * Applied React",
+        "probabilities": {
+          "contradiction": 0.000319,
+          "entailment": 0.99542,
+          "neutral": 0.004261
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.99542,
+        "supported": true
+      },
+      {
+        "claim": "Component Architecture:** Translated designs into reusable React components and maintained clear documentation for technical and business reviewers to ensure maintainability.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.005892,
+          "entailment": 0.00653,
+          "neutral": 0.987578
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00653,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Collaborated with engineering and product stakeholders to integrate frontend features with REST APIs, ensuring reliable data flow.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.001007,
+          "entailment": 0.002014,
+          "neutral": 0.996979
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002014,
+        "supported": false
+      },
+      {
+        "claim": "Quality & Performance:** Managed approximately 46 work items per month while implementing automated component tests using Jest to improve code quality and reduce technical debt.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.000977,
+          "entailment": 0.000671,
+          "neutral": 0.998351
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000671,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Presented progress, risks, and technical trade-offs during fortnightly reviews, fostering trust through transparent reporting.",
+        "best_source_chunk": "- Present) * Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. * Applied React to translate designs into reusable components and documented decisions for technical and business reviewers. * Managed approximately 46 work items per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST",
+        "probabilities": {
+          "contradiction": 0.006383,
+          "entailment": 0.000516,
+          "neutral": 0.993102
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000516,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Cedar Innovations (Singapore)",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.00473,
+          "entailment": 0.002406,
+          "neutral": 0.992864
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002406,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Processes:** Supported operational workflows by creating clear, step-by-step documentation in HTML, reducing manual preparation time by 21%.",
+        "best_source_chunk": "Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with clear supporting evidence. * Created a simple reporting template that reduced manual preparation time by 21%. ## PROJECTS ### Frontend Engineer Practice Project * Built a fictional demonstration project using JavaScript, TypeScript and React. * Tested the project with representative",
+        "probabilities": {
+          "contradiction": 0.005294,
+          "entailment": 0.405288,
+          "neutral": 0.589417
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.405288,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.375639,
+          "entailment": 0.04117,
+          "neutral": 0.583191
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.04117,
+        "supported": false
+      },
+      {
+        "claim": "Reporting:** Developed a simple reporting template that streamlined data collection and analysis for stakeholders.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.435415,
+          "entailment": 0.009396,
+          "neutral": 0.555189
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009396,
+        "supported": false
+      },
+      {
+        "claim": "Frontend Engineer Practice Project**",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.29375,
+          "entailment": 0.026128,
+          "neutral": 0.680122
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.026128,
+        "supported": false
+      },
+      {
+        "claim": "Built a demonstration application using JavaScript, TypeScript, and React to showcase component reusability.",
+        "best_source_chunk": "# Benjamin Tan benjamin.tan@example.test | +65 6000 0002 | Singapore ## SUMMARY Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams. ## EXPERIENCE ### Frontend Engineer, Example Beacon Services (fictional) (Jan 2025 - Present) * Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 26%. * Applied React",
+        "probabilities": {
+          "contradiction": 0.000399,
+          "entailment": 0.041302,
+          "neutral": 0.958299
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.041302,
+        "supported": false
+      },
+      {
+        "claim": "Implemented automated testing scenarios to validate functionality and recorded limitations for future iteration.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.001986,
+          "entailment": 0.003273,
+          "neutral": 0.994741
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003273,
+        "supported": false
+      },
+      {
+        "claim": "Presented design decisions and outcomes to a five-person peer review group, refining technical approaches based on feedback.",
+        "best_source_chunk": "Engineer Practice Project * Built a fictional demonstration project using JavaScript, TypeScript and React. * Tested the project with representative scenarios and recorded limitations and next steps. * Presented the design and outcomes to a five-person peer review group. ## EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included",
+        "probabilities": {
+          "contradiction": 0.000391,
+          "entailment": 0.001826,
+          "neutral": 0.997784
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001826,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.09629,
+          "entailment": 0.006661,
+          "neutral": 0.897049
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006661,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.000156,
+          "entailment": 0.990122,
+          "neutral": 0.009721
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.990122,
+        "supported": true
+      },
+      {
+        "claim": "Languages:** JavaScript, TypeScript, HTML, CSS",
+        "best_source_chunk": "EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.02344,
+          "entailment": 0.839871,
+          "neutral": 0.136689
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.839871,
+        "supported": true
+      },
+      {
+        "claim": "Frameworks & Tools:** React, Next.js, Git, Jest",
+        "best_source_chunk": "EDUCATION ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) * Coursework included software engineering, databases, cybersecurity and applied analytics. ## SKILLS JavaScript, TypeScript, React, HTML, CSS, REST APIs, Git, Jest, Next.js, accessibility",
+        "probabilities": {
+          "contradiction": 0.005321,
+          "entailment": 0.520523,
+          "neutral": 0.474155
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.520523,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** REST APIs, Web Performance Optimization, Accessibility (a11y), Design Systems, Technical Documentation, Cross-functional Collaboration",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. * Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews. ### Technical Assistant, Example Cedar Innovations (fictional) (May 2024 - Dec 2024) * Supported recurring operational work using HTML and documented step-by-step procedures. * Investigated service requests, recorded findings and escalated issues with",
+        "probabilities": {
+          "contradiction": 0.004953,
+          "entailment": 0.017245,
+          "neutral": 0.977803
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017245,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "a612a5a48ab973679d6866a5771e33ef10bba431cca86313c0f0967b02995e94"
+  }
+}

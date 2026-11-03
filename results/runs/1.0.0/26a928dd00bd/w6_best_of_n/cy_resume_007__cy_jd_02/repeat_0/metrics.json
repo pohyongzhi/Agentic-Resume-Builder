@@ -1,0 +1,1138 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7013,
+  "output_tokens": 1395,
+  "thinking_chars": 0,
+  "seconds": 16.58,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 197,
+  "sim_before": 0.8529,
+  "sim_after": 0.8672,
+  "sim_gain": 0.0142,
+  "kw_before": 1.0,
+  "kw_after": 1.0,
+  "kw_missing": [],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Grace Ng"
+    ],
+    "contact_email": [
+      "grace.ng@example.test"
+    ],
+    "contact_phone": [
+      "6560000047"
+    ],
+    "employment_title": [
+      "Cybersecurity GRC Analyst",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Beacon Services",
+      "Example Cedar Innovations"
+    ],
+    "employment_date": [
+      "jul 2023 - present",
+      "jan 2021 - jun 2023"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example Polytechnic"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 0,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [],
+  "fabrication_bait_matches": [],
+  "faithfulness": 1.0,
+  "claim_faithfulness": 1.0,
+  "unsupported_claim_rate": 0.0,
+  "supported_claims": 20,
+  "source_evidence_units": 29,
+  "unsupported": [],
+  "n_claims": 20,
+  "claim_scores": [
+    {
+      "claim": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.640816
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 31%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.423445
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Delivers documented, measurable improvements with cross-functional teams.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0004",
+      "best_evidence_unit": "Delivers documented, measurable improvements with cross-functional teams.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Delivers documented, measurable improvements with cross-functional teams.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.178571
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.163506
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Performed technology risk assessments using risk assessment and ISO 27001, improving team turnaround by 31%.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 31%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 31%.",
+      "retrieval_score": 0.915672,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 31%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.915672,
+          "probabilities": {
+            "contradiction": 0.000183,
+            "entailment": 0.998276,
+            "neutral": 0.001541
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.150366,
+          "probabilities": {
+            "contradiction": 0.000251,
+            "entailment": 0.000175,
+            "neutral": 0.999574
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.137852,
+          "probabilities": {
+            "contradiction": 0.000252,
+            "entailment": 0.000246,
+            "neutral": 0.999503
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000183,
+        "entailment": 0.998276,
+        "neutral": 0.001541
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.998276,
+      "supported": true
+    },
+    {
+      "claim": "Maintained security policies and controls while documenting decisions for technical and business reviewers.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0007",
+      "best_evidence_unit": "Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.",
+      "retrieval_score": 0.682641,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.682641,
+          "probabilities": {
+            "contradiction": 0.00045,
+            "entailment": 0.997665,
+            "neutral": 0.001885
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "security policies",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.214839,
+          "probabilities": {
+            "contradiction": 0.000366,
+            "entailment": 0.001558,
+            "neutral": 0.998076
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 91 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.150266,
+          "probabilities": {
+            "contradiction": 0.002663,
+            "entailment": 0.000163,
+            "neutral": 0.997174
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.00045,
+        "entailment": 0.997665,
+        "neutral": 0.001885
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.997665,
+      "supported": true
+    },
+    {
+      "claim": "Managed approximately 91 work items per month while tracking quality checks and follow-up actions.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Managed approximately 91 work items per month while tracking quality checks and follow-up actions.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 15,
+      "best_source_chunk": "Managed approximately 91 work items per month while tracking quality checks and follow-up actions.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Managed approximately 91 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Grace Ng",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "grace.ng@example.test | +65 6000 0047 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Supported internal and external audits by collaborating with four colleagues and presenting progress during fortnightly reviews.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0009",
+      "best_evidence_unit": "Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews.",
+      "retrieval_score": 0.697421,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.697421,
+          "probabilities": {
+            "contradiction": 0.000249,
+            "entailment": 0.998105,
+            "neutral": 0.001645
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.13869,
+          "probabilities": {
+            "contradiction": 0.000289,
+            "entailment": 0.000222,
+            "neutral": 0.999488
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.071889,
+          "probabilities": {
+            "contradiction": 0.001812,
+            "entailment": 8e-05,
+            "neutral": 0.998107
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000249,
+        "entailment": 0.998105,
+        "neutral": 0.001645
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.998105,
+      "supported": true
+    },
+    {
+      "claim": "Provided audit support for recurring operational work and documented step-by-step procedures.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+      "retrieval_score": 0.845503,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.845503,
+          "probabilities": {
+            "contradiction": 0.000463,
+            "entailment": 0.998318,
+            "neutral": 0.001219
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "audit support",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.226834,
+          "probabilities": {
+            "contradiction": 0.000238,
+            "entailment": 0.000538,
+            "neutral": 0.999223
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.154717,
+          "probabilities": {
+            "contradiction": 0.000207,
+            "entailment": 0.016771,
+            "neutral": 0.983022
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000463,
+        "entailment": 0.998318,
+        "neutral": 0.001219
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.998318,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0017",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.07574
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a simple reporting template that reduced manual preparation time by 26%.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0013",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 26%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 26%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0013",
+          "text": "Created a simple reporting template that reduced manual preparation time by 26%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Grace Ng",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "grace.ng@example.test | +65 6000 0047 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0019",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0019",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Cybersecurity GRC Analyst Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 0.160901
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Cybersecurity GRC Analyst, Example Beacon Services (fictional) (Jul 2023 - Present)",
+          "kind": "protected_header",
+          "line": 11,
+          "retrieval_score": 0.14631
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "risk assessment",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 31%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "ISO 27001",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 31%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "security policies",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Cybersecurity GRC Analyst with hands-on experience in risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "audit support",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Supported recurring operational work using audit support and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "audit support",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0009",
+          "text": "Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.329267
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "control testing",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0024",
+      "best_evidence_unit": "control testing",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "control testing",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0024",
+          "text": "control testing",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0027",
+          "text": "technical writing",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.1
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "security policies",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.075
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "vendor risk",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0025",
+      "best_evidence_unit": "vendor risk",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "vendor risk",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0025",
+          "text": "vendor risk",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0020",
+          "text": "risk assessment",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.419872
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Built a fictional demonstration project using risk assessment, ISO 27001 and security policies.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.332013
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "stakeholder communication",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0026",
+      "best_evidence_unit": "stakeholder communication",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "stakeholder communication",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0026",
+          "text": "stakeholder communication",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0027",
+          "text": "technical writing",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.095238
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "security policies",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.066667
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "technical writing",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0027",
+      "best_evidence_unit": "technical writing",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "technical writing",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0027",
+          "text": "technical writing",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023)",
+          "kind": "protected_header",
+          "line": 18,
+          "retrieval_score": 0.373171
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.33016
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "NIST",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0028",
+      "best_evidence_unit": "NIST",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "NIST",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0028",
+          "text": "NIST",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0025",
+          "text": "vendor risk",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.08
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "audit support",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.070588
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "cloud governance",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0029",
+      "best_evidence_unit": "cloud governance",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "cloud governance",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0029",
+          "text": "cloud governance",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Grace Ng",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.083333
+        },
+        {
+          "evidence_id": "evidence-0023",
+          "text": "audit support",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 0.068966
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "5ec19c601e1021a9c55088063d807c5a84a7dd896092751634a24a3657ca8b40",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": false,
+  "task_success": false,
+  "task_failure_reasons": [
+    "word_count_out_of_range"
+  ],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 8408,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 8797.43,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_007__cy_jd_02",
+  "resume_id": "cy_resume_007",
+  "jd_id": "cy_jd_02",
+  "category": "cybersecurity",
+  "role_family": "grc_analyst",
+  "seniority": "mid",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 16.9,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_007__cy_jd_02\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_007__cy_jd_02\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_007__cy_jd_02\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "jd_wording_alignment",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "202 words; target is roughly 350-500"
+          ],
+          "words": 202
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a faithful reproduction of the original resume text. It lacks JD alignment because it does not explicitly map experience to specific responsibilities like 'control testing' or 'vendor risk', though these are listed in skills.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original data. Lower JD alignment because it lists skills but fails to map them to specific JD responsibilities (e.g., does not mention 'technology risk assessments' or 'audit support' in the experience bullets). Writing quality is slightly lower due to inconsistent header formatting com",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.77,
+          "input_tokens": 1117,
+          "output_tokens": 323
+        }
+      },
+      "impact_first": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "202 words; target is roughly 350-500"
+          ],
+          "words": 202
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.72,
+          "input_tokens": 1118,
+          "output_tokens": 323
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "197 words; target is roughly 350-500"
+          ],
+          "words": 197
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 rephrases bullet points to better match JD verbs (e.g., 'Performed technology risk assessments'). It is faithful and covers all skills. Minor deduction for writing quality due to inconsistent spacing in headers compared to standard resume formatting.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is faithful to the original; JD keywords are explicitly used in bullet points (e.g., 'technology risk assessments', 'security policies and controls', 'internal and external audits'). Minor gap: 'control testing' and 'vendor risk' are not mentioned in experience bullets, though present in skills",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.67,
+          "input_tokens": 1130,
+          "output_tokens": 319
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

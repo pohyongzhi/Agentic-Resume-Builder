@@ -1,0 +1,285 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1037,
+    "output_tokens": 269,
+    "thinking_chars": 0,
+    "seconds": 3.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "175 words; target is roughly 350-500"
+      ],
+      "words": 175
+    },
+    "generation": {
+      "seconds": 3.2,
+      "input_tokens": 1037,
+      "output_tokens": 269
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1038,
+    "output_tokens": 329,
+    "thinking_chars": 0,
+    "seconds": 3.7,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "225 words; target is roughly 350-500"
+      ],
+      "words": 225
+    },
+    "generation": {
+      "seconds": 3.7,
+      "input_tokens": 1038,
+      "output_tokens": 329
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1050,
+    "output_tokens": 327,
+    "thinking_chars": 0,
+    "seconds": 3.7,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "217 words; target is roughly 350-500"
+      ],
+      "words": 217
+    },
+    "generation": {
+      "seconds": 3.7,
+      "input_tokens": 1050,
+      "output_tokens": 327
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2091,
+    "output_tokens": 242,
+    "thinking_chars": 0,
+    "seconds": 3.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2091,
+    "output_tokens": 242,
+    "thinking_chars": 0,
+    "seconds": 2.6,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [
+      "impact_first",
+      "jd_wording_alignment",
+      "skills_first"
+    ],
+    "scores": {},
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2091,
+    "output_tokens": 236,
+    "thinking_chars": 0,
+    "seconds": 3.03,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Minor phrasing changes but all claims strictly supported by original text. JD alignment is moderate due to lack of explicit Python/Linux/Incident Response mentions in experience bullets.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Identical content to original resume with no invented facts. JD alignment remains moderate as specific hard skills (Python, Linux) are not explicitly highlighted in bullets.",
+        "grounding_concern_in_justification": true
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Content is faithful to the original. JD alignment is limited because the resume does not explicitly list Python, Linux, or Incident Response in the experience section, despite them being required.",
+        "grounding_concern_in_justification": true
+      }
+    },
+    "step": 11
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "175 words; target is roughly 350-500"
+          ],
+          "words": 175
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Content is faithful to the original. JD alignment is limited because the resume does not explicitly list Python, Linux, or Incident Response in the experience section, despite them being required.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.2,
+          "input_tokens": 1037,
+          "output_tokens": 269
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "225 words; target is roughly 350-500"
+          ],
+          "words": 225
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Identical content to original resume with no invented facts. JD alignment remains moderate as specific hard skills (Python, Linux) are not explicitly highlighted in bullets.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.7,
+          "input_tokens": 1038,
+          "output_tokens": 329
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "217 words; target is roughly 350-500"
+          ],
+          "words": 217
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor phrasing changes but all claims strictly supported by original text. JD alignment is moderate due to lack of explicit Python/Linux/Incident Response mentions in experience bullets.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.7,
+          "input_tokens": 1050,
+          "output_tokens": 327
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 12
+  }
+]

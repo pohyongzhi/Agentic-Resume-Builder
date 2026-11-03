@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1065,
+    "output_tokens": 276,
+    "thinking_chars": 0,
+    "seconds": 3.22,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "184 words; target is roughly 350-500"
+      ],
+      "words": 184
+    },
+    "generation": {
+      "seconds": 3.22,
+      "input_tokens": 1065,
+      "output_tokens": 276
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1066,
+    "output_tokens": 276,
+    "thinking_chars": 0,
+    "seconds": 3.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "185 words; target is roughly 350-500"
+      ],
+      "words": 185
+    },
+    "generation": {
+      "seconds": 3.2,
+      "input_tokens": 1066,
+      "output_tokens": 276
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1078,
+    "output_tokens": 306,
+    "thinking_chars": 0,
+    "seconds": 3.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "205 words; target is roughly 350-500"
+      ],
+      "words": 205
+    },
+    "generation": {
+      "seconds": 3.52,
+      "input_tokens": 1078,
+      "output_tokens": 306
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2052,
+    "output_tokens": 283,
+    "thinking_chars": 0,
+    "seconds": 3.49,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all original facts while reordering bullets to prioritize skills. Minor JD alignment gap in summary by omitting 'team turnaround' metric context, but bullet points remain accurate.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all original facts. Reorders bullets to highlight impact metrics (16%, 34 items, 11%). Minor JD alignment gap in summary by omitting specific skill keywords compared to Candidate 1.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all original facts. Excellent JD alignment by embedding specific metrics and actions directly into the summary to match 'What success looks like'. Writing quality slightly reduced due to dense summary paragraph.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2052,
+    "output_tokens": 346,
+    "thinking_chars": 0,
+    "seconds": 4.04,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Faithfully condenses the original resume while aligning bullet points with JD responsibilities. Minor gap: 'cloud transformation' is listed in skills but not explicitly demonstrated in experience bullets.",
+        "grounding_concern_in_justification": true
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all metrics and facts. JD alignment is lower because the summary lacks specific JD keywords like 'stakeholder management' or 'change management', and impact bullets are less structured around JD responsibilities.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully represents all resume data. JD alignment is weak due to a truncated summary missing key JD terms and inconsistent formatting in the final skills section (missing comma).",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "184 words; target is roughly 350-500"
+          ],
+          "words": 184
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original facts while reordering bullets to prioritize skills. Minor JD alignment gap in summary by omitting 'team turnaround' metric context, but bullet points remain accurate.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully represents all resume data. JD alignment is weak due to a truncated summary missing key JD terms and inconsistent formatting in the final skills section (missing comma).",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.22,
+          "input_tokens": 1065,
+          "output_tokens": 276
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "185 words; target is roughly 350-500"
+          ],
+          "words": 185
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original facts. Reorders bullets to highlight impact metrics (16%, 34 items, 11%). Minor JD alignment gap in summary by omitting specific skill keywords compared to Candidate 1.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all metrics and facts. JD alignment is lower because the summary lacks specific JD keywords like 'stakeholder management' or 'change management', and impact bullets are less structured around JD responsibilities.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.2,
+          "input_tokens": 1066,
+          "output_tokens": 276
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.0,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "205 words; target is roughly 350-500"
+          ],
+          "words": 205
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original facts. Excellent JD alignment by embedding specific metrics and actions directly into the summary to match 'What success looks like'. Writing quality slightly reduced due to dense summary paragraph.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully condenses the original resume while aligning bullet points with JD responsibilities. Minor gap: 'cloud transformation' is listed in skills but not explicitly demonstrated in experience bullets.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.52,
+          "input_tokens": 1078,
+          "output_tokens": 306
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

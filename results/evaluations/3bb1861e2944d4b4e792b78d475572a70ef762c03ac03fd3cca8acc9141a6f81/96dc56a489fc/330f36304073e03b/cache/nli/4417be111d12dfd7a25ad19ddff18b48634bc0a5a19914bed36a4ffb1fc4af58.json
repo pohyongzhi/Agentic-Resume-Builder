@@ -1,0 +1,311 @@
+{
+  "identity": {
+    "source_hash": "4b0b820f8408b01a5c50d010a9779996184dd5455d6bc1263ded0b3ef36e08c5",
+    "tailored_hash": "3d032d8ccc6e4876c1a97db502bcae02b8415ee5dc50ddf563f48f05de787eb6",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.05,
+    "unsupported": [
+      "Mid-level Operations professional with a strong foundation in product analytics, SQL, and data-driven decision-making.",
+      "Proven ability to analyze product usage, define success metrics, and translate customer evidence into actionable recommendations.",
+      "Experienced in collaborating with cross-functional teams to solve ambiguous problems while maintaining clear documentation and quality controls.",
+      "Seeking to leverage expertise in funnel analysis, experiment evaluation, and stakeholder communication as a Product Analyst at Example Northstar Systems.",
+      "Operations Support Coordinator** | Example Ember Technologies (Singapore)",
+      "Product Usage & Funnel Analysis:** Utilized product analytics and SQL to analyze complex product usage patterns and funnels, identifying bottlenecks that improved team turnaround by 22%.",
+      "Metric Definition & Documentation:** Defined clear product success metrics using Excel and maintained comprehensive documentation of decisions for technical and business reviewers, ensuring transparency and reliability.",
+      "Experiment Evaluation:** Collaborated with a team of four colleagues to evaluate experimental outcomes, presenting progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+      "Stakeholder Communication:** Partnered with operational leads to prioritize work items based on data evidence, effectively communicating progress and quality checks to relevant stakeholders.",
+      "Technical Assistant** | Example Atlas Solutions (Singapore)",
+      "Data-Driven Problem Solving:** Investigated service requests by recording findings with clear supporting evidence, demonstrating the ability to solve ambiguous problems through structured analysis.",
+      "Process Optimization:** Created a streamlined reporting template that reduced manual preparation time by 17%, showcasing an ability to deliver well-tested improvements and maintain quality standards.",
+      "Documentation & Collaboration:** Supported recurring operational workflows by developing and maintaining step-by-step documentation, fostering collaborative environments for efficient task execution.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+      "Capstone Project:** Led a Product Analyst Practice Project involving SQL and Excel to analyze fictional product data.",
+      "Defined limitations, proposed next steps, and presented design outcomes to a five-person peer review group, honing skills in data storytelling and clear written communication.",
+      "Analytics & Data:** Product Analytics, SQL, Funnel Analysis, KPI Design, Experiment Evaluation (A/B Testing), Data Storytelling.",
+      "Tools:** Excel, Documentation Tools, Reporting Templates.",
+      "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Verbal & Written Communication, Quality Assurance."
+    ],
+    "n_claims": 20,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Operations professional with a strong foundation in product analytics, SQL, and data-driven decision-making.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.00665,
+          "entailment": 0.013284,
+          "neutral": 0.980067
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013284,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to analyze product usage, define success metrics, and translate customer evidence into actionable recommendations.",
+        "best_source_chunk": "clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work.",
+        "probabilities": {
+          "contradiction": 0.000435,
+          "entailment": 0.006931,
+          "neutral": 0.992634
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006931,
+        "supported": false
+      },
+      {
+        "claim": "Experienced in collaborating with cross-functional teams to solve ambiguous problems while maintaining clear documentation and quality controls.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed",
+        "probabilities": {
+          "contradiction": 0.8588,
+          "entailment": 0.002442,
+          "neutral": 0.138758
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.002442,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage expertise in funnel analysis, experiment evaluation, and stakeholder communication as a Product Analyst at Example Northstar Systems.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.009815,
+          "entailment": 0.045479,
+          "neutral": 0.944706
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.045479,
+        "supported": false
+      },
+      {
+        "claim": "Operations Support Coordinator** | Example Ember Technologies (Singapore)",
+        "best_source_chunk": "clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work.",
+        "probabilities": {
+          "contradiction": 0.063852,
+          "entailment": 0.005835,
+          "neutral": 0.930313
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005835,
+        "supported": false
+      },
+      {
+        "claim": "Product Usage & Funnel Analysis:** Utilized product analytics and SQL to analyze complex product usage patterns and funnels, identifying bottlenecks that improved team turnaround by 22%.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed",
+        "probabilities": {
+          "contradiction": 0.000282,
+          "entailment": 0.002148,
+          "neutral": 0.99757
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002148,
+        "supported": false
+      },
+      {
+        "claim": "Metric Definition & Documentation:** Defined clear product success metrics using Excel and maintained comprehensive documentation of decisions for technical and business reviewers, ensuring transparency and reliability.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed",
+        "probabilities": {
+          "contradiction": 0.000261,
+          "entailment": 0.007932,
+          "neutral": 0.991807
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007932,
+        "supported": false
+      },
+      {
+        "claim": "Experiment Evaluation:** Collaborated with a team of four colleagues to evaluate experimental outcomes, presenting progress, risks, and technical trade-offs during fortnightly stakeholder reviews.",
+        "best_source_chunk": "by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed approximately 20 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews. ### Technical Assistant, Example Atlas Solutions (fictional) (Jan 2021 - Jun 2023) -",
+        "probabilities": {
+          "contradiction": 0.001118,
+          "entailment": 0.007646,
+          "neutral": 0.991236
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007646,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Partnered with operational leads to prioritize work items based on data evidence, effectively communicating progress and quality checks to relevant stakeholders.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.002692,
+          "entailment": 0.014705,
+          "neutral": 0.982603
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014705,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Atlas Solutions (Singapore)",
+        "best_source_chunk": "clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work.",
+        "probabilities": {
+          "contradiction": 0.983233,
+          "entailment": 0.001353,
+          "neutral": 0.015413
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.001353,
+        "supported": false
+      },
+      {
+        "claim": "Data-Driven Problem Solving:** Investigated service requests by recording findings with clear supporting evidence, demonstrating the ability to solve ambiguous problems through structured analysis.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.01071,
+          "entailment": 0.00993,
+          "neutral": 0.97936
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00993,
+        "supported": false
+      },
+      {
+        "claim": "Process Optimization:** Created a streamlined reporting template that reduced manual preparation time by 17%, showcasing an ability to deliver well-tested improvements and maintain quality standards.",
+        "best_source_chunk": "clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work.",
+        "probabilities": {
+          "contradiction": 0.009675,
+          "entailment": 0.016125,
+          "neutral": 0.9742
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016125,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Collaboration:** Supported recurring operational workflows by developing and maintaining step-by-step documentation, fostering collaborative environments for efficient task execution.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.004682,
+          "entailment": 0.052139,
+          "neutral": 0.943179
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.052139,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Singapore)",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.009916,
+          "entailment": 0.383722,
+          "neutral": 0.606362
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.383722,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.000137,
+          "entailment": 0.992342,
+          "neutral": 0.007521
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.992342,
+        "supported": true
+      },
+      {
+        "claim": "Capstone Project:** Led a Product Analyst Practice Project involving SQL and Excel to analyze fictional product data.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.00063,
+          "entailment": 0.003582,
+          "neutral": 0.995789
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003582,
+        "supported": false
+      },
+      {
+        "claim": "Defined limitations, proposed next steps, and presented design outcomes to a five-person peer review group, honing skills in data storytelling and clear written communication.",
+        "best_source_chunk": "software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project using product analytics, SQL and Excel. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Experience ### Operations Support Coordinator, Example Ember Technologies",
+        "probabilities": {
+          "contradiction": 0.005706,
+          "entailment": 0.001068,
+          "neutral": 0.993226
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001068,
+        "supported": false
+      },
+      {
+        "claim": "Analytics & Data:** Product Analytics, SQL, Funnel Analysis, KPI Design, Experiment Evaluation (A/B Testing), Data Storytelling.",
+        "best_source_chunk": "# Jonas Koh jonas.koh@example.test | +65 6000 0090 | Singapore ## Skills product analytics, SQL, Excel, documentation, stakeholder communication ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Projects ### Product Analyst Practice Project - Built a fictional demonstration project",
+        "probabilities": {
+          "contradiction": 0.008753,
+          "entailment": 0.014921,
+          "neutral": 0.976326
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014921,
+        "supported": false
+      },
+      {
+        "claim": "Tools:** Excel, Documentation Tools, Reporting Templates.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Experience ### Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present) - Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 22%. - Applied Excel to define product success metrics and documented decisions for technical and business reviewers. - Managed",
+        "probabilities": {
+          "contradiction": 0.500402,
+          "entailment": 0.03161,
+          "neutral": 0.467988
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.03161,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Communication, Collaborative Problem Solving, Clear Verbal & Written Communication, Quality Assurance.",
+        "best_source_chunk": "clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Summary Operations support professional experienced in product analytics, SQL, documentation and stakeholder coordination, transitioning toward Product Analyst work.",
+        "probabilities": {
+          "contradiction": 0.003376,
+          "entailment": 0.011358,
+          "neutral": 0.985266
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011358,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "4417be111d12dfd7a25ad19ddff18b48634bc0a5a19914bed36a4ffb1fc4af58"
+  }
+}

@@ -1,0 +1,387 @@
+{
+  "identity": {
+    "source_hash": "0df28a6551fc9f8e404f29c45c8474ca6b32e6f7074ca5684974745a06b9bd11",
+    "tailored_hash": "e4681d2b3ae41006a6c56da06b401107c533bd04769725bd0550a8771c11841b",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1154,
+    "unsupported": [
+      "Solutions Architect with hands-on experience translating business needs into reliable, maintainable solution designs using AWS and REST APIs.",
+      "Proven ability to define integration and security patterns while facilitating evidence-based architecture decisions.",
+      "Skilled in managing cross-functional teams, communicating technical trade-offs to stakeholders, and maintaining clear documentation.",
+      "Committed to delivering quality, reliability, and responsible outcomes through collaborative problem-solving.",
+      "Example Atlas Solutions** | Singapore",
+      "Translate operational and customer needs into documented solution designs, improving team turnaround by 29%.",
+      "Define integration and security patterns using REST APIs to ensure scalable and secure system architectures.",
+      "Facilitate architecture decisions for engineering and product stakeholders, presenting clear trade-offs and progress during fortnightly reviews.",
+      "Manage approximately 33 work items monthly, tracking quality checks and follow-up actions to maintain reliability standards.",
+      "Collaborate with multidisciplinary teams to support delivery, ensuring evidence-based decision-making throughout the lifecycle.",
+      "Example Beacon Services** | Singapore",
+      "Supported recurring operational work involving microservices, creating step-by-step procedures for maintainability.",
+      "Investigated service requests and escalated issues with clear supporting evidence to drive resolution.",
+      "Developed a reporting template that reduced manual preparation time by 24%, demonstrating ability to deliver measurable improvements.",
+      "Solutions Architect Practice Project",
+      "Tested scenarios to identify limitations and define next steps, ensuring robust design validation.",
+      "Presented design outcomes and trade-offs to a five-person peer review group, honing communication skills.",
+      "Bachelor of Science in Information Systems",
+      "Example Polytechnic** | Singapore",
+      "Architecture:** Solution Architecture, System Integration, Microservices Design",
+      "Cloud & APIs:** AWS, REST APIs, Terraform, Kubernetes",
+      "Security:** Security Patterns, Cybersecurity Fundamentals",
+      "Soft Skills:** Stakeholder Management, Clear Written/Verbal Communication, Collaborative Problem Solving"
+    ],
+    "n_claims": 26,
+    "claim_scores": [
+      {
+        "claim": "Solutions Architect with hands-on experience translating business needs into reliable, maintainable solution designs using AWS and REST APIs.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000293,
+          "entailment": 0.022806,
+          "neutral": 0.9769
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.022806,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to define integration and security patterns while facilitating evidence-based architecture decisions.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001066,
+          "entailment": 0.001743,
+          "neutral": 0.997191
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001743,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in managing cross-functional teams, communicating technical trade-offs to stakeholders, and maintaining clear documentation.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000193,
+          "entailment": 0.115527,
+          "neutral": 0.88428
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.115527,
+        "supported": false
+      },
+      {
+        "claim": "Committed to delivering quality, reliability, and responsible outcomes through collaborative problem-solving.",
+        "best_source_chunk": "- Managed approximately 33 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000748,
+          "entailment": 0.008426,
+          "neutral": 0.990826
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008426,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions** | Singapore",
+        "best_source_chunk": "# Kavya Koh kavya.koh@example.test | +65 6000 0091 | Singapore ## Summary Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Solutions Architect, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.001314,
+          "entailment": 0.017564,
+          "neutral": 0.981123
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017564,
+        "supported": false
+      },
+      {
+        "claim": "Translate operational and customer needs into documented solution designs, improving team turnaround by 29%.",
+        "best_source_chunk": "Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 24%. ## Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. -",
+        "probabilities": {
+          "contradiction": 0.001688,
+          "entailment": 0.000692,
+          "neutral": 0.99762
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000692,
+        "supported": false
+      },
+      {
+        "claim": "Define integration and security patterns using REST APIs to ensure scalable and secure system architectures.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.000924,
+          "entailment": 0.015126,
+          "neutral": 0.98395
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.015126,
+        "supported": false
+      },
+      {
+        "claim": "Facilitate architecture decisions for engineering and product stakeholders, presenting clear trade-offs and progress during fortnightly reviews.",
+        "best_source_chunk": "- Managed approximately 33 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000517,
+          "entailment": 0.001785,
+          "neutral": 0.997698
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001785,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 33 work items monthly, tracking quality checks and follow-up actions to maintain reliability standards.",
+        "best_source_chunk": "- Managed approximately 33 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000462,
+          "entailment": 0.001105,
+          "neutral": 0.998433
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001105,
+        "supported": false
+      },
+      {
+        "claim": "Collaborate with multidisciplinary teams to support delivery, ensuring evidence-based decision-making throughout the lifecycle.",
+        "best_source_chunk": "# Kavya Koh kavya.koh@example.test | +65 6000 0091 | Singapore ## Summary Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Solutions Architect, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.000353,
+          "entailment": 0.380991,
+          "neutral": 0.618656
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.380991,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | Singapore",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.270545,
+          "entailment": 0.001955,
+          "neutral": 0.7275
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001955,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work involving microservices, creating step-by-step procedures for maintainability.",
+        "best_source_chunk": "- Managed approximately 33 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.001122,
+          "entailment": 0.010127,
+          "neutral": 0.988751
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010127,
+        "supported": false
+      },
+      {
+        "claim": "Investigated service requests and escalated issues with clear supporting evidence to drive resolution.",
+        "best_source_chunk": "# Kavya Koh kavya.koh@example.test | +65 6000 0091 | Singapore ## Summary Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Solutions Architect, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.000981,
+          "entailment": 0.001323,
+          "neutral": 0.997696
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001323,
+        "supported": false
+      },
+      {
+        "claim": "Developed a reporting template that reduced manual preparation time by 24%, demonstrating ability to deliver measurable improvements.",
+        "best_source_chunk": "Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 24%. ## Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. -",
+        "probabilities": {
+          "contradiction": 0.000208,
+          "entailment": 0.000917,
+          "neutral": 0.998875
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000917,
+        "supported": false
+      },
+      {
+        "claim": "Solutions Architect Practice Project",
+        "best_source_chunk": "# Kavya Koh kavya.koh@example.test | +65 6000 0091 | Singapore ## Summary Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Solutions Architect, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.030273,
+          "entailment": 0.099046,
+          "neutral": 0.870681
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.099046,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project utilizing AWS, REST APIs, and solution architecture principles.",
+        "best_source_chunk": "Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 24%. ## Projects ### Solutions Architect Practice Project - Built a fictional demonstration project using solution architecture, AWS and REST APIs. -",
+        "probabilities": {
+          "contradiction": 0.00013,
+          "entailment": 0.995905,
+          "neutral": 0.003965
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995905,
+        "supported": true
+      },
+      {
+        "claim": "Tested scenarios to identify limitations and define next steps, ensuring robust design validation.",
+        "best_source_chunk": "- Managed approximately 33 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000713,
+          "entailment": 0.001736,
+          "neutral": 0.997551
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001736,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and trade-offs to a five-person peer review group, honing communication skills.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002347,
+          "entailment": 0.003592,
+          "neutral": 0.994061
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003592,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002351,
+          "entailment": 0.003223,
+          "neutral": 0.994426
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003223,
+        "supported": false
+      },
+      {
+        "claim": "Example Polytechnic** | Singapore",
+        "best_source_chunk": "technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.907113,
+          "entailment": 0.012476,
+          "neutral": 0.080411
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.012476,
+        "supported": false
+      },
+      {
+        "claim": "Coursework covered software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.002365,
+          "entailment": 0.932915,
+          "neutral": 0.06472
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.932915,
+        "supported": true
+      },
+      {
+        "claim": "Architecture:** Solution Architecture, System Integration, Microservices Design",
+        "best_source_chunk": "# Kavya Koh kavya.koh@example.test | +65 6000 0091 | Singapore ## Summary Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Solutions Architect, Example Atlas Solutions (fictional) (Jul 2023 - Present) - Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.006385,
+          "entailment": 0.113064,
+          "neutral": 0.880551
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.113064,
+        "supported": false
+      },
+      {
+        "claim": "Cloud & APIs:** AWS, REST APIs, Terraform, Kubernetes",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills solution architecture, AWS, REST APIs, microservices, security, technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.013583,
+          "entailment": 0.051909,
+          "neutral": 0.934508
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.051909,
+        "supported": false
+      },
+      {
+        "claim": "Security:** Security Patterns, Cybersecurity Fundamentals",
+        "best_source_chunk": "technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.034612,
+          "entailment": 0.036893,
+          "neutral": 0.928495
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.036893,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Stakeholder Management, Clear Written/Verbal Communication, Collaborative Problem Solving",
+        "best_source_chunk": "- Managed approximately 33 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using microservices and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.013258,
+          "entailment": 0.026888,
+          "neutral": 0.959854
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.026888,
+        "supported": false
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "best_source_chunk": "technical documentation, stakeholder management, system integration, Terraform, Kubernetes ## Certifications - AWS Certified Cloud Practitioner",
+        "probabilities": {
+          "contradiction": 0.001513,
+          "entailment": 0.985463,
+          "neutral": 0.013024
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.985463,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "aaa41fcd6a4c9b342ffb3c50bcd93da051d6ffefec7f2d49469ae1beaa8308f9"
+  }
+}

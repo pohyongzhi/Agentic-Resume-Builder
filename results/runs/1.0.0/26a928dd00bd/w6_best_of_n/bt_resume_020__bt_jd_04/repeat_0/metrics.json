@@ -1,0 +1,153 @@
+{
+  "llm_calls": 6,
+  "input_tokens": 8216,
+  "output_tokens": 1281,
+  "thinking_chars": 0,
+  "seconds": 15.16,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "held_out": true,
+  "required_sections_rate": 0.0,
+  "structure_pass": false,
+  "task_success": null,
+  "task_failure_reasons": [
+    "workflow_failed",
+    "missing_required_sections",
+    "faithfulness_not_scored",
+    "protected_fields_not_scored",
+    "fabrication_bait_not_scored"
+  ],
+  "agent_steps": 6,
+  "expected_min_steps": 5,
+  "step_efficiency": 0.8333,
+  "budget_utilisation": 0.8571,
+  "total_tokens": 9497,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": null,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "bt_resume_020__bt_jd_04",
+  "resume_id": "bt_resume_020",
+  "jd_id": "bt_jd_04",
+  "category": "business_technology",
+  "role_family": "technology_consultant",
+  "seniority": "senior",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.2,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\bt_resume_020__bt_jd_04\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\bt_resume_020__bt_jd_04\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\bt_resume_020__bt_jd_04\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original; retained the redundant phrase which does not harm faithfulness but offers no value.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.24,
+          "input_tokens": 1055,
+          "output_tokens": 279
+        }
+      },
+      "impact_first": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.24,
+          "input_tokens": 1056,
+          "output_tokens": 279
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Text is identical to original; removed redundant 'transitioning toward' phrase which slightly improved conciseness without altering facts.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.24,
+          "input_tokens": 1068,
+          "output_tokens": 280
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

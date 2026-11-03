@@ -1,0 +1,350 @@
+{
+  "identity": {
+    "source_hash": "96a9496cd3207e96a50c143a7810191bb2ad08315a28eebc0b332577f76917cf",
+    "tailored_hash": "b6e8124e9a0828a6b6e2147715352b416d40bedd7f5f3c30b2ac1fe8367cce04",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0435,
+    "unsupported": [
+      "Senior-ready Technology Associate with proven experience in platform engineering, Kubernetes, and Terraform.",
+      "Adept at translating operational needs into reliable, maintainable solutions through evidence-based decision-making and clear documentation.",
+      "Demonstrated ability to lead self-service infrastructure delivery, standardize secure deployment patterns, and improve developer experience while managing complex technical trade-offs.",
+      "Seeking to leverage deep cloud architecture expertise and collaborative problem-solving skills as a Platform Engineering Lead at Example Orchard Technologies.",
+      "Technology Associate** | Example Cedar Innovations (Jan 2021 \u2013 Present)",
+      "Platform Strategy & Self-Service:** Utilized platform engineering and Kubernetes to establish internal platform strategy, driving a 31% improvement in team turnaround time.",
+      "Infrastructure Delivery:** Led self-service infrastructure delivery using Terraform, ensuring all deployments adhered to standardized secure patterns.",
+      "Governance & Communication:** Managed approximately 44 work items monthly while maintaining rigorous quality controls;",
+      "presented technical progress, risks, and trade-offs to stakeholders during fortnightly reviews.",
+      "Documentation & Collaboration:** Collaborated with a cross-functional team of four colleagues to document technical decisions for both engineering and business reviewers, ensuring transparency and auditability.",
+      "Technical Assistant** | Example Delta Operations (Jun 2017 \u2013 Dec 2020)",
+      "Cloud Architecture & Operations:** Supported recurring operational work using cloud architecture principles, creating clear step-by-step documentation to enhance process reliability.",
+      "Problem Solving:** Investigated complex service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems collaboratively.",
+      "Process Improvement:** Developed a reporting template that reduced manual preparation time by 26%, showcasing an ability to deliver well-tested improvements focused on useful outcomes.",
+      "Platform Engineering Lead Practice Project**",
+      "Designed and built a demonstration project utilizing platform engineering, Kubernetes, and Terraform to validate technical capabilities.",
+      "Executed representative testing scenarios to identify limitations and define next steps, ensuring solutions were robust before presentation.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing skills in clear verbal communication and receiving constructive feedback on technical decisions.",
+      "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+      "Core Technologies:** Platform Engineering, Kubernetes, Terraform, Cloud Architecture, CI/CD concepts.",
+      "Leadership & Soft Skills:** Technical Leadership, Stakeholder Communication, Collaborative Problem Solving, Evidence-Based Decision Making.",
+      "Tools & Practices:** Backstage, Git, Documentation, Excel, Security Governance, Observability principles."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Senior-ready Technology Associate with proven experience in platform engineering, Kubernetes, and Terraform.",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.071196,
+          "entailment": 0.007913,
+          "neutral": 0.920891
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.007913,
+        "supported": false
+      },
+      {
+        "claim": "Adept at translating operational needs into reliable, maintainable solutions through evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.00166,
+          "entailment": 0.028064,
+          "neutral": 0.970276
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.028064,
+        "supported": false
+      },
+      {
+        "claim": "Demonstrated ability to lead self-service infrastructure delivery, standardize secure deployment patterns, and improve developer experience while managing complex technical trade-offs.",
+        "best_source_chunk": "Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.284235,
+          "entailment": 0.027998,
+          "neutral": 0.687768
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.027998,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage deep cloud architecture expertise and collaborative problem-solving skills as a Platform Engineering Lead at Example Orchard Technologies.",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.126469,
+          "entailment": 0.006044,
+          "neutral": 0.867487
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006044,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jan 2021 \u2013 Present)",
+        "best_source_chunk": "# Rina Lee rina.lee@example.test | +65 6000 0078 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.006393,
+          "entailment": 0.024852,
+          "neutral": 0.968755
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.024852,
+        "supported": false
+      },
+      {
+        "claim": "Platform Strategy & Self-Service:** Utilized platform engineering and Kubernetes to establish internal platform strategy, driving a 31% improvement in team turnaround time.",
+        "best_source_chunk": "2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 26%. ## Projects ### Platform Engineering Lead Practice Project - Built a fictional demonstration project using platform engineering, Kubernetes and Terraform. -",
+        "probabilities": {
+          "contradiction": 0.01287,
+          "entailment": 0.001147,
+          "neutral": 0.985984
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001147,
+        "supported": false
+      },
+      {
+        "claim": "Infrastructure Delivery:** Led self-service infrastructure delivery using Terraform, ensuring all deployments adhered to standardized secure patterns.",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.002321,
+          "entailment": 0.002393,
+          "neutral": 0.995286
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002393,
+        "supported": false
+      },
+      {
+        "claim": "Governance & Communication:** Managed approximately 44 work items monthly while maintaining rigorous quality controls;",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.001143,
+          "entailment": 0.001214,
+          "neutral": 0.997643
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001214,
+        "supported": false
+      },
+      {
+        "claim": "presented technical progress, risks, and trade-offs to stakeholders during fortnightly reviews.",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.001111,
+          "entailment": 0.000676,
+          "neutral": 0.998213
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000676,
+        "supported": false
+      },
+      {
+        "claim": "Documentation & Collaboration:** Collaborated with a cross-functional team of four colleagues to document technical decisions for both engineering and business reviewers, ensuring transparency and auditability.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills platform engineering, Kubernetes, Terraform, cloud architecture, Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.009456,
+          "entailment": 0.005044,
+          "neutral": 0.9855
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005044,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jun 2017 \u2013 Dec 2020)",
+        "best_source_chunk": "Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.836315,
+          "entailment": 0.06836,
+          "neutral": 0.095325
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.06836,
+        "supported": false
+      },
+      {
+        "claim": "Cloud Architecture & Operations:** Supported recurring operational work using cloud architecture principles, creating clear step-by-step documentation to enhance process reliability.",
+        "best_source_chunk": "approximately 44 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and",
+        "probabilities": {
+          "contradiction": 0.000625,
+          "entailment": 0.003121,
+          "neutral": 0.996253
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003121,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated complex service requests and escalated issues with clear supporting evidence, demonstrating the ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "# Rina Lee rina.lee@example.test | +65 6000 0078 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.101727,
+          "entailment": 0.00678,
+          "neutral": 0.891494
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00678,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Developed a reporting template that reduced manual preparation time by 26%, showcasing an ability to deliver well-tested improvements focused on useful outcomes.",
+        "best_source_chunk": "2020) - Supported recurring operational work using cloud architecture and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 26%. ## Projects ### Platform Engineering Lead Practice Project - Built a fictional demonstration project using platform engineering, Kubernetes and Terraform. -",
+        "probabilities": {
+          "contradiction": 0.705948,
+          "entailment": 0.011068,
+          "neutral": 0.282984
+        },
+        "predicted_relation": "contradiction",
+        "entailment": 0.011068,
+        "supported": false
+      },
+      {
+        "claim": "Platform Engineering Lead Practice Project**",
+        "best_source_chunk": "# Rina Lee rina.lee@example.test | +65 6000 0078 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.011645,
+          "entailment": 0.014592,
+          "neutral": 0.973764
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.014592,
+        "supported": false
+      },
+      {
+        "claim": "Designed and built a demonstration project utilizing platform engineering, Kubernetes, and Terraform to validate technical capabilities.",
+        "best_source_chunk": "# Rina Lee rina.lee@example.test | +65 6000 0078 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.000976,
+          "entailment": 0.003275,
+          "neutral": 0.99575
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003275,
+        "supported": false
+      },
+      {
+        "claim": "Executed representative testing scenarios to identify limitations and define next steps, ensuring solutions were robust before presentation.",
+        "best_source_chunk": "Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.010285,
+          "entailment": 0.006566,
+          "neutral": 0.983149
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006566,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing skills in clear verbal communication and receiving constructive feedback on technical decisions.",
+        "best_source_chunk": "Projects ### Platform Engineering Lead Practice Project - Built a fictional demonstration project using platform engineering, Kubernetes and Terraform. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 -",
+        "probabilities": {
+          "contradiction": 0.000547,
+          "entailment": 0.000812,
+          "neutral": 0.998641
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000812,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Metropolitan University (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.390226,
+          "entailment": 0.071807,
+          "neutral": 0.537967
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.071807,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills platform engineering, Kubernetes, Terraform, cloud architecture, Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000277,
+          "entailment": 0.983693,
+          "neutral": 0.01603
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.983693,
+        "supported": true
+      },
+      {
+        "claim": "Core Technologies:** Platform Engineering, Kubernetes, Terraform, Cloud Architecture, CI/CD concepts.",
+        "best_source_chunk": "# Rina Lee rina.lee@example.test | +65 6000 0078 | Singapore ## Summary Technology associate with transferable experience in platform engineering, Kubernetes and Terraform, seeking to deepen capability as a Platform Engineering Lead. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present) - Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround",
+        "probabilities": {
+          "contradiction": 0.04411,
+          "entailment": 0.054729,
+          "neutral": 0.901161
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.054729,
+        "supported": false
+      },
+      {
+        "claim": "Leadership & Soft Skills:** Technical Leadership, Stakeholder Communication, Collaborative Problem Solving, Evidence-Based Decision Making.",
+        "best_source_chunk": "Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.043877,
+          "entailment": 0.01148,
+          "neutral": 0.944643
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01148,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Practices:** Backstage, Git, Documentation, Excel, Security Governance, Observability principles.",
+        "best_source_chunk": "five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills platform engineering, Kubernetes, Terraform, cloud architecture, Backstage, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.00423,
+          "entailment": 0.004658,
+          "neutral": 0.991112
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004658,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "0923dec078dce2b7b01fe1b8240429cb009cf189b3d4541c68939f72317bcc6d"
+  }
+}

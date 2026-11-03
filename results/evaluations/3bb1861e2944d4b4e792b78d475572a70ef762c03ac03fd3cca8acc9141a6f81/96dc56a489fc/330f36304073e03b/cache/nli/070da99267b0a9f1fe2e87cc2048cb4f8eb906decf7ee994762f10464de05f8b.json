@@ -1,0 +1,321 @@
+{
+  "identity": {
+    "source_hash": "68693a36f12a3fb619eb8ac50dfc72d93a8689cab9043cf43e7cb8bc4b3470ff",
+    "tailored_hash": "8256f0c1f1e350f17ba0c9f0d7e52aa09b66e720ad7fff25a7579262fb3e8b80",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.1905,
+    "unsupported": [
+      "Mid-level Technology Associate with proven experience in risk assessment, ISO 27001 compliance, and security policy maintenance.",
+      "Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+      "Skilled in supporting internal and external audits, tracking remediation actions, and communicating technical trade-offs to diverse stakeholders.",
+      "Seeking to leverage transferable expertise as a Cybersecurity GRC Analyst at Example Northstar Systems.",
+      "Risk Assessment & Governance:** Perform technology risk assessments aligned with ISO 2701 standards, improving team turnaround by 14% through data-driven insights.",
+      "Policy Maintenance:** Maintain security policies and controls while documenting decisions for technical and business reviewers to ensure regulatory compliance.",
+      "Audit Support:** Collaborate with cross-functional teams to support internal and external audits, presenting progress and findings during fortnightly reviews.",
+      "Remediation Tracking:** Manage approximately 27 work items monthly, tracking quality checks and follow-up actions to ensure timely resolution of identified risks.",
+      "Stakeholder Communication:** Advise engineering and product stakeholders on governance requirements, clearly communicating progress, risks, and technical trade-offs.",
+      "Technical Assistant** | Example Ember Technologies (Jan 2021 \u2013 Jun 2023)",
+      "Process Documentation:** Created clear, step-by-step procedures to support recurring operational work, enhancing team efficiency.",
+      "Audit & Evidence Management:** Investigated service requests, recorded findings with supporting evidence, and facilitated audit preparation through rigorous documentation practices.",
+      "Reporting & Analysis:** Developed a reporting template that reduced manual preparation time by 9%, demonstrating ability to deliver well-tested improvements.",
+      "Conducted control testing using representative scenarios to validate system effectiveness.",
+      "Presented design outcomes and identified limitations to a five-person peer review group, showcasing ability to solve ambiguous problems collaboratively.",
+      "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+      "Risk Assessment, ISO 27001, Security Policies, Audit Support, Control Testing, Vendor Risk Management, NIST Frameworks, Technical Writing, Stakeholder Communication, Git, Excel, Collaborative Problem Solving"
+    ],
+    "n_claims": 21,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Technology Associate with proven experience in risk assessment, ISO 27001 compliance, and security policy maintenance.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.022719,
+          "entailment": 0.075856,
+          "neutral": 0.901424
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.075856,
+        "supported": false
+      },
+      {
+        "claim": "Adept at translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "(fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using audit support and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Projects ### Cybersecurity GRC Analyst Practice Project - Built a fictional demonstration project using risk",
+        "probabilities": {
+          "contradiction": 0.019634,
+          "entailment": 0.121853,
+          "neutral": 0.858512
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.121853,
+        "supported": false
+      },
+      {
+        "claim": "Skilled in supporting internal and external audits, tracking remediation actions, and communicating technical trade-offs to diverse stakeholders.",
+        "best_source_chunk": "Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 14%. - Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers. - Managed approximately 27 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.000335,
+          "entailment": 0.000884,
+          "neutral": 0.998782
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000884,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage transferable expertise as a Cybersecurity GRC Analyst at Example Northstar Systems.",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.140285,
+          "entailment": 0.009203,
+          "neutral": 0.850512
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009203,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Delta Operations (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.007556,
+          "entailment": 0.891458,
+          "neutral": 0.100986
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.891458,
+        "supported": true
+      },
+      {
+        "claim": "Risk Assessment & Governance:** Perform technology risk assessments aligned with ISO 2701 standards, improving team turnaround by 14% through data-driven insights.",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.001322,
+          "entailment": 0.005111,
+          "neutral": 0.993567
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005111,
+        "supported": false
+      },
+      {
+        "claim": "Policy Maintenance:** Maintain security policies and controls while documenting decisions for technical and business reviewers to ensure regulatory compliance.",
+        "best_source_chunk": "Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 14%. - Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers. - Managed approximately 27 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.000894,
+          "entailment": 0.002795,
+          "neutral": 0.996311
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002795,
+        "supported": false
+      },
+      {
+        "claim": "Audit Support:** Collaborate with cross-functional teams to support internal and external audits, presenting progress and findings during fortnightly reviews.",
+        "best_source_chunk": "business reviewers. - Managed approximately 27 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using audit support and documented step-by-step procedures. - Investigated",
+        "probabilities": {
+          "contradiction": 0.031018,
+          "entailment": 0.074855,
+          "neutral": 0.894127
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.074855,
+        "supported": false
+      },
+      {
+        "claim": "Remediation Tracking:** Manage approximately 27 work items monthly, tracking quality checks and follow-up actions to ensure timely resolution of identified risks.",
+        "best_source_chunk": "## Skills risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.04493,
+          "entailment": 0.035189,
+          "neutral": 0.919881
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.035189,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Advise engineering and product stakeholders on governance requirements, clearly communicating progress, risks, and technical trade-offs.",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.00156,
+          "entailment": 0.006613,
+          "neutral": 0.991826
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006613,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Ember Technologies (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "business reviewers. - Managed approximately 27 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to support internal and external audits and presented progress during fortnightly reviews. ### Technical Assistant, Example Ember Technologies (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using audit support and documented step-by-step procedures. - Investigated",
+        "probabilities": {
+          "contradiction": 0.007103,
+          "entailment": 0.015543,
+          "neutral": 0.977354
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.015543,
+        "supported": false
+      },
+      {
+        "claim": "Process Documentation:** Created clear, step-by-step procedures to support recurring operational work, enhancing team efficiency.",
+        "best_source_chunk": "Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving team turnaround by 14%. - Applied security policies to maintain security policies and controls and documented decisions for technical and business reviewers. - Managed approximately 27 work items per month while tracking quality checks and follow-up actions. - Collaborated with",
+        "probabilities": {
+          "contradiction": 0.001713,
+          "entailment": 0.010341,
+          "neutral": 0.987945
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.010341,
+        "supported": false
+      },
+      {
+        "claim": "Audit & Evidence Management:** Investigated service requests, recorded findings with supporting evidence, and facilitated audit preparation through rigorous documentation practices.",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.003159,
+          "entailment": 0.009302,
+          "neutral": 0.987538
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009302,
+        "supported": false
+      },
+      {
+        "claim": "Reporting & Analysis:** Developed a reporting template that reduced manual preparation time by 9%, demonstrating ability to deliver well-tested improvements.",
+        "best_source_chunk": "(fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using audit support and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 9%. ## Projects ### Cybersecurity GRC Analyst Practice Project - Built a fictional demonstration project using risk",
+        "probabilities": {
+          "contradiction": 0.003142,
+          "entailment": 0.011829,
+          "neutral": 0.98503
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011829,
+        "supported": false
+      },
+      {
+        "claim": "Cybersecurity GRC Analyst Practice Project**",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.004992,
+          "entailment": 0.87741,
+          "neutral": 0.117598
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.87741,
+        "supported": true
+      },
+      {
+        "claim": "Designed and executed a demonstration project utilizing risk assessment, ISO 27001, and security policies.",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.000667,
+          "entailment": 0.969073,
+          "neutral": 0.03026
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.969073,
+        "supported": true
+      },
+      {
+        "claim": "Conducted control testing using representative scenarios to validate system effectiveness.",
+        "best_source_chunk": "## Skills risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.006846,
+          "entailment": 0.0161,
+          "neutral": 0.977054
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0161,
+        "supported": false
+      },
+      {
+        "claim": "Presented design outcomes and identified limitations to a five-person peer review group, showcasing ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "preparation time by 9%. ## Projects ### Cybersecurity GRC Analyst Practice Project - Built a fictional demonstration project using risk assessment, ISO 27001 and security policies. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems,",
+        "probabilities": {
+          "contradiction": 0.000908,
+          "entailment": 0.001066,
+          "neutral": 0.998026
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001066,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example Institute of Technology (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.006751,
+          "entailment": 0.016179,
+          "neutral": 0.977071
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016179,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software engineering, databases, cybersecurity, and applied analytics.",
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills risk assessment, ISO 27001, security policies, audit support, NIST, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000384,
+          "entailment": 0.984196,
+          "neutral": 0.01542
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.984196,
+        "supported": true
+      },
+      {
+        "claim": "Risk Assessment, ISO 27001, Security Policies, Audit Support, Control Testing, Vendor Risk Management, NIST Frameworks, Technical Writing, Stakeholder Communication, Git, Excel, Collaborative Problem Solving",
+        "best_source_chunk": "# Inez Ng inez.ng@example.test | +65 6000 0049 | Singapore ## Summary Technology associate with transferable experience in risk assessment, ISO 27001 and security policies, seeking to deepen capability as a Cybersecurity GRC Analyst. ## Experience ### Technology Associate, Example Delta Operations (fictional) (Jul 2023 - Present) - Used risk assessment and ISO 27001 to perform technology risk assessments, improving",
+        "probabilities": {
+          "contradiction": 0.002871,
+          "entailment": 0.002158,
+          "neutral": 0.994971
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002158,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "070da99267b0a9f1fe2e87cc2048cb4f8eb906decf7ee994762f10464de05f8b"
+  }
+}

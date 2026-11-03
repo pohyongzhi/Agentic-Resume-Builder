@@ -1,0 +1,162 @@
+{
+  "llm_calls": 6,
+  "input_tokens": 9398,
+  "output_tokens": 1645,
+  "thinking_chars": 0,
+  "seconds": 19.37,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "held_out": true,
+  "required_sections_rate": 0.0,
+  "structure_pass": false,
+  "task_success": null,
+  "task_failure_reasons": [
+    "workflow_failed",
+    "missing_required_sections",
+    "faithfulness_not_scored",
+    "protected_fields_not_scored",
+    "fabrication_bait_not_scored"
+  ],
+  "agent_steps": 6,
+  "expected_min_steps": 5,
+  "step_efficiency": 0.8333,
+  "budget_utilisation": 0.8571,
+  "total_tokens": 11043,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": null,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_015__cy_jd_03",
+  "resume_id": "cy_resume_015",
+  "jd_id": "cy_jd_03",
+  "category": "cybersecurity",
+  "role_family": "security_engineer",
+  "seniority": "mid",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 19.4,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_015__cy_jd_03\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_015__cy_jd_03\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cy_resume_015__cy_jd_03\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "175 words; target is roughly 350-500"
+          ],
+          "words": 175
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Content is faithful to the original. JD alignment is limited because the resume does not explicitly list Python, Linux, or Incident Response in the experience section, despite them being required.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.2,
+          "input_tokens": 1037,
+          "output_tokens": 269
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "225 words; target is roughly 350-500"
+          ],
+          "words": 225
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Identical content to original resume with no invented facts. JD alignment remains moderate as specific hard skills (Python, Linux) are not explicitly highlighted in bullets.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.7,
+          "input_tokens": 1038,
+          "output_tokens": 329
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "217 words; target is roughly 350-500"
+          ],
+          "words": 217
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor phrasing changes but all claims strictly supported by original text. JD alignment is moderate due to lack of explicit Python/Linux/Incident Response mentions in experience bullets.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.7,
+          "input_tokens": 1050,
+          "output_tokens": 327
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

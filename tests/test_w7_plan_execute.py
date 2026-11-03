@@ -49,7 +49,7 @@ class FakeOllama:
         self.calls = []
         self.lock = threading.Lock()
 
-    def chat(self, model, messages, tools=None, think=None, options=None):
+    def chat(self, model, messages, tools=None, think=None, options=None, format=None):
         start = time.perf_counter()
         system, user = messages[0]["content"], messages[-1]["content"]
         if "tailoring plan" in system:
@@ -204,8 +204,9 @@ class W7FollowsReadmeRules(unittest.TestCase):
         llm_events = [e for e in self.tracker.events if e["type"] == "llm"]
         self.assertEqual(len(llm_events), len(self.fake.calls), "every call is logged, so cost is counted")
         for c in self.fake.calls:
-            self.assertEqual(c["model"], config.MODEL)
-            self.assertEqual(c["options"], {"temperature": config.TEMPERATURE, "num_ctx": config.NUM_CTX})
+            self.assertEqual(c["model"], config.BASE_MODEL)
+            self.assertEqual(c["options"], {"temperature": config.TEMPERATURE, "num_ctx": config.NUM_CTX,
+                                            "seed": config.SEED})
             self.assertEqual(c["think"], config.THINK)
             self.assertIsNone(c["tools"], "fixed pipeline, no tool loop")
 

@@ -1,0 +1,374 @@
+{
+  "identity": {
+    "source_hash": "e2b3076b17390994929b6ba14a897f41c281a80ef4ba50cce19fe65f217efc61",
+    "tailored_hash": "49ec3862f4093486f0f7c84aae45b1844575a18bf9c07d8f819edfe8f70ea33e",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.12,
+    "unsupported": [
+      "Proven track record of leading delivery of complex features while establishing maintainable architectures and automated testing practices.",
+      "Expert in translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+      "Adept at mentoring engineers, managing cross-functional stakeholders, and driving performance optimization initiatives.",
+      "Example Atlas Solutions** | *Jan 2021 \u2013 Present*",
+      "Lead Delivery & Architecture:** Spearhead the delivery of Android features using Kotlin and modern mobile architecture patterns.",
+      "Define maintainable architectural standards that ensure long-term scalability and code quality.",
+      "Testing & Quality Control:** Establish and enforce automated testing practices to ensure reliability.",
+      "Manage approximately 48 work items monthly while maintaining rigorous quality checks and follow-up actions.",
+      "Mentorship & Reviews:** Mentor junior engineers through design reviews and code audits, fostering a culture of high-quality standards and collaborative problem-solving.",
+      "Stakeholder Communication:** Communicate progress, technical trade-offs, and risks to product and business stakeholders during fortnightly reviews, ensuring alignment on goals and outcomes.",
+      "Documentation:** Maintain clear documentation for all architectural decisions and technical procedures, facilitating transparency and knowledge sharing across the organization.",
+      "Example Beacon Services** | *Jun 2017 \u2013 Dec 2020*",
+      "API Integration:** Supported recurring operational work by developing robust solutions using REST APIs, ensuring data integrity and system reliability.",
+      "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+      "Process Improvement:** Created a reporting template that reduced manual preparation time by 26%, showcasing commitment to efficiency and measurable results.",
+      "Senior Mobile Engineer Practice Project",
+      "Developed a demonstration project utilizing Kotlin, Android, and mobile architecture to validate technical capabilities.",
+      "Implemented comprehensive unit testing with representative scenarios to identify limitations and define next steps.",
+      "Presented design rationale and outcomes to a five-person peer review group, honing communication skills and receiving constructive feedback.",
+      "Bachelor of Science in Information Systems**",
+      "Example School of Computing | *Aug 2020 \u2013 May 2024*",
+      "Kotlin, Android, Mobile Architecture, Jetpack Compose, Firebase, REST APIs, Unit Testing, Git, CI/CD, Performance Optimization, Technical Documentation, Stakeholder Management"
+    ],
+    "n_claims": 25,
+    "claim_scores": [
+      {
+        "claim": "Senior Mobile Engineer with extensive experience in Kotlin, Android, and mobile architecture.",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000318,
+          "entailment": 0.554802,
+          "neutral": 0.44488
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.554802,
+        "supported": true
+      },
+      {
+        "claim": "Proven track record of leading delivery of complex features while establishing maintainable architectures and automated testing practices.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 26%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.005144,
+          "entailment": 0.001534,
+          "neutral": 0.993323
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001534,
+        "supported": false
+      },
+      {
+        "claim": "Expert in translating operational needs into reliable solutions through evidence-based decision-making and clear documentation.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 26%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.002284,
+          "entailment": 0.004566,
+          "neutral": 0.99315
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004566,
+        "supported": false
+      },
+      {
+        "claim": "Adept at mentoring engineers, managing cross-functional stakeholders, and driving performance optimization initiatives.",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000219,
+          "entailment": 0.002728,
+          "neutral": 0.997052
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002728,
+        "supported": false
+      },
+      {
+        "claim": "Example Atlas Solutions** | *Jan 2021 \u2013 Present*",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000911,
+          "entailment": 0.040823,
+          "neutral": 0.958266
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.040823,
+        "supported": false
+      },
+      {
+        "claim": "Lead Delivery & Architecture:** Spearhead the delivery of Android features using Kotlin and modern mobile architecture patterns.",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 7.7e-05,
+          "entailment": 0.031735,
+          "neutral": 0.968188
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.031735,
+        "supported": false
+      },
+      {
+        "claim": "Define maintainable architectural standards that ensure long-term scalability and code quality.",
+        "best_source_chunk": "unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.005776,
+          "entailment": 0.116977,
+          "neutral": 0.877247
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.116977,
+        "supported": false
+      },
+      {
+        "claim": "Performance Optimization:** Collaborate with engineering teams to improve application performance, resulting in measurable turnaround improvements for the team.",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000743,
+          "entailment": 0.780247,
+          "neutral": 0.219011
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.780247,
+        "supported": true
+      },
+      {
+        "claim": "Testing & Quality Control:** Establish and enforce automated testing practices to ensure reliability.",
+        "best_source_chunk": "unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.017277,
+          "entailment": 0.203986,
+          "neutral": 0.778737
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.203986,
+        "supported": false
+      },
+      {
+        "claim": "Manage approximately 48 work items monthly while maintaining rigorous quality checks and follow-up actions.",
+        "best_source_chunk": "approximately 48 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.000688,
+          "entailment": 0.0037,
+          "neutral": 0.995612
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.0037,
+        "supported": false
+      },
+      {
+        "claim": "Mentorship & Reviews:** Mentor junior engineers through design reviews and code audits, fostering a culture of high-quality standards and collaborative problem-solving.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.001763,
+          "entailment": 0.002275,
+          "neutral": 0.995962
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002275,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Communicate progress, technical trade-offs, and risks to product and business stakeholders during fortnightly reviews, ensuring alignment on goals and outcomes.",
+        "best_source_chunk": "approximately 48 work items per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews. ### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020) - Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated",
+        "probabilities": {
+          "contradiction": 0.004555,
+          "entailment": 0.001719,
+          "neutral": 0.993726
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001719,
+        "supported": false
+      },
+      {
+        "claim": "Documentation:** Maintain clear documentation for all architectural decisions and technical procedures, facilitating transparency and knowledge sharing across the organization.",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000302,
+          "entailment": 0.002177,
+          "neutral": 0.99752
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002177,
+        "supported": false
+      },
+      {
+        "claim": "Example Beacon Services** | *Jun 2017 \u2013 Dec 2020*",
+        "best_source_chunk": "unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.414807,
+          "entailment": 0.012501,
+          "neutral": 0.572692
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.012501,
+        "supported": false
+      },
+      {
+        "claim": "API Integration:** Supported recurring operational work by developing robust solutions using REST APIs, ensuring data integrity and system reliability.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.001828,
+          "entailment": 0.009,
+          "neutral": 0.989173
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009,
+        "supported": false
+      },
+      {
+        "claim": "Problem Solving:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.124381,
+          "entailment": 0.008647,
+          "neutral": 0.866973
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.008647,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Created a reporting template that reduced manual preparation time by 26%, showcasing commitment to efficiency and measurable results.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 26%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.016819,
+          "entailment": 0.016732,
+          "neutral": 0.966449
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.016732,
+        "supported": false
+      },
+      {
+        "claim": "Senior Mobile Engineer Practice Project",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000883,
+          "entailment": 0.009654,
+          "neutral": 0.989463
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009654,
+        "supported": false
+      },
+      {
+        "claim": "Developed a demonstration project utilizing Kotlin, Android, and mobile architecture to validate technical capabilities.",
+        "best_source_chunk": "# Priya Tan priya.tan@example.test | +65 6000 0016 | Singapore ## Summary Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams. ## Experience ### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present) - Used Kotlin and Android to lead delivery of Android features, improving team turnaround by",
+        "probabilities": {
+          "contradiction": 0.000161,
+          "entailment": 0.072465,
+          "neutral": 0.927374
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.072465,
+        "supported": false
+      },
+      {
+        "claim": "Implemented comprehensive unit testing with representative scenarios to identify limitations and define next steps.",
+        "best_source_chunk": "- Supported recurring operational work using REST APIs and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 26%. ## Projects ### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested",
+        "probabilities": {
+          "contradiction": 0.001801,
+          "entailment": 0.00259,
+          "neutral": 0.995609
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00259,
+        "supported": false
+      },
+      {
+        "claim": "Presented design rationale and outcomes to a five-person peer review group, honing communication skills and receiving constructive feedback.",
+        "best_source_chunk": "### Senior Mobile Engineer Practice Project - Built a fictional demonstration project using Kotlin, Android and mobile architecture. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 -",
+        "probabilities": {
+          "contradiction": 0.000346,
+          "entailment": 0.001215,
+          "neutral": 0.998439
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001215,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems**",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.002457,
+          "entailment": 0.00294,
+          "neutral": 0.994603
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00294,
+        "supported": false
+      },
+      {
+        "claim": "Example School of Computing | *Aug 2020 \u2013 May 2024*",
+        "best_source_chunk": "unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.144494,
+          "entailment": 0.011109,
+          "neutral": 0.844397
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.011109,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, Applied Analytics.",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 9.2e-05,
+          "entailment": 0.98017,
+          "neutral": 0.019738
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.98017,
+        "supported": true
+      },
+      {
+        "claim": "Kotlin, Android, Mobile Architecture, Jetpack Compose, Firebase, REST APIs, Unit Testing, Git, CI/CD, Performance Optimization, Technical Documentation, Stakeholder Management",
+        "best_source_chunk": "peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase",
+        "probabilities": {
+          "contradiction": 0.000911,
+          "entailment": 0.002271,
+          "neutral": 0.996818
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002271,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "c85d25ef04e57bb07627caf6bd97082591a4c3a18eb3f38fe746a64d30f1f334"
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "identity": {
+    "source_hash": "711d8d0d69ed257a90de266fbf600363fcda1ed3e0168ded65aa95220e14ea30",
+    "tailored_hash": "2cea58cc36b1c5c254e179f6180caaed2856ade690fce683ccfdcb376e8ae1b4",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-nli-v2",
+    "chunk_words": 60,
+    "chunk_overlap": 20,
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.0435,
+    "unsupported": [
+      "Mid-level Data Engineer with a strong foundation in Python, SQL, and ETL, specializing in building reliable batch data pipelines and modeling analytics-ready datasets.",
+      "Proven ability to optimize transformation jobs, monitor data quality, and deliver evidence-based solutions that improve team turnaround by over 20%.",
+      "Adept at collaborating with engineering, product, and business stakeholders to communicate technical trade-offs and maintain clear documentation.",
+      "Seeking to leverage experience in cloud storage integration and collaborative problem-solving to drive responsible delivery at Example Northstar Systems.",
+      "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+      "Pipeline Development:** Built reliable batch data pipelines using Python and SQL, improving team turnaround by 22% through optimized transformation jobs.",
+      "Data Modeling:** Applied ETL processes to model analytics-ready datasets, ensuring data integrity for downstream consumption by analysts.",
+      "Quality Assurance:** Monitored data quality across approximately 24 monthly work items, implementing tracking mechanisms and follow-up actions to maintain high standards.",
+      "Stakeholder Communication:** Collaborated with four colleagues to monitor progress and presented technical findings during fortnightly reviews, clearly articulating risks and status updates.",
+      "Documentation:** Documented all technical decisions and step-by-step procedures for operational work, ensuring transparency for technical and business reviewers.",
+      "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+      "Operational Support:** Supported recurring operational workflows by designing and maintaining data pipelines, reducing manual preparation time by 17%.",
+      "Troubleshooting:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+      "Process Improvement:** Created standardized reporting templates that streamlined data collection and analysis processes.",
+      "Data Engineer Practice Project** | Personal Initiative",
+      "Designed and executed a comprehensive demonstration project utilizing Python, SQL, and ETL to simulate real-world data engineering challenges.",
+      "Implemented robust testing protocols using representative scenarios to validate pipeline reliability and identify potential limitations.",
+      "Presented system design, outcomes, and next steps to a five-person peer review group, refining technical trade-offs based on feedback.",
+      "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+      "Core Competencies:** ETL, Data Pipelines, Data Quality Monitoring, Cloud Storage Integration",
+      "Tools & Platforms:** Git, Excel, Documentation Tools",
+      "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation"
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Mid-level Data Engineer with a strong foundation in Python, SQL, and ETL, specializing in building reliable batch data pipelines and modeling analytics-ready datasets.",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.000315,
+          "entailment": 0.002642,
+          "neutral": 0.997044
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002642,
+        "supported": false
+      },
+      {
+        "claim": "Proven ability to optimize transformation jobs, monitor data quality, and deliver evidence-based solutions that improve team turnaround by over 20%.",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.001275,
+          "entailment": 0.055272,
+          "neutral": 0.943453
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.055272,
+        "supported": false
+      },
+      {
+        "claim": "Adept at collaborating with engineering, product, and business stakeholders to communicate technical trade-offs and maintain clear documentation.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000779,
+          "entailment": 0.009984,
+          "neutral": 0.989237
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.009984,
+        "supported": false
+      },
+      {
+        "claim": "Seeking to leverage experience in cloud storage integration and collaborative problem-solving to drive responsible delivery at Example Northstar Systems.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.002048,
+          "entailment": 0.00114,
+          "neutral": 0.996812
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00114,
+        "supported": false
+      },
+      {
+        "claim": "Technology Associate** | Example Cedar Innovations (Jul 2023 \u2013 Present)",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.010957,
+          "entailment": 0.020864,
+          "neutral": 0.968179
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.020864,
+        "supported": false
+      },
+      {
+        "claim": "Pipeline Development:** Built reliable batch data pipelines using Python and SQL, improving team turnaround by 22% through optimized transformation jobs.",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.00113,
+          "entailment": 0.006329,
+          "neutral": 0.992541
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.006329,
+        "supported": false
+      },
+      {
+        "claim": "Data Modeling:** Applied ETL processes to model analytics-ready datasets, ensuring data integrity for downstream consumption by analysts.",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.001949,
+          "entailment": 0.215551,
+          "neutral": 0.782499
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.215551,
+        "supported": false
+      },
+      {
+        "claim": "Quality Assurance:** Monitored data quality across approximately 24 monthly work items, implementing tracking mechanisms and follow-up actions to maintain high standards.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.009278,
+          "entailment": 0.004266,
+          "neutral": 0.986456
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.004266,
+        "supported": false
+      },
+      {
+        "claim": "Stakeholder Communication:** Collaborated with four colleagues to monitor progress and presented technical findings during fortnightly reviews, clearly articulating risks and status updates.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.058274,
+          "entailment": 0.001043,
+          "neutral": 0.940683
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001043,
+        "supported": false
+      },
+      {
+        "claim": "Documentation:** Documented all technical decisions and step-by-step procedures for operational work, ensuring transparency for technical and business reviewers.",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.000322,
+          "entailment": 0.001224,
+          "neutral": 0.998454
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001224,
+        "supported": false
+      },
+      {
+        "claim": "Technical Assistant** | Example Delta Operations (Jan 2021 \u2013 Jun 2023)",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.001899,
+          "entailment": 0.001166,
+          "neutral": 0.996935
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001166,
+        "supported": false
+      },
+      {
+        "claim": "Operational Support:** Supported recurring operational workflows by designing and maintaining data pipelines, reducing manual preparation time by 17%.",
+        "best_source_chunk": "work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.005648,
+          "entailment": 0.017346,
+          "neutral": 0.977006
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.017346,
+        "supported": false
+      },
+      {
+        "claim": "Troubleshooting:** Investigated service requests and escalated complex issues with clear supporting evidence, demonstrating ability to solve ambiguous problems collaboratively.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.014106,
+          "entailment": 0.001809,
+          "neutral": 0.984085
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001809,
+        "supported": false
+      },
+      {
+        "claim": "Process Improvement:** Created standardized reporting templates that streamlined data collection and analysis processes.",
+        "best_source_chunk": "work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.040787,
+          "entailment": 0.439593,
+          "neutral": 0.51962
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.439593,
+        "supported": false
+      },
+      {
+        "claim": "Data Engineer Practice Project** | Personal Initiative",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.141097,
+          "entailment": 0.033955,
+          "neutral": 0.824948
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.033955,
+        "supported": false
+      },
+      {
+        "claim": "Designed and executed a comprehensive demonstration project utilizing Python, SQL, and ETL to simulate real-world data engineering challenges.",
+        "best_source_chunk": "work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting evidence. - Created a simple reporting template that reduced manual preparation time by 17%. ## Projects ### Data Engineer Practice Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and",
+        "probabilities": {
+          "contradiction": 0.046003,
+          "entailment": 0.005538,
+          "neutral": 0.948459
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.005538,
+        "supported": false
+      },
+      {
+        "claim": "Implemented robust testing protocols using representative scenarios to validate pipeline reliability and identify potential limitations.",
+        "best_source_chunk": "# Hiro Lim hiro.lim@example.test | +65 6000 0028 | Singapore ## Summary Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer. ## Experience ### Technology Associate, Example Cedar Innovations (fictional) (Jul 2023 - Present) - Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%. -",
+        "probabilities": {
+          "contradiction": 0.000482,
+          "entailment": 0.000898,
+          "neutral": 0.99862
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000898,
+        "supported": false
+      },
+      {
+        "claim": "Presented system design, outcomes, and next steps to a five-person peer review group, refining technical trade-offs based on feedback.",
+        "best_source_chunk": "Project - Built a fictional demonstration project using Python, SQL and ETL. - Tested the project with representative scenarios and recorded limitations and next steps. - Presented the design and outcomes to a five-person peer review group. ## Education ### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software",
+        "probabilities": {
+          "contradiction": 0.003187,
+          "entailment": 0.156093,
+          "neutral": 0.84072
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.156093,
+        "supported": false
+      },
+      {
+        "claim": "Bachelor of Science in Information Systems** | Example School of Computing (Aug 2020 \u2013 May 2024)",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000379,
+          "entailment": 0.001613,
+          "neutral": 0.998008
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001613,
+        "supported": false
+      },
+      {
+        "claim": "Relevant Coursework: Software Engineering, Databases, Cybersecurity, and Applied Analytics.",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 8.6e-05,
+          "entailment": 0.970462,
+          "neutral": 0.029451
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.970462,
+        "supported": true
+      },
+      {
+        "claim": "Core Competencies:** ETL, Data Pipelines, Data Quality Monitoring, Cloud Storage Integration",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.000936,
+          "entailment": 0.001734,
+          "neutral": 0.99733
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001734,
+        "supported": false
+      },
+      {
+        "claim": "Tools & Platforms:** Git, Excel, Documentation Tools",
+        "best_source_chunk": "Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024) - Coursework included software engineering, databases, cybersecurity and applied analytics. ## Skills Python, SQL, ETL, data pipelines, Spark, Excel, documentation, Git",
+        "probabilities": {
+          "contradiction": 0.001807,
+          "entailment": 0.013928,
+          "neutral": 0.984265
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.013928,
+        "supported": false
+      },
+      {
+        "claim": "Soft Skills:** Clear Written/Verbal Communication, Collaborative Problem Solving, Technical Documentation",
+        "best_source_chunk": "per month while tracking quality checks and follow-up actions. - Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews. ### Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023) - Supported recurring operational work using data pipelines and documented step-by-step procedures. - Investigated service requests, recorded findings and escalated issues with clear supporting",
+        "probabilities": {
+          "contradiction": 0.005178,
+          "entailment": 0.01328,
+          "neutral": 0.981542
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.01328,
+        "supported": false
+      }
+    ],
+    "nli_evaluator_version": "claim-nli-v2",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "613e53983ece232c6a3c1c077a41b9cd4caedd17ebfd501b916af508e894340e"
+  }
+}

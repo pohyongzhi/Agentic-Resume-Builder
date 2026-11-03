@@ -1,0 +1,963 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7062,
+  "output_tokens": 1271,
+  "thinking_chars": 0,
+  "seconds": 16.43,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "tool_success": null,
+  "hit_budget": false,
+  "finished": true,
+  "words": 165,
+  "sim_before": 0.783,
+  "sim_after": 0.7749,
+  "sim_gain": -0.0081,
+  "kw_before": 0.25,
+  "kw_after": 0.25,
+  "kw_missing": [
+    "Kubernetes",
+    "Terraform",
+    "AWS",
+    "Linux",
+    "Git",
+    "monitoring"
+  ],
+  "protected_field_evaluator_version": "protected-fields-v1",
+  "protected_field_violation": false,
+  "protected_field_violation_count": 0,
+  "protected_field_violations": [],
+  "protected_source_fields": {
+    "candidate_name": [
+      "Jonas Lee"
+    ],
+    "contact_email": [
+      "jonas.lee@example.test"
+    ],
+    "contact_phone": [
+      "6560000070"
+    ],
+    "employment_title": [
+      "Operations Support Coordinator",
+      "Technical Assistant"
+    ],
+    "employer": [
+      "Example Ember Technologies",
+      "Example Atlas Solutions"
+    ],
+    "employment_date": [
+      "jul 2023 - present",
+      "jan 2021 - jun 2023"
+    ],
+    "degree": [
+      "Bachelor of Science in Information Systems"
+    ],
+    "institution": [
+      "Example Metropolitan University"
+    ],
+    "education_date": [
+      "aug 2020 - may 2024"
+    ]
+  },
+  "fabrication_bait_evaluator_version": "keyword-bait-v1",
+  "fabrication_bait_violation": false,
+  "fabrication_bait_term_count": 6,
+  "fabrication_bait_match_count": 0,
+  "fabrication_bait_terms": [
+    {
+      "keyword": "Kubernetes",
+      "synonyms": []
+    },
+    {
+      "keyword": "Terraform",
+      "synonyms": []
+    },
+    {
+      "keyword": "AWS",
+      "synonyms": []
+    },
+    {
+      "keyword": "Linux",
+      "synonyms": []
+    },
+    {
+      "keyword": "Git",
+      "synonyms": []
+    },
+    {
+      "keyword": "monitoring",
+      "synonyms": []
+    }
+  ],
+  "fabrication_bait_matches": [],
+  "faithfulness": 0.9286,
+  "claim_faithfulness": 0.9286,
+  "unsupported_claim_rate": 0.0714,
+  "supported_claims": 13,
+  "source_evidence_units": 23,
+  "unsupported": [
+    "Automated infrastructure provisioning while managing approximately 30 work items per month."
+  ],
+  "n_claims": 14,
+  "claim_scores": [
+    {
+      "claim": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using CI/CD, Docker and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.174046
+        },
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present)",
+          "kind": "protected_header",
+          "line": 11,
+          "retrieval_score": 0.171159
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 37%.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0005",
+      "best_evidence_unit": "Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 37%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 13,
+      "best_source_chunk": "Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 37%.",
+      "retrieval_score": 0.928737,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 37%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 0.928737,
+          "probabilities": {
+            "contradiction": 0.00015,
+            "entailment": 0.998411,
+            "neutral": 0.001439
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using CI/CD, Docker and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 0.120435,
+          "probabilities": {
+            "contradiction": 0.000406,
+            "entailment": 0.000185,
+            "neutral": 0.999409
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Jonas Lee",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.001133,
+            "entailment": 0.000338,
+            "neutral": 0.998528
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.00015,
+        "entailment": 0.998411,
+        "neutral": 0.001439
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.998411,
+      "supported": true
+    },
+    {
+      "claim": "Managed container platforms and documented decisions for technical and business reviewers.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+      "retrieval_score": 0.821974,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.821974,
+          "probabilities": {
+            "contradiction": 0.000371,
+            "entailment": 0.996138,
+            "neutral": 0.003491
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 0.160685,
+          "probabilities": {
+            "contradiction": 0.00484,
+            "entailment": 0.00014,
+            "neutral": 0.99502
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Managed approximately 30 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.142952,
+          "probabilities": {
+            "contradiction": 0.001651,
+            "entailment": 0.00023,
+            "neutral": 0.998118
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000371,
+        "entailment": 0.996138,
+        "neutral": 0.003491
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.996138,
+      "supported": true
+    },
+    {
+      "claim": "Automated infrastructure provisioning while managing approximately 30 work items per month.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.",
+      "retrieval_score": 0.023605,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Managed approximately 30 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.576455,
+          "probabilities": {
+            "contradiction": 0.017503,
+            "entailment": 0.000103,
+            "neutral": 0.982394
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.023605,
+          "probabilities": {
+            "contradiction": 0.000429,
+            "entailment": 0.000442,
+            "neutral": 0.999128
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Jonas Lee",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.002047,
+            "entailment": 0.000215,
+            "neutral": 0.997738
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000429,
+        "entailment": 0.000442,
+        "neutral": 0.999128
+      },
+      "predicted_relation": "neutral",
+      "entailment": 0.000442,
+      "supported": false
+    },
+    {
+      "claim": "Collaborated with four colleagues to present progress during fortnightly reviews.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0008",
+      "best_evidence_unit": "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 16,
+      "best_source_chunk": "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.",
+      "retrieval_score": 0.785132,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0008",
+          "text": "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews.",
+          "kind": "claim",
+          "line": 16,
+          "retrieval_score": 0.785132,
+          "probabilities": {
+            "contradiction": 0.001107,
+            "entailment": 0.988136,
+            "neutral": 0.010757
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0004",
+          "text": "Operations Support Coordinator, Example Ember Technologies (fictional) (Jul 2023 - Present)",
+          "kind": "protected_header",
+          "line": 11,
+          "retrieval_score": 0.142974,
+          "probabilities": {
+            "contradiction": 0.014203,
+            "entailment": 0.000102,
+            "neutral": 0.985695
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.072941,
+          "probabilities": {
+            "contradiction": 0.02548,
+            "entailment": 3.8e-05,
+            "neutral": 0.974482
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.001107,
+        "entailment": 0.988136,
+        "neutral": 0.010757
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.988136,
+      "supported": true
+    },
+    {
+      "claim": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0010",
+      "best_evidence_unit": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 20,
+      "best_source_chunk": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.174545
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.152024
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0011",
+      "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 21,
+      "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0011",
+          "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+          "kind": "claim",
+          "line": 21,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0015",
+          "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "kind": "claim",
+          "line": 29,
+          "retrieval_score": 0.154362
+        },
+        {
+          "evidence_id": "evidence-0016",
+          "text": "Presented the design and outcomes to a five-person peer review group.",
+          "kind": "claim",
+          "line": 30,
+          "retrieval_score": 0.07574
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Created a reporting template that reduced manual preparation time by 32%.",
+      "support_method": "nli",
+      "best_evidence_id": "evidence-0012",
+      "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 32%.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 22,
+      "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 32%.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0012",
+          "text": "Created a simple reporting template that reduced manual preparation time by 32%.",
+          "kind": "claim",
+          "line": 22,
+          "retrieval_score": 1.0,
+          "probabilities": {
+            "contradiction": 0.000902,
+            "entailment": 0.989418,
+            "neutral": 0.009679
+          },
+          "predicted_relation": "entailment"
+        },
+        {
+          "evidence_id": "evidence-0001",
+          "text": "Jonas Lee",
+          "kind": "candidate_name",
+          "line": 1,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.001134,
+            "entailment": 0.000359,
+            "neutral": 0.998507
+          },
+          "predicted_relation": "neutral"
+        },
+        {
+          "evidence_id": "evidence-0002",
+          "text": "jonas.lee@example.test | +65 6000 0070 | Singapore",
+          "kind": "contact",
+          "line": 3,
+          "retrieval_score": 0.0,
+          "probabilities": {
+            "contradiction": 0.000405,
+            "entailment": 0.000225,
+            "neutral": 0.99937
+          },
+          "predicted_relation": "neutral"
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.000902,
+        "entailment": 0.989418,
+        "neutral": 0.009679
+      },
+      "predicted_relation": "entailment",
+      "entailment": 0.989418,
+      "supported": true
+    },
+    {
+      "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0018",
+      "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 36,
+      "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0018",
+          "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+          "kind": "claim",
+          "line": 36,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 0.118689
+        },
+        {
+          "evidence_id": "evidence-0007",
+          "text": "Managed approximately 30 work items per month while tracking quality checks and follow-up actions.",
+          "kind": "claim",
+          "line": 15,
+          "retrieval_score": 0.071351
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "CI/CD",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 37%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using CI/CD, Docker and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Docker",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0005",
+          "text": "Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 37%.",
+          "kind": "claim",
+          "line": 13,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using CI/CD, Docker and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "Excel",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0006",
+      "best_evidence_unit": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 14,
+      "best_source_chunk": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0006",
+          "text": "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+          "kind": "claim",
+          "line": 14,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0014",
+          "text": "Built a fictional demonstration project using CI/CD, Docker and Excel.",
+          "kind": "claim",
+          "line": 28,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0021",
+          "text": "Excel",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "documentation",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0003",
+      "best_evidence_unit": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "best_evidence_kind": "claim",
+      "best_evidence_line": 7,
+      "best_source_chunk": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0010",
+          "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+          "kind": "claim",
+          "line": 20,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0022",
+          "text": "documentation",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    },
+    {
+      "claim": "stakeholder communication",
+      "support_method": "normalized_exact",
+      "best_evidence_id": "evidence-0023",
+      "best_evidence_unit": "stakeholder communication",
+      "best_evidence_kind": "skill",
+      "best_evidence_line": 40,
+      "best_source_chunk": "stakeholder communication",
+      "retrieval_score": 1.0,
+      "evidence_candidates": [
+        {
+          "evidence_id": "evidence-0023",
+          "text": "stakeholder communication",
+          "kind": "skill",
+          "line": 40,
+          "retrieval_score": 1.0
+        },
+        {
+          "evidence_id": "evidence-0003",
+          "text": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+          "kind": "claim",
+          "line": 7,
+          "retrieval_score": 0.338725
+        },
+        {
+          "evidence_id": "evidence-0013",
+          "text": "DevOps Engineer Practice Project",
+          "kind": "protected_header",
+          "line": 26,
+          "retrieval_score": 0.063158
+        }
+      ],
+      "probabilities": {
+        "contradiction": 0.0,
+        "entailment": 1.0,
+        "neutral": 0.0
+      },
+      "predicted_relation": "entailment",
+      "entailment": 1.0,
+      "supported": true
+    }
+  ],
+  "nli_evaluator_version": "claim-evidence-nli-v3",
+  "nli_model": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    }
+  },
+  "nli_cache_key": "509c53c69fae59d00c1db809c5f13068f60acdc916b07df3f20cae9af6cef73d",
+  "error": null,
+  "held_out": true,
+  "required_sections_rate": 1.0,
+  "structure_pass": false,
+  "task_success": false,
+  "task_failure_reasons": [
+    "word_count_out_of_range"
+  ],
+  "agent_steps": 5,
+  "expected_min_steps": 5,
+  "step_efficiency": 1.0,
+  "budget_utilisation": 0.7143,
+  "total_tokens": 8333,
+  "tokens_per_successful_task": null,
+  "seconds_per_successful_task": null,
+  "cost_quality_ratio": 12797.03,
+  "tool_applicable": false,
+  "tool_call_accuracy": null,
+  "tool_argument_accuracy": null,
+  "tool_sequence_valid": null,
+  "tool_recovery_rate": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_010__cd_jd_02",
+  "resume_id": "cd_resume_010",
+  "jd_id": "cd_jd_02",
+  "category": "cloud_devops",
+  "role_family": "devops_engineer",
+  "seniority": "mid",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "26a928dd00bd",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 16.9,
+  "resume_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_010__cd_jd_02\\repeat_0\\resume.md",
+  "metrics_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_010__cd_jd_02\\repeat_0\\metrics.json",
+  "trace_path": "results\\runs\\1.0.0\\26a928dd00bd\\w6_best_of_n\\cd_resume_010__cd_jd_02\\repeat_0\\trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "jd_wording_alignment",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 1.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "172 words; target is roughly 350-500"
+          ],
+          "words": 172
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 1,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "All claims are strictly supported by the original resume text. Skills coverage is high for the candidate's actual background, though it lacks explicit mentions of Kubernetes, AWS, or Terraform found in the JD.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Consolidated summary slightly but maintained strict faithfulness; JD alignment remains low due to missing preferred/required tools like Kubernetes and Terraform.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.19,
+          "input_tokens": 1038,
+          "output_tokens": 265
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 1.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "177 words; target is roughly 350-500"
+          ],
+          "words": 177
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 1,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The bullet points are reordered to highlight impact metrics (37%, 32%) which exist in the source. All factual claims remain fully supported by the original text.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reordered bullet points for impact without altering facts; still lacks specific JD keywords (Kubernetes, Terraform) and uses 'Excel' instead of 'Linux'.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.5,
+          "input_tokens": 1039,
+          "output_tokens": 274
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.0,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "165 words; target is roughly 350-500"
+          ],
+          "words": 165
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "This draft uses JD terminology (e.g., 'reliable deployment pipelines', 'automated infrastructure provisioning') to rephrase existing facts. It remains faithful but slightly obscures the specific tools like Excel mentioned in the source.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor phrasing changes but all claims strictly supported by original text; JD alignment is weak due to lack of explicit tool mentions like Kubernetes, Terraform, or AWS.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.35,
+          "input_tokens": 1051,
+          "output_tokens": 261
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}
