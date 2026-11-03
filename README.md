@@ -93,6 +93,31 @@ login or JavaScript. Use the workflow selector to compare the single-pass contro
 and multi-critic workflow interactively. Harness-validated Markdown resumes can be
 previewed and downloaded; unguarded comparison workflows are clearly marked as experimental.
 
+## Results tab
+
+`python app.py` also has a read-only **Results** tab for saved evaluation runs. It never generates,
+evaluates or calls a model; it only reads `results/evaluations/<dataset>/<generation scope>/<evaluator>/`
+(the newest run is selected first; **Refresh list** picks up new runs). Set `ARB_EVALUATIONS_DIR`
+to read another folder.
+
+| View | What it shows |
+| --- | --- |
+| 1 · Workflows | A card per W1-W7: how it works, its step flow, the model it uses and measured averages (LLM calls, tokens, wall time, task success) |
+| 2 · Leaderboard and trade-offs | Headline tiles, task success and faithfulness bars, the tier-1 metric table with scored/eligible counts, and two trade-off plots (quality vs cost, faithfulness vs requirement coverage); filter by category and fit level |
+| 3 · Pairwise and robustness | Wins, ties, order-dependent verdicts and losses against W2 with swap consistency; stability per variant family, out-of-scope pass rates and per-variant changes |
+| 4 · Output viewer | One pair's original resume and JD, then every workflow's output side by side with its key scores |
+
+Unscored outputs are shown as unscored with their denominators, never as 0. Missing stages show a
+message such as "Robustness not run for this evaluation". Tables come from `summaries/*.json`;
+when a summary file is missing, the same table is rebuilt in memory from the saved index with
+`eval/reporting.py`. Each workflow keeps one colour in every view, and W2 is drawn in neutral grey
+with a dashed outline. To preview the tab without real results:
+
+```bash
+python -m tests.dashboard_fixture /tmp/demo_evaluations
+ARB_EVALUATIONS_DIR=/tmp/demo_evaluations python app.py
+```
+
 ## W3 multi-critic workflow
 
 `w3_critic` creates a structured draft, then runs three separate reviewers in parallel:
@@ -311,7 +336,8 @@ Detailed evaluation records are reproducible local artifacts and are ignored by 
 ## Code layout
 
 ```text
-app.py                    Gradio UI for the agentic baseline
+app.py                    Gradio UI: tailoring plus the read-only Results tab
+ui/results_tab.py         Results tab layout; ui/charts.py draws its SVG charts
 baseline_tailor.py        single-pass V0 CLI
 config.py                 shared model, harness and extraction settings
 common/
@@ -333,6 +359,7 @@ workflows/
 eval/metrics.py           shared evaluator metrics
 eval/operational.py       task, tool, step and cost metrics
 eval/robustness.py        input perturbations and stability aggregation
+eval/dashboard.py         loads saved evaluation roots for the Results tab
 run_all.py                batch runner
 evaluate_results.py       rescore saved outputs without regeneration
 run_robustness.py         shared perturbation benchmark
