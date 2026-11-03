@@ -1,0 +1,331 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1053,
+    "output_tokens": 269,
+    "thinking_chars": 0,
+    "seconds": 3.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "180 words; target is roughly 350-500"
+      ],
+      "words": 180
+    },
+    "generation": {
+      "seconds": 3.08,
+      "input_tokens": 1053,
+      "output_tokens": 269
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1054,
+    "output_tokens": 272,
+    "thinking_chars": 0,
+    "seconds": 3.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "181 words; target is roughly 350-500"
+      ],
+      "words": 181
+    },
+    "generation": {
+      "seconds": 3.07,
+      "input_tokens": 1054,
+      "output_tokens": 272
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1066,
+    "output_tokens": 253,
+    "thinking_chars": 0,
+    "seconds": 2.93,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "166 words; target is roughly 350-500"
+      ],
+      "words": 166
+    },
+    "generation": {
+      "seconds": 2.93,
+      "input_tokens": 1066,
+      "output_tokens": 253
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1976,
+    "output_tokens": 250,
+    "thinking_chars": 0,
+    "seconds": 3.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "All claims are strictly supported by the original resume. JD alignment is moderate as it lists core skills but lacks specific project outcomes or preferred tools (Python, Tableau). Writing is concise and professional.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "All claims are strictly supported by the original resume. The addition of 'Managed approximately 20 work items...' is faithful to the source text. JD alignment remains moderate due to lack of explicit mention of preferred tools or specific experiment evaluation metrics.",
+        "grounding_concern_in_justification": true
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "All claims are strictly supported by the original resume. This draft mirrors the source text almost exactly, resulting in high faithfulness but only moderate JD alignment as it does not explicitly highlight preferred qualifications like Python or Tableau.",
+        "grounding_concern_in_justification": true
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1976,
+    "output_tokens": 262,
+    "thinking_chars": 0,
+    "seconds": 3.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully mirrors original text with minor formatting cleanup. JD alignment is strong but lacks explicit mention of 'dashboarding' or 'Python' which are preferred skills in the JD.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume with one bullet point reordered. Faithful and readable. Lacks explicit mention of 'dashboarding' or 'Python' found in preferred qualifications.",
+        "grounding_concern_in_justification": false
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully represents original content with enhanced summary phrasing. JD alignment is good but misses explicit mentions of 'dashboarding' and 'Python' from preferred qualifications.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "180 words; target is roughly 350-500"
+          ],
+          "words": 180
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "All claims are strictly supported by the original resume. JD alignment is moderate as it lists core skills but lacks specific project outcomes or preferred tools (Python, Tableau). Writing is concise and professional.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully represents original content with enhanced summary phrasing. JD alignment is good but misses explicit mentions of 'dashboarding' and 'Python' from preferred qualifications.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.08,
+          "input_tokens": 1053,
+          "output_tokens": 269
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.38,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "181 words; target is roughly 350-500"
+          ],
+          "words": 181
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "All claims are strictly supported by the original resume. The addition of 'Managed approximately 20 work items...' is faithful to the source text. JD alignment remains moderate due to lack of explicit mention of preferred tools or specific experiment evaluation metrics.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume with one bullet point reordered. Faithful and readable. Lacks explicit mention of 'dashboarding' or 'Python' found in preferred qualifications.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.07,
+          "input_tokens": 1054,
+          "output_tokens": 272
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.38,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "166 words; target is roughly 350-500"
+          ],
+          "words": 166
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "All claims are strictly supported by the original resume. This draft mirrors the source text almost exactly, resulting in high faithfulness but only moderate JD alignment as it does not explicitly highlight preferred qualifications like Python or Tableau.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully mirrors original text with minor formatting cleanup. JD alignment is strong but lacks explicit mention of 'dashboarding' or 'Python' which are preferred skills in the JD.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 2.93,
+          "input_tokens": 1066,
+          "output_tokens": 253
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

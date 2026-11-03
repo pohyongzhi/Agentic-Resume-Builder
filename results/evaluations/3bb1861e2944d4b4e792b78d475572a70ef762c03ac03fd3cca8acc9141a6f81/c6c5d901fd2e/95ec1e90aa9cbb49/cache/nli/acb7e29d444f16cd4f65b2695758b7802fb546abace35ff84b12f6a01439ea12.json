@@ -1,0 +1,1024 @@
+{
+  "identity": {
+    "source_hash": "2f58d79d19494b7482e6ebc57a7c277f0e44c28cf4f569a19efd74df1e5bbe0f",
+    "tailored_hash": "8684cf85f055ce6b0fdb6925bf12b89d8d861952f1a54561632f6be14d13261c",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.8,
+    "claim_faithfulness": 0.8,
+    "unsupported_claim_rate": 0.2,
+    "supported_claims": 16,
+    "source_evidence_units": 30,
+    "unsupported": [
+      "Machine Learning Engineer with hands-on experience in Python, machine learning, scikit-learn, and PyTorch.",
+      "Delivers documented, measurable improvements through reproducible feature pipelines and model evaluation while collaborating with cross-functional teams.",
+      "Deployed models behind REST APIs after collaborating with four colleagues on implementation and progress reviews.",
+      "Monitored model quality by managing approximately 76 work items per month while tracking quality checks and follow-up actions."
+    ],
+    "n_claims": 20,
+    "claim_scores": [
+      {
+        "claim": "Machine Learning Engineer with hands-on experience in Python, machine learning, scikit-learn, and PyTorch.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0015",
+        "best_evidence_unit": "Built a fictional demonstration project using Python, machine learning and scikit-learn.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 28,
+        "best_source_chunk": "Built a fictional demonstration project using Python, machine learning and scikit-learn.",
+        "retrieval_score": 0.358679,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.763005,
+            "probabilities": {
+              "contradiction": 0.000726,
+              "entailment": 0.000507,
+              "neutral": 0.998767
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Machine Learning Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 26,
+            "retrieval_score": 0.369526,
+            "probabilities": {
+              "contradiction": 0.000386,
+              "entailment": 0.0029,
+              "neutral": 0.996714
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.358679,
+            "probabilities": {
+              "contradiction": 0.000268,
+              "entailment": 0.003424,
+              "neutral": 0.996308
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000268,
+          "entailment": 0.003424,
+          "neutral": 0.996308
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.003424,
+        "supported": false
+      },
+      {
+        "claim": "Delivers documented, measurable improvements through reproducible feature pipelines and model evaluation while collaborating with cross-functional teams.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.302216,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.471429,
+            "probabilities": {
+              "contradiction": 0.000241,
+              "entailment": 0.000653,
+              "neutral": 0.999107
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.302216,
+            "probabilities": {
+              "contradiction": 0.000212,
+              "entailment": 0.002952,
+              "neutral": 0.996835
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "model evaluation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.152381,
+            "probabilities": {
+              "contradiction": 0.000349,
+              "entailment": 0.000424,
+              "neutral": 0.999227
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000212,
+          "entailment": 0.002952,
+          "neutral": 0.996835
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002952,
+        "supported": false
+      },
+      {
+        "claim": "Trained and evaluated predictive models using Python and machine learning, improving team turnaround by 19%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 19%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 19%.",
+        "retrieval_score": 0.830902,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.830902,
+            "probabilities": {
+              "contradiction": 0.000188,
+              "entailment": 0.997859,
+              "neutral": 0.001953
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.095844,
+            "probabilities": {
+              "contradiction": 0.000324,
+              "entailment": 0.000133,
+              "neutral": 0.999543
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.09505,
+            "probabilities": {
+              "contradiction": 0.000213,
+              "entailment": 0.000161,
+              "neutral": 0.999626
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000188,
+          "entailment": 0.997859,
+          "neutral": 0.001953
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997859,
+        "supported": true
+      },
+      {
+        "claim": "Built reproducible feature pipelines using scikit-learn and documented decisions for technical and business reviewers.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.845156,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.845156,
+            "probabilities": {
+              "contradiction": 0.000142,
+              "entailment": 0.997116,
+              "neutral": 0.002742
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.152398,
+            "probabilities": {
+              "contradiction": 0.681364,
+              "entailment": 0.002006,
+              "neutral": 0.31663
+            },
+            "predicted_relation": "contradiction"
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.134825,
+            "probabilities": {
+              "contradiction": 0.000572,
+              "entailment": 0.000174,
+              "neutral": 0.999254
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000142,
+          "entailment": 0.997116,
+          "neutral": 0.002742
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997116,
+        "supported": true
+      },
+      {
+        "claim": "Deployed models behind REST APIs after collaborating with four colleagues on implementation and progress reviews.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.528199,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.528199,
+            "probabilities": {
+              "contradiction": 0.000178,
+              "entailment": 0.001927,
+              "neutral": 0.997895
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.162842,
+            "probabilities": {
+              "contradiction": 0.000504,
+              "entailment": 0.000132,
+              "neutral": 0.999364
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.104191,
+            "probabilities": {
+              "contradiction": 0.003891,
+              "entailment": 4e-05,
+              "neutral": 0.996069
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000178,
+          "entailment": 0.001927,
+          "neutral": 0.997895
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001927,
+        "supported": false
+      },
+      {
+        "claim": "Monitored model quality by managing approximately 76 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Managed approximately 76 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 15,
+        "best_source_chunk": "Managed approximately 76 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 0.898929,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Managed approximately 76 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.898929,
+            "probabilities": {
+              "contradiction": 0.004614,
+              "entailment": 0.065215,
+              "neutral": 0.930171
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Leon Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.000441,
+              "entailment": 0.000404,
+              "neutral": 0.999155
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "leon.lim@example.test | +65 6000 0032 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.000329,
+              "entailment": 0.000495,
+              "neutral": 0.999176
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.004614,
+          "entailment": 0.065215,
+          "neutral": 0.930171
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.065215,
+        "supported": false
+      },
+      {
+        "claim": "Supported operational work using PyTorch and documented step-by-step procedures.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+        "retrieval_score": 0.956985,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.956985,
+            "probabilities": {
+              "contradiction": 0.002289,
+              "entailment": 0.986008,
+              "neutral": 0.011703
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.168154,
+            "probabilities": {
+              "contradiction": 0.009705,
+              "entailment": 0.01697,
+              "neutral": 0.973326
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.167826,
+            "probabilities": {
+              "contradiction": 0.005177,
+              "entailment": 0.00014,
+              "neutral": 0.994683
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.002289,
+          "entailment": 0.986008,
+          "neutral": 0.011703
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.986008,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.078924
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a reporting template that reduced manual preparation time by 14%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0013",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 14%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 22,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 14%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Created a simple reporting template that reduced manual preparation time by 14%.",
+            "kind": "claim",
+            "line": 22,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.00082,
+              "entailment": 0.990219,
+              "neutral": 0.008962
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Leon Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.000905,
+              "entailment": 0.000438,
+              "neutral": 0.998657
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "leon.lim@example.test | +65 6000 0032 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.000379,
+              "entailment": 0.000262,
+              "neutral": 0.999359
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.00082,
+          "entailment": 0.990219,
+          "neutral": 0.008962
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.990219,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0019",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "feature engineering",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.153132
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.11121
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Python",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "machine learning",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Machine Learning Engineer, Example Beacon Services (fictional) (Jul 2023 - Present)",
+            "kind": "protected_header",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "scikit-learn",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Python, machine learning and scikit-learn.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "PyTorch",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PyTorch and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "PyTorch",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Python",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.123077
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "model evaluation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "model evaluation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "model evaluation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "model evaluation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "machine learning",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.0875
+          },
+          {
+            "evidence_id": "evidence-0030",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 44,
+            "retrieval_score": 0.066667
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "feature engineering",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "feature engineering",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "feature engineering",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "feature engineering",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 0.363155
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.33527
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Docker",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Docker",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Docker",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Docker",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "scikit-learn",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.088889
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "PyTorch",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.061538
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "REST APIs",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0027",
+        "best_evidence_unit": "REST APIs",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "REST APIs",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0027",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.323739
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Leon Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.070588
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "MLflow",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0028",
+        "best_evidence_unit": "MLflow",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "MLflow",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0028",
+            "text": "MLflow",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "model evaluation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.072727
+          },
+          {
+            "evidence_id": "evidence-0029",
+            "text": "AWS",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.044444
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "AWS",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0029",
+        "best_evidence_unit": "AWS",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "AWS",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0029",
+            "text": "AWS",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0030",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 44,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.066667
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "acb7e29d444f16cd4f65b2695758b7802fb546abace35ff84b12f6a01439ea12"
+  }
+}

@@ -1,0 +1,770 @@
+{
+  "identity": {
+    "source_hash": "85bbdcd7cb031855c42732025cc873a4fa8fd82fe86b5224a12fc719dd57238d",
+    "tailored_hash": "51dab4dd5221311f3ed44602aba08cbee570368cc02a29d7c2c6a81fe73d234d",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 1.0,
+    "claim_faithfulness": 1.0,
+    "unsupported_claim_rate": 0.0,
+    "supported_claims": 17,
+    "source_evidence_units": 26,
+    "unsupported": [],
+    "n_claims": 17,
+    "claim_scores": [
+      {
+        "claim": "Technology associate with transferable experience in technology strategy, operating model and programme delivery.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0014",
+        "best_evidence_unit": "Built a fictional demonstration project using technology strategy, operating model and programme delivery.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 28,
+        "best_source_chunk": "Built a fictional demonstration project using technology strategy, operating model and programme delivery.",
+        "retrieval_score": 0.612927,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.762233,
+            "probabilities": {
+              "contradiction": 0.016256,
+              "entailment": 0.929441,
+              "neutral": 0.054303
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using technology strategy, operating model and programme delivery.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.612927,
+            "probabilities": {
+              "contradiction": 0.004122,
+              "entailment": 0.932626,
+              "neutral": 0.063252
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.377844,
+            "probabilities": {
+              "contradiction": 0.004183,
+              "entailment": 0.571201,
+              "neutral": 0.424616
+            },
+            "predicted_relation": "entailment"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.004122,
+          "entailment": 0.932626,
+          "neutral": 0.063252
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.932626,
+        "supported": true
+      },
+      {
+        "claim": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.1828
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using technology strategy, operating model and programme delivery.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.129719
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.254199
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using business case and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.203572
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.121849
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using business case and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.072727
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 15,
+        "best_source_chunk": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Samuel Koh",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "samuel.koh@example.test | +65 6000 0099 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Supported recurring operational work using business case and documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using business case and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using business case and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using business case and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.239368
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "business case",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.225484
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.07574
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 18%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 18%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 22,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 18%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Created a simple reporting template that reduced manual preparation time by 18%.",
+            "kind": "claim",
+            "line": 22,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Samuel Koh",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "samuel.koh@example.test | +65 6000 0099 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.109181
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 47 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.071351
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "technology strategy",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using technology strategy, operating model and programme delivery.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "operating model",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "programme delivery",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in technology strategy, operating model and programme delivery, seeking to deepen capability as a Senior Technology Transformation Consultant.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using technology strategy, operating model and programme delivery.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "business case",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using business case and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using business case and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using business case and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "business case",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied programme delivery to assess operating models and capabilities and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.321628
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "cloud transformation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "cloud transformation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "cloud transformation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "cloud transformation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Senior Technology Transformation Consultant Practice Project",
+            "kind": "protected_header",
+            "line": 26,
+            "retrieval_score": 0.400714
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used technology strategy and operating model to lead technology transformation engagements, improving team turnaround by 23%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.347009
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Excel",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "Excel",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Excel",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "business case",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.066667
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "operating model",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.06
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "cloud transformation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.09697
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "operating model",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.085714
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Git",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "programme delivery",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.038095
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "technology strategy",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.036364
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "c943754a749a9d253a79af044ff502237bfb2d89642528655e8b5c6ce8fc70a2"
+  }
+}

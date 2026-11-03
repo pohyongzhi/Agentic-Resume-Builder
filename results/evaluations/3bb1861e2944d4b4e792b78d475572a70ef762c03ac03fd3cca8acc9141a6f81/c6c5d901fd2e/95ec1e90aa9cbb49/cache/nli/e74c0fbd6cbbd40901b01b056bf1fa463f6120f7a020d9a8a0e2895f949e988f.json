@@ -1,0 +1,1029 @@
+{
+  "identity": {
+    "source_hash": "2663b7017bfc971bdc2ee4b1017bf15f587f5a66f799b4e6e2c02f57f35600ca",
+    "tailored_hash": "8a5edc196a16ae7356832f4421c3f7a4ba0237372275b951e1da1c97ae04a700",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 1.0,
+    "claim_faithfulness": 1.0,
+    "unsupported_claim_rate": 0.0,
+    "supported_claims": 22,
+    "source_evidence_units": 29,
+    "unsupported": [],
+    "n_claims": 22,
+    "claim_scores": [
+      {
+        "claim": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.421845
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Frontend Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 26,
+            "retrieval_score": 0.305556
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Delivers documented, measurable improvements with cross-functional teams.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0004",
+        "best_evidence_unit": "Delivers documented, measurable improvements with cross-functional teams.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.183853
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.165024
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Built accessible user interfaces using JavaScript and TypeScript.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.",
+        "retrieval_score": 0.550256,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.550256,
+            "probabilities": {
+              "contradiction": 0.000102,
+              "entailment": 0.997956,
+              "neutral": 0.001942
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.337879,
+            "probabilities": {
+              "contradiction": 0.010374,
+              "entailment": 0.315764,
+              "neutral": 0.673862
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.196416,
+            "probabilities": {
+              "contradiction": 0.000323,
+              "entailment": 0.003205,
+              "neutral": 0.996472
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000102,
+          "entailment": 0.997956,
+          "neutral": 0.001942
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997956,
+        "supported": true
+      },
+      {
+        "claim": "Translated designs into reusable components using React.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.502299,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.502299,
+            "probabilities": {
+              "contradiction": 0.000143,
+              "entailment": 0.996175,
+              "neutral": 0.003683
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.204369,
+            "probabilities": {
+              "contradiction": 0.001963,
+              "entailment": 0.008391,
+              "neutral": 0.989646
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.198399,
+            "probabilities": {
+              "contradiction": 0.00765,
+              "entailment": 0.152741,
+              "neutral": 0.839608
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000143,
+          "entailment": 0.996175,
+          "neutral": 0.003683
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996175,
+        "supported": true
+      },
+      {
+        "claim": "Integrated frontend features with REST APIs.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.478851,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.478851,
+            "probabilities": {
+              "contradiction": 0.000281,
+              "entailment": 0.995048,
+              "neutral": 0.004671
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.219591,
+            "probabilities": {
+              "contradiction": 0.000912,
+              "entailment": 0.000212,
+              "neutral": 0.998875
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Frontend Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 26,
+            "retrieval_score": 0.218173,
+            "probabilities": {
+              "contradiction": 0.004613,
+              "entailment": 0.000368,
+              "neutral": 0.995019
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000281,
+          "entailment": 0.995048,
+          "neutral": 0.004671
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995048,
+        "supported": true
+      },
+      {
+        "claim": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.148976
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.113158
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Managed approximately 33 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Managed approximately 33 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 15,
+        "best_source_chunk": "Managed approximately 33 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Managed approximately 33 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "aisha.tan@example.test | +65 6000 0001 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Documented decisions for technical and business reviewers.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.205769
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Technical Assistant, Example Beacon Services (fictional) (May 2024 - Dec 2024)",
+            "kind": "protected_header",
+            "line": 18,
+            "retrieval_score": 0.196949
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Supported recurring operational work using HTML.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+        "retrieval_score": 0.693333,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.693333,
+            "probabilities": {
+              "contradiction": 0.001721,
+              "entailment": 0.983268,
+              "neutral": 0.015012
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Managed approximately 33 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.18498,
+            "probabilities": {
+              "contradiction": 0.004143,
+              "entailment": 0.000113,
+              "neutral": 0.995744
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Frontend Engineer, Example Atlas Solutions (fictional) (Jan 2025 - Present)",
+            "kind": "protected_header",
+            "line": 11,
+            "retrieval_score": 0.077778,
+            "probabilities": {
+              "contradiction": 0.009047,
+              "entailment": 0.001914,
+              "neutral": 0.989039
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.001721,
+          "entailment": 0.983268,
+          "neutral": 0.015012
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.983268,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.08
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 14%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0013",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 14%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 22,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 14%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Created a simple reporting template that reduced manual preparation time by 14%.",
+            "kind": "claim",
+            "line": 22,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "aisha.tan@example.test | +65 6000 0001 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0019",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.111347
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.08
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "JavaScript",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "TypeScript",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "React",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "HTML",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using HTML and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "HTML",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.061538
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "CSS",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "CSS",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "CSS",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "CSS",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0029",
+            "text": "accessibility",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.075
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.066667
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "REST APIs",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Jest",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.092308
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Git",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.066667
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "JavaScript",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.061538
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Jest",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0027",
+        "best_evidence_unit": "Jest",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Jest",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Jest",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.092308
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "React",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.088889
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Next.js",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0028",
+        "best_evidence_unit": "Next.js",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Next.js",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0028",
+            "text": "Next.js",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.075
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Jest",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.072727
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "accessibility",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0029",
+        "best_evidence_unit": "accessibility",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "accessibility",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0029",
+            "text": "accessibility",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "CSS",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.075
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Jest",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.070588
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "e74c0fbd6cbbd40901b01b056bf1fa463f6120f7a020d9a8a0e2895f949e988f"
+  }
+}

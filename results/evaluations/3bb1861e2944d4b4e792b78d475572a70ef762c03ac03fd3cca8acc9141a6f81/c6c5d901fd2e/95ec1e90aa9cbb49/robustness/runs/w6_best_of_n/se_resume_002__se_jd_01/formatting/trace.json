@@ -1,0 +1,285 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1064,
+    "output_tokens": 287,
+    "thinking_chars": 0,
+    "seconds": 3.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.3,
+      "input_tokens": 1064,
+      "output_tokens": 287
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1065,
+    "output_tokens": 287,
+    "thinking_chars": 0,
+    "seconds": 3.28,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.28,
+      "input_tokens": 1065,
+      "output_tokens": 287
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1077,
+    "output_tokens": 288,
+    "thinking_chars": 0,
+    "seconds": 3.27,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 3.27,
+      "input_tokens": 1077,
+      "output_tokens": 288
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2055,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.79,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Content is identical to the original resume with no invented facts. JD alignment is strong on core requirements but lacks explicit mention of 'Next.js' in the experience section despite it being listed in skills.",
+        "grounding_concern_in_justification": true
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume. Faithful to all claims. JD alignment is good but misses explicit experience with Next.js mentioned in the preferred qualifications.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume. Faithful to all claims. JD alignment is good but misses explicit experience with Next.js mentioned in the preferred qualifications.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2055,
+    "output_tokens": 253,
+    "thinking_chars": 0,
+    "seconds": 3.12,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2055,
+    "output_tokens": 253,
+    "thinking_chars": 0,
+    "seconds": 2.62,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [
+      "impact_first",
+      "jd_wording_alignment",
+      "skills_first"
+    ],
+    "scores": {},
+    "step": 11
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Content is identical to the original resume with no invented facts. JD alignment is strong on core requirements but lacks explicit mention of 'Next.js' in the experience section despite it being listed in skills.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.3,
+          "input_tokens": 1064,
+          "output_tokens": 287
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume. Faithful to all claims. JD alignment is good but misses explicit experience with Next.js mentioned in the preferred qualifications.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.28,
+          "input_tokens": 1065,
+          "output_tokens": 287
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume. Faithful to all claims. JD alignment is good but misses explicit experience with Next.js mentioned in the preferred qualifications.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.27,
+          "input_tokens": 1077,
+          "output_tokens": 288
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 12
+  }
+]
