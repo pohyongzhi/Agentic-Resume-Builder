@@ -33,4 +33,4 @@ Updated: 2026-11-03 (Asia/Singapore).
 
 Passing tests does not make an automated evaluator flawless. Negation handling covers explicit local phrases, NLI can still misclassify support, evidence retrieval can miss the best source, and human calibration is still outstanding. Historical v3 results remain historical and should not be relabelled as v4 results.
 
-Read [HANDOVER.md](HANDOVER.md) for continuation details and [reliability-fixes.md](reliability-fixes.md) for the behavioral contract.
+Read [handover.md](handover.md) for continuation details and [reliability-fixes.md](reliability-fixes.md) for the behavioral contract.
