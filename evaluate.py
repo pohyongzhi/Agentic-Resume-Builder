@@ -474,8 +474,34 @@ def _deterministic_components_complete(existing):
     )
 
 
+TRANSIENT_FAILURE_PREFIXES = (
+    "RateLimitError",
+    "APIConnectionError",
+    "APITimeoutError",
+    "InternalServerError",
+    "ConnectionError",
+    "TimeoutError",
+    "ResponseError: model",
+)
+
+
+def _has_transient_failure(existing):
+    """True when a recorded failure came from rate limits or an unavailable service."""
+    failures = existing.get("evaluation_failures") or {}
+    return any(
+        isinstance(reason, str) and reason.startswith(TRANSIENT_FAILURE_PREFIXES)
+        for reason in failures.values()
+    )
+
+
 def _record_complete(existing, skip_nli=False, skip_judge=False, components=()):
-    """Checkpoint completeness shared by saved-output scoring and robustness."""
+    """Checkpoint completeness shared by saved-output scoring and robustness.
+
+    Records whose failures were transient (rate limits, unreachable services) are
+    incomplete so a resumed run retries them instead of keeping them unscored.
+    """
+    if _has_transient_failure(existing):
+        return False
     nli_complete = (
         skip_nli or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
     )

@@ -150,6 +150,7 @@ def pairwise_identity(
         "model_tag": model_info.get("tag"),
         "pairwise_prompt_version": PAIRWISE_PROMPT_VERSION,
         "pairwise_schema_version": PAIRWISE_SCHEMA_VERSION,
+        "pairwise_max_completion_tokens": config.PAIRWISE_MAX_COMPLETION_TOKENS,
         "pairing_policy_version": PAIRING_POLICY_VERSION,
         "position_order_version": POSITION_ORDER_VERSION,
         "model_digest": model_info.get("digest"),
@@ -261,7 +262,9 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
         seed=judge_config.seed,
         reasoning_effort=judge_config.reasoning_effort,
         include_reasoning=False,
-        max_completion_tokens=judge_config.max_completion_tokens,
+        max_completion_tokens=max(
+            judge_config.max_completion_tokens, config.PAIRWISE_MAX_COMPLETION_TOKENS
+        ),
         response_format={
             "type": "json_schema",
             "json_schema": {

@@ -81,6 +81,9 @@ INJECTION_SEED = 42
 PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v1"
 PAIRWISE_PROMPT_VERSION = "pairwise-v1"
 PAIRWISE_SCHEMA_VERSION = "1"
+# Hosted reasoning models spend completion tokens on reasoning before the JSON answer;
+# 2048 truncated pairwise verdicts (five dimensions plus explanation) in the Groq pilot.
+PAIRWISE_MAX_COMPLETION_TOKENS = 4096
 PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
 POSITION_ORDER_VERSION = "challenger-first-then-baseline-first-v1"
 PAIRWISE_BASELINE_WORKFLOW = "w2_baseline"

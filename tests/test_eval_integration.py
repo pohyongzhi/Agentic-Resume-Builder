@@ -771,3 +771,44 @@ def test_pair_ids_file_and_unknown_ids(tier1_env, tmp_path):
     assert {json.loads(line)["pair_id"] for line in (root / "evaluations.jsonl").read_text().splitlines()} == {"p2"}
     with pytest.raises(SystemExit, match="Unknown pair IDs"):
         evaluate.main([*selected, "--pair-ids", "nope"])
+
+
+def test_transient_failures_make_records_incomplete():
+    import evaluate
+
+    base = {
+        "nli_evaluator_version": config.NLI_EVALUATOR_VERSION,
+        "protected_field_evaluator_version": config.PROTECTED_FIELD_EVALUATOR_VERSION,
+        "fabrication_bait_evaluator_version": config.FABRICATION_BAIT_EVALUATOR_VERSION,
+        "judge_status": "unscored",
+    }
+    rate_limited = {**base, "evaluation_failures": {"judge_overall_mean": "RateLimitError: Error code: 429"}}
+    offline = {**base, "evaluation_failures": {"embedding_or_keyword": "ConnectionError: Failed to connect to Ollama."}}
+    invalid = {**base, "evaluation_failures": {"judge_overall_mean": "ValueError: unverifiable quotation"}}
+
+    assert not evaluate._record_complete(rate_limited)
+    assert not evaluate._record_complete(offline)
+    assert evaluate._record_complete(invalid)
+
+
+def test_pairwise_hosted_calls_use_pairwise_completion_budget():
+    from eval import pairwise
+    from eval.judge import JudgeConfig
+
+    captured = {}
+
+    class _Completions:
+        def create(self, **kwargs):
+            captured.update(kwargs)
+            raise RuntimeError("stop after capturing request")
+
+    class _Client:
+        chat = type("Chat", (), {"completions": _Completions()})()
+
+    judge_config = JudgeConfig(provider="groq", model="openai/gpt-oss-120b", min_request_interval_seconds=0)
+    try:
+        pairwise._call_judge(_Client(), judge_config, "prompt")
+    except RuntimeError:
+        pass
+    assert captured["max_completion_tokens"] == config.PAIRWISE_MAX_COMPLETION_TOKENS
+    assert pairwise.pairwise_identity(judge_config, {})["pairwise_max_completion_tokens"] == config.PAIRWISE_MAX_COMPLETION_TOKENS
