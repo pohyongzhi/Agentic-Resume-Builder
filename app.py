@@ -17,6 +17,7 @@ from workflows import WORKFLOWS
 from workflows.w2_baseline import NAME as BASELINE_NAME, generate
 from workflows.w3_critic import NAME as CRITIC_NAME, generate as generate_w3
 from workflows.w4_evidence import NAME as W4_NAME, generate as generate_w4
+from workflows.w7_plan_execute import NAME as W7_NAME
 
 WORKFLOW_CHOICES = [
     ("W1 - Single pass: one prompt, no guardrails", "w1_single_pass"),
@@ -25,6 +26,7 @@ WORKFLOW_CHOICES = [
     ("W4 - Evidence-grounded: every bullet cites the original resume", "w4_evidence"),
     ("W5 - Fine-tuned: selected V4.1 small generator", "w5_fine_tuned"),
     ("W6 - Best-of-N: generate three strategies and select the best", "w6_best_of_n"),
+    ("W7 - Plan-and-execute: planner, parallel section writers, assembler", "w7_plan_execute"),
 ]
 
 APP_CSS = """
@@ -230,6 +232,27 @@ def _format_evidence(evidence, w4_stats):
     return "\n".join(lines)
 
 
+def _w7_details(events):
+    """W7 logs its plan into the Tracker; show it to explain the output."""
+    lines = []
+    for e in events:
+        if e["type"] == "w7_plan":
+            sections = e.get("sections", [])
+            if not e["ok"]:
+                lines.append("**Plan:** JSON failed twice; writers used the default sections: " +
+                             ", ".join(s["name"] for s in sections))
+                continue
+            reqs = e.get("requirements", [])
+            lines.append("**Plan sections:** " + " → ".join(s["name"] for s in sections) + "\n" +
+                         "\n".join(f"- **{s['name']}**: lead with " + ("; ".join(s["lead_with"]) or "-") +
+                                   " | cut " + ("; ".join(s["cut"]) or "-") for s in sections))
+            lines.append(f"**Plan mapping:** {e.get('supported', 0)}/{len(reqs)} requirements backed by resume evidence\n" +
+                         "\n".join(f"- {r['requirement']} → " +
+                                   (f"*\"{r['evidence']}\"* ({r['section']})" if r["evidence"] else "**unsupported**")
+                                   for r in reqs))
+    return "\n\n".join(lines)
+
+
 def _run_selected_workflow(workflow, path, job_url, pasted_jd, tracker):
     if workflow == BASELINE_NAME:
         return generate(tracker, path, job_url=job_url, pasted_jd=pasted_jd)
@@ -321,6 +344,12 @@ def run(workflow, resume_file, job_url, pasted_jd):
     if workflow == W4_NAME and state.get("evidence"):
         evidence_md = _format_evidence(state["evidence"], state.get("w4_stats", {}))
         stats += evidence_md
+
+    # Add the plan for W7
+    if workflow == W7_NAME:
+        details = _w7_details(tracker.events)
+        if details:
+            stats += "\n\n" + details
 
     return (
         state["resume_md"],

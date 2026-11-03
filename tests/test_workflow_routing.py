@@ -25,6 +25,7 @@ def test_current_workflows_are_registered_in_order():
         "w4_evidence",
         "w5_fine_tuned",
         "w6_best_of_n",
+        "w7_plan_execute",
     ]
 
 

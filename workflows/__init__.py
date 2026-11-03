@@ -7,6 +7,7 @@ from workflows import (
     w4_evidence,
     w5_fine_tuned,
     w6_best_of_n,
+    w7_plan_execute,
 )
 
 WORKFLOWS = {
@@ -16,6 +17,7 @@ WORKFLOWS = {
     w4_evidence.NAME: w4_evidence.run,
     w5_fine_tuned.NAME: w5_fine_tuned.run,
     w6_best_of_n.NAME: w6_best_of_n.run,
+    w7_plan_execute.NAME: w7_plan_execute.run,
 }
 
 WORKFLOW_MODELS = {

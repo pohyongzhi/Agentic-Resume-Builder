@@ -16,6 +16,7 @@ agentic baseline is `w2_baseline`.
 | `w4_evidence` | W4: source-span grounding and claim verification | done |
 | `w5_fine_tuned` | W5: one-pass generation with the selected V4.1 fine-tuned model | done |
 | `w6_best_of_n` | W6: three strategy drafts + two-order rubric selector | done |
+| `w7_plan_execute` | W7: planner + parallel section writers + assembler | done |
 
 ## Architecture
 
@@ -134,6 +135,26 @@ Every call records the actual Ollama model tag. The current fine-tuned model wor
 development comparison did not show a consistent overall win over the base model and some outputs
 used undesirable negative framing. Compare it using the shared evaluator rather than assuming that
 fine-tuning alone improves every resume.
+
+## W7 plan-and-execute
+
+`w7_plan_execute` plans first, then writes. A planner returns one JSON plan: the candidate's
+header, the tailored resume's sections in order, what each section leads with and cuts, and a map
+from each JD requirement to a line quoted from the resume (or `null` when the resume has no
+evidence, which writers treat as UNSUPPORTED). LangGraph's `Send` then starts one writer per
+planned section in the same step; each sees the original resume and only its part of the plan. An
+assembler merges the sections in the planned order, removes repeats and contradictions, and drops
+cut items and UNSUPPORTED requirements.
+
+```bash
+python run_all.py --workflows w7_plan_execute --split test --limit 1 --repeats 1
+```
+
+W7 makes 1 + N + 1 model calls, where N is the number of planned sections. All writers share one
+Ollama server, so "parallel" may just queue; report `wall_seconds` as latency. Like W1 and W6, W7
+reads the raw resume and JD and does not use the shared extraction pipeline or harness, so its
+output is shown as experimental in the app. The plan is logged in the trace as a `w7_plan` event.
+See `docs/w7-plan-execute/` for the diagram and design notes.
 
 ## Run experiments
 
@@ -308,6 +329,7 @@ workflows/
   w3_critic.py            parallel specialist critics + bounded revision loop
   w4_evidence.py          evidence-grounded generation
   w6_best_of_n.py         W6 strategy drafts + two-order selector
+  w7_plan_execute.py      W7 planner + parallel section writers + assembler
 eval/metrics.py           shared evaluator metrics
 eval/operational.py       task, tool, step and cost metrics
 eval/robustness.py        input perturbations and stability aggregation
