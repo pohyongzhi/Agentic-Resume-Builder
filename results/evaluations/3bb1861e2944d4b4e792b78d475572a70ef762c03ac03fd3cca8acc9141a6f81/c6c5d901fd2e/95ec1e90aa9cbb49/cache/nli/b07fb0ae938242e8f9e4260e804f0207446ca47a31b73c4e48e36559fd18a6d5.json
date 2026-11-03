@@ -1,0 +1,1091 @@
+{
+  "identity": {
+    "source_hash": "1542efae1597de6c0b559353bd22d5aeb5e9f56c0c92ebe2d916e496963d2f27",
+    "tailored_hash": "0f51851abd0622809ae7fd9ef91d232deb3689dccc94ff569602b6733935ae51",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.913,
+    "claim_faithfulness": 0.913,
+    "unsupported_claim_rate": 0.087,
+    "supported_claims": 21,
+    "source_evidence_units": 29,
+    "unsupported": [
+      "Operated containerised services while managing approximately 21 work items per month.",
+      "Presented progress, risks and technical trade-offs during fortnightly reviews to relevant stakeholders."
+    ],
+    "n_claims": 23,
+    "claim_scores": [
+      {
+        "claim": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.521971
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.375783
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Delivers documented, measurable improvements with cross-functional teams.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0004",
+        "best_evidence_unit": "Delivers documented, measurable improvements with cross-functional teams.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Delivers documented, measurable improvements with cross-functional teams.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.1812
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.169203
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Designed reliable backend services using Java and Spring Boot, improving team turnaround by 30%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+        "retrieval_score": 0.931255,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.931255,
+            "probabilities": {
+              "contradiction": 0.000144,
+              "entailment": 0.998267,
+              "neutral": 0.001589
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.156067,
+            "probabilities": {
+              "contradiction": 0.000147,
+              "entailment": 0.000236,
+              "neutral": 0.999617
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.080164,
+            "probabilities": {
+              "contradiction": 0.000299,
+              "entailment": 0.000258,
+              "neutral": 0.999442
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000144,
+          "entailment": 0.998267,
+          "neutral": 0.001589
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.998267,
+        "supported": true
+      },
+      {
+        "claim": "Built and documented REST APIs;",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.548287,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.548287,
+            "probabilities": {
+              "contradiction": 0.000342,
+              "entailment": 0.996563,
+              "neutral": 0.003095
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.492308,
+            "probabilities": {
+              "contradiction": 0.000492,
+              "entailment": 0.003914,
+              "neutral": 0.995594
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.417651,
+            "probabilities": {
+              "contradiction": 0.001073,
+              "entailment": 0.001386,
+              "neutral": 0.997541
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000342,
+          "entailment": 0.996563,
+          "neutral": 0.003095
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996563,
+        "supported": true
+      },
+      {
+        "claim": "documented decisions for technical and business reviewers.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.205769
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Technical Assistant, Example Cedar Innovations (fictional) (Jan 2021 - Jun 2023)",
+            "kind": "protected_header",
+            "line": 18,
+            "retrieval_score": 0.184515
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Optimised database queries in collaboration with four colleagues.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.400482,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.400482,
+            "probabilities": {
+              "contradiction": 0.000272,
+              "entailment": 0.998008,
+              "neutral": 0.00172
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.075912,
+            "probabilities": {
+              "contradiction": 0.00119,
+              "entailment": 0.000154,
+              "neutral": 0.998656
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 0.072727,
+            "probabilities": {
+              "contradiction": 0.055819,
+              "entailment": 0.0001,
+              "neutral": 0.944081
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000272,
+          "entailment": 0.998008,
+          "neutral": 0.00172
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.998008,
+        "supported": true
+      },
+      {
+        "claim": "Operated containerised services while managing approximately 21 work items per month.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0002",
+        "best_evidence_unit": "grace.tan@example.test | +65 6000 0007 | Singapore",
+        "best_evidence_kind": "contact",
+        "best_evidence_line": 3,
+        "best_source_chunk": "grace.tan@example.test | +65 6000 0007 | Singapore",
+        "retrieval_score": 0.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Managed approximately 21 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.579508,
+            "probabilities": {
+              "contradiction": 0.003356,
+              "entailment": 0.000408,
+              "neutral": 0.996236
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Grace Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.00068,
+              "entailment": 0.000301,
+              "neutral": 0.999019
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "grace.tan@example.test | +65 6000 0007 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.001874,
+              "entailment": 0.001163,
+              "neutral": 0.996963
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.001874,
+          "entailment": 0.001163,
+          "neutral": 0.996963
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001163,
+        "supported": false
+      },
+      {
+        "claim": "Presented progress, risks and technical trade-offs during fortnightly reviews to relevant stakeholders.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.364405,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.364405,
+            "probabilities": {
+              "contradiction": 0.000503,
+              "entailment": 0.000315,
+              "neutral": 0.999182
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0017",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.159514,
+            "probabilities": {
+              "contradiction": 0.00432,
+              "entailment": 0.000114,
+              "neutral": 0.995566
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.144793,
+            "probabilities": {
+              "contradiction": 0.00073,
+              "entailment": 0.000113,
+              "neutral": 0.999157
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000503,
+          "entailment": 0.000315,
+          "neutral": 0.999182
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000315,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work using PostgreSQL;",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "PostgreSQL",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.223492
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Managed approximately 21 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.182984
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.293088
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.264031
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.077358
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 25%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0013",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 25%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 22,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 25%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Created a simple reporting template that reduced manual preparation time by 25%.",
+            "kind": "claim",
+            "line": 22,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Grace Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "grace.tan@example.test | +65 6000 0007 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0019",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.113607
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Managed approximately 21 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.071351
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Java",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Spring Boot",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Used Java and Spring Boot to design reliable backend services, improving team turnaround by 30%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "REST APIs",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Applied REST APIs to build and document REST APIs and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using Java, Spring Boot and REST APIs.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "PostgreSQL",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "PostgreSQL",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "microservices",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.086957
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "microservices",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "microservices",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "microservices",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "microservices",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "PostgreSQL",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.086957
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Docker",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.063158
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Docker",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "Docker",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Docker",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Docker",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "microservices",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.063158
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Grace Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.053333
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Git",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Grace Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.066667
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Spring Boot",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.057143
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "unit testing",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0027",
+        "best_evidence_unit": "unit testing",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "unit testing",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0027",
+            "text": "unit testing",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.07619
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Spring Boot",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.069565
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Kafka",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0028",
+        "best_evidence_unit": "Kafka",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Kafka",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0028",
+            "text": "Kafka",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Java",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.088889
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Grace Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.057143
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Redis",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0029",
+        "best_evidence_unit": "Redis",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Redis",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0029",
+            "text": "Redis",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.114286
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "microservices",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.088889
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b07fb0ae938242e8f9e4260e804f0207446ca47a31b73c4e48e36559fd18a6d5"
+  }
+}

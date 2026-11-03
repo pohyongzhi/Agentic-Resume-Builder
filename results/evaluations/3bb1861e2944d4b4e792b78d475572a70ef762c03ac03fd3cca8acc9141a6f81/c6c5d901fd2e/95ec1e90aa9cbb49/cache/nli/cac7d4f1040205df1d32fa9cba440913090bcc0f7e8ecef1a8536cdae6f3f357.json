@@ -1,0 +1,772 @@
+{
+  "identity": {
+    "source_hash": "717ba96f11e28b04315b9905a5749d26db7792e524d0d87557fd1c55aefa4727",
+    "tailored_hash": "50e9bd089c2e1298891d71fa9595d99fecb90be4b67dfa49e2a53ed8d34fe074",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.9412,
+    "claim_faithfulness": 0.9412,
+    "unsupported_claim_rate": 0.0588,
+    "supported_claims": 16,
+    "source_evidence_units": 26,
+    "unsupported": [
+      "Technology associate with transferable experience in Python, SQL, ETL, and data pipelines, seeking to deepen capability as a Data Engineer."
+    ],
+    "n_claims": 17,
+    "claim_scores": [
+      {
+        "claim": "Technology associate with transferable experience in Python, SQL, ETL, and data pipelines, seeking to deepen capability as a Data Engineer.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 25,
+        "best_source_chunk": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "retrieval_score": 0.290859,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.925128,
+            "probabilities": {
+              "contradiction": 0.005011,
+              "entailment": 0.449141,
+              "neutral": 0.545848
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.290859,
+            "probabilities": {
+              "contradiction": 0.00191,
+              "entailment": 0.452722,
+              "neutral": 0.545368
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.180305,
+            "probabilities": {
+              "contradiction": 0.001509,
+              "entailment": 0.003651,
+              "neutral": 0.99484
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.00191,
+          "entailment": 0.452722,
+          "neutral": 0.545368
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.452722,
+        "supported": false
+      },
+      {
+        "claim": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 25,
+        "best_source_chunk": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.044912
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Inez Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.154743
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.124799
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Managed approximately 37 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Managed approximately 37 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 29,
+        "best_source_chunk": "Managed approximately 37 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 37 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Inez Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "inez.lim@example.test | +65 6000 0029 | Singapore",
+            "kind": "contact",
+            "line": 5,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 31,
+        "best_source_chunk": "Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.14706
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.137364
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 39,
+        "best_source_chunk": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "data pipelines",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.228228
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.220496
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 41,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 41,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 57,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 59,
+            "retrieval_score": 0.07574
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 24%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 24%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 43,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 24%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Created a simple reporting template that reduced manual preparation time by 24%.",
+            "kind": "claim",
+            "line": 43,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Inez Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "inez.lim@example.test | +65 6000 0029 | Singapore",
+            "kind": "contact",
+            "line": 5,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 71,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 71,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.120379
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.073913
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Python",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Python, SQL and ETL.",
+            "kind": "claim",
+            "line": 55,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "SQL",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Python, SQL and ETL.",
+            "kind": "claim",
+            "line": 55,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "ETL",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Python, SQL and ETL.",
+            "kind": "claim",
+            "line": 55,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "data pipelines",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 25,
+        "best_source_chunk": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 29%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "data pipelines",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Spark",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "Spark",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 79,
+        "best_source_chunk": "Spark",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Spark",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "SQL",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.05
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Python",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.036364
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Excel",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "Excel",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 79,
+        "best_source_chunk": "Excel",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "ETL",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.1
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Inez Lim",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.061538
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 79,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "data pipelines",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.074074
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Data Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 51,
+            "retrieval_score": 0.065116
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 79,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Git",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "ETL",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.066667
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Python",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 0.044444
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "cac7d4f1040205df1d32fa9cba440913090bcc0f7e8ecef1a8536cdae6f3f357"
+  }
+}
