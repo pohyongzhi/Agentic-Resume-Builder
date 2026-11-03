@@ -812,3 +812,26 @@ def test_pairwise_hosted_calls_use_pairwise_completion_budget():
         pass
     assert captured["max_completion_tokens"] == config.PAIRWISE_MAX_COMPLETION_TOKENS
     assert pairwise.pairwise_identity(judge_config, {})["pairwise_max_completion_tokens"] == config.PAIRWISE_MAX_COMPLETION_TOKENS
+
+
+def test_pairwise_hosted_calls_use_pairwise_reasoning_effort():
+    from eval import pairwise
+    from eval.judge import JudgeConfig
+
+    captured = {}
+
+    class _Completions:
+        def create(self, **kwargs):
+            captured.update(kwargs)
+            raise RuntimeError("stop after capturing request")
+
+    class _Client:
+        chat = type("Chat", (), {"completions": _Completions()})()
+
+    judge_config = JudgeConfig(provider="groq", model="openai/gpt-oss-120b", min_request_interval_seconds=0)
+    try:
+        pairwise._call_judge(_Client(), judge_config, "prompt")
+    except RuntimeError:
+        pass
+    assert captured["reasoning_effort"] == config.PAIRWISE_REASONING_EFFORT
+    assert pairwise.pairwise_identity(judge_config, {})["pairwise_reasoning_effort"] == config.PAIRWISE_REASONING_EFFORT

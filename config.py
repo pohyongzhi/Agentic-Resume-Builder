@@ -1,3 +1,4 @@
+import os
 """Shared product and experiment settings."""
 
 PRODUCT_NAME = "Agentic Resume Builder"
@@ -54,7 +55,9 @@ JUDGE_NUM_CTX = 16384
 JUDGE_THINK = False
 JUDGE_REASONING_EFFORT = "medium"
 JUDGE_MAX_COMPLETION_TOKENS = 2048
-JUDGE_MIN_REQUEST_INTERVAL_SECONDS = 15.0
+# Minimum spacing between hosted judge requests. Override with HOSTED_MIN_INTERVAL_SECONDS
+# (e.g. 55 on the Groq free tier, whose per-minute token limit counts max_completion_tokens).
+JUDGE_MIN_REQUEST_INTERVAL_SECONDS = float(os.environ.get("HOSTED_MIN_INTERVAL_SECONDS", "15"))
 JUDGE_MAX_RETRIES = 2
 JUDGE_PROMPT_VERSION = "resume-rubric-v4"
 JUDGE_SCHEMA_VERSION = "1.0"
@@ -84,6 +87,9 @@ PAIRWISE_SCHEMA_VERSION = "1"
 # Hosted reasoning models spend completion tokens on reasoning before the JSON answer;
 # 2048 truncated pairwise verdicts (five dimensions plus explanation) in the Groq pilot.
 PAIRWISE_MAX_COMPLETION_TOKENS = 4096
+# Pairwise verdicts are a forced choice per dimension; low reasoning keeps hosted token use
+# within free-tier limits. Position-swap consistency is reported as the stability check.
+PAIRWISE_REASONING_EFFORT = "low"
 PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
 POSITION_ORDER_VERSION = "challenger-first-then-baseline-first-v1"
 PAIRWISE_BASELINE_WORKFLOW = "w2_baseline"
