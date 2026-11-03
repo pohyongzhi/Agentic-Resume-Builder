@@ -71,7 +71,7 @@ NLI_EVIDENCE_LIMIT = 3
 
 # Supportable-requirement coverage (eval/requirement_coverage.py). The provider/model default to
 # the judge; the CLI can override them. Semantic decisions use the same structured-output settings.
-REQUIREMENT_COVERAGE_EVALUATOR_VERSION = "supportable-requirement-coverage-v1"
+REQUIREMENT_COVERAGE_EVALUATOR_VERSION = "supportable-requirement-coverage-v2"
 REQUIREMENT_COVERAGE_PROMPT_VERSION = "supportable-requirements-v1"
 REQUIREMENT_COVERAGE_PROVIDER = JUDGE_PROVIDER
 REQUIREMENT_COVERAGE_MODEL = JUDGE_MODEL

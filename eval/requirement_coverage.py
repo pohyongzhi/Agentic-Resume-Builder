@@ -36,7 +36,8 @@ class SupportDecision(BaseModel):
 
     requirement_id: str
     supported: bool
-    source_quotes: list[str] = Field(default_factory=list)
+    # Always required: hosted strict JSON schemas reject optional properties.
+    source_quotes: list[str]
     rationale: str = Field(min_length=1)
 
 
@@ -51,7 +52,7 @@ class CoverageDecision(BaseModel):
 
     requirement_id: str
     covered: bool
-    output_quotes: list[str] = Field(default_factory=list)
+    output_quotes: list[str]
     rationale: str = Field(min_length=1)
 
 

@@ -243,3 +243,27 @@ def test_supportability_cache_is_reused_across_workflow_outputs(tmp_path):
     assert len(first_client.calls) == 2
     assert len(second_client.calls) == 1
 
+
+
+def _strict_schema_violations(schema, path="$"):
+    """Hosted strict JSON mode requires every property to be listed in `required`."""
+    problems = []
+    if isinstance(schema, dict):
+        props = schema.get("properties")
+        if isinstance(props, dict):
+            missing = set(props) - set(schema.get("required", []))
+            if missing:
+                problems.append(f"{path}: {sorted(missing)}")
+        for key, value in schema.items():
+            problems.extend(_strict_schema_violations(value, f"{path}/{key}"))
+    elif isinstance(schema, list):
+        for i, value in enumerate(schema):
+            problems.extend(_strict_schema_violations(value, f"{path}[{i}]"))
+    return problems
+
+
+def test_hosted_schemas_list_every_property_as_required():
+    from eval.requirement_coverage import CoverageResponse, SupportResponse
+
+    for model in (SupportResponse, CoverageResponse):
+        assert _strict_schema_violations(model.model_json_schema()) == []
