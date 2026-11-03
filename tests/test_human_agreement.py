@@ -3,7 +3,13 @@ import json
 
 import pytest
 
-from eval.human_review import RUBRIC_DIMENSIONS, calculate_completed_forms, write_review_artifacts
+from eval.human_review import (
+    HUMAN_AGREEMENT_VERSION,
+    RUBRIC_DIMENSIONS,
+    agreement_identity,
+    calculate_completed_forms,
+    write_review_artifacts,
+)
 
 
 def _row(index, judge_score, supported=True):
@@ -129,3 +135,130 @@ def test_claim_identity_mismatch_fails_closed(tmp_path):
 
     with pytest.raises(ValueError, match="claim identity mismatch"):
         calculate_completed_forms(tmp_path, evaluations=rows, bootstrap_samples=0)
+
+
+def test_blank_forms_report_insufficient_labels_not_calibration(tmp_path):
+    rows = [_row(1, 4), _row(2, 2)]
+    write_review_artifacts(tmp_path, rows, limit=2)
+
+    unlinked = calculate_completed_forms(tmp_path)
+    assert unlinked["judge_vs_human"] is None
+    assert unlinked["judge_vs_human_status"] == "not_linked"
+    assert unlinked["inter_human_status"] == "insufficient_labels"
+    assert unlinked["human_labels"]["rubric_ratings"] == 0
+
+    report = calculate_completed_forms(tmp_path, evaluations=rows, bootstrap_samples=5)
+    assert report["judge_vs_human_status"] == "insufficient_labels"
+    relevance = report["judge_vs_human"]["dimensions"]["relevance_to_jd"]
+    assert relevance["status"] == "insufficient_labels"
+    assert relevance["status_reason"] == "no human labels"
+    assert relevance["eligible_items"] == 2
+    assert relevance["scored_items"] == 0
+    assert relevance["unscored_items"] == 2
+    assert relevance["missing_human_label_items"] == 2
+    assert relevance["failed_items"] == 0
+    assert relevance["spearman"] is None
+    assert relevance["mean_absolute_error"] is None
+    claims = report["judge_vs_human"]["claim_support"]
+    assert claims["status"] == "insufficient_labels"
+    assert claims["scored_claims"] == 0
+    assert claims["accuracy"] is None
+
+
+def test_judge_failure_is_failed_not_zero_and_small_sample_flagged(tmp_path):
+    rows = [_row(1, 1, True), _row(2, 3, False), _row(3, None, True)]
+    write_review_artifacts(tmp_path, rows, limit=3, seed=1)
+    _complete_forms(
+        tmp_path,
+        {"pair-1": 1, "pair-2": 3, "pair-3": 5},
+        {"pair-1": "supported", "pair-2": "unsupported", "pair-3": "supported"},
+    )
+
+    report = calculate_completed_forms(tmp_path, evaluations=rows, bootstrap_samples=0)
+
+    relevance = report["judge_vs_human"]["dimensions"]["relevance_to_jd"]
+    assert relevance["failed_items"] == 1
+    assert relevance["missing_human_label_items"] == 0
+    assert relevance["scored_items"] == 2
+    # Two pairs cannot support a calibration claim, even with perfect agreement.
+    assert relevance["status"] == "insufficient_labels"
+    # A failed judge (None) would have produced MAE > 0 had it been coerced to zero.
+    assert relevance["mean_absolute_error"] == 0.0
+    overall = report["judge_vs_human"]["overall"]
+    assert overall["scored_items"] == 2
+    assert overall["quadratic_weighted_kappa"] is None
+    assert "continuous" in overall["null_reasons"]["quadratic_weighted_kappa"]
+
+
+def test_sufficient_pairs_are_computed(tmp_path):
+    scores = [1, 2, 3, 4, 5, 1, 2, 3, 4, 5]
+    rows = [_row(index, score) for index, score in enumerate(scores)]
+    write_review_artifacts(tmp_path, rows, limit=len(rows))
+    _complete_forms(
+        tmp_path,
+        {f"pair-{index}": score for index, score in enumerate(scores)},
+        {f"pair-{index}": "supported" for index in range(len(scores))},
+    )
+
+    report = calculate_completed_forms(tmp_path, evaluations=rows, bootstrap_samples=0)
+
+    relevance = report["judge_vs_human"]["dimensions"]["relevance_to_jd"]
+    assert relevance["status"] == "computed"
+    assert relevance["status_reason"] is None
+    assert relevance["quadratic_weighted_kappa"] == 1.0
+    assert relevance["exact_agreement"] == 1.0
+    assert report["judge_vs_human"]["claim_support"]["status"] == "computed"
+    assert report["judge_vs_human_status"] == "computed"
+
+
+def test_blank_cells_are_missing_labels_and_unscored_claims_stay_out(tmp_path):
+    rows = [_row(1, 4, True), _row(2, 2, None)]
+    write_review_artifacts(tmp_path, rows, limit=2)
+    _complete_forms(
+        tmp_path,
+        {"pair-1": 4, "pair-2": 2},
+        {"pair-1": "supported", "pair-2": "unsupported"},
+    )
+    path = tmp_path / "rubric_ratings.csv"
+    with path.open(newline="") as handle:
+        rubric = list(csv.DictReader(handle))
+    rubric[0]["clarity"] = ""
+    with path.open("w", newline="") as handle:
+        writer = csv.DictWriter(handle, fieldnames=list(rubric[0]))
+        writer.writeheader()
+        writer.writerows(rubric)
+
+    report = calculate_completed_forms(tmp_path, evaluations=rows, bootstrap_samples=0)
+
+    clarity = report["judge_vs_human"]["dimensions"]["clarity"]
+    assert clarity["scored_items"] == 1
+    assert clarity["missing_human_label_items"] == 1
+    assert report["judge_vs_human"]["overall"]["scored_items"] == 1
+    claims = report["judge_vs_human"]["claim_support"]
+    assert claims["eligible_claims"] == 2
+    assert claims["failed_claims"] == 1
+    assert claims["scored_claims"] == 1
+    assert claims["unscored_claims"] == 1
+
+
+def test_non_integer_judge_score_is_excluded_from_ordinal_metrics(tmp_path):
+    rows = [_row(1, 2), _row(2, 4)]
+    rows[0]["judge_dimensions"]["relevance_to_jd"]["score"] = 2.5
+    write_review_artifacts(tmp_path, rows, limit=2)
+    _complete_forms(
+        tmp_path, {"pair-1": 2, "pair-2": 4}, {"pair-1": "supported", "pair-2": "supported"}
+    )
+
+    report = calculate_completed_forms(tmp_path, evaluations=rows, bootstrap_samples=0)
+
+    relevance = report["judge_vs_human"]["dimensions"]["relevance_to_jd"]
+    assert relevance["scored_items"] == 2
+    assert relevance["ordinal_consensus_items"] == 1
+    assert relevance["mean_absolute_error"] == 0.25
+
+
+def test_agreement_identity_is_stable():
+    first, second = agreement_identity(), agreement_identity()
+    assert first == second
+    assert first["agreement_version"] == HUMAN_AGREEMENT_VERSION
+    assert len(first["agreement_hash"]) == 64

@@ -21,7 +21,13 @@ RUBRIC_DIMENSIONS = (
     "organisation_and_readability",
 )
 
-AGREEMENT_SCHEMA_VERSION = "1.0"
+# Agreement-report identity. The integration branch may promote these to config.py.
+AGREEMENT_SCHEMA_VERSION = "1.1"
+HUMAN_AGREEMENT_VERSION = "judge-human-agreement-v1"
+# Minimum paired items before a judge/human comparison is reported as computed rather than
+# "insufficient_labels". Smaller samples still show descriptive statistics, flagged as such.
+MIN_AGREEMENT_PAIRS = 10
+CLAIM_LABELS = ("supported", "contradicted", "unsupported")
 
 
 def _sha256(value):
@@ -212,7 +218,9 @@ def _weighted_kappa(left, right, categories):
     total = len(left)
     row = [sum(values) / total for values in observed]
     column = [sum(observed[i][j] for i in range(size)) / total for j in range(size)]
-    ordinal = all(isinstance(value, int) for value in categories)
+    ordinal = all(
+        isinstance(value, int) and not isinstance(value, bool) for value in categories
+    )
     def disagreement(i, j):
         return (
             (abs(i - j) / max(size - 1, 1)) ** 2
@@ -253,7 +261,10 @@ def calculate_pairwise_agreement(records, item_fields, rating_field, categories)
                 "paired_items": len(paired),
                 "agreement_type": (
                     "quadratic_weighted_kappa"
-                    if all(isinstance(value, int) for value in categories)
+                    if all(
+                        isinstance(value, int) and not isinstance(value, bool)
+                        for value in categories
+                    )
                     else "unweighted_cohen_kappa"
                 ),
                 "weighted_kappa": round(kappa, 6) if kappa is not None else None,
@@ -334,27 +345,75 @@ def _unique_mode(values):
     return winners[0] if len(winners) == 1 else None
 
 
-def _agreement_summary(pairs, eligible_items, bootstrap_samples, seed):
-    """Summarise judge/human pairs; human_mean may differ from ordinal consensus."""
+def _ordinal_score(value):
+    """Return an integer 1-5 score, or None when the value is not on the ordinal scale."""
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not math.isfinite(number) or not number.is_integer() or not 1 <= number <= 5:
+        return None
+    return int(number)
+
+
+def _ordinal_pairs(sample):
+    return [
+        item for item in sample
+        if item.get("human_ordinal") is not None and item.get("judge_ordinal") is not None
+    ]
+
+
+def _calibration_status(scored_items, human_labelled_items):
+    if human_labelled_items == 0:
+        return "insufficient_labels", "no human labels"
+    if scored_items < MIN_AGREEMENT_PAIRS:
+        return "insufficient_labels", (
+            f"{scored_items} paired items; at least {MIN_AGREEMENT_PAIRS} required"
+        )
+    return "computed", None
+
+
+def _agreement_summary(pairs, denominators, bootstrap_samples, seed, ordinal=True):
+    """Summarise judge/human pairs; human_mean may differ from ordinal consensus.
+
+    ``denominators`` supplies eligible, human-labelled and automated-failure counts.
+    Items lacking either a human label or an automated score remain unscored.
+    """
     judge = [pair["judge"] for pair in pairs]
     human = [pair["human_mean"] for pair in pairs]
-    ordinal = [pair for pair in pairs if pair.get("human_ordinal") is not None]
-    ordinal_judge = [int(pair["judge"]) for pair in ordinal]
-    ordinal_human = [pair["human_ordinal"] for pair in ordinal]
+    ordinal_pairs = _ordinal_pairs(pairs) if ordinal else []
+    ordinal_judge = [pair["judge_ordinal"] for pair in ordinal_pairs]
+    ordinal_human = [pair["human_ordinal"] for pair in ordinal_pairs]
     spearman = _spearman(judge, human)
-    kappa = _weighted_kappa(ordinal_judge, ordinal_human, (1, 2, 3, 4, 5))
+    kappa = (
+        _weighted_kappa(ordinal_judge, ordinal_human, (1, 2, 3, 4, 5)) if ordinal else None
+    )
     absolute = [abs(a - b) for a, b in zip(judge, human)]
     signed = [a - b for a, b in zip(judge, human)]
+    eligible = denominators["eligible_items"]
+    status, status_reason = _calibration_status(
+        len(pairs), denominators["human_labelled_items"]
+    )
     result = {
-        "eligible_items": eligible_items,
+        "status": status,
+        "status_reason": status_reason,
+        "min_scored_items": MIN_AGREEMENT_PAIRS,
+        "eligible_items": eligible,
+        "scored_items": len(pairs),
         "paired_items": len(pairs),
-        "unscored_items": eligible_items - len(pairs),
-        "ordinal_consensus_items": len(ordinal),
+        "unscored_items": eligible - len(pairs),
+        "failed_items": denominators["failed_items"],
+        "missing_human_label_items": eligible - denominators["human_labelled_items"],
+        "human_labelled_items": denominators["human_labelled_items"],
+        "judge_scored_items": denominators["judge_scored_items"],
+        "ordinal_consensus_items": len(ordinal_pairs),
         "spearman": round(spearman, 6) if spearman is not None else None,
         "quadratic_weighted_kappa": round(kappa, 6) if kappa is not None else None,
         "exact_agreement": (
-            round(sum(a == b for a, b in zip(ordinal_judge, ordinal_human)) / len(ordinal), 6)
-            if ordinal else None
+            round(sum(a == b for a, b in zip(ordinal_judge, ordinal_human)) / len(ordinal_pairs), 6)
+            if ordinal_pairs else None
         ),
         "within_one_point": (
             round(sum(abs(a - b) <= 1 for a, b in zip(judge, human)) / len(pairs), 6)
@@ -368,17 +427,19 @@ def _agreement_summary(pairs, eligible_items, bootstrap_samples, seed):
             [item["judge"] for item in sample],
             [item["human_mean"] for item in sample],
         ),
-        "quadratic_weighted_kappa": lambda sample: _weighted_kappa(
-            [int(item["judge"]) for item in sample if item.get("human_ordinal") is not None],
-            [item["human_ordinal"] for item in sample if item.get("human_ordinal") is not None],
-            (1, 2, 3, 4, 5),
+        "quadratic_weighted_kappa": lambda sample: (
+            _weighted_kappa(
+                [item["judge_ordinal"] for item in _ordinal_pairs(sample)],
+                [item["human_ordinal"] for item in _ordinal_pairs(sample)],
+                (1, 2, 3, 4, 5),
+            ) if ordinal else None
         ),
         "exact_agreement": lambda sample: (
             mean(
-                int(item["judge"]) == item["human_ordinal"]
-                for item in sample if item.get("human_ordinal") is not None
+                item["judge_ordinal"] == item["human_ordinal"]
+                for item in _ordinal_pairs(sample)
             )
-            if any(item.get("human_ordinal") is not None for item in sample) else None
+            if ordinal and _ordinal_pairs(sample) else None
         ),
         "within_one_point": lambda sample: mean(
             abs(item["judge"] - item["human_mean"]) <= 1 for item in sample
@@ -396,13 +457,20 @@ def _agreement_summary(pairs, eligible_items, bootstrap_samples, seed):
         )
     null_reasons = {}
     if result["spearman"] is None:
-        null_reasons["spearman"] = (
-            "fewer than two pairs or zero rank variance"
-        )
+        null_reasons["spearman"] = "fewer than two pairs or zero rank variance"
     if result["quadratic_weighted_kappa"] is None:
         null_reasons["quadratic_weighted_kappa"] = (
-            "no unique ordinal consensus or zero expected disagreement"
+            "not defined for a continuous mean scale" if not ordinal
+            else "no unique ordinal consensus or zero expected disagreement"
         )
+    if result["exact_agreement"] is None:
+        null_reasons["exact_agreement"] = (
+            "not defined for a continuous mean scale" if not ordinal
+            else "no pairs with ordinal judge score and unique human consensus"
+        )
+    if not pairs:
+        for name in ("within_one_point", "mean_absolute_error", "signed_bias"):
+            null_reasons[name] = "no paired items"
     result["null_reasons"] = null_reasons
     return result
 
@@ -470,17 +538,21 @@ def _link_evaluations(mapping, evaluation_rows):
 
 
 def _read_completed_forms(output_dir, valid_review_ids):
+    """Read completed forms. Blank cells are missing labels; malformed values fail closed."""
     rubric_records = []
     seen = set()
     with (output_dir / "rubric_ratings.csv").open(newline="", encoding="utf-8") as handle:
         for row in csv.DictReader(handle):
-            if not row.get("reviewer_id"):
+            if not (row.get("reviewer_id") or "").strip():
                 continue
             if row.get("review_id") not in valid_review_ids:
                 raise ValueError(f"unknown review_id in rubric form: {row.get('review_id')}")
             for dimension in RUBRIC_DIMENSIONS:
+                raw = (row.get(dimension) or "").strip()
+                if not raw:
+                    continue
                 try:
-                    rating = int(row[dimension])
+                    rating = int(raw)
                 except (TypeError, ValueError) as exc:
                     raise ValueError(
                         f"{row.get('review_id')}/{dimension}: rating must be an integer"
@@ -504,12 +576,14 @@ def _read_completed_forms(output_dir, valid_review_ids):
         newline="", encoding="utf-8"
     ) as handle:
         for row in csv.DictReader(handle):
-            if not row.get("reviewer_id"):
+            if not (row.get("reviewer_id") or "").strip():
                 continue
             if row.get("review_id") not in valid_review_ids:
                 raise ValueError(f"unknown review_id in claim form: {row.get('review_id')}")
-            rating = row.get("rating", "").lower()
-            if rating not in {"supported", "contradicted", "unsupported"}:
+            rating = (row.get("rating") or "").strip().lower()
+            if not rating:
+                continue
+            if rating not in CLAIM_LABELS:
                 raise ValueError(
                     f"{row.get('review_id')}/{row.get('claim_index')}: invalid claim rating"
                 )
@@ -534,13 +608,31 @@ def _read_completed_forms(output_dir, valid_review_ids):
 def _judge_dimension(row, dimension):
     value = row.get(f"judge_{dimension}")
     if value is None:
-        value = row.get("judge_dimensions", {}).get(dimension, {}).get("score")
-    return value
+        value = (row.get("judge_dimensions") or {}).get(dimension, {}).get("score")
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError):
+        return None
+    return number if math.isfinite(number) else None
+
+
+def _judge_unadjusted_mean(row):
+    """Mean of the five judge dimensions, matching the uncapped human overall scale."""
+    scores = [_judge_dimension(row, dimension) for dimension in RUBRIC_DIMENSIONS]
+    if any(score is None for score in scores):
+        return None
+    return mean(scores)
 
 
 def calculate_judge_human_agreement(
     mapping, linked, rubric_records, claim_records, bootstrap_samples=1000, seed=42,
 ):
+    """Compare completed human labels with linked automated scores.
+
+    Missing labels and automated failures stay unscored; nothing is imputed.
+    """
     rubric_groups = defaultdict(list)
     for record in rubric_records:
         rubric_groups[(record["review_id"], record["dimension"])].append(record["rating"])
@@ -560,7 +652,8 @@ def calculate_judge_human_agreement(
             if ratings and judge_score is not None:
                 pair = {
                     "review_id": review_id,
-                    "judge": float(judge_score),
+                    "judge": judge_score,
+                    "judge_ordinal": _ordinal_score(judge_score),
                     "human_mean": mean(ratings),
                     "human_median": median(ratings),
                     "human_ordinal": _unique_mode(ratings),
@@ -569,26 +662,36 @@ def calculate_judge_human_agreement(
                 pairs.append(pair)
                 details.append({"dimension": dimension, **pair})
         dimensions[dimension] = _agreement_summary(
-            pairs, len(mapping), bootstrap_samples, seed + dimension_index * 10
+            pairs,
+            {
+                "eligible_items": len(mapping),
+                "human_labelled_items": human_rated,
+                "judge_scored_items": judge_scored,
+                "failed_items": len(mapping) - judge_scored,
+            },
+            bootstrap_samples,
+            seed + dimension_index * 10,
         )
-        dimensions[dimension].update({
-            "human_rated_items": human_rated,
-            "judge_scored_items": judge_scored,
-        })
 
     overall_pairs = []
+    overall_human_rated = 0
+    overall_judge_scored = 0
     for item in mapping:
         review_id = item["review_id"]
-        human_dimensions = []
-        for dimension in RUBRIC_DIMENSIONS:
-            ratings = rubric_groups.get((review_id, dimension), [])
-            if ratings:
-                human_dimensions.append(mean(ratings))
-        judge_score = linked[review_id].get("judge_overall_mean")
-        if len(human_dimensions) == len(RUBRIC_DIMENSIONS) and judge_score is not None:
+        human_dimensions = [
+            mean(rubric_groups[(review_id, dimension)])
+            for dimension in RUBRIC_DIMENSIONS
+            if rubric_groups.get((review_id, dimension))
+        ]
+        complete_human = len(human_dimensions) == len(RUBRIC_DIMENSIONS)
+        judge_score = _judge_unadjusted_mean(linked[review_id])
+        overall_human_rated += complete_human
+        overall_judge_scored += judge_score is not None
+        if complete_human and judge_score is not None:
             overall_pairs.append({
                 "review_id": review_id,
-                "judge": float(judge_score),
+                "judge": judge_score,
+                "judge_ordinal": None,
                 "human_mean": mean(human_dimensions),
                 "human_ordinal": None,
                 "reviewer_count": len({
@@ -597,18 +700,21 @@ def calculate_judge_human_agreement(
                 }),
             })
     overall = _agreement_summary(
-        overall_pairs, len(mapping), bootstrap_samples, seed + 100
+        overall_pairs,
+        {
+            "eligible_items": len(mapping),
+            "human_labelled_items": overall_human_rated,
+            "judge_scored_items": overall_judge_scored,
+            "failed_items": len(mapping) - overall_judge_scored,
+        },
+        bootstrap_samples,
+        seed + 100,
+        ordinal=False,
     )
-    overall["human_rated_items"] = sum(
-        all(rubric_groups.get((item["review_id"], dimension)) for dimension in RUBRIC_DIMENSIONS)
-        for item in mapping
+    overall["note"] = (
+        "Both sides use the unadjusted mean of the five dimensions; the judge critical-failure "
+        "cap is excluded so the scales match. Items need all five human dimensions."
     )
-    overall["judge_scored_items"] = sum(
-        linked[item["review_id"]].get("judge_overall_mean") is not None for item in mapping
-    )
-    overall["quadratic_weighted_kappa"] = None
-    overall["exact_agreement"] = None
-    overall["note"] = "Human overall is the mean of the five dimension consensus means."
 
     claim_lookup = {
         (item["review_id"], claim["claim_index"]): claim
@@ -626,20 +732,25 @@ def calculate_judge_human_agreement(
 
     claim_pairs = []
     eligible_claims = sum(len(item["claims"]) for item in mapping)
+    human_labelled_claims = 0
+    automated_failed_claims = 0
     consensus_ties = 0
     for item in mapping:
         review_id = item["review_id"]
         scores = linked[review_id].get("claim_scores", [])
         for claim in item["claims"]:
             index = claim["claim_index"]
+            automated = scores[index].get("supported")
+            if not isinstance(automated, bool):
+                automated_failed_claims += 1
             ratings = claim_groups.get((review_id, index), [])
             if not ratings:
                 continue
+            human_labelled_claims += 1
             consensus = _unique_mode(ratings)
             if consensus is None:
                 consensus_ties += 1
                 continue
-            automated = scores[index].get("supported")
             if not isinstance(automated, bool):
                 continue
             claim_pairs.append({
@@ -656,20 +767,29 @@ def calculate_judge_human_agreement(
     tn = sum(not pair["automated_supported"] and not pair["human_supported"] for pair in claim_pairs)
     precision = tp / (tp + fp) if tp + fp else None
     recall = tp / (tp + fn) if tp + fn else None
-    f1 = (
-        2 * precision * recall / (precision + recall)
-        if precision is not None and recall is not None and precision + recall
-        else 0.0 if precision is not None and recall is not None else None
-    )
+    if precision is None or recall is None:
+        f1 = None
+    elif precision + recall:
+        f1 = 2 * precision * recall / (precision + recall)
+    else:
+        f1 = 0.0
     claim_kappa = _weighted_kappa(
         [pair["automated_supported"] for pair in claim_pairs],
         [pair["human_supported"] for pair in claim_pairs],
         (False, True),
     )
+    status, status_reason = _calibration_status(len(claim_pairs), human_labelled_claims)
     claim_summary = {
+        "status": status,
+        "status_reason": status_reason,
+        "min_scored_items": MIN_AGREEMENT_PAIRS,
         "eligible_claims": eligible_claims,
+        "scored_claims": len(claim_pairs),
         "paired_claims": len(claim_pairs),
         "unscored_claims": eligible_claims - len(claim_pairs),
+        "failed_claims": automated_failed_claims,
+        "missing_human_label_claims": eligible_claims - human_labelled_claims,
+        "human_labelled_claims": human_labelled_claims,
         "consensus_ties": consensus_ties,
         "cohen_kappa": round(claim_kappa, 6) if claim_kappa is not None else None,
         "accuracy": round((tp + tn) / len(claim_pairs), 6) if claim_pairs else None,
@@ -692,7 +812,7 @@ def calculate_judge_human_agreement(
 
 def _write_agreement_details(output_dir, rubric_details, claim_details):
     rubric_fields = [
-        "review_id", "dimension", "judge", "human_mean", "human_median",
+        "review_id", "dimension", "judge", "judge_ordinal", "human_mean", "human_median",
         "human_ordinal", "reviewer_count",
     ]
     with (output_dir / "judge_human_agreement.csv").open(
@@ -713,18 +833,46 @@ def _write_agreement_details(output_dir, rubric_details, claim_details):
         writer.writerows(claim_details)
 
 
+def agreement_identity():
+    """Version identity for cache keys and report provenance of agreement outputs."""
+    payload = {
+        "agreement_version": HUMAN_AGREEMENT_VERSION,
+        "schema_version": AGREEMENT_SCHEMA_VERSION,
+        "min_scored_items": MIN_AGREEMENT_PAIRS,
+        "rubric_dimensions": list(RUBRIC_DIMENSIONS),
+        "claim_labels": list(CLAIM_LABELS),
+    }
+    payload["agreement_hash"] = hashlib.sha256(
+        json.dumps(payload, sort_keys=True).encode("utf-8")
+    ).hexdigest()
+    return payload
+
+
 def calculate_completed_forms(
     output_dir, evaluations=None, bootstrap_samples=1000, seed=42,
 ):
-    """Validate completed forms and optionally link them to saved evaluator records."""
+    """Validate completed forms and optionally link them to saved evaluator records.
+
+    Without ``evaluations`` only inter-human agreement is reported and judge-versus-human
+    agreement has status ``not_linked``. Calibration is never claimed without labels.
+    """
     output_dir = Path(output_dir)
     mapping = json.loads((output_dir / "review_mapping.private.json").read_text(encoding="utf-8"))
     valid_review_ids = {item["review_id"] for item in mapping}
     if len(valid_review_ids) != len(mapping):
         raise ValueError("duplicate review_id in private mapping")
     rubric_records, claim_records = _read_completed_forms(output_dir, valid_review_ids)
+    reviewers = sorted({
+        record["reviewer_id"] for record in [*rubric_records, *claim_records]
+    })
     report = {
         "schema_version": AGREEMENT_SCHEMA_VERSION,
+        "identity": agreement_identity(),
+        "human_labels": {
+            "reviewers": len(reviewers),
+            "rubric_ratings": len(rubric_records),
+            "claim_ratings": len(claim_records),
+        },
         "rubric_inter_human": calculate_pairwise_agreement(
             rubric_records,
             ("review_id", "dimension"),
@@ -735,9 +883,13 @@ def calculate_completed_forms(
             claim_records,
             ("review_id", "claim_index"),
             "rating",
-            ("supported", "contradicted", "unsupported"),
+            CLAIM_LABELS,
+        ),
+        "inter_human_status": (
+            "computed" if len(reviewers) >= 2 else "insufficient_labels"
         ),
         "judge_vs_human": None,
+        "judge_vs_human_status": "not_linked",
     }
     if evaluations is not None:
         evaluation_rows = _load_evaluation_rows(evaluations)
@@ -751,6 +903,16 @@ def calculate_completed_forms(
             seed=seed,
         )
         report["judge_vs_human"] = agreement
+        statuses = [
+            *(summary["status"] for summary in agreement["dimensions"].values()),
+            agreement["overall"]["status"],
+            agreement["claim_support"]["status"],
+        ]
+        report["judge_vs_human_status"] = (
+            "computed" if all(status == "computed" for status in statuses)
+            else "insufficient_labels" if all(status != "computed" for status in statuses)
+            else "partial"
+        )
         report["linkage"] = {
             "mapped_reviews": len(mapping),
             "evaluation_rows_considered": len(evaluation_rows),

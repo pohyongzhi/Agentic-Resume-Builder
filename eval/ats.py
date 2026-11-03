@@ -10,12 +10,24 @@ import json
 import math
 import re
 import time
+from collections import defaultdict
 from dataclasses import dataclass
+from statistics import mean
 from typing import Any, Callable, Protocol, Sequence, runtime_checkable
 
 
-ATS_SCHEMA_VERSION = "1.0"
+# Identity constants. The integration branch may promote these to config.py; any change to
+# the scoring rules below must bump OFFLINE_PROXY_VERSION.
+ATS_SCHEMA_VERSION = "1.1"
 OFFLINE_PROXY_VERSION = "offline-ats-proxy-v1"
+ATS_STATUSES = ("scored", "unscored", "failed")
+COMPOSITE_WEIGHTS = {
+    "parseability": 0.20,
+    "section_completeness": 0.25,
+    "formatting_compatibility": 0.15,
+    "supported_requirement_coverage": 0.40,
+}
+FORMAT_HAZARD_PENALTY = 0.34
 _REQUIRED_SECTIONS = ("experience", "education", "skills")
 _SECTION_ALIASES = {
     "experience": ("experience", "work experience", "professional experience"),
@@ -78,7 +90,7 @@ def _term_coverage(text: str, keywords: Sequence[dict[str, Any]]) -> float | Non
 def _section_score(text: str) -> tuple[float, list[str]]:
     headings = set()
     for line in text.splitlines():
-        candidate = re.sub(r"^#{1,6}\s*", "", line.strip()).strip(" :").lower()
+        candidate = re.sub(r"^#{1,6}\s*", "", line.strip()).strip(" :*_").lower()
         if candidate:
             headings.add(candidate)
     found = []
@@ -96,7 +108,17 @@ def _format_score(text: str) -> tuple[float, list[str]]:
         hazards.append("markdown_table")
     if re.search(r"[\uE000-\uF8FF]", text):
         hazards.append("private_use_characters")
-    return max(0.0, 1.0 - 0.34 * len(hazards)), hazards
+    return max(0.0, 1.0 - FORMAT_HAZARD_PENALTY * len(hazards)), hazards
+
+
+def offline_proxy_config_hash() -> str:
+    """Hash of every rule that determines the offline proxy score."""
+    return _canonical_hash({
+        "required_sections": list(_REQUIRED_SECTIONS),
+        "section_aliases": {key: list(value) for key, value in _SECTION_ALIASES.items()},
+        "weights": COMPOSITE_WEIGHTS,
+        "format_hazard_penalty": FORMAT_HAZARD_PENALTY,
+    })
 
 
 @runtime_checkable
@@ -126,6 +148,7 @@ class OfflineATSProvider:
             "provider_version": self.version,
             "schema_version": ATS_SCHEMA_VERSION,
             "score_kind": "ats_proxy_score",
+            "provider_config_hash": offline_proxy_config_hash(),
         }
 
     def score(
@@ -159,12 +182,7 @@ class OfflineATSProvider:
                 tailored_resume, supported_keywords
             ),
         }
-        weights = {
-            "parseability": 0.20,
-            "section_completeness": 0.25,
-            "formatting_compatibility": 0.15,
-            "supported_requirement_coverage": 0.40,
-        }
+        weights = COMPOSITE_WEIGHTS
         available_weight = sum(
             weight for name, weight in weights.items() if components[name] is not None
         )
@@ -183,7 +201,8 @@ class OfflineATSProvider:
                 "formatting_hazards": formatting_hazards,
                 "keyword_count": len(normalised_keywords),
                 "source_supported_keyword_count": len(supported_keywords),
-                "composite_weights": weights,
+                "composite_weights": dict(weights),
+                "renormalised_weight": round(available_weight, 6),
                 "visual_layout_assessed": False,
             },
         }
@@ -241,34 +260,69 @@ def _validate_payload(identity: dict[str, Any], payload: dict[str, Any]) -> None
             raise ValueError(f"ATS component {name!r} must be null or between 0 and 1")
 
 
+_IDENTITY_FIELDS = (
+    "provider", "provider_version", "schema_version", "score_kind", "provider_config_hash",
+)
+
+
+def ats_identity(provider: ATSProvider) -> dict[str, Any]:
+    """Validated provider identity plus a stable hash for cache keys and evaluator identity."""
+    identity = dict(provider.identity())
+    required = {"provider", "provider_version", "schema_version", "score_kind"}
+    if required - identity.keys():
+        raise ValueError("ATS provider identity is incomplete")
+    identity.setdefault("provider_config_hash", None)
+    identity["ats_identity_hash"] = _canonical_hash(
+        {field: identity.get(field) for field in _IDENTITY_FIELDS}
+    )
+    return identity
+
+
 def evaluate_ats(
     provider: ATSProvider,
     original_resume: str,
     job_description: str,
-    tailored_resume: str,
+    tailored_resume: str | None,
     keywords: Sequence[dict[str, Any]] | None = None,
+    generation_error: str | None = None,
 ) -> dict[str, Any]:
-    """Evaluate once; failures remain explicitly unscored and never become zero."""
-    identity = provider.identity()
-    required_identity = {"provider", "provider_version", "schema_version", "score_kind"}
-    if required_identity - identity.keys():
-        raise ValueError("ATS provider identity is incomplete")
+    """Evaluate once. Statuses: ``scored``; ``unscored`` when the scorer fails or rejects the
+    output; ``failed`` when generation failed upstream. Neither non-scored state becomes zero.
+    """
+    identity = ats_identity(provider)
     request = {
         "input_hashes": {
             "original_resume": _text_hash(original_resume),
             "job_description": _text_hash(job_description),
-            "tailored_resume": _text_hash(tailored_resume),
+            "tailored_resume": _text_hash(tailored_resume or ""),
         },
         "keywords": _normalise_keywords(keywords),
-        "provider": identity,
+        "provider": {field: identity.get(field) for field in _IDENTITY_FIELDS},
     }
     request_hash = _canonical_hash(request)
+
+    def not_scored(status: str, reason: str, seconds: float) -> dict[str, Any]:
+        return {
+            "ats_status": status,
+            **identity,
+            "ats_cache_key": request_hash,
+            "ats_request_hash": request_hash,
+            "ats_response_hash": None,
+            identity["score_kind"]: None,
+            "ats_components": {},
+            "ats_failure_reason": reason,
+            "ats_seconds": round(seconds, 6),
+        }
+
+    if generation_error is not None:
+        return not_scored("failed", f"generation_error: {generation_error}"[:1000], 0.0)
+
     started = time.perf_counter()
     try:
         payload = provider.score(
             original_resume,
             job_description,
-            tailored_resume,
+            tailored_resume or "",
             keywords=request["keywords"],
         )
         if not isinstance(payload, dict):
@@ -286,20 +340,65 @@ def evaluate_ats(
             "ats_seconds": round(time.perf_counter() - started, 6),
         }
     except Exception as exc:
-        return {
-            "ats_status": "unscored",
-            **identity,
-            "ats_cache_key": request_hash,
-            "ats_request_hash": request_hash,
-            "ats_response_hash": None,
-            identity["score_kind"]: None,
-            "ats_components": {},
-            "ats_failure_reason": _safe_error(exc),
-            "ats_seconds": round(time.perf_counter() - started, 6),
-        }
+        return not_scored("unscored", _safe_error(exc), time.perf_counter() - started)
 
 
 def comparable_ats_records(left: dict[str, Any], right: dict[str, Any]) -> bool:
     """Only records from the same versioned scoring contract are comparable."""
-    fields = ("provider", "provider_version", "schema_version", "score_kind")
-    return all(left.get(field) == right.get(field) for field in fields)
+    return all(left.get(field) == right.get(field) for field in _IDENTITY_FIELDS)
+
+
+def _summarise_group(rows: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    counts = {status: 0 for status in ATS_STATUSES}
+    for row in rows:
+        status = row.get("ats_status")
+        if status not in counts:
+            raise ValueError(f"unknown ats_status: {status!r}")
+        counts[status] += 1
+    scored = [row for row in rows if row["ats_status"] == "scored"]
+    scores = [row[row["score_kind"]] for row in scored]
+    components: dict[str, list[float]] = defaultdict(list)
+    for row in scored:
+        for name, value in (row.get("ats_components") or {}).items():
+            if value is not None:
+                components[name].append(value)
+    return {
+        "eligible": len(rows),
+        "scored": counts["scored"],
+        "unscored": counts["unscored"],
+        "failed": counts["failed"],
+        "mean_score": round(mean(scores), 6) if scores else None,
+        "min_score": round(min(scores), 6) if scores else None,
+        "max_score": round(max(scores), 6) if scores else None,
+        "component_means": {
+            name: {"mean": round(mean(values), 6), "n": len(values)}
+            for name, values in sorted(components.items())
+        },
+    }
+
+
+def summarise_ats(
+    records: Sequence[dict[str, Any]], group_by: Sequence[str] = ("workflow",),
+) -> dict[str, Any]:
+    """Aggregate ATS records with explicit eligible/scored/unscored/failed denominators.
+
+    Means use scored records only. Records from different scoring contracts are rejected.
+    """
+    records = list(records)
+    contracts = {
+        tuple(record.get(field) for field in _IDENTITY_FIELDS) for record in records
+    }
+    if len(contracts) > 1:
+        raise ValueError("ATS records come from more than one scoring contract")
+    groups: dict[tuple, list[dict[str, Any]]] = defaultdict(list)
+    for record in records:
+        groups[tuple(record.get(field) for field in group_by)].append(record)
+    first = records[0] if records else {}
+    return {
+        "identity": {field: first.get(field) for field in (*_IDENTITY_FIELDS, "ats_identity_hash")},
+        "overall": _summarise_group(records),
+        "groups": [
+            {**dict(zip(group_by, key)), **_summarise_group(groups[key])}
+            for key in sorted(groups, key=lambda key: tuple(str(value) for value in key))
+        ],
+    }
