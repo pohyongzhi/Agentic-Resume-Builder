@@ -3,7 +3,7 @@ get a tailored resume.
 
     python app.py      -> then open http://127.0.0.1:7860 in your browser
 
-Later, add a dropdown here to pick W1-W5 so you can demo every workflow side by side.
+The Results tab shows saved evaluation results (read-only; see ui/results_tab.py).
 """
 from pathlib import Path
 from uuid import uuid4
@@ -18,6 +18,8 @@ from workflows.w2_baseline import NAME as BASELINE_NAME, generate
 from workflows.w3_critic import NAME as CRITIC_NAME, generate as generate_w3
 from workflows.w4_evidence import NAME as W4_NAME, generate as generate_w4
 from workflows.w7_plan_execute import NAME as W7_NAME
+from ui.charts import RESULTS_CSS
+from ui.results_tab import build_results_tab
 
 WORKFLOW_CHOICES = [
     ("W1 - Single pass: one prompt, no guardrails", "w1_single_pass"),
@@ -379,80 +381,85 @@ with gr.Blocks(title="Resume Tailor · Agentic baseline") as demo:
         """
     )
 
-    with gr.Row(equal_height=False):
-        with gr.Column(scale=5, elem_classes=["panel"]):
-            gr.HTML(
-                """<div class="panel-heading">
-                     <h2>1. Add your information</h2>
-                     <p>Choose a workflow, upload a resume, then add the target role.</p>
-                   </div>"""
-            )
-            workflow_in = gr.Dropdown(
-                choices=WORKFLOW_CHOICES,
-                value=BASELINE_NAME,
-                label="Workflow",
-                info="Use the agentic baseline for validated output; the others are comparison workflows.",
-            )
-            resume_in = gr.File(
-                label="Resume",
-                file_types=[".pdf", ".docx", ".txt", ".md"],
-                file_count="single",
-            )
-            with gr.Tabs():
-                with gr.Tab("Paste job description"):
-                    jd_in = gr.Textbox(
-                        label="Job description",
-                        placeholder="Paste the full job title, responsibilities and qualifications…",
-                        lines=11,
+    with gr.Tabs():
+        with gr.Tab("Tailor a resume", id="tailor"):
+            with gr.Row(equal_height=False):
+                with gr.Column(scale=5, elem_classes=["panel"]):
+                    gr.HTML(
+                        """<div class="panel-heading">
+                             <h2>1. Add your information</h2>
+                             <p>Choose a workflow, upload a resume, then add the target role.</p>
+                           </div>"""
                     )
-                with gr.Tab("Use a public link"):
-                    url_in = gr.Textbox(
-                        label="Job posting URL",
-                        placeholder="https://company.com/jobs/role",
-                        info="Some sites block automated retrieval. Paste the JD if the link cannot be read.",
+                    workflow_in = gr.Dropdown(
+                        choices=WORKFLOW_CHOICES,
+                        value=BASELINE_NAME,
+                        label="Workflow",
+                        info="Use the agentic baseline for validated output; the others are comparison workflows.",
                     )
-            go = gr.Button("Generate tailored resume", variant="primary", elem_classes=["generate-btn"])
-            gr.Markdown(
-                "Text-based PDFs only. Scanned documents need OCR before upload.",
-                elem_classes=["privacy-note"],
+                    resume_in = gr.File(
+                        label="Resume",
+                        file_types=[".pdf", ".docx", ".txt", ".md"],
+                        file_count="single",
+                    )
+                    with gr.Tabs():
+                        with gr.Tab("Paste job description"):
+                            jd_in = gr.Textbox(
+                                label="Job description",
+                                placeholder="Paste the full job title, responsibilities and qualifications…",
+                                lines=11,
+                            )
+                        with gr.Tab("Use a public link"):
+                            url_in = gr.Textbox(
+                                label="Job posting URL",
+                                placeholder="https://company.com/jobs/role",
+                                info="Some sites block automated retrieval. Paste the JD if the link cannot be read.",
+                            )
+                    go = gr.Button("Generate tailored resume", variant="primary", elem_classes=["generate-btn"])
+                    gr.Markdown(
+                        "Text-based PDFs only. Scanned documents need OCR before upload.",
+                        elem_classes=["privacy-note"],
+                    )
+
+                with gr.Column(scale=7, elem_classes=["panel"]):
+                    gr.HTML(
+                        """<div class="panel-heading">
+                             <h2>2. Review your tailored resume</h2>
+                             <p>The download appears after validation and rendering succeed.</p>
+                           </div>"""
+                    )
+                    out_md = gr.Markdown(
+                        "### Your tailored resume will appear here\n"
+                        "Upload a resume and add a job description to begin.",
+                        elem_classes=["resume-preview", "empty-state"],
+                    )
+                    stats = gr.Markdown(
+                        "Waiting for input",
+                        elem_classes=["status-card"],
+                    )
+                    download = gr.File(label="Download validated Markdown", visible=False)
+
+            with gr.Accordion("How the agentic workflow works", open=False, elem_classes=["how-it-works"]):
+                gr.HTML(
+                    """
+                    <div class="steps">
+                      <div class="step"><b>01 · Parse</b><span>Extract structured, checkable candidate facts.</span></div>
+                      <div class="step"><b>02 · Analyse</b><span>Read the JD and identify its requirements.</span></div>
+                      <div class="step"><b>03 · Tailor</b><span>Reorder and rewrite only supported experience.</span></div>
+                      <div class="step"><b>04 · Validate</b><span>Check protected details, then render and save.</span></div>
+                    </div>
+                    """
+                )
+
+            go.click(
+                run,
+                [workflow_in, resume_in, url_in, jd_in],
+                [out_md, stats, download, jd_in],
+                show_progress="full",
             )
 
-        with gr.Column(scale=7, elem_classes=["panel"]):
-            gr.HTML(
-                """<div class="panel-heading">
-                     <h2>2. Review your tailored resume</h2>
-                     <p>The download appears after validation and rendering succeed.</p>
-                   </div>"""
-            )
-            out_md = gr.Markdown(
-                "### Your tailored resume will appear here\n"
-                "Upload a resume and add a job description to begin.",
-                elem_classes=["resume-preview", "empty-state"],
-            )
-            stats = gr.Markdown(
-                "Waiting for input",
-                elem_classes=["status-card"],
-            )
-            download = gr.File(label="Download validated Markdown", visible=False)
+        build_results_tab(demo)
 
-    with gr.Accordion("How the agentic workflow works", open=False, elem_classes=["how-it-works"]):
-        gr.HTML(
-            """
-            <div class="steps">
-              <div class="step"><b>01 · Parse</b><span>Extract structured, checkable candidate facts.</span></div>
-              <div class="step"><b>02 · Analyse</b><span>Read the JD and identify its requirements.</span></div>
-              <div class="step"><b>03 · Tailor</b><span>Reorder and rewrite only supported experience.</span></div>
-              <div class="step"><b>04 · Validate</b><span>Check protected details, then render and save.</span></div>
-            </div>
-            """
-        )
-
-    go.click(
-        run,
-        [workflow_in, resume_in, url_in, jd_in],
-        [out_md, stats, download, jd_in],
-        show_progress="full",
-    )
 
 if __name__ == "__main__":
-    demo.launch(theme=theme, css=APP_CSS)
+    demo.launch(theme=theme, css=APP_CSS + RESULTS_CSS)
