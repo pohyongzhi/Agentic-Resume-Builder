@@ -11,6 +11,7 @@ from collections import defaultdict
 from pathlib import Path
 from statistics import mean, median
 
+import config
 from eval.judge import RUBRIC
 
 RUBRIC_DIMENSIONS = (
@@ -21,13 +22,13 @@ RUBRIC_DIMENSIONS = (
     "organisation_and_readability",
 )
 
-# Agreement-report identity. The integration branch may promote these to config.py.
-AGREEMENT_SCHEMA_VERSION = "1.1"
-HUMAN_AGREEMENT_VERSION = "judge-human-agreement-v1"
+# Agreement-report identity; values are defined in config.py.
+AGREEMENT_SCHEMA_VERSION = config.AGREEMENT_SCHEMA_VERSION
+HUMAN_AGREEMENT_VERSION = config.HUMAN_AGREEMENT_VERSION
 # Minimum paired items before a judge/human comparison is reported as computed rather than
 # "insufficient_labels". Smaller samples still show descriptive statistics, flagged as such.
-MIN_AGREEMENT_PAIRS = 10
-CLAIM_LABELS = ("supported", "contradicted", "unsupported")
+MIN_AGREEMENT_PAIRS = config.MIN_AGREEMENT_PAIRS
+CLAIM_LABELS = tuple(config.CLAIM_LABELS)
 
 
 def _sha256(value):

@@ -72,6 +72,7 @@ class RequirementCoverageConfig:
     reasoning_effort: str = config.JUDGE_REASONING_EFFORT
     max_completion_tokens: int = config.JUDGE_MAX_COMPLETION_TOKENS
     max_retries: int = config.JUDGE_MAX_RETRIES
+    min_request_interval_seconds: float = config.JUDGE_MIN_REQUEST_INTERVAL_SECONDS
     evaluator_version: str = EVALUATOR_VERSION
     prompt_version: str = PROMPT_VERSION
 
@@ -195,6 +196,11 @@ def _default_client(cfg: RequirementCoverageConfig):
     raise RuntimeError(f"UNKNOWN_COVERAGE_PROVIDER: {cfg.provider!r}")
 
 
+FAILURE_CALL = "evaluator_call_failed"
+FAILURE_INVALID = "invalid_output"
+_LAST_HOSTED_REQUEST_AT = 0.0
+
+
 def _call(client, cfg: RequirementCoverageConfig, schema: type[BaseModel], prompt: str) -> str:
     json_schema = schema.model_json_schema()
     if cfg.provider == "ollama":
@@ -214,6 +220,11 @@ def _call(client, cfg: RequirementCoverageConfig, schema: type[BaseModel], promp
         )
         message = getattr(response, "message", None)
         return getattr(message, "content", None) or message["content"]
+    global _LAST_HOSTED_REQUEST_AT
+    wait = cfg.min_request_interval_seconds - (time.monotonic() - _LAST_HOSTED_REQUEST_AT)
+    if _LAST_HOSTED_REQUEST_AT and wait > 0:
+        time.sleep(wait)
+    _LAST_HOSTED_REQUEST_AT = time.monotonic()
     response = client.chat.completions.create(
         model=cfg.model,
         messages=[{"role": "user", "content": SYSTEM_PROMPT + "\n\n" + prompt}],
@@ -306,7 +317,19 @@ Requirements, in required response order:
         started = time.perf_counter()
         raw = ""
         try:
-            raw = _call(client, cfg, schema, request_prompt)
+            try:
+                raw = _call(client, cfg, schema, request_prompt)
+            except Exception as exc:
+                error = f"{type(exc).__name__}: {exc}"
+                attempts.append({
+                    "attempt": attempt_number,
+                    "status": "failed",
+                    "error": error,
+                    "seconds": round(time.perf_counter() - started, 4),
+                })
+                # Transport failures resend the original prompt, not a correction request.
+                request_prompt = prompt
+                continue
             parsed = schema.model_validate_json(raw)
             field = "supported" if stage == "support" else "covered"
             _validate_decisions(parsed.decisions, requirements, resume, field)
@@ -332,14 +355,21 @@ Requirements, in required response order:
                 + error
                 + "\nReturn corrected JSON with exact quotations."
             )
+    failure_kind = None
+    if result is None:
+        failure_kind = FAILURE_CALL if attempts[-1]["status"] == "failed" else FAILURE_INVALID
     record = {
         "status": "scored" if result is not None else "unscored",
+        "failure_kind": failure_kind,
         "failure_reason": None if result is not None else attempts[-1]["error"],
         "cache_key": cache_key,
         "result": result,
         "attempts": attempts,
     }
-    _atomic_json(cache_path, record)
+    # Evaluator call failures (rate limits, connection errors) are not cached so a resumed
+    # run retries them; invalid outputs are deterministic for this identity and are cached.
+    if failure_kind != FAILURE_CALL:
+        _atomic_json(cache_path, record)
     return record
 
 
@@ -403,6 +433,7 @@ def evaluate_requirement_coverage(
         if support_record["status"] != "scored":
             return {
                 "status": "unscored",
+                "failure_kind": support_record.get("failure_kind"),
                 "failure_reason": f"supportability: {support_record['failure_reason']}",
                 "evaluator": identity,
                 "coverage": None,
@@ -472,6 +503,7 @@ def evaluate_requirement_coverage(
         if coverage_record["status"] != "scored":
             return {
                 "status": "unscored",
+                "failure_kind": coverage_record.get("failure_kind"),
                 "failure_reason": f"coverage: {coverage_record['failure_reason']}",
                 "evaluator": identity,
                 "coverage": None,

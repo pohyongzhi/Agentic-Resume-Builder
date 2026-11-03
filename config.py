@@ -76,6 +76,36 @@ REQUIREMENT_COVERAGE_MODEL = JUDGE_MODEL
 INJECTION_ATTACK_VERSION = "prompt-injection-canary-v1"
 INJECTION_SAMPLE_VERSION = "injection-sample-v1"
 INJECTION_SEED = 42
+
+# Pairwise position-swap comparison (eval/pairwise.py). Uses the judge provider/model.
+PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v1"
+PAIRWISE_PROMPT_VERSION = "pairwise-v1"
+PAIRWISE_SCHEMA_VERSION = "1"
+PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
+POSITION_ORDER_VERSION = "challenger-first-then-baseline-first-v1"
+PAIRWISE_BASELINE_WORKFLOW = "w2_baseline"
+PAIRWISE_FAILURE_JUDGE = "judge_failed"
+PAIRWISE_FAILURE_INVALID = "invalid_output"
+PAIRWISE_FAILURE_GENERATION = "generation_unavailable"
+
+# Judge-versus-human agreement (eval/human_review.py).
+AGREEMENT_SCHEMA_VERSION = "1.1"
+HUMAN_AGREEMENT_VERSION = "judge-human-agreement-v1"
+MIN_AGREEMENT_PAIRS = 10  # below this, agreement is reported as insufficient_labels
+CLAIM_LABELS = ("supported", "contradicted", "unsupported")
+
+# Offline ATS-style compatibility proxy (eval/ats.py). Any scoring-rule change must bump
+# OFFLINE_PROXY_VERSION.
+ATS_SCHEMA_VERSION = "1.1"
+OFFLINE_PROXY_VERSION = "offline-ats-proxy-v1"
+ATS_STATUSES = ("scored", "unscored", "failed")
+COMPOSITE_WEIGHTS = {
+    "parseability": 0.20,
+    "section_completeness": 0.25,
+    "formatting_compatibility": 0.15,
+    "supported_requirement_coverage": 0.40,
+}
+FORMAT_HAZARD_PENALTY = 0.34
 ROBUSTNESS_SEED = 42
 REPORT_BOOTSTRAP_SEED = 42
 REPORT_BOOTSTRAP_SAMPLES = 2000

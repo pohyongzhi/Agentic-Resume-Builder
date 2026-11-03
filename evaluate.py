@@ -26,7 +26,8 @@ import config
 from common.data import dataset_hash, load_pairs
 from common.llm import Tracker
 from eval import metrics
-from eval.human_review import write_review_artifacts
+from eval.ats import ATS_STATUSES, OfflineATSProvider, ats_identity, evaluate_ats
+from eval.human_review import calculate_completed_forms, write_review_artifacts
 from eval.injection import (
     injection_identity,
     injection_manifest,
@@ -35,6 +36,13 @@ from eval.injection import (
 )
 from eval.judge import JudgeConfig, configured_model, evaluate_judge, judge_identity
 from eval.operational import evaluate_operational
+from eval.pairwise import (
+    FAILURE_GENERATION,
+    FAILURE_INVALID,
+    build_generation_pairs,
+    evaluate_generation_pair,
+    pairwise_identity,
+)
 from eval.reporting import write_reports
 from eval.requirement_coverage import (
     RequirementCoverageConfig,
@@ -185,7 +193,69 @@ class RequirementCoverageComponent:
             })
             if result["status"] == "unscored":
                 failures[self.name] = result["failure_reason"]
+                if result.get("failure_kind") == "evaluator_call_failed":
+                    # Not final: the evaluator was unreachable, so resume retries it.
+                    record["requirement_coverage_status"] = "evaluation_error"
         record["requirement_coverage_seconds"] = round(time.perf_counter() - started, 4)
+
+
+class ATSComponent:
+    """Offline ATS-style compatibility proxy (a heuristic, not a vendor ATS score).
+
+    Record fields: ``ats_status`` (scored/unscored/failed), ``ats_proxy_score`` (or the
+    provider's ``score_kind``), ``ats_identity_hash`` and the full ``ats_record``.
+    """
+
+    name = "ats"
+
+    def __init__(self, enabled=True, provider=None):
+        self.enabled = enabled
+        self.provider = provider or OfflineATSProvider()
+        self._identity = None
+
+    def identity(self):
+        if not self.enabled:
+            return {"status": "skipped"}
+        if self._identity is None:
+            self._identity = {**ats_identity(self.provider), "status": "enabled"}
+        return self._identity
+
+    def is_complete(self, record):
+        if not self.enabled:
+            return True
+        return (
+            record.get("ats_identity_hash") == self.identity()["ats_identity_hash"]
+            and record.get("ats_status") in ATS_STATUSES
+        )
+
+    def evaluate(self, record, generation_row, pair, tailored_resume, root, force):
+        if not self.enabled:
+            return
+        failures = record.setdefault("evaluation_failures", {})
+        identity = self.identity()
+        score_kind = identity["score_kind"]
+        failures.pop(score_kind, None)
+        generation_error = generation_row.get("error") or (
+            None if tailored_resume.strip() else "EMPTY_OUTPUT"
+        )
+        result = evaluate_ats(
+            self.provider,
+            pair["resume"],
+            pair["jd"],
+            tailored_resume,
+            keywords=pair.get("keywords", []),
+            generation_error=generation_error,
+        )
+        record.update({
+            "ats_status": result["ats_status"],
+            "ats_score_kind": score_kind,
+            score_kind: result.get(score_kind),
+            "ats_identity_hash": result["ats_identity_hash"],
+            "ats_components": result.get("ats_components", {}),
+            "ats_record": result,
+        })
+        if result["ats_status"] == "unscored":
+            failures[score_kind] = result["ats_failure_reason"]
 
 
 def build_output_components(args, judge_config, judge_model_info):
@@ -215,6 +285,7 @@ def build_output_components(args, judge_config, judge_model_info):
             coverage_config=coverage_config,
             model_info=coverage_model_info,
         ),
+        ATSComponent(enabled=not getattr(args, "skip_ats", False)),
     )
 
 
@@ -797,15 +868,23 @@ class EvaluationRun:
     judge_config: JudgeConfig
     components: tuple = ()
     evaluation_rows: list = field(default_factory=list)
+    judge_model_info: dict | None = None
+
+    def resolved_judge_model(self):
+        """Judge model metadata resolved once per run, even when single-output judging is skipped."""
+        if self.judge_model_info is None or self.judge_model_info.get("status") == "skipped":
+            self.judge_model_info = configured_model(self.judge_config)
+        return self.judge_model_info
 
 
 @dataclass(frozen=True)
 class Stage:
     """A run-level evaluation stage.
 
-    ``run(run, limit)`` computes rows (resumably) and ``index(root)`` is the JSONL file it
-    writes, which ``report`` reloads when the stage is not executed in this invocation.
-    Rows are passed to ``eval.reporting.STAGE_REPORTERS[name]`` if one is registered.
+    ``run(run, limit)`` computes rows (resumably) and ``index(root)`` is the file it writes,
+    which ``report`` reloads (with ``loader``, JSONL by default) when the stage is not executed
+    in this invocation. Rows are passed to ``eval.reporting.STAGE_REPORTERS[name]`` if one is
+    registered. ``in_all=False`` keeps a stage out of the ``all`` command.
     """
 
     name: str
@@ -813,6 +892,12 @@ class Stage:
     index: Callable[[Path], Path]
     pilot_limit: int
     help: str
+    loader: Callable[[Path], list] | None = None
+    in_all: bool = True
+
+    def load(self, root):
+        path = self.index(root)
+        return (self.loader or _read_index)(path)
 
 
 def _run_robustness(run, limit):
@@ -846,6 +931,201 @@ def _run_injection(run, limit):
     )
 
 
+def _parse_config_hashes(values):
+    parsed = {}
+    for value in values or ():
+        workflow, separator, config_hash = value.partition("=")
+        if not separator or not workflow or not config_hash:
+            raise SystemExit(f"--pairwise-config-hash expects WORKFLOW=HASH, got {value!r}")
+        parsed[workflow] = config_hash
+    return parsed
+
+
+def pairwise_root(root, identity):
+    return Path(root) / "pairwise" / identity["evaluator_hash"]
+
+
+def _pairwise_record_complete(existing, identity):
+    """Scored and invalid-output records are final; judge failures are retried on resume."""
+    if (existing.get("evaluator") or {}).get("evaluator_hash") != identity["evaluator_hash"]:
+        return False
+    return existing.get("status") == "scored" or (
+        existing.get("status") == "unscored" and existing.get("failure_kind") == FAILURE_INVALID
+    )
+
+
+def evaluate_pairwise_stage(
+    generation_rows,
+    pair_map,
+    root,
+    judge_config,
+    model_info,
+    baseline_workflow=config.PAIRWISE_BASELINE_WORKFLOW,
+    challenger_workflows=None,
+    config_hashes=None,
+    limit=None,
+    force=False,
+    client=None,
+):
+    """Judge every challenger/baseline generation pair in both positions.
+
+    Layout under ``pairwise/<evaluator_hash>/``: ``identity.json``,
+    ``records/<challenger>/<pair_id>/repeat_<n>.json`` and ``evaluations.jsonl``; the
+    evaluator's own cache is ``pairwise_cache/``. ``generation_unavailable`` records are
+    recomputed each run (no judge call), ``judge_failed`` records are retried.
+    """
+    identity = pairwise_identity(judge_config, model_info)
+    stage_root = pairwise_root(root, identity)
+    _atomic_text(stage_root / "identity.json", json.dumps(identity, indent=2) + "\n")
+    pairs = build_generation_pairs(
+        generation_rows,
+        baseline_workflow=baseline_workflow,
+        challenger_workflows=challenger_workflows,
+        config_hashes=config_hashes,
+    )
+    if limit is not None:
+        keep = sorted({pair["pair_id"] for pair in pairs})[:limit]
+        pairs = [pair for pair in pairs if pair["pair_id"] in keep]
+    records = []
+    for pair in pairs:
+        record_path = (
+            stage_root / "records" / pair["challenger_workflow"] / pair["pair_id"]
+            / f"repeat_{pair.get('repeat', 0)}.json"
+        )
+        if record_path.exists() and not force:
+            existing = _json(record_path)
+            if _pairwise_record_complete(existing, identity):
+                records.append(existing)
+                continue
+        source = pair_map.get(pair["pair_id"])
+        if source is None:
+            raise RuntimeError(f"unknown pair {pair['pair_id']}")
+        record = evaluate_generation_pair(
+            pair,
+            source["resume"],
+            source["jd"],
+            root / "pairwise_cache",
+            judge_config=judge_config,
+            model_info=model_info,
+            client=client,
+            force=force,
+        )
+        record.update({
+            "category": source.get("category", ""),
+            "fit_level": source.get("fit_level", ""),
+            "workflow": pair["challenger_workflow"],
+        })
+        if record["status"] != FAILURE_GENERATION:
+            _atomic_text(record_path, json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+        records.append(record)
+        print(
+            f"[pairwise] {pair['challenger_workflow']} vs {pair['baseline_workflow']} "
+            f"{pair['pair_id']}: {record['status']} winner={record.get('consensus_winner')}",
+            flush=True,
+        )
+    index = [
+        {key: value for key, value in record.items() if key not in {"orders", "system_prompt"}}
+        for record in records
+    ]
+    _write_index(stage_root, index)
+    return records
+
+
+def _pairwise_index(root):
+    """Latest pairwise index under ``root`` (the identity is only known after model lookup)."""
+    candidates = sorted(
+        (Path(root) / "pairwise").glob("*/evaluations.jsonl"),
+        key=lambda path: path.stat().st_mtime,
+    )
+    return candidates[-1] if candidates else Path(root) / "pairwise" / "evaluations.jsonl"
+
+
+def _run_pairwise(run, limit):
+    args = run.args
+    baseline = args.pairwise_baseline
+    selected = set(args.workflows)
+    challengers = args.pairwise_challengers or sorted(selected - {baseline})
+    missing = sorted(({baseline} | set(challengers)) - selected)
+    if missing or not challengers:
+        message = (
+            f"pairwise needs the baseline and at least one challenger in --workflows; "
+            f"missing={missing or ['<challenger>']}"
+        )
+        if args.command == "pairwise":
+            raise SystemExit(message)
+        print(f"[pairwise] skipped: {message}", flush=True)
+        return _read_index(_pairwise_index(run.root))
+    return evaluate_pairwise_stage(
+        run.generation_rows,
+        run.pair_map,
+        run.root,
+        run.judge_config,
+        run.resolved_judge_model(),
+        baseline_workflow=baseline,
+        challenger_workflows=challengers,
+        config_hashes=_parse_config_hashes(args.pairwise_config_hash),
+        limit=limit,
+        force=args.force,
+    )
+
+
+def review_root(root):
+    return Path(root) / "human_review"
+
+
+def review_forms_started(review_dir):
+    """True when any blinded review form already carries a reviewer label."""
+    import csv
+
+    for name in ("rubric_ratings.csv", "claim_support_ratings.csv"):
+        path = Path(review_dir) / name
+        if not path.exists():
+            continue
+        with path.open(newline="", encoding="utf-8") as handle:
+            if any((row.get("reviewer_id") or "").strip() for row in csv.DictReader(handle)):
+                return True
+    return False
+
+
+def evaluate_agreement(review_dir, evaluation_rows, bootstrap_samples=1000, seed=42):
+    """Compute inter-human and judge-versus-human agreement for completed review forms.
+
+    Returns ``[]`` when no review packet exists. Results with status ``insufficient_labels``
+    are descriptive only and must not be presented as calibration.
+    """
+    review_dir = Path(review_dir)
+    if not (review_dir / "review_mapping.private.json").exists():
+        return []
+    report = calculate_completed_forms(
+        review_dir,
+        evaluations=evaluation_rows if evaluation_rows else None,
+        bootstrap_samples=bootstrap_samples,
+        seed=seed,
+    )
+    return [report]
+
+
+def _run_agreement(run, limit):
+    del limit
+    if not (review_root(run.root) / "review_mapping.private.json").exists():
+        message = "no review packet; run `evaluate.py report` first and collect completed forms"
+        if run.args.command == "agreement":
+            raise SystemExit(f"agreement: {message}")
+        print(f"[agreement] skipped: {message}", flush=True)
+        return []
+    return evaluate_agreement(
+        review_root(run.root),
+        run.evaluation_rows,
+        bootstrap_samples=run.args.agreement_bootstrap_samples,
+        seed=config.REPORT_BOOTSTRAP_SEED,
+    )
+
+
+def _load_agreement(path):
+    path = Path(path)
+    return [json.loads(path.read_text(encoding="utf-8"))] if path.exists() else []
+
+
 STAGES = {
     "robustness": Stage(
         name="robustness",
@@ -860,6 +1140,21 @@ STAGES = {
         index=lambda root: injection_root(root) / "evaluations.jsonl",
         pilot_limit=2,
         help="resume/JD prompt-injection canary attacks on the stratified sample",
+    ),
+    "pairwise": Stage(
+        name="pairwise",
+        run=_run_pairwise,
+        index=_pairwise_index,
+        pilot_limit=2,
+        help="position-swapped pairwise judging of challengers against the baseline",
+    ),
+    "agreement": Stage(
+        name="agreement",
+        run=_run_agreement,
+        index=lambda root: review_root(root) / "agreement.json",
+        loader=_load_agreement,
+        pilot_limit=0,
+        help="judge-versus-human agreement from completed blinded review forms",
     ),
 }
 
@@ -884,6 +1179,14 @@ def build_parser():
     parser.add_argument("--skip-faithfulness", action="store_true")
     parser.add_argument("--skip-judge", action="store_true")
     parser.add_argument("--skip-coverage", action="store_true")
+    parser.add_argument("--skip-ats", action="store_true")
+    parser.add_argument("--pairwise-baseline", default=config.PAIRWISE_BASELINE_WORKFLOW)
+    parser.add_argument("--pairwise-challengers", nargs="+")
+    parser.add_argument(
+        "--pairwise-config-hash", action="append", metavar="WORKFLOW=HASH",
+        help="select one saved generation identity per workflow (repeatable)",
+    )
+    parser.add_argument("--agreement-bootstrap-samples", type=int, default=1000)
     parser.add_argument("--skip-reports", action="store_true")
     parser.add_argument("--skip-human-review", action="store_true")
     parser.add_argument("--pilot", action="store_true")
@@ -936,7 +1239,7 @@ def main(argv=None):
         },
     }, indent=2) + "\n")
 
-    if not args.skip_faithfulness and args.command in {"all", "score", *STAGES}:
+    if not args.skip_faithfulness and args.command in {"all", "score", "robustness", "injection"}:
         preflight = metrics.nli_preflight()
         _atomic_text(root / "nli_preflight.json", json.dumps(preflight, indent=2) + "\n")
 
@@ -957,6 +1260,7 @@ def main(argv=None):
         dataset_hash=validation["dataset_hash"],
         judge_config=judge_config,
         components=components,
+        judge_model_info=model_info,
     )
     if args.command in {"all", "score"}:
         run.evaluation_rows = evaluate_saved(
@@ -975,15 +1279,20 @@ def main(argv=None):
 
     stage_rows = {}
     for stage in STAGES.values():
-        if args.command in {"all", stage.name} and not getattr(args, f"skip_{stage.name}"):
+        requested = args.command == stage.name or (args.command == "all" and stage.in_all)
+        if requested and not getattr(args, f"skip_{stage.name}"):
             stage_rows[stage.name] = stage.run(run, stage_limits[stage.name])
         else:
-            stage_rows[stage.name] = _read_index(stage.index(root))
+            stage_rows[stage.name] = stage.load(root)
 
     if args.command in {"all", "report"} and not args.skip_reports:
         write_reports(root / "summaries", run.evaluation_rows, stage_rows=stage_rows)
     if args.command in {"all", "report"} and not args.skip_human_review and run.evaluation_rows:
-        write_review_artifacts(root / "human_review", run.evaluation_rows)
+        if review_forms_started(review_root(root)):
+            # Never overwrite forms reviewers have started; agreement reads them as-is.
+            print("[human_review] completed forms found; packet left unchanged", flush=True)
+        else:
+            write_review_artifacts(review_root(root), run.evaluation_rows)
 
     print(json.dumps({
         "output_root": str(root),

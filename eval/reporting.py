@@ -14,7 +14,9 @@ from collections import defaultdict
 from pathlib import Path
 
 import config
+from eval.ats import summarise_ats
 from eval.injection import summarise_injection
+from eval.pairwise import summarise_pairwise
 
 METRICS = (
     "execution_success",
@@ -30,6 +32,7 @@ METRICS = (
     "fabrication_bait_violation",
     "fabrication_bait_match_count",
     "requirement_coverage",
+    "ats_proxy_score",
     "judge_overall_mean",
     "judge_relevance_to_jd",
     "judge_prioritisation_of_supported_experience",
@@ -334,10 +337,123 @@ def write_injection_reports(output_dir, rows):
     return reports
 
 
+def ats_summary(rows, group_fields=("dataset_hash", "workflow")):
+    """Flat ATS proxy table: eligible/scored/unscored/failed per group plus component means.
+
+    ``failed`` means the generation failed upstream; ``unscored`` means the scorer rejected
+    the output. Both are excluded from means and never counted as zero.
+    """
+    records = [
+        {**row["ats_record"], **{field: row.get(field, "") for field in group_fields}}
+        for row in rows
+        if row.get("ats_record")
+    ]
+    if not records:
+        return []
+    summary = summarise_ats(records, group_by=group_fields)
+    identity = summary["identity"]
+    output = []
+    for group in summary["groups"]:
+        components = group.pop("component_means")
+        output.append({
+            **group,
+            **{
+                f"{name}_mean": value["mean"] for name, value in components.items()
+            },
+            **{f"{name}_n": value["n"] for name, value in components.items()},
+            "provider": identity.get("provider"),
+            "provider_version": identity.get("provider_version"),
+            "score_kind": identity.get("score_kind"),
+            "ats_identity_hash": identity.get("ats_identity_hash"),
+        })
+    return output
+
+
+def pairwise_summary(records, group_fields=()):
+    """Pairwise aggregates with nested values flattened to JSON strings for CSV output."""
+    flat = []
+    for row in summarise_pairwise(list(records), tuple(group_fields)):
+        flat.append({
+            key: json.dumps(value, sort_keys=True) if isinstance(value, (dict, list)) else value
+            for key, value in row.items()
+        })
+    return flat
+
+
+def write_pairwise_reports(output_dir, rows):
+    reports = {
+        "pairwise": pairwise_summary(rows, ("baseline_workflow", "challenger_workflow")),
+        "pairwise_by_fit_level": pairwise_summary(
+            rows, ("baseline_workflow", "challenger_workflow", "fit_level"),
+        ),
+    }
+    for name, table in reports.items():
+        _write_pair(output_dir, name, table)
+    return reports
+
+
+def agreement_summary(report):
+    """One row per agreement target. ``calibration_claimable`` is true only when computed."""
+    output = []
+    judge = report.get("judge_vs_human") or {}
+    targets = [
+        *(("dimension", name, value) for name, value in (judge.get("dimensions") or {}).items()),
+        *((("overall", "overall_mean", judge["overall"]),) if judge.get("overall") else ()),
+        *((("claims", "claim_support", judge["claim_support"]),) if judge.get("claim_support") else ()),
+    ]
+    for scope, name, value in targets:
+        unit = "claims" if scope == "claims" else "items"
+        output.append({
+            "scope": scope,
+            "target": name,
+            "status": value.get("status"),
+            "calibration_claimable": value.get("status") == "computed",
+            "eligible": value.get(f"eligible_{unit}"),
+            "scored": value.get(f"scored_{unit}"),
+            "unscored": value.get(f"unscored_{unit}"),
+            "failed": value.get(f"failed_{unit}"),
+            "missing_human_label": value.get(f"missing_human_label_{unit}"),
+            **{
+                key: value.get(key)
+                for key in (
+                    "spearman", "quadratic_weighted_kappa", "exact_agreement",
+                    "mean_absolute_error", "cohen_kappa", "accuracy",
+                )
+            },
+        })
+    if not output:
+        output.append({
+            "scope": "judge_vs_human",
+            "target": "all",
+            "status": report.get("judge_vs_human_status"),
+            "calibration_claimable": False,
+        })
+    return output
+
+
+def write_agreement_reports(output_dir, rows):
+    report = rows[-1]
+    table = agreement_summary(report)
+    write_table(output_dir / "human_agreement.csv", table)
+    _atomic_text(
+        output_dir / "human_agreement.json",
+        json.dumps({
+            "judge_vs_human_status": report.get("judge_vs_human_status"),
+            "inter_human_status": report.get("inter_human_status"),
+            "identity": report.get("identity"),
+            "human_labels": report.get("human_labels"),
+            "targets": table,
+        }, indent=2, ensure_ascii=False) + "\n",
+    )
+    return {"human_agreement": table}
+
+
 # Stage name (evaluate.STAGES) -> writer(output_dir, rows). Writers run only for non-empty rows.
 STAGE_REPORTERS = {
     "robustness": write_robustness_reports,
     "injection": write_injection_reports,
+    "pairwise": write_pairwise_reports,
+    "agreement": write_agreement_reports,
 }
 
 
@@ -351,6 +467,7 @@ def write_reports(output_dir, rows, robustness_rows=(), stage_rows=None):
         "requirement_coverage_by_fit_level": requirement_coverage_summary(
             rows, ("dataset_hash", "workflow", "fit_level"),
         ),
+        "ats": ats_summary(rows),
     }
     for name, table in reports.items():
         write_table(output_dir / f"{name}.csv", table)

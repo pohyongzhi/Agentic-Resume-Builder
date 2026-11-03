@@ -16,16 +16,17 @@ from typing import Any, Literal
 import ollama
 from pydantic import BaseModel, ConfigDict, Field
 
+import config
 from common.schemas import llm_schema
 from eval.judge import DIMENSIONS, RUBRIC, JudgeConfig, configured_model
 
 
-# Local constants; the integration branch may promote these to config.py.
-PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v1"
-PAIRWISE_PROMPT_VERSION = "pairwise-v1"
-PAIRWISE_SCHEMA_VERSION = "1"
-PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
-POSITION_ORDER_VERSION = "challenger-first-then-baseline-first-v1"
+# Identity constants are defined in config.py.
+PAIRWISE_EVALUATOR_VERSION = config.PAIRWISE_EVALUATOR_VERSION
+PAIRWISE_PROMPT_VERSION = config.PAIRWISE_PROMPT_VERSION
+PAIRWISE_SCHEMA_VERSION = config.PAIRWISE_SCHEMA_VERSION
+PAIRING_POLICY_VERSION = config.PAIRING_POLICY_VERSION
+POSITION_ORDER_VERSION = config.POSITION_ORDER_VERSION
 
 
 class PairwiseQuotation(BaseModel):
@@ -275,9 +276,9 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
     return (response.choices[0].message.content or "").strip(), _response_metadata(response)
 
 
-FAILURE_JUDGE = "judge_failed"
-FAILURE_INVALID = "invalid_output"
-FAILURE_GENERATION = "generation_unavailable"
+FAILURE_JUDGE = config.PAIRWISE_FAILURE_JUDGE
+FAILURE_INVALID = config.PAIRWISE_FAILURE_INVALID
+FAILURE_GENERATION = config.PAIRWISE_FAILURE_GENERATION
 
 
 def _normalise_position(

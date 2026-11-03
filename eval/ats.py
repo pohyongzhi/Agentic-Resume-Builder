@@ -15,19 +15,16 @@ from dataclasses import dataclass
 from statistics import mean
 from typing import Any, Callable, Protocol, Sequence, runtime_checkable
 
+import config
 
-# Identity constants. The integration branch may promote these to config.py; any change to
-# the scoring rules below must bump OFFLINE_PROXY_VERSION.
-ATS_SCHEMA_VERSION = "1.1"
-OFFLINE_PROXY_VERSION = "offline-ats-proxy-v1"
-ATS_STATUSES = ("scored", "unscored", "failed")
-COMPOSITE_WEIGHTS = {
-    "parseability": 0.20,
-    "section_completeness": 0.25,
-    "formatting_compatibility": 0.15,
-    "supported_requirement_coverage": 0.40,
-}
-FORMAT_HAZARD_PENALTY = 0.34
+
+# Identity constants are defined in config.py; any change to the scoring rules below must
+# bump OFFLINE_PROXY_VERSION.
+ATS_SCHEMA_VERSION = config.ATS_SCHEMA_VERSION
+OFFLINE_PROXY_VERSION = config.OFFLINE_PROXY_VERSION
+ATS_STATUSES = tuple(config.ATS_STATUSES)
+COMPOSITE_WEIGHTS = dict(config.COMPOSITE_WEIGHTS)
+FORMAT_HAZARD_PENALTY = config.FORMAT_HAZARD_PENALTY
 _REQUIRED_SECTIONS = ("experience", "education", "skills")
 _SECTION_ALIASES = {
     "experience": ("experience", "work experience", "professional experience"),

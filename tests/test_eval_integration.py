@@ -467,3 +467,270 @@ def test_cli_all_runs_coverage_and_injection_then_report_reloads(cli_env, capsys
 
     skipped = evaluate.main(["score", *flags, "--skip-coverage"])
     assert skipped != root
+
+
+# --- Network guard for the stage tests below ------------------------------------------------
+
+
+@pytest.fixture
+def no_network(monkeypatch):
+    import socket
+
+    def refuse(*_args, **_kwargs):
+        raise AssertionError("network access attempted in a unit test")
+
+    monkeypatch.setattr(socket.socket, "connect", refuse)
+    monkeypatch.setattr(socket, "create_connection", refuse)
+
+
+# --- ATS proxy as a per-output component ----------------------------------------------------
+
+
+ATS_RESUME = SOURCE + "\n## Education\nBSc, Example University\n"
+
+
+def test_ats_component_scores_and_tracks_identity(monkeypatch, tmp_path):
+    _no_ops(monkeypatch)
+    component = evaluate.ATSComponent()
+    record = _evaluate(_pair(), ATS_RESUME, tmp_path, (component,))
+
+    assert record["ats_status"] == "scored"
+    assert 0 <= record["ats_proxy_score"] <= 1
+    assert record["ats_identity_hash"] == component.identity()["ats_identity_hash"]
+    assert record["ats_record"]["provider"] == "offline_reference"
+    assert component.is_complete(record)
+    assert "provider" not in record  # provider fields stay nested, not top-level
+
+
+def test_ats_failures_are_never_zero(monkeypatch, tmp_path):
+    from eval.ats import CallableATSProvider
+
+    _no_ops(monkeypatch)
+    failed = _evaluate(
+        _pair(), "", tmp_path, (evaluate.ATSComponent(),),
+        generation_row={"workflow": "w1_single_pass", "error": "timeout"},
+    )
+    assert failed["ats_status"] == "failed"
+    assert failed["ats_proxy_score"] is None
+
+    def broken(*_args, **_kwargs):
+        raise RuntimeError("scorer unavailable")
+
+    provider = CallableATSProvider("fake", "v1", broken)
+    component = evaluate.ATSComponent(provider=provider)
+    unscored = _evaluate(_pair(), ATS_RESUME, tmp_path, (component,))
+    score_kind = component.identity()["score_kind"]
+    assert unscored["ats_status"] == "unscored"
+    assert unscored[score_kind] is None
+    assert score_kind in unscored["evaluation_failures"]
+
+
+def test_ats_identity_joins_evaluator_identity():
+    base = _identity((_coverage(), evaluate.ATSComponent()))["evaluator_hash"]
+    assert base != _identity((_coverage(), evaluate.ATSComponent(enabled=False)))["evaluator_hash"]
+    assert "ats" in _identity((evaluate.ATSComponent(),))["output_components"]
+
+
+def test_ats_report_has_explicit_denominators(monkeypatch, tmp_path):
+    _no_ops(monkeypatch)
+    monkeypatch.setattr("config.REPORT_BOOTSTRAP_SAMPLES", 50)
+    component = evaluate.ATSComponent()
+    rows = [
+        {**_evaluate(_pair(), ATS_RESUME, tmp_path, (component,)), "dataset_hash": "d"},
+        {**_evaluate(
+            _pair(), "", tmp_path, (component,),
+            generation_row={"workflow": "w1_single_pass", "error": "timeout"},
+        ), "dataset_hash": "d"},
+    ]
+    [summary] = reporting.ats_summary(rows)
+    assert (summary["eligible"], summary["scored"], summary["unscored"], summary["failed"]) == (
+        2, 1, 0, 1,
+    )
+    assert summary["mean_score"] == rows[0]["ats_proxy_score"]
+    generic = next(
+        row for row in reporting.summarise(rows, ("workflow",))
+        if row["metric"] == "ats_proxy_score"
+    )
+    assert (generic["eligible"], generic["scored"]) == (1, 1)
+
+
+# --- Pairwise stage -------------------------------------------------------------------------
+
+
+def _pairwise_inputs():
+    from tests import test_pairwise as tp
+
+    rows = [
+        {**tp._row("w2_baseline"), "resume_md": tp.BASELINE},
+        {**tp._row("w3_critic"), "resume_md": tp.CHALLENGER},
+        {**tp._row("w2_baseline", pair_id="p2"), "resume_md": tp.BASELINE},
+    ]
+    pair_map = {
+        pair_id: {"pair_id": pair_id, "resume": tp.ORIGINAL, "jd": tp.JD, "fit_level": "strong"}
+        for pair_id in ("p1", "p2")
+    }
+    return tp, rows, pair_map
+
+
+def _run_pairwise_stage(tmp_path, client, rows, pair_map, tp, **kwargs):
+    return evaluate.evaluate_pairwise_stage(
+        rows, pair_map, tmp_path, tp._config(),
+        {"provider": "ollama", "tag": "gemma-test", "digest": "digest-a"},
+        challenger_workflows=["w3_critic"], client=client, **kwargs,
+    )
+
+
+def test_pairwise_stage_scores_resumes_and_reports(tmp_path, no_network, monkeypatch):
+    monkeypatch.setattr("config.REPORT_BOOTSTRAP_SAMPLES", 50)
+    tp, rows, pair_map = _pairwise_inputs()
+    client = tp.FakeClient([
+        tp._valid_response("candidate_a", tp.CHALLENGER, tp.BASELINE),
+        tp._valid_response("candidate_b", tp.BASELINE, tp.CHALLENGER),
+    ])
+    records = _run_pairwise_stage(tmp_path, client, rows, pair_map, tp)
+
+    by_pair = {record["pair_id"]: record for record in records}
+    assert by_pair["p1"]["status"] == "scored"
+    assert by_pair["p1"]["consensus_winner"] == "challenger"
+    assert by_pair["p2"]["status"] == "generation_unavailable"
+    assert by_pair["p2"]["consensus_winner"] is None
+    identity = by_pair["p1"]["evaluator"]
+    stage_root = evaluate.pairwise_root(tmp_path, identity)
+    assert (stage_root / "records" / "w3_critic" / "p1" / "repeat_0.json").exists()
+    assert (stage_root / "evaluations.jsonl").exists()
+    assert list((tmp_path / "pairwise_cache").glob("*.json"))
+
+    resumed = _run_pairwise_stage(tmp_path, tp.FakeClient([]), rows, pair_map, tp)
+    assert {record["pair_id"]: record["status"] for record in resumed} == {
+        "p1": "scored", "p2": "generation_unavailable",
+    }
+
+    reports = reporting.write_reports(tmp_path / "summaries", [], stage_rows={"pairwise": records})
+    [summary] = reports["pairwise"]
+    assert (summary["total_pairs"], summary["generation_unavailable"], summary["eligible"],
+            summary["scored"], summary["unscored"]) == (2, 1, 1, 1, 0)
+    assert (tmp_path / "summaries" / "pairwise.csv").exists()
+
+
+def test_pairwise_judge_failures_are_retried_on_resume(tmp_path, no_network):
+    tp, rows, pair_map = _pairwise_inputs()
+    failing = tp.FakeClient([ConnectionError("judge unavailable")] * 4)
+    [record] = [
+        r for r in _run_pairwise_stage(tmp_path, failing, rows, pair_map, tp)
+        if r["pair_id"] == "p1"
+    ]
+    assert record["status"] == "unscored"
+    assert record["failure_kind"] == "judge_failed"
+    assert record["consensus_winner"] is None
+
+    healthy = tp.FakeClient([
+        tp._valid_response("candidate_a", tp.CHALLENGER, tp.BASELINE),
+        tp._valid_response("candidate_b", tp.BASELINE, tp.CHALLENGER),
+    ])
+    [retried] = [
+        r for r in _run_pairwise_stage(tmp_path, healthy, rows, pair_map, tp)
+        if r["pair_id"] == "p1"
+    ]
+    assert retried["status"] == "scored"
+    assert len(healthy.calls) == 2
+
+
+def test_pairwise_identity_change_selects_new_tree(tmp_path, no_network):
+    tp, rows, pair_map = _pairwise_inputs()
+    model = {"provider": "ollama", "tag": "gemma-test", "digest": "digest-a"}
+    first = evaluate.pairwise_root(tmp_path, evaluate.pairwise_identity(tp._config(), model))
+    second = evaluate.pairwise_root(
+        tmp_path, evaluate.pairwise_identity(tp._config(), {**model, "digest": "digest-b"}),
+    )
+    assert first != second
+
+
+def test_pairwise_config_hash_option_parsing():
+    assert evaluate._parse_config_hashes(["w2_baseline=abc", "w3_critic=def"]) == {
+        "w2_baseline": "abc", "w3_critic": "def",
+    }
+    with pytest.raises(SystemExit):
+        evaluate._parse_config_hashes(["missing-separator"])
+
+
+# --- Human agreement stage ------------------------------------------------------------------
+
+
+def test_agreement_requires_packet_and_reports_insufficient_labels(tmp_path):
+    from eval.human_review import write_review_artifacts
+    from tests import test_human_agreement as th
+
+    assert evaluate.evaluate_agreement(tmp_path, []) == []
+    rows = [th._row(index, 3) for index in range(3)]
+    write_review_artifacts(tmp_path, rows, limit=3)
+    assert not evaluate.review_forms_started(tmp_path)
+    th._complete_forms(
+        tmp_path,
+        {f"pair-{index}": 3 for index in range(3)},
+        {f"pair-{index}": "supported" for index in range(3)},
+    )
+    assert evaluate.review_forms_started(tmp_path)
+
+    [report] = evaluate.evaluate_agreement(tmp_path, rows, bootstrap_samples=0)
+    assert report["judge_vs_human_status"] == "insufficient_labels"
+    tables = reporting.write_agreement_reports(tmp_path / "summaries", [report])
+    assert tables["human_agreement"]
+    assert not any(row["calibration_claimable"] for row in tables["human_agreement"])
+    assert (tmp_path / "summaries" / "human_agreement.csv").exists()
+    loaded = evaluate.STAGES["agreement"].load(tmp_path.parent / "unused")
+    assert loaded == []
+
+
+# --- CLI paths for the new stages -----------------------------------------------------------
+
+
+def test_cli_pairwise_and_agreement_fail_clearly_without_inputs(cli_env):
+    flags = ["--skip-faithfulness", "--skip-judge"]
+    with pytest.raises(SystemExit, match="pairwise needs the baseline"):
+        evaluate.main(["pairwise", *flags])
+    with pytest.raises(SystemExit, match="no review packet"):
+        evaluate.main(["agreement", *flags])
+
+
+def test_cli_report_does_not_overwrite_started_review_forms(cli_env):
+    flags = ["--skip-faithfulness", "--skip-judge", "--skip-robustness", "--skip-injection"]
+    root = evaluate.main(["all", *flags])
+    rubric = evaluate.review_root(root) / "rubric_ratings.csv"
+    assert rubric.exists()
+    rubric.write_text(
+        rubric.read_text().splitlines()[0] + "\nreview-x,reviewer-1,3,3,3,3,3,\n",
+        encoding="utf-8",
+    )
+    before = rubric.read_text()
+    evaluate.main(["report", *flags])
+    assert rubric.read_text() == before
+
+
+def test_coverage_transport_failure_is_not_cached_and_is_retried(monkeypatch, tmp_path):
+    _no_ops(monkeypatch)
+
+    class Unreachable:
+        calls = 0
+
+        def chat(self, **_kwargs):
+            Unreachable.calls += 1
+            raise ConnectionError("rate limited")
+
+    component = _coverage(client=Unreachable())
+    tailored = "# Alex Tan\nalex.tan@example.com\nPostgreSQL"
+    record = _evaluate(_pair(), tailored, tmp_path, (component,))
+
+    assert record["requirement_coverage"] is None
+    assert record["requirement_coverage_status"] == "evaluation_error"
+    assert record["requirement_coverage_record"]["failure_kind"] == "evaluator_call_failed"
+    assert "rate limited" in record["evaluation_failures"]["requirement_coverage"]
+    assert not component.is_complete(record)
+    assert not list((tmp_path / "cache" / "requirement_coverage").rglob("*.json"))
+
+    healthy = FakeClient([json.dumps({"decisions": [{
+        "requirement_id": "req-002", "covered": False, "output_quotes": [],
+        "rationale": "Python is not expressed.",
+    }]})])
+    retried = _evaluate(_pair(), tailored, tmp_path, (_coverage(client=healthy),))
+    assert retried["requirement_coverage_status"] == "scored"
+    assert retried["requirement_coverage"] == 0.5
