@@ -1,5 +1,6 @@
-import os
 """Shared product and experiment settings."""
+
+import os
 
 PRODUCT_NAME = "Agentic Resume Builder"
 PRODUCT_VERSION = "1.0.0"
