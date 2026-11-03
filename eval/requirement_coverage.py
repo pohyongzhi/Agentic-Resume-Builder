@@ -18,7 +18,7 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 import config
-from eval.judge import configured_model
+from eval.judge import configured_model, wait_for_hosted_request_slot
 
 EVALUATOR_VERSION = config.REQUIREMENT_COVERAGE_EVALUATOR_VERSION
 PROMPT_VERSION = config.REQUIREMENT_COVERAGE_PROMPT_VERSION
@@ -198,7 +198,6 @@ def _default_client(cfg: RequirementCoverageConfig):
 
 FAILURE_CALL = "evaluator_call_failed"
 FAILURE_INVALID = "invalid_output"
-_LAST_HOSTED_REQUEST_AT = 0.0
 
 
 def _call(client, cfg: RequirementCoverageConfig, schema: type[BaseModel], prompt: str) -> str:
@@ -220,11 +219,7 @@ def _call(client, cfg: RequirementCoverageConfig, schema: type[BaseModel], promp
         )
         message = getattr(response, "message", None)
         return getattr(message, "content", None) or message["content"]
-    global _LAST_HOSTED_REQUEST_AT
-    wait = cfg.min_request_interval_seconds - (time.monotonic() - _LAST_HOSTED_REQUEST_AT)
-    if _LAST_HOSTED_REQUEST_AT and wait > 0:
-        time.sleep(wait)
-    _LAST_HOSTED_REQUEST_AT = time.monotonic()
+    wait_for_hosted_request_slot(cfg.min_request_interval_seconds)
     response = client.chat.completions.create(
         model=cfg.model,
         messages=[{"role": "user", "content": SYSTEM_PROMPT + "\n\n" + prompt}],

@@ -167,6 +167,19 @@ def configured_model(judge_config: JudgeConfig, client=None) -> dict[str, Any]:
     raise RuntimeError(f"UNKNOWN_JUDGE_PROVIDER: {judge_config.provider!r}")
 
 
+def wait_for_hosted_request_slot(min_interval_seconds: float) -> None:
+    """Space hosted requests across the judge, pairwise and coverage evaluators.
+
+    One process-wide timer keeps a shared hosted rate limit (for example the Groq free tier)
+    from being exceeded when several evaluators run in the same process.
+    """
+    global _LAST_GROQ_REQUEST_AT
+    remaining = min_interval_seconds - (time.monotonic() - _LAST_GROQ_REQUEST_AT)
+    if remaining > 0:
+        time.sleep(remaining)
+    _LAST_GROQ_REQUEST_AT = time.monotonic()
+
+
 def _default_client(judge_config: JudgeConfig):
     if judge_config.provider == "ollama":
         return ollama.Client()
@@ -323,12 +336,7 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
         }
         return raw, metadata
 
-    global _LAST_GROQ_REQUEST_AT
-    elapsed = time.monotonic() - _LAST_GROQ_REQUEST_AT
-    remaining = judge_config.min_request_interval_seconds - elapsed
-    if remaining > 0:
-        time.sleep(remaining)
-    _LAST_GROQ_REQUEST_AT = time.monotonic()
+    wait_for_hosted_request_slot(judge_config.min_request_interval_seconds)
     response = client.chat.completions.create(
         model=judge_config.model,
         messages=[{

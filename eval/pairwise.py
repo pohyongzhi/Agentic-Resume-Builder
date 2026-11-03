@@ -18,7 +18,13 @@ from pydantic import BaseModel, ConfigDict, Field
 
 import config
 from common.schemas import llm_schema
-from eval.judge import DIMENSIONS, RUBRIC, JudgeConfig, configured_model
+from eval.judge import (
+    DIMENSIONS,
+    RUBRIC,
+    JudgeConfig,
+    configured_model,
+    wait_for_hosted_request_slot,
+)
 
 
 # Identity constants are defined in config.py.
@@ -72,9 +78,6 @@ meaningfully better. Do not prefer a candidate because it appears first or is lo
 unsupported content, even if it matches the job description.
 
 {RUBRIC}"""
-
-_LAST_GROQ_REQUEST_AT = 0.0
-
 
 def _sha(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
@@ -250,12 +253,7 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
             "reasoning_tokens": None,
         }
 
-    global _LAST_GROQ_REQUEST_AT
-    elapsed = time.monotonic() - _LAST_GROQ_REQUEST_AT
-    remaining = judge_config.min_request_interval_seconds - elapsed
-    if remaining > 0:
-        time.sleep(remaining)
-    _LAST_GROQ_REQUEST_AT = time.monotonic()
+    wait_for_hosted_request_slot(judge_config.min_request_interval_seconds)
     response = client.chat.completions.create(
         model=judge_config.model,
         messages=[{"role": "user", "content": SYSTEM_PROMPT + "\n\n" + user_prompt}],

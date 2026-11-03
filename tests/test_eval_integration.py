@@ -444,7 +444,7 @@ def cli_env(monkeypatch, tmp_path, injection_pairs):
     return SimpleNamespace(workflow=workflow, resolved=resolved)
 
 
-def test_cli_all_runs_coverage_and_injection_then_report_reloads(cli_env, capsys):
+def test_cli_all_runs_coverage_then_optional_injection_then_report_reloads(cli_env, capsys):
     flags = ["--skip-faithfulness", "--skip-judge", "--skip-robustness", "--skip-human-review"]
     root = evaluate.main(["all", *flags, "--injection-limit", "1"])
 
@@ -453,7 +453,10 @@ def test_cli_all_runs_coverage_and_injection_then_report_reloads(cli_env, capsys
     assert identity["output_components"]["requirement_coverage"]["status"] == "enabled"
     record = json.loads((root / "evaluations.jsonl").read_text().splitlines()[0])
     assert record["requirement_coverage"] == 1.0
+    assert cli_env.workflow.calls == []  # injection is optional and not part of `all`
+    assert evaluate.main(["injection", *flags, "--injection-limit", "1"]) == root
     assert len(cli_env.workflow.calls) == 2
+    evaluate.main(["report", *flags])
     assert (root / "summaries" / "requirement_coverage.csv").exists()
     assert (root / "summaries" / "injection.csv").exists()
 
@@ -481,77 +484,6 @@ def no_network(monkeypatch):
 
     monkeypatch.setattr(socket.socket, "connect", refuse)
     monkeypatch.setattr(socket, "create_connection", refuse)
-
-
-# --- ATS proxy as a per-output component ----------------------------------------------------
-
-
-ATS_RESUME = SOURCE + "\n## Education\nBSc, Example University\n"
-
-
-def test_ats_component_scores_and_tracks_identity(monkeypatch, tmp_path):
-    _no_ops(monkeypatch)
-    component = evaluate.ATSComponent()
-    record = _evaluate(_pair(), ATS_RESUME, tmp_path, (component,))
-
-    assert record["ats_status"] == "scored"
-    assert 0 <= record["ats_proxy_score"] <= 1
-    assert record["ats_identity_hash"] == component.identity()["ats_identity_hash"]
-    assert record["ats_record"]["provider"] == "offline_reference"
-    assert component.is_complete(record)
-    assert "provider" not in record  # provider fields stay nested, not top-level
-
-
-def test_ats_failures_are_never_zero(monkeypatch, tmp_path):
-    from eval.ats import CallableATSProvider
-
-    _no_ops(monkeypatch)
-    failed = _evaluate(
-        _pair(), "", tmp_path, (evaluate.ATSComponent(),),
-        generation_row={"workflow": "w1_single_pass", "error": "timeout"},
-    )
-    assert failed["ats_status"] == "failed"
-    assert failed["ats_proxy_score"] is None
-
-    def broken(*_args, **_kwargs):
-        raise RuntimeError("scorer unavailable")
-
-    provider = CallableATSProvider("fake", "v1", broken)
-    component = evaluate.ATSComponent(provider=provider)
-    unscored = _evaluate(_pair(), ATS_RESUME, tmp_path, (component,))
-    score_kind = component.identity()["score_kind"]
-    assert unscored["ats_status"] == "unscored"
-    assert unscored[score_kind] is None
-    assert score_kind in unscored["evaluation_failures"]
-
-
-def test_ats_identity_joins_evaluator_identity():
-    base = _identity((_coverage(), evaluate.ATSComponent()))["evaluator_hash"]
-    assert base != _identity((_coverage(), evaluate.ATSComponent(enabled=False)))["evaluator_hash"]
-    assert "ats" in _identity((evaluate.ATSComponent(),))["output_components"]
-
-
-def test_ats_report_has_explicit_denominators(monkeypatch, tmp_path):
-    _no_ops(monkeypatch)
-    monkeypatch.setattr("config.REPORT_BOOTSTRAP_SAMPLES", 50)
-    component = evaluate.ATSComponent()
-    rows = [
-        {**_evaluate(_pair(), ATS_RESUME, tmp_path, (component,)), "dataset_hash": "d"},
-        {**_evaluate(
-            _pair(), "", tmp_path, (component,),
-            generation_row={"workflow": "w1_single_pass", "error": "timeout"},
-        ), "dataset_hash": "d"},
-    ]
-    [summary] = reporting.ats_summary(rows)
-    assert (summary["eligible"], summary["scored"], summary["unscored"], summary["failed"]) == (
-        2, 1, 0, 1,
-    )
-    assert summary["mean_score"] == rows[0]["ats_proxy_score"]
-    generic = next(
-        row for row in reporting.summarise(rows, ("workflow",))
-        if row["metric"] == "ats_proxy_score"
-    )
-    assert (generic["eligible"], generic["scored"]) == (1, 1)
 
 
 # --- Pairwise stage -------------------------------------------------------------------------
@@ -653,43 +585,22 @@ def test_pairwise_config_hash_option_parsing():
         evaluate._parse_config_hashes(["missing-separator"])
 
 
-# --- Human agreement stage ------------------------------------------------------------------
-
-
-def test_agreement_requires_packet_and_reports_insufficient_labels(tmp_path):
-    from eval.human_review import write_review_artifacts
-    from tests import test_human_agreement as th
-
-    assert evaluate.evaluate_agreement(tmp_path, []) == []
-    rows = [th._row(index, 3) for index in range(3)]
-    write_review_artifacts(tmp_path, rows, limit=3)
-    assert not evaluate.review_forms_started(tmp_path)
-    th._complete_forms(
-        tmp_path,
-        {f"pair-{index}": 3 for index in range(3)},
-        {f"pair-{index}": "supported" for index in range(3)},
-    )
-    assert evaluate.review_forms_started(tmp_path)
-
-    [report] = evaluate.evaluate_agreement(tmp_path, rows, bootstrap_samples=0)
-    assert report["judge_vs_human_status"] == "insufficient_labels"
-    tables = reporting.write_agreement_reports(tmp_path / "summaries", [report])
-    assert tables["human_agreement"]
-    assert not any(row["calibration_claimable"] for row in tables["human_agreement"])
-    assert (tmp_path / "summaries" / "human_agreement.csv").exists()
-    loaded = evaluate.STAGES["agreement"].load(tmp_path.parent / "unused")
-    assert loaded == []
-
-
 # --- CLI paths for the new stages -----------------------------------------------------------
 
 
-def test_cli_pairwise_and_agreement_fail_clearly_without_inputs(cli_env):
+def test_cli_pairwise_fails_clearly_without_baseline(cli_env):
     flags = ["--skip-faithfulness", "--skip-judge"]
     with pytest.raises(SystemExit, match="pairwise needs the baseline"):
         evaluate.main(["pairwise", *flags])
-    with pytest.raises(SystemExit, match="no review packet"):
-        evaluate.main(["agreement", *flags])
+
+
+def test_cli_does_not_expose_dropped_stages():
+    assert set(evaluate.STAGES) == {"robustness", "injection", "pairwise"}
+    assert not evaluate.STAGES["injection"].in_all
+    assert "agreement" not in reporting.STAGE_REPORTERS
+    assert all(component.name != "ats" for component in evaluate.build_output_components(
+        evaluate.build_parser().parse_args(["score", "--skip-coverage"]), JudgeConfig(), {},
+    ))
 
 
 def test_cli_report_does_not_overwrite_started_review_forms(cli_env):
@@ -734,3 +645,129 @@ def test_coverage_transport_failure_is_not_cached_and_is_retried(monkeypatch, tm
     retried = _evaluate(_pair(), tailored, tmp_path, (_coverage(client=healthy),))
     assert retried["requirement_coverage_status"] == "scored"
     assert retried["requirement_coverage"] == 0.5
+
+
+# --- Tier 1 end to end: faithfulness, coverage, operational and pairwise vs W2 ---------------
+
+
+@pytest.fixture
+def tier1_env(monkeypatch, tmp_path, no_network):
+    import eval.pairwise as pairwise_module
+    from tests import test_pairwise as tp
+
+    pairs = [
+        {"pair_id": pair_id, "split": "test", "category": "data", "fit_level": "strong",
+         "resume": tp.ORIGINAL, "jd": tp.JD,
+         "keywords": [{"keyword": "Python", "synonyms": []}]}
+        for pair_id in ("p1", "p2", "p3")
+    ]
+    outputs = {"w2_baseline": tp.BASELINE, "w1_single_pass": tp.CHALLENGER}
+    rows = []
+    for workflow, text in outputs.items():
+        for pair in pairs:
+            for config_hash in (f"gen-{workflow}", "stale") if workflow == "w1_single_pass" \
+                    and pair["pair_id"] == "p1" else (f"gen-{workflow}",):
+                run_dir = tmp_path / "runs" / workflow / config_hash / pair["pair_id"]
+                run_dir.mkdir(parents=True)
+                (run_dir / "resume.md").write_text(text, encoding="utf-8")
+                (run_dir / "trace.json").write_text("[]", encoding="utf-8")
+                rows.append({
+                    "workflow": workflow, "pair_id": pair["pair_id"], "repeat": 0,
+                    "dataset_hash": "dataset-a", "config_hash": config_hash, "error": None,
+                    "category": "data", "fit_level": "strong",
+                    "llm_calls": 1, "tool_calls": 0, "input_tokens": 100,
+                    "output_tokens": 50, "seconds": 2.5,
+                    "resume_path": str(run_dir / "resume.md"),
+                    "trace_path": str(run_dir / "trace.json"),
+                    "metrics_path": str(run_dir / "resume.md"),
+                })
+
+    def responses():
+        while True:
+            yield tp._valid_response("candidate_a", tp.CHALLENGER, tp.BASELINE)
+            yield tp._valid_response("candidate_b", tp.BASELINE, tp.CHALLENGER)
+
+    judge = tp.FakeClient([])
+    stream = responses()
+    judge.responses = type("Endless", (), {"pop": lambda self, _index: next(stream)})()
+
+    monkeypatch.setattr(config, "RESULTS_FILE", str(tmp_path / "results" / "results.jsonl"))
+    monkeypatch.setattr(evaluate, "validate_dataset", lambda: {"dataset_hash": "dataset-a"})
+    monkeypatch.setattr(evaluate, "load_pairs", lambda split: pairs)
+    monkeypatch.setattr(
+        evaluate, "_generation_rows",
+        lambda workflows: [row for row in rows if row["workflow"] in workflows],
+    )
+    monkeypatch.setattr(evaluate, "_quality", lambda *_: {})
+    monkeypatch.setattr(evaluate.metrics, "nli_model_identity", lambda: {"model": "nli"})
+    monkeypatch.setattr(evaluate.metrics, "nli_preflight", lambda: {"ok": True})
+    monkeypatch.setattr(evaluate.metrics, "faithfulness", lambda *_a, **_k: {
+        "faithfulness": 0.9, "claim_faithfulness": 0.9, "unsupported_claim_rate": 0.1,
+        "nli_evaluator_version": config.NLI_EVALUATOR_VERSION,
+    })
+    monkeypatch.setattr(
+        evaluate, "configured_model",
+        lambda cfg, client=None: {"provider": cfg.provider, "tag": cfg.model, "digest": "d"},
+    )
+    monkeypatch.setattr(pairwise_module, "_default_client", lambda _cfg: judge)
+    return judge
+
+
+TIER1 = [
+    "all", "--workflows", "w2_baseline", "w1_single_pass",
+    "--skip-judge", "--skip-robustness", "--skip-human-review",
+    "--judge-model", "gemma-test",
+]
+
+
+def test_tier1_cli_runs_end_to_end_on_a_fixed_pair_subset(tier1_env):
+    with pytest.raises(RuntimeError, match="duplicate generation row"):
+        evaluate.main(TIER1)  # two saved w1/p1 generations must be disambiguated
+
+    selected = [*TIER1, "--config-hash", "w1_single_pass=gen-w1_single_pass"]
+    root = evaluate.main([*selected, "--pair-ids", "p1", "p2"])
+
+    rows = [json.loads(line) for line in (root / "evaluations.jsonl").read_text().splitlines()]
+    assert len(rows) == 4
+    for row in rows:
+        assert row["faithfulness"] == 0.9
+        assert row["requirement_coverage"] == 1.0
+        assert "task_success" in row and "step_efficiency" in row
+    pairwise_rows = [
+        json.loads(line)
+        for line in evaluate._pairwise_index(root).read_text().splitlines()
+    ]
+    assert {(row["pair_id"], row["status"], row["consensus_winner"]) for row in pairwise_rows} == {
+        ("p1", "scored", "challenger"), ("p2", "scored", "challenger"),
+    }
+    assert len(tier1_env.calls) == 4  # two orders per comparison
+    for name in ("overall.csv", "requirement_coverage.csv", "pairwise.csv"):
+        assert (root / "summaries" / name).exists()
+
+    # A second subset adds its rows without re-judging or dropping the first subset.
+    assert evaluate.main([*selected, "--pair-ids", "p3"]) == root
+    assert len(tier1_env.calls) == 6
+    assert len((root / "evaluations.jsonl").read_text().splitlines()) == 6
+    assert len(evaluate._pairwise_index(root).read_text().splitlines()) == 3
+    summary = json.loads((root / "summaries" / "pairwise.json").read_text())
+    assert (summary[0]["eligible"], summary[0]["scored"]) == (3, 3)
+
+    evaluate.main([*selected])  # full rerun is fully cached
+    assert len(tier1_env.calls) == 6
+
+    (root / "summaries" / "pairwise.json").unlink()
+    evaluate.main(["report", *selected[1:]])  # rebuilt from the compact index alone
+    summary = json.loads((root / "summaries" / "pairwise.json").read_text())
+    assert summary[0]["scored"] == 3
+    assert summary[0]["first_position_selection_rate"] == 0.5
+    assert len(tier1_env.calls) == 6
+
+
+def test_pair_ids_file_and_unknown_ids(tier1_env, tmp_path):
+    selected = [*TIER1, "--config-hash", "w1_single_pass=gen-w1_single_pass"]
+    ids = tmp_path / "ids.txt"
+    ids.write_text("# pilot subset\np2\n", encoding="utf-8")
+    root = evaluate.main([*selected, "--pair-ids-file", str(ids)])
+    assert {json.loads(line)["pair_id"] for line in (root / "evaluations.jsonl").read_text().splitlines()} == {"p2"}
+    with pytest.raises(SystemExit, match="Unknown pair IDs"):
+        evaluate.main([*selected, "--pair-ids", "nope"])
