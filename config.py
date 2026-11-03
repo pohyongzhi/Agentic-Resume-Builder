@@ -106,7 +106,16 @@ COMPOSITE_WEIGHTS = {
     "supported_requirement_coverage": 0.40,
 }
 FORMAT_HAZARD_PENALTY = 0.34
+
+# Input robustness (eval/robustness.py). v2 adds noisy, format and out-of-scope variant families
+# and scores against the clean original resume; its artifacts live under
+# robustness/<identity_hash>/. v1 artifacts (robustness-sample-v1, meaning-preserving-v1) stay
+# under robustness/ as history.
 ROBUSTNESS_SEED = 42
+ROBUSTNESS_SAMPLE_VERSION = "robustness-sample-v2"
+ROBUSTNESS_VARIANT_VERSION = "robustness-variants-v2"
+ROBUSTNESS_TYPO_RATE = 0.03          # share of eligible (lowercase, unprotected) prose words
+ROBUSTNESS_STABILITY_TOLERANCE = 0.05  # max degradation of a [0, 1] metric for a stable run
 REPORT_BOOTSTRAP_SEED = 42
 REPORT_BOOTSTRAP_SAMPLES = 2000
 

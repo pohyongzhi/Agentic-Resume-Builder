@@ -49,10 +49,16 @@ from eval.requirement_coverage import (
     evaluate_requirement_coverage,
 )
 from eval.robustness import (
-    VARIANTS,
-    perturb_pair,
+    FAMILIES as ROBUSTNESS_FAMILIES,
+    ORIGINAL,
+    VARIANT_FAMILIES,
+    build_jd_pool,
+    build_variant,
+    classify_generation,
+    out_of_scope_expected_behaviour,
+    robustness_identity,
     robustness_manifest,
-    select_stratified_pairs,
+    select_variants,
 )
 from scripts.validate_dataset import validate_dataset
 from workflows import WORKFLOWS
@@ -530,6 +536,169 @@ def _write_manifest(path, manifest):
         _atomic_text(path, json.dumps(manifest, indent=2) + "\n")
 
 
+def robustness_root(root):
+    """v2 robustness artifacts live under the variant/sample identity; v1 files stay as history."""
+    return Path(root) / "robustness" / robustness_identity()["identity_hash"]
+
+
+# Base-generation fields copied to a variant generation row. Saved quality and task fields are
+# deliberately not copied, so every variant output is scored on its own text.
+_GENERATION_IDENTITY_FIELDS = (
+    "workflow", "pair_id", "resume_id", "jd_id", "category", "role_family", "seniority",
+    "fit_level", "split", "repeat", "model", "config_hash", "dataset_version", "dataset_hash",
+)
+
+
+def _input_hash(spec):
+    return hashlib.sha256(
+        json.dumps([spec["resume"], spec["jd"]], ensure_ascii=False).encode()
+    ).hexdigest()[:16]
+
+
+def _current_generation_hash(workflow):
+    """The generation identity variants are produced with (None if it cannot be computed)."""
+    try:
+        from run_all import config_hash as _generation_hash
+
+        return _generation_hash(workflow)
+    except Exception:
+        return None
+
+
+def _robustness_generation(
+    workflow_fn, base_pair, base_generation, spec, run_dir, force, current_hash=None,
+):
+    """Generate once per variant input; ``generation.json`` (written last) marks a reusable run."""
+    generation_path = run_dir / "generation.json"
+    input_hash = _input_hash(spec)
+    if generation_path.exists() and not force:
+        saved = _json(generation_path)
+        if (
+            saved.get("variant_version") == config.ROBUSTNESS_VARIANT_VERSION
+            and saved.get("input_hash") == input_hash
+        ):
+            tailored = (run_dir / "resume.md").read_text(encoding="utf-8")
+            return saved, tailored, _json(run_dir / "trace.json")
+    input_resume = run_dir / f"input_resume{spec['resume_suffix']}"
+    _atomic_text(input_resume, spec["resume"])
+    _atomic_text(run_dir / "input_jd.md", spec["jd"])
+    variant_pair = {
+        **base_pair,
+        "pair_id": f"{base_pair['pair_id']}__{spec['variant']}",
+        "resume_path": str(input_resume),
+        "resume": spec["resume"],
+        "jd": spec["jd"],
+        "keywords": spec["presented_keywords"],
+        # The presented JD text is the input; never refetch the original posting.
+        "jd_url": "",
+        "job_url": "",
+    }
+    tracker = Tracker()
+    started = time.perf_counter()
+    crashed = False
+    output = {}
+    try:
+        output = workflow_fn(variant_pair, tracker) or {}
+        tailored = output.get("resume_md", "") or ""
+        error = "; ".join(output.get("errors") or []) or (
+            None if tailored.strip() else "EMPTY_OUTPUT"
+        )
+    except Exception as exc:
+        tailored = ""
+        error = f"{type(exc).__name__}: {exc}"
+        crashed = True
+    _atomic_text(run_dir / "resume.md", tailored)
+    _atomic_text(
+        run_dir / "trace.json", json.dumps(tracker.events, indent=2, ensure_ascii=False) + "\n",
+    )
+    generation_row = {
+        **{key: base_generation[key] for key in _GENERATION_IDENTITY_FIELDS if key in base_generation},
+        **tracker.totals(),
+        "error": error,
+        "hit_budget": output.get("hit_budget", False),
+        "finished": not error and bool(tailored.strip()),
+        "generation_outcome": classify_generation(tailored, error, crashed),
+        "resume_path": str(run_dir / "resume.md"),
+        "trace_path": str(run_dir / "trace.json"),
+        "input_resume_path": str(input_resume),
+        "input_jd_path": str(run_dir / "input_jd.md"),
+        "input_hash": input_hash,
+        "variant_version": config.ROBUSTNESS_VARIANT_VERSION,
+        # Variants run with the current workflow code; the original is the saved generation.
+        "config_hash": current_hash,
+        "original_config_hash": base_generation.get("config_hash"),
+        "generation_identity_matches_original": (
+            current_hash is not None and current_hash == base_generation.get("config_hash")
+        ),
+        "wall_seconds": round(time.perf_counter() - started, 4),
+    }
+    _atomic_text(generation_path, json.dumps(generation_row, indent=2, ensure_ascii=False) + "\n")
+    return generation_row, tailored, tracker.events
+
+
+def _robustness_record(
+    workflow, workflow_fn, variant, base_pair, base_generation, jd_pool, stage_root, root,
+    judge_config, skip_nli, skip_judge, force, components, seed, current_hash=None,
+):
+    spec = build_variant(base_pair, variant, seed, jd_pool)
+    in_scope = spec["scope"] == "in_scope"
+    # Out-of-scope runs are checked for expected behaviour only: no quality judge or coverage.
+    variant_components = components if in_scope else ()
+    variant_skip_judge = skip_judge or not in_scope
+    run_dir = stage_root / "runs" / workflow / base_pair["pair_id"] / variant
+    record_path = run_dir / "evaluation.json"
+    if record_path.exists() and not force:
+        existing = _json(record_path)
+        if existing.get("variant_version") == config.ROBUSTNESS_VARIANT_VERSION and _record_complete(
+            existing, skip_nli, variant_skip_judge, variant_components,
+        ):
+            return existing
+    if variant == ORIGINAL:
+        tailored = Path(base_generation["resume_path"]).read_text(encoding="utf-8")
+        generation_row = {
+            **base_generation,
+            "generation_outcome": classify_generation(tailored, base_generation.get("error"), False),
+        }
+        trace = _json(base_generation["trace_path"])
+        totals = generation_row
+    else:
+        generation_row, tailored, trace = _robustness_generation(
+            workflow_fn, base_pair, base_generation, spec, run_dir, force, current_hash,
+        )
+        totals = generation_row
+    # Faithfulness, protected fields and bait are always scored against the clean original
+    # resume (the true facts). In-scope variants also use the clean JD and keywords.
+    scoring_pair = {**base_pair, "jd": spec["scoring_jd"], "keywords": spec["scoring_keywords"]}
+    record = _evaluate_output(
+        generation_row, scoring_pair, tailored, root, judge_config,
+        skip_nli=skip_nli, skip_judge=variant_skip_judge, force=force,
+        trace=trace, totals=totals, components=variant_components,
+    )
+    record.update({
+        "base_pair_id": base_pair["pair_id"],
+        "variant": variant,
+        "variant_family": spec["family"],
+        "variant_scope": spec["scope"],
+        "variant_metadata": spec["metadata"],
+        "pair_id": f"{base_pair['pair_id']}__{variant}",
+        "variant_version": config.ROBUSTNESS_VARIANT_VERSION,
+        "transformation_version": config.ROBUSTNESS_VARIANT_VERSION,
+        "robustness_identity_hash": stage_root.name,
+        "scoring_reference": "clean_original_resume",
+        "scoring_jd": "clean_original_jd" if in_scope else "presented_jd",
+        "evaluator_hash": root.name,
+    })
+    if not in_scope:
+        record.update(out_of_scope_expected_behaviour(record))
+    _atomic_text(record_path, json.dumps(record, indent=2, ensure_ascii=False) + "\n")
+    print(
+        f"[robustness] {workflow} {base_pair['pair_id']} {variant}: "
+        f"{record.get('generation_outcome')}",
+        flush=True,
+    )
+    return record
+
+
 def evaluate_robustness(
     workflows,
     base_rows,
@@ -541,134 +710,73 @@ def evaluate_robustness(
     force=False,
     limit=None,
     components=(),
+    variants=None,
+    workflow_registry=None,
+    dataset_hash_value=None,
 ):
-    manifest = robustness_manifest(pairs, dataset_hash(), config.ROBUSTNESS_SEED)
-    _write_manifest(root / "robustness" / "sample_manifest.json", manifest)
-    selected = select_stratified_pairs(pairs, config.ROBUSTNESS_SEED)
-    if limit is not None:
-        selected = selected[:limit]
+    """Run the seeded perturbation variants on the ordered stratified sample.
+
+    Layout under ``robustness/<identity_hash>/``: ``identity.json``, ``sample_manifest.json``
+    (frozen before any generation), ``runs/<workflow>/<pair_id>/<variant>/`` with
+    ``input_resume.*``, ``input_jd.md``, ``resume.md``, ``trace.json``, ``generation.json`` and
+    ``evaluation.json``, and ``evaluations.jsonl`` (merged across variant/limit subsets).
+    ``original`` reuses the saved repeat-0 generation. A pair without a saved original is
+    recorded as ``missing_original`` and none of its variants are generated.
+    """
+    workflow_registry = workflow_registry or WORKFLOWS
+    seed = config.ROBUSTNESS_SEED
+    stage_root = robustness_root(root)
+    manifest = robustness_manifest(pairs, dataset_hash_value or dataset_hash(), seed)
+    _write_manifest(stage_root / "sample_manifest.json", manifest)
+    _atomic_text(stage_root / "identity.json", json.dumps(robustness_identity(), indent=2) + "\n")
+    selected_variants = select_variants(variants)
+    pair_map = {pair["pair_id"]: pair for pair in pairs}
+    selected_ids = manifest["pair_ids"][:limit] if limit is not None else manifest["pair_ids"]
+    jd_pool = build_jd_pool(pairs)
     base_by_key = {
-        (row["workflow"], row["pair_id"]): row for row in base_rows
+        (row["workflow"], row["pair_id"]): row for row in base_rows if row.get("repeat", 0) == 0
     }
     results = []
     for workflow in workflows:
-        for base_pair in selected:
-            base_generation = base_by_key.get((workflow, base_pair["pair_id"]))
-            if not base_generation:
-                raise RuntimeError(f"missing original generation for {workflow}/{base_pair['pair_id']}")
-            for variant in VARIANTS:
-                variant_dir = (
-                    root / "robustness" / "runs" / workflow / base_pair["pair_id"] / variant
-                )
-                record_path = variant_dir / "evaluation.json"
-                if record_path.exists() and not force:
-                    existing = _json(record_path)
-                    if _record_complete(existing, skip_nli, skip_judge, components):
-                        results.append(existing)
-                        continue
-                if variant == "original":
-                    variant_pair = base_pair
-                    tailored = Path(base_generation["resume_path"]).read_text(encoding="utf-8")
-                    generation_row = dict(base_generation)
-                    trace = _json(base_generation["trace_path"])
-                    totals = generation_row
-                else:
-                    resume, jd = perturb_pair(base_pair, variant)
-                    _atomic_text(variant_dir / "input_resume.md", resume)
-                    _atomic_text(variant_dir / "input_jd.md", jd)
-                    variant_pair = {**base_pair, "resume": resume, "jd": jd}
-                    saved_resume = variant_dir / "resume.md"
-                    saved_trace = variant_dir / "trace.json"
-                    if (
-                        not force
-                        and saved_resume.exists()
-                        and saved_trace.exists()
-                        and record_path.exists()
-                    ):
-                        prior = _json(record_path)
-                        tailored = saved_resume.read_text(encoding="utf-8")
-                        generation_row = dict(prior)
-                        trace, totals = _json(saved_trace), prior
-                        record = _evaluate_output(
-                            generation_row,
-                            variant_pair,
-                            tailored,
-                            root,
-                            judge_config,
-                            skip_nli=skip_nli,
-                            skip_judge=skip_judge,
-                            force=force,
-                            trace=trace,
-                            totals=totals,
-                            components=components,
-                        )
-                        record.update({
-                            "base_pair_id": base_pair["pair_id"],
-                            "variant": variant,
-                            "pair_id": f"{base_pair['pair_id']}__{variant}",
-                            "transformation_version": "meaning-preserving-v1",
-                            "evaluator_hash": root.name,
-                        })
-                        _atomic_text(
-                            record_path,
-                            json.dumps(record, indent=2, ensure_ascii=False) + "\n",
-                        )
-                        results.append(record)
-                        continue
-                    tracker = Tracker()
-                    started = time.perf_counter()
-                    try:
-                        output = WORKFLOWS[workflow](variant_pair, tracker)
-                        tailored = output.get("resume_md", "")
-                        error = "; ".join(output.get("errors") or []) or None
-                    except Exception as exc:
-                        tailored = ""
-                        output = {}
-                        error = f"{type(exc).__name__}: {exc}"
-                    _atomic_text(variant_dir / "resume.md", tailored)
-                    _atomic_text(
-                        variant_dir / "trace.json",
-                        json.dumps(tracker.events, indent=2, ensure_ascii=False) + "\n",
-                    )
-                    generation_row = {
-                        **base_generation,
-                        **tracker.totals(),
-                        "error": error,
-                        "resume_path": str(variant_dir / "resume.md"),
-                        "trace_path": str(variant_dir / "trace.json"),
-                        "wall_seconds": round(time.perf_counter() - started, 4),
-                        "finished": not error and bool(tailored.strip()),
-                    }
-                    trace, totals = tracker.events, tracker.totals()
-                record = _evaluate_output(
-                    generation_row,
-                    variant_pair,
-                    tailored,
-                    root,
-                    judge_config,
-                    skip_nli=skip_nli,
-                    skip_judge=skip_judge,
-                    force=force,
-                    trace=trace,
-                    totals=totals,
-                    components=components,
-                )
-                record.update({
-                    "base_pair_id": base_pair["pair_id"],
-                    "variant": variant,
-                    "pair_id": f"{base_pair['pair_id']}__{variant}",
-                    "transformation_version": "meaning-preserving-v1",
-                    "evaluator_hash": root.name,
+        current_hash = _current_generation_hash(workflow)
+        saved_hashes = sorted({
+            str(row.get("config_hash")) for row in base_rows if row["workflow"] == workflow
+        })
+        if current_hash is None or saved_hashes != [current_hash]:
+            print(
+                f"[robustness] warning: {workflow} variants are generated with config hash "
+                f"{current_hash}, saved originals use {saved_hashes}; deltas then mix code "
+                "drift with input perturbation (see generation_identity_matches_original)",
+                flush=True,
+            )
+        for pair_id in selected_ids:
+            base_pair = pair_map[pair_id]
+            base_generation = base_by_key.get((workflow, pair_id))
+            if base_generation is None:
+                print(f"[robustness] {workflow} {pair_id}: no saved original; skipped", flush=True)
+                results.append({
+                    "workflow": workflow,
+                    "base_pair_id": pair_id,
+                    "pair_id": f"{pair_id}__{ORIGINAL}",
+                    "variant": ORIGINAL,
+                    "variant_family": "baseline",
+                    "variant_scope": "in_scope",
+                    "category": base_pair.get("category", ""),
+                    "fit_level": base_pair.get("fit_level", ""),
+                    "error": "original generation unavailable",
+                    "generation_outcome": "missing_original",
+                    "evaluation_failures": {},
                 })
-                _atomic_text(record_path, json.dumps(record, indent=2, ensure_ascii=False) + "\n")
-                results.append(record)
-                print(
-                    f"[robustness] {workflow} {base_pair['pair_id']} {variant}: "
-                    f"{'ok' if not record.get('error') else 'ERROR'}",
-                    flush=True,
-                )
-    _write_index(root, results, "robustness/evaluations.jsonl")
-    return results
+                continue
+            for variant in selected_variants:
+                results.append(_robustness_record(
+                    workflow, workflow_registry.get(workflow), variant, base_pair,
+                    base_generation, jd_pool, stage_root, root, judge_config,
+                    skip_nli, skip_judge, force, components, seed, current_hash,
+                ))
+    index = _merged_index_rows(stage_root / "evaluations.jsonl", results)
+    _write_index(stage_root, index)
+    return index
 
 
 def injection_root(root):
@@ -894,6 +1002,15 @@ def _run_robustness(run, limit):
         force=run.args.force,
         limit=limit,
         components=run.components,
+        variants=robustness_variant_selection(run.args),
+        dataset_hash_value=run.dataset_hash,
+    )
+
+
+def robustness_variant_selection(args):
+    """Variants chosen with ``--robustness-variants`` and/or ``--robustness-families``."""
+    return select_variants(
+        getattr(args, "robustness_variants", None), getattr(args, "robustness_families", None),
     )
 
 
@@ -1095,9 +1212,9 @@ STAGES = {
     "robustness": Stage(
         name="robustness",
         run=_run_robustness,
-        index=lambda root: Path(root) / "robustness" / "evaluations.jsonl",
+        index=lambda root: robustness_root(root) / "evaluations.jsonl",
         pilot_limit=2,
-        help="meaning-preserving perturbation runs on the stratified sample",
+        help="seeded noisy, format and out-of-scope input variants on the stratified sample",
     ),
     "injection": Stage(
         name="injection",
@@ -1151,6 +1268,15 @@ def build_parser():
         "--pair-ids-file", help="file with one pair ID per line; combined with --pair-ids",
     )
 
+    parser.add_argument(
+        "--robustness-variants", nargs="+", metavar="VARIANT",
+        choices=[name for name in VARIANT_FAMILIES if name != ORIGINAL],
+        help="robustness variants to run (default: all); original is added for in-scope ones",
+    )
+    parser.add_argument(
+        "--robustness-families", nargs="+", choices=ROBUSTNESS_FAMILIES,
+        help="robustness variant families to run; combined with --robustness-variants",
+    )
     parser.add_argument("--skip-reports", action="store_true")
     parser.add_argument("--skip-human-review", action="store_true")
     parser.add_argument("--pilot", action="store_true")

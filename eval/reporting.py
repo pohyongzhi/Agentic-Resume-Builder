@@ -10,12 +10,20 @@ import json
 import math
 import random
 import statistics as st
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 import config
 from eval.injection import summarise_injection
 from eval.pairwise import summarise_pairwise
+from eval.robustness import (
+    DELTA_METRICS,
+    paired_deltas,
+    robustness_comparisons,
+    stability_assessment,
+    variant_family,
+    variant_scope,
+)
 
 METRICS = (
     "execution_success",
@@ -313,10 +321,222 @@ def injection_summary(rows):
     return output
 
 
+def _rate(numerator, denominator):
+    return round(numerator / denominator, 6) if denominator else None
+
+
+def _wilson_fields(prefix, successes, total):
+    low, high = _wilson_ci(successes, total)
+    return {
+        f"{prefix}_ci_95_low": round(low, 6) if low is not None else None,
+        f"{prefix}_ci_95_high": round(high, 6) if high is not None else None,
+    }
+
+
+def robustness_delta_table(rows):
+    """In-scope paired deltas per workflow x variant x metric (variant minus original).
+
+    ``runs``: variant runs; ``original_unavailable``: runs whose original is missing or failed;
+    ``eligible``: runs whose original is scored on the metric; ``failed``: eligible runs whose
+    variant generation failed; ``scored``: eligible runs with a variant score (a paired delta);
+    ``unscored = eligible - scored`` (generation failures plus evaluation failures, never zero).
+    ``worst_degradation`` follows the metric direction (largest harm, positive = worse).
+    """
+    grouped = defaultdict(list)
+    for comparison in robustness_comparisons(rows):
+        grouped[(comparison["workflow"], comparison["family"], comparison["variant"])].append(
+            comparison
+        )
+    output = []
+    for (workflow, family, variant), comparisons in sorted(grouped.items()):
+        for metric, direction in DELTA_METRICS.items():
+            usable = [
+                item for item in comparisons
+                if item["original"] is not None and not item["original"].get("error")
+            ]
+            eligible = [item for item in usable if item["original"].get(metric) is not None]
+            failed = [item for item in eligible if item["row"].get("error")]
+            deltas = [
+                paired_deltas(item["original"], item["row"])[metric] for item in eligible
+            ]
+            deltas = [value for value in deltas if value is not None]
+            evaluation_failures = [
+                item for item in eligible
+                if not item["row"].get("error")
+                and metric in (item["row"].get("evaluation_failures") or {})
+            ]
+            low, high = _bootstrap_ci(
+                deltas, config.REPORT_BOOTSTRAP_SEED, config.REPORT_BOOTSTRAP_SAMPLES
+            )
+            output.append({
+                "workflow": workflow,
+                "family": family,
+                "variant": variant,
+                "metric": metric,
+                "direction": "higher_is_better" if direction > 0 else "lower_is_better",
+                "runs": len(comparisons),
+                "original_unavailable": len(comparisons) - len(usable),
+                "eligible": len(eligible),
+                "scored": len(deltas),
+                "unscored": len(eligible) - len(deltas),
+                "failed": len(failed),
+                "evaluation_failures": len(evaluation_failures),
+                "mean_delta": round(st.mean(deltas), 6) if deltas else None,
+                "mean_absolute_change": (
+                    round(st.mean(abs(value) for value in deltas), 6) if deltas else None
+                ),
+                "worst_degradation": (
+                    round(max(-direction * value for value in deltas), 6) if deltas else None
+                ),
+                "ci_95_low": round(low, 6) if low is not None else None,
+                "ci_95_high": round(high, 6) if high is not None else None,
+            })
+    return output
+
+
+def _in_scope_stats(comparisons):
+    usable = [
+        item for item in comparisons
+        if item["original"] is not None and not item["original"].get("error")
+    ]
+    failed = [item for item in usable if item["row"].get("error")]
+    outcomes = [item["row"].get("generation_outcome") for item in failed]
+    assessments = [
+        stability_assessment(item["original"], item["row"])
+        for item in usable if not item["row"].get("error")
+    ]
+    scored = [assessment for assessment in assessments if assessment["stable"] is not None]
+    stable = sum(assessment["stable"] for assessment in scored)
+    record = {
+        "runs": len(comparisons),
+        "original_unavailable": len(comparisons) - len(usable),
+        "eligible": len(usable),
+        "failed": len(failed),
+        "crashed": outcomes.count("crashed"),
+        "handled_errors": len(failed) - outcomes.count("crashed"),
+        "execution_retention": _rate(len(usable) - len(failed), len(usable)),
+        "stability_eligible": len(assessments),
+        "scored": len(scored),
+        "unscored": len(usable) - len(scored),
+        "stable": stable,
+        "stability_score": _rate(stable, len(scored)),
+        **_wilson_fields("stability", stable, len(scored)),
+        "stability_tolerance": config.ROBUSTNESS_STABILITY_TOLERANCE,
+    }
+    violations = Counter(
+        metric for assessment in scored for metric in assessment["violations"]
+    )
+    record["instability_reasons"] = "; ".join(
+        f"{metric} x{count}" for metric, count in sorted(violations.items())
+    )
+    for metric in DELTA_METRICS:
+        deltas = [paired_deltas(item["original"], item["row"])[metric] for item in usable]
+        deltas = [value for value in deltas if value is not None]
+        record[f"{metric}_paired_n"] = len(deltas)
+        record[f"{metric}_mean_delta"] = round(st.mean(deltas), 6) if deltas else None
+    return record
+
+
+def _out_of_scope_stats(rows):
+    outcomes = Counter(row.get("generation_outcome") for row in rows)
+    completed = [row for row in rows if row.get("generation_outcome") == "completed"]
+    scored = [row for row in rows if row.get("expected_behaviour_pass") is not None]
+    passes = sum(bool(row["expected_behaviour_pass"]) for row in scored)
+
+    def check(field):
+        values = [row.get(field) for row in completed if row.get(field) is not None]
+        return len(values), sum(not value for value in values)
+
+    fabrication_n, fabrication = check("oos_no_fabrication")
+    protected_n, protected = check("oos_protected_fields_preserved")
+    unsupported = [
+        float(row["unsupported_claim_rate"]) for row in completed
+        if row.get("unsupported_claim_rate") is not None
+    ]
+    crashed = outcomes.get("crashed", 0)
+    return {
+        "runs": len(rows),
+        "eligible": len(rows),
+        "scored": len(scored),
+        "unscored": len(rows) - len(scored),
+        "failed": crashed,
+        "completed": len(completed),
+        "refused": outcomes.get("refused", 0),
+        "handled_errors": outcomes.get("handled_error", 0),
+        "crashed": crashed,
+        "graceful_handling_rate": _rate(len(rows) - crashed, len(rows)),
+        "expected_behaviour_passes": passes,
+        "expected_behaviour_pass_rate": _rate(passes, len(scored)),
+        **_wilson_fields("expected_behaviour", passes, len(scored)),
+        "fabrication_checked": fabrication_n,
+        "fabrication_failures": fabrication,
+        "fabrication_rate": _rate(fabrication, fabrication_n),
+        "protected_fields_checked": protected_n,
+        "protected_field_failures": protected,
+        "protected_field_violation_rate": _rate(protected, protected_n),
+        "fabrication_bait_violations": sum(
+            bool(row.get("fabrication_bait_violation")) for row in completed
+        ),
+        "mean_unsupported_claim_rate": round(st.mean(unsupported), 6) if unsupported else None,
+    }
+
+
+def _robustness_table(rows, key_field):
+    """Group by workflow and ``key_field`` (variant or family) into in-scope and OOS tables."""
+    in_scope, out_of_scope = [], []
+    comparisons = defaultdict(list)
+    for comparison in robustness_comparisons(rows):
+        comparisons[(comparison["workflow"], comparison[key_field])].append(comparison)
+    for (workflow, key), items in sorted(comparisons.items()):
+        in_scope.append({
+            "workflow": workflow,
+            "family": items[0]["family"],
+            "variant": key if key_field == "variant" else ",".join(
+                sorted({item["variant"] for item in items})
+            ),
+            **_in_scope_stats(items),
+        })
+    grouped = defaultdict(list)
+    for row in rows:
+        if variant_scope(row) == "out_of_scope":
+            family = row.get("variant_family") or variant_family(row["variant"])
+            grouped[(row["workflow"], row["variant"] if key_field == "variant" else family)].append(
+                row
+            )
+    for (workflow, key), items in sorted(grouped.items()):
+        out_of_scope.append({
+            "workflow": workflow,
+            "family": items[0].get("variant_family") or variant_family(items[0]["variant"]),
+            "variant": key if key_field == "variant" else ",".join(
+                sorted({row["variant"] for row in items})
+            ),
+            **_out_of_scope_stats(items),
+        })
+    return in_scope, out_of_scope
+
+
+def robustness_variant_tables(rows):
+    """Per workflow x variant: (in-scope stability and deltas, out-of-scope expected behaviour)."""
+    return _robustness_table(rows, "variant")
+
+
+def robustness_family_tables(rows):
+    """Per workflow x family: pooled versions of ``robustness_variant_tables``."""
+    return _robustness_table(rows, "family")
+
+
 def write_robustness_reports(output_dir, rows):
+    in_scope = [row for row in rows if variant_scope(row) == "in_scope"]
+    variants, out_of_scope = robustness_variant_tables(rows)
+    families, out_of_scope_families = robustness_family_tables(rows)
     reports = {
-        "robustness": paired_delta_summary(rows),
+        "robustness": paired_delta_summary(in_scope),
         "robustness_status": summarise(rows, ("workflow", "variant")),
+        "robustness_deltas": robustness_delta_table(rows),
+        "robustness_variants": variants,
+        "robustness_families": families,
+        "robustness_out_of_scope": out_of_scope,
+        "robustness_out_of_scope_families": out_of_scope_families,
     }
     for name, table in reports.items():
         _write_pair(output_dir, name, table)
