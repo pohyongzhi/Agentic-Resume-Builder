@@ -9,7 +9,6 @@ import config
 import run_all
 from common.data import dataset_hash, load_pairs
 from common.llm import Tracker
-from eval.operational import evaluate_operational
 from eval.robustness import (
     VARIANTS,
     perturb_pair,
@@ -49,7 +48,10 @@ def main():
 
     all_pairs = load_pairs(split="test")
     pairs = select_stratified_pairs(all_pairs, config.ROBUSTNESS_SEED)[:args.limit]
-    chash, dhash = run_all.config_hash(), dataset_hash()
+    dhash = dataset_hash()
+    workflow_hashes = {
+        workflow: run_all.config_hash(workflow) for workflow in args.workflows
+    }
     result_dir = Path(config.RESULTS_FILE).parent
     _atomic_text(
         result_dir / "robustness_sample.json",
@@ -59,6 +61,7 @@ def main():
     done = _done(results_path)
 
     for workflow in args.workflows:
+        chash = workflow_hashes[workflow]
         for base_pair in pairs:
             for variant in args.variants:
                 key = (workflow, base_pair["pair_id"], variant, chash, dhash)
@@ -81,8 +84,17 @@ def main():
                 }
                 tracker = Tracker()
                 started = time.time()
+                generation_started = time.time()
+                evaluation_seconds = 0.0
+                output = {"resume_md": "", "finished": False, "hit_budget": False}
                 try:
                     output = WORKFLOWS[workflow](pair, tracker)
+                except Exception as exc:
+                    generation_seconds = time.time() - generation_started
+                    row = {**tracker.totals(), "error": f"{type(exc).__name__}: {exc}"}
+                    traceback.print_exc()
+                else:
+                    generation_seconds = time.time() - generation_started
                     if output.get("errors") or not output.get("resume_md", "").strip():
                         row = {
                             **tracker.totals(),
@@ -91,19 +103,15 @@ def main():
                             "error": "; ".join(output.get("errors") or ["EMPTY_OUTPUT"]),
                         }
                     else:
-                        row = run_all.score(
-                            pair, output, tracker, skip_faithfulness=args.skip_faithfulness
+                        evaluation_started = time.time()
+                        row = run_all.score_generated_output(
+                            pair, output, tracker,
+                            skip_faithfulness=args.skip_faithfulness,
                         )
-                        row["error"] = None
-                except Exception as exc:
-                    output = {"resume_md": "", "finished": False, "hit_budget": False}
-                    row = {**tracker.totals(), "error": f"{type(exc).__name__}: {exc}"}
-                    traceback.print_exc()
-
-                row.update(evaluate_operational(
-                    workflow, base_pair, output, tracker.totals(), tracker.events,
-                    scored_row=row, error=row.get("error"),
-                ))
+                        evaluation_seconds = time.time() - evaluation_started
+                run_all.add_operational_scores(
+                    workflow, base_pair, output, tracker, row,
+                )
                 output_path = run_dir / "resume.md"
                 trace_path = run_dir / "trace.json"
                 _atomic_text(output_path, output.get("resume_md", ""))
@@ -118,17 +126,24 @@ def main():
                     "config_hash": chash,
                     "dataset_hash": dhash,
                     "wall_seconds": round(time.time() - started, 1),
+                    "generation_seconds": round(generation_seconds, 3),
+                    "evaluation_seconds": round(evaluation_seconds, 3),
                     "resume_path": str(output_path),
                     "trace_path": str(trace_path),
                 })
                 with results_path.open("a", encoding="utf-8") as handle:
                     handle.write(json.dumps(row, ensure_ascii=False) + "\n")
-                print(f"[{workflow}] {base_pair['pair_id']} {variant}: "
-                      f"{'ok' if not row['error'] else 'ERROR'}")
+                status = (
+                    "ERROR" if row["error"] else
+                    "EVAL_ERROR" if row.get("evaluation_failures") else
+                    "ok"
+                )
+                print(f"[{workflow}] {base_pair['pair_id']} {variant}: {status}")
 
     rows = [
         row for row in map(json.loads, results_path.read_text(encoding="utf-8").splitlines())
-        if row.get("config_hash") == chash and row.get("dataset_hash") == dhash
+        if row.get("config_hash") == workflow_hashes.get(row.get("workflow"))
+        and row.get("dataset_hash") == dhash
     ]
     summary = summarise_robustness(rows)
     write_robustness_csv(result_dir / "summaries" / "robustness.csv", summary)

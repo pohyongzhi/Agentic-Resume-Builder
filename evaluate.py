@@ -214,15 +214,18 @@ def _evaluate_output(
         "hit_budget": generation_row.get("hit_budget", False),
         "errors": [generation_row["error"]] if generation_row.get("error") else [],
     }
-    record.update(evaluate_operational(
-        generation_row["workflow"],
-        pair,
-        operational_output,
-        totals or generation_row,
-        trace if trace is not None else _json(generation_row["trace_path"]),
-        scored_row=record,
-        error=generation_row.get("error"),
-    ))
+    try:
+        record.update(evaluate_operational(
+            generation_row["workflow"],
+            pair,
+            operational_output,
+            totals or generation_row,
+            trace if trace is not None else _json(generation_row["trace_path"]),
+            scored_row=record,
+            error=generation_row.get("error"),
+        ))
+    except Exception as exc:
+        failures["operational"] = f"{type(exc).__name__}: {exc}"
     return record
 
 

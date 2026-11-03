@@ -1,4 +1,6 @@
-from eval.human_review import calculate_pairwise_agreement
+import json
+
+from eval.human_review import calculate_pairwise_agreement, write_review_artifacts
 from eval.reporting import paired_delta_summary, summarise
 
 
@@ -73,3 +75,31 @@ def test_human_agreement_is_pairwise():
     )
     assert result[0]["paired_items"] == 2
     assert result[0]["weighted_kappa"] == 1.0
+
+
+def test_review_ids_distinguish_workflows_and_match_every_artifact(tmp_path):
+    common = {
+        "dataset_hash": "dataset",
+        "pair_id": "pair-1",
+        "repeat": 0,
+        "config_hash": "config",
+        "category": "general",
+        "fit_level": "strong",
+        "original_resume": "Original",
+        "job_description": "Role",
+        "claim_scores": [{"claim": "Supported claim"}],
+        "error": None,
+    }
+    rows = [
+        {**common, "workflow": "w1_single_pass", "resume_md": "Output one"},
+        {**common, "workflow": "w4_evidence", "resume_md": "Output two"},
+    ]
+    write_review_artifacts(tmp_path, rows, limit=2, seed=1)
+
+    packet = [json.loads(line) for line in (tmp_path / "review_packet.jsonl").read_text().splitlines()]
+    mapping = json.loads((tmp_path / "review_mapping.private.json").read_text())
+    claim_rows = (tmp_path / "claim_support_ratings.csv").read_text().splitlines()[1:]
+    packet_ids = {item["review_id"] for item in packet}
+    assert len(packet_ids) == 2
+    assert {item["review_id"] for item in mapping} == packet_ids
+    assert {line.split(",", 1)[0] for line in claim_rows} == packet_ids
