@@ -256,14 +256,16 @@ _ABSENT_FROM_SOURCE = re.compile(
 )
 # Negations and removals: "no invented facts", "removed unsupported 'Senior' title".
 _NEGATION = re.compile(
-    r"\b(?:no|not|without|never|nothing|none|nor|zero|fail(?:s|ed)?|remov(?:e|es|ed|ing)|"
+    r"\b(?:no|not|without|never|nothing|none|nor|zero|fail(?:s|ed|ing)?|remov(?:e|es|ed|ing)|"
     r"drop(?:s|ped)?|strip(?:s|ped)?|exclud(?:e|es|ed)|avoid(?:s|ed)?|omit(?:s|ted)?)\b",
     re.I,
 )
-# Additions that are about presentation rather than content: "adds clarity without inventing facts".
+# Additions that are about presentation rather than content: "adds clarity without inventing facts",
+# "fails to demonstrate any value add".
 _PRESENTATION_ADDITION = re.compile(
     r"\badd(?:s|ed|ing)? (?:clarity|emphasis|structure|readability|polish|focus)\b", re.I
 )
+_VALUE_ADD = re.compile(r"\bvalue\s+$", re.I)
 # "missing only 'Jest', which was not explicitly mentioned in the original" is about an omission.
 _OMISSION = re.compile(
     r"\b(?:missing|miss(?:es|ed)|omit(?:s|ted)?|omission|lacks?|lacking|absent)\b", re.I
@@ -274,7 +276,8 @@ def _justification_admits_addition(justification):
     """Return the first sentence in which the judge says the candidate adds unsupported content."""
     for sentence in re.split(r"(?<=[.;!?])\s+|\n+", justification or ""):
         for match in _ADDED_CONTENT.finditer(sentence):
-            if _PRESENTATION_ADDITION.match(sentence, match.start()):
+            if (_PRESENTATION_ADDITION.match(sentence, match.start())
+                    or _VALUE_ADD.search(sentence[:match.start()])):
                 continue
             preceding = sentence[:match.start()].split()[-4:]
             if not _NEGATION.search(" ".join(preceding)):
@@ -310,7 +313,7 @@ def _normalise_judgments(raw, expected_strategies):
                 and not admission
             ),
             "unsupported_claims": [x[:240] for x in unsupported],
-            "justification": full_justification[:300],
+            "justification": full_justification[:400],
             "grounding_concern_in_justification": bool(admission),
             "grounding_concern_evidence": admission[:240],
         })

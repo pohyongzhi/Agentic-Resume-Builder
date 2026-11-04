@@ -171,6 +171,8 @@ class JustificationScopeTests(unittest.TestCase):
             "Skills coverage is high, missing only 'Jest' which was not explicitly mentioned in "
             "the original.",
             "It fails to demonstrate any alignment strategy or value-add.",
+            "The draft is a verbatim copy of the original resume with no modifications, failing to "
+            "demonstrate any specific strategy or value add.",
             "Minor rewording in the summary adds clarity without inventing facts.",
         ):
             with self.subTest(text=text):
