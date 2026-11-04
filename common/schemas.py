@@ -6,8 +6,9 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class Schema(BaseModel):
-    """Small models often send null for empty fields, or one string where a list is expected.
-    Treat null as 'use the default' and wrap a lone string into a one-item list."""
+    """Small models often send null for empty fields, one string where a list is expected, or
+    blank list items. Treat null as 'use the default', wrap a lone string into a one-item list
+    and drop empty or whitespace-only strings from string lists."""
 
     @model_validator(mode="before")
     @classmethod
@@ -19,8 +20,11 @@ class Schema(BaseModel):
             if v is None:
                 continue
             field = cls.model_fields.get(k)
-            if field is not None and field.annotation == list[str] and isinstance(v, str):
-                v = [v] if v.strip() else []
+            if field is not None and field.annotation == list[str]:
+                if isinstance(v, str):
+                    v = [v]
+                if isinstance(v, list):
+                    v = [item for item in v if not (isinstance(item, str) and not item.strip())]
             out[k] = v
         return out
 
