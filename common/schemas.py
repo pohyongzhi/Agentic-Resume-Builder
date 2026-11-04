@@ -55,13 +55,17 @@ class Project(Schema):
 
 
 class CandidateData(Schema):
-    """What the resume parser extracts. raw_text is the original text, kept for checking."""
+    """What the resume parser extracts. raw_text is the original text, kept for checking.
+
+    Field order matters: Ollama's constrained decoding emits keys in schema order, so the order
+    follows how resumes are written (education after experience and projects). Otherwise the
+    model fills education before it has read that part of the resume and leaves it empty."""
     name: str
     contact: Contact = Field(default_factory=Contact)
     summary: str = ""
-    education: list[Education] = Field(default_factory=list)
     experience: list[Experience] = Field(default_factory=list)
     projects: list[Project] = Field(default_factory=list)
+    education: list[Education] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
     achievements: list[str] = Field(default_factory=list)
