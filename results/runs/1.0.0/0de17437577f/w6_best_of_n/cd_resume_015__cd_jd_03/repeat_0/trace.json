@@ -1,0 +1,355 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1047,
+    "output_tokens": 286,
+    "thinking_chars": 0,
+    "seconds": 2.81,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "186 words; target is roughly 350-500"
+      ],
+      "words": 186
+    },
+    "generation": {
+      "seconds": 2.81,
+      "input_tokens": 1047,
+      "output_tokens": 286
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1048,
+    "output_tokens": 335,
+    "thinking_chars": 0,
+    "seconds": 3.45,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "222 words; target is roughly 350-500"
+      ],
+      "words": 222
+    },
+    "generation": {
+      "seconds": 3.45,
+      "input_tokens": 1048,
+      "output_tokens": 335
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1060,
+    "output_tokens": 354,
+    "thinking_chars": 0,
+    "seconds": 3.62,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "235 words; target is roughly 350-500"
+      ],
+      "words": 235
+    },
+    "generation": {
+      "seconds": 3.62,
+      "input_tokens": 1060,
+      "output_tokens": 354
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2175,
+    "output_tokens": 259,
+    "thinking_chars": 0,
+    "seconds": 3.03,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Prioritizes SRE and observability skills in the summary but fails to include Linux, Python, Kubernetes, or Prometheus/Grafana/AWS which are required or preferred.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Focuses on quantifiable results (41%, 36%) but omits critical technical skills like Linux, Python, Kubernetes, and monitoring tools found in the JD.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Attempts to mirror JD phrasing but still lacks specific technical skills (Linux, Python, Kubernetes) and preferred tools (Prometheus, Grafana).",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2175,
+    "output_tokens": 231,
+    "thinking_chars": 0,
+    "seconds": 2.61,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate text is identical to the original resume; no changes were made to align with JD keywords like Prometheus, Grafana, or AWS.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate text is identical to the original resume; no impact-first phrasing or quantified metrics were added beyond what was already present.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate text is identical to the original resume; no new skills were added or emphasized over others.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "186 words; target is roughly 350-500"
+          ],
+          "words": 186
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes SRE and observability skills in the summary but fails to include Linux, Python, Kubernetes, or Prometheus/Grafana/AWS which are required or preferred.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume; no new skills were added or emphasized over others.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.81,
+          "input_tokens": 1047,
+          "output_tokens": 286
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "222 words; target is roughly 350-500"
+          ],
+          "words": 222
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Focuses on quantifiable results (41%, 36%) but omits critical technical skills like Linux, Python, Kubernetes, and monitoring tools found in the JD.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume; no impact-first phrasing or quantified metrics were added beyond what was already present.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.45,
+          "input_tokens": 1048,
+          "output_tokens": 335
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.5,
+        "overall": 3.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "235 words; target is roughly 350-500"
+          ],
+          "words": 235
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Attempts to mirror JD phrasing but still lacks specific technical skills (Linux, Python, Kubernetes) and preferred tools (Prometheus, Grafana).",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume; no changes were made to align with JD keywords like Prometheus, Grafana, or AWS.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.62,
+          "input_tokens": 1060,
+          "output_tokens": 354
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

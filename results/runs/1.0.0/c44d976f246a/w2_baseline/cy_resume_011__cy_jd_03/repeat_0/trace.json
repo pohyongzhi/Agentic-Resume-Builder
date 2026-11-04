@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 366,
+    "output_tokens": 216,
+    "thinking_chars": 0,
+    "seconds": 2.22,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 498,
+    "output_tokens": 435,
+    "thinking_chars": 0,
+    "seconds": 6.45,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1464,
+    "output_tokens": 620,
+    "thinking_chars": 0,
+    "seconds": 6.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Kavya Ng\",\n  \"contact\": {\n    \"email\": \"kavya.ng@example.test\",\n    \"phone\": \"+65 6000 0051\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Security Engineer with hands-on experience in cloud security, IAM and vulnerability management. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Security Engineer\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Implemented preventive security controls using cloud security and IAM, improving team turnaround by 28%.\",\n        \"Automated vulnerability and compliance checks through vulnerability management practices, documenting decisions for technical and business reviewers.\",\n        \"Hardened cloud environments in collaboration with four colleagues, presenting progress during fortnightly reviews to stakeholders.\",\n        \"Managed approximately 53 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported recurring operational work using Python and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Security Engineer Practice Project\",\n      \"description\": \"Built a demonstration project using cloud security, IAM and vulnerability management. Tested the project with representative scenarios and recorded limitations and next steps.\",\n      \"bullets\": [\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"cloud security\",\n    \"IAM\",\n    \"vulnerability management\",\n    \"Python\",\n    \"Linux\",\n    \"network security\",\n    \"incident response\",\n    \"security automation\",\n    \"AWS\",\n    \"Terraform\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

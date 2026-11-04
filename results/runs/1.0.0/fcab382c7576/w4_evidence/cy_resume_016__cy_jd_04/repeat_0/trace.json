@@ -1,0 +1,260 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 384,
+    "output_tokens": 234,
+    "thinking_chars": 0,
+    "seconds": 2.28,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 515,
+    "output_tokens": 448,
+    "thinking_chars": 0,
+    "seconds": 6.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793788814.6134443,
+    "end": 1793788814.6139648,
+    "seconds": 0.001,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1757,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 5.75,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793788814.6141913,
+    "end": 1793788820.3640935,
+    "seconds": 5.75,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788820.3645353,
+    "end": 1793788820.370966,
+    "seconds": 0.006,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 633,
+    "output_tokens": 186,
+    "thinking_chars": 0,
+    "seconds": 1.91,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 8,
+    "cited_ok": 8,
+    "rule_ok": 7,
+    "llm_checked": 7,
+    "llm_cached": 0,
+    "supported": 7,
+    "rejected_by_code": {
+      "inflated": 1
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788820.3712094,
+    "end": 1793788822.2830923,
+    "seconds": 1.912,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2583,
+    "output_tokens": 946,
+    "thinking_chars": 0,
+    "seconds": 8.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793788822.2836719,
+    "end": 1793788831.188356,
+    "seconds": 8.905,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788831.188749,
+    "end": 1793788831.197588,
+    "seconds": 0.009,
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 702,
+    "output_tokens": 214,
+    "thinking_chars": 0,
+    "seconds": 2.25,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 12,
+    "cited_ok": 12,
+    "rule_ok": 12,
+    "llm_checked": 8,
+    "llm_cached": 4,
+    "supported": 12,
+    "rejected_by_code": {},
+    "step": 14
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788831.197862,
+    "end": 1793788833.4461606,
+    "seconds": 2.248,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Priya Ng",
+        "contact": {
+          "email": "priya.ng@example.test",
+          "phone": "+65 6000 0056",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Threat Intelligence Lead with hands-on experience in threat intelligence, MITRE ATT&CK and malware analysis. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Threat Intelligence Lead",
+            "start": "Jan 2021",
+            "end": "Present",
+            "bullets": [
+              "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 32%.",
+              "Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+              "Managed approximately 28 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jun 2017",
+            "end": "Dec 2020",
+            "bullets": [
+              "Supported recurring operational work using incident response and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 27%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Threat Intelligence Lead Practice Project",
+            "description": "Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and malware analysis.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "threat intelligence",
+          "MITRE ATT&CK",
+          "malware analysis",
+          "incident response",
+          "OSINT",
+          "intelligence reporting",
+          "stakeholder briefing",
+          "team leadership",
+          "Python",
+          "SIEM"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 17
+  },
+  {
+    "type": "w4_final",
+    "kept": 12,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.875,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 18
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788833.4465616,
+    "end": 1793788833.4479346,
+    "seconds": 0.001,
+    "step": 19
+  }
+]

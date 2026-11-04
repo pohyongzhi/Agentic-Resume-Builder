@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 213,
+    "thinking_chars": 0,
+    "seconds": 2.21,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 493,
+    "output_tokens": 634,
+    "thinking_chars": 0,
+    "seconds": 8.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1627,
+    "output_tokens": 639,
+    "thinking_chars": 0,
+    "seconds": 6.22,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Benjamin Ng\",\n  \"contact\": {\n    \"email\": \"benjamin.ng@example.test\",\n    \"phone\": \"+65 6000 0042\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"SOC Analyst with hands-on experience in SIEM, incident triage and log analysis. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"SOC Analyst\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used SIEM and incident triage to monitor security alerts, improving team turnaround by 27%.\",\n        \"Applied log analysis to triage suspicious activity and documented decisions for technical and business reviewers.\",\n        \"Managed approximately 26 work items per month while tracking quality checks and follow-up actions.\",\n        \"Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using network security and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 22%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"SOC Analyst Practice Project\",\n      \"description\": \"\",\n      \"bullets\": [\n        \"Built a fictional demonstration project using SIEM, incident triage and log analysis.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"SIEM\",\n    \"incident triage\",\n    \"log analysis\",\n    \"network security\",\n    \"Linux\",\n    \"threat detection\",\n    \"ticketing\",\n    \"technical writing\",\n    \"Splunk\",\n    \"Python\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

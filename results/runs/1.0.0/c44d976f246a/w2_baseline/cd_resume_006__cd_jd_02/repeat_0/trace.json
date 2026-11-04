@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 365,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 496,
+    "output_tokens": 437,
+    "thinking_chars": 0,
+    "seconds": 6.36,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1463,
+    "output_tokens": 505,
+    "thinking_chars": 0,
+    "seconds": 4.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Farhan Lee\",\n  \"contact\": {\n    \"email\": \"farhan.lee@example.test\",\n    \"phone\": \"+65 6000 0066\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"DevOps Engineer with hands-on experience in CI/CD, Docker and Kubernetes. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"DevOps Engineer\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 40%.\",\n        \"Managed container platforms with Kubernetes while documenting decisions for technical and business reviewers.\",\n        \"Automated infrastructure provisioning in collaboration with four colleagues, presenting progress during fortnightly reviews.\",\n        \"Maintained clear documentation and contributed to team planning and reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using Terraform and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"CI/CD\",\n    \"Docker\",\n    \"Kubernetes\",\n    \"Terraform\",\n    \"AWS\",\n    \"Linux\",\n    \"Git\",\n    \"monitoring\",\n    \"Argo CD\",\n    \"Helm\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

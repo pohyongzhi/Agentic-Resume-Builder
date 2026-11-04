@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 371,
+    "output_tokens": 218,
+    "thinking_chars": 0,
+    "seconds": 2.24,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 486,
+    "output_tokens": 629,
+    "thinking_chars": 0,
+    "seconds": 8.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1620,
+    "output_tokens": 613,
+    "thinking_chars": 0,
+    "seconds": 6.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Benjamin Lim\",\n  \"contact\": {\n    \"email\": \"benjamin.lim@example.test\",\n    \"phone\": \"+65 6000 0022\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Data Analyst with hands-on experience in SQL, Excel and Power BI. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Data Analyst\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used SQL and Excel to clean and analyse operational data, improving team turnaround by 42%.\",\n        \"Applied Power BI to build decision-support dashboards and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using data cleaning and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 37%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Data Analyst Practice Project\",\n      \"description\": \"\",\n      \"bullets\": [\n        \"Built a fictional demonstration project using SQL, Excel and Power BI.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"SQL\",\n    \"Excel\",\n    \"Power BI\",\n    \"data cleaning\",\n    \"dashboarding\",\n    \"statistics\",\n    \"stakeholder communication\",\n    \"Python\",\n    \"Tableau\",\n    \"A/B testing\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.003,
+    "step": 5
+  }
+]

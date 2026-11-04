@@ -1,0 +1,385 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1060,
+    "output_tokens": 291,
+    "thinking_chars": 0,
+    "seconds": 2.99,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "191 words; target is roughly 350-500"
+      ],
+      "words": 191
+    },
+    "generation": {
+      "seconds": 2.99,
+      "input_tokens": 1060,
+      "output_tokens": 291
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1061,
+    "output_tokens": 285,
+    "thinking_chars": 0,
+    "seconds": 3.03,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.03,
+      "input_tokens": 1061,
+      "output_tokens": 285
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1073,
+    "output_tokens": 286,
+    "thinking_chars": 0,
+    "seconds": 3.01,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.01,
+      "input_tokens": 1073,
+      "output_tokens": 286
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2075,
+    "output_tokens": 248,
+    "thinking_chars": 0,
+    "seconds": 3.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Prioritizes specific technical actions (setting strategy, leading delivery) over quantifiable outcomes, resulting in weaker impact alignment.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Reorders bullet points to highlight quantifiable metrics (31% improvement, 26% reduction) before listing technical actions, maximizing impact.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Uses language closely mirroring the job description (e.g., 'set internal platform strategy', 'lead self-service infrastructure delivery'), though it lacks the impact-first structure of Candidate 2.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2075,
+    "output_tokens": 329,
+    "thinking_chars": 0,
+    "seconds": 3.48,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "improving team turnaround by 31%",
+          "Managed approximately 44 work items per month",
+          "reduced manual preparation time by 26%",
+          "Built a fictional demonstration project"
+        ],
+        "justification": "Candidate 1 mirrors the original resume text exactly, preserving all unsupported claims regarding specific metrics and project details that are not in the JD.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Candidate 1 mirrors the original resume text exactly, preserving all unsupported claims regarding specific metrics and project details that are not in the JD."
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "improving team turnaround by 31%",
+          "Managed approximately 44 work items per month",
+          "reduced manual preparation time by 26%",
+          "Built a fictional demonstration project"
+        ],
+        "justification": "Candidate 2 reorders bullet points but retains all specific numerical claims and unsupported project details found in the original resume.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Candidate 2 reorders bullet points but retains all specific numerical claims and unsupported project details found in the original resume."
+      },
+      "skills_first": {
+        "faithfulness": 3,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "improving team turnaround by 31%",
+          "Managed approximately 44 work items per month",
+          "reduced manual preparation time by 26%",
+          "Built a fictional demonstration project"
+        ],
+        "justification": "Candidate 3 rewrites the summary to align with JD keywords but fails to support specific numerical claims (percentages, work item counts) or the existence of the 'Platform Engineering Lead Practice Project' found in the original resume.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "191 words; target is roughly 350-500"
+          ],
+          "words": 191
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes specific technical actions (setting strategy, leading delivery) over quantifiable outcomes, resulting in weaker impact alignment.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 3,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "improving team turnaround by 31%",
+              "Managed approximately 44 work items per month",
+              "reduced manual preparation time by 26%",
+              "Built a fictional demonstration project"
+            ],
+            "justification": "Candidate 3 rewrites the summary to align with JD keywords but fails to support specific numerical claims (percentages, work item counts) or the existence of the 'Platform Engineering Lead Practice Project' found in the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.99,
+          "input_tokens": 1060,
+          "output_tokens": 291
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reorders bullet points to highlight quantifiable metrics (31% improvement, 26% reduction) before listing technical actions, maximizing impact.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "improving team turnaround by 31%",
+              "Managed approximately 44 work items per month",
+              "reduced manual preparation time by 26%",
+              "Built a fictional demonstration project"
+            ],
+            "justification": "Candidate 2 reorders bullet points but retains all specific numerical claims and unsupported project details found in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate 2 reorders bullet points but retains all specific numerical claims and unsupported project details found in the original resume."
+          }
+        ],
+        "generation": {
+          "seconds": 3.03,
+          "input_tokens": 1061,
+          "output_tokens": 285
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Uses language closely mirroring the job description (e.g., 'set internal platform strategy', 'lead self-service infrastructure delivery'), though it lacks the impact-first structure of Candidate 2.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "improving team turnaround by 31%",
+              "Managed approximately 44 work items per month",
+              "reduced manual preparation time by 26%",
+              "Built a fictional demonstration project"
+            ],
+            "justification": "Candidate 1 mirrors the original resume text exactly, preserving all unsupported claims regarding specific metrics and project details that are not in the JD.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate 1 mirrors the original resume text exactly, preserving all unsupported claims regarding specific metrics and project details that are not in the JD."
+          }
+        ],
+        "generation": {
+          "seconds": 3.01,
+          "input_tokens": 1073,
+          "output_tokens": 286
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 11
+  }
+]

@@ -1,0 +1,188 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7510,
+  "output_tokens": 1431,
+  "thinking_chars": 0,
+  "seconds": 16.04,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "bt_resume_007__bt_jd_02",
+  "resume_id": "bt_resume_007",
+  "jd_id": "bt_jd_02",
+  "category": "business_technology",
+  "role_family": "product_analyst",
+  "seniority": "mid",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 16.1,
+  "generation_seconds": 16.056,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_007__bt_jd_02/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_007__bt_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_007__bt_jd_02/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "jd_wording_alignment",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.38,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is an exact copy of the original resume text with no modifications or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 3,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Presented the design and outcomes to a five-person peer review group"
+            ],
+            "justification": "Adds a bullet point about presenting design to a 'five-person peer review group' which is not in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds a bullet point about presenting design to a 'five-person peer review group' which is not in the original resume."
+          }
+        ],
+        "generation": {
+          "seconds": 3.05,
+          "input_tokens": 1070,
+          "output_tokens": 297
+        }
+      },
+      "impact_first": {
+        "faithfulness": 3.5,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 reorders bullet points within roles but retains all original facts and claims without invention.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 2,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "improving team turnaround by 32%",
+              "Managed approximately 71 work items per month"
+            ],
+            "justification": "Includes specific metrics (32%, 71 items) not present in the original resume, violating strict faithfulness.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Includes specific metrics (32%, 71 items) not present in the original resume, violating strict faithfulness."
+          }
+        ],
+        "generation": {
+          "seconds": 3.13,
+          "input_tokens": 1071,
+          "output_tokens": 298
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "214 words; target is roughly 350-500"
+          ],
+          "words": 214
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 removes specific metrics (e.g., '32%', '71 work items', '27%') which are present in the original resume but not explicitly required by the JD; however, no new unsupported claims are made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Removes unsupported quantitative claims (32%, 71 items) and focuses strictly on verified duties matching JD responsibilities.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 4.12,
+          "input_tokens": 1083,
+          "output_tokens": 325
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

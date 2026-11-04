@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 372,
+    "output_tokens": 220,
+    "thinking_chars": 0,
+    "seconds": 2.22,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 476,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 7.94,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1590,
+    "output_tokens": 572,
+    "thinking_chars": 0,
+    "seconds": 5.5,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Daniel Koh\",\n  \"contact\": {\n    \"email\": \"daniel.koh@example.test\",\n    \"phone\": \"+65 6000 0084\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in requirements gathering, process mapping and Excel, seeking to deepen capability as a Junior Business Analyst.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 42%.\",\n        \"Applied Excel to map current and future processes and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Ember Technologies (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using SQL and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Junior Business Analyst Practice Project\",\n      \"description\": \"\",\n      \"bullets\": [\n        \"Built a fictional demonstration project using requirements gathering, process mapping and Excel.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example School of Computing (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"requirements gathering\",\n    \"process mapping\",\n    \"Excel\",\n    \"SQL\",\n    \"Power BI\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

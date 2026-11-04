@@ -1,0 +1,189 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7405,
+  "output_tokens": 1385,
+  "thinking_chars": 0,
+  "seconds": 15.36,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_009__da_jd_02",
+  "resume_id": "da_resume_009",
+  "jd_id": "da_jd_02",
+  "category": "data_ai",
+  "role_family": "data_engineer",
+  "seniority": "mid",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.4,
+  "generation_seconds": 15.351,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_009__da_jd_02/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_009__da_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_009__da_jd_02/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "185 words; target is roughly 350-500"
+          ],
+          "words": 185
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Accurate summary of skills but lacks JD-specific context like Airflow or PostgreSQL.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate removes specific metrics and unsupported claims found in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate removes specific metrics and unsupported claims found in the original resume."
+          }
+        ],
+        "generation": {
+          "seconds": 2.85,
+          "input_tokens": 1043,
+          "output_tokens": 280
+        }
+      },
+      "impact_first": {
+        "faithfulness": 3.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 2.5,
+        "writing_quality": 3.0,
+        "overall": 2.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "199 words; target is roughly 350-500"
+          ],
+          "words": 199
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong narrative flow with accurate claims and good readability.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 1,
+            "jd_alignment": 1,
+            "skills_coverage": 1,
+            "writing_quality": 1,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Built reliable batch data pipelines using Python and SQL"
+            ],
+            "justification": "Candidate adds an unsupported claim in the summary regarding specific tools used for pipeline building.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate adds an unsupported claim in the summary regarding specific tools used for pipeline building."
+          }
+        ],
+        "generation": {
+          "seconds": 3.81,
+          "input_tokens": 1044,
+          "output_tokens": 298
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 2.5,
+        "writing_quality": 3.0,
+        "overall": 2.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "246 words; target is roughly 350-500"
+          ],
+          "words": 246
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Aligns well with JD language but omits specific tools like Airflow and PostgreSQL.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 1,
+            "jd_alignment": 1,
+            "skills_coverage": 1,
+            "writing_quality": 1,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "improving team turnaround by 29%",
+              "approximately 37 work items per month",
+              "four colleagues",
+              "five-person peer review group"
+            ],
+            "justification": "Candidate mirrors the original resume text almost exactly, preserving all unsupported claims about specific numbers and fictional entities.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate mirrors the original resume text almost exactly, preserving all unsupported claims about specific numbers and fictional entities."
+          }
+        ],
+        "generation": {
+          "seconds": 3.64,
+          "input_tokens": 1056,
+          "output_tokens": 357
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

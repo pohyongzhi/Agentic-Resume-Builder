@@ -1,0 +1,193 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 374,
+    "output_tokens": 222,
+    "thinking_chars": 0,
+    "seconds": 2.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 478,
+    "output_tokens": 416,
+    "thinking_chars": 0,
+    "seconds": 6.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789533.5962708,
+    "end": 1793789533.596729,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1678,
+    "output_tokens": 678,
+    "thinking_chars": 0,
+    "seconds": 6.49,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789533.5969613,
+    "end": 1793789540.0888703,
+    "seconds": 6.492,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789540.0893173,
+    "end": 1793789540.0957887,
+    "seconds": 0.006,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 799,
+    "output_tokens": 551,
+    "thinking_chars": 0,
+    "seconds": 5.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 10,
+    "cited_ok": 10,
+    "rule_ok": 10,
+    "llm_checked": 10,
+    "llm_cached": 0,
+    "supported": 10,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789540.096041,
+    "end": 1793789545.3975823,
+    "seconds": 5.302,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Hiro Koh",
+        "contact": {
+          "email": "hiro.koh@example.test",
+          "phone": "+65 6000 0088",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in product analytics, SQL and dashboarding. Seeking to deepen capability as a Product Analyst.",
+        "experience": [
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 39%.",
+              "Applied dashboarding to define product success metrics and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using A/B testing and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Product Analyst Practice Project",
+            "description": "Built a fictional demonstration project using product analytics, SQL and dashboarding.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "product analytics",
+          "SQL",
+          "dashboarding",
+          "A/B testing",
+          "Python",
+          "Excel",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 10,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789545.3980136,
+    "end": 1793789545.3991745,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

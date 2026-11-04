@@ -1,0 +1,192 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 365,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 469,
+    "output_tokens": 400,
+    "thinking_chars": 0,
+    "seconds": 6.47,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789133.8961422,
+    "end": 1793789133.8966112,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1645,
+    "output_tokens": 710,
+    "thinking_chars": 0,
+    "seconds": 6.81,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789133.8968518,
+    "end": 1793789140.7061474,
+    "seconds": 6.809,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789140.7067761,
+    "end": 1793789140.714852,
+    "seconds": 0.008,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 869,
+    "output_tokens": 540,
+    "thinking_chars": 0,
+    "seconds": 5.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 11,
+    "cited_ok": 11,
+    "rule_ok": 11,
+    "llm_checked": 11,
+    "llm_cached": 0,
+    "supported": 11,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789140.7151024,
+    "end": 1793789145.8665352,
+    "seconds": 5.151,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Jonas Lee",
+        "contact": {
+          "email": "jonas.lee@example.test",
+          "phone": "+65 6000 0070",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Operations support professional experienced in CI/CD, Docker, documentation and stakeholder coordination, transitioning toward DevOps Engineer work.",
+        "experience": [
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Operations Support Coordinator",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used CI/CD and Docker to build reliable deployment pipelines, improving team turnaround by 37%.",
+              "Applied Excel to manage container platforms and documented decisions for technical and business reviewers.",
+              "Managed approximately 30 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using documentation and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 32%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Metropolitan University (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "DevOps Engineer Practice Project",
+            "description": "Built a fictional demonstration project using CI/CD, Docker and Excel.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "CI/CD",
+          "Docker",
+          "Excel",
+          "documentation",
+          "stakeholder communication"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 11,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789145.8671176,
+    "end": 1793789145.868456,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

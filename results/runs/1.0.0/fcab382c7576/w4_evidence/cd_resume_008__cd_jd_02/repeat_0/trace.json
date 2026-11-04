@@ -1,0 +1,256 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 365,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 478,
+    "output_tokens": 422,
+    "thinking_chars": 0,
+    "seconds": 6.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789093.6367528,
+    "end": 1793789093.6372204,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1677,
+    "output_tokens": 674,
+    "thinking_chars": 0,
+    "seconds": 7.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789093.6374505,
+    "end": 1793789100.7282393,
+    "seconds": 7.091,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789100.7287183,
+    "end": 1793789100.7359347,
+    "seconds": 0.007,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 805,
+    "output_tokens": 532,
+    "thinking_chars": 0,
+    "seconds": 5.12,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 10,
+    "cited_ok": 10,
+    "rule_ok": 10,
+    "llm_checked": 10,
+    "llm_cached": 0,
+    "supported": 9,
+    "rejected_by_code": {
+      "not_entailed": 1
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789100.7361574,
+    "end": 1793789105.8558757,
+    "seconds": 5.12,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2637,
+    "output_tokens": 837,
+    "thinking_chars": 0,
+    "seconds": 8.06,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793789105.8562791,
+    "end": 1793789113.9184308,
+    "seconds": 8.062,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789113.9189975,
+    "end": 1793789113.9263215,
+    "seconds": 0.007,
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 206,
+    "output_tokens": 41,
+    "thinking_chars": 0,
+    "seconds": 0.67,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 10,
+    "cited_ok": 10,
+    "rule_ok": 10,
+    "llm_checked": 1,
+    "llm_cached": 9,
+    "supported": 10,
+    "rejected_by_code": {},
+    "step": 14
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789113.926545,
+    "end": 1793789114.597047,
+    "seconds": 0.671,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Hiro Lee",
+        "contact": {
+          "email": "hiro.lee@example.test",
+          "phone": "+65 6000 0068",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in CI/CD, Docker and Kubernetes, seeking to deepen capability as a DevOps Engineer.",
+        "experience": [
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 23%.",
+              "Managed container platforms with Kubernetes and documented decisions for technical and business reviewers.",
+              "Automated infrastructure provisioning while collaborating with four colleagues to present progress during fortnightly reviews.",
+              "Managed approximately 94 work items per month while tracking quality checks and follow-up actions."
+            ]
+          },
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using Terraform and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "DevOps Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using CI/CD, Docker and Kubernetes.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "CI/CD",
+          "Docker",
+          "Kubernetes",
+          "Terraform",
+          "Argo CD",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 17
+  },
+  {
+    "type": "w4_final",
+    "kept": 10,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.9,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 18
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789114.597444,
+    "end": 1793789114.598562,
+    "seconds": 0.001,
+    "step": 19
+  }
+]

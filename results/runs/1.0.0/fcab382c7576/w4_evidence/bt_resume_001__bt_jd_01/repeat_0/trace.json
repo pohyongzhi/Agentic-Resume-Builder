@@ -1,0 +1,192 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 372,
+    "output_tokens": 220,
+    "thinking_chars": 0,
+    "seconds": 2.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 490,
+    "output_tokens": 436,
+    "thinking_chars": 0,
+    "seconds": 6.4,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789405.1876926,
+    "end": 1793789405.1882465,
+    "seconds": 0.001,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1706,
+    "output_tokens": 637,
+    "thinking_chars": 0,
+    "seconds": 6.26,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789405.188488,
+    "end": 1793789411.4471283,
+    "seconds": 6.259,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789411.4475856,
+    "end": 1793789411.4541507,
+    "seconds": 0.007,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 685,
+    "output_tokens": 210,
+    "thinking_chars": 0,
+    "seconds": 2.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 8,
+    "cited_ok": 8,
+    "rule_ok": 8,
+    "llm_checked": 8,
+    "llm_cached": 0,
+    "supported": 8,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789411.454453,
+    "end": 1793789413.6334064,
+    "seconds": 2.179,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Aisha Koh",
+        "contact": {
+          "email": "aisha.koh@example.test",
+          "phone": "+65 6000 0081",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Junior Business Analyst",
+            "start": "Jan 2025",
+            "end": "Present",
+            "bullets": [
+              "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+              "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Technical Assistant",
+            "start": "May 2024",
+            "end": "Dec 2024",
+            "bullets": [
+              "Supported recurring operational work using SQL and documented step-by-step procedures.",
+              "Created a simple reporting template that reduced manual preparation time by 16%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Institute of Technology (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Junior Business Analyst Practice Project",
+            "description": "Built a fictional demonstration project using requirements gathering, process mapping and Excel.",
+            "bullets": []
+          }
+        ],
+        "skills": [
+          "requirements gathering",
+          "process mapping",
+          "Excel",
+          "SQL",
+          "stakeholder communication",
+          "user stories",
+          "data analysis",
+          "documentation",
+          "Power BI",
+          "Agile"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 8,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789413.6339955,
+    "end": 1793789413.635569,
+    "seconds": 0.002,
+    "step": 13
+  }
+]

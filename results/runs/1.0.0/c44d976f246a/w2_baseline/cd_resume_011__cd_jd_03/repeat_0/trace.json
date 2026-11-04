@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 369,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.21,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 496,
+    "output_tokens": 440,
+    "thinking_chars": 0,
+    "seconds": 6.43,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1461,
+    "output_tokens": 633,
+    "thinking_chars": 0,
+    "seconds": 6.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Kavya Lee\",\n  \"contact\": {\n    \"email\": \"kavya.lee@example.test\",\n    \"phone\": \"+65 6000 0071\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Site Reliability Engineer with hands-on experience in SRE, observability and incident response. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Site Reliability Engineer\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Defined service reliability targets using SRE and observability practices, improving team turnaround by 13%.\",\n        \"Applied incident response to improve monitoring and alerting, documenting decisions for technical and business reviewers.\",\n        \"Led incident analysis with four colleagues, presenting progress during fortnightly reviews to stakeholders.\",\n        \"Managed approximately 43 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported recurring operational work using Linux and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a reporting template that reduced manual preparation time by 8%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Site Reliability Engineer Practice Project\",\n      \"description\": \"Built a demonstration project using SRE, observability and incident response. Tested the project with representative scenarios and recorded limitations and next steps.\",\n      \"bullets\": [\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"SRE\",\n    \"observability\",\n    \"incident response\",\n    \"Linux\",\n    \"Kubernetes\",\n    \"Python\",\n    \"service level objectives\",\n    \"performance testing\",\n    \"Prometheus\",\n    \"Grafana\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

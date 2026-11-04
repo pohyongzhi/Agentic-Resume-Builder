@@ -1,0 +1,197 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 370,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 481,
+    "output_tokens": 624,
+    "thinking_chars": 0,
+    "seconds": 8.71,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787499.411114,
+    "end": 1793787499.416463,
+    "seconds": 0.005,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1861,
+    "output_tokens": 700,
+    "thinking_chars": 0,
+    "seconds": 6.7,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787499.416873,
+    "end": 1793787506.1341255,
+    "seconds": 6.717,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787506.13474,
+    "end": 1793787506.1511304,
+    "seconds": 0.016,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 794,
+    "output_tokens": 514,
+    "thinking_chars": 0,
+    "seconds": 4.85,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 10,
+    "cited_ok": 10,
+    "rule_ok": 10,
+    "llm_checked": 10,
+    "llm_cached": 0,
+    "supported": 10,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787506.1513457,
+    "end": 1793787511.003918,
+    "seconds": 4.853,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Aisha Tan",
+        "contact": {
+          "email": "aisha.tan@example.test",
+          "phone": "+65 6000 0001",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Frontend Engineer",
+            "start": "Jan 2025",
+            "end": "Present",
+            "bullets": [
+              "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.",
+              "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Technical Assistant",
+            "start": "May 2024",
+            "end": "Dec 2024",
+            "bullets": [
+              "Supported recurring operational work using HTML and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Institute of Technology (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Frontend Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using JavaScript, TypeScript and React.",
+              "Tested the project with representative scenarios and recorded limitations and next steps."
+            ]
+          }
+        ],
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "CSS",
+          "REST APIs",
+          "Git",
+          "Jest",
+          "Next.js",
+          "accessibility"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 10,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793787511.0043528,
+    "end": 1793787511.0054753,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

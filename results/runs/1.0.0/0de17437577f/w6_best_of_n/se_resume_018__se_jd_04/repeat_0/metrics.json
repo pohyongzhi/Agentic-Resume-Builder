@@ -1,0 +1,184 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7395,
+  "output_tokens": 1376,
+  "thinking_chars": 0,
+  "seconds": 15.48,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "se_resume_018__se_jd_04",
+  "resume_id": "se_resume_018",
+  "jd_id": "se_jd_04",
+  "category": "software_engineering",
+  "role_family": "mobile_engineer",
+  "seniority": "senior",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.5,
+  "generation_seconds": 15.481,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_018__se_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_018__se_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_018__se_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.0,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Removes unsupported 'Excel' skill from skills list; otherwise faithful to original text.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 3,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 condenses the summary and omits 'Excel' from skills while removing project details, resulting in a less complete profile.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.62,
+          "input_tokens": 1055,
+          "output_tokens": 281
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reorders bullet points within experience sections without adding or removing claims; faithful to original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 reorders bullet points for impact but omits 'Excel' from skills and removes the project presentation detail, creating minor gaps.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.91,
+          "input_tokens": 1056,
+          "output_tokens": 280
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 4.0,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "234 words; target is roughly 350-500"
+          ],
+          "words": 234
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "The candidate lists 'Excel' as a skill in the Skills section, but this item does not appear in the original resume's Skills list or elsewhere."
+            ],
+            "justification": "Includes 'Excel' in skills list which is not in the original resume; otherwise faithful.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Includes 'Excel' in skills list which is not in the original resume;"
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a verbatim copy of the original resume text with no modifications or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.55,
+          "input_tokens": 1068,
+          "output_tokens": 339
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}
