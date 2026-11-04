@@ -276,3 +276,43 @@ def test_w3_leaves_skill_support_to_llm_critics(monkeypatch, tmp_path, candidate
     assert "Design Systems" in result["resume_md"]
     # W2/default callers still use strict skill checks.
     assert any("skill" in e for e in w3_critic.validate_resume(draft, candidate))
+
+
+def test_empty_certification_entry_runs_through_graph(monkeypatch, tmp_path, candidate, good_resume):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+
+    def fake_chat(messages, tracker, **kwargs):
+        system = messages[0]["content"]
+        if system == w3_critic.STRUCTURED_CREATOR_SYSTEM:
+            return _message(dict(good_resume, certifications=["", " "]))
+        return _message(_feedback(_critic_name(system)))
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    result = w3_critic.build_critic_graph(Tracker(), run_id="empty-cert").invoke(
+        {"candidate_data": candidate, "job_data": {"title": "Analyst"}}
+    )
+    assert not result.get("errors")
+    assert result["revisions"] == 0
+    assert result["generated_resume"]["certifications"] == []
+    assert "## Certifications" not in result["resume_md"]
+
+
+def test_invented_certification_with_empty_entry_still_fails_final_check(
+    monkeypatch, tmp_path, candidate, good_resume
+):
+    monkeypatch.setattr(config, "OUTPUT_DIR", str(tmp_path / "out"))
+
+    def fake_chat(messages, tracker, **kwargs):
+        system = messages[0]["content"]
+        if system == w3_critic.STRUCTURED_CREATOR_SYSTEM:
+            return _message(dict(good_resume, certifications=["", "CompTIA Security+"]))
+        return _message(_feedback(_critic_name(system)))
+
+    monkeypatch.setattr(w3_critic, "chat", fake_chat)
+    result = w3_critic.build_critic_graph(Tracker(), run_id="invented-cert").invoke(
+        {"candidate_data": candidate, "job_data": {"title": "Analyst"}}
+    )
+    assert result["errors"] == [
+        "W3_FINAL_VALIDATION_FAILED: certification 'CompTIA Security+' is not in the original resume"
+    ]
+    assert not result.get("resume_md")
