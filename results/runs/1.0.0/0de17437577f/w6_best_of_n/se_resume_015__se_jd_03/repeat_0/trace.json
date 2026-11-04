@@ -1,0 +1,359 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1042,
+    "output_tokens": 276,
+    "thinking_chars": 0,
+    "seconds": 2.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "179 words; target is roughly 350-500"
+      ],
+      "words": 179
+    },
+    "generation": {
+      "seconds": 2.78,
+      "input_tokens": 1042,
+      "output_tokens": 276
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1043,
+    "output_tokens": 331,
+    "thinking_chars": 0,
+    "seconds": 3.35,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "222 words; target is roughly 350-500"
+      ],
+      "words": 222
+    },
+    "generation": {
+      "seconds": 3.35,
+      "input_tokens": 1043,
+      "output_tokens": 331
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1055,
+    "output_tokens": 332,
+    "thinking_chars": 0,
+    "seconds": 3.4,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "216 words; target is roughly 350-500"
+      ],
+      "words": 216
+    },
+    "generation": {
+      "seconds": 3.4,
+      "input_tokens": 1055,
+      "output_tokens": 332
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2134,
+    "output_tokens": 209,
+    "thinking_chars": 0,
+    "seconds": 2.45,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate is identical to the original resume; no changes made.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate is identical to the original resume; no changes made.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "Applied Excel to design frontend components and backend APIs"
+        ],
+        "justification": "Candidate rephrases existing claims to match JD terminology but introduces unsupported tool usage.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Candidate rephrases existing claims to match JD terminology but introduces unsupported tool usage."
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2134,
+    "output_tokens": 236,
+    "thinking_chars": 0,
+    "seconds": 3.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Minor phrasing changes to match JD verbs (e.g., 'Delivered' instead of 'Used'), but no factual claims added or removed.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume; lacks JD-specific keyword alignment (e.g., 'Node.js', 'PostgreSQL') and uses less precise action verbs.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 1,
+        "skills_coverage": 2,
+        "writing_quality": 3,
+        "judge_valid": false,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Missing Experience and Projects sections entirely; fails to present a complete resume despite having a Skills section.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "impact_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.0,
+        "overall": 3.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "179 words; target is roughly 350-500"
+          ],
+          "words": 179
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate is identical to the original resume; no changes made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 1,
+            "skills_coverage": 2,
+            "writing_quality": 3,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Missing Experience and Projects sections entirely; fails to present a complete resume despite having a Skills section.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.78,
+          "input_tokens": 1042,
+          "output_tokens": 276
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "222 words; target is roughly 350-500"
+          ],
+          "words": 222
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate is identical to the original resume; no changes made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; lacks JD-specific keyword alignment (e.g., 'Node.js', 'PostgreSQL') and uses less precise action verbs.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.35,
+          "input_tokens": 1043,
+          "output_tokens": 331
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "216 words; target is roughly 350-500"
+          ],
+          "words": 216
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Applied Excel to design frontend components and backend APIs"
+            ],
+            "justification": "Candidate rephrases existing claims to match JD terminology but introduces unsupported tool usage.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate rephrases existing claims to match JD terminology but introduces unsupported tool usage."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor phrasing changes to match JD verbs (e.g., 'Delivered' instead of 'Used'), but no factual claims added or removed.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.4,
+          "input_tokens": 1055,
+          "output_tokens": 332
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

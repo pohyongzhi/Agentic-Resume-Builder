@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 372,
+    "output_tokens": 220,
+    "thinking_chars": 0,
+    "seconds": 2.24,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 490,
+    "output_tokens": 436,
+    "thinking_chars": 0,
+    "seconds": 6.44,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1454,
+    "output_tokens": 591,
+    "thinking_chars": 0,
+    "seconds": 5.71,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Aisha Koh\",\n  \"contact\": {\n    \"email\": \"aisha.koh@example.test\",\n    \"phone\": \"+65 6000 0081\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Junior Business Analyst\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Gathered and documented business requirements using process mapping, improving team turnaround by 21%.\",\n        \"Mapped current and future processes in Excel to support technical and business reviewers.\",\n        \"Analyzed operational data with four colleagues and presented progress during fortnightly reviews.\",\n        \"Managed approximately 83 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using SQL and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a reporting template that reduced manual preparation time by 16%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Junior Business Analyst Practice Project\",\n      \"description\": \"- Built a demonstration project using requirements gathering, process mapping and Excel.\\n- Tested the project with representative scenarios and recorded limitations and next steps.\\n- Presented the design and outcomes to a five-person peer review group.\"\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"requirements gathering\",\n    \"process mapping\",\n    \"Excel\",\n    \"SQL\",\n    \"stakeholder communication\",\n    \"user stories\",\n    \"data analysis\",\n    \"documentation\",\n    \"Power BI\",\n    \"Agile\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

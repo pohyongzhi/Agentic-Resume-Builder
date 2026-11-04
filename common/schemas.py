@@ -6,8 +6,9 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 
 class Schema(BaseModel):
-    """Small models often send null for empty fields, or one string where a list is expected.
-    Treat null as 'use the default' and wrap a lone string into a one-item list."""
+    """Small models often send null for empty fields, one string where a list is expected, or
+    blank list items. Treat null as 'use the default', wrap a lone string into a one-item list
+    and drop empty or whitespace-only strings from string lists."""
 
     @model_validator(mode="before")
     @classmethod
@@ -19,8 +20,11 @@ class Schema(BaseModel):
             if v is None:
                 continue
             field = cls.model_fields.get(k)
-            if field is not None and field.annotation == list[str] and isinstance(v, str):
-                v = [v] if v.strip() else []
+            if field is not None and field.annotation == list[str]:
+                if isinstance(v, str):
+                    v = [v]
+                if isinstance(v, list):
+                    v = [item for item in v if not (isinstance(item, str) and not item.strip())]
             out[k] = v
         return out
 
@@ -55,13 +59,17 @@ class Project(Schema):
 
 
 class CandidateData(Schema):
-    """What the resume parser extracts. raw_text is the original text, kept for checking."""
+    """What the resume parser extracts. raw_text is the original text, kept for checking.
+
+    Field order matters: Ollama's constrained decoding emits keys in schema order, so the order
+    follows how resumes are written (education after experience and projects). Otherwise the
+    model fills education before it has read that part of the resume and leaves it empty."""
     name: str
     contact: Contact = Field(default_factory=Contact)
     summary: str = ""
-    education: list[Education] = Field(default_factory=list)
     experience: list[Experience] = Field(default_factory=list)
     projects: list[Project] = Field(default_factory=list)
+    education: list[Education] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
     achievements: list[str] = Field(default_factory=list)
@@ -79,13 +87,16 @@ class JobData(Schema):
 
 
 class GeneratedResume(Schema):
-    """What the resume creator produces. The harness validates it, then renders it to Markdown."""
+    """What the resume creator produces. The harness validates it, then renders it to Markdown.
+
+    Keep the field order the same as CandidateData: the creator copies the candidate JSON in that
+    order, and under constrained decoding it skips an optional key that is out of place."""
     name: str
     contact: Contact = Field(default_factory=Contact)
     summary: str = ""
     experience: list[Experience] = Field(default_factory=list)
-    education: list[Education] = Field(default_factory=list)
     projects: list[Project] = Field(default_factory=list)
+    education: list[Education] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
 
@@ -132,6 +143,25 @@ class JudgeResponse(BaseModel):
     clarity: JudgeDimension
     concision: JudgeDimension
     organisation_and_readability: JudgeDimension
+
+
+class W6CandidateEvaluation(Schema):
+    """One W6 selector verdict. Every field is required so the constrained reply cannot drop one.
+    The justification and unsupported claims come before the scores, so the model states its
+    evidence before it commits to a verdict."""
+    strategy: str
+    justification: str = Field(max_length=400)
+    unsupported_claims: list[str] = Field(max_length=10)
+    faithfulness: int = Field(ge=1, le=5)
+    jd_alignment: int = Field(ge=1, le=5)
+    skills_coverage: int = Field(ge=1, le=5)
+    writing_quality: int = Field(ge=1, le=5)
+    valid: bool
+
+
+class W6JudgeResponse(Schema):
+    """W6 selector reply; the workflow narrows `strategy` and the array length per call."""
+    evaluations: list[W6CandidateEvaluation]
 
 
 def llm_schema(model: type[BaseModel], exclude: tuple[str, ...] = ()) -> dict:
@@ -255,9 +285,10 @@ class GroundedResume(Schema):
     name: str
     contact: Contact = Field(default_factory=Contact)
     summary: list[Claim] = Field(default_factory=list)
+    # Same section order as CandidateData and GeneratedResume (see GeneratedResume).
     experience: list[GroundedExperience] = Field(default_factory=list)
-    education: list[GroundedEducation] = Field(default_factory=list)
     projects: list[GroundedProject] = Field(default_factory=list)
+    education: list[GroundedEducation] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
 

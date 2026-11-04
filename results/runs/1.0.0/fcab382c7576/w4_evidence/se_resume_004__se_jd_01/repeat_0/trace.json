@@ -1,0 +1,191 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 370,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 472,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 7.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787556.1987777,
+    "end": 1793787556.1992311,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1836,
+    "output_tokens": 615,
+    "thinking_chars": 0,
+    "seconds": 6.55,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787556.1994736,
+    "end": 1793787562.7488291,
+    "seconds": 6.549,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787562.749265,
+    "end": 1793787562.7550542,
+    "seconds": 0.006,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 665,
+    "output_tokens": 211,
+    "thinking_chars": 0,
+    "seconds": 2.17,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 8,
+    "cited_ok": 8,
+    "rule_ok": 8,
+    "llm_checked": 8,
+    "llm_cached": 0,
+    "supported": 8,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787562.7552755,
+    "end": 1793787564.9223793,
+    "seconds": 2.167,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Daniel Tan",
+        "contact": {
+          "email": "daniel.tan@example.test",
+          "phone": "+65 6000 0004",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in JavaScript, TypeScript and React. Seeking to deepen capability as a Frontend Engineer.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jan 2025",
+            "end": "Present",
+            "bullets": [
+              "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 40%.",
+              "Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "May 2024",
+            "end": "Dec 2024",
+            "bullets": [
+              "Supported recurring operational work using HTML and documented step-by-step procedures."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Frontend Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using JavaScript, TypeScript and React."
+            ]
+          }
+        ],
+        "skills": [
+          "JavaScript",
+          "TypeScript",
+          "React",
+          "HTML",
+          "Next.js",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 8,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793787564.922984,
+    "end": 1793787564.9242818,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

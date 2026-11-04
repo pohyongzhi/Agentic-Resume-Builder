@@ -1,0 +1,195 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.28,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 470,
+    "output_tokens": 597,
+    "thinking_chars": 0,
+    "seconds": 8.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787783.6962729,
+    "end": 1793787783.6967418,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1825,
+    "output_tokens": 724,
+    "thinking_chars": 0,
+    "seconds": 7.17,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787783.6969817,
+    "end": 1793787790.8719854,
+    "seconds": 7.175,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787790.8724341,
+    "end": 1793787790.8823164,
+    "seconds": 0.01,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 929,
+    "output_tokens": 583,
+    "thinking_chars": 0,
+    "seconds": 5.85,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 12,
+    "cited_ok": 12,
+    "rule_ok": 12,
+    "llm_checked": 12,
+    "llm_cached": 0,
+    "supported": 12,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787790.8825948,
+    "end": 1793787796.737177,
+    "seconds": 5.855,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Olivia Tan",
+        "contact": {
+          "email": "olivia.tan@example.test",
+          "phone": "+65 6000 0015",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Operations support professional experienced in TypeScript, React, documentation and stakeholder coordination, transitioning toward Full-Stack Engineer work.",
+        "experience": [
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Operations Support Coordinator",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 24%.",
+              "Applied Excel to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+              "Managed approximately 35 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using documentation and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 19%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Full-Stack Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using TypeScript, React and Excel.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "TypeScript",
+          "React",
+          "Excel",
+          "documentation",
+          "stakeholder communication"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 12,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793787796.7375834,
+    "end": 1793787796.7388089,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

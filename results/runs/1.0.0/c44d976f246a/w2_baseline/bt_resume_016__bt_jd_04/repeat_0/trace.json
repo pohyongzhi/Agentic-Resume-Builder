@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 375,
+    "output_tokens": 223,
+    "thinking_chars": 0,
+    "seconds": 2.73,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 501,
+    "output_tokens": 446,
+    "thinking_chars": 0,
+    "seconds": 7.06,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1478,
+    "output_tokens": 608,
+    "thinking_chars": 0,
+    "seconds": 5.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Priya Koh\",\n  \"contact\": {\n    \"email\": \"priya.koh@example.test\",\n    \"phone\": \"+65 6000 0096\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Senior Technology Transformation Consultant with hands-on experience in technology strategy, operating model and programme delivery. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Senior Technology Transformation Consultant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Led technology transformation engagements using technology strategy and operating model, improving team turnaround by 33%.\",\n        \"Applied programme delivery to assess operating models and capabilities, documenting decisions for technical and business reviewers.\",\n        \"Managed approximately 98 work items per month while tracking quality checks and follow-up actions.\",\n        \"Collaborated with four colleagues to build investment roadmaps and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported recurring operational work using business case and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 28%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Senior Technology Transformation Consultant Practice Project\",\n      \"description\": \"Built a fictional demonstration project using technology strategy, operating model and programme delivery. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.\"\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example School of Computing (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"technology strategy\",\n    \"operating model\",\n    \"programme delivery\",\n    \"business case\",\n    \"stakeholder management\",\n    \"process improvement\",\n    \"change management\",\n    \"executive communication\",\n    \"cloud transformation\",\n    \"data strategy\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

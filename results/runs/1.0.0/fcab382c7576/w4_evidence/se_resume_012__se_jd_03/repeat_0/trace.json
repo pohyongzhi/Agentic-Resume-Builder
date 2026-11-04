@@ -1,0 +1,190 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 502,
+    "output_tokens": 436,
+    "thinking_chars": 0,
+    "seconds": 6.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787694.6233983,
+    "end": 1793787694.6238735,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1728,
+    "output_tokens": 645,
+    "thinking_chars": 0,
+    "seconds": 6.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787694.6241128,
+    "end": 1793787700.769972,
+    "seconds": 6.146,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787700.770394,
+    "end": 1793787700.7770753,
+    "seconds": 0.007,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 760,
+    "output_tokens": 496,
+    "thinking_chars": 0,
+    "seconds": 4.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 9,
+    "cited_ok": 9,
+    "rule_ok": 9,
+    "llm_checked": 9,
+    "llm_cached": 0,
+    "supported": 9,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787700.7772918,
+    "end": 1793787705.4553802,
+    "seconds": 4.678,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Leon Tan",
+        "contact": {
+          "email": "leon.tan@example.test",
+          "phone": "+65 6000 0012",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Full-Stack Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Delivered end-to-end product features using TypeScript and React, improving team turnaround by 34%.",
+              "Designed frontend components and backend APIs with Node.js while documenting decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews.",
+              "Managed approximately 86 work items per month while tracking quality checks and follow-up actions."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 29%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [],
+        "skills": [
+          "TypeScript",
+          "React",
+          "Node.js",
+          "REST APIs",
+          "PostgreSQL",
+          "Docker",
+          "Git",
+          "CI/CD",
+          "Next.js",
+          "AWS"
+        ],
+        "certifications": [
+          "AWS Certified Cloud Practitioner"
+        ]
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 9,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793787705.4557848,
+    "end": 1793787705.4583285,
+    "seconds": 0.003,
+    "step": 13
+  }
+]

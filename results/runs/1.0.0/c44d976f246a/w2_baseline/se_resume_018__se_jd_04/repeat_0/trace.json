@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 373,
+    "output_tokens": 223,
+    "thinking_chars": 0,
+    "seconds": 2.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 478,
+    "output_tokens": 417,
+    "thinking_chars": 0,
+    "seconds": 6.45,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1426,
+    "output_tokens": 573,
+    "thinking_chars": 0,
+    "seconds": 5.62,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Rina Tan\",\n  \"contact\": {\n    \"email\": \"rina.tan@example.test\",\n    \"phone\": \"+65 6000 0018\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Led delivery of Android features using Kotlin and Android, improving team turnaround by 14%.\",\n        \"Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.\",\n        \"Managed approximately 74 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported recurring operational work using REST APIs and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 9%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Senior Mobile Engineer Practice Project\",\n      \"description\": \"Built a fictional demonstration project using Kotlin, Android and mobile architecture. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.\",\n      \"bullets\": []\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"Kotlin\",\n    \"Android\",\n    \"mobile architecture\",\n    \"REST APIs\",\n    \"Jetpack Compose\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 5
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 374,
+    "output_tokens": 222,
+    "thinking_chars": 0,
+    "seconds": 2.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 495,
+    "output_tokens": 439,
+    "thinking_chars": 0,
+    "seconds": 6.43,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1464,
+    "output_tokens": 603,
+    "thinking_chars": 0,
+    "seconds": 5.92,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Quentin Lee\",\n  \"contact\": {\n    \"email\": \"quentin.lee@example.test\",\n    \"phone\": \"+65 6000 0077\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Platform Engineering Lead\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Set the internal platform strategy using platform engineering and Kubernetes, improving team turnaround by 24%.\",\n        \"Led self-service infrastructure delivery with Terraform, documenting decisions for technical and business reviewers.\",\n        \"Standardised secure deployment patterns while collaborating with four colleagues to present progress during fortnightly reviews.\",\n        \"Managed approximately 31 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported recurring operational work using cloud architecture and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 19%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Platform Engineering Lead Practice Project\",\n      \"description\": \"- Built a fictional demonstration project using platform engineering, Kubernetes and Terraform.\\n- Tested the project with representative scenarios and recorded limitations and next steps.\\n- Presented the design and outcomes to a five-person peer review group.\"\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"platform engineering\",\n    \"Kubernetes\",\n    \"Terraform\",\n    \"cloud architecture\",\n    \"CI/CD\",\n    \"observability\",\n    \"security\",\n    \"technical leadership\",\n    \"Backstage\",\n    \"multi-cloud\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

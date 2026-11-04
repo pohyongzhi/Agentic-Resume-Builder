@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 367,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 472,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 8.03,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1581,
+    "output_tokens": 612,
+    "thinking_chars": 0,
+    "seconds": 5.97,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Hiro Lim\",\n  \"contact\": {\n    \"email\": \"hiro.lim@example.test\",\n    \"phone\": \"+65 6000 0028\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%.\",\n        \"Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.\",\n        \"Managed approximately 24 work items per month while tracking quality checks and follow-up actions.\",\n        \"Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported recurring operational work using data pipelines and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 17%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Data Engineer Practice Project\",\n      \"description\": \"\",\n      \"bullets\": [\n        \"Built a fictional demonstration project using Python, SQL and ETL.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example School of Computing (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"SQL\",\n    \"ETL\",\n    \"data pipelines\",\n    \"Spark\",\n    \"Excel\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 5
+  }
+]

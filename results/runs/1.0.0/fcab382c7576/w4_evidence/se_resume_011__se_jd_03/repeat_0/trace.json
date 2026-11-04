@@ -1,0 +1,199 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.11,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 505,
+    "output_tokens": 439,
+    "thinking_chars": 0,
+    "seconds": 6.35,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787677.1931276,
+    "end": 1793787677.1939566,
+    "seconds": 0.001,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1730,
+    "output_tokens": 775,
+    "thinking_chars": 0,
+    "seconds": 7.45,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787677.1942823,
+    "end": 1793787684.6441028,
+    "seconds": 7.45,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787684.644738,
+    "end": 1793787684.6627254,
+    "seconds": 0.018,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 941,
+    "output_tokens": 310,
+    "thinking_chars": 0,
+    "seconds": 3.05,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 12,
+    "cited_ok": 12,
+    "rule_ok": 12,
+    "llm_checked": 12,
+    "llm_cached": 0,
+    "supported": 12,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787684.6629548,
+    "end": 1793787687.7094421,
+    "seconds": 3.046,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Kavya Tan",
+        "contact": {
+          "email": "kavya.tan@example.test",
+          "phone": "+65 6000 0011",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Full-Stack Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used TypeScript and React to deliver end-to-end product features, improving team turnaround by 27%.",
+              "Applied Node.js to design frontend components and backend APIs and documented decisions for technical and business reviewers.",
+              "Managed approximately 73 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to model relational data and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 22%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Full-Stack Engineer Practice Project",
+            "description": "Built a fictional demonstration project using TypeScript, React and Node.js.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "TypeScript",
+          "React",
+          "Node.js",
+          "REST APIs",
+          "PostgreSQL",
+          "Docker",
+          "Git",
+          "CI/CD",
+          "Next.js",
+          "AWS"
+        ],
+        "certifications": [
+          "AWS Certified Cloud Practitioner"
+        ]
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 12,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793787687.709848,
+    "end": 1793787687.711281,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

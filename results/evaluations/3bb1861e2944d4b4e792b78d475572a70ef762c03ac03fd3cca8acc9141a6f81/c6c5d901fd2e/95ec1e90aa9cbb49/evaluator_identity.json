@@ -1,0 +1,87 @@
+{
+  "schema_version": "2.1",
+  "judge": {
+    "model": "qwen3.5:4b-q4_K_M",
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 16384,
+    "think": false,
+    "max_retries": 2,
+    "prompt_version": "resume-rubric-v1",
+    "schema_version": "1.0",
+    "model_digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "prompt_hash": "f8fff79b410196ed5478fc9dd30234e73feadabab0bb04cd0d6f0d5d181c61ea",
+    "schema_hash": "53b08b8a64010c2bd22bed4663f5fa7acdb45587da355d0827d562d5c2aeeb8f",
+    "evaluator_hash": "db6390dd5716d325",
+    "status": "enabled"
+  },
+  "nli": {
+    "model": "cross-encoder/nli-deberta-v3-small",
+    "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+    "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+    "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+    "id2label": {
+      "0": "contradiction",
+      "1": "entailment",
+      "2": "neutral"
+    },
+    "label2id": {
+      "contradiction": 0,
+      "entailment": 1,
+      "neutral": 2
+    },
+    "version": "claim-evidence-nli-v3",
+    "threshold": 0.5,
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1"
+  },
+  "faithfulness_components": {
+    "protected_fields": "protected-fields-v1",
+    "fabrication_bait": "keyword-bait-v1"
+  },
+  "embedding_model": "nomic-embed-text",
+  "task_gate": {
+    "faithfulness": 0.8,
+    "min_words": 200,
+    "max_words": 650
+  },
+  "timing_note": "seconds is generation model/tool time; historical wall_seconds may include online embedding or NLI work and is reported without attempting to estimate a split",
+  "evaluator_hash": "95ec1e90aa9cbb49",
+  "dataset": {
+    "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+    "counts": {
+      "categories": 5,
+      "job_descriptions": 20,
+      "resumes": 100,
+      "pairs": 100
+    },
+    "category_pairs": {
+      "software_engineering": 20,
+      "data_ai": 20,
+      "cybersecurity": 20,
+      "cloud_devops": 20,
+      "business_technology": 20
+    }
+  },
+  "generation_hashes": [
+    "26a928dd00bd"
+  ],
+  "judge_model_info": {
+    "tag": "qwen3.5:4b-q4_K_M",
+    "digest": "d8b0f5e9760cd1682034f292d7ef72ec46f432149be0df7574bf2d6e92e38c04",
+    "architecture": "qwen35",
+    "parameters": 4205751296,
+    "parameter_size": "4.2B",
+    "quantization": "Q4_K_M"
+  },
+  "judge_config": {
+    "model": "qwen3.5:4b-q4_K_M",
+    "temperature": 0.0,
+    "seed": 42,
+    "num_ctx": 16384,
+    "think": false,
+    "max_retries": 2,
+    "prompt_version": "resume-rubric-v1",
+    "schema_version": "1.0"
+  }
+}

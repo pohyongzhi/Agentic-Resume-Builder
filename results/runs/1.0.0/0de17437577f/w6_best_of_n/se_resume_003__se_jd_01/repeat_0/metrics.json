@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7181,
+  "output_tokens": 1243,
+  "thinking_chars": 0,
+  "seconds": 13.21,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "se_resume_003__se_jd_01",
+  "resume_id": "se_resume_003",
+  "jd_id": "se_jd_01",
+  "category": "software_engineering",
+  "role_family": "frontend_engineer",
+  "seniority": "entry",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 13.2,
+  "generation_seconds": 13.22,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_003__se_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_003__se_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_003__se_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "impact_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 3.5,
+        "jd_alignment": 4.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 3.5,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "165 words; target is roughly 350-500"
+          ],
+          "words": 165
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Removes quantifiable metrics (33%, 59 items, 28%) not found in the original resume, reducing faithfulness.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Removes quantifiable metrics (33%, 59 items, 28%) not found in the original resume, reducing faithfulness."
+          },
+          {
+            "faithfulness": 3,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD keywords in summary but omits Projects section and some specific details found in the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.53,
+          "input_tokens": 1047,
+          "output_tokens": 249
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "225 words; target is roughly 350-500"
+          ],
+          "words": 225
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retains all specific metrics and details from the original resume; high faithfulness but lacks JD keyword alignment.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original data points including metrics and projects; only minor formatting cleanup needed.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.33,
+          "input_tokens": 1048,
+          "output_tokens": 330
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "147 words; target is roughly 350-500"
+          ],
+          "words": 147
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Rewrites bullets to match JD terminology (e.g., 'engineering stakeholders', 'accessible user interfaces') but omits original metrics.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Removes unsupported metrics (33%, 59 items, 28%) and projects section to strictly match the resume's data points while aligning with JD responsibilities.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.45,
+          "input_tokens": 1060,
+          "output_tokens": 234
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

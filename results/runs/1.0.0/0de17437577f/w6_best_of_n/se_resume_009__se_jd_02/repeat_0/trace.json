@@ -1,0 +1,365 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1042,
+    "output_tokens": 281,
+    "thinking_chars": 0,
+    "seconds": 2.88,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "189 words; target is roughly 350-500"
+      ],
+      "words": 189
+    },
+    "generation": {
+      "seconds": 2.88,
+      "input_tokens": 1042,
+      "output_tokens": 281
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1043,
+    "output_tokens": 276,
+    "thinking_chars": 0,
+    "seconds": 2.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 2.78,
+      "input_tokens": 1043,
+      "output_tokens": 276
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1055,
+    "output_tokens": 280,
+    "thinking_chars": 0,
+    "seconds": 2.84,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "184 words; target is roughly 350-500"
+      ],
+      "words": 184
+    },
+    "generation": {
+      "seconds": 2.84,
+      "input_tokens": 1055,
+      "output_tokens": 280
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2032,
+    "output_tokens": 243,
+    "thinking_chars": 0,
+    "seconds": 2.71,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully lists all skills from the original resume but fails to map them to specific JD responsibilities or quantify impact relative to job requirements.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves original data and quantifies achievements, but lacks explicit alignment with the specific technical stack and responsibilities of the Backend Engineer role.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3,
+        "jd_alignment": 5,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "Operated containerised services while managing approximately 47 work items per month.",
+          "Communicated progress, risks and technical trade-offs to relevant stakeholders during fortnightly reviews."
+        ],
+        "justification": "Strongly aligns resume language with JD terminology (e.g., 'containerised services', 'technical trade-offs'), but introduces unsupported claims regarding Docker experience and stakeholder communication.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Strongly aligns resume language with JD terminology (e.g., 'containerised services', 'technical trade-offs'), but introduces unsupported claims regarding Docker experience and stakeholder communication."
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2032,
+    "output_tokens": 237,
+    "thinking_chars": 0,
+    "seconds": 2.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Rephrased bullet points to match JD verbs (Design, Build, Operate) without inventing new facts or skills.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Retains original phrasing which is accurate but less aligned with JD terminology; omits 'containerised services' and 'communication' bullets.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 4,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "The candidate lists Kafka in the Summary section as a primary skill, whereas the original resume only lists it in the Skills section and does not claim operational proficiency with it in the Experience or Projects sections."
+        ],
+        "justification": "Adds Kafka to the summary despite it being a preferred qualification, not explicitly claimed as core experience in the body; otherwise accurate.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Adds Kafka to the summary despite it being a preferred qualification, not explicitly claimed as core experience in the body;"
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "impact_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 2.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "189 words; target is roughly 350-500"
+          ],
+          "words": 189
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully lists all skills from the original resume but fails to map them to specific JD responsibilities or quantify impact relative to job requirements.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "The candidate lists Kafka in the Summary section as a primary skill, whereas the original resume only lists it in the Skills section and does not claim operational proficiency with it in the Experience or Projects sections."
+            ],
+            "justification": "Adds Kafka to the summary despite it being a preferred qualification, not explicitly claimed as core experience in the body; otherwise accurate.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds Kafka to the summary despite it being a preferred qualification, not explicitly claimed as core experience in the body;"
+          }
+        ],
+        "generation": {
+          "seconds": 2.88,
+          "input_tokens": 1042,
+          "output_tokens": 281
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves original data and quantifies achievements, but lacks explicit alignment with the specific technical stack and responsibilities of the Backend Engineer role.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retains original phrasing which is accurate but less aligned with JD terminology; omits 'containerised services' and 'communication' bullets.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.78,
+          "input_tokens": 1043,
+          "output_tokens": 276
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "184 words; target is roughly 350-500"
+          ],
+          "words": 184
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Operated containerised services while managing approximately 47 work items per month.",
+              "Communicated progress, risks and technical trade-offs to relevant stakeholders during fortnightly reviews."
+            ],
+            "justification": "Strongly aligns resume language with JD terminology (e.g., 'containerised services', 'technical trade-offs'), but introduces unsupported claims regarding Docker experience and stakeholder communication.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Strongly aligns resume language with JD terminology (e.g., 'containerised services', 'technical trade-offs'), but introduces unsupported claims regarding Docker experience and stakeholder communication."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Rephrased bullet points to match JD verbs (Design, Build, Operate) without inventing new facts or skills.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.84,
+          "input_tokens": 1055,
+          "output_tokens": 280
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

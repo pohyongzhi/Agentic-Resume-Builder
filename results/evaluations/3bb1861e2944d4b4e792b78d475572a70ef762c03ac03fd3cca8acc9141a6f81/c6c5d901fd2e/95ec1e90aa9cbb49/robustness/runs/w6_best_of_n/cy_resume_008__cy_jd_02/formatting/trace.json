@@ -1,0 +1,285 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1111,
+    "output_tokens": 308,
+    "thinking_chars": 0,
+    "seconds": 3.46,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "197 words; target is roughly 350-500"
+      ],
+      "words": 197
+    },
+    "generation": {
+      "seconds": 3.46,
+      "input_tokens": 1111,
+      "output_tokens": 308
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1112,
+    "output_tokens": 338,
+    "thinking_chars": 0,
+    "seconds": 3.74,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "215 words; target is roughly 350-500"
+      ],
+      "words": 215
+    },
+    "generation": {
+      "seconds": 3.74,
+      "input_tokens": 1112,
+      "output_tokens": 338
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1124,
+    "output_tokens": 348,
+    "thinking_chars": 0,
+    "seconds": 3.88,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "218 words; target is roughly 350-500"
+      ],
+      "words": 218
+    },
+    "generation": {
+      "seconds": 3.88,
+      "input_tokens": 1124,
+      "output_tokens": 348
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2234,
+    "output_tokens": 386,
+    "thinking_chars": 0,
+    "seconds": 4.55,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reproduces original resume data. Writing is concise and professional. JD alignment is moderate; it lists skills but lacks explicit mapping to specific responsibilities like 'vendor risk' or 'cloud governance' mentioned in the JD.",
+        "grounding_concern_in_justification": false
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reproduces original resume data. Writing is concise and professional. JD alignment is moderate; it lists skills but lacks explicit mapping to specific responsibilities like 'vendor risk' or 'cloud governance' mentioned in the JD.",
+        "grounding_concern_in_justification": false
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reproduces original resume data. JD alignment is improved by using terminology from the job description (e.g., 'stakeholders', 'audits'). However, skills coverage is slightly lower as it omits 'NIST' and 'Git' found in the original resume's skills section.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2234,
+    "output_tokens": 246,
+    "thinking_chars": 0,
+    "seconds": 3.05,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2234,
+    "output_tokens": 246,
+    "thinking_chars": 0,
+    "seconds": 2.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [
+      "impact_first",
+      "jd_wording_alignment",
+      "skills_first"
+    ],
+    "scores": {},
+    "step": 11
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 4.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "197 words; target is roughly 350-500"
+          ],
+          "words": 197
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces original resume data. Writing is concise and professional. JD alignment is moderate; it lists skills but lacks explicit mapping to specific responsibilities like 'vendor risk' or 'cloud governance' mentioned in the JD.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.46,
+          "input_tokens": 1111,
+          "output_tokens": 308
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 4.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "215 words; target is roughly 350-500"
+          ],
+          "words": 215
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces original resume data. Writing is concise and professional. JD alignment is moderate; it lists skills but lacks explicit mapping to specific responsibilities like 'vendor risk' or 'cloud governance' mentioned in the JD.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.74,
+          "input_tokens": 1112,
+          "output_tokens": 338
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.0,
+        "overall": 4.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "218 words; target is roughly 350-500"
+          ],
+          "words": 218
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces original resume data. JD alignment is improved by using terminology from the job description (e.g., 'stakeholders', 'audits'). However, skills coverage is slightly lower as it omits 'NIST' and 'Git' found in the original resume's skills section.",
+            "grounding_concern_in_justification": false
+          }
+        ],
+        "generation": {
+          "seconds": 3.88,
+          "input_tokens": 1124,
+          "output_tokens": 348
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 12
+  }
+]

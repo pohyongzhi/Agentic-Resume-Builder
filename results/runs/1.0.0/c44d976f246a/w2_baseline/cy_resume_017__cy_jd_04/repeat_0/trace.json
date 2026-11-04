@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 384,
+    "output_tokens": 234,
+    "thinking_chars": 0,
+    "seconds": 2.36,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 515,
+    "output_tokens": 453,
+    "thinking_chars": 0,
+    "seconds": 6.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1510,
+    "output_tokens": 628,
+    "thinking_chars": 0,
+    "seconds": 6.12,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Quentin Ng\",\n  \"contact\": {\n    \"email\": \"quentin.ng@example.test\",\n    \"phone\": \"+65 6000 0057\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Threat Intelligence Lead with hands-on experience in threat intelligence, MITRE ATT&CK and malware analysis. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Threat Intelligence Lead\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Led strategic and operational threat analysis using threat intelligence and MITRE ATT&CK, improving team turnaround by 39%.\",\n        \"Prioritised intelligence requirements through malware analysis and documented decisions for technical and business reviewers.\",\n        \"Managed approximately 41 work items per month while tracking quality checks and follow-up actions.\",\n        \"Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported recurring operational work using incident response and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 34%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Threat Intelligence Lead Practice Project\",\n      \"description\": \"- Built a fictional demonstration project using threat intelligence, MITRE ATT&CK and malware analysis.\\n- Tested the project with representative scenarios and recorded limitations and next steps.\\n- Presented the design and outcomes to a five-person peer review group.\"\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"threat intelligence\",\n    \"MITRE ATT&CK\",\n    \"malware analysis\",\n    \"incident response\",\n    \"OSINT\",\n    \"intelligence reporting\",\n    \"stakeholder briefing\",\n    \"team leadership\",\n    \"Python\",\n    \"SIEM\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 5
+  }
+]

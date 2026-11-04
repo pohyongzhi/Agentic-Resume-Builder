@@ -1,0 +1,988 @@
+{
+  "identity": {
+    "source_hash": "ba98e3ddd11b4ce97d26647f5b8511b55c27d422fdb94ef7a7c0c5e88a0b62e1",
+    "tailored_hash": "7cd0bb7248b2f4507a6feab7dbeb9a2548000fe523cffa7af16fba3dcc20f372",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.8,
+    "claim_faithfulness": 0.8,
+    "unsupported_claim_rate": 0.2,
+    "supported_claims": 16,
+    "source_evidence_units": 29,
+    "unsupported": [
+      "Junior Business Analyst with hands-on experience in requirements gathering, process mapping, Excel, SQL, Power BI, Agile, and user stories.",
+      "Delivers documented, measurable improvements through data analysis and stakeholder communication while maintaining clear documentation and quality controls.",
+      "Analysed operational data while collaborating with four colleagues to track quality checks and follow-up actions on approximately 83 work items per month.",
+      "Presented progress during fortnightly reviews to coordinate with business and technology teams."
+    ],
+    "n_claims": 20,
+    "claim_scores": [
+      {
+        "claim": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping, Excel, SQL, Power BI, Agile, and user stories.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0028",
+        "best_evidence_unit": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel.",
+        "retrieval_score": 0.60754,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0028",
+            "text": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 40,
+            "retrieval_score": 0.60754,
+            "probabilities": {
+              "contradiction": 0.000497,
+              "entailment": 0.000299,
+              "neutral": 0.999204
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.315798,
+            "probabilities": {
+              "contradiction": 0.000294,
+              "entailment": 0.000177,
+              "neutral": 0.99953
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Built a fictional demonstration project using requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 0.28161,
+            "probabilities": {
+              "contradiction": 0.000409,
+              "entailment": 0.000288,
+              "neutral": 0.999304
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000497,
+          "entailment": 0.000299,
+          "neutral": 0.999204
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000299,
+        "supported": false
+      },
+      {
+        "claim": "Delivers documented, measurable improvements through data analysis and stakeholder communication while maintaining clear documentation and quality controls.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "stakeholder communication",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "stakeholder communication",
+        "retrieval_score": 0.162222,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0029",
+            "text": "Delivers documented, measurable improvements with cross-functional teams.",
+            "kind": "claim",
+            "line": 40,
+            "retrieval_score": 0.318266,
+            "probabilities": {
+              "contradiction": 0.000557,
+              "entailment": 0.000648,
+              "neutral": 0.998795
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.162222,
+            "probabilities": {
+              "contradiction": 0.001697,
+              "entailment": 0.015292,
+              "neutral": 0.983012
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Managed approximately 83 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.162129,
+            "probabilities": {
+              "contradiction": 0.000235,
+              "entailment": 0.003017,
+              "neutral": 0.996748
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.001697,
+          "entailment": 0.015292,
+          "neutral": 0.983012
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.015292,
+        "supported": false
+      },
+      {
+        "claim": "Gathered and documented business requirements using requirements gathering and process mapping, improving team turnaround by 21%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0020",
+        "best_evidence_unit": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+        "retrieval_score": 0.835124,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.835124,
+            "probabilities": {
+              "contradiction": 0.000282,
+              "entailment": 0.997786,
+              "neutral": 0.001932
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0028",
+            "text": "Junior Business Analyst with hands-on experience in requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 40,
+            "retrieval_score": 0.238169,
+            "probabilities": {
+              "contradiction": 0.000237,
+              "entailment": 0.000195,
+              "neutral": 0.999568
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Built a fictional demonstration project using requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 0.162948,
+            "probabilities": {
+              "contradiction": 0.000348,
+              "entailment": 0.000208,
+              "neutral": 0.999444
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000282,
+          "entailment": 0.997786,
+          "neutral": 0.001932
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997786,
+        "supported": true
+      },
+      {
+        "claim": "Mapped current and future processes using Excel and documented decisions for technical and business reviewers.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0021",
+        "best_evidence_unit": "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 28,
+        "best_source_chunk": "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.853671,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.853671,
+            "probabilities": {
+              "contradiction": 0.000278,
+              "entailment": 0.996746,
+              "neutral": 0.002975
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Supported recurring operational work using SQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 0.163583,
+            "probabilities": {
+              "contradiction": 0.999281,
+              "entailment": 4.7e-05,
+              "neutral": 0.000672
+            },
+            "predicted_relation": "contradiction"
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.16182,
+            "probabilities": {
+              "contradiction": 0.000378,
+              "entailment": 0.002626,
+              "neutral": 0.996996
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000278,
+          "entailment": 0.996746,
+          "neutral": 0.002975
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996746,
+        "supported": true
+      },
+      {
+        "claim": "Analysed operational data while collaborating with four colleagues to track quality checks and follow-up actions on approximately 83 work items per month.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0001",
+        "best_evidence_unit": "Aisha Koh",
+        "best_evidence_kind": "candidate_name",
+        "best_evidence_line": 1,
+        "best_source_chunk": "Aisha Koh",
+        "retrieval_score": 0.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Managed approximately 83 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.547114,
+            "probabilities": {
+              "contradiction": 0.000652,
+              "entailment": 0.000104,
+              "neutral": 0.999244
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.04944,
+            "probabilities": {
+              "contradiction": 0.000216,
+              "entailment": 0.000591,
+              "neutral": 0.999192
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Koh",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.001301,
+              "entailment": 0.000702,
+              "neutral": 0.997998
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.001301,
+          "entailment": 0.000702,
+          "neutral": 0.997998
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000702,
+        "supported": false
+      },
+      {
+        "claim": "Presented progress during fortnightly reviews to coordinate with business and technology teams.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 30,
+        "best_source_chunk": "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.395833,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.395833,
+            "probabilities": {
+              "contradiction": 0.0003,
+              "entailment": 0.000661,
+              "neutral": 0.999039
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.158679,
+            "probabilities": {
+              "contradiction": 0.00111,
+              "entailment": 5.8e-05,
+              "neutral": 0.998832
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024)",
+            "kind": "protected_header",
+            "line": 11,
+            "retrieval_score": 0.154692,
+            "probabilities": {
+              "contradiction": 0.000717,
+              "entailment": 0.000289,
+              "neutral": 0.998994
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0003,
+          "entailment": 0.000661,
+          "neutral": 0.999039
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.000661,
+        "supported": false
+      },
+      {
+        "claim": "Supported recurring operational work using SQL and documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "Supported recurring operational work using SQL and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 34,
+        "best_source_chunk": "Supported recurring operational work using SQL and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Supported recurring operational work using SQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.169508
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.169508
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings, and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 35,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 35,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0017",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 0.07574
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 16%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0027",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 16%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 16%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Created a simple reporting template that reduced manual preparation time by 16%.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Koh",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "aisha.koh@example.test | +65 6000 0081 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0014",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.11279
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Managed approximately 83 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.071351
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "requirements gathering",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "requirements gathering",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "requirements gathering",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "requirements gathering",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Built a fictional demonstration project using requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "process mapping",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0004",
+        "best_evidence_unit": "process mapping",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "process mapping",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0004",
+            "text": "process mapping",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Built a fictional demonstration project using requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Used requirements gathering and process mapping to gather and document business requirements, improving team turnaround by 21%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Excel",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Excel",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Excel",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Built a fictional demonstration project using requirements gathering, process mapping and Excel.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Applied Excel to map current and future processes and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "SQL",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "SQL",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "SQL",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "SQL",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Supported recurring operational work using SQL and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.05
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Power BI",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Power BI",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Power BI",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Power BI",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "process mapping",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.086957
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "user stories",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.08
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Agile",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Agile",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Agile",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Agile",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Aisha Koh",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.057143
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "SQL",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.05
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "user stories",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "user stories",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "user stories",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "user stories",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Power BI",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.08
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.064865
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "data analysis",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "data analysis",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "data analysis",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "data analysis",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Collaborated with four colleagues to analyse operational data and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.327833
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.061538
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "requirements gathering",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.102857
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.084211
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "stakeholder communication",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "stakeholder communication",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "stakeholder communication",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "user stories",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.064865
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.063158
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b2ac738f62cab54737bc342eb6c0939120bb6936357f8d680a5fd351f95bf95d"
+  }
+}

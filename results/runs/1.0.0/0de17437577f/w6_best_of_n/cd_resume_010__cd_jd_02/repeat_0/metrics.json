@@ -1,0 +1,188 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7120,
+  "output_tokens": 1225,
+  "thinking_chars": 0,
+  "seconds": 13.13,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_010__cd_jd_02",
+  "resume_id": "cd_resume_010",
+  "jd_id": "cd_jd_02",
+  "category": "cloud_devops",
+  "role_family": "devops_engineer",
+  "seniority": "mid",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 13.1,
+  "generation_seconds": 13.136,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_010__cd_jd_02/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_010__cd_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_010__cd_jd_02/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 5.0,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "174 words; target is roughly 350-500"
+          ],
+          "words": 174
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Applied Excel to manage container platforms"
+            ],
+            "justification": "Candidate preserves original data structure but fails to map skills to JD requirements; lists unsupported tools like 'Excel' for container management.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "lists unsupported tools like 'Excel' for container management."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Summary sentence added to explicitly link experience to skills; otherwise faithful.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Summary sentence added to explicitly link experience to skills;"
+          }
+        ],
+        "generation": {
+          "seconds": 2.77,
+          "input_tokens": 1038,
+          "output_tokens": 270
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 5.0,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "177 words; target is roughly 350-500"
+          ],
+          "words": 177
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Applied Excel to manage container platforms"
+            ],
+            "justification": "Candidate reorders bullet points for impact but retains unsupported claims and fails to align with JD keywords.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate reorders bullet points for impact but retains unsupported claims and fails to align with JD keywords."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reordered bullets for impact; all content remains strictly faithful to the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.83,
+          "input_tokens": 1039,
+          "output_tokens": 274
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 2.5,
+        "writing_quality": 5.0,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "165 words; target is roughly 350-500"
+          ],
+          "words": 165
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 4,
+            "skills_coverage": 2,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Built reliable deployment pipelines using CI/CD and Docker"
+            ],
+            "justification": "Candidate rephrases bullets to match JD language but invents specific tools (Terraform, Kubernetes) not present in the resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate rephrases bullets to match JD language but invents specific tools (Terraform, Kubernetes) not present in the resume."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor reordering of bullet points but no factual changes or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.69,
+          "input_tokens": 1051,
+          "output_tokens": 261
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

@@ -1,0 +1,235 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 213,
+    "thinking_chars": 0,
+    "seconds": 2.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 484,
+    "output_tokens": 416,
+    "thinking_chars": 0,
+    "seconds": 5.94,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1469,
+    "output_tokens": 555,
+    "thinking_chars": 0,
+    "seconds": 6.35,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2074,
+    "output_tokens": 585,
+    "thinking_chars": 0,
+    "seconds": 5.97,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2072,
+    "output_tokens": 531,
+    "thinking_chars": 0,
+    "seconds": 11.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2066,
+    "output_tokens": 574,
+    "thinking_chars": 0,
+    "seconds": 17.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3759,
+    "output_tokens": 545,
+    "thinking_chars": 0,
+    "seconds": 5.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2056,
+    "output_tokens": 531,
+    "thinking_chars": 0,
+    "seconds": 6.63,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2062,
+    "output_tokens": 586,
+    "thinking_chars": 0,
+    "seconds": 12.47,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2064,
+    "output_tokens": 617,
+    "thinking_chars": 0,
+    "seconds": 18.43,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3795,
+    "output_tokens": 555,
+    "thinking_chars": 0,
+    "seconds": 5.51,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2066,
+    "output_tokens": 562,
+    "thinking_chars": 0,
+    "seconds": 5.75,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2074,
+    "output_tokens": 595,
+    "thinking_chars": 0,
+    "seconds": 11.62,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2072,
+    "output_tokens": 489,
+    "thinking_chars": 0,
+    "seconds": 17.85,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Daniel Ng",
+        "contact": {
+          "email": "daniel.ng@example.test",
+          "phone": "+65 6000 0044",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in SIEM, incident triage, and log analysis. Proven ability to collaborate on technical reviews and document processes for stakeholders.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jan 2025",
+            "end": "Present",
+            "bullets": [
+              "Monitored security alerts using SIEM and incident triage, improving team turnaround by 41%.",
+              "Analyzed endpoint and network logs to triage suspicious activity and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to analyse logs and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "May 2024",
+            "end": "Dec 2024",
+            "bullets": [
+              "Supported operational work using network security and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "SOC Analyst Practice Project",
+            "description": "Built a demonstration project using SIEM, incident triage and log analysis. Tested the project with representative scenarios.",
+            "bullets": [
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "skills": [
+          "SIEM",
+          "incident triage",
+          "log analysis",
+          "network security",
+          "Splunk",
+          "Excel",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  }
+]

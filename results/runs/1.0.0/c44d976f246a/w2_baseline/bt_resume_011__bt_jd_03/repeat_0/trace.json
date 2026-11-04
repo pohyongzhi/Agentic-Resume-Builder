@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 375,
+    "output_tokens": 225,
+    "thinking_chars": 0,
+    "seconds": 2.35,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 504,
+    "output_tokens": 441,
+    "thinking_chars": 0,
+    "seconds": 6.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1485,
+    "output_tokens": 643,
+    "thinking_chars": 0,
+    "seconds": 6.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Kavya Koh\",\n  \"contact\": {\n    \"email\": \"kavya.koh@example.test\",\n    \"phone\": \"+65 6000 0091\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Solutions Architect with hands-on experience in solution architecture, AWS and REST APIs. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Solutions Architect\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Translated business needs into solution designs using AWS and solution architecture, improving team turnaround by 29%.\",\n        \"Defined integration and security patterns via REST APIs and documented decisions for technical and business reviewers.\",\n        \"Facilitated architecture decisions with four colleagues and communicated progress to stakeholders during fortnightly reviews.\",\n        \"Managed approximately 33 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using microservices and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a reporting template that reduced manual preparation time by 24%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Solutions Architect Practice Project\",\n      \"description\": \"Built a demonstration project using solution architecture, AWS and REST APIs. Tested the project with representative scenarios and recorded limitations and next steps.\",\n      \"bullets\": [\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"solution architecture\",\n    \"AWS\",\n    \"REST APIs\",\n    \"microservices\",\n    \"security\",\n    \"technical documentation\",\n    \"stakeholder management\",\n    \"system integration\",\n    \"Terraform\",\n    \"Kubernetes\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 5
+  }
+]

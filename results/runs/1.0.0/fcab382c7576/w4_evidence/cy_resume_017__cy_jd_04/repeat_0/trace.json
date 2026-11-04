@@ -1,0 +1,251 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 384,
+    "output_tokens": 234,
+    "thinking_chars": 0,
+    "seconds": 2.24,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 515,
+    "output_tokens": 453,
+    "thinking_chars": 0,
+    "seconds": 7.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793788840.6447914,
+    "end": 1793788840.6452718,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1763,
+    "output_tokens": 671,
+    "thinking_chars": 0,
+    "seconds": 6.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793788840.6455462,
+    "end": 1793788847.0328975,
+    "seconds": 6.387,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788847.0333643,
+    "end": 1793788847.0401978,
+    "seconds": 0.007,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 767,
+    "output_tokens": 473,
+    "thinking_chars": 0,
+    "seconds": 4.49,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 10,
+    "cited_ok": 10,
+    "rule_ok": 9,
+    "llm_checked": 9,
+    "llm_cached": 0,
+    "supported": 9,
+    "rejected_by_code": {
+      "inflated": 1
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788847.0404286,
+    "end": 1793788851.5321915,
+    "seconds": 4.492,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2679,
+    "output_tokens": 782,
+    "thinking_chars": 0,
+    "seconds": 7.57,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793788851.5327694,
+    "end": 1793788859.1055024,
+    "seconds": 7.573,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788859.106066,
+    "end": 1793788859.1129415,
+    "seconds": 0.007,
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 443,
+    "output_tokens": 87,
+    "thinking_chars": 0,
+    "seconds": 1.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 9,
+    "cited_ok": 9,
+    "rule_ok": 9,
+    "llm_checked": 4,
+    "llm_cached": 5,
+    "supported": 9,
+    "rejected_by_code": {},
+    "step": 14
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788859.1131728,
+    "end": 1793788860.1960177,
+    "seconds": 1.083,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Quentin Ng",
+        "contact": {
+          "email": "quentin.ng@example.test",
+          "phone": "+65 6000 0057",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Threat Intelligence Lead with hands-on experience in threat intelligence, MITRE ATT&CK and malware analysis. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Threat Intelligence Lead",
+            "start": "Jan 2021",
+            "end": "Present",
+            "bullets": [
+              "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 39%.",
+              "Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+              "Managed approximately 41 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jun 2017",
+            "end": "Dec 2020",
+            "bullets": [
+              "Supported recurring operational work using incident response and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 34%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Institute of Technology (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [],
+        "skills": [
+          "threat intelligence",
+          "MITRE ATT&CK",
+          "malware analysis",
+          "incident response",
+          "OSINT",
+          "intelligence reporting",
+          "stakeholder briefing",
+          "team leadership",
+          "Python",
+          "SIEM"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 17
+  },
+  {
+    "type": "w4_final",
+    "kept": 9,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.9,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 18
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788860.1964173,
+    "end": 1793788860.1975555,
+    "seconds": 0.001,
+    "step": 19
+  }
+]

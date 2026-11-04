@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 373,
+    "output_tokens": 221,
+    "thinking_chars": 0,
+    "seconds": 2.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 491,
+    "output_tokens": 424,
+    "thinking_chars": 0,
+    "seconds": 6.28,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1444,
+    "output_tokens": 556,
+    "thinking_chars": 0,
+    "seconds": 5.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Noah Lim\",\n  \"contact\": {\n    \"email\": \"noah.lim@example.test\",\n    \"phone\": \"+65 6000 0034\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in Python, machine learning and scikit-learn, seeking to deepen capability as a Machine Learning Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 33%.\",\n        \"Applied scikit-learn to build reproducible feature pipelines and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Ember Technologies (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported recurring operational work using PyTorch and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Machine Learning Engineer Practice Project\",\n      \"description\": \"Built a fictional demonstration project using Python, machine learning and scikit-learn.\\nTested the project with representative scenarios and recorded limitations and next steps.\\nPresented the design and outcomes to a five-person peer review group.\",\n      \"bullets\": []\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"machine learning\",\n    \"scikit-learn\",\n    \"PyTorch\",\n    \"MLflow\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 369,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 483,
+    "output_tokens": 423,
+    "thinking_chars": 0,
+    "seconds": 6.32,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1431,
+    "output_tokens": 550,
+    "thinking_chars": 0,
+    "seconds": 5.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Mei Lee\",\n  \"contact\": {\n    \"email\": \"mei.lee@example.test\",\n    \"phone\": \"+65 6000 0073\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used SRE and observability to define service reliability targets, improving team turnaround by 27%.\",\n        \"Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported recurring operational work using Linux and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Site Reliability Engineer Practice Project\",\n      \"description\": \"Built a fictional demonstration project using SRE, observability and incident response.\\nTested the project with representative scenarios and recorded limitations and next steps.\\nPresented the design and outcomes to a five-person peer review group.\",\n      \"bullets\": []\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"SRE\",\n    \"observability\",\n    \"incident response\",\n    \"Linux\",\n    \"Prometheus\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

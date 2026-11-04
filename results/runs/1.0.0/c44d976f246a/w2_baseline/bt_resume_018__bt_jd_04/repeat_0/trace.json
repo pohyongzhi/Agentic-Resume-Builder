@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 375,
+    "output_tokens": 223,
+    "thinking_chars": 0,
+    "seconds": 2.26,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 486,
+    "output_tokens": 423,
+    "thinking_chars": 0,
+    "seconds": 6.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1440,
+    "output_tokens": 581,
+    "thinking_chars": 0,
+    "seconds": 6.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Rina Koh\",\n  \"contact\": {\n    \"email\": \"rina.koh@example.test\",\n    \"phone\": \"+65 6000 0098\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in technology strategy, operating model and programme delivery. Proven ability to lead engagements, assess capabilities, build roadmaps, and communicate progress to stakeholders.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Led technology transformation engagements using technology strategy and operating model frameworks.\",\n        \"Assessed operating models and capabilities, documenting decisions for technical and business reviewers.\",\n        \"Built investment roadmaps by collaborating with four colleagues and presenting progress during fortnightly reviews.\",\n        \"Managed approximately 34 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported recurring operational work using business case principles and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 11%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Senior Technology Transformation Consultant Practice Project\",\n      \"description\": \"Built a demonstration project using technology strategy, operating model and programme delivery. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.\"\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Metropolitan University (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"technology strategy\",\n    \"operating model\",\n    \"programme delivery\",\n    \"business case\",\n    \"cloud transformation\",\n    \"Excel\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]
