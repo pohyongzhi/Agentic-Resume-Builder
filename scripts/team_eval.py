@@ -93,19 +93,37 @@ def state_file(wf):
     return PLAN / f".roots_{wf}.json"
 
 
+def discover(wf, config_hash):
+    """Evaluation folders holding this workflow's current outputs, even after an interrupted run."""
+    found = []
+    for root in (ROOT / "results" / "evaluations").glob("*/*/*"):
+        sample = [*list((root / "records" / wf).glob("*/repeat_0.json"))[:1],
+                  *list(root.glob(f"pairwise/*/records/{wf}/*/repeat_0.json"))[:1]]
+        for f in sample:
+            r = json.loads(f.read_text())
+            if config_hash in (r.get("config_hash"), r.get("challenger_config_hash")):
+                found.append(root)
+                break
+    return found
+
+
 def remember(wf, roots):
     known = set(json.loads(state_file(wf).read_text())) if state_file(wf).exists() else set()
     known |= {str(r.relative_to(ROOT)) for r in roots if r}
+    known |= {str(r.relative_to(ROOT)) for r in discover(wf, newest_hashes().get(wf))}
     state_file(wf).write_text(json.dumps(sorted(known)))
     return [ROOT / r for r in sorted(known)]
 
 
 def status(wf, roots):
-    done = {"coverage": [0, 0], "rubric": [0, 0], "pairwise": [0, 0]}
+    done = {"local": [0, 0], "coverage": [0, 0], "rubric": [0, 0], "pairwise": [0, 0]}
     waiting = 0
     for root in roots:
         for f in (root / "records" / wf).glob("*/repeat_0.json"):
             r = json.loads(f.read_text())
+            if r.get("requirement_coverage_status") or r.get("judge_status") not in ("scored", "unscored"):
+                done["local"][1] += 1
+                done["local"][0] += r.get("claim_faithfulness") is not None
             fails = r.get("evaluation_failures") or {}
             waiting += any(isinstance(v, str) and v.startswith(TRANSIENT) for v in fails.values())
             if r.get("requirement_coverage_status"):
