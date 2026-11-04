@@ -118,6 +118,8 @@ python -m tests.dashboard_fixture /tmp/demo_evaluations
 ARB_EVALUATIONS_DIR=/tmp/demo_evaluations python app.py
 ```
 
+The **Results (charts)** tab shows the same evaluation run as one chart page: outcome per workflow, faithfulness, invented qualifications, category and fit, time and model calls, word counts and a table view, with 95% bootstrap intervals. Chart titles are computed from the selected run (`eval/dashboard_charts.py`). The page needs no network: d3 v7.8.5 is vendored in `ui/static/` and inlined into the tab's iframe.
+
 ## W3 multi-critic workflow
 
 `w3_critic` creates a structured draft, then runs three separate reviewers in parallel:
@@ -338,6 +340,7 @@ Detailed evaluation records are reproducible local artifacts and are ignored by 
 ```text
 app.py                    Gradio UI: tailoring plus the read-only Results tab
 ui/results_tab.py         Results tab layout; ui/charts.py draws its SVG charts
+ui/results_charts_tab.py  Results (charts) tab: d3 page in ui/static/, offline
 baseline_tailor.py        single-pass V0 CLI
 config.py                 shared model, harness and extraction settings
 common/
@@ -360,6 +363,7 @@ eval/metrics.py           shared evaluator metrics
 eval/operational.py       task, tool, step and cost metrics
 eval/robustness.py        input perturbations and stability aggregation
 eval/dashboard.py         loads saved evaluation roots for the Results tab
+eval/dashboard_charts.py  chart data and computed titles for Results (charts)
 run_all.py                batch runner
 evaluate_results.py       rescore saved outputs without regeneration
 run_robustness.py         shared perturbation benchmark
