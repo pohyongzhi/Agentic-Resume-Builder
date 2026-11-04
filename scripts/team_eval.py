@@ -97,6 +97,9 @@ def discover(wf, config_hash):
     """Evaluation folders holding this workflow's current outputs, even after an interrupted run."""
     found = []
     for root in (ROOT / "results" / "evaluations").glob("*/*/*"):
+        # Team runs score one workflow per folder; skip combined runs holding several.
+        if len([d for d in (root / "records").glob("*") if d.is_dir()]) > 1:
+            continue
         sample = [*list((root / "records" / wf).glob("*/repeat_0.json"))[:1],
                   *list(root.glob(f"pairwise/*/records/{wf}/*/repeat_0.json"))[:1]]
         for f in sample:
