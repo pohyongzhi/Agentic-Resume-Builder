@@ -3,7 +3,8 @@ get a tailored resume.
 
     python app.py      -> then open http://127.0.0.1:7860 in your browser
 
-The Results tab shows saved evaluation results (read-only; see ui/results_tab.py).
+The Results tab shows saved evaluation results (read-only; see ui/results_tab.py); the
+Results (charts) tab draws the same results as one chart page (ui/results_charts_tab.py).
 """
 from pathlib import Path
 from uuid import uuid4
@@ -19,6 +20,7 @@ from workflows.w3_critic import NAME as CRITIC_NAME, generate as generate_w3
 from workflows.w4_evidence import NAME as W4_NAME, generate as generate_w4
 from workflows.w7_plan_execute import NAME as W7_NAME
 from ui.charts import RESULTS_CSS
+from ui.results_charts_tab import build_results_charts_tab
 from ui.results_tab import build_results_tab
 
 WORKFLOW_CHOICES = [
@@ -459,6 +461,7 @@ with gr.Blocks(title="Resume Tailor · Agentic baseline") as demo:
             )
 
         build_results_tab(demo)
+        build_results_charts_tab(demo)
 
 
 if __name__ == "__main__":
