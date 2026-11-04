@@ -52,6 +52,39 @@ def test_resume_parser_recovers_omitted_email(monkeypatch, tmp_path, candidate):
     assert state["candidate_data"]["contact"]["email"] == "alex.tan@example.com"
 
 
+RESUME_ORDER = ["name", "contact", "summary", "experience", "projects", "education",
+                "skills", "certifications", "achievements"]
+
+
+def test_parser_schema_follows_resume_section_order():
+    # Constrained decoding emits keys in schema order; education must come after experience
+    # and projects, as in the resumes, or the model fills it before reading that section.
+    schema = extraction.llm_schema(extraction.CandidateData, exclude=("raw_text",))
+    assert list(schema["properties"]) == RESUME_ORDER
+    assert "raw_text" not in schema["properties"]
+
+
+def test_resume_parser_sends_ordered_schema_and_keeps_education(monkeypatch, tmp_path, candidate):
+    resume_file = tmp_path / "resume.md"
+    resume_file.write_text(candidate["raw_text"])
+    parsed = {k: v for k, v in candidate.items() if k != "raw_text"}
+    assert parsed["education"]
+    sent = {}
+
+    def fake_chat(messages, tracker, format=None, **kwargs):
+        sent["format"] = format
+        return SimpleNamespace(content=json.dumps(parsed), tool_calls=None)
+
+    monkeypatch.setattr(extraction, "chat", fake_chat)
+    state = extraction.make_resume_parser(Tracker())({"resume_path": str(resume_file)})
+
+    assert list(sent["format"]["properties"]) == RESUME_ORDER
+    data = state["candidate_data"]
+    assert [k for k in data if k != "raw_text"] == RESUME_ORDER
+    assert data["education"] == parsed["education"]
+    assert data["raw_text"].strip() == candidate["raw_text"].strip()
+
+
 # ---------- end-to-end with a fake model ----------
 
 def _msg(content="", tool_calls=None):
