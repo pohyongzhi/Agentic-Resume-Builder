@@ -246,21 +246,28 @@ def _judge_schema(strategies):
 # negated statements ("no invented facts") are deliberately not matched.
 _ADDED_CONTENT = re.compile(
     # Hyphenated words such as "value-add" are not claims about the draft.
-    r"(?<![-\w])(?:add(?:s|ed|ing)?|addition of|introduc(?:es|ed|ing)|insert(?:s|ed)?|invent(?:s|ed)?|"
-    r"fabricat(?:es|ed|ion)|embellish(?:es|ed)?|exaggerat(?:es|ed|ion)|infer(?:s|red)?|"
+    r"(?<![-\w])(?:add(?:s|ed|ing)?|addition of|introduc(?:es|ed|ing)|insert(?:s|ed)?|"
+    r"invent(?:s|ed)?|fabricat(?:es|ed|ion)|embellish(?:es|ed)?|exaggerat(?:es|ed|ion)|"
+    r"infer(?:s|red)?|"
     r"inference|unsupported|unverified)\b(?!-)",
     re.I,
 )
 _ABSENT_FROM_SOURCE = re.compile(
     r"\bnot (?:\w+ ){0,2}(?:in|by|from) (?:the )?(?:original|source|resume)\b", re.I
 )
-# Negations and removals: "no invented facts", "removed unsupported 'Senior' title".
+# A negation covers the rest of its clause ("no new claims, invented facts, or unsupported
+# assertions") until a contrast or a new clause begins ("does not add X but invents Y").
 _NEGATION = re.compile(
-    r"\b(?:no|not|without|never|nothing|none|nor|zero|fail(?:s|ed|ing)?|remov(?:e|es|ed|ing)|"
-    r"drop(?:s|ped)?|strip(?:s|ped)?|exclud(?:e|es|ed)|avoid(?:s|ed)?|omit(?:s|ted)?)\b",
+    r"\b(?:no|not|without|never|nothing|none|nor|zero|fail(?:s|ed|ing)?)\b", re.I
+)
+_CLAUSE_BREAK = re.compile(r"\b(?:but|however|although|though|while|whereas|yet|and)\b", re.I)
+# Removals only cover the word they govern: "removed unsupported 'Senior' title".
+_REMOVAL_BEFORE = re.compile(
+    r"\b(?:remov(?:e|es|ed|ing)|drop(?:s|ped)?|strip(?:s|ped)?|exclud(?:e|es|ed)|"
+    r"avoid(?:s|ed)?|omit(?:s|ted)?)\s+$",
     re.I,
 )
-# Additions that are about presentation rather than content: "adds clarity without inventing facts",
+# Additions about presentation rather than content: "adds clarity without inventing facts",
 # "fails to demonstrate any value add".
 _PRESENTATION_ADDITION = re.compile(
     r"\badd(?:s|ed|ing)? (?:clarity|emphasis|structure|readability|polish|focus)\b", re.I
@@ -272,6 +279,13 @@ _OMISSION = re.compile(
 )
 
 
+def _is_negated(preceding):
+    if _REMOVAL_BEFORE.search(preceding):
+        return True
+    negations = list(_NEGATION.finditer(preceding))
+    return bool(negations) and not _CLAUSE_BREAK.search(preceding, negations[-1].end())
+
+
 def _justification_admits_addition(justification):
     """Return the first sentence in which the judge says the candidate adds unsupported content."""
     for sentence in re.split(r"(?<=[.;!?])\s+|\n+", justification or ""):
@@ -279,8 +293,7 @@ def _justification_admits_addition(justification):
             if (_PRESENTATION_ADDITION.match(sentence, match.start())
                     or _VALUE_ADD.search(sentence[:match.start()])):
                 continue
-            preceding = sentence[:match.start()].split()[-4:]
-            if not _NEGATION.search(" ".join(preceding)):
+            if not _is_negated(sentence[:match.start()]):
                 return sentence.strip()
         if _ABSENT_FROM_SOURCE.search(sentence) and not _OMISSION.search(sentence):
             return sentence.strip()

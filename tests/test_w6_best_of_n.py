@@ -174,6 +174,8 @@ class JustificationScopeTests(unittest.TestCase):
             "The draft is a verbatim copy of the original resume with no modifications, failing to "
             "demonstrate any specific strategy or value add.",
             "Minor rewording in the summary adds clarity without inventing facts.",
+            "It contains no new claims, invented facts, or unsupported assertions.",
+            "No new information or unsupported claims were added.",
         ):
             with self.subTest(text=text):
                 self.assertTrue(judge_one(justification=text)["valid"])
@@ -184,6 +186,9 @@ class JustificationScopeTests(unittest.TestCase):
             "Faithful to original data; adds 'manages senior stakeholders' which is a reasonable "
             "inference from managing work items.",
             "Text is identical; the summary claim about mentoring is not in the original resume.",
+            "It does not change the dates but invents a Kubernetes certification.",
+            "No JD keywords are missing, and it adds 'Kubernetes' to the skills.",
+            "Removing 'Excel', adding 'Kubernetes' to match the JD.",
         ):
             with self.subTest(text=text):
                 result = judge_one(justification=text)
