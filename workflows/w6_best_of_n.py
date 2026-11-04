@@ -11,6 +11,7 @@ Course references:
 - Topic 6 Parts 3-4: a strict JSON rubric and reversed order to mitigate position bias.
 - Topic 7 Agentic Lab Stage 5: explicit StateGraph nodes and edges for orchestration.
 """
+import copy
 import json
 import re
 from typing import TypedDict
@@ -20,6 +21,7 @@ from langgraph.graph import END, START, StateGraph
 import config
 from common.llm import chat
 from common.prompts import BASE_RULES, task_prompt
+from common.schemas import W6JudgeResponse, llm_schema
 
 NAME = "w6_best_of_n"
 
@@ -187,13 +189,13 @@ def _judge_prompt(pair, candidates):
     expected_entries = ",".join(
         json.dumps({
             "strategy": c["strategy"],
+            "justification": "short reason",
+            "unsupported_claims": [],
             "faithfulness": 1,
             "jd_alignment": 1,
             "skills_coverage": 1,
             "writing_quality": 1,
             "valid": False,
-            "unsupported_claims": [],
-            "justification": "short reason",
         })
         for c in candidates
     )
@@ -210,8 +212,9 @@ Score every candidate from 1 to 5 on:
 Use the whole scale: 5 means an expert would change nothing; 4 is strong with a small issue; 3 has
 a real gap; 2 has a major problem; 1 is unusable. Set valid=false if you identify any unsupported
 claim or the draft is not a complete resume. An unsupported_claim must be an assertion that actually
-appears in that candidate but is not supported by the original resume. Never list a missing JD
-requirement as an unsupported claim. Do not reward unsupported JD keywords.
+appears in that candidate but is not supported by the original resume. If the justification says
+the candidate adds, infers or invents something, quote it in unsupported_claims as well. Never list
+a missing JD requirement as an unsupported claim. Do not reward unsupported JD keywords.
 
 Return ONLY JSON. The evaluations array MUST contain exactly {len(candidates)} entries, one for each
 named strategy, using this exact shape (replace the example scores and text):
@@ -224,6 +227,60 @@ ORIGINAL RESUME:
 {pair['resume']}
 
 {rendered}"""
+
+
+def _judge_schema(strategies):
+    """Ollama `format=` schema: one entry per named strategy, and no other strategy name."""
+    schema = copy.deepcopy(llm_schema(W6JudgeResponse))
+    item = schema["$defs"]["W6CandidateEvaluation"]
+    item["properties"]["strategy"]["enum"] = list(strategies)
+    evaluations = schema["properties"]["evaluations"]
+    evaluations["minItems"] = evaluations["maxItems"] = len(strategies)
+    return schema
+
+
+# A judge sometimes admits in prose that a draft adds or infers content, yet leaves
+# unsupported_claims empty and valid=true. These patterns catch that admission. They are scoped
+# to the candidate's own assertions: phrases about JD keywords that the draft does not mention
+# ("not explicitly mentioned in experience bullets", "implied by collaboration details") and
+# negated statements ("no invented facts") are deliberately not matched.
+_ADDED_CONTENT = re.compile(
+    r"\b(?:add(?:s|ed|ing)?|addition of|introduc(?:es|ed|ing)|insert(?:s|ed)?|invent(?:s|ed)?|"
+    r"fabricat(?:es|ed|ion)|embellish(?:es|ed)?|exaggerat(?:es|ed|ion)|infer(?:s|red)?|"
+    r"inference|unsupported|unverified)\b",
+    re.I,
+)
+_ABSENT_FROM_SOURCE = re.compile(
+    r"\bnot (?:\w+ ){0,2}(?:in|by|from) (?:the )?(?:original|source|resume)\b", re.I
+)
+# Negations and removals: "no invented facts", "removed unsupported 'Senior' title".
+_NEGATION = re.compile(
+    r"\b(?:no|not|without|never|nothing|none|nor|zero|fail(?:s|ed)?|remov(?:e|es|ed|ing)|"
+    r"drop(?:s|ped)?|strip(?:s|ped)?|exclud(?:e|es|ed)|avoid(?:s|ed)?|omit(?:s|ted)?)\b",
+    re.I,
+)
+# Additions that are about presentation rather than content: "adds clarity without inventing facts".
+_PRESENTATION_ADDITION = re.compile(
+    r"\badd(?:s|ed|ing)? (?:clarity|emphasis|structure|readability|polish|focus)\b", re.I
+)
+# "missing only 'Jest', which was not explicitly mentioned in the original" is about an omission.
+_OMISSION = re.compile(
+    r"\b(?:missing|miss(?:es|ed)|omit(?:s|ted)?|omission|lacks?|lacking|absent)\b", re.I
+)
+
+
+def _justification_admits_addition(justification):
+    """Return the first sentence in which the judge says the candidate adds unsupported content."""
+    for sentence in re.split(r"(?<=[.;!?])\s+|\n+", justification or ""):
+        for match in _ADDED_CONTENT.finditer(sentence):
+            if _PRESENTATION_ADDITION.match(sentence, match.start()):
+                continue
+            preceding = sentence[:match.start()].split()[-4:]
+            if not _NEGATION.search(" ".join(preceding)):
+                return sentence.strip()
+        if _ABSENT_FROM_SOURCE.search(sentence) and not _OMISSION.search(sentence):
+            return sentence.strip()
+    return ""
 
 
 def _normalise_judgments(raw, expected_strategies):
@@ -240,26 +297,36 @@ def _normalise_judgments(raw, expected_strategies):
         unsupported = item.get("unsupported_claims", [])
         if not isinstance(unsupported, list):
             unsupported = [str(unsupported)] if unsupported else []
-        justification = str(item.get("justification", ""))[:300]
-        grounding_concern = re.search(
-            r"\b(?:not explicitly|not in (?:the )?(?:source|original)|implied by|reasonable inference|"
-            r"addition of|invented|fabricated)\b",
-            justification,
-            re.I,
-        ) is not None
+        unsupported = [str(x) for x in unsupported if str(x).strip()]
+        full_justification = str(item.get("justification", ""))
+        admission = _justification_admits_addition(full_justification)
         scores.update({
             "valid": (
                 item.get("valid") is True
                 and not unsupported
                 and scores["faithfulness"] == 5
-                and not grounding_concern
+                and not admission
             ),
-            "unsupported_claims": [str(x)[:240] for x in unsupported],
-            "justification": justification,
-            "grounding_concern_in_justification": grounding_concern,
+            "unsupported_claims": [x[:240] for x in unsupported],
+            "justification": full_justification[:300],
+            "grounding_concern_in_justification": bool(admission),
+            "grounding_concern_evidence": admission[:240],
         })
         by_strategy[item["strategy"]] = scores
     return by_strategy
+
+
+def _judge_call(pair, candidates, tracker):
+    strategies = [c["strategy"] for c in candidates]
+    msg = chat(
+        [
+            {"role": "system", "content": "Return strict, evidence-based JSON only."},
+            {"role": "user", "content": _judge_prompt(pair, candidates)},
+        ],
+        tracker,
+        format=_judge_schema(strategies),
+    )
+    return _normalise_judgments(_extract_json(msg.content), set(strategies))
 
 
 def _judge_node(tracker, reverse=False):
@@ -269,28 +336,14 @@ def _judge_node(tracker, reverse=False):
             candidates = list(reversed(candidates))
         if not candidates:
             return {"judge_passes": state.get("judge_passes", [])}
-        msg = chat(
-            [
-                {"role": "system", "content": "Return strict, evidence-based JSON only."},
-                {"role": "user", "content": _judge_prompt(state["pair"], candidates)},
-            ],
-            tracker,
-        )
         expected = {c["strategy"] for c in candidates}
-        result = _normalise_judgments(_extract_json(msg.content), expected)
+        result = _judge_call(state["pair"], candidates, tracker)
         missing = expected - set(result)
         if missing:
             # Small local models sometimes emit only the first array item. Retry only omissions so
             # one malformed batch cannot silently turn presentation order into the selector.
             retry_candidates = [c for c in candidates if c["strategy"] in missing]
-            retry_msg = chat(
-                [
-                    {"role": "system", "content": "Return strict, evidence-based JSON only."},
-                    {"role": "user", "content": _judge_prompt(state["pair"], retry_candidates)},
-                ],
-                tracker,
-            )
-            result.update(_normalise_judgments(_extract_json(retry_msg.content), missing))
+            result.update(_judge_call(state["pair"], retry_candidates, tracker))
         pass_name = "reverse" if reverse else "forward"
         tracker.log(
             type="workflow",
