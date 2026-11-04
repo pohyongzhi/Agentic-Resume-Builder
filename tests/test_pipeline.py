@@ -64,6 +64,16 @@ def test_parser_schema_follows_resume_section_order():
     assert "raw_text" not in schema["properties"]
 
 
+def test_creator_schemas_share_the_parser_section_order():
+    # Creators copy the candidate JSON in CandidateData order; a creator schema with a different
+    # order makes the model skip the out-of-place optional section (education was dropped).
+    from common.schemas import GeneratedResume, GroundedResume
+    for model in (GeneratedResume, GroundedResume):
+        keys = list(extraction.llm_schema(model)["properties"])
+        assert keys == [k for k in RESUME_ORDER if k in keys], model.__name__
+        assert keys.index("projects") < keys.index("education"), model.__name__
+
+
 def test_resume_parser_sends_ordered_schema_and_keeps_education(monkeypatch, tmp_path, candidate):
     resume_file = tmp_path / "resume.md"
     resume_file.write_text(candidate["raw_text"])
