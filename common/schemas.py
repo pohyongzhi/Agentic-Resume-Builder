@@ -83,13 +83,16 @@ class JobData(Schema):
 
 
 class GeneratedResume(Schema):
-    """What the resume creator produces. The harness validates it, then renders it to Markdown."""
+    """What the resume creator produces. The harness validates it, then renders it to Markdown.
+
+    Keep the field order the same as CandidateData: the creator copies the candidate JSON in that
+    order, and under constrained decoding it skips an optional key that is out of place."""
     name: str
     contact: Contact = Field(default_factory=Contact)
     summary: str = ""
     experience: list[Experience] = Field(default_factory=list)
-    education: list[Education] = Field(default_factory=list)
     projects: list[Project] = Field(default_factory=list)
+    education: list[Education] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
 
@@ -259,9 +262,10 @@ class GroundedResume(Schema):
     name: str
     contact: Contact = Field(default_factory=Contact)
     summary: list[Claim] = Field(default_factory=list)
+    # Same section order as CandidateData and GeneratedResume (see GeneratedResume).
     experience: list[GroundedExperience] = Field(default_factory=list)
-    education: list[GroundedEducation] = Field(default_factory=list)
     projects: list[GroundedProject] = Field(default_factory=list)
+    education: list[GroundedEducation] = Field(default_factory=list)
     skills: list[str] = Field(default_factory=list)
     certifications: list[str] = Field(default_factory=list)
 
