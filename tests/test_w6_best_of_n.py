@@ -170,6 +170,8 @@ class JustificationScopeTests(unittest.TestCase):
             "Removed unsupported 'Python' and 'Security+' from skills list.",
             "Skills coverage is high, missing only 'Jest' which was not explicitly mentioned in "
             "the original.",
+            "It fails to demonstrate any alignment strategy or value-add.",
+            "Minor rewording in the summary adds clarity without inventing facts.",
         ):
             with self.subTest(text=text):
                 self.assertTrue(judge_one(justification=text)["valid"])
@@ -190,6 +192,7 @@ class JustificationScopeTests(unittest.TestCase):
     def test_listed_unsupported_claim_rejects_even_when_judge_says_valid(self):
         result = judge_one(unsupported_claims=["Kubernetes certification"])
         self.assertFalse(result["valid"])
+        self.assertTrue(result["judge_valid"])
         self.assertEqual(result["unsupported_claims"], ["Kubernetes certification"])
 
     def test_blank_unsupported_claim_entries_are_ignored(self):

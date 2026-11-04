@@ -245,9 +245,10 @@ def _judge_schema(strategies):
 # ("not explicitly mentioned in experience bullets", "implied by collaboration details") and
 # negated statements ("no invented facts") are deliberately not matched.
 _ADDED_CONTENT = re.compile(
-    r"\b(?:add(?:s|ed|ing)?|addition of|introduc(?:es|ed|ing)|insert(?:s|ed)?|invent(?:s|ed)?|"
+    # Hyphenated words such as "value-add" are not claims about the draft.
+    r"(?<![-\w])(?:add(?:s|ed|ing)?|addition of|introduc(?:es|ed|ing)|insert(?:s|ed)?|invent(?:s|ed)?|"
     r"fabricat(?:es|ed|ion)|embellish(?:es|ed)?|exaggerat(?:es|ed|ion)|infer(?:s|red)?|"
-    r"inference|unsupported|unverified)\b",
+    r"inference|unsupported|unverified)\b(?!-)",
     re.I,
 )
 _ABSENT_FROM_SOURCE = re.compile(
@@ -301,6 +302,7 @@ def _normalise_judgments(raw, expected_strategies):
         full_justification = str(item.get("justification", ""))
         admission = _justification_admits_addition(full_justification)
         scores.update({
+            "judge_valid": item.get("valid") is True,
             "valid": (
                 item.get("valid") is True
                 and not unsupported
