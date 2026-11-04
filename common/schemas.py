@@ -145,6 +145,25 @@ class JudgeResponse(BaseModel):
     organisation_and_readability: JudgeDimension
 
 
+class W6CandidateEvaluation(Schema):
+    """One W6 selector verdict. Every field is required so the constrained reply cannot drop one.
+    The justification and unsupported claims come before the scores, so the model states its
+    evidence before it commits to a verdict."""
+    strategy: str
+    justification: str = Field(max_length=400)
+    unsupported_claims: list[str] = Field(max_length=10)
+    faithfulness: int = Field(ge=1, le=5)
+    jd_alignment: int = Field(ge=1, le=5)
+    skills_coverage: int = Field(ge=1, le=5)
+    writing_quality: int = Field(ge=1, le=5)
+    valid: bool
+
+
+class W6JudgeResponse(Schema):
+    """W6 selector reply; the workflow narrows `strategy` and the array length per call."""
+    evaluations: list[W6CandidateEvaluation]
+
+
 def llm_schema(model: type[BaseModel], exclude: tuple[str, ...] = ()) -> dict:
     """JSON schema for Ollama's `format=`, minus fields the model should not fill (e.g. raw_text)."""
     schema = model.model_json_schema()
