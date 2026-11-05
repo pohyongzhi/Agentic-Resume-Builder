@@ -6,6 +6,12 @@ Nothing here generates, evaluates or calls a model. Every function reads files w
 Python data. Stage summaries in ``summaries/`` are preferred; when a summary file is missing the
 same table is rebuilt in memory from the saved index with the ``eval.reporting`` functions that
 write it, so the numbers match a ``report`` run. Missing stages are reported, never guessed.
+
+Results follow the final criteria: a resume is good when its NLI claim faithfulness against the
+original resume reaches the truth gate and its rubric v3 overall score (``eval.quality_rubric``)
+reaches the writing gate; a workflow's result is good resumes out of every attempt. Rubric v3
+records are read with ``eval.dashboard_charts.load_rubric`` from the ``quality-rubric`` folder next
+to the evaluation root, so this tab and the "Results (charts)" tab count the same resumes.
 """
 from __future__ import annotations
 
@@ -378,20 +384,44 @@ class MetricSpec:
     tier: str = "quality"
 
 
+# Rubric v3 dimensions (``eval.quality_rubric.DIMENSIONS``), each scored 1-5.
+RUBRIC_DIMENSION_LABELS = {
+    "quantified_evidence": "Quantified evidence",
+    "clarity": "Clarity",
+    "concision": "Concision",
+    "logical_order": "Logical order",
+}
+# Column groups of the leaderboard, in display order.
+METRIC_TIERS = {
+    "final": "Final result",
+    "truth": "Truth: NLI and guardrails",
+    "writing": "Writing: rubric v3",
+    "cost": "Cost",
+}
+# Only final-criteria metrics: rubric v1 (``judge_*``), requirement coverage, keyword coverage,
+# JD similarity, pairwise and task success are superseded and deliberately left out.
 LEADERBOARD_METRICS = (
-    MetricSpec("task_success", "Task success", "higher", "rate"),
-    MetricSpec("claim_faithfulness", "Claim faithfulness", "higher", "score"),
-    MetricSpec("unsupported_claim_rate", "Unsupported claims", "lower", "rate"),
-    MetricSpec("protected_field_violation", "Protected-field violations", "lower", "rate"),
-    MetricSpec("fabrication_bait_violation", "Fabrication bait", "lower", "rate"),
-    MetricSpec("requirement_coverage", "Requirement coverage", "higher", "score"),
-    MetricSpec("kw_after", "Keyword coverage", "higher", "score", "tier2"),
-    MetricSpec("sim_after", "JD similarity", "higher", "score", "tier2"),
-    MetricSpec("judge_overall_mean", "Rubric judge (1-5)", "higher", "scale", "tier2"),
+    MetricSpec("good_rate", "Good resumes", "higher", "rate", "final"),
+    MetricSpec("nli_pass_rate", "NLI pass rate", "higher", "rate", "truth"),
+    MetricSpec("claim_faithfulness", "Claim faithfulness", "higher", "score", "truth"),
+    MetricSpec("unsupported_claim_rate", "Unsupported claims", "lower", "rate", "truth"),
+    MetricSpec("fabrication_bait_violation", "Fabrication bait", "lower", "rate", "truth"),
+    MetricSpec("protected_field_violation", "Protected-field violations", "lower", "rate", "truth"),
+    MetricSpec("rubric_pass_rate", "Rubric pass rate", "higher", "rate", "writing"),
+    MetricSpec("rubric_overall", "Rubric v3 overall", "higher", "scale", "writing"),
+    *(
+        MetricSpec(f"rubric_{name}", label, "higher", "scale", "writing")
+        for name, label in RUBRIC_DIMENSION_LABELS.items()
+    ),
     MetricSpec("total_tokens", "Tokens / output", "lower", "number", "cost"),
     MetricSpec("historical_run_wall_seconds", "Wall time (s)", "lower", "number", "cost"),
 )
 METRIC_SPECS = {spec.key: spec for spec in LEADERBOARD_METRICS}
+# Computed here from the per-output rows and the rubric v3 records (not in ``summaries/``).
+FINAL_METRICS = (
+    "good_rate", "nli_pass_rate", "rubric_pass_rate", "rubric_overall",
+    *(f"rubric_{name}" for name in RUBRIC_DIMENSION_LABELS),
+)
 # Older records score only ``faithfulness``; it is the same claim-support ratio.
 METRIC_FALLBACKS = {
     "claim_faithfulness": "faithfulness",
@@ -399,9 +429,196 @@ METRIC_FALLBACKS = {
 }
 _SUMMARY_METRICS = tuple(
     dict.fromkeys(
-        [spec.key for spec in LEADERBOARD_METRICS] + list(METRIC_FALLBACKS.values())
+        [spec.key for spec in LEADERBOARD_METRICS if spec.key not in FINAL_METRICS]
+        + list(METRIC_FALLBACKS.values())
     )
 )
+# Verdict of one resume under the final criteria (``eval.dashboard_charts.verdict``).
+VERDICT_LABELS = {
+    "good": "good",
+    "nli_fail": "failed truth",
+    "rubric_fail": "failed writing",
+    "unscored": "unscored",
+    "rejected": "no resume",
+}
+_EPSILON = 1e-9  # the same tolerance ``eval.dashboard_charts`` applies at the gates
+
+
+# --- Final criteria: rubric v3 and good resumes -------------------------------------------------
+
+
+def _rubric_signature(root: Path) -> tuple:
+    """Modification times that change when a rubric v3 run is added, extended or re-summarised."""
+    from eval import dashboard_charts as dc
+
+    paths = []
+    for base in dc._rubric_candidates(Path(root)):
+        for run in sorted(base.glob("*")):
+            paths += [run / "identity.json", run / "summary.json",
+                      *sorted((run / "records").glob("*"))]
+    return tuple((str(path), _mtime(path)) for path in paths)
+
+
+def rubric_scores(bundle: EvaluationBundle) -> tuple[dict, dict]:
+    """Rubric v3 records by ``(workflow, pair_id)`` and the run's metadata for this bundle.
+
+    The run is chosen and read by ``eval.dashboard_charts.load_rubric`` (the rubric v3 run with
+    the most records for the dataset); ``meta["gates"]`` holds the truth and writing gates
+    (``{"nli": 0.8, "rubric": 4.0}`` unless the run's summary says otherwise). Reading the
+    records takes a moment, so they are kept on the bundle until the run's files change.
+    """
+    from eval import dashboard_charts as dc
+
+    signature = _rubric_signature(bundle.root)
+    cached = bundle.derived.get("rubric")
+    if cached and cached[0] == signature:
+        return cached[1], cached[2]
+    records, meta = dc.load_rubric(bundle.root)
+    bundle.derived["rubric"] = (signature, records, meta)
+    return records, meta
+
+
+def final_gates(bundle: EvaluationBundle) -> dict[str, float]:
+    """``{"nli": truth gate, "rubric": writing gate}`` used for this bundle."""
+    return dict(rubric_scores(bundle)[1]["gates"])
+
+
+def faithfulness_value(row: dict) -> float | None:
+    """Claim faithfulness of one output (older records carry only ``faithfulness``)."""
+    value = row.get("claim_faithfulness")
+    return row.get("faithfulness") if value is None else value
+
+
+def _rubric_value(record: dict | None, metric: str = "overall"):
+    """Rubric v3 ``overall`` or one dimension score of a record; None when not scored."""
+    if not record:
+        return None
+    value = record.get("overall") if metric == "overall" else (record.get("scores") or {}).get(metric)
+    return None if value is None or isinstance(value, bool) else float(value)
+
+
+def resume_verdict(row: dict, record: dict | None, gates: dict) -> str:
+    """good / nli_fail / rubric_fail / unscored / rejected, as ``eval.dashboard_charts.verdict``."""
+    from eval import dashboard_charts as dc
+
+    return dc.verdict({**row, "claim_faithfulness": faithfulness_value(row)}, record, gates)
+
+
+def _passes(value, gate) -> bool:
+    return value >= gate - _EPSILON
+
+
+def good_resume_counts(rows, records: dict, gates: dict) -> dict[str, Any]:
+    """Verdict counts for one workflow's outputs (one row per pair).
+
+    As in the final count, an unscored resume is not good. ``good_scored`` is False, and the
+    good-resume rate unknown rather than 0, when no rubric v3 run exists or when resumes are
+    waiting on a gate (unscored) while none of the workflow's resumes got a writing-gate verdict.
+    """
+    rows = list(rows)
+    verdicts = {kind: 0 for kind in VERDICT_LABELS}
+    for row in rows:
+        record = records.get((row.get("workflow", ""), row.get("pair_id", "")))
+        verdicts[resume_verdict(row, record, gates)] += 1
+    decided = verdicts["good"] + verdicts["rubric_fail"]
+    return {
+        "attempts": len(rows),
+        "verdicts": verdicts,
+        "good": verdicts["good"],
+        "good_scored": bool(records and rows) and not (verdicts["unscored"] and not decided),
+    }
+
+
+def _summary_row(metric, eligible, values=None, numerator=None, scored=None):
+    """A row shaped like ``eval.reporting.summarise`` output: a rate (``numerator``/``scored``,
+    Wilson interval) or a mean of ``values`` (bootstrap interval with the report's seed)."""
+    from eval.reporting import _bootstrap_ci, _wilson_ci
+
+    if numerator is not None:
+        mean = numerator / scored if scored else None
+        low, high = _wilson_ci(numerator, scored)
+    else:
+        values = [float(value) for value in values or () if value is not None]
+        scored = len(values)
+        mean = sum(values) / scored if scored else None
+        low, high = _bootstrap_ci(
+            values, config.REPORT_BOOTSTRAP_SEED, config.REPORT_BOOTSTRAP_SAMPLES
+        )
+    return {
+        "metric": metric,
+        "eligible": eligible,
+        "scored": scored,
+        "unscored": eligible - scored,
+        "numerator": numerator if scored else None,
+        "denominator": scored if numerator is not None else None,
+        "mean": round(mean, 6) if mean is not None else None,
+        "ci_95_low": round(low, 6) if low is not None else None,
+        "ci_95_high": round(high, 6) if high is not None else None,
+    }
+
+
+def final_summaries(
+    bundle: EvaluationBundle, category: str | None = None, fit_level: str | None = None,
+) -> dict[str, dict[str, dict]]:
+    """``{workflow: {metric: summary row}}`` for ``FINAL_METRICS``, from one output per pair.
+
+    * ``good_rate``: good resumes / attempts (a failed generation or an unscored resume is not
+      good), with the verdict counts in ``verdicts``; unknown (``mean`` None) when
+      ``good_resume_counts`` cannot decide it (no rubric v3 run, or no writing-gate verdict).
+    * ``nli_pass_rate``: claim faithfulness >= the truth gate, over outputs NLI scored.
+    * ``rubric_pass_rate``: rubric v3 overall >= the writing gate, over outputs the judge scored.
+    * ``rubric_overall`` and ``rubric_<dimension>``: means over outputs the judge scored.
+
+    Failed generations are not eligible for the per-resume measures; unscored outputs are
+    counted as unscored, never as 0. Empty when the bundle has no per-output rows.
+    """
+    records, meta = rubric_scores(bundle)
+    gates = meta["gates"]
+    primary = _primary_rows(
+        row for row in bundle.rows
+        if (not category or row.get("category") == category)
+        and (not fit_level or row.get("fit_level") == fit_level)
+    )
+    grouped: dict[str, list[dict]] = {}
+    for (workflow, _), row in primary.items():
+        if workflow:
+            grouped.setdefault(workflow, []).append(row)
+    output = {}
+    for workflow, rows in grouped.items():
+        counts = good_resume_counts(rows, records, gates)
+        done = [row for row in rows if not row.get("error")]
+        judged = [records.get((workflow, row.get("pair_id", ""))) for row in done]
+        faith = [faithfulness_value(row) for row in done]
+        faith = [value for value in faith if value is not None]
+        overall = [_rubric_value(record) for record in judged]
+        overall = [value for value in overall if value is not None]
+        attempts = counts["attempts"]
+        good = (
+            _summary_row("good_rate", attempts, numerator=counts["good"], scored=attempts)
+            if counts["good_scored"]
+            else _summary_row("good_rate", attempts, values=[])
+        )
+        good["verdicts"] = counts["verdicts"]
+        metrics = {
+            "good_rate": good,
+            "nli_pass_rate": _summary_row(
+                "nli_pass_rate", len(done),
+                numerator=sum(_passes(value, gates["nli"]) for value in faith), scored=len(faith),
+            ),
+            "rubric_pass_rate": _summary_row(
+                "rubric_pass_rate", len(done),
+                numerator=sum(_passes(value, gates["rubric"]) for value in overall),
+                scored=len(overall),
+            ),
+            "rubric_overall": _summary_row("rubric_overall", len(done), values=overall),
+        }
+        for name in RUBRIC_DIMENSION_LABELS:
+            metrics[f"rubric_{name}"] = _summary_row(
+                f"rubric_{name}", len(done),
+                values=[_rubric_value(record, name) for record in judged],
+            )
+        output[workflow] = metrics
+    return output
 
 
 def filter_options(bundle: EvaluationBundle) -> tuple[list[str], list[str]]:
@@ -434,10 +651,28 @@ def metric_summaries(
 
     Uses ``summaries/overall|by_category|by_fit_level.json`` when they cover the filter; both
     filters at once (or missing summaries) are rebuilt from ``evaluations.jsonl`` with
-    ``eval.reporting.summarise`` so eligible/scored/unscored keep their meaning.
+    ``eval.reporting.summarise`` so eligible/scored/unscored keep their meaning. The final
+    criteria (``FINAL_METRICS``) are added from ``final_summaries``. Kept on the bundle per
+    filter until the rubric v3 records are reloaded.
     """
     category = category or None
     fit_level = fit_level or None
+    records, meta = rubric_scores(bundle)
+    key = ("summaries", category, fit_level)
+    cached = bundle.derived.get(key)
+    if cached and cached[0] is records:
+        return cached[1]
+    summaries, source = _saved_summaries(bundle, category, fit_level)
+    final = final_summaries(bundle, category, fit_level)
+    for workflow, metrics in final.items():
+        summaries.setdefault(workflow, {}).update(metrics)
+    if records and final:
+        source += f" + rubric v3 run {Path(meta['path']).name}"
+    bundle.derived[key] = (records, (summaries, source))
+    return summaries, source
+
+
+def _saved_summaries(bundle, category, fit_level):
     name, filters = "overall", {}
     if category and not fit_level:
         name, filters = "by_category", {"category": category}
@@ -470,7 +705,7 @@ def metric_cell(summary: dict[str, dict], metric: str) -> dict[str, Any]:
             row = summary[fallback]
     if not row:
         return {"value": None, "eligible": 0, "scored": 0, "unscored": 0, "status": "missing",
-                "ci": (None, None), "numerator": None}
+                "ci": (None, None), "numerator": None, "verdicts": None}
     value = row.get("mean")
     scored = int(row.get("scored") or 0)
     status = "scored" if scored and value is not None else (
@@ -484,6 +719,7 @@ def metric_cell(summary: dict[str, dict], metric: str) -> dict[str, Any]:
         "status": status,
         "ci": (row.get("ci_95_low"), row.get("ci_95_high")),
         "numerator": row.get("numerator"),
+        "verdicts": row.get("verdicts"),  # good_rate only: counts per verdict
     }
 
 
@@ -518,9 +754,9 @@ def tradeoff_points(board: list[dict], x_metric: str, y_metric: str) -> list[dic
 
 
 HEADLINE_METRICS = (
-    ("task_success", "Highest task success"),
+    ("good_rate", "Most good resumes"),
     ("claim_faithfulness", "Most faithful"),
-    ("requirement_coverage", "Best requirement coverage"),
+    ("rubric_overall", "Best written (rubric v3)"),
     ("total_tokens", "Cheapest per output"),
 )
 
@@ -566,16 +802,23 @@ def _mean(values):
 
 
 def workflow_profiles(bundle: EvaluationBundle) -> dict[str, dict[str, Any]]:
-    """Measured averages per workflow from the saved per-output rows."""
+    """Measured averages per workflow from the saved per-output rows, plus its good resumes.
+
+    ``good``/``attempts`` count one output per pair under the final criteria; ``good_scored`` is
+    False when ``good_resume_counts`` cannot decide the rate.
+    """
     grouped: dict[str, list[dict]] = {}
     for row in bundle.rows:
         grouped.setdefault(row.get("workflow", ""), []).append(row)
+    records, meta = rubric_scores(bundle)
+    primary: dict[str, list[dict]] = {}
+    for (workflow, _), row in _primary_rows(bundle.rows).items():
+        primary.setdefault(workflow, []).append(row)
     profiles = {}
     for workflow, rows in grouped.items():
         if not workflow:
             continue
-        task = [row.get("task_success") for row in rows]
-        task_scored = [value for value in task if value is not None]
+        good = good_resume_counts(primary.get(workflow, []), records, meta["gates"])
         tokens = [
             row.get("total_tokens")
             if row.get("total_tokens") is not None
@@ -596,66 +839,13 @@ def workflow_profiles(bundle: EvaluationBundle) -> dict[str, dict[str, Any]]:
                 else row.get("seconds")
                 for row in rows
             ),
-            "task_success": sum(bool(value) for value in task_scored),
-            "task_scored": len(task_scored),
+            "good": good["good"],
+            "attempts": good["attempts"],
+            "good_scored": good["good_scored"],
+            "verdicts": good["verdicts"],
             "models": sorted({row.get("model") for row in rows if row.get("model")}),
         }
     return profiles
-
-
-# --- Pairwise ----------------------------------------------------------------------------------
-
-
-def _decode(value):
-    if isinstance(value, str) and value[:1] in "{[":
-        try:
-            return json.loads(value)
-        except json.JSONDecodeError:
-            return value
-    return value
-
-
-def pairwise_table(bundle: EvaluationBundle, baseline: str = BASELINE) -> list[dict[str, Any]]:
-    """``summaries/pairwise.json`` rows against ``baseline`` (rebuilt from the index if absent)."""
-    table = bundle.summaries.get("pairwise")
-    if not table and bundle.pairwise_rows:
-        if "pairwise" not in bundle.derived:
-            from eval.reporting import pairwise_summary
-
-            bundle.derived["pairwise"] = pairwise_summary(
-                bundle.pairwise_rows, ("baseline_workflow", "challenger_workflow")
-            )
-        table = bundle.derived["pairwise"]
-    rows = [
-        {key: _decode(value) for key, value in row.items()}
-        for row in (table or [])
-        if row.get("baseline_workflow", baseline) == baseline
-    ]
-    order = {name: index for index, name in enumerate(order_workflows(
-        row.get("challenger_workflow", "") for row in rows
-    ))}
-    return sorted(rows, key=lambda row: order.get(row.get("challenger_workflow", ""), 99))
-
-
-PAIRWISE_OUTCOME_LABELS = {
-    "challenger": "win",
-    "baseline": "loss",
-    "tie": "tie",
-}
-
-
-def pairwise_outcome(record: dict[str, Any] | None) -> str:
-    """Per-pair result for the challenger: win / loss / tie / inconsistent / unscored / unavailable."""
-    if not record:
-        return "not judged"
-    status = record.get("status")
-    if status == config.PAIRWISE_FAILURE_GENERATION:
-        return "unavailable"
-    if status != "scored":
-        return "unscored"
-    if not record.get("position_swap_consistent"):
-        return "inconsistent"
-    return PAIRWISE_OUTCOME_LABELS.get(record.get("consensus_winner"), "unscored")
 
 
 # --- Robustness --------------------------------------------------------------------------------
@@ -744,16 +934,14 @@ def robustness_family_panels(bundle: EvaluationBundle) -> list[dict[str, Any]]:
     return panels
 
 
+# Per-variant deltas offered in the robustness view: the truth measures of the final criteria.
+# ``eval.reporting.robustness_delta_table`` also writes superseded metrics (task success,
+# requirement coverage, keyword coverage, JD similarity, rubric v1); they are not shown.
 DELTA_METRIC_LABELS = {
     "faithfulness": "Claim faithfulness",
     "unsupported_claim_rate": "Unsupported claims",
-    "task_success": "Task success",
-    "requirement_coverage": "Requirement coverage",
     "protected_field_violation": "Protected-field violations",
     "fabrication_bait_violation": "Fabrication bait",
-    "kw_after": "Keyword coverage",
-    "sim_after": "JD similarity",
-    "judge_overall_mean": "Rubric judge",
 }
 
 
@@ -853,41 +1041,43 @@ def _output_text(row: dict) -> str:
 
 
 def pair_view(bundle: EvaluationBundle, pair_id: str) -> dict[str, Any] | None:
-    """Original inputs plus each workflow's output and key scores for one pair."""
+    """Original inputs plus each workflow's output, its final-criteria scores and verdict.
+
+    Per output: claim faithfulness and whether it passes the truth gate (``nli_pass``), the
+    rubric v3 overall and dimension scores and whether the overall passes the writing gate
+    (``rubric_pass``), and the ``verdict`` (``VERDICT_LABELS``). Unscored values stay None.
+    """
     primary = _primary_rows(row for row in bundle.rows if row.get("pair_id") == pair_id)
     if not primary:
         return None
-    pairwise = {}
-    for record in bundle.pairwise_rows:
-        if record.get("pair_id") != pair_id or record.get("baseline_workflow", BASELINE) != BASELINE:
-            continue
-        key = record.get("challenger_workflow")
-        if key not in pairwise or (record.get("repeat") or 0) < (pairwise[key].get("repeat") or 0):
-            pairwise[key] = record
+    records, meta = rubric_scores(bundle)
+    gates = meta["gates"]
     first = next(iter(primary.values()))
     resume, jd = _source_texts(pair_id, first)
     outputs = {}
     for (workflow, _), row in primary.items():
-        faithfulness = row.get("claim_faithfulness")
-        if faithfulness is None:
-            faithfulness = row.get("faithfulness")
+        record = records.get((workflow, pair_id))
+        failed = bool(row.get("error"))
+        faithfulness = None if failed else faithfulness_value(row)
+        overall = None if failed else _rubric_value(record)
         outputs[workflow] = {
             "resume_md": _output_text(row),
             "error": row.get("error"),
             "claim_faithfulness": faithfulness,
+            "nli_pass": None if faithfulness is None else _passes(faithfulness, gates["nli"]),
             "unsupported_claim_rate": row.get("unsupported_claim_rate"),
-            "requirement_coverage": row.get("requirement_coverage"),
-            "requirement_coverage_status": row.get("requirement_coverage_status"),
             "protected_field_violation_count": row.get("protected_field_violation_count"),
             "fabrication_bait_match_count": row.get("fabrication_bait_match_count"),
-            "task_success": row.get("task_success"),
+            "rubric_overall": overall,
+            "rubric_pass": None if overall is None else _passes(overall, gates["rubric"]),
+            "rubric_scores": {
+                name: None if failed else _rubric_value(record, name)
+                for name in RUBRIC_DIMENSION_LABELS
+            },
+            "rubric_status": (record or {}).get("status"),
+            "verdict": resume_verdict(row, record, gates),
             "total_tokens": row.get("total_tokens"),
             "wall_seconds": row.get("wall_seconds", row.get("seconds")),
-            "pairwise": (
-                "baseline" if workflow == BASELINE
-                else pairwise_outcome(pairwise.get(workflow)) if bundle.pairwise_rows
-                else None
-            ),
         }
     return {
         "pair_id": pair_id,
@@ -897,5 +1087,7 @@ def pair_view(bundle: EvaluationBundle, pair_id: str) -> dict[str, Any] | None:
         "seniority": first.get("seniority", ""),
         "original_resume": resume,
         "job_description": jd,
+        "gates": dict(gates),
+        "has_rubric": bool(records),
         "outputs": {name: outputs[name] for name in order_workflows(outputs)},
     }

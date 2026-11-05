@@ -1,5 +1,10 @@
 """The read-only "Results" tab: explains W1-W7 and shows saved evaluation results.
 
+Results follow the final criteria: a resume is good when its NLI claim faithfulness reaches the
+truth gate and its rubric v3 overall score reaches the writing gate, and a workflow's result is
+good resumes out of every attempt. Superseded measures (rubric v1, requirement coverage, keyword
+coverage, JD similarity, pairwise against W2, task success) are not shown.
+
 Layout only; data comes from ``eval.dashboard`` and charts from ``ui.charts``. No handler here
 generates, evaluates or calls a model. ``render_*`` functions are plain and testable; the
 ``build_results_tab`` function wires them into Gradio components inside an existing Blocks.
@@ -13,11 +18,14 @@ import gradio as gr
 
 import config
 from eval import dashboard as dd
+from eval import dashboard_charts as dc
 from ui import charts
 
 ALL = ""
 COST_CHOICES = [("Tokens per output", "total_tokens"), ("Wall time per output", "historical_run_wall_seconds")]
-QUALITY_CHOICES = [("Claim faithfulness", "claim_faithfulness"), ("Rubric judge", "judge_overall_mean")]
+QUALITY_CHOICES = [("Good-resume rate", "good_rate"), ("Claim faithfulness", "claim_faithfulness"),
+                   ("Rubric v3 overall", "rubric_overall")]
+DEFAULT_QUALITY = "good_rate"
 SLOT_WORKFLOWS = dd.WORKFLOW_ORDER
 # Chart components: no default prose styling, plus the hover/focus tooltip layer.
 CHART_HTML = {"apply_default_css": False, "js_on_load": charts.TOOLTIP_JS}
@@ -63,13 +71,36 @@ def render_status(path) -> str:
     dataset = root.parent.parent.name
     workflows = ", ".join(dd.short_name(name) for name in bundle.workflows) or "none"
     summaries = "summaries ✓" if bundle.summaries else "no summaries (rebuilt in memory)"
+    records, meta = dd.rubric_scores(bundle)
+    rubric = (
+        f"<b>rubric v3</b> ✓ <code>{escape(Path(meta['path']).name)}</code>"
+        if records else "rubric v3 — not found"
+    )
     return charts.wrap(
         '<div class="status-line">'
         f"Evaluator <code>{escape(root.name)}</code> · generation scope "
         f"<code>{escape(root.parent.name)}</code> · dataset <code>{escape(dataset[:12])}</code>"
         f"<br><b>{len(bundle.rows)}</b> scored outputs · workflows: <b>{escape(workflows)}</b>"
-        f" · {mark('score')} · {mark('pairwise')} · {mark('robustness')} · {summaries}"
+        f" · {mark('score')} · {rubric} · {mark('robustness')} · {summaries}"
         "</div>"
+    )
+
+
+def _criteria(gates) -> str:
+    """The final criteria in one sentence, with this run's gates."""
+    return (
+        f"A resume is <b>good</b> when its NLI claim faithfulness against the original resume is "
+        f"at least {gates['nli']:.2f} (truth gate) and its rubric v3 overall score is at least "
+        f"{gates['rubric']:g} out of 5 (writing gate). A workflow's result is its good resumes out "
+        "of every attempt; a failed generation is not good."
+    )
+
+
+def _verdict_text(verdicts) -> str:
+    """``"94 good · 1 failed truth · 5 failed writing"`` (zero counts left out)."""
+    return " · ".join(
+        f"{verdicts[kind]} {label}" for kind, label in dd.VERDICT_LABELS.items()
+        if verdicts.get(kind)
     )
 
 
@@ -97,9 +128,8 @@ def render_explainer(path, models=None) -> str:
             model_note = (
                 f" · measured run used <code>{escape(', '.join(measured))}</code>" if measured else ""
             )
-            task = (
-                f"{profile['task_success']}/{profile['task_scored']}"
-                if profile["task_scored"] else "unscored"
+            good = (
+                f"{profile['good']}/{profile['attempts']}" if profile["good_scored"] else "unscored"
             )
             stats = (
                 '<div class="stats">'
@@ -110,7 +140,7 @@ def render_explainer(path, models=None) -> str:
                     else f"{charts.fmt_value(profile['wall_seconds'], 'number')}s",
                     "wall time",
                 )
-                + _stat(task, "task success")
+                + _stat(good, "good resumes")
                 + "</div>"
                 + f'<div class="model">Averages over {profile["outputs"]} saved outputs'
                 + (f", {profile['generation_failures']} failed" if profile["generation_failures"] else "")
@@ -163,7 +193,11 @@ def _cell_html(spec, cell, best, workflow=""):
     if cell["scored"] < cell["eligible"]:
         count += f" of {cell['eligible']}"
     text = f"{charts.fmt_value(cell['value'], spec.kind)} · {spec.label} | {dd.display_name(workflow)}"
-    text += f" | {cell['scored']} scored of {cell['eligible']} eligible"
+    if cell.get("verdicts"):
+        text += f" | {cell['numerator']} good of {cell['scored']} attempts"
+        text += f" | {_verdict_text(cell['verdicts'])}"
+    else:
+        text += f" | {cell['scored']} scored of {cell['eligible']} eligible"
     if ci:
         text += f" | {ci}"
     return (
@@ -210,10 +244,14 @@ def _kpi_tiles(board) -> str:
     return f'<div class="grid4">{"".join(tiles)}</div>'
 
 
+RUBRIC_DIMENSION_KEYS = {f"rubric_{name}" for name in dd.RUBRIC_DIMENSION_LABELS}
+
+
 def _visible_metrics(board):
+    """Every leaderboard metric; the four rubric dimensions only when some output was judged."""
     return [
         spec for spec in dd.LEADERBOARD_METRICS
-        if spec.key != "judge_overall_mean" or dd.metric_is_present(board, spec.key)
+        if spec.key not in RUBRIC_DIMENSION_KEYS or dd.metric_is_present(board, spec.key)
     ]
 
 
@@ -225,6 +263,42 @@ def _best(board, spec):
     return max(values) if spec.better == "higher" else min(values)
 
 
+def _header_note(spec, gates) -> str:
+    better = "↑ better" if spec.better == "higher" else "↓ better"
+    if spec.key == "nli_pass_rate":
+        return f"≥ {gates['nli']:.2f} · {better}"
+    if spec.key == "rubric_pass_rate":
+        return f"≥ {gates['rubric']:g} · {better}"
+    if spec.kind == "scale":
+        return f"1–5 · {better}"
+    return better
+
+
+def _bars(board, metric):
+    spec = dd.METRIC_SPECS[metric]
+    items = []
+    for row in board:
+        cell = row["cells"][metric]
+        if cell["value"] is None:
+            label = f"unscored (0/{cell['eligible']})"
+        elif spec.kind == "rate" and cell["numerator"] is not None:
+            label = f"{charts.fmt_value(cell['value'], 'rate')} · {cell['numerator']}/{cell['scored']}"
+        else:
+            label = f"{charts.fmt_value(cell['value'], spec.kind)} · n={cell['scored']}"
+        item = {"workflow": row["workflow"], "value": cell["value"], "label": label}
+        if cell.get("verdicts") and cell["value"] is not None:
+            item["tip"] = (
+                f"{label} | {dd.display_name(row['workflow'])} | {_verdict_text(cell['verdicts'])}"
+            )
+        elif cell["value"] is not None and cell["scored"] < cell["eligible"]:
+            item["tip"] = (
+                f"{label} | {dd.display_name(row['workflow'])} | {cell['scored']} scored of "
+                f"{cell['eligible']} eligible"
+            )
+        items.append(item)
+    return charts.bar_chart(items, kind=spec.kind)
+
+
 def render_leaderboard(path, category=ALL, fit_level=ALL) -> str:
     bundle = _bundle(path)
     if bundle is None:
@@ -232,39 +306,42 @@ def render_leaderboard(path, category=ALL, fit_level=ALL) -> str:
     board, source = dd.leaderboard(bundle, category or None, fit_level or None)
     if not board:
         return charts.empty("No scored outputs match this filter.")
+    gates = dd.final_gates(bundle)
     specs = _visible_metrics(board)
-
-    def bars(metric):
-        spec = dd.METRIC_SPECS[metric]
-        items = []
-        for row in board:
-            cell = row["cells"][metric]
-            if cell["value"] is None:
-                label = f"unscored (0/{cell['eligible']})"
-            elif spec.kind == "rate" and cell["numerator"] is not None:
-                label = f"{charts.fmt_value(cell['value'], 'rate')} · {cell['numerator']}/{cell['scored']}"
-            else:
-                label = f"{charts.fmt_value(cell['value'], spec.kind)} · n={cell['scored']}"
-            items.append({"workflow": row["workflow"], "value": cell["value"], "label": label})
-        return charts.bar_chart(items, kind=spec.kind, width=480)
-
     headline = (
-        _kpi_tiles(board)
-        + '<div class="gap"></div><div class="grid2">'
+        f'<p class="note" style="margin:0 0 .7rem">{_criteria(gates)}</p>'
+        + _kpi_tiles(board)
+        + '<div class="gap"></div><div class="grid3">'
         + charts.panel(
-            "Task success", bars("task_success"),
-            "Finished, all four sections, 200-650 words, claim faithfulness ≥ "
-            f"{config.TASK_FAITHFULNESS_THRESHOLD:.0%}, no protected-field or bait violation.",
+            "Good resumes", _bars(board, "good_rate"),
+            "Pass both gates, out of every attempt. Hover a bar for why the rest are not good.",
         )
         + charts.panel(
-            "Claim faithfulness", bars("claim_faithfulness"),
-            "Share of output claims the NLI referee finds supported by the original resume.",
+            "Truth gate", _bars(board, "nli_pass_rate"),
+            f"Claim faithfulness ≥ {gates['nli']:.2f}: share of the output's claims the NLI "
+            "referee finds supported by the original resume. Over resumes NLI scored.",
+        )
+        + charts.panel(
+            "Writing gate", _bars(board, "rubric_pass_rate"),
+            f"Rubric v3 overall ≥ {gates['rubric']:g}: mean of quantified evidence, clarity, "
+            "concision and logical order (1–5). Over resumes the judge scored.",
         )
         + "</div>"
     )
+    groups: list[list] = []
+    for spec in specs:
+        if groups and groups[-1][0] == spec.tier:
+            groups[-1][1] += 1
+        else:
+            groups.append([spec.tier, 1])
+    group_row = '<tr><th rowspan="2">Workflow</th>' + "".join(
+        f'<th colspan="{span}" style="text-align:center;color:var(--viz-ink-2);font-weight:600">'
+        f"{escape(dd.METRIC_TIERS.get(tier, tier))}</th>"
+        for tier, span in groups
+    ) + "</tr>"
     header = "".join(
-        f"<th>{escape(spec.label)}<br><span class=\"n\">"
-        f"{'↑ better' if spec.better == 'higher' else '↓ better'}</span></th>"
+        f"<th>{escape(spec.label)}<br><span class=\"n\">{escape(_header_note(spec, gates))}"
+        "</span></th>"
         for spec in specs
     )
     best = {spec.key: _best(board, spec) for spec in specs}
@@ -283,29 +360,39 @@ def render_leaderboard(path, category=ALL, fit_level=ALL) -> str:
     filters = [value for value in (category, fit_level) if value]
     scope = " · ".join(value.replace("_", " ") for value in filters) or "all pairs"
     note = (
-        f"Scope: {escape(scope)}. Each cell shows the mean (or rate) and how many outputs were "
-        "scored; outputs a metric could not score are counted as unscored, never as 0. Bold = "
-        "best among scored workflows. Hover a value for its 95% CI. Source: "
+        f"Scope: {escape(scope)}. Good resumes count every attempt, so a failed generation lowers "
+        "the rate. Every other cell shows the mean (or rate) over the outputs the metric could "
+        "score and how many that was; outputs a metric could not score are counted as unscored, "
+        "never as 0. Bold = best among scored workflows. Hover a value for its 95% CI. Source: "
         f"<code>{escape(source)}</code>."
     )
     table = charts.panel(
-        "Leaderboard", f'<div class="tblwrap"><table class="tbl"><thead><tr><th>Workflow</th>'
+        "Leaderboard", f'<div class="tblwrap"><table class="tbl"><thead>{group_row}<tr>'
         f"{header}</tr></thead><tbody>{''.join(body)}</tbody></table></div>",
         note=note,
     )
     return charts.wrap(headline + '<div class="gap"></div>' + table)
 
 
+def quality_metric(board, requested=DEFAULT_QUALITY) -> str:
+    """The requested quality axis, or claim faithfulness when nothing is scored on it."""
+    requested = requested if requested in dd.METRIC_SPECS else DEFAULT_QUALITY
+    return requested if dd.metric_is_present(board, requested) else "claim_faithfulness"
+
+
+def _clamp(spec):
+    return (1, 5) if spec.kind == "scale" else (0, 1)
+
+
 def render_tradeoffs(path, category=ALL, fit_level=ALL, cost="total_tokens",
-                     quality="claim_faithfulness") -> tuple[str, str]:
+                     quality=DEFAULT_QUALITY) -> tuple[str, str]:
     bundle = _bundle(path)
     if bundle is None:
         return charts.empty(NO_RUN), ""
     board, _ = dd.leaderboard(bundle, category or None, fit_level or None)
     workflows = [row["workflow"] for row in board]
-    cost_spec, quality_spec = dd.METRIC_SPECS[cost], dd.METRIC_SPECS[quality]
-    if not dd.metric_is_present(board, quality):
-        quality_spec = dd.METRIC_SPECS["claim_faithfulness"]
+    cost_spec = dd.METRIC_SPECS[cost]
+    quality_spec = dd.METRIC_SPECS[quality_metric(board, quality)]
     cost_points = dd.tradeoff_points(board, cost_spec.key, quality_spec.key)
     missing = [dd.short_name(w) for w in workflows if w not in {p["workflow"] for p in cost_points}]
     first = charts.panel(
@@ -313,22 +400,26 @@ def render_tradeoffs(path, category=ALL, fit_level=ALL, cost="total_tokens",
         charts.scatter_chart(
             cost_points, x_label=cost_spec.label, y_label=quality_spec.label,
             x_kind="number", y_kind=quality_spec.kind, x_better="lower", x_clamp=(0, None),
-            y_clamp=(0, 1) if quality_spec.kind != "scale" else (1, 5),
+            y_clamp=_clamp(quality_spec),
         ),
-        "Top-left is best: more faithful output for less compute. Dashed lines mark W2.",
+        f"Top-left is best: a higher {quality_spec.label.lower()} for less compute. Dashed lines "
+        "mark W2.",
         note=("Not scored on both: " + ", ".join(missing)) if missing else "",
     )
-    coverage_points = dd.tradeoff_points(board, "requirement_coverage", "claim_faithfulness")
+    truth, writing = dd.METRIC_SPECS["claim_faithfulness"], dd.METRIC_SPECS["rubric_overall"]
+    gate_points = dd.tradeoff_points(board, truth.key, writing.key)
     missing = [
-        dd.short_name(w) for w in workflows if w not in {p["workflow"] for p in coverage_points}
+        dd.short_name(w) for w in workflows if w not in {p["workflow"] for p in gate_points}
     ]
     second = charts.panel(
-        "Faithfulness vs requirement coverage",
+        "Truth vs writing: claim faithfulness and rubric v3",
         charts.scatter_chart(
-            coverage_points, x_label="Requirement coverage", y_label="Claim faithfulness",
-            x_kind="score", y_kind="score", x_better="higher", x_clamp=(0, 1), y_clamp=(0, 1),
+            gate_points, x_label=truth.label, y_label=writing.label, x_kind=truth.kind,
+            y_kind=writing.kind, x_better="higher", x_clamp=_clamp(truth),
+            y_clamp=_clamp(writing),
         ),
-        "Top-right is best: covers the JD's supportable requirements without unsupported claims.",
+        "Top-right is best: faithful to the original resume and well written. Means over each "
+        "workflow's resumes; a good resume must pass both gates on its own.",
         note=("Not scored on both: " + ", ".join(missing)) if missing else "",
     )
     return charts.wrap(charts.legend(workflows) + first), charts.wrap(
@@ -336,54 +427,11 @@ def render_tradeoffs(path, category=ALL, fit_level=ALL, cost="total_tokens",
     )
 
 
-# --- 3. pairwise and robustness ----------------------------------------------------------------
+# --- 3. robustness ----------------------------------------------------------------------------
 
 
 def _rate(value):
     return "–" if value is None else f"{float(value) * 100:.0f}%"
-
-
-def render_pairwise(path) -> str:
-    bundle = _bundle(path)
-    if bundle is None:
-        return charts.empty(NO_RUN)
-    rows = dd.pairwise_table(bundle)
-    if not rows:
-        return charts.empty("Pairwise comparison not run for this evaluation.")
-    chart = charts.pairwise_legend() + charts.pairwise_chart(rows)
-    table_rows = []
-    for row in rows:
-        table_rows.append(
-            "<tr>"
-            f"<td>{charts._wf_label(row.get('challenger_workflow', ''))}</td>"
-            f"<td>{row.get('challenger_wins', 0)}</td><td>{row.get('ties', 0)}</td>"
-            f"<td>{row.get('inconsistent', 0)}</td><td>{row.get('baseline_wins', 0)}</td>"
-            f"<td>{_rate(row.get('strict_win_rate'))}</td>"
-            f"<td>{_rate(row.get('position_swap_consistency'))}"
-            f"<span class=\"n\">{row.get('consistent', 0)}/{row.get('scored', 0)}</span></td>"
-            f"<td>{row.get('scored', 0)}<span class=\"n\">of {row.get('eligible', 0)} eligible"
-            f"</span></td><td>{row.get('unscored', 0)}"
-            f"<span class=\"n\">{row.get('failed', 0)} failed · {row.get('invalid', 0)} invalid"
-            f"</span></td><td>{row.get('generation_unavailable', 0)}</td>"
-            "</tr>"
-        )
-    table = (
-        '<div class="tblwrap"><table class="tbl"><thead><tr><th>Challenger</th><th>Wins</th>'
-        "<th>Ties</th><th>Order-dependent</th><th>W2 wins</th><th>Strict win rate</th>"
-        "<th>Swap consistency</th><th>Scored</th><th>Unscored</th><th>Unavailable</th>"
-        f"</tr></thead><tbody>{''.join(table_rows)}</tbody></table></div>"
-    )
-    note = (
-        "Each pair is judged twice with the two resumes in swapped positions. A win or loss "
-        "counts only when both orders agree; otherwise it is order-dependent. Rates use scored "
-        "pairs as the denominator; unavailable = a missing or failed generation on either side."
-    )
-    return charts.wrap(
-        charts.panel("Head-to-head against the W2 baseline", chart,
-                     "How often a judge prefers each challenger's resume over W2's for the same pair.")
-        + '<div class="gap"></div>'
-        + charts.panel("Pairwise counts", table, note=note)
-    )
 
 
 def render_robustness(path) -> str:
@@ -511,24 +559,43 @@ def render_deltas(path, metric="faithfulness") -> str:
 
 # --- 4. output viewer --------------------------------------------------------------------------
 
+# Verdict chip per resume: text (with a mark, so state never rests on colour) and chip state.
+VERDICT_CHIPS = {
+    "good": ("✓ good resume", "good"),
+    "nli_fail": ("✗ failed truth", "bad"),
+    "rubric_fail": ("✗ failed writing", "bad"),
+    "unscored": ("unscored", ""),
+    "rejected": ("✗ no resume", "bad"),
+}
 
-def _score_chips(output):
+
+def _gate_chip(name, value, passed, gate, digits):
+    """``"NLI 0.93 ✓ ≥ 0.80"``-style text and state; ``None`` value means unscored."""
+    if value is None:
+        return f"{name} unscored", ""
+    if passed:
+        return f"{name} {value:.{digits}f} ✓ ≥ {gate:.{digits}f}", "good"
+    return f"{name} {value:.{digits}f} ✗ < {gate:.{digits}f}", "bad"
+
+
+def _score_chips(output, gates=None, has_rubric=True):
+    gates = gates or dc.DEFAULT_GATES
     chips = []
-    if output["error"]:
-        return f'<div class="chips"><span class="chip bad">generation failed: {escape(str(output["error"])[:80])}</span></div>'
 
     def chip(text, state=""):
         chips.append(f'<span class="chip {state}">{escape(text)}</span>')
 
-    faith = output["claim_faithfulness"]
-    chip(f"faithfulness {faith:.2f}" if faith is not None else "faithfulness unscored")
-    coverage = output["requirement_coverage"]
-    if coverage is not None:
-        chip(f"coverage {coverage:.2f}")
-    elif output["requirement_coverage_status"] == "no_supportable_requirements":
-        chip("coverage n/a")
+    text, state = VERDICT_CHIPS.get(output.get("verdict"), ("unscored", ""))
+    chip(text, state)
+    if output["error"]:
+        chip(f"generation failed: {str(output['error'])[:80]}", "bad")
+        return f'<div class="chips">{"".join(chips)}</div>'
+    chip(*_gate_chip("NLI", output["claim_faithfulness"], output["nli_pass"], gates["nli"], 2))
+    if has_rubric:
+        chip(*_gate_chip("rubric v3", output["rubric_overall"], output["rubric_pass"],
+                         gates["rubric"], 2))
     else:
-        chip("coverage unscored")
+        chip("rubric v3 not run")
     violations = output["protected_field_violation_count"]
     if violations is not None:
         chip(f"{violations} protected-field violation{'s' if violations != 1 else ''}",
@@ -536,17 +603,18 @@ def _score_chips(output):
     bait = output["fabrication_bait_match_count"]
     if bait:
         chip(f"{bait} bait term{'s' if bait != 1 else ''}", "bad")
-    task = output["task_success"]
-    chip("task ✓" if task else ("task ✗" if task is False else "task unscored"),
-         "good" if task else ("bad" if task is False else ""))
-    pairwise = output["pairwise"]
-    if pairwise and pairwise != "baseline":
-        chip(f"vs W2: {pairwise}",
-             "good" if pairwise == "win" else ("bad" if pairwise == "loss" else ""))
-    return f'<div class="chips">{"".join(chips)}</div>'
+    html = f'<div class="chips">{"".join(chips)}</div>'
+    scores = output.get("rubric_scores") or {}
+    if any(value is not None for value in scores.values()):
+        dims = " · ".join(
+            f"{label} {'–' if scores.get(name) is None else format(scores[name], 'g')}"
+            for name, label in dd.RUBRIC_DIMENSION_LABELS.items()
+        )
+        html += f'<div class="model">Rubric v3 (1–5): {escape(dims)}</div>'
+    return html
 
 
-def output_header(workflow, output) -> str:
+def output_header(workflow, output, gates=None, has_rubric=True) -> str:
     info = dd.WORKFLOW_INFO.get(workflow, {"code": workflow, "title": ""})
     base = " base" if workflow == dd.BASELINE else ""
     tag = ' <span class="tag">baseline</span>' if workflow == dd.BASELINE else ""
@@ -559,7 +627,8 @@ def output_header(workflow, output) -> str:
         f'<div class="out-head{base}" style="--card-colour:{charts.colour_var(workflow)}">'
         f'<h4><span style="color:{charts.colour_var(workflow)}">{escape(info["code"])}</span> '
         f"{escape(info['title'])}{tag}</h4>"
-        f'<div class="model">{" · ".join(meta)}</div>{_score_chips(output)}</div>'
+        f'<div class="model">{" · ".join(meta)}</div>'
+        f"{_score_chips(output, gates, has_rubric)}</div>"
     )
 
 
@@ -577,7 +646,8 @@ def render_pair(path, pair_id, selected=None):
         body = output["resume_md"] or (
             "_No output: generation failed._" if output["error"] else "_Empty output._"
         )
-        slots[workflow] = (workflow in selected, output_header(workflow, output), body)
+        header = output_header(workflow, output, view["gates"], view["has_rubric"])
+        slots[workflow] = (workflow in selected, header, body)
     facts = [
         ("Pair", view["pair_id"]), ("Category", view["category"].replace("_", " ")),
         ("Fit", view["fit_level"]), ("Role", view["role_family"].replace("_", " ")),
@@ -589,6 +659,13 @@ def render_pair(path, pair_id, selected=None):
     info += f"<br>Outputs: {escape(available)}"
     if missing:
         info += f" · not in this evaluation: {escape(', '.join(missing))}"
+    good = [dd.short_name(name) for name, output in view["outputs"].items()
+            if output["verdict"] == "good"]
+    if view["has_rubric"]:
+        info += f" · good resumes: <b>{escape(', '.join(good) or 'none')}</b>"
+    else:
+        info += " · good resumes: unscored (no rubric v3 run found)"
+    info += f"<br>{_criteria(view['gates'])}"
     return (
         charts.wrap(f'<div class="status-line">{info}</div>'),
         view["original_resume"] or "_Original resume not available._",
@@ -607,7 +684,8 @@ def _root_choices(evaluations_dir):
 def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=None):
     """Add the Results tab inside the current ``gr.Tabs`` of ``blocks``.
 
-    ``selected_view`` opens a sub-tab first: "workflows", "leaderboard", "pairwise" or "viewer".
+    ``selected_view`` opens a sub-tab first: "workflows", "leaderboard", "robustness" or
+    "viewer".
     """
     models = _models()
 
@@ -637,14 +715,15 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
                 board = gr.HTML(**CHART_HTML)
                 with gr.Row():
                     cost_radio = gr.Radio(COST_CHOICES, value="total_tokens", label="Cost axis")
-                    quality_radio = gr.Radio(QUALITY_CHOICES, value="claim_faithfulness",
-                                             label="Quality axis",
-                                             info="Rubric judge appears only when it was run.")
+                    quality_radio = gr.Radio(
+                        QUALITY_CHOICES, value=DEFAULT_QUALITY, label="Quality axis",
+                        info="Good-resume rate and rubric v3 need a rubric v3 run; without one "
+                        "the plot shows claim faithfulness.",
+                    )
                 with gr.Row():
                     cost_plot = gr.HTML(**CHART_HTML)
-                    coverage_plot = gr.HTML(**CHART_HTML)
-            with gr.Tab("3 · Pairwise and robustness", id="pairwise"):
-                pairwise = gr.HTML(**CHART_HTML)
+                    gates_plot = gr.HTML(**CHART_HTML)
+            with gr.Tab("3 · Robustness", id="robustness"):
                 robustness = gr.HTML(**CHART_HTML)
                 delta_dd = gr.Dropdown(
                     choices=[(label, key) for key, label in dd.DELTA_METRIC_LABELS.items()],
@@ -693,8 +772,10 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
         delta_metric = "faithfulness" if "faithfulness" in delta_metrics else (
             delta_metrics[0] if delta_metrics else "faithfulness"
         )
-        quality = "claim_faithfulness"
-        cost_html, coverage_html = render_tradeoffs(path, ALL, ALL, "total_tokens", quality)
+        quality = (
+            quality_metric(dd.leaderboard(bundle)[0]) if bundle else DEFAULT_QUALITY
+        )
+        cost_html, gates_html = render_tradeoffs(path, ALL, ALL, "total_tokens", quality)
         return [
             render_status(path),
             render_explainer(path, models),
@@ -705,8 +786,7 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
             gr.update(value="total_tokens"),
             gr.update(value=quality),
             cost_html,
-            coverage_html,
-            render_pairwise(path),
+            gates_html,
             render_robustness(path),
             gr.update(
                 choices=[(dd.DELTA_METRIC_LABELS[m], m) for m in delta_metrics]
@@ -721,7 +801,7 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
 
     root_outputs = [
         status, explainer, category_dd, fit_dd, board, cost_radio, quality_radio, cost_plot,
-        coverage_plot, pairwise, robustness, delta_dd, deltas, pair_dd, workflow_pick,
+        gates_plot, robustness, delta_dd, deltas, pair_dd, workflow_pick,
         *viewer_outputs,
     ]
 
@@ -743,20 +823,20 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
     root_dd.input(on_root, root_dd, root_outputs, **quiet)
 
     def on_filter(path, category, fit_level, cost, quality):
-        cost_html, coverage_html = render_tradeoffs(path, category, fit_level, cost, quality)
-        return render_leaderboard(path, category, fit_level), cost_html, coverage_html
+        cost_html, gates_html = render_tradeoffs(path, category, fit_level, cost, quality)
+        return render_leaderboard(path, category, fit_level), cost_html, gates_html
 
     filter_inputs = [root_dd, category_dd, fit_dd, cost_radio, quality_radio]
     gr.on([category_dd.input, fit_dd.input], on_filter, filter_inputs,
-          [board, cost_plot, coverage_plot], **quiet)
+          [board, cost_plot, gates_plot], **quiet)
     gr.on([cost_radio.input, quality_radio.input], render_tradeoffs, filter_inputs,
-          [cost_plot, coverage_plot], **quiet)
+          [cost_plot, gates_plot], **quiet)
     delta_dd.input(render_deltas, [root_dd, delta_dd], deltas, **quiet)
     gr.on([pair_dd.input, workflow_pick.input], viewer, [root_dd, pair_dd, workflow_pick],
           viewer_outputs, **quiet)
 
     return {
         "root": root_dd, "refresh": refresh, "status": status, "explainer": explainer,
-        "board": board, "pairwise": pairwise, "robustness": robustness, "deltas": deltas,
+        "board": board, "robustness": robustness, "deltas": deltas,
         "pair": pair_dd, "initial": initial, "on_root": on_root, "viewer": viewer,
     }

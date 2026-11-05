@@ -4,7 +4,8 @@ Per-output rows carry the same fields ``evaluate._evaluate_output`` writes (oper
 come from ``eval.operational.evaluate_operational``); pairwise records are produced by
 ``evaluate.evaluate_pairwise_stage`` with a scripted offline judge; robustness rows follow
 ``evaluate._robustness_record`` and use ``eval.robustness`` for out-of-scope checks; summaries are
-written by ``eval.reporting.write_reports``. Nothing touches the network.
+written by ``eval.reporting.write_reports``. With ``rubric=True`` a rubric v3 run is written next to
+the root the way ``scripts/quality_rubric.py`` lays it out. Nothing touches the network.
 
     python -m tests.dashboard_fixture /tmp/demo_results   # then ARB_EVALUATIONS_DIR=... python app.py
 """
@@ -282,6 +283,54 @@ def build_pairwise(root, rows):
     )
 
 
+RUBRIC_IDENTITY = "rubric00000000v3"
+# Rubric v3 dimension scores (quantified evidence, clarity, concision, logical order) per
+# (workflow, pair index); overall is their mean. Others score (4, 3, 5, 5) = 4.25.
+RUBRIC_SCRIPT = {
+    ("w1_single_pass", 0): (3, 3, 4, 4),     # 3.5: fails the writing gate too
+    ("w4_evidence", 0): (5, 3, 5, 5),        # 4.5
+    ("w4_evidence", 1): (4, 3, 4, 4),        # 3.75: fails the writing gate
+    ("w4_evidence", 2): (5, 4, 5, 5),        # 4.75
+    ("w4_evidence", 3): (4, 4, 4, 4),        # 4.0: exactly at the gate, passes
+    ("w3_critic", 2): None,                  # judge could not score it (passes NLI: unscored)
+    ("w6_best_of_n", 2): None,               # judge could not score it (fails NLI anyway)
+}
+RUBRIC_DEFAULT = (4, 3, 5, 5)
+
+
+def build_rubric_run(root, rows, *, identity=RUBRIC_IDENTITY, gates=(0.8, 4.0)):
+    """A rubric v3 run in ``<dataset>/quality-rubric/<identity>`` next to ``root``."""
+    from eval.quality_rubric import DIMENSIONS, QUALITY_RUBRIC_VERSION
+
+    run = Path(root).parent.parent / "quality-rubric" / identity
+    (run / "records").mkdir(parents=True, exist_ok=True)
+    (run / "identity.json").write_text(json.dumps({
+        "version": QUALITY_RUBRIC_VERSION, "provider": "fixture", "model": "fixture-judge",
+        "reasoning_effort": "medium", "identity_hash": identity,
+    }), encoding="utf-8")
+    (run / "summary.json").write_text(json.dumps({
+        "nli_threshold": gates[0], "rubric_threshold": gates[1], "summary": [],
+    }), encoding="utf-8")
+    index = {pair[0]: number for number, pair in enumerate(PAIRS)}
+    for row in rows:
+        workflow, pair_id = row["workflow"], row["pair_id"]
+        scores = RUBRIC_SCRIPT.get((workflow, index[pair_id]), RUBRIC_DEFAULT)
+        if row.get("error"):
+            status, scores = "generation_unavailable", None
+        else:
+            status = "scored" if scores else "unscored"
+        record = {
+            "workflow": workflow, "pair_id": pair_id, "rubric_version": QUALITY_RUBRIC_VERSION,
+            "status": status,
+            "scores": dict(zip(DIMENSIONS, scores)) if scores else None,
+            "overall": sum(scores) / len(scores) if scores else None,
+        }
+        path = run / "records" / workflow / f"{pair_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(json.dumps(record), encoding="utf-8")
+    return run
+
+
 ROBUSTNESS_IDENTITY = "rb0000000000beef"
 
 
@@ -341,9 +390,11 @@ def _write_jsonl(path, rows):
 
 
 def build_fixture_root(base, *, workflows=WORKFLOWS, pairwise=True, robustness=True,
-                       summaries=True, evaluator_hash=EVALUATOR_HASH, bootstrap_samples=None):
+                       summaries=True, rubric=False, evaluator_hash=EVALUATOR_HASH,
+                       bootstrap_samples=None):
     """Write a complete evaluation root under ``base`` and return its path.
 
+    ``rubric`` also writes a rubric v3 run for the root's outputs (``build_rubric_run``).
     ``bootstrap_samples`` lowers ``config.REPORT_BOOTSTRAP_SAMPLES`` while the summaries are
     written (it changes CI precision only, not any column) to keep tests fast.
     """
@@ -353,7 +404,7 @@ def build_fixture_root(base, *, workflows=WORKFLOWS, pairwise=True, robustness=T
         try:
             return build_fixture_root(
                 base, workflows=workflows, pairwise=pairwise, robustness=robustness,
-                summaries=summaries, evaluator_hash=evaluator_hash,
+                summaries=summaries, rubric=rubric, evaluator_hash=evaluator_hash,
             )
         finally:
             config.REPORT_BOOTSTRAP_SAMPLES = saved
@@ -374,9 +425,11 @@ def build_fixture_root(base, *, workflows=WORKFLOWS, pairwise=True, robustness=T
         stage_rows["robustness"] = robust
     if summaries:
         write_reports(root / "summaries", rows, stage_rows=stage_rows)
+    if rubric:
+        build_rubric_run(root, rows)
     return root
 
 
 if __name__ == "__main__":
     target = Path(sys.argv[1] if len(sys.argv) > 1 else "results_demo/evaluations")
-    print(build_fixture_root(target))
+    print(build_fixture_root(target, rubric=True))
