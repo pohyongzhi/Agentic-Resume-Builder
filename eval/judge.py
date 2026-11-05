@@ -145,24 +145,64 @@ def installed_model(model: str, client=None) -> dict[str, Any]:
     }
 
 
+HOSTED_PROVIDERS = {
+    "groq": {"key_env": "GROQ_API_KEY", "endpoint": "https://api.groq.com/openai/v1"},
+    "deepinfra": {"key_env": "DEEPINFRA_API_KEY", "endpoint": "https://api.deepinfra.com/v1/openai"},
+}
+
+
+def hosted_client(provider: str):
+    """OpenAI-compatible client for a hosted judge provider (Groq SDK for Groq)."""
+    spec = HOSTED_PROVIDERS[provider]
+    key = os.environ.get(spec["key_env"])
+    if not key:
+        raise RuntimeError(f"{spec['key_env']}_MISSING: export {spec['key_env']} before hosted evaluation")
+    try:
+        if provider == "groq":
+            from groq import Groq
+
+            return Groq(api_key=key)
+        from openai import OpenAI
+
+        return OpenAI(api_key=key, base_url=spec["endpoint"])
+    except ImportError as exc:
+        sdk = "GROQ" if provider == "groq" else "OPENAI"
+        raise RuntimeError(
+            f"{sdk}_SDK_MISSING: install the project requirements in its virtual environment"
+        ) from exc
+
+
+def hosted_request_options(provider: str) -> dict[str, Any]:
+    """Provider-specific request fields; only Groq accepts dropping the reasoning text."""
+    return {"include_reasoning": False} if provider == "groq" else {}
+
+
+def redact_secrets(text: str) -> str:
+    for spec in HOSTED_PROVIDERS.values():
+        secret = os.environ.get(spec["key_env"])
+        if secret:
+            text = text.replace(secret, "[REDACTED]")
+    return re.sub(r"gsk_[A-Za-z0-9_-]+", "[REDACTED]", text)
+
+
 def configured_model(judge_config: JudgeConfig, client=None) -> dict[str, Any]:
     """Resolve judge provenance without making a hosted API request."""
     if judge_config.provider == "ollama":
         return installed_model(judge_config.model, client)
-    if judge_config.provider == "groq":
+    if judge_config.provider in HOSTED_PROVIDERS:
         if judge_config.model not in {"openai/gpt-oss-120b", "openai/gpt-oss-20b"}:
             raise RuntimeError(
                 "GROQ_JUDGE_MODEL_NOT_APPROVED: use openai/gpt-oss-120b or openai/gpt-oss-20b"
             )
         return {
-            "provider": "groq",
+            "provider": judge_config.provider,
             "tag": judge_config.model,
             "digest": None,
             "architecture": "gpt-oss",
             "parameters": 120_000_000_000 if judge_config.model.endswith("120b") else 20_000_000_000,
             "parameter_size": "120B" if judge_config.model.endswith("120b") else "20B",
             "quantization": "provider-managed",
-            "endpoint": "https://api.groq.com/openai/v1",
+            "endpoint": HOSTED_PROVIDERS[judge_config.provider]["endpoint"],
         }
     raise RuntimeError(f"UNKNOWN_JUDGE_PROVIDER: {judge_config.provider!r}")
 
@@ -183,16 +223,8 @@ def wait_for_hosted_request_slot(min_interval_seconds: float) -> None:
 def _default_client(judge_config: JudgeConfig):
     if judge_config.provider == "ollama":
         return ollama.Client()
-    if judge_config.provider == "groq":
-        if not os.environ.get("GROQ_API_KEY"):
-            raise RuntimeError("GROQ_API_KEY_MISSING: export GROQ_API_KEY before hosted evaluation")
-        try:
-            from groq import Groq
-        except ImportError as exc:
-            raise RuntimeError(
-                "GROQ_SDK_MISSING: install the project requirements in its virtual environment"
-            ) from exc
-        return Groq(api_key=os.environ["GROQ_API_KEY"])
+    if judge_config.provider in HOSTED_PROVIDERS:
+        return hosted_client(judge_config.provider)
     raise RuntimeError(f"UNKNOWN_JUDGE_PROVIDER: {judge_config.provider!r}")
 
 
@@ -299,11 +331,7 @@ def _response_metadata(response) -> dict[str, Any]:
 
 
 def _safe_error(exc: Exception) -> str:
-    text = f"{type(exc).__name__}: {exc}"
-    secret = os.environ.get("GROQ_API_KEY")
-    if secret:
-        text = text.replace(secret, "[REDACTED]")
-    return re.sub(r"gsk_[A-Za-z0-9_-]+", "[REDACTED]", text)
+    return redact_secrets(f"{type(exc).__name__}: {exc}")
 
 
 def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
@@ -346,7 +374,7 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
         temperature=judge_config.temperature,
         seed=judge_config.seed,
         reasoning_effort=judge_config.reasoning_effort,
-        include_reasoning=False,
+        **hosted_request_options(judge_config.provider),
         max_completion_tokens=judge_config.max_completion_tokens,
         response_format={
             "type": "json_schema",
@@ -382,7 +410,10 @@ def evaluate_judge(
     cache_key = _sha(json.dumps({"inputs": input_hashes, "judge": identity}, sort_keys=True))
     cache_path = Path(cache_dir) / f"{cache_key}.json"
     if cache_path.exists() and not force:
-        return json.loads(cache_path.read_text(encoding="utf-8"))
+        cached = json.loads(cache_path.read_text(encoding="utf-8"))
+        # A rate limit or outage says nothing about the resume: retry it instead of reusing it.
+        if not _is_transient_failure(cached.get("failure_reason")):
+            return cached
 
     user_prompt = _user_prompt(original_resume, job_description, tailored_resume)
     sources = {
@@ -442,5 +473,20 @@ def evaluate_judge(
         "result": result,
         "attempts": attempts,
     }
-    _atomic_json(cache_path, record)
+    if not _is_transient_failure(record["failure_reason"]):
+        _atomic_json(cache_path, record)
     return record
+
+
+TRANSIENT_FAILURE_PREFIXES = (
+    "RateLimitError",
+    "APIConnectionError",
+    "APITimeoutError",
+    "InternalServerError",
+    "ConnectionError",
+    "TimeoutError",
+)
+
+
+def _is_transient_failure(reason):
+    return isinstance(reason, str) and reason.startswith(TRANSIENT_FAILURE_PREFIXES)

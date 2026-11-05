@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 366,
+    "output_tokens": 216,
+    "thinking_chars": 0,
+    "seconds": 2.21,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 486,
+    "output_tokens": 421,
+    "thinking_chars": 0,
+    "seconds": 6.44,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1438,
+    "output_tokens": 556,
+    "thinking_chars": 0,
+    "seconds": 5.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Mei Ng\",\n  \"contact\": {\n    \"email\": \"mei.ng@example.test\",\n    \"phone\": \"+65 6000 0053\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in cloud security, IAM and vulnerability management, seeking to deepen capability as a Security Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Implemented preventive security controls using cloud security and IAM.\",\n        \"Automated vulnerability and compliance checks to improve team turnaround by 42%.\",\n        \"Hardened cloud environments while collaborating with four colleagues.\",\n        \"Managed approximately 79 work items per month, tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using Python and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Security Engineer Practice Project\",\n      \"description\": \"Built a demonstration project using cloud security, IAM and vulnerability management. Tested the project with representative scenarios and recorded limitations and next steps.\",\n      \"bullets\": [\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"cloud security\",\n    \"IAM\",\n    \"vulnerability management\",\n    \"Python\",\n    \"AWS\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

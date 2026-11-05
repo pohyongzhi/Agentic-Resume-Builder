@@ -1,0 +1,192 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7155,
+  "output_tokens": 1417,
+  "thinking_chars": 0,
+  "seconds": 14.85,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "se_resume_005__se_jd_01",
+  "resume_id": "se_resume_005",
+  "jd_id": "se_jd_01",
+  "category": "software_engineering",
+  "role_family": "frontend_engineer",
+  "seniority": "entry",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.9,
+  "generation_seconds": 14.85,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_005__se_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_005__se_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_005__se_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 2.5,
+        "jd_alignment": 2.5,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.0,
+        "overall": 3.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "166 words; target is roughly 350-500"
+          ],
+          "words": 166
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 2,
+            "skills_coverage": 2,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Used Excel to translate designs into reusable components"
+            ],
+            "justification": "Prioritizes core technical skills (JS/TS) but fails to include critical JD requirements like React, HTML, CSS, Git, or Jest. The resume claims 'Excel' for translating designs into components, which is factually unsupported by the original text that used 'Excel' only for reporting templates.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "The resume claims 'Excel' for translating designs into components, which is factually unsupported by the original text that used 'Excel' only for reporting templates."
+          },
+          {
+            "faithfulness": 2,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Translated designs into reusable components using Excel"
+            ],
+            "justification": "Prioritized listing skills in bullets but introduced unsupported tool usage (Excel for design translation) and removed specific metrics.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Prioritized listing skills in bullets but introduced unsupported tool usage (Excel for design translation) and removed specific metrics."
+          }
+        ],
+        "generation": {
+          "seconds": 2.62,
+          "input_tokens": 1041,
+          "output_tokens": 254
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.5,
+        "overall": 3.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "226 words; target is roughly 350-500"
+          ],
+          "words": 226
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 2,
+            "skills_coverage": 2,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Used Excel to translate designs into reusable components"
+            ],
+            "justification": "Reorders bullets for impact but retains the same unsupported claim regarding Excel and omits key JD skills (React, HTML, CSS, Git, Jest). The resume is incomplete as it lacks a dedicated 'Projects' section header in the final output structure compared to the original.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Reorders bullets for impact but retains the same unsupported claim regarding Excel and omits key JD skills (React, HTML, CSS, Git, Jest)."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retained original metrics and tools which are strong evidence of impact, though some phrasing is less aligned with JD verbs.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.3,
+          "input_tokens": 1042,
+          "output_tokens": 328
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 2.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 2.5,
+        "writing_quality": 4.0,
+        "overall": 3.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "147 words; target is roughly 350-500"
+          ],
+          "words": 147
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 2,
+            "skills_coverage": 2,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Used Excel to translate designs into reusable components"
+            ],
+            "justification": "Reorders bullets to match JD phrasing but still omits essential skills (React, HTML, CSS, Git, Jest) and retains the unsupported claim about Excel. The resume is incomplete as it lacks a 'Projects' section entirely.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Reorders bullets to match JD phrasing but still omits essential skills (React, HTML, CSS, Git, Jest) and retains the unsupported claim about Excel."
+          },
+          {
+            "faithfulness": 2,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Applied Excel to translate designs into reusable components"
+            ],
+            "justification": "Rephrased bullet points to match JD verbs (Built, Integrated, Presented) but removed specific metrics and tools not explicitly tied to those actions in the source.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.45,
+          "input_tokens": 1054,
+          "output_tokens": 233
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

@@ -1,0 +1,30 @@
+# Priya Tan
+priya.tan@example.test | +65 6000 0016 | Singapore
+
+## Summary
+Senior Mobile Engineer with hands-on experience in Kotlin, Android and mobile architecture. Delivers documented, measurable improvements with cross-functional teams.
+
+## Experience
+
+### Senior Mobile Engineer, Example Atlas Solutions (fictional) (Jan 2021 - Present)
+- Led delivery of Android features using Kotlin and mobile architecture, improving team turnaround by 31%.
+- Defined maintainable mobile architecture and documented decisions for technical and business reviewers.
+- Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.
+- Managed approximately 48 work items per month while tracking quality checks and follow-up actions.
+
+### Technical Assistant, Example Beacon Services (fictional) (Jun 2017 - Dec 2020)
+- Supported recurring operational work using REST APIs and documented step-by-step procedures.
+- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.
+- Created a simple reporting template that reduced manual preparation time by 26%.
+
+## Education
+
+### Bachelor of Science in Information Systems, Example School of Computing (fictional) (Aug 2020 - May 2024)
+
+## Projects
+
+### Senior Mobile Engineer Practice Project
+Built a demonstration project using Kotlin, Android and mobile architecture. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.
+
+## Skills
+Kotlin, Android, mobile architecture, REST APIs, unit testing, Git, CI/CD, performance optimisation, Jetpack Compose, Firebase

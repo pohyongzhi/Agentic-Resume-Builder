@@ -1,0 +1,194 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 371,
+    "output_tokens": 218,
+    "thinking_chars": 0,
+    "seconds": 2.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 474,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 8.43,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787991.4571853,
+    "end": 1793787991.4577446,
+    "seconds": 0.001,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1839,
+    "output_tokens": 685,
+    "thinking_chars": 0,
+    "seconds": 6.75,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787991.4579852,
+    "end": 1793787998.2134225,
+    "seconds": 6.755,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787998.2138944,
+    "end": 1793787998.2207117,
+    "seconds": 0.007,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 797,
+    "output_tokens": 509,
+    "thinking_chars": 0,
+    "seconds": 4.98,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 10,
+    "cited_ok": 10,
+    "rule_ok": 10,
+    "llm_checked": 10,
+    "llm_cached": 0,
+    "supported": 10,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787998.2209964,
+    "end": 1793788003.1969159,
+    "seconds": 4.976,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Chloe Lim",
+        "contact": {
+          "email": "chloe.lim@example.test",
+          "phone": "+65 6000 0023",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in SQL, Excel and Power BI. Seeking to deepen capability as a Data Analyst.",
+        "experience": [
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jan 2025",
+            "end": "Present",
+            "bullets": [
+              "Used SQL and Excel to clean and analyse operational data, improving team turnaround by 18%.",
+              "Applied Power BI to build decision-support dashboards and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to define and monitor business metrics and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technical Assistant",
+            "start": "May 2024",
+            "end": "Dec 2024",
+            "bullets": [
+              "Supported recurring operational work using data cleaning and documented step-by-step procedures.",
+              "Created a simple reporting template that reduced manual preparation time by 13%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Data Analyst Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using SQL, Excel and Power BI.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "SQL",
+          "Excel",
+          "Power BI",
+          "data cleaning",
+          "Tableau",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 10,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788003.1973257,
+    "end": 1793788003.1985066,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

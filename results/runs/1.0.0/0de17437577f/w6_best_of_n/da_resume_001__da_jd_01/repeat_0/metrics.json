@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7488,
+  "output_tokens": 1426,
+  "thinking_chars": 0,
+  "seconds": 14.77,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_001__da_jd_01",
+  "resume_id": "da_resume_001",
+  "jd_id": "da_jd_01",
+  "category": "data_ai",
+  "role_family": "data_analyst",
+  "seniority": "entry",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.8,
+  "generation_seconds": 14.772,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_001__da_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_001__da_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_001__da_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "191 words; target is roughly 350-500"
+          ],
+          "words": 191
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; no changes made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume. It lists all required and preferred skills in the Skills section but does not prioritize them in the experience bullets or summary more aggressively than the other candidates.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.89,
+          "input_tokens": 1062,
+          "output_tokens": 289
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "192 words; target is roughly 350-500"
+          ],
+          "words": 192
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; no changes made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume. It lists quantifiable metrics (35%, 23 items, 30%) but fails to explicitly frame them as 'impact' relative to the JD's success criteria (quality, reliability, trusted relationships).",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.93,
+          "input_tokens": 1063,
+          "output_tokens": 293
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "236 words; target is roughly 350-500"
+          ],
+          "words": 236
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; no changes made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume. It lacks any specific alignment with the JD's phrasing (e.g., 'reliable', 'maintainable', 'entry-level' context) or preferred qualifications like Tableau/A/B testing in the narrative, though they are listed in skills.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.39,
+          "input_tokens": 1075,
+          "output_tokens": 347
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

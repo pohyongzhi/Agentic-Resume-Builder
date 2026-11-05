@@ -1,0 +1,355 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1051,
+    "output_tokens": 263,
+    "thinking_chars": 0,
+    "seconds": 2.72,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "169 words; target is roughly 350-500"
+      ],
+      "words": 169
+    },
+    "generation": {
+      "seconds": 2.72,
+      "input_tokens": 1051,
+      "output_tokens": 263
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1052,
+    "output_tokens": 288,
+    "thinking_chars": 0,
+    "seconds": 3.69,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "190 words; target is roughly 350-500"
+      ],
+      "words": 190
+    },
+    "generation": {
+      "seconds": 3.69,
+      "input_tokens": 1052,
+      "output_tokens": 288
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1064,
+    "output_tokens": 290,
+    "thinking_chars": 0,
+    "seconds": 3.02,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "186 words; target is roughly 350-500"
+      ],
+      "words": 186
+    },
+    "generation": {
+      "seconds": 3.02,
+      "input_tokens": 1064,
+      "output_tokens": 290
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2045,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Minor rephrasing of existing bullets; no new claims or missing sections.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume text; faithful but lacks JD-specific framing.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Rephrases bullets to match JD language (e.g., 'containerised services', 'risks and technical trade-offs') without inventing facts.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2045,
+    "output_tokens": 237,
+    "thinking_chars": 0,
+    "seconds": 2.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with JD responsibilities (design services, build docs, optimise queries, operate containers) and explicitly mentions risks/trade-offs.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reflects original resume data but lacks JD-specific phrasing (e.g., 'operated containerised services', 'risks and technical trade-offs').",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Lists all skills but omits key JD responsibilities like operating containerised services and communicating risks.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "jd_wording_alignment",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "169 words; target is roughly 350-500"
+          ],
+          "words": 169
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor rephrasing of existing bullets; no new claims or missing sections.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Lists all skills but omits key JD responsibilities like operating containerised services and communicating risks.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.72,
+          "input_tokens": 1051,
+          "output_tokens": 263
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume text; faithful but lacks JD-specific framing.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reflects original resume data but lacks JD-specific phrasing (e.g., 'operated containerised services', 'risks and technical trade-offs').",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.69,
+          "input_tokens": 1052,
+          "output_tokens": 288
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 5.0,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "186 words; target is roughly 350-500"
+          ],
+          "words": 186
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Rephrases bullets to match JD language (e.g., 'containerised services', 'risks and technical trade-offs') without inventing facts.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD responsibilities (design services, build docs, optimise queries, operate containers) and explicitly mentions risks/trade-offs.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.02,
+          "input_tokens": 1064,
+          "output_tokens": 290
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

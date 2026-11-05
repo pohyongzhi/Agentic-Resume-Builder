@@ -1,0 +1,355 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1054,
+    "output_tokens": 280,
+    "thinking_chars": 0,
+    "seconds": 2.87,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "185 words; target is roughly 350-500"
+      ],
+      "words": 185
+    },
+    "generation": {
+      "seconds": 2.87,
+      "input_tokens": 1054,
+      "output_tokens": 280
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1055,
+    "output_tokens": 284,
+    "thinking_chars": 0,
+    "seconds": 3.02,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "189 words; target is roughly 350-500"
+      ],
+      "words": 189
+    },
+    "generation": {
+      "seconds": 3.02,
+      "input_tokens": 1055,
+      "output_tokens": 284
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1067,
+    "output_tokens": 280,
+    "thinking_chars": 0,
+    "seconds": 2.97,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "184 words; target is roughly 350-500"
+      ],
+      "words": 184
+    },
+    "generation": {
+      "seconds": 2.97,
+      "input_tokens": 1067,
+      "output_tokens": 280
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2051,
+    "output_tokens": 200,
+    "thinking_chars": 0,
+    "seconds": 2.48,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with original text; minor formatting inconsistency in skills list.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume with no changes; fully faithful and complete.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Minor omission of 'Git' from skills list compared to original resume.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2051,
+    "output_tokens": 200,
+    "thinking_chars": 0,
+    "seconds": 2.31,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Minor phrasing changes but otherwise faithful to original text.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume; no changes made.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 4,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Drops 'Git' from skills list and omits 'Power BI' in the summary text.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "impact_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "185 words; target is roughly 350-500"
+          ],
+          "words": 185
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with original text; minor formatting inconsistency in skills list.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Drops 'Git' from skills list and omits 'Power BI' in the summary text.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.87,
+          "input_tokens": 1054,
+          "output_tokens": 280
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "189 words; target is roughly 350-500"
+          ],
+          "words": 189
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume with no changes; fully faithful and complete.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; no changes made.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.02,
+          "input_tokens": 1055,
+          "output_tokens": 284
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "184 words; target is roughly 350-500"
+          ],
+          "words": 184
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Minor omission of 'Git' from skills list compared to original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor phrasing changes but otherwise faithful to original text.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.97,
+          "input_tokens": 1067,
+          "output_tokens": 280
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

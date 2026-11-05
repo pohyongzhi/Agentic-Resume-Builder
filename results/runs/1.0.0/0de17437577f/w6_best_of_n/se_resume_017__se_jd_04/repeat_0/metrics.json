@@ -1,0 +1,190 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7451,
+  "output_tokens": 1399,
+  "thinking_chars": 0,
+  "seconds": 14.63,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "se_resume_017__se_jd_04",
+  "resume_id": "se_resume_017",
+  "jd_id": "se_jd_04",
+  "category": "software_engineering",
+  "role_family": "mobile_engineer",
+  "seniority": "senior",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.6,
+  "generation_seconds": 14.636,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_017__se_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_017__se_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/se_resume_017__se_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Accurate to original text but lacks JD-specific phrasing.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces the original resume's content; minor formatting differences do not affect data integrity.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.83,
+          "input_tokens": 1069,
+          "output_tokens": 289
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "194 words; target is roughly 350-500"
+          ],
+          "words": 194
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; no added value or JD alignment.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces the original resume's content with high impact metrics; no unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.99,
+          "input_tokens": 1070,
+          "output_tokens": 298
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 2.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 3.0,
+        "overall": 3.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 2,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Establish automated testing practices through representative scenario testing and recording limitations.",
+              "Mentor engineers through design and code reviews by presenting design and outcomes to a five-person peer review group.",
+              "Communicate progress, risks and technical trade-offs to relevant stakeholders during fortnightly reviews.",
+              "Improve application performance by collaborating with colleagues on project improvements."
+            ],
+            "justification": "Invents specific actions and metrics not present in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Invents specific actions and metrics not present in the original resume."
+          },
+          {
+            "faithfulness": 2,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Establish automated testing practices through representative scenario testing and recording limitations."
+            ],
+            "justification": "Rewrites bullet points to match JD verbs exactly but invents specific actions (e.g., 'Establish automated testing practices') not present in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Rewrites bullet points to match JD verbs exactly but invents specific actions (e.g., 'Establish automated testing practices') not present in the original resume."
+          }
+        ],
+        "generation": {
+          "seconds": 3.13,
+          "input_tokens": 1082,
+          "output_tokens": 306
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

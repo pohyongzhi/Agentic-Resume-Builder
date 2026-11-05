@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 370,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 5.79,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 481,
+    "output_tokens": 624,
+    "thinking_chars": 0,
+    "seconds": 11.95,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1609,
+    "output_tokens": 629,
+    "thinking_chars": 0,
+    "seconds": 7.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Aisha Tan\",\n  \"contact\": {\n    \"email\": \"aisha.tan@example.test\",\n    \"phone\": \"+65 6000 0001\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Frontend Engineer with hands-on experience in JavaScript, TypeScript and React. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Frontend Engineer\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 19%.\",\n        \"Applied React to translate designs into reusable components and documented decisions for technical and business reviewers.\",\n        \"Managed approximately 33 work items per month while tracking quality checks and follow-up actions.\",\n        \"Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using HTML and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\",\n        \"Created a simple reporting template that reduced manual preparation time by 14%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Frontend Engineer Practice Project\",\n      \"description\": \"\",\n      \"bullets\": [\n        \"Built a fictional demonstration project using JavaScript, TypeScript and React.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"JavaScript\",\n    \"TypeScript\",\n    \"React\",\n    \"HTML\",\n    \"CSS\",\n    \"REST APIs\",\n    \"Git\",\n    \"Jest\",\n    \"Next.js\",\n    \"accessibility\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.007,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.006,
+    "step": 5
+  }
+]

@@ -1,0 +1,294 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1103,
+    "output_tokens": 316,
+    "thinking_chars": 0,
+    "seconds": 3.58,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.58,
+      "input_tokens": 1103,
+      "output_tokens": 316
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1104,
+    "output_tokens": 317,
+    "thinking_chars": 0,
+    "seconds": 3.61,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.61,
+      "input_tokens": 1104,
+      "output_tokens": 317
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1116,
+    "output_tokens": 317,
+    "thinking_chars": 0,
+    "seconds": 3.55,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": false,
+      "errors": [
+        "duplicate of an earlier candidate"
+      ],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.55,
+      "input_tokens": 1116,
+      "output_tokens": 317
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1797,
+    "output_tokens": 178,
+    "thinking_chars": 0,
+    "seconds": 2.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Draft is a clean Markdown version of the original resume with no invented facts. JD alignment is strong on core skills but slightly less explicit on 'stakeholder briefing' in the summary compared to the full list.",
+        "grounding_concern_in_justification": true
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Draft is identical to Candidate 1 and fully faithful to the original text. It covers all required skills and maintains professional formatting without unsupported claims.",
+        "grounding_concern_in_justification": false
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1797,
+    "output_tokens": 188,
+    "thinking_chars": 0,
+    "seconds": 2.4,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Candidate 1 is a clean, faithful reproduction of the original resume with excellent formatting and no invented claims. It omits the Education section header but retains all content under it, which is acceptable for brevity.",
+        "grounding_concern_in_justification": true
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Candidate 2 is identical to Candidate 1 in content and faithfulness. The addition of a semicolon in the summary is a minor stylistic choice that does not affect quality or validity.",
+        "grounding_concern_in_justification": true
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Draft is a clean Markdown version of the original resume with no invented facts. JD alignment is strong on core skills but slightly less explicit on 'stakeholder briefing' in the summary compared to the full list.",
+            "grounding_concern_in_justification": true
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is identical to Candidate 1 in content and faithfulness. The addition of a semicolon in the summary is a minor stylistic choice that does not affect quality or validity.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.58,
+          "input_tokens": 1103,
+          "output_tokens": 316
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Draft is identical to Candidate 1 and fully faithful to the original text. It covers all required skills and maintains professional formatting without unsupported claims.",
+            "grounding_concern_in_justification": false
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a clean, faithful reproduction of the original resume with excellent formatting and no invented claims. It omits the Education section header but retains all content under it, which is acceptable for brevity.",
+            "grounding_concern_in_justification": true
+          }
+        ],
+        "generation": {
+          "seconds": 3.61,
+          "input_tokens": 1104,
+          "output_tokens": 317
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.55,
+          "input_tokens": 1116,
+          "output_tokens": 317
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 11
+  }
+]

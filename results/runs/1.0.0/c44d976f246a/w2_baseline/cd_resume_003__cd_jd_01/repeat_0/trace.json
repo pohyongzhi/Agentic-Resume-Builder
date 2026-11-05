@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 366,
+    "output_tokens": 218,
+    "thinking_chars": 0,
+    "seconds": 2.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 483,
+    "output_tokens": 423,
+    "thinking_chars": 0,
+    "seconds": 6.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1432,
+    "output_tokens": 550,
+    "thinking_chars": 0,
+    "seconds": 5.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Chloe Lee\",\n  \"contact\": {\n    \"email\": \"chloe.lee@example.test\",\n    \"phone\": \"+65 6000 0063\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jan 2025\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 19%.\",\n        \"Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"May 2024\",\n      \"end\": \"Dec 2024\",\n      \"bullets\": [\n        \"Supported recurring operational work using Bash and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Junior Cloud Engineer Practice Project\",\n      \"description\": \"Built a demonstration project using AWS, Linux and networking. Tested the project with representative scenarios and recorded limitations and next steps.\",\n      \"bullets\": [\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"AWS\",\n    \"Linux\",\n    \"networking\",\n    \"Bash\",\n    \"Terraform\",\n    \"Git\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

@@ -22,7 +22,11 @@ from eval.judge import (
     DIMENSIONS,
     RUBRIC,
     JudgeConfig,
+    HOSTED_PROVIDERS,
     configured_model,
+    hosted_client,
+    hosted_request_options,
+    redact_secrets,
     wait_for_hosted_request_slot,
 )
 
@@ -93,26 +97,14 @@ def _atomic_json(path: Path, value: Any) -> None:
 
 
 def _safe_error(exc: Exception) -> str:
-    text = f"{type(exc).__name__}: {exc}"
-    secret = os.environ.get("GROQ_API_KEY")
-    if secret:
-        text = text.replace(secret, "[REDACTED]")
-    return re.sub(r"gsk_[A-Za-z0-9_-]+", "[REDACTED]", text)
+    return redact_secrets(f"{type(exc).__name__}: {exc}")
 
 
 def _default_client(judge_config: JudgeConfig):
     if judge_config.provider == "ollama":
         return ollama.Client()
-    if judge_config.provider == "groq":
-        if not os.environ.get("GROQ_API_KEY"):
-            raise RuntimeError("GROQ_API_KEY_MISSING: export GROQ_API_KEY before hosted evaluation")
-        try:
-            from groq import Groq
-        except ImportError as exc:
-            raise RuntimeError(
-                "GROQ_SDK_MISSING: install the project requirements in its virtual environment"
-            ) from exc
-        return Groq(api_key=os.environ["GROQ_API_KEY"])
+    if judge_config.provider in HOSTED_PROVIDERS:
+        return hosted_client(judge_config.provider)
     raise RuntimeError(f"UNKNOWN_JUDGE_PROVIDER: {judge_config.provider!r}")
 
 
@@ -150,6 +142,8 @@ def pairwise_identity(
         "model_tag": model_info.get("tag"),
         "pairwise_prompt_version": PAIRWISE_PROMPT_VERSION,
         "pairwise_schema_version": PAIRWISE_SCHEMA_VERSION,
+        "pairwise_max_completion_tokens": config.PAIRWISE_MAX_COMPLETION_TOKENS,
+        "pairwise_reasoning_effort": config.PAIRWISE_REASONING_EFFORT,
         "pairing_policy_version": PAIRING_POLICY_VERSION,
         "position_order_version": POSITION_ORDER_VERSION,
         "model_digest": model_info.get("digest"),
@@ -187,8 +181,19 @@ def _user_prompt(
 """
 
 
+# Typographic variants the judge model writes for plain characters (non-breaking and other
+# hyphens, minus sign, curly quotes). Folding them keeps a verbatim quote from being rejected as
+# unverifiable only because the model changed "follow-up" into "follow\u2011up".
+_TYPOGRAPHIC_FOLD = str.maketrans({
+    "\u00ad": None,  # soft hyphen is invisible
+    **{dash: "-" for dash in "\u2010\u2011\u2012\u2013\u2014\u2015\u2212\ufe58\ufe63\uff0d"},
+    **{quote: "'" for quote in "\u2018\u2019\u201a\u201b\u2032"},
+    **{quote: '"' for quote in "\u201c\u201d\u201e\u201f\u2033"},
+})
+
+
 def _normalise_text(value: str) -> str:
-    return " ".join(unicodedata.normalize("NFKC", value).split())
+    return " ".join(unicodedata.normalize("NFKC", value).translate(_TYPOGRAPHIC_FOLD).split())
 
 
 def _validate_quotations(
@@ -259,9 +264,11 @@ def _call_judge(client, judge_config: JudgeConfig, user_prompt: str):
         messages=[{"role": "user", "content": SYSTEM_PROMPT + "\n\n" + user_prompt}],
         temperature=judge_config.temperature,
         seed=judge_config.seed,
-        reasoning_effort=judge_config.reasoning_effort,
-        include_reasoning=False,
-        max_completion_tokens=judge_config.max_completion_tokens,
+        reasoning_effort=config.PAIRWISE_REASONING_EFFORT,
+        **hosted_request_options(judge_config.provider),
+        max_completion_tokens=max(
+            judge_config.max_completion_tokens, config.PAIRWISE_MAX_COMPLETION_TOKENS
+        ),
         response_format={
             "type": "json_schema",
             "json_schema": {

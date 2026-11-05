@@ -1,0 +1,19 @@
+## Summary
+Platform Engineering Lead with hands-on experience in platform engineering, Kubernetes and Terraform. Delivers documented, measurable improvements with cross-functional teams.
+
+## Experience
+### Platform Engineering Lead, Example Beacon Services (fictional) (Jan 2021 - Present)
+- Used platform engineering and Kubernetes to set the internal platform strategy, improving team turnaround by 24%.
+- Applied Terraform to lead self-service infrastructure delivery and documented decisions for technical and business reviewers.
+- Collaborated with four colleagues to standardise secure deployment patterns and presented progress during fortnightly reviews.
+
+### Technical Assistant, Example Cedar Innovations (fictional) (Jun 2017 - Dec 2020)
+- Supported recurring operational work using cloud architecture and documented step-by-step procedures.
+- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.
+
+## Education
+### Bachelor of Science in Information Systems, Example Institute of Technology (fictional) (Aug 2020 - May 2024)
+- Coursework included software engineering, databases, cybersecurity and applied analytics.
+
+## Skills
+platform engineering, Kubernetes, Terraform, cloud architecture

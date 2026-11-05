@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7521,
+  "output_tokens": 1406,
+  "thinking_chars": 0,
+  "seconds": 15.76,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "bt_resume_002__bt_jd_01",
+  "resume_id": "bt_resume_002",
+  "jd_id": "bt_jd_01",
+  "category": "business_technology",
+  "role_family": "business_analyst",
+  "seniority": "entry",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.8,
+  "generation_seconds": 15.76,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_002__bt_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_002__bt_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_002__bt_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "jd_wording_alignment",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "196 words; target is roughly 350-500"
+          ],
+          "words": 196
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes specific skills mentioned in the JD (requirements gathering, process mapping, Excel) and rephrases bullet points to highlight these tools while maintaining factual accuracy.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reordered bullet points to emphasize skills; all claims remain strictly supported by the original text.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.98,
+          "input_tokens": 1065,
+          "output_tokens": 295
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "196 words; target is roughly 350-500"
+          ],
+          "words": 196
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reorders bullet points within roles to emphasize quantifiable outcomes (28% improvement, 96 items/month) before listing the specific skills used.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to the original resume text with no modifications or inferences.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.08,
+          "input_tokens": 1066,
+          "output_tokens": 294
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "239 words; target is roughly 350-500"
+          ],
+          "words": 239
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Rephrases bullet points to use exact JD terminology (e.g., 'Gathered and documented business requirements', 'Coordinated with...') while preserving the original resume's factual claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor phrasing changes in bullets that do not alter factual claims; otherwise identical to original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.58,
+          "input_tokens": 1078,
+          "output_tokens": 349
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

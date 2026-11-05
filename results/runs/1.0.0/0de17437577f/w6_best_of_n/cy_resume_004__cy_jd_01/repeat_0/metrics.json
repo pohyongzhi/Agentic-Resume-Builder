@@ -1,0 +1,182 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7336,
+  "output_tokens": 1302,
+  "thinking_chars": 0,
+  "seconds": 14.14,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_004__cy_jd_01",
+  "resume_id": "cy_resume_004",
+  "jd_id": "cy_jd_01",
+  "category": "cybersecurity",
+  "role_family": "soc_analyst",
+  "seniority": "entry",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.2,
+  "generation_seconds": 14.158,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_004__cy_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_004__cy_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_004__cy_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 3.5,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Accurate transcription of original data with no invented claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 2,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Removes unsupported 'seeking to deepen' phrasing but omits the Projects section entirely, resulting in an incomplete resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.97,
+          "input_tokens": 1056,
+          "output_tokens": 289
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 3.5,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Minor reordering of bullet points in the first role; otherwise faithful to original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 2,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Reorders bullet points to highlight metrics but retains the unsupported 'seeking to deepen' phrasing in the summary.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Reorders bullet points to highlight metrics but retains the unsupported 'seeking to deepen' phrasing in the summary."
+          }
+        ],
+        "generation": {
+          "seconds": 2.96,
+          "input_tokens": 1057,
+          "output_tokens": 289
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 3.0,
+        "overall": 3.38,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "194 words; target is roughly 350-500"
+          ],
+          "words": 194
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 2,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Major faithfulness failure: removes company name from first role and truncates skills list.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 2,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Removes unsupported 'seeking to deepen' phrasing and omits the Projects section entirely, resulting in an incomplete resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.09,
+          "input_tokens": 1069,
+          "output_tokens": 290
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

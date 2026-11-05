@@ -1,0 +1,192 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 375,
+    "output_tokens": 225,
+    "thinking_chars": 0,
+    "seconds": 2.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 479,
+    "output_tokens": 405,
+    "thinking_chars": 0,
+    "seconds": 6.12,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789689.238737,
+    "end": 1793789689.2392027,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1680,
+    "output_tokens": 658,
+    "thinking_chars": 0,
+    "seconds": 7.06,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789689.2394571,
+    "end": 1793789696.3055947,
+    "seconds": 7.066,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789696.30604,
+    "end": 1793789696.312291,
+    "seconds": 0.006,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 735,
+    "output_tokens": 453,
+    "thinking_chars": 0,
+    "seconds": 4.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 9,
+    "cited_ok": 9,
+    "rule_ok": 9,
+    "llm_checked": 9,
+    "llm_cached": 0,
+    "supported": 9,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789696.3125591,
+    "end": 1793789700.704846,
+    "seconds": 4.392,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Olivia Koh",
+        "contact": {
+          "email": "olivia.koh@example.test",
+          "phone": "+65 6000 0095",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Operations support professional experienced in solution architecture, AWS, documentation and stakeholder coordination, transitioning toward Solutions Architect work.",
+        "experience": [
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Operations Support Coordinator",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used solution architecture and AWS to translate business needs into solution designs, improving team turnaround by 26%.",
+              "Applied Excel to define integration and security patterns and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to facilitate architecture decisions and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using documentation and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Solutions Architect Practice Project",
+            "description": "Built a fictional demonstration project using solution architecture, AWS and Excel.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "solution architecture",
+          "AWS",
+          "Excel",
+          "documentation",
+          "stakeholder communication"
+        ],
+        "certifications": [
+          "AWS Certified Cloud Practitioner"
+        ]
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 9,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789700.7052407,
+    "end": 1793789700.7063591,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

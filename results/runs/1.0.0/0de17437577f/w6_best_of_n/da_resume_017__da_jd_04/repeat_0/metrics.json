@@ -1,0 +1,187 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7713,
+  "output_tokens": 1420,
+  "thinking_chars": 0,
+  "seconds": 15.49,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_017__da_jd_04",
+  "resume_id": "da_resume_017",
+  "jd_id": "da_jd_04",
+  "category": "data_ai",
+  "role_family": "llm_solutions_engineer",
+  "seniority": "senior",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.5,
+  "generation_seconds": 15.487,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_017__da_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_017__da_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_017__da_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "202 words; target is roughly 350-500"
+          ],
+          "words": 202
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with original text; minor reordering of bullet points.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Lists all resume skills but fails to map them to specific JD responsibilities or quantify impact where the original resume provided numbers.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.19,
+          "input_tokens": 1097,
+          "output_tokens": 311
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "205 words; target is roughly 350-500"
+          ],
+          "words": 205
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "tracking quality checks and follow-up actions"
+            ],
+            "justification": "Reorders bullets to prioritize impact metrics; adds 'follow-up actions' which is an inference.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "adds 'follow-up actions' which is an inference."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reflects resume data but omits key JD responsibilities (guiding engineers, communicating trade-offs) and lacks specific impact metrics for those areas.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.26,
+          "input_tokens": 1098,
+          "output_tokens": 310
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "219 words; target is roughly 350-500"
+          ],
+          "words": 219
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "contributed to team planning"
+            ],
+            "justification": "Adds specific JD phrases like 'guide engineers' and 'under review'; introduces unsupported claim about team planning.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds specific JD phrases like 'guide engineers' and 'under review';"
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD responsibilities (architecting, pipelines, safety, observability, communication) and uses precise terminology from the job description.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.55,
+          "input_tokens": 1110,
+          "output_tokens": 333
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

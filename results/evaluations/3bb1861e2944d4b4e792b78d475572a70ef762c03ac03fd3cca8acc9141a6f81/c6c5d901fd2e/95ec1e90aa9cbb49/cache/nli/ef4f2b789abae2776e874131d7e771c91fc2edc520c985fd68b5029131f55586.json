@@ -1,0 +1,731 @@
+{
+  "identity": {
+    "source_hash": "31f88e756a97ebbe343e0e2fd447564bb5c1735a2e2f0a36c77273b2aaacaa5e",
+    "tailored_hash": "344364770328d1dfe3ed1ede574d5788babb5eedc84c12603cf7c8b10c344774",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.9375,
+    "claim_faithfulness": 0.9375,
+    "unsupported_claim_rate": 0.0625,
+    "supported_claims": 15,
+    "source_evidence_units": 24,
+    "unsupported": [
+      "Proven ability to manage cloud infrastructure operations, troubleshoot technical issues, and deliver clear documentation for review."
+    ],
+    "n_claims": 16,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional experienced in AWS, Linux, documentation, and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.284009
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Junior Cloud Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 51,
+            "retrieval_score": 0.20358
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Proven ability to manage cloud infrastructure operations, troubleshoot technical issues, and deliver clear documentation for review.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.253326,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.253326,
+            "probabilities": {
+              "contradiction": 0.000506,
+              "entailment": 0.045604,
+              "neutral": 0.95389
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.253304,
+            "probabilities": {
+              "contradiction": 0.000363,
+              "entailment": 0.000228,
+              "neutral": 0.999409
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.225988,
+            "probabilities": {
+              "contradiction": 8e-05,
+              "entailment": 0.016915,
+              "neutral": 0.983004
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000506,
+          "entailment": 0.045604,
+          "neutral": 0.95389
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.045604,
+        "supported": false
+      },
+      {
+        "claim": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 25,
+        "best_source_chunk": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.153968
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 87,
+            "retrieval_score": 0.007753
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 41,
+            "retrieval_score": 0.147293
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.14464
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Managed approximately 55 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Managed approximately 55 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 29,
+        "best_source_chunk": "Managed approximately 55 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 55 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Elena Lee",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "elena.lee@example.test | +65 6000 0065 | Singapore",
+            "kind": "contact",
+            "line": 5,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 31,
+        "best_source_chunk": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 59,
+            "retrieval_score": 0.120321
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.081702
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 39,
+        "best_source_chunk": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.169024
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.153884
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 41,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 41,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 57,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.150449
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 28%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 28%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 43,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 28%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Created a simple reporting template that reduced manual preparation time by 28%.",
+            "kind": "claim",
+            "line": 43,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Elena Lee",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "elena.lee@example.test | +65 6000 0065 | Singapore",
+            "kind": "contact",
+            "line": 5,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 71,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 71,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.112051
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 0.072195
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "AWS",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using AWS, Linux and Excel.",
+            "kind": "claim",
+            "line": 55,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Linux",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Excel",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using AWS, Linux and Excel.",
+            "kind": "claim",
+            "line": 55,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "stakeholder communication",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "stakeholder communication",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 79,
+        "best_source_chunk": "stakeholder communication",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 79,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.336868
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 87,
+            "retrieval_score": 0.084211
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "AWS Certified Cloud Practitioner",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "AWS Certified Cloud Practitioner",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 87,
+        "best_source_chunk": "AWS Certified Cloud Practitioner",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 87,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 33%.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.385902
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in AWS, Linux, documentation and stakeholder coordination, transitioning toward Junior Cloud Engineer work.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.353301
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "ef4f2b789abae2776e874131d7e771c91fc2edc520c985fd68b5029131f55586"
+  }
+}

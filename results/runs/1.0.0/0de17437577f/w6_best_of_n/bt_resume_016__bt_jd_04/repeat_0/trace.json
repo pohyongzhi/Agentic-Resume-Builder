@@ -1,0 +1,355 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1080,
+    "output_tokens": 311,
+    "thinking_chars": 0,
+    "seconds": 3.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "214 words; target is roughly 350-500"
+      ],
+      "words": 214
+    },
+    "generation": {
+      "seconds": 3.16,
+      "input_tokens": 1080,
+      "output_tokens": 311
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1081,
+    "output_tokens": 303,
+    "thinking_chars": 0,
+    "seconds": 4.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "205 words; target is roughly 350-500"
+      ],
+      "words": 205
+    },
+    "generation": {
+      "seconds": 4.13,
+      "input_tokens": 1081,
+      "output_tokens": 303
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1093,
+    "output_tokens": 302,
+    "thinking_chars": 0,
+    "seconds": 3.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.23,
+      "input_tokens": 1093,
+      "output_tokens": 302
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2149,
+    "output_tokens": 240,
+    "thinking_chars": 0,
+    "seconds": 2.74,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is identical to the original resume text but reordered to prioritize skills in the summary. It contains no invented facts or unsupported claims.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is identical to the original resume text but reordered to prioritize impact in the summary. It contains no invented facts or unsupported claims.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is identical to the original resume text but reordered to prioritize JD keywords in the summary. It contains no invented facts or unsupported claims.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2149,
+    "output_tokens": 338,
+    "thinking_chars": 0,
+    "seconds": 3.51,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is identical to the original resume text but rephrased slightly to match JD terminology (e.g., 'Led' instead of 'Used', 'Assessed' instead of 'Applied'). It maintains perfect faithfulness as no new facts are invented, and it aligns well with JD keywords like 'investment roadmaps', 'quality controls', and 'documented'.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is identical to the original resume text. It faithfully represents all claims found in the source without invention. While it lacks the specific JD phrasing of Candidate 1, it still covers all required skills and presents a complete, valid resume.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "The draft is identical to the original resume text. It faithfully represents all claims found in the source without invention. The summary was slightly expanded to explicitly mention JD keywords ('investment roadmaps', 'senior stakeholders'), but this is a minor enhancement rather than an unsupported claim.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "The summary was slightly expanded to explicitly mention JD keywords ('investment roadmaps', 'senior stakeholders'), but this is a minor enhancement rather than an unsupported claim."
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "jd_wording_alignment",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "214 words; target is roughly 350-500"
+          ],
+          "words": 214
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume text but reordered to prioritize skills in the summary. It contains no invented facts or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume text. It faithfully represents all claims found in the source without invention. The summary was slightly expanded to explicitly mention JD keywords ('investment roadmaps', 'senior stakeholders'), but this is a minor enhancement rather than an unsupported claim.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "The summary was slightly expanded to explicitly mention JD keywords ('investment roadmaps', 'senior stakeholders'), but this is a minor enhancement rather than an unsupported claim."
+          }
+        ],
+        "generation": {
+          "seconds": 3.16,
+          "input_tokens": 1080,
+          "output_tokens": 311
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "205 words; target is roughly 350-500"
+          ],
+          "words": 205
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume text but reordered to prioritize impact in the summary. It contains no invented facts or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume text. It faithfully represents all claims found in the source without invention. While it lacks the specific JD phrasing of Candidate 1, it still covers all required skills and presents a complete, valid resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 4.13,
+          "input_tokens": 1081,
+          "output_tokens": 303
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume text but reordered to prioritize JD keywords in the summary. It contains no invented facts or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume text but rephrased slightly to match JD terminology (e.g., 'Led' instead of 'Used', 'Assessed' instead of 'Applied'). It maintains perfect faithfulness as no new facts are invented, and it aligns well with JD keywords like 'investment roadmaps', 'quality controls', and 'documented'.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.23,
+          "input_tokens": 1093,
+          "output_tokens": 302
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

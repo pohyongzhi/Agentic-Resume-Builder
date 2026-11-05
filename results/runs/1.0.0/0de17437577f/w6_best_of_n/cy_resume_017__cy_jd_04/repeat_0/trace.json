@@ -1,0 +1,265 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1103,
+    "output_tokens": 317,
+    "thinking_chars": 0,
+    "seconds": 3.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.2,
+      "input_tokens": 1103,
+      "output_tokens": 317
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1104,
+    "output_tokens": 317,
+    "thinking_chars": 0,
+    "seconds": 3.26,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": false,
+      "errors": [
+        "duplicate of an earlier candidate"
+      ],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.26,
+      "input_tokens": 1104,
+      "output_tokens": 317
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1116,
+    "output_tokens": 317,
+    "thinking_chars": 0,
+    "seconds": 3.24,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": false,
+      "errors": [
+        "duplicate of an earlier candidate"
+      ],
+      "warnings": [
+        "203 words; target is roughly 350-500"
+      ],
+      "words": 203
+    },
+    "generation": {
+      "seconds": 3.24,
+      "input_tokens": 1116,
+      "output_tokens": 317
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1441,
+    "output_tokens": 95,
+    "thinking_chars": 0,
+    "seconds": 1.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is an exact copy of the original resume text with no modifications, additions, or inferences. It perfectly preserves all facts, dates, employers, and claims found in the source document.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1441,
+    "output_tokens": 95,
+    "thinking_chars": 0,
+    "seconds": 0.92,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "The draft is an exact copy of the original resume text with no modifications, additions, or inferences. It perfectly preserves all facts, dates, employers, and claims found in the source document.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is an exact copy of the original resume text with no modifications, additions, or inferences. It perfectly preserves all facts, dates, employers, and claims found in the source document.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is an exact copy of the original resume text with no modifications, additions, or inferences. It perfectly preserves all facts, dates, employers, and claims found in the source document.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.2,
+          "input_tokens": 1103,
+          "output_tokens": 317
+        }
+      },
+      "impact_first": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.26,
+          "input_tokens": 1104,
+          "output_tokens": 317
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 0.0,
+        "jd_alignment": 0.0,
+        "skills_coverage": 0.0,
+        "writing_quality": 0.0,
+        "overall": 0.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": false,
+          "errors": [
+            "duplicate of an earlier candidate"
+          ],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [],
+        "generation": {
+          "seconds": 3.24,
+          "input_tokens": 1116,
+          "output_tokens": 317
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

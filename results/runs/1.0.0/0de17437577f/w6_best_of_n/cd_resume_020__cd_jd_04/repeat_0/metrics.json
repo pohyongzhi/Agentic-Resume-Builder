@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7345,
+  "output_tokens": 1295,
+  "thinking_chars": 0,
+  "seconds": 14.81,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_020__cd_jd_04",
+  "resume_id": "cd_resume_020",
+  "jd_id": "cd_jd_04",
+  "category": "cloud_devops",
+  "role_family": "platform_engineering_lead",
+  "seniority": "senior",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.8,
+  "generation_seconds": 14.809,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_020__cd_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_020__cd_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_020__cd_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes specific skills but omits the Projects section found in the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume; no new claims added or removed.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.87,
+          "input_tokens": 1049,
+          "output_tokens": 282
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "185 words; target is roughly 350-500"
+          ],
+          "words": 185
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Maintains original structure and content exactly as provided.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume; no new claims added or removed.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.9,
+          "input_tokens": 1050,
+          "output_tokens": 276
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "230 words; target is roughly 350-500"
+          ],
+          "words": 230
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Adds the Projects section to better reflect the original resume's content.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds the Projects section to better reflect the original resume's content."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate text is identical to the original resume; no new claims added or removed.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.43,
+          "input_tokens": 1062,
+          "output_tokens": 332
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

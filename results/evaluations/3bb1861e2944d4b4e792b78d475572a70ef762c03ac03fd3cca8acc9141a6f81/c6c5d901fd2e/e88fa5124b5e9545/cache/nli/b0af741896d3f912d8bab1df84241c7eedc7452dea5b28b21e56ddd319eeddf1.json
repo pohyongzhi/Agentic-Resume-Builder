@@ -1,0 +1,936 @@
+{
+  "identity": {
+    "source_hash": "7439b72f0f3a313bfcb27af0fe8643ea8ef3f2c8fd4781c76ba6fdfb8699c5ba",
+    "tailored_hash": "d7ae370fca07ea4e5f4e7b88fbd734e48d321d4901aa9fa0d185b6d3bbd32f2a",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v4",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.8235,
+    "claim_faithfulness": 0.8235,
+    "unsupported_claim_rate": 0.1765,
+    "supported_claims": 14,
+    "source_evidence_units": 23,
+    "unsupported": [
+      "Presented progress to stakeholders during fortnightly reviews.",
+      "JavaScript",
+      "TypeScript"
+    ],
+    "n_claims": 17,
+    "claim_scores": [
+      {
+        "claim": "Operations support professional experienced in JavaScript, TypeScript, documentation, and stakeholder coordination, transitioning toward Frontend Engineer work.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.18352
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.181561
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Built accessible user interfaces using JavaScript and TypeScript, improving team turnaround by 16%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+        "retrieval_score": 0.913813,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.913813,
+            "probabilities": {
+              "contradiction": 0.000136,
+              "entailment": 0.998353,
+              "neutral": 0.001511
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.118571,
+            "probabilities": {
+              "contradiction": 0.000459,
+              "entailment": 0.000327,
+              "neutral": 0.999214
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.016192,
+            "probabilities": {
+              "contradiction": 0.000434,
+              "entailment": 0.000145,
+              "neutral": 0.999421
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000136,
+          "entailment": 0.998353,
+          "neutral": 0.001511
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.998353,
+        "supported": true
+      },
+      {
+        "claim": "Translated designs into reusable components using Excel and documented decisions for technical and business reviewers.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.8575,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.8575,
+            "probabilities": {
+              "contradiction": 0.000235,
+              "entailment": 0.996339,
+              "neutral": 0.003427
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.151949,
+            "probabilities": {
+              "contradiction": 0.00479,
+              "entailment": 0.000359,
+              "neutral": 0.994851
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Technical Assistant, Example Atlas Solutions (fictional) (May 2024 - Dec 2024)",
+            "kind": "protected_header",
+            "line": 18,
+            "retrieval_score": 0.109485,
+            "probabilities": {
+              "contradiction": 0.015411,
+              "entailment": 0.002671,
+              "neutral": 0.981917
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000235,
+          "entailment": 0.996339,
+          "neutral": 0.003427
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996339,
+        "supported": true
+      },
+      {
+        "claim": "Integrated frontend features with REST APIs while collaborating with four colleagues.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.488852,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.488852,
+            "probabilities": {
+              "contradiction": 0.001004,
+              "entailment": 0.997846,
+              "neutral": 0.00115
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 85 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.147333,
+            "probabilities": {
+              "contradiction": 0.00316,
+              "entailment": 0.000108,
+              "neutral": 0.996732
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Frontend Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 26,
+            "retrieval_score": 0.139087,
+            "probabilities": {
+              "contradiction": 0.001107,
+              "entailment": 0.000103,
+              "neutral": 0.998789
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.001004,
+          "entailment": 0.997846,
+          "neutral": 0.00115
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997846,
+        "supported": true
+      },
+      {
+        "claim": "Presented progress to stakeholders during fortnightly reviews.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.643452,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.643452,
+            "probabilities": {
+              "contradiction": 0.000615,
+              "entailment": 0.001704,
+              "neutral": 0.997681
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.21021,
+            "probabilities": {
+              "contradiction": 0.005573,
+              "entailment": 0.00014,
+              "neutral": 0.994286
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.078161,
+            "probabilities": {
+              "contradiction": 0.000588,
+              "entailment": 0.000104,
+              "neutral": 0.999307
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000615,
+          "entailment": 0.001704,
+          "neutral": 0.997681
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001704,
+        "supported": false
+      },
+      {
+        "claim": "Maintained clear documentation through step-by-step procedures for recurring operational work.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+        "retrieval_score": 0.386631,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.386631,
+            "probabilities": {
+              "contradiction": 8.1e-05,
+              "entailment": 0.987904,
+              "neutral": 0.012015
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.227632,
+            "probabilities": {
+              "contradiction": 0.007245,
+              "entailment": 0.000879,
+              "neutral": 0.991875
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.137487,
+            "probabilities": {
+              "contradiction": 0.000708,
+              "entailment": 0.00157,
+              "neutral": 0.997721
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 8.1e-05,
+          "entailment": 0.987904,
+          "neutral": 0.012015
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.987904,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests and escalated issues with clear supporting evidence.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 0.93022,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 0.93022,
+            "probabilities": {
+              "contradiction": 0.002009,
+              "entailment": 0.989219,
+              "neutral": 0.008772
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.081132,
+            "probabilities": {
+              "contradiction": 0.015374,
+              "entailment": 0.000934,
+              "neutral": 0.983691
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.079532,
+            "probabilities": {
+              "contradiction": 0.950845,
+              "entailment": 0.00028,
+              "neutral": 0.048875
+            },
+            "predicted_relation": "contradiction"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.002009,
+          "entailment": 0.989219,
+          "neutral": 0.008772
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.989219,
+        "supported": true
+      },
+      {
+        "claim": "Created a reporting template that reduced manual preparation time by 11%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 11%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 22,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 11%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Created a simple reporting template that reduced manual preparation time by 11%.",
+            "kind": "claim",
+            "line": 22,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.000714,
+              "entailment": 0.991192,
+              "neutral": 0.008094
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Elena Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.000859,
+              "entailment": 0.000427,
+              "neutral": 0.998713
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "elena.tan@example.test | +65 6000 0005 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.00037,
+              "entailment": 0.000296,
+              "neutral": 0.999334
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000714,
+          "entailment": 0.991192,
+          "neutral": 0.008094
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.991192,
+        "supported": true
+      },
+      {
+        "claim": "Built a demonstration project using JavaScript, TypeScript, and Excel.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0014",
+        "best_evidence_unit": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 28,
+        "best_source_chunk": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+        "retrieval_score": 0.950587,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.950587,
+            "probabilities": {
+              "contradiction": 0.000571,
+              "entailment": 0.991496,
+              "neutral": 0.007934
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.293254,
+            "probabilities": {
+              "contradiction": 0.22844,
+              "entailment": 0.000131,
+              "neutral": 0.771429
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.288095,
+            "probabilities": {
+              "contradiction": 0.002582,
+              "entailment": 0.000167,
+              "neutral": 0.997251
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000571,
+          "entailment": 0.991496,
+          "neutral": 0.007934
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.991496,
+        "supported": true
+      },
+      {
+        "claim": "Tested the project with representative scenarios and recorded limitations and next steps.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0015",
+        "best_evidence_unit": "Tested the project with representative scenarios and recorded limitations and next steps.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 29,
+        "best_source_chunk": "Tested the project with representative scenarios and recorded limitations and next steps.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 0.172345
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.163254
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Presented the design and outcomes to a five-person peer review group.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0016",
+        "best_evidence_unit": "Presented the design and outcomes to a five-person peer review group.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 30,
+        "best_source_chunk": "Presented the design and outcomes to a five-person peer review group.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to integrate frontend features with REST APIs and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.139971
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.08377
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity, and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.111347
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 85 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.071351
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "JavaScript",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0014",
+        "best_evidence_unit": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 28,
+        "best_source_chunk": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.370507,
+              "entailment": 0.201878,
+              "neutral": 0.427615
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.064765,
+              "entailment": 0.433578,
+              "neutral": 0.501658
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.195549,
+              "entailment": 0.49831,
+              "neutral": 0.306141
+            },
+            "predicted_relation": "entailment"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.195549,
+          "entailment": 0.49831,
+          "neutral": 0.306141
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.49831,
+        "supported": false
+      },
+      {
+        "claim": "TypeScript",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.086436,
+              "entailment": 0.025182,
+              "neutral": 0.888382
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used JavaScript and TypeScript to build accessible user interfaces, improving team turnaround by 16%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.015063,
+              "entailment": 0.123103,
+              "neutral": 0.861835
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0,
+            "probabilities": {
+              "contradiction": 0.048709,
+              "entailment": 0.049606,
+              "neutral": 0.901685
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.015063,
+          "entailment": 0.123103,
+          "neutral": 0.861835
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.123103,
+        "supported": false
+      },
+      {
+        "claim": "Excel",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0021",
+        "best_evidence_unit": "Excel",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Excel",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied Excel to translate designs into reusable components and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using JavaScript, TypeScript and Excel.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0022",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using documentation and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "stakeholder communication",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "stakeholder communication",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "stakeholder communication",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "stakeholder communication",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Operations support professional experienced in JavaScript, TypeScript, documentation and stakeholder coordination, transitioning toward Frontend Engineer work.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.335866
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Frontend Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 26,
+            "retrieval_score": 0.067797
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v4",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "b0af741896d3f912d8bab1df84241c7eedc7452dea5b28b21e56ddd319eeddf1"
+  }
+}

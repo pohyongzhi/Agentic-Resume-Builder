@@ -1,0 +1,208 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7469,
+  "output_tokens": 1540,
+  "thinking_chars": 0,
+  "seconds": 17.01,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_015__da_jd_03",
+  "resume_id": "da_resume_015",
+  "jd_id": "da_jd_03",
+  "category": "data_ai",
+  "role_family": "machine_learning_engineer",
+  "seniority": "mid",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 17.0,
+  "generation_seconds": 17.014,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_015__da_jd_03/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_015__da_jd_03/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_015__da_jd_03/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 2.5,
+        "jd_alignment": 2.5,
+        "skills_coverage": 2.0,
+        "writing_quality": 4.0,
+        "overall": 2.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "199 words; target is roughly 350-500"
+          ],
+          "words": 199
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 1,
+            "jd_alignment": 2,
+            "skills_coverage": 1,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "PyTorch",
+              "Docker",
+              "REST APIs",
+              "MLflow",
+              "AWS",
+              "Kubernetes",
+              "model evaluation (specific metrics)"
+            ],
+            "justification": "Candidate adds unsupported claims about PyTorch, Docker, REST APIs, MLflow, AWS, Kubernetes, and specific model evaluation metrics not found in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate adds unsupported claims about PyTorch, Docker, REST APIs, MLflow, AWS, Kubernetes, and specific model evaluation metrics not found in the original resume."
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "experience training predictive models, building feature pipelines, deploying behind APIs, and collaborating on technical reviews"
+            ],
+            "justification": "Candidate adds a summary sentence synthesizing JD requirements that are not explicitly detailed in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate adds a summary sentence synthesizing JD requirements that are not explicitly detailed in the original resume."
+          }
+        ],
+        "generation": {
+          "seconds": 3.0,
+          "input_tokens": 1047,
+          "output_tokens": 295
+        }
+      },
+      "impact_first": {
+        "faithfulness": 3.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 2.0,
+        "writing_quality": 4.0,
+        "overall": 2.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "228 words; target is roughly 350-500"
+          ],
+          "words": 228
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 1,
+            "jd_alignment": 2,
+            "skills_coverage": 1,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "PyTorch",
+              "Docker",
+              "REST APIs",
+              "MLflow",
+              "AWS",
+              "Kubernetes",
+              "model evaluation (specific metrics)"
+            ],
+            "justification": "Candidate adds unsupported claims about PyTorch, Docker, REST APIs, MLflow, AWS, Kubernetes, and specific model evaluation metrics not found in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate adds unsupported claims about PyTorch, Docker, REST APIs, MLflow, AWS, Kubernetes, and specific model evaluation metrics not found in the original resume."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate reorders bullet points for impact but retains all original content without adding unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.38,
+          "input_tokens": 1048,
+          "output_tokens": 331
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.0,
+        "jd_alignment": 1.5,
+        "skills_coverage": 2.0,
+        "writing_quality": 4.0,
+        "overall": 2.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "228 words; target is roughly 350-500"
+          ],
+          "words": 228
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 1,
+            "jd_alignment": 2,
+            "skills_coverage": 1,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "PyTorch",
+              "Docker",
+              "REST APIs",
+              "MLflow",
+              "AWS",
+              "Kubernetes",
+              "model evaluation (specific metrics)"
+            ],
+            "justification": "Candidate adds unsupported claims about PyTorch, Docker, REST APIs, MLflow, AWS, Kubernetes, and specific model evaluation metrics not found in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Candidate adds unsupported claims about PyTorch, Docker, REST APIs, MLflow, AWS, Kubernetes, and specific model evaluation metrics not found in the original resume."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 1,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate is a verbatim copy of the original resume with no modifications to align with JD keywords.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.42,
+          "input_tokens": 1060,
+          "output_tokens": 331
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

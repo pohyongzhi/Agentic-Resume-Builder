@@ -1,0 +1,205 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1148,
+    "output_tokens": 983,
+    "thinking_chars": 0,
+    "seconds": 10.05,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "w7_plan",
+    "ok": true,
+    "attempt": 1,
+    "header": "Olivia Lim\nolivia.lim@example.test | +65 6000 0035 | Singapore",
+    "sections": [
+      {
+        "name": "Summary",
+        "lead_with": [
+          "Operations support professional experienced in Python, machine learning, documentation and stakeholder coordination, transitioning toward Machine Learning Engineer work."
+        ],
+        "cut": []
+      },
+      {
+        "name": "Experience",
+        "lead_with": [
+          "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 40%.",
+          "Applied Excel to build reproducible feature pipelines and documented decisions for technical and business reviewers.",
+          "Managed approximately 25 work items per month while tracking quality checks and follow-up actions.",
+          "Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews."
+        ],
+        "cut": [
+          "Applied Excel to build reproducible feature pipelines",
+          "Created a simple reporting template that reduced manual preparation time by 35%"
+        ]
+      },
+      {
+        "name": "Projects",
+        "lead_with": [
+          "Built a fictional demonstration project using Python, machine learning and Excel.",
+          "Tested the project with representative scenarios and recorded limitations and next steps.",
+          "Presented the design and outcomes to a five-person peer review group."
+        ],
+        "cut": []
+      },
+      {
+        "name": "Education",
+        "lead_with": [
+          "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)",
+          "Coursework included software engineering, databases, cybersecurity and applied analytics."
+        ],
+        "cut": []
+      },
+      {
+        "name": "Skills",
+        "lead_with": [
+          "Python",
+          "machine learning",
+          "documentation",
+          "stakeholder communication"
+        ],
+        "cut": [
+          "Excel"
+        ]
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": "Python",
+        "evidence": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 40%.",
+        "section": "Experience"
+      },
+      {
+        "requirement": "machine learning",
+        "evidence": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 40%.",
+        "section": "Experience"
+      },
+      {
+        "requirement": "scikit-learn",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "PyTorch",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "model evaluation",
+        "evidence": "Used Python and machine learning to train and evaluate predictive models, improving team turnaround by 40%.",
+        "section": "Experience"
+      },
+      {
+        "requirement": "feature engineering",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "Docker",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "REST APIs",
+        "evidence": "Collaborated with four colleagues to deploy models behind APIs and presented progress during fortnightly reviews.",
+        "section": "Experience"
+      },
+      {
+        "requirement": "Clear written and verbal communication",
+        "evidence": "documented decisions for technical and business reviewers",
+        "section": "Skills"
+      },
+      {
+        "requirement": "Ability to work collaboratively and solve ambiguous problems",
+        "evidence": "Collaborated with four colleagues to deploy models behind APIs",
+        "section": "Experience"
+      },
+      {
+        "requirement": "MLflow",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "AWS",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "Kubernetes",
+        "evidence": null,
+        "section": "Skills"
+      }
+    ],
+    "supported": 6,
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1064,
+    "output_tokens": 27,
+    "thinking_chars": 0,
+    "seconds": 0.59,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1267,
+    "output_tokens": 147,
+    "thinking_chars": 0,
+    "seconds": 2.17,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1080,
+    "output_tokens": 48,
+    "thinking_chars": 0,
+    "seconds": 2.96,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1084,
+    "output_tokens": 50,
+    "thinking_chars": 0,
+    "seconds": 3.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1064,
+    "output_tokens": 14,
+    "thinking_chars": 0,
+    "seconds": 4.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 970,
+    "output_tokens": 286,
+    "thinking_chars": 0,
+    "seconds": 2.83,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  }
+]

@@ -1,0 +1,239 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 369,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.05,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 496,
+    "output_tokens": 440,
+    "thinking_chars": 0,
+    "seconds": 6.05,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1509,
+    "output_tokens": 631,
+    "thinking_chars": 0,
+    "seconds": 5.79,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2183,
+    "output_tokens": 477,
+    "thinking_chars": 0,
+    "seconds": 6.73,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2191,
+    "output_tokens": 554,
+    "thinking_chars": 0,
+    "seconds": 12.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2189,
+    "output_tokens": 466,
+    "thinking_chars": 0,
+    "seconds": 16.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3684,
+    "output_tokens": 631,
+    "thinking_chars": 0,
+    "seconds": 6.11,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2191,
+    "output_tokens": 616,
+    "thinking_chars": 0,
+    "seconds": 6.15,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2183,
+    "output_tokens": 554,
+    "thinking_chars": 0,
+    "seconds": 13.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2189,
+    "output_tokens": 452,
+    "thinking_chars": 0,
+    "seconds": 18.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3809,
+    "output_tokens": 620,
+    "thinking_chars": 0,
+    "seconds": 6.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2178,
+    "output_tokens": 465,
+    "thinking_chars": 0,
+    "seconds": 4.67,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2172,
+    "output_tokens": 562,
+    "thinking_chars": 0,
+    "seconds": 9.98,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2180,
+    "output_tokens": 568,
+    "thinking_chars": 0,
+    "seconds": 15.58,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Kavya Lee",
+        "contact": {
+          "email": "kavya.lee@example.test",
+          "phone": "+65 6000 0071",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Site Reliability Engineer with hands-on experience in SRE, observability and incident response. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "Site Reliability Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Defined service reliability targets using SRE and observability, improving team turnaround by 13%.",
+              "Applied incident response to improve monitoring and alerting, documenting decisions for technical and business reviewers.",
+              "Led incident analysis with four colleagues, presenting progress during fortnightly reviews.",
+              "Managed approximately 43 work items per month while tracking quality checks and follow-up actions."
+            ]
+          },
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using Linux and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 8%."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Site Reliability Engineer Practice Project",
+            "description": "Built a demonstration project using SRE, observability and incident response. Tested the project with representative scenarios and recorded limitations and next steps.",
+            "bullets": [
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "skills": [
+          "SRE",
+          "observability",
+          "incident response",
+          "Linux",
+          "service level objectives",
+          "performance testing",
+          "Prometheus",
+          "Grafana"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  }
+]

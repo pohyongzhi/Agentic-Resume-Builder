@@ -1,0 +1,990 @@
+{
+  "identity": {
+    "source_hash": "185eae3167ba6b72b1509aa58c3f691b2a49184fe70e52540ec14442a7d25269",
+    "tailored_hash": "456bad66f0387945d231c138fde25d3378d06e8750e46da6fff1945ac00139e5",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.9524,
+    "claim_faithfulness": 0.9524,
+    "unsupported_claim_rate": 0.0476,
+    "supported_claims": 20,
+    "source_evidence_units": 26,
+    "unsupported": [
+      "Collaborated with engineering stakeholders to lead incident analysis and present progress during reviews."
+    ],
+    "n_claims": 21,
+    "claim_scores": [
+      {
+        "claim": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using SRE, observability and incident response.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.24436
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.230036
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Defined service reliability targets using SRE and observability practices.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+        "retrieval_score": 0.600639,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.600639,
+            "probabilities": {
+              "contradiction": 0.000163,
+              "entailment": 0.989513,
+              "neutral": 0.010324
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.335531,
+            "probabilities": {
+              "contradiction": 0.009864,
+              "entailment": 0.918256,
+              "neutral": 0.07188
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using SRE, observability and incident response.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.285604,
+            "probabilities": {
+              "contradiction": 0.017322,
+              "entailment": 0.650881,
+              "neutral": 0.331797
+            },
+            "predicted_relation": "entailment"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000163,
+          "entailment": 0.989513,
+          "neutral": 0.010324
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.989513,
+        "supported": true
+      },
+      {
+        "claim": "Applied incident response to improve monitoring and alerting.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "retrieval_score": 0.278401,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.695109,
+            "probabilities": {
+              "contradiction": 0.001711,
+              "entailment": 0.987815,
+              "neutral": 0.010475
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "incident response",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.353846,
+            "probabilities": {
+              "contradiction": 0.000522,
+              "entailment": 0.007469,
+              "neutral": 0.992009
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.278401,
+            "probabilities": {
+              "contradiction": 0.000429,
+              "entailment": 0.995938,
+              "neutral": 0.003634
+            },
+            "predicted_relation": "entailment"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000429,
+          "entailment": 0.995938,
+          "neutral": 0.003634
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995938,
+        "supported": true
+      },
+      {
+        "claim": "Collaborated with engineering stakeholders to lead incident analysis and present progress during reviews.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "retrieval_score": 0.14959,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 0.67186,
+            "probabilities": {
+              "contradiction": 0.112672,
+              "entailment": 0.00239,
+              "neutral": 0.884937
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 0.157206,
+            "probabilities": {
+              "contradiction": 0.001399,
+              "entailment": 0.000111,
+              "neutral": 0.99849
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.14959,
+            "probabilities": {
+              "contradiction": 0.003111,
+              "entailment": 0.002701,
+              "neutral": 0.994188
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.003111,
+          "entailment": 0.002701,
+          "neutral": 0.994188
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.002701,
+        "supported": false
+      },
+      {
+        "claim": "Defined service reliability targets using SRE and observability practices, improving team turnaround by 27%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+        "retrieval_score": 0.85576,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.85576,
+            "probabilities": {
+              "contradiction": 0.000564,
+              "entailment": 0.970671,
+              "neutral": 0.028765
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.051783,
+            "probabilities": {
+              "contradiction": 0.00052,
+              "entailment": 0.000124,
+              "neutral": 0.999356
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using SRE, observability and incident response.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.008168,
+            "probabilities": {
+              "contradiction": 0.000469,
+              "entailment": 0.000163,
+              "neutral": 0.999368
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000564,
+          "entailment": 0.970671,
+          "neutral": 0.028765
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.970671,
+        "supported": true
+      },
+      {
+        "claim": "Applied incident response to improve monitoring and alerting;",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "incident response",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.354978
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.276839
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documented decisions for technical and business reviewers.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 14,
+        "best_source_chunk": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.185628
+          },
+          {
+            "evidence_id": "evidence-0009",
+            "text": "Technical Assistant, Example Delta Operations (fictional) (Jan 2021 - Jun 2023)",
+            "kind": "protected_header",
+            "line": 18,
+            "retrieval_score": 0.184968
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 16,
+        "best_source_chunk": "Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 16,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.142591
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.139504
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Managed approximately 69 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Managed approximately 69 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 15,
+        "best_source_chunk": "Managed approximately 69 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 69 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Mei Lee",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "mei.lee@example.test | +65 6000 0073 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Supported recurring operational work using Linux;",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Linux",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.197736
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 69 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.18772
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.25826
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.083333
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.122045
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 22%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 22%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 22,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 22%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Created a simple reporting template that reduced manual preparation time by 22%.",
+            "kind": "claim",
+            "line": 22,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Mei Lee",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "mei.lee@example.test | +65 6000 0073 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 0.11502
+          },
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Managed approximately 69 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 15,
+            "retrieval_score": 0.071351
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "SRE",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using SRE, observability and incident response.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "observability",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Used SRE and observability to define service reliability targets, improving team turnaround by 27%.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using SRE, observability and incident response.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "incident response",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Technology associate with transferable experience in SRE, observability and incident response, seeking to deepen capability as a Site Reliability Engineer.",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "Applied incident response to improve monitoring and alerting and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 14,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using SRE, observability and incident response.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Linux",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 20,
+        "best_source_chunk": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Supported recurring operational work using Linux and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Linux",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Git",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.05
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Prometheus",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "Prometheus",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Prometheus",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Prometheus",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Mei Lee",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.070588
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.069565
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "incident response",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.08
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Prometheus",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.069565
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0026",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 40,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Git",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "observability",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.05
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Linux",
+            "kind": "skill",
+            "line": 40,
+            "retrieval_score": 0.05
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "855c78b118cdb548cc7b8bdbb167ce65ece5f3881ad13c38f75352e4f2448632"
+  }
+}

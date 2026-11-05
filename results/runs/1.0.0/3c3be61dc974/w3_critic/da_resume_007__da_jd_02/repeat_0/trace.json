@@ -1,0 +1,241 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 367,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 483,
+    "output_tokens": 625,
+    "thinking_chars": 0,
+    "seconds": 7.85,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1658,
+    "output_tokens": 541,
+    "thinking_chars": 0,
+    "seconds": 5.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2246,
+    "output_tokens": 635,
+    "thinking_chars": 0,
+    "seconds": 6.59,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2254,
+    "output_tokens": 597,
+    "thinking_chars": 0,
+    "seconds": 14.01,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2252,
+    "output_tokens": 513,
+    "thinking_chars": 0,
+    "seconds": 19.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3994,
+    "output_tokens": 623,
+    "thinking_chars": 0,
+    "seconds": 6.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2322,
+    "output_tokens": 511,
+    "thinking_chars": 0,
+    "seconds": 5.31,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2328,
+    "output_tokens": 546,
+    "thinking_chars": 0,
+    "seconds": 10.81,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2330,
+    "output_tokens": 630,
+    "thinking_chars": 0,
+    "seconds": 18.47,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 4013,
+    "output_tokens": 615,
+    "thinking_chars": 0,
+    "seconds": 6.21,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2320,
+    "output_tokens": 502,
+    "thinking_chars": 0,
+    "seconds": 4.99,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2314,
+    "output_tokens": 687,
+    "thinking_chars": 0,
+    "seconds": 11.8,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2322,
+    "output_tokens": 596,
+    "thinking_chars": 0,
+    "seconds": 17.78,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Grace Lim",
+        "contact": {
+          "email": "grace.lim@example.test",
+          "phone": "+65 6000 0027",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Data Engineer with hands-on experience in Python, SQL, and ETL. Delivers documented improvements by building reliable pipelines and modeling analytics-ready datasets.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Data Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Built reliable batch data pipelines using Python and SQL, improving team turnaround by 15%.",
+              "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+              "Monitored data quality for ~101 monthly work items, ensuring consistent quality checks."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 10%."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Data Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Designed a mock pipeline using Python, SQL and ETL to simulate end-to-end data flow.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "skills": [
+          "Python",
+          "SQL",
+          "ETL",
+          "data pipelines",
+          "PostgreSQL",
+          "Airflow",
+          "Docker",
+          "cloud storage",
+          "Clear written and verbal communication"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  }
+]

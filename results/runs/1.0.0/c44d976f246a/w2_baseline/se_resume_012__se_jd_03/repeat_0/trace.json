@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.17,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 502,
+    "output_tokens": 436,
+    "thinking_chars": 0,
+    "seconds": 6.44,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1472,
+    "output_tokens": 621,
+    "thinking_chars": 0,
+    "seconds": 6.18,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Leon Tan\",\n  \"contact\": {\n    \"email\": \"leon.tan@example.test\",\n    \"phone\": \"+65 6000 0012\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Full-Stack Engineer with hands-on experience in TypeScript, React and Node.js. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Full-Stack Engineer\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Delivered end-to-end product features using TypeScript and React, improving team turnaround by 34%.\",\n        \"Designed frontend components and backend APIs with Node.js, documenting decisions for technical and business reviewers.\",\n        \"Modeled relational data and collaborated on fortnightly reviews to track progress and quality checks.\",\n        \"Managed approximately 86 work items per month while maintaining delivery pipelines and tracking follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using REST APIs and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Full-Stack Engineer Practice Project\",\n      \"description\": \"Built a demonstration project using TypeScript, React and Node.js. Tested the project with representative scenarios and recorded limitations and next steps.\",\n      \"bullets\": [\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example School of Computing (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"TypeScript\",\n    \"React\",\n    \"Node.js\",\n    \"REST APIs\",\n    \"PostgreSQL\",\n    \"Docker\",\n    \"Git\",\n    \"CI/CD\",\n    \"Next.js\",\n    \"AWS\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 5
+  }
+]

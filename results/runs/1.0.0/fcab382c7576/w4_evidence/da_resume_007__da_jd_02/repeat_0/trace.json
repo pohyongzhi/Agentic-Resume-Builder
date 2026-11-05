@@ -1,0 +1,200 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 367,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.11,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 483,
+    "output_tokens": 625,
+    "thinking_chars": 0,
+    "seconds": 8.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793788071.6637769,
+    "end": 1793788071.6642194,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1863,
+    "output_tokens": 793,
+    "thinking_chars": 0,
+    "seconds": 7.74,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793788071.6644695,
+    "end": 1793788079.4048061,
+    "seconds": 7.74,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788079.405249,
+    "end": 1793788079.4139662,
+    "seconds": 0.009,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 991,
+    "output_tokens": 245,
+    "thinking_chars": 0,
+    "seconds": 2.53,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 13,
+    "cited_ok": 13,
+    "rule_ok": 13,
+    "llm_checked": 13,
+    "llm_cached": 0,
+    "supported": 13,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788079.4142225,
+    "end": 1793788081.9401681,
+    "seconds": 2.526,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Grace Lim",
+        "contact": {
+          "email": "grace.lim@example.test",
+          "phone": "+65 6000 0027",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Data Engineer with hands-on experience in Python, SQL and ETL. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Data Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 15%.",
+              "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+              "Managed approximately 101 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 10%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Data Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using Python, SQL and ETL.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "Python",
+          "SQL",
+          "ETL",
+          "data pipelines",
+          "PostgreSQL",
+          "Airflow",
+          "Docker",
+          "cloud storage",
+          "Spark",
+          "dbt"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 13,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788081.9405713,
+    "end": 1793788081.9417653,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

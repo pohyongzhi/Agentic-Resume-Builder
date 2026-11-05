@@ -1,0 +1,18 @@
+## Summary
+Product Analyst with hands-on experience in product analytics, SQL and dashboarding. Delivers documented, measurable improvements with cross-functional teams.
+
+## Experience
+### Product Analyst, Example Atlas Solutions (fictional) (Jul 2023 - Present)
+- Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 25%.
+- Applied dashboarding to define product success metrics and documented decisions for technical and business reviewers.
+- Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews.
+
+### Technical Assistant, Example Beacon Services (fictional) (Jan 2021 - Jun 2023)
+- Supported recurring operational work using A/B testing and documented step-by-step procedures.
+- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.
+
+## Education
+### Bachelor of Science in Information Systems, Example Metropolitan University (fictional) (Aug 2020 - May 2024)
+
+## Skills
+product analytics, SQL, dashboarding, A/B testing, Python, Amplitude

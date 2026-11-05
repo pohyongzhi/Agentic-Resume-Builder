@@ -1,0 +1,1038 @@
+{
+  "identity": {
+    "source_hash": "1d1cdaa0e85b7d2f5e769c1d644552c7d6a450e3ed3992da8edde36914fe9079",
+    "tailored_hash": "89b03a690e23596c31206c1b70b35d4fbb21327e74ef208de4f0856cc016a66c",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.7368,
+    "claim_faithfulness": 0.7368,
+    "unsupported_claim_rate": 0.2632,
+    "supported_claims": 14,
+    "source_evidence_units": 27,
+    "unsupported": [
+      "Technology associate with operational experience supporting cloud infrastructure using AWS, Linux, and networking;",
+      "seeking to apply background in Bash, Terraform, Git, and monitoring dashboards as a Junior Cloud Engineer.",
+      "Present progress to stakeholders during fortnightly reviews.",
+      "Assist with infrastructure automation by supporting recurring operational work using Bash.",
+      "Document step-by-step procedures to maintain clear documentation."
+    ],
+    "n_claims": 19,
+    "claim_scores": [
+      {
+        "claim": "Technology associate with operational experience supporting cloud infrastructure using AWS, Linux, and networking;",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0019",
+        "best_evidence_unit": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 31,
+        "best_source_chunk": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+        "retrieval_score": 0.370086,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer.",
+            "kind": "claim",
+            "line": 44,
+            "retrieval_score": 0.607028,
+            "probabilities": {
+              "contradiction": 0.004103,
+              "entailment": 0.311338,
+              "neutral": 0.684559
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 0.370086,
+            "probabilities": {
+              "contradiction": 0.000757,
+              "entailment": 0.421181,
+              "neutral": 0.578062
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using AWS, Linux and networking.",
+            "kind": "claim",
+            "line": 23,
+            "retrieval_score": 0.251026,
+            "probabilities": {
+              "contradiction": 0.00433,
+              "entailment": 0.313106,
+              "neutral": 0.682564
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000757,
+          "entailment": 0.421181,
+          "neutral": 0.578062
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.421181,
+        "supported": false
+      },
+      {
+        "claim": "seeking to apply background in Bash, Terraform, Git, and monitoring dashboards as a Junior Cloud Engineer.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0014",
+        "best_evidence_unit": "Junior Cloud Engineer Practice Project",
+        "best_evidence_kind": "protected_header",
+        "best_evidence_line": 21,
+        "best_source_chunk": "Junior Cloud Engineer Practice Project",
+        "retrieval_score": 0.195289,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer.",
+            "kind": "claim",
+            "line": 44,
+            "retrieval_score": 0.324262,
+            "probabilities": {
+              "contradiction": 0.000344,
+              "entailment": 0.001429,
+              "neutral": 0.998227
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 0.206448,
+            "probabilities": {
+              "contradiction": 0.052764,
+              "entailment": 0.000925,
+              "neutral": 0.946311
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Junior Cloud Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 21,
+            "retrieval_score": 0.195289,
+            "probabilities": {
+              "contradiction": 0.003333,
+              "entailment": 0.00603,
+              "neutral": 0.990637
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.003333,
+          "entailment": 0.00603,
+          "neutral": 0.990637
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00603,
+        "supported": false
+      },
+      {
+        "claim": "Support cloud infrastructure operations using AWS and Linux.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0019",
+        "best_evidence_unit": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 31,
+        "best_source_chunk": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+        "retrieval_score": 0.694113,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 0.694113,
+            "probabilities": {
+              "contradiction": 0.000191,
+              "entailment": 0.99606,
+              "neutral": 0.003749
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.324094,
+            "probabilities": {
+              "contradiction": 0.000488,
+              "entailment": 0.011291,
+              "neutral": 0.988222
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer.",
+            "kind": "claim",
+            "line": 44,
+            "retrieval_score": 0.249859,
+            "probabilities": {
+              "contradiction": 0.000236,
+              "entailment": 0.35709,
+              "neutral": 0.642674
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000191,
+          "entailment": 0.99606,
+          "neutral": 0.003749
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.99606,
+        "supported": true
+      },
+      {
+        "claim": "Troubleshoot Linux and network issues by applying networking knowledge.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0020",
+        "best_evidence_unit": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 32,
+        "best_source_chunk": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.58642,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 32,
+            "retrieval_score": 0.58642,
+            "probabilities": {
+              "contradiction": 0.00014,
+              "entailment": 0.997304,
+              "neutral": 0.002555
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0027",
+            "text": "Technology associate with transferable experience in AWS, Linux and networking, seeking to deepen capability as a Junior Cloud Engineer.",
+            "kind": "claim",
+            "line": 44,
+            "retrieval_score": 0.264921,
+            "probabilities": {
+              "contradiction": 0.002143,
+              "entailment": 0.003957,
+              "neutral": 0.9939
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using AWS, Linux and networking.",
+            "kind": "claim",
+            "line": 23,
+            "retrieval_score": 0.173859,
+            "probabilities": {
+              "contradiction": 0.037567,
+              "entailment": 0.027492,
+              "neutral": 0.934942
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.00014,
+          "entailment": 0.997304,
+          "neutral": 0.002555
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.997304,
+        "supported": true
+      },
+      {
+        "claim": "Maintain monitoring dashboards while collaborating with four colleagues.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0022",
+        "best_evidence_unit": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 34,
+        "best_source_chunk": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.484662,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 0.484662,
+            "probabilities": {
+              "contradiction": 0.002663,
+              "entailment": 0.996167,
+              "neutral": 0.001169
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Managed approximately 42 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 33,
+            "retrieval_score": 0.174082,
+            "probabilities": {
+              "contradiction": 0.020916,
+              "entailment": 0.000219,
+              "neutral": 0.978865
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.069767,
+            "probabilities": {
+              "contradiction": 0.005437,
+              "entailment": 7.6e-05,
+              "neutral": 0.994487
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.002663,
+          "entailment": 0.996167,
+          "neutral": 0.001169
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996167,
+        "supported": true
+      },
+      {
+        "claim": "Document operational procedures and decisions for technical and business reviewers.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0020",
+        "best_evidence_unit": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 32,
+        "best_source_chunk": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.498885,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 32,
+            "retrieval_score": 0.498885,
+            "probabilities": {
+              "contradiction": 0.001106,
+              "entailment": 0.966411,
+              "neutral": 0.032482
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Supported recurring operational work using Bash and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 38,
+            "retrieval_score": 0.162311,
+            "probabilities": {
+              "contradiction": 0.000181,
+              "entailment": 0.000422,
+              "neutral": 0.999397
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Technical Assistant, Example Ember Technologies (fictional) (May 2024 - Dec 2024)",
+            "kind": "protected_header",
+            "line": 36,
+            "retrieval_score": 0.144751,
+            "probabilities": {
+              "contradiction": 0.004346,
+              "entailment": 0.000667,
+              "neutral": 0.994987
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.001106,
+          "entailment": 0.966411,
+          "neutral": 0.032482
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.966411,
+        "supported": true
+      },
+      {
+        "claim": "Manage approximately 42 work items per month, tracking quality checks and follow-up actions.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0021",
+        "best_evidence_unit": "Managed approximately 42 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 33,
+        "best_source_chunk": "Managed approximately 42 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 0.993188,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Managed approximately 42 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 33,
+            "retrieval_score": 0.993188,
+            "probabilities": {
+              "contradiction": 0.000569,
+              "entailment": 0.994506,
+              "neutral": 0.004924
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Daniel Lee",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.003873,
+              "entailment": 0.001942,
+              "neutral": 0.994185
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "daniel.lee@example.test | +65 6000 0064 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0,
+            "probabilities": {
+              "contradiction": 0.000994,
+              "entailment": 0.000692,
+              "neutral": 0.998314
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000569,
+          "entailment": 0.994506,
+          "neutral": 0.004924
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994506,
+        "supported": true
+      },
+      {
+        "claim": "Present progress to stakeholders during fortnightly reviews.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0022",
+        "best_evidence_unit": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 34,
+        "best_source_chunk": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.542466,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 0.542466,
+            "probabilities": {
+              "contradiction": 0.00178,
+              "entailment": 0.00214,
+              "neutral": 0.99608
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Technology Associate, Example Delta Operations (fictional) (Jan 2025 - Present)",
+            "kind": "protected_header",
+            "line": 29,
+            "retrieval_score": 0.133478,
+            "probabilities": {
+              "contradiction": 0.00433,
+              "entailment": 6.6e-05,
+              "neutral": 0.995604
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0017",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 25,
+            "retrieval_score": 0.093023,
+            "probabilities": {
+              "contradiction": 0.004094,
+              "entailment": 0.000134,
+              "neutral": 0.995773
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.00178,
+          "entailment": 0.00214,
+          "neutral": 0.99608
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00214,
+        "supported": false
+      },
+      {
+        "claim": "Assist with infrastructure automation by supporting recurring operational work using Bash.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "Supported recurring operational work using Bash and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 38,
+        "best_source_chunk": "Supported recurring operational work using Bash and documented step-by-step procedures.",
+        "retrieval_score": 0.367897,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Supported recurring operational work using Bash and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 38,
+            "retrieval_score": 0.367897,
+            "probabilities": {
+              "contradiction": 0.000513,
+              "entailment": 0.00155,
+              "neutral": 0.997937
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 0.164801,
+            "probabilities": {
+              "contradiction": 0.00112,
+              "entailment": 0.000408,
+              "neutral": 0.998472
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.140298,
+            "probabilities": {
+              "contradiction": 0.081849,
+              "entailment": 0.000188,
+              "neutral": 0.917963
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000513,
+          "entailment": 0.00155,
+          "neutral": 0.997937
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.00155,
+        "supported": false
+      },
+      {
+        "claim": "Investigate service requests, record findings, and escalate issues with clear supporting evidence.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 39,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 0.715534,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.715534,
+            "probabilities": {
+              "contradiction": 0.000719,
+              "entailment": 0.995659,
+              "neutral": 0.003623
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 32,
+            "retrieval_score": 0.13906,
+            "probabilities": {
+              "contradiction": 0.002912,
+              "entailment": 0.006769,
+              "neutral": 0.990319
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 24,
+            "retrieval_score": 0.073514,
+            "probabilities": {
+              "contradiction": 0.022895,
+              "entailment": 0.001234,
+              "neutral": 0.975871
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000719,
+          "entailment": 0.995659,
+          "neutral": 0.003623
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.995659,
+        "supported": true
+      },
+      {
+        "claim": "Document step-by-step procedures to maintain clear documentation.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 39,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 0.161667,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Supported recurring operational work using Bash and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 38,
+            "retrieval_score": 0.19774,
+            "probabilities": {
+              "contradiction": 0.000947,
+              "entailment": 0.010103,
+              "neutral": 0.988949
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 0.179423,
+            "probabilities": {
+              "contradiction": 0.027716,
+              "entailment": 0.005479,
+              "neutral": 0.966804
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 39,
+            "retrieval_score": 0.161667,
+            "probabilities": {
+              "contradiction": 0.004522,
+              "entailment": 0.418022,
+              "neutral": 0.577456
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.004522,
+          "entailment": 0.418022,
+          "neutral": 0.577456
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.418022,
+        "supported": false
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0013",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 17,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 17,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 32,
+            "retrieval_score": 0.111347
+          },
+          {
+            "evidence_id": "evidence-0022",
+            "text": "Collaborated with four colleagues to maintain monitoring dashboards and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 0.072195
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "AWS",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "AWS Certified Cloud Practitioner",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 7,
+        "best_source_chunk": "AWS Certified Cloud Practitioner",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "AWS",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using AWS, Linux and networking.",
+            "kind": "claim",
+            "line": 23,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Linux",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "Linux",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 11,
+        "best_source_chunk": "Linux",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Linux",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using AWS, Linux and networking.",
+            "kind": "claim",
+            "line": 23,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Used AWS and Linux to support cloud infrastructure operations, improving team turnaround by 26%.",
+            "kind": "claim",
+            "line": 31,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "networking",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "networking",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 11,
+        "best_source_chunk": "networking",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "networking",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Built a fictional demonstration project using AWS, Linux and networking.",
+            "kind": "claim",
+            "line": 23,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Applied networking to troubleshoot Linux and network issues and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 32,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Bash",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Bash",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 11,
+        "best_source_chunk": "Bash",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Bash",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Supported recurring operational work using Bash and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 38,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0004",
+            "text": "AWS",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 0.114286
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Terraform",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0008",
+        "best_evidence_unit": "Terraform",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 11,
+        "best_source_chunk": "Terraform",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Terraform",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "networking",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 0.063158
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.058537
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0011",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 11,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0011",
+            "text": "Git",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "Linux",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 0.05
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Terraform",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 0.033333
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 11,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 11,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "AWS Certified Cloud Practitioner",
+            "kind": "claim",
+            "line": 7,
+            "retrieval_score": 0.071111
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Junior Cloud Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 21,
+            "retrieval_score": 0.054902
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "9db8a0892214bb9c208e16d12ce112fcd51b5cbe255823ee71c0b622b3ef5b2d"
+  }
+}

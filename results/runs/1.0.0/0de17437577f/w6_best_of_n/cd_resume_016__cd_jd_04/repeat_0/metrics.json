@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7506,
+  "output_tokens": 1397,
+  "thinking_chars": 0,
+  "seconds": 15.79,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_016__cd_jd_04",
+  "resume_id": "cd_resume_016",
+  "jd_id": "cd_jd_04",
+  "category": "cloud_devops",
+  "role_family": "platform_engineering_lead",
+  "seniority": "senior",
+  "fit_level": "strong",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.8,
+  "generation_seconds": 15.794,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_016__cd_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_016__cd_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_016__cd_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "203 words; target is roughly 350-500"
+          ],
+          "words": 203
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a verbatim copy of the original resume with no modifications. It preserves all facts exactly as written.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 attempts to condense the summary but fails to explicitly list the preferred qualifications (Backstage, multi-cloud, FinOps) found in the JD's skills section, despite them being present in the resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.14,
+          "input_tokens": 1074,
+          "output_tokens": 308
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "193 words; target is roughly 350-500"
+          ],
+          "words": 193
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 reorders bullet points within the first role but retains all original facts and claims without invention.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is a minor reordering of bullet points within the original text. It maintains high faithfulness but offers negligible improvement over the source.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.16,
+          "input_tokens": 1075,
+          "output_tokens": 300
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "193 words; target is roughly 350-500"
+          ],
+          "words": 193
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 is a verbatim copy of the original resume with no modifications. It preserves all facts exactly as written.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a verbatim copy of the original resume text. It fails to add any value or restructure content for the specific job description requirements.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.91,
+          "input_tokens": 1087,
+          "output_tokens": 300
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

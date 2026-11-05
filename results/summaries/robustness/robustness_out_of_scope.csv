@@ -1,0 +1,15 @@
+workflow,family,variant,runs,eligible,scored,unscored,failed,completed,refused,handled_errors,crashed,graceful_handling_rate,expected_behaviour_passes,expected_behaviour_pass_rate,expected_behaviour_ci_95_low,expected_behaviour_ci_95_high,fabrication_checked,fabrication_failures,fabrication_rate,protected_fields_checked,protected_field_failures,protected_field_violation_rate,fabrication_bait_violations,mean_unsupported_claim_rate
+w1_single_pass,out_of_scope,degenerate_jd,10,10,10,0,0,10,0,0,0,1.0,10,1.0,0.722467,1.0,10,0,0.0,10,0,0.0,0,0.04568
+w1_single_pass,out_of_scope,mismatched_jd,10,10,10,0,0,10,0,0,0,1.0,6,0.6,0.312674,0.83182,10,4,0.4,10,0,0.0,1,0.26916
+w2_baseline,out_of_scope,degenerate_jd,10,10,10,0,0,10,0,0,0,1.0,10,1.0,0.722467,1.0,10,0,0.0,10,0,0.0,0,0.02805
+w2_baseline,out_of_scope,mismatched_jd,10,10,10,0,0,10,0,0,0,1.0,10,1.0,0.722467,1.0,10,0,0.0,10,0,0.0,0,0.06688
+w3_critic,out_of_scope,degenerate_jd,10,10,10,0,0,9,0,1,0,1.0,10,1.0,0.722467,1.0,9,0,0.0,9,0,0.0,0,0.041478
+w3_critic,out_of_scope,mismatched_jd,10,10,10,0,0,9,0,1,0,1.0,9,0.9,0.59585,0.982124,9,1,0.111111,9,0,0.0,1,0.101
+w4_evidence,out_of_scope,degenerate_jd,10,10,10,0,0,10,0,0,0,1.0,10,1.0,0.722467,1.0,10,0,0.0,10,0,0.0,0,0.02714
+w4_evidence,out_of_scope,mismatched_jd,10,10,10,0,0,10,0,0,0,1.0,10,1.0,0.722467,1.0,10,0,0.0,10,0,0.0,0,0.02909
+w5_fine_tuned,out_of_scope,degenerate_jd,10,10,10,0,0,10,0,0,0,1.0,10,1.0,0.722467,1.0,10,0,0.0,10,0,0.0,0,0.04344
+w5_fine_tuned,out_of_scope,mismatched_jd,10,10,10,0,0,10,0,0,0,1.0,9,0.9,0.59585,0.982124,10,1,0.1,10,0,0.0,0,0.06817
+w6_best_of_n,out_of_scope,degenerate_jd,10,10,10,0,0,6,0,4,0,1.0,10,1.0,0.722467,1.0,6,0,0.0,6,0,0.0,0,0.031933
+w6_best_of_n,out_of_scope,mismatched_jd,10,10,10,0,0,6,0,4,0,1.0,8,0.8,0.490162,0.943318,6,2,0.333333,6,0,0.0,1,0.1178
+w7_plan_execute,out_of_scope,degenerate_jd,10,10,10,0,0,10,0,0,0,1.0,8,0.8,0.490162,0.943318,10,1,0.1,10,1,0.1,0,0.06315
+w7_plan_execute,out_of_scope,mismatched_jd,10,10,10,0,0,10,0,0,0,1.0,9,0.9,0.59585,0.982124,10,1,0.1,10,0,0.0,0,0.06098

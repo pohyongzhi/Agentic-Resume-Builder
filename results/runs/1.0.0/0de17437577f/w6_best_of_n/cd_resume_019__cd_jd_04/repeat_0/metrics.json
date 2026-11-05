@@ -1,0 +1,185 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7506,
+  "output_tokens": 1439,
+  "thinking_chars": 0,
+  "seconds": 15.22,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_019__cd_jd_04",
+  "resume_id": "cd_resume_019",
+  "jd_id": "cd_jd_04",
+  "category": "cloud_devops",
+  "role_family": "platform_engineering_lead",
+  "seniority": "senior",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.2,
+  "generation_seconds": 15.225,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_019__cd_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_019__cd_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_019__cd_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "jd_wording_alignment",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 3.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "190 words; target is roughly 350-500"
+          ],
+          "words": 190
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes core technical skills but omits the 'Projects' section present in the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 3,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Led self-service infrastructure delivery using Terraform while documenting decisions for technical and business reviewers."
+            ],
+            "justification": "The draft restructures sentences to lead with skills but introduces unsupported claims regarding 'security' and 'CI/CD' which are not explicitly detailed in the original text's bullet points.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "The draft restructures sentences to lead with skills but introduces unsupported claims regarding 'security' and 'CI/CD' which are not explicitly detailed in the original text's bullet points."
+          }
+        ],
+        "generation": {
+          "seconds": 2.95,
+          "input_tokens": 1060,
+          "output_tokens": 291
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Reorders bullet points to highlight impact but inadvertently removes the 'Projects' section found in the original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "The draft reorders bullet points to prioritize impact but omits the specific detail about 'documenting decisions for technical and business reviewers' in one key bullet point found in the original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.0,
+          "input_tokens": 1061,
+          "output_tokens": 285
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 5.0,
+        "writing_quality": 5.0,
+        "overall": 4.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "251 words; target is roughly 350-500"
+          ],
+          "words": 251
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Aligns summary with JD language and retains all sections including 'Projects' from the original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is a near-perfect copy of the original resume with minimal rephrasing. It maintains all facts exactly as they appear in the source text.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.75,
+          "input_tokens": 1073,
+          "output_tokens": 367
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

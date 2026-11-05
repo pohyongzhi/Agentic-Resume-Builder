@@ -1,0 +1,241 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 365,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.12,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 496,
+    "output_tokens": 437,
+    "thinking_chars": 0,
+    "seconds": 6.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1511,
+    "output_tokens": 505,
+    "thinking_chars": 0,
+    "seconds": 6.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2069,
+    "output_tokens": 558,
+    "thinking_chars": 0,
+    "seconds": 5.64,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2063,
+    "output_tokens": 514,
+    "thinking_chars": 0,
+    "seconds": 10.98,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2071,
+    "output_tokens": 589,
+    "thinking_chars": 0,
+    "seconds": 16.95,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3726,
+    "output_tokens": 631,
+    "thinking_chars": 0,
+    "seconds": 6.29,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2183,
+    "output_tokens": 582,
+    "thinking_chars": 0,
+    "seconds": 7.2,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2189,
+    "output_tokens": 547,
+    "thinking_chars": 0,
+    "seconds": 12.63,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2191,
+    "output_tokens": 572,
+    "thinking_chars": 0,
+    "seconds": 18.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3888,
+    "output_tokens": 614,
+    "thinking_chars": 0,
+    "seconds": 6.02,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2172,
+    "output_tokens": 671,
+    "thinking_chars": 0,
+    "seconds": 6.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2166,
+    "output_tokens": 529,
+    "thinking_chars": 0,
+    "seconds": 11.84,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2174,
+    "output_tokens": 614,
+    "thinking_chars": 0,
+    "seconds": 19.39,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Farhan Lee",
+        "contact": {
+          "email": "farhan.lee@example.test",
+          "phone": "+65 6000 0066",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "DevOps Engineer with hands-on experience in CI/CD, Docker and Kubernetes. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Atlas Solutions (fictional)",
+            "title": "DevOps Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 40%.",
+              "Applied Kubernetes to manage container platforms and documented decisions for reviewers.",
+              "Managed approximately 68 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to automate infrastructure provisioning and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported operational work using Terraform and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a reporting template that reduced manual preparation time by 35%."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "DevOps Engineer Practice Project",
+            "description": "Built a demonstration project using CI/CD, Docker and Kubernetes. Tested the project with representative scenarios and recorded limitations and next steps.",
+            "bullets": [
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Metropolitan University (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "skills": [
+          "CI/CD",
+          "Docker",
+          "Kubernetes",
+          "Terraform",
+          "AWS",
+          "Linux",
+          "Git",
+          "monitoring",
+          "Argo CD",
+          "Helm"
+        ],
+        "certifications": [
+          "AWS Certified Cloud Practitioner"
+        ]
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  }
+]

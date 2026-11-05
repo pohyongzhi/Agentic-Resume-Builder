@@ -1,0 +1,244 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 364,
+    "output_tokens": 213,
+    "thinking_chars": 0,
+    "seconds": 2.17,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 484,
+    "output_tokens": 627,
+    "thinking_chars": 0,
+    "seconds": 8.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1659,
+    "output_tokens": 603,
+    "thinking_chars": 0,
+    "seconds": 5.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2306,
+    "output_tokens": 595,
+    "thinking_chars": 0,
+    "seconds": 6.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2312,
+    "output_tokens": 488,
+    "thinking_chars": 0,
+    "seconds": 12.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2314,
+    "output_tokens": 597,
+    "thinking_chars": 0,
+    "seconds": 18.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3995,
+    "output_tokens": 600,
+    "thinking_chars": 0,
+    "seconds": 6.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2297,
+    "output_tokens": 538,
+    "thinking_chars": 0,
+    "seconds": 5.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2303,
+    "output_tokens": 552,
+    "thinking_chars": 0,
+    "seconds": 11.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2305,
+    "output_tokens": 471,
+    "thinking_chars": 0,
+    "seconds": 17.27,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3867,
+    "output_tokens": 631,
+    "thinking_chars": 0,
+    "seconds": 6.44,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2328,
+    "output_tokens": 598,
+    "thinking_chars": 0,
+    "seconds": 6.04,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2336,
+    "output_tokens": 638,
+    "thinking_chars": 0,
+    "seconds": 12.51,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2334,
+    "output_tokens": 469,
+    "thinking_chars": 0,
+    "seconds": 17.42,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Grace Tan",
+        "contact": {
+          "email": "grace.tan@example.test",
+          "phone": "+65 6000 0007",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Backend Engineer with hands-on experience in Java, Spring Boot and REST APIs. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Backend Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Designed reliable backend services using Java and Spring Boot, improving team turnaround by 30%.",
+              "Built and documented REST APIs while managing approximately 21 work items per month with quality checks.",
+              "Collaborated with four colleagues to optimise database queries and presented progress during fortnightly reviews.",
+              "Operated containerised services within a microservices architecture using Docker."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using PostgreSQL and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 25%."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Backend Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a demonstration project using Java, Spring Boot and REST APIs.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "skills": [
+          "Java",
+          "Spring Boot",
+          "REST APIs",
+          "PostgreSQL",
+          "microservices",
+          "Docker",
+          "Git",
+          "unit testing",
+          "Kafka",
+          "Redis",
+          "AWS"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  }
+]

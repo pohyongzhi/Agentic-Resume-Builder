@@ -1,0 +1,190 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 374,
+    "output_tokens": 222,
+    "thinking_chars": 0,
+    "seconds": 2.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 478,
+    "output_tokens": 411,
+    "thinking_chars": 0,
+    "seconds": 6.13,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789551.538499,
+    "end": 1793789551.5389464,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1672,
+    "output_tokens": 630,
+    "thinking_chars": 0,
+    "seconds": 6.1,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789551.5391805,
+    "end": 1793789557.6390023,
+    "seconds": 6.1,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789557.6394596,
+    "end": 1793789557.6446233,
+    "seconds": 0.005,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 673,
+    "output_tokens": 348,
+    "thinking_chars": 0,
+    "seconds": 4.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 7,
+    "cited_ok": 7,
+    "rule_ok": 7,
+    "llm_checked": 7,
+    "llm_cached": 0,
+    "supported": 7,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789557.6449306,
+    "end": 1793789561.727303,
+    "seconds": 4.082,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Inez Koh",
+        "contact": {
+          "email": "inez.koh@example.test",
+          "phone": "+65 6000 0089",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in product analytics, SQL and dashboarding, seeking to deepen capability as a Product Analyst.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used product analytics and SQL to analyse product usage and funnels, improving team turnaround by 15%.",
+              "Applied dashboarding to define product success metrics and documented decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to evaluate experiments and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using A/B testing and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Institute of Technology (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [
+          {
+            "name": "Product Analyst Practice Project",
+            "description": "Built a fictional demonstration project using product analytics, SQL and dashboarding. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.",
+            "bullets": []
+          }
+        ],
+        "skills": [
+          "product analytics",
+          "SQL",
+          "dashboarding",
+          "A/B testing",
+          "Python",
+          "Excel",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 7,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789561.7277231,
+    "end": 1793789561.7288308,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

@@ -177,3 +177,43 @@ def test_exact_budget_without_render_is_exceeded(candidate, good_resume, tmp_pat
     out = h.outcome()
     assert out["hit_budget"]
     assert out["errors"][0].startswith("TOOL_BUDGET_EXCEEDED")
+
+
+# ---------- empty list entries ----------
+
+def test_empty_and_blank_list_entries_do_not_fail_validation(candidate, good_resume):
+    good_resume["certifications"] = ["", "   "]
+    good_resume["skills"].append("  ")
+    good_resume["experience"][0]["bullets"].append("")
+    good_resume["education"][0]["details"] = ["\t"]
+    assert validate_resume(good_resume, candidate) == []
+
+
+def test_empty_list_entries_are_dropped_before_rendering(tmp_path, candidate, good_resume):
+    good_resume["certifications"] = [""]
+    good_resume["experience"][0]["bullets"].append(" ")
+    harness = ToolHarness(candidate, output_dir=str(tmp_path))
+    ok, result, _ = harness.execute("validate_resume", {"resume": good_resume})
+    assert ok and '"valid": true' in result
+    ok, _, stop = harness.execute("render_resume", {})
+    assert ok and stop
+    md = harness.outcome()["resume_md"]
+    assert "## Certifications" not in md
+    assert "\n- \n" not in md and not md.rstrip().endswith("-")
+    assert harness.outcome()["generated_resume"]["certifications"] == []
+
+
+def test_invented_certification_next_to_empty_entry_is_still_caught(candidate, good_resume):
+    good_resume["certifications"] = ["", "CompTIA Security+"]
+    errors = validate_resume(good_resume, candidate)
+    assert errors == ["certification 'CompTIA Security+' is not in the original resume"]
+
+
+def test_changed_date_next_to_empty_entries_is_still_caught(candidate, good_resume):
+    good_resume["certifications"] = [""]
+    good_resume["experience"][0]["start"] = "May 2024"
+    errors = validate_resume(good_resume, candidate)
+    assert errors == [
+        "experience 'Business Analyst Intern at Example Logistics Pte Ltd': "
+        "start date 'May 2024' should be 'May 2025'"
+    ]

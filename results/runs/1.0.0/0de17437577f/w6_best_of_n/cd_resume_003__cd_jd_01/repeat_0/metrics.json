@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7425,
+  "output_tokens": 1470,
+  "thinking_chars": 0,
+  "seconds": 15.55,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cd_resume_003__cd_jd_01",
+  "resume_id": "cd_resume_003",
+  "jd_id": "cd_jd_01",
+  "category": "cloud_devops",
+  "role_family": "cloud_engineer",
+  "seniority": "entry",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 15.6,
+  "generation_seconds": 15.556,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_003__cd_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_003__cd_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cd_resume_003__cd_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "143 words; target is roughly 350-500"
+          ],
+          "words": 143
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Removed quantitative metrics (19%, 29 items, 14%) and project details not explicitly requested by the JD, resulting in a sparse resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 is identical to the original resume text but formatted as a Markdown document. It contains no invented claims, fully supports all facts with the source text, and covers all required skills. The writing quality is professional and concise.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.45,
+          "input_tokens": 1053,
+          "output_tokens": 233
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "232 words; target is roughly 350-500"
+          ],
+          "words": 232
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retains all original data including metrics and project details, fully preserving the candidate's complete history.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 is identical to the original resume text but formatted as a Markdown document. It contains no invented claims, fully supports all facts with the source text, and covers all required skills. The writing quality is professional and concise.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.48,
+          "input_tokens": 1054,
+          "output_tokens": 343
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "233 words; target is roughly 350-500"
+          ],
+          "words": 233
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retains all original data including metrics and project details, fully preserving the candidate's complete history.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is identical to the original resume text but formatted as a Markdown document. It contains no invented claims, fully supports all facts with the source text, and covers all required skills (AWS, Linux, networking, Bash, Docker implied via context of automation, Git) and preferred ones (Terraform). The writing quality is professional and concise.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.47,
+          "input_tokens": 1066,
+          "output_tokens": 344
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

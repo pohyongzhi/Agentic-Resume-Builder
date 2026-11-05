@@ -1,0 +1,242 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 365,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 497,
+    "output_tokens": 438,
+    "thinking_chars": 0,
+    "seconds": 6.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1513,
+    "output_tokens": 506,
+    "thinking_chars": 0,
+    "seconds": 4.72,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2066,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 6.1,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2072,
+    "output_tokens": 532,
+    "thinking_chars": 0,
+    "seconds": 11.49,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2074,
+    "output_tokens": 583,
+    "thinking_chars": 0,
+    "seconds": 18.82,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3792,
+    "output_tokens": 626,
+    "thinking_chars": 0,
+    "seconds": 6.22,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2180,
+    "output_tokens": 494,
+    "thinking_chars": 0,
+    "seconds": 5.08,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2188,
+    "output_tokens": 580,
+    "thinking_chars": 0,
+    "seconds": 10.91,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2186,
+    "output_tokens": 533,
+    "thinking_chars": 0,
+    "seconds": 16.28,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 3791,
+    "output_tokens": 651,
+    "thinking_chars": 0,
+    "seconds": 6.47,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 11
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2211,
+    "output_tokens": 561,
+    "thinking_chars": 0,
+    "seconds": 7.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2205,
+    "output_tokens": 655,
+    "thinking_chars": 0,
+    "seconds": 13.64,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2213,
+    "output_tokens": 651,
+    "thinking_chars": 0,
+    "seconds": 20.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Grace Lee",
+        "contact": {
+          "email": "grace.lee@example.test",
+          "phone": "+65 6000 0067",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "DevOps Engineer with hands-on experience in CI/CD, Docker, Kubernetes, Terraform, and AWS. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "DevOps Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Built reliable deployment pipelines using CI/CD and Docker, improving team turnaround by 16%.",
+              "Managed container platforms with Kubernetes and documented decisions for technical and business reviewers.",
+              "Automated infrastructure provisioning while collaborating with four colleagues to present progress during fortnightly reviews.",
+              "Maintained clear documentation and contributed to team planning and reviews.",
+              "Managed approximately 81 work items per month while tracking quality checks and follow-up actions."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported operational work using Terraform and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 11%."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "DevOps Engineer Practice Project",
+            "description": "Built a fictional demonstration project using CI/CD, Docker and Kubernetes. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.",
+            "bullets": []
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "skills": [
+          "CI/CD",
+          "Docker",
+          "Kubernetes",
+          "Terraform",
+          "AWS",
+          "Linux",
+          "Git",
+          "monitoring",
+          "Argo CD",
+          "Helm"
+        ],
+        "certifications": [
+          "AWS Certified Cloud Practitioner"
+        ]
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 16
+  }
+]

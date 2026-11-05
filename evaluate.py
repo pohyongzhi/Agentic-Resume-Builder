@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -67,7 +68,8 @@ from workflows import WORKFLOWS
 def _atomic_text(path, text):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    # Unique per process, so parallel evaluators writing the same file cannot collide.
+    temporary = path.with_suffix(f"{path.suffix}.{os.getpid()}.tmp")
     temporary.write_text(text, encoding="utf-8")
     temporary.replace(path)
 
@@ -474,8 +476,34 @@ def _deterministic_components_complete(existing):
     )
 
 
+TRANSIENT_FAILURE_PREFIXES = (
+    "RateLimitError",
+    "APIConnectionError",
+    "APITimeoutError",
+    "InternalServerError",
+    "ConnectionError",
+    "TimeoutError",
+    "ResponseError: model",
+)
+
+
+def _has_transient_failure(existing):
+    """True when a recorded failure came from rate limits or an unavailable service."""
+    failures = existing.get("evaluation_failures") or {}
+    return any(
+        isinstance(reason, str) and reason.startswith(TRANSIENT_FAILURE_PREFIXES)
+        for reason in failures.values()
+    )
+
+
 def _record_complete(existing, skip_nli=False, skip_judge=False, components=()):
-    """Checkpoint completeness shared by saved-output scoring and robustness."""
+    """Checkpoint completeness shared by saved-output scoring and robustness.
+
+    Records whose failures were transient (rate limits, unreachable services) are
+    incomplete so a resumed run retries them instead of keeping them unscored.
+    """
+    if _has_transient_failure(existing):
+        return False
     nli_complete = (
         skip_nli or existing.get("nli_evaluator_version") == config.NLI_EVALUATOR_VERSION
     )
@@ -1240,10 +1268,10 @@ def build_parser():
         "command", choices=("all", "score", *STAGES, "report"), default="all",
     )
     parser.add_argument("--workflows", nargs="+", default=["w1_single_pass"])
-    parser.add_argument("--judge-provider", choices=("ollama", "groq"), default=config.JUDGE_PROVIDER)
+    parser.add_argument("--judge-provider", choices=("ollama", "groq", "deepinfra"), default=config.JUDGE_PROVIDER)
     parser.add_argument("--judge-model", default=config.JUDGE_MODEL)
     parser.add_argument(
-        "--coverage-provider", choices=("ollama", "groq"),
+        "--coverage-provider", choices=("ollama", "groq", "deepinfra"),
         help="requirement-coverage evaluator provider (default: judge provider)",
     )
     parser.add_argument(

@@ -507,3 +507,10 @@ def test_generation_pair_runner_skips_unavailable_and_judges_ready(tmp_path):
     assert summary["eligible"] == 1
     assert summary["scored"] == 1
     assert summary["generation_unavailable"] == 2
+
+
+def test_quotation_check_folds_typographic_hyphens_and_quotes():
+    source = "- Tracked quality checks and follow-up actions for the team's reviews."
+    quote = "Tracked quality checks and follow‑up actions for the team’s reviews."
+    assert pairwise._normalise_text(quote) in pairwise._normalise_text(source)
+    assert pairwise._normalise_text("Made­up") == "Madeup"

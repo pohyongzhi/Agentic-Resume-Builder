@@ -1,0 +1,826 @@
+{
+  "identity": {
+    "source_hash": "6aedf80cf4321414e6a22a87d5a02180781cb185026f982375a24dc52cad866d",
+    "tailored_hash": "8e6103fece6edf96ac0995b59f29a427e31d3bd6ee65131b60dd0b9862a22a5b",
+    "model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "evaluator_version": "claim-evidence-nli-v3",
+    "evidence_limit": 3,
+    "evidence_normalization": "markdown-nfkc-v1",
+    "entail_threshold": 0.5
+  },
+  "result": {
+    "faithfulness": 0.9412,
+    "claim_faithfulness": 0.9412,
+    "unsupported_claim_rate": 0.0588,
+    "supported_claims": 16,
+    "source_evidence_units": 26,
+    "unsupported": [
+      "Technology Associate with transferable experience in Kotlin, Android and mobile architecture, leading delivery of features and defining maintainable architecture at Example Cedar Innovations."
+    ],
+    "n_claims": 17,
+    "claim_scores": [
+      {
+        "claim": "Technology Associate with transferable experience in Kotlin, Android and mobile architecture, leading delivery of features and defining maintainable architecture at Example Cedar Innovations.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+        "retrieval_score": 0.266347,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer.",
+            "kind": "claim",
+            "line": 40,
+            "retrieval_score": 0.513433,
+            "probabilities": {
+              "contradiction": 0.000626,
+              "entailment": 0.000225,
+              "neutral": 0.999149
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.266347,
+            "probabilities": {
+              "contradiction": 0.000254,
+              "entailment": 0.001319,
+              "neutral": 0.998427
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0017",
+            "text": "Technology Associate, Example Cedar Innovations (fictional) (Jan 2021 - Present)",
+            "kind": "protected_header",
+            "line": 25,
+            "retrieval_score": 0.259941,
+            "probabilities": {
+              "contradiction": 0.000228,
+              "entailment": 0.000444,
+              "neutral": 0.999328
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000254,
+          "entailment": 0.001319,
+          "neutral": 0.998427
+        },
+        "predicted_relation": "neutral",
+        "entailment": 0.001319,
+        "supported": false
+      },
+      {
+        "claim": "Led delivery of Android features using Kotlin and Android, improving team turnaround by 14%.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0018",
+        "best_evidence_unit": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 27,
+        "best_source_chunk": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+        "retrieval_score": 0.91341,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 0.91341,
+            "probabilities": {
+              "contradiction": 0.000148,
+              "entailment": 0.99836,
+              "neutral": 0.001493
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Kotlin, Android and mobile architecture.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 0.048737,
+            "probabilities": {
+              "contradiction": 0.000288,
+              "entailment": 0.000159,
+              "neutral": 0.999553
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer.",
+            "kind": "claim",
+            "line": 40,
+            "retrieval_score": 0.010556,
+            "probabilities": {
+              "contradiction": 0.000416,
+              "entailment": 0.000105,
+              "neutral": 0.999478
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000148,
+          "entailment": 0.99836,
+          "neutral": 0.001493
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.99836,
+        "supported": true
+      },
+      {
+        "claim": "Defined maintainable mobile architecture and documented decisions for technical and business reviewers.",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0019",
+        "best_evidence_unit": "Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 28,
+        "best_source_chunk": "Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.",
+        "retrieval_score": 0.843588,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.843588,
+            "probabilities": {
+              "contradiction": 0.000618,
+              "entailment": 0.996578,
+              "neutral": 0.002804
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0005",
+            "text": "mobile architecture",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.240073,
+            "probabilities": {
+              "contradiction": 0.000207,
+              "entailment": 0.000743,
+              "neutral": 0.99905
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0026",
+            "text": "Technology associate with transferable experience in Kotlin, Android and mobile architecture, seeking to deepen capability as a Senior Mobile Engineer.",
+            "kind": "claim",
+            "line": 40,
+            "retrieval_score": 0.226587,
+            "probabilities": {
+              "contradiction": 0.001494,
+              "entailment": 0.00027,
+              "neutral": 0.998236
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000618,
+          "entailment": 0.996578,
+          "neutral": 0.002804
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.996578,
+        "supported": true
+      },
+      {
+        "claim": "Improved application performance through collaboration with four colleagues;",
+        "support_method": "nli",
+        "best_evidence_id": "evidence-0021",
+        "best_evidence_unit": "Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 30,
+        "best_source_chunk": "Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.",
+        "retrieval_score": 0.478498,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 0.478498,
+            "probabilities": {
+              "contradiction": 0.000237,
+              "entailment": 0.994975,
+              "neutral": 0.004788
+            },
+            "predicted_relation": "entailment"
+          },
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Created a simple reporting template that reduced manual preparation time by 9%.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 0.075325,
+            "probabilities": {
+              "contradiction": 0.000468,
+              "entailment": 8.4e-05,
+              "neutral": 0.999448
+            },
+            "predicted_relation": "neutral"
+          },
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 35,
+            "retrieval_score": 0.068571,
+            "probabilities": {
+              "contradiction": 0.000536,
+              "entailment": 0.000153,
+              "neutral": 0.99931
+            },
+            "predicted_relation": "neutral"
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.000237,
+          "entailment": 0.994975,
+          "neutral": 0.004788
+        },
+        "predicted_relation": "entailment",
+        "entailment": 0.994975,
+        "supported": true
+      },
+      {
+        "claim": "presented progress during fortnightly reviews.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0021",
+        "best_evidence_unit": "Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 30,
+        "best_source_chunk": "Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0021",
+            "text": "Collaborated with four colleagues to improve application performance and presented progress during fortnightly reviews.",
+            "kind": "claim",
+            "line": 30,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 0.223162
+          },
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 0.075188
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Managed approximately 74 work items per month while tracking quality checks and follow-up actions.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0020",
+        "best_evidence_unit": "Managed approximately 74 work items per month while tracking quality checks and follow-up actions.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 29,
+        "best_source_chunk": "Managed approximately 74 work items per month while tracking quality checks and follow-up actions.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0020",
+            "text": "Managed approximately 74 work items per month while tracking quality checks and follow-up actions.",
+            "kind": "claim",
+            "line": 29,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Rina Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "rina.tan@example.test | +65 6000 0018 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0023",
+        "best_evidence_unit": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 34,
+        "best_source_chunk": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.213421
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.142556
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0024",
+        "best_evidence_unit": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 35,
+        "best_source_chunk": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0024",
+            "text": "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+            "kind": "claim",
+            "line": 35,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0015",
+            "text": "Tested the project with representative scenarios and recorded limitations and next steps.",
+            "kind": "claim",
+            "line": 20,
+            "retrieval_score": 0.154362
+          },
+          {
+            "evidence_id": "evidence-0016",
+            "text": "Presented the design and outcomes to a five-person peer review group.",
+            "kind": "claim",
+            "line": 21,
+            "retrieval_score": 0.07574
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Created a simple reporting template that reduced manual preparation time by 9%.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0025",
+        "best_evidence_unit": "Created a simple reporting template that reduced manual preparation time by 9%.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 36,
+        "best_source_chunk": "Created a simple reporting template that reduced manual preparation time by 9%.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0025",
+            "text": "Created a simple reporting template that reduced manual preparation time by 9%.",
+            "kind": "claim",
+            "line": 36,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Rina Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.0
+          },
+          {
+            "evidence_id": "evidence-0002",
+            "text": "rina.tan@example.test | +65 6000 0018 | Singapore",
+            "kind": "contact",
+            "line": 3,
+            "retrieval_score": 0.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0012",
+        "best_evidence_unit": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "best_evidence_kind": "claim",
+        "best_evidence_line": 13,
+        "best_source_chunk": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0012",
+            "text": "Coursework included software engineering, databases, cybersecurity and applied analytics.",
+            "kind": "claim",
+            "line": 13,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 0.110729
+          },
+          {
+            "evidence_id": "evidence-0013",
+            "text": "Senior Mobile Engineer Practice Project",
+            "kind": "protected_header",
+            "line": 17,
+            "retrieval_score": 0.073016
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Kotlin",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0003",
+        "best_evidence_unit": "Kotlin",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Kotlin",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Kotlin",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Kotlin, Android and mobile architecture.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Android",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0004",
+        "best_evidence_unit": "Android",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Android",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0004",
+            "text": "Android",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Kotlin, Android and mobile architecture.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0018",
+            "text": "Used Kotlin and Android to lead delivery of Android features, improving team turnaround by 14%.",
+            "kind": "claim",
+            "line": 27,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "mobile architecture",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0005",
+        "best_evidence_unit": "mobile architecture",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "mobile architecture",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0005",
+            "text": "mobile architecture",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0014",
+            "text": "Built a fictional demonstration project using Kotlin, Android and mobile architecture.",
+            "kind": "claim",
+            "line": 19,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0019",
+            "text": "Applied mobile architecture to define maintainable mobile architecture and documented decisions for technical and business reviewers.",
+            "kind": "claim",
+            "line": 28,
+            "retrieval_score": 1.0
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "REST APIs",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0006",
+        "best_evidence_unit": "REST APIs",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "REST APIs",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0006",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0023",
+            "text": "Supported recurring operational work using REST APIs and documented step-by-step procedures.",
+            "kind": "claim",
+            "line": 34,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0009",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.072727
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Jetpack Compose",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0007",
+        "best_evidence_unit": "Jetpack Compose",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Jetpack Compose",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0007",
+            "text": "Jetpack Compose",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.066667
+          },
+          {
+            "evidence_id": "evidence-0008",
+            "text": "Excel",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.06
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "Git",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0010",
+        "best_evidence_unit": "Git",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "Git",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0010",
+            "text": "Git",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Rina Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.072727
+          },
+          {
+            "evidence_id": "evidence-0003",
+            "text": "Kotlin",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.044444
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      },
+      {
+        "claim": "documentation",
+        "support_method": "normalized_exact",
+        "best_evidence_id": "evidence-0009",
+        "best_evidence_unit": "documentation",
+        "best_evidence_kind": "skill",
+        "best_evidence_line": 7,
+        "best_source_chunk": "documentation",
+        "retrieval_score": 1.0,
+        "evidence_candidates": [
+          {
+            "evidence_id": "evidence-0009",
+            "text": "documentation",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 1.0
+          },
+          {
+            "evidence_id": "evidence-0001",
+            "text": "Rina Tan",
+            "kind": "candidate_name",
+            "line": 1,
+            "retrieval_score": 0.07619
+          },
+          {
+            "evidence_id": "evidence-0006",
+            "text": "REST APIs",
+            "kind": "skill",
+            "line": 7,
+            "retrieval_score": 0.072727
+          }
+        ],
+        "probabilities": {
+          "contradiction": 0.0,
+          "entailment": 1.0,
+          "neutral": 0.0
+        },
+        "predicted_relation": "entailment",
+        "entailment": 1.0,
+        "supported": true
+      }
+    ],
+    "nli_evaluator_version": "claim-evidence-nli-v3",
+    "nli_model": {
+      "model": "cross-encoder/nli-deberta-v3-small",
+      "model_name_or_path": "cross-encoder/nli-deberta-v3-small",
+      "model_revision": "fa2804872c3b4bd748f38c0185cc85775361e735",
+      "model_config_hash": "9a70cde91b01694b0db30a198cfa035721be8b035e0eba4acc279d2cb94ac92b",
+      "id2label": {
+        "0": "contradiction",
+        "1": "entailment",
+        "2": "neutral"
+      },
+      "label2id": {
+        "contradiction": 0,
+        "entailment": 1,
+        "neutral": 2
+      }
+    },
+    "nli_cache_key": "6d2fb479ce737f813782da6d27339b06c1099511eab95b8f9c254f2aab2d24cc"
+  }
+}
