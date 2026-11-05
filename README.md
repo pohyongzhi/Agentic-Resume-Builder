@@ -100,12 +100,19 @@ evaluates or calls a model; it only reads `results/evaluations/<dataset>/<genera
 (the newest run is selected first; **Refresh list** picks up new runs). Set `ARB_EVALUATIONS_DIR`
 to read another folder.
 
+Results follow the final criteria: a resume is good when its NLI claim faithfulness against the
+original resume is at least 0.80 and its rubric v3 overall score (`eval/quality_rubric.py`) is at
+least 4.0; a workflow's result is its good resumes out of every attempt, and a failed generation is
+not good. Rubric v3 scores are read from `<dataset>/quality-rubric/<run>/records/` next to the
+evaluation root. Superseded measures (rubric v1, requirement coverage, keyword coverage, JD
+similarity, pairwise against W2, task success) are not shown.
+
 | View | What it shows |
 | --- | --- |
-| 1 · Workflows | A card per W1-W7: how it works, its step flow, the model it uses and measured averages (LLM calls, tokens, wall time, task success) |
-| 2 · Leaderboard and trade-offs | Headline tiles, task success and faithfulness bars, the tier-1 metric table with scored/eligible counts, and two trade-off plots (quality vs cost, faithfulness vs requirement coverage); filter by category and fit level |
-| 3 · Pairwise and robustness | Wins, ties, order-dependent verdicts and losses against W2 with swap consistency; stability per variant family, out-of-scope pass rates and per-variant changes |
-| 4 · Output viewer | One pair's original resume and JD, then every workflow's output side by side with its key scores |
+| 1 · Workflows | A card per W1-W7: how it works, its step flow, the model it uses, measured averages (LLM calls, tokens, wall time) and its good resumes out of every attempt |
+| 2 · Leaderboard and trade-offs | Headline tiles, good-resume, truth-gate and writing-gate bars, a metric table with scored/eligible counts (good resumes, NLI pass rate, claim faithfulness, unsupported claims, fabrication bait, protected-field violations, rubric v3 pass rate, overall and its four dimensions, tokens and wall time), and two trade-off plots (good rate, faithfulness or rubric v3 vs cost; faithfulness vs rubric v3); filter by category and fit level |
+| 3 · Robustness | Stability per variant family, out-of-scope pass rates and per-variant changes in faithfulness and the guardrails |
+| 4 · Output viewer | One pair's original resume and JD, then every workflow's output side by side with its verdict (good, failed truth, failed writing, unscored, no resume), NLI faithfulness against the gate and rubric v3 scores |
 
 Unscored outputs are shown as unscored with their denominators, never as 0. Missing stages show a
 message such as "Robustness not run for this evaluation". Tables come from `summaries/*.json`;
