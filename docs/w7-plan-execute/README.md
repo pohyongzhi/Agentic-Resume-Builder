@@ -10,12 +10,14 @@
 | `../../workflows/w7_plan_execute.py` | The workflow |
 | `../../tests/test_w7_plan_execute.py` | Tests with a fake Ollama client (no model needed) |
 
-![W7 plan-and-execute](workflow.png)
+The existing diagram illustrates the drafting subgraph. The final harness stage is shown below.
 
 ## The graph
 
 ```text
-START -> plan --Send--> write (one per planned section, in parallel) -> assemble -> END
+START -> plan --Send--> write (one per planned section, in parallel) -> assemble
+      -> parse original facts -> transcribe assembled draft to JSON
+      -> harness validate_resume -> harness render_resume -> END
 ```
 
 | Node | Model calls | What it does |
@@ -24,14 +26,17 @@ START -> plan --Send--> write (one per planned section, in parallel) -> assemble
 | `write` | 1 per section | Writes only its own section from the original resume and its part of the plan |
 | `assemble` | 1 | Merges the sections in order, removes repeats and contradictions, follows the plan's cuts and UNSUPPORTED requirements |
 
-Model calls per resume = 1 + N + 1, where N is the number of planned sections.
+Model calls per successful resume = 1 + N + 1 + 2, where N is the number of planned sections.
+The two finalisation calls extract source facts and transcribe the draft into the shared schema.
+Success additionally requires two actual harness operations, logged as tool calls.
 
 ## Design choices
 
 - **Follows the variant description only.** Every decision is the model's. There is no code check
   that evidence quotes really appear in the resume, and no critique/revise loop: those are W4's and
   W3's techniques, and the shared faithfulness metric measures the result.
-- **No layout rules.** Like the baseline, only `BASE_RULES` shapes the output.
+- **Shared final layout.** Writers draft under `BASE_RULES`, and the harness renders successful
+  output with the same fixed template as W2. The final template determines section order.
 - **Code is plumbing only:** parse the plan JSON (one retry), give each writer its part, cut each
   writer's reply down to its own section, and turn PDF `•` bullets into Markdown bullets.
 - **Fallbacks.** If the plan JSON fails twice, writers use the four `BASE_RULES` sections and the
@@ -52,7 +57,11 @@ pytest -q tests/test_w7_plan_execute.py
   `wall_seconds` from `run_all.py`; the Tracker's `seconds` adds up call times.
 - **Diagnostics:** the plan is logged in the trace as a `w7_plan` event (sections, requirements,
   how many are backed by evidence, which attempt succeeded).
-- **Not on the shared pipeline:** like W1 and W6, W7 reads the raw resume and JD and skips the
-  shared extraction and validate/render harness. Compare it with that in mind.
+- **Shared finalisation:** W7 reads the raw resume and JD for planning/writing. After assembly it
+  extracts source facts, transcribes the draft and uses `ToolHarness` for protected-fact validation
+  and safe rendering. Preparation and validation failures produce no download. The failed draft
+  remains in workflow details for analysis. No finalisation repair loop is added.
+- **New benchmark required:** historical zero-tool traces describe the earlier workflow. Run new
+  generation and evaluation before reporting results for this harness-integrated implementation.
 - **Sections:** the planner chooses the sections freely, so a plan can add e.g. Projects beyond the
   four `BASE_RULES` asks for.

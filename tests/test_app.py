@@ -1,5 +1,7 @@
 from pathlib import Path
 
+import pytest
+
 import app
 from common.llm import Tracker
 
@@ -43,3 +45,19 @@ def test_comparison_workflow_empty_output_becomes_error(monkeypatch, tmp_path):
 
     assert state["hit_budget"] is True
     assert state["errors"][0].startswith("EMPTY_OUTPUT")
+
+
+@pytest.mark.parametrize("workflow", [app.W6_NAME, app.W7_NAME])
+def test_harness_workflow_download_uses_harness_saved_file(monkeypatch, tmp_path, workflow):
+    resume = tmp_path / "original.md"
+    resume.write_text("# Alex\nalex@example.com")
+    saved = tmp_path / "validated.md"
+    saved.write_text("# Validated output")
+    monkeypatch.setitem(app.WORKFLOWS, workflow, lambda pair, tracker: {
+        "resume_md": saved.read_text(), "output_path": str(saved),
+        "finished": True, "errors": [],
+    })
+    monkeypatch.setattr(app, "_save_markdown", lambda *_: pytest.fail("must use harness file"))
+    state = app._run_selected_workflow(workflow, str(resume), "", "Saved JD", Tracker())
+    assert state["output_path"] == str(saved)
+    assert not state["errors"]

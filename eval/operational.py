@@ -6,7 +6,7 @@ import config
 REQUIRED_SECTIONS = ("summary", "experience", "education", "skills")
 
 
-def _workflow_spec(workflow):
+def _workflow_spec(workflow, trace=None):
     """Expected work is workflow-specific; extra intended critic steps are not treated as waste."""
     from workflows.w4_evidence import MAX_GROUNDING_ROUNDS
 
@@ -47,7 +47,25 @@ def _workflow_spec(workflow):
             "max_steps": config.W6_NUM_CANDIDATES + 4,
         },
     }
-    return specs.get(workflow, {"tools": None, "sequence": [], "min_steps": 1, "max_steps": None})
+    spec = specs.get(workflow, {"tools": None, "sequence": [], "min_steps": 1, "max_steps": None})
+    # Historical W6/W7 traces did not use a harness. Preserve their interpretation when
+    # rescoring old outputs; only the new finalisation path has these steps/permissions.
+    harness_used = any(
+        event.get("event") == "harness_finalisation"
+        or (event.get("type") == "tool" and event.get("name") in {"validate_resume", "render_resume"})
+        for event in (trace or [])
+    )
+    if workflow in {"w6_best_of_n", "w7_plan_execute"} and harness_used:
+        if workflow == "w6_best_of_n":
+            minimum, maximum = config.W6_NUM_CANDIDATES + 6, config.W6_NUM_CANDIDATES + 8
+        else:
+            planned = next((len(event.get("sections", [])) for event in (trace or [])
+                            if event.get("type") == "w7_plan"), 1)
+            minimum, maximum = planned + 6, planned + 7
+        spec = {"tools": {"validate_resume", "render_resume"},
+                "sequence": ["validate_resume", "render_resume"],
+                "min_steps": minimum, "max_steps": maximum}
+    return spec
 
 
 def _has_section(markdown, section):
@@ -56,7 +74,7 @@ def _has_section(markdown, section):
 
 
 def _tool_metrics(workflow, trace):
-    spec = _workflow_spec(workflow)
+    spec = _workflow_spec(workflow, trace)
     events = [event for event in (trace or []) if event.get("type") == "tool"]
     if spec["tools"] == set():
         return {
@@ -150,7 +168,7 @@ def evaluate_operational(workflow, pair, output, totals, trace, scored_row=None,
             and not fabrication_bait_violation
         )
 
-    spec = _workflow_spec(workflow)
+    spec = _workflow_spec(workflow, trace)
     actual_steps = totals.get("llm_calls", 0) + totals.get("tool_calls", 0)
     min_steps = spec["min_steps"]
     max_steps = spec["max_steps"]
