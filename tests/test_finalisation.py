@@ -71,11 +71,13 @@ def test_public_workflows_validate_then_render_and_log_real_tools(
     assert operational["tool_call_accuracy"] == 1.0
 
 
-@pytest.mark.parametrize("change", ["employer", "dates", "skill", "contact"])
+@pytest.mark.parametrize("change", ["name", "employer", "dates", "skill", "contact"])
 def test_harness_rejection_never_renders_or_returns_a_download(
     monkeypatch, tmp_path, workflow, candidate, good_resume, change,
 ):
-    if change == "employer":
+    if change == "name":
+        good_resume["name"] = "Another Person"
+    elif change == "employer":
         good_resume["experience"][0]["employer"] = "Invented Corporation"
     elif change == "dates":
         good_resume["experience"][0]["start"] = "Jan 2001"
@@ -96,6 +98,33 @@ def test_harness_rejection_never_renders_or_returns_a_download(
     tools = [event for event in tracker.events if event["type"] == "tool"]
     assert [event["name"] for event in tools] == ["validate_resume"]
     assert json.loads(tools[0]["result"])["valid"] is False
+
+
+def test_section_first_draft_uses_source_name_without_guessing_a_job_title(
+    monkeypatch, tmp_path, workflow, candidate, good_resume,
+):
+    good_resume["name"] = ""
+    good_resume["contact"] = {}
+    pair, draft, calls, _ = setup_run(monkeypatch, tmp_path, workflow, candidate, good_resume)
+    draft["resume_md"] = "## Summary\nFrontend Engineer with experience in SQL.\n\n## Skills\nSQL"
+    tracker = Tracker()
+    out = workflow.run(pair, tracker)
+    assert calls[1]["format"]["properties"]["name"]["enum"] == [""]
+    assert out["finished"], out["errors"]
+    assert out["generated_resume"]["name"] == candidate["name"]
+    assert out["generated_resume"]["contact"]["email"] == candidate["contact"]["email"]
+    assert tracker.totals()["tool_calls"] == 2
+
+
+@pytest.mark.parametrize("heading", ["## Summary", "**EXPERIENCE**", "Skills:"])
+def test_section_heading_cannot_become_a_candidate_name(heading):
+    schema = finalisation._transcription_schema(heading + "\nFrontend Engineer")
+    assert schema["properties"]["name"]["enum"] == [""]
+
+
+def test_explicit_candidate_header_still_goes_through_name_validation():
+    schema = finalisation._transcription_schema("# Another Person\n## Summary\nFrontend Engineer")
+    assert "enum" not in schema["properties"]["name"]
 
 
 @pytest.mark.parametrize("raw", ['{"broken":', '{"experience": [{"employer": "missing title"}]}'])

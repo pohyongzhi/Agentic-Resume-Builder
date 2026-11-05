@@ -211,6 +211,10 @@ the exact validated draft and uses the shared fixed template, so final section o
 that template rather than the strategy or plan. Tool permissions, the tool budget, output-folder
 restrictions and original-file/overwrite protections remain enforced by `ToolHarness`.
 
+If a draft starts with a resume section rather than an identity header, transcription constrains
+the missing name to an empty string. The harness then fills it from the parsed source, as it does
+for other omitted identity fields. An explicit header with a changed name still fails validation.
+
 Preparation failures and final validation rejections return errors with no download. Rejected
 Markdown remains in `workflow_details.pre_harness_resume_md` for research, without marking the
 run successful. There is no extra repair or critique loop in this finalisation stage. Model calls
