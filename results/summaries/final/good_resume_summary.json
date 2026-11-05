@@ -1,0 +1,77 @@
+{
+  "nli_threshold": 0.8,
+  "rubric_threshold": 4.0,
+  "nli_root": "results/evaluations/3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81/2b526ff0b92d/1cd268431e1c38d1",
+  "summary": [
+    {
+      "workflow": "w1_single_pass",
+      "attempts": 100,
+      "generated": 100,
+      "nli_pass": 34,
+      "rubric_scored": 98,
+      "rubric_pass": 65,
+      "good": 29,
+      "good_rate": 0.29
+    },
+    {
+      "workflow": "w2_baseline",
+      "attempts": 100,
+      "generated": 100,
+      "nli_pass": 98,
+      "rubric_scored": 100,
+      "rubric_pass": 90,
+      "good": 88,
+      "good_rate": 0.88
+    },
+    {
+      "workflow": "w3_critic",
+      "attempts": 100,
+      "generated": 92,
+      "nli_pass": 79,
+      "rubric_scored": 92,
+      "rubric_pass": 60,
+      "good": 54,
+      "good_rate": 0.54
+    },
+    {
+      "workflow": "w4_evidence",
+      "attempts": 100,
+      "generated": 100,
+      "nli_pass": 100,
+      "rubric_scored": 100,
+      "rubric_pass": 77,
+      "good": 77,
+      "good_rate": 0.77
+    },
+    {
+      "workflow": "w5_fine_tuned",
+      "attempts": 100,
+      "generated": 100,
+      "nli_pass": 99,
+      "rubric_scored": 100,
+      "rubric_pass": 95,
+      "good": 94,
+      "good_rate": 0.94
+    },
+    {
+      "workflow": "w6_best_of_n",
+      "attempts": 100,
+      "generated": 86,
+      "nli_pass": 85,
+      "rubric_scored": 85,
+      "rubric_pass": 69,
+      "good": 69,
+      "good_rate": 0.69
+    },
+    {
+      "workflow": "w7_plan_execute",
+      "attempts": 100,
+      "generated": 100,
+      "nli_pass": 94,
+      "rubric_scored": 100,
+      "rubric_pass": 86,
+      "good": 83,
+      "good_rate": 0.83
+    }
+  ]
+}
