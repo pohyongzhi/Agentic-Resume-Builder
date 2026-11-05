@@ -81,7 +81,7 @@ def render_status(path) -> str:
         f"Evaluator <code>{escape(root.name)}</code> · generation scope "
         f"<code>{escape(root.parent.name)}</code> · dataset <code>{escape(dataset[:12])}</code>"
         f"<br><b>{len(bundle.rows)}</b> scored outputs · workflows: <b>{escape(workflows)}</b>"
-        f" · {mark('score')} · {rubric} · {summaries}"
+        f" · {mark('NLI')} · {rubric} · {summaries}"
         "</div>"
     )
 

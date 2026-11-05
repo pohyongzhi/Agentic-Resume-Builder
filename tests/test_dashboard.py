@@ -52,8 +52,11 @@ def test_discover_roots_newest_first_with_stages(tmp_path):
     roots = dd.discover_roots(tmp_path)
 
     assert [root.path for root in roots] == [newer, older]
-    assert roots[0].stages == ("score", "pairwise", "robustness")
-    assert roots[1].stages == ("score",)
+    # Superseded stages (pairwise, robustness) are not reported even though the fixture has them.
+    assert roots[0].stages == ("NLI",) and roots[1].stages == ("NLI",)
+    assert "700" not in roots[0].label and " resumes · " in roots[0].label
+    with_rubric = build_fixture_root(tmp_path / "r", rubric=True)
+    assert dd.root_stages(with_rubric) == ("NLI", "rubric v3")
     assert roots[0].outputs == len(WORKFLOWS) * len(PAIRS)
     assert roots[0].workflows == WORKFLOWS
     assert "W1, W2, W3" in roots[0].label and "bbbbbbbb" in roots[0].label

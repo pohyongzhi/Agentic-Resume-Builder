@@ -201,9 +201,9 @@ class EvaluationRoot:
     def label(self) -> str:
         when = datetime.fromtimestamp(self.modified).strftime("%Y-%m-%d %H:%M")
         codes = ", ".join(short_name(name) for name in self.workflows) or "no workflows"
-        stages = " + ".join(self.stages) if self.stages else "no stages"
+        stages = " + ".join(self.stages) if self.stages else "not scored"
         return (
-            f"{when} · {self.outputs} outputs · {codes} · {stages} · "
+            f"{when} · {self.outputs} resumes · {codes} · {stages} · "
             f"{self.generation_scope}/{self.evaluator_hash}"
         )
 
@@ -228,14 +228,21 @@ def _count_index(path: Path) -> tuple[int, tuple[str, ...]]:
 
 
 def root_stages(root: Path) -> tuple[str, ...]:
+    """The final-method steps available for a root: "NLI" (scored outputs) and "rubric v3".
+
+    Superseded stages (pairwise, robustness) are not reported even when their files exist.
+    """
+    from eval import dashboard_charts  # imported here: dashboard_charts imports this module
+
     root = Path(root)
     stages = []
     if (root / "evaluations.jsonl").is_file():
-        stages.append("score")
-    if pairwise_index_path(root) or (root / "summaries" / "pairwise.json").is_file():
-        stages.append("pairwise")
-    if robustness_index_path(root) or (root / "summaries" / "robustness_families.json").is_file():
-        stages.append("robustness")
+        stages.append("NLI")
+    for base in dashboard_charts._rubric_candidates(root):
+        if any(f'"{dashboard_charts.RUBRIC_VERSION}"' in path.read_text(encoding="utf-8", errors="ignore")
+               for path in base.glob("*/identity.json")):
+            stages.append("rubric v3")
+            break
     return tuple(stages)
 
 
