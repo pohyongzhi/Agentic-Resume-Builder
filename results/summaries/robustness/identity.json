@@ -1,0 +1,25 @@
+{
+  "sample_version": "robustness-sample-v2",
+  "variant_version": "robustness-variants-v2",
+  "seed": 42,
+  "typo_rate": 0.03,
+  "variants": {
+    "original": "baseline",
+    "typos": "noisy",
+    "pdf_extraction": "noisy",
+    "web_clutter": "noisy",
+    "formatting": "format",
+    "reordered_sections": "format",
+    "plain_text": "format",
+    "heading_aliases": "format",
+    "mismatched_jd": "out_of_scope",
+    "degenerate_jd": "out_of_scope"
+  },
+  "degenerate_modes": [
+    "title_only",
+    "very_short",
+    "non_job_text"
+  ],
+  "scoring_reference": "clean_original_resume",
+  "identity_hash": "3e0667eedc9494da"
+}
