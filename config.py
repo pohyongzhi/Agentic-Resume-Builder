@@ -82,15 +82,16 @@ INJECTION_SAMPLE_VERSION = "injection-sample-v1"
 INJECTION_SEED = 42
 
 # Pairwise position-swap comparison (eval/pairwise.py). Uses the judge provider/model.
-PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v1"
+PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v2"
 PAIRWISE_PROMPT_VERSION = "pairwise-v1"
 PAIRWISE_SCHEMA_VERSION = "1"
 # Hosted reasoning models spend completion tokens on reasoning before the JSON answer;
 # 2048 truncated pairwise verdicts (five dimensions plus explanation) in the Groq pilot.
 PAIRWISE_MAX_COMPLETION_TOKENS = 4096
 # Pairwise verdicts are a forced choice per dimension; low reasoning keeps hosted token use
-# within free-tier limits. Position-swap consistency is reported as the stability check.
-PAIRWISE_REASONING_EFFORT = "low"
+# within free-tier limits (override with PAIRWISE_REASONING_EFFORT on a paid provider; it is part of
+# the pairwise identity). Position-swap consistency is reported as the stability check.
+PAIRWISE_REASONING_EFFORT = os.environ.get("PAIRWISE_REASONING_EFFORT", "low")
 PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
 POSITION_ORDER_VERSION = "challenger-first-then-baseline-first-v1"
 PAIRWISE_BASELINE_WORKFLOW = "w2_baseline"
