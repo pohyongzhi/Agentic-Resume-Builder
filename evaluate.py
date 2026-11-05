@@ -306,6 +306,7 @@ def _evaluate_output(
     trace=None,
     totals=None,
     components=(),
+    recompute_quality=False,
 ):
     failures = {}
     record = {
@@ -319,7 +320,7 @@ def _evaluate_output(
         "words", "sim_before", "sim_after", "sim_gain",
         "kw_before", "kw_after", "kw_missing",
     }
-    if not saved_quality_fields <= generation_row.keys():
+    if recompute_quality or not saved_quality_fields <= generation_row.keys():
         try:
             record.update(_quality(pair, tailored_resume))
         except Exception as exc:
@@ -701,6 +702,8 @@ def _robustness_record(
         generation_row, scoring_pair, tailored, root, judge_config,
         skip_nli=skip_nli, skip_judge=variant_skip_judge, force=force,
         trace=trace, totals=totals, components=variant_components,
+        # Variants are scored against the clean pair, never with alignment saved for the original.
+        recompute_quality=variant != ORIGINAL,
     )
     record.update({
         "base_pair_id": base_pair["pair_id"],

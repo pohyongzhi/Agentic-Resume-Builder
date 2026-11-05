@@ -182,6 +182,10 @@ def paired_delta_summary(rows, metrics=("faithfulness", "judge_overall_mean", "k
         if not original:
             continue
         for variant in (row for row in group if row["variant"] != "original"):
+            if any(row.get("error") or row.get("finished") is False
+                   or ("resume_md" in row and not row["resume_md"].strip())
+                   for row in (original, variant)):
+                continue
             for metric in metrics:
                 if original.get(metric) is not None and variant.get(metric) is not None:
                     delta_records.append({

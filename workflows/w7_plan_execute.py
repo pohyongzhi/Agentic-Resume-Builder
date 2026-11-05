@@ -6,24 +6,24 @@ what to cut. One writer per planned section then drafts its section, all in para
 original resume and its own part of the plan. An assembler (one model call) merges the sections in
 the planned order and makes them consistent with each other and with the plan.
 
-    START -> plan --Send--> write (one per planned section, in parallel) -> assemble -> END
+    START -> plan --Send--> write (one per planned section, in parallel) -> assemble
+          -> source parsing + draft transcription -> harness validate -> harness render
 
-This follows the W7 description and nothing more, so it can be compared with the other variants.
-Every decision is made by the model. The plan reaches the writers exactly as the planner wrote it:
-  - no check that its evidence quotes are really in the resume, and no checks of the output
-    against the original (that is the evidence-grounded variant's technique; the scorecard's
-    faithfulness metric measures it)
+The drafting subgraph follows the W7 description; the shared harness is its final output boundary.
+The plan reaches the writers exactly as the planner wrote it:
+  - no verifier checks the planner's evidence quotations; final protected-fact checks are
+    performed by the shared harness, and offline NLI measures claim faithfulness
   - no critique/revise loop (that is the multi-critic variant's technique)
-Like the baseline, no prompt or code imposes a layout: the models decide how each section looks
-(the baseline's only format rule is BASE_RULES, and W7 adds none). Code only does plumbing: parse
-the plan's JSON (one retry), hand each writer its part, cut a writer's reply down to its own section,
-and turn PDF '•' bullets into Markdown bullets so the page shows them as a list.
+The models decide how each draft section looks; final output uses the shared harness template.
+Draft generation parses the plan's JSON (one retry), hands each writer its part, cuts a writer's
+reply down to its own section, and turns PDF '•' bullets into Markdown bullets.
 
 The planner chooses the sections freely (no checks on its choice). BASE_RULES still asks for
 Summary, Experience, Education and Skills, so a plan that adds e.g. Projects goes beyond the shared
 rule; raise this with the group before the full run.
 
-What it costs: 1 plan call + 1 call per planned section + 1 assembler call. Varies per resume.
+What it costs: 1 plan call + 1 call per planned section + 1 assembler call, followed by two
+structured model calls and two harness operations on success. Varies per resume.
 Course link: Topic 7 §4 plan-and-execute.
 
 Note: all writers share one Ollama server, so "parallel" may just queue. Report wall_seconds
@@ -38,6 +38,7 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.types import Send
 
 from common.llm import chat
+from common.finalisation import finalise_markdown
 from common.prompts import BASE_RULES
 
 NAME = "w7_plan_execute"
@@ -189,7 +190,7 @@ def _md_bullets(text):
 
 # ---------- the workflow ----------
 
-def run(pair, tracker):
+def generate_draft(pair, tracker):
     resume, jd = pair["resume"], pair["jd"]
 
     def plan_node(state):
@@ -259,3 +260,7 @@ def run(pair, tracker):
 
     out = g.compile().invoke({"plan": {}, "plan_ok": False, "sections": {}, "resume_md": "", "assembled_ok": False})
     return {"resume_md": out["resume_md"], "hit_budget": False, "finished": out["plan_ok"] and out["assembled_ok"]}
+
+
+def run(pair, tracker):
+    return finalise_markdown(pair, generate_draft(pair, tracker), tracker, NAME)

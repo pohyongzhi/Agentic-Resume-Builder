@@ -18,6 +18,7 @@ from workflows import WORKFLOWS
 from workflows.w2_baseline import NAME as BASELINE_NAME, generate
 from workflows.w3_critic import NAME as CRITIC_NAME, generate as generate_w3
 from workflows.w4_evidence import NAME as W4_NAME, generate as generate_w4
+from workflows.w6_best_of_n import NAME as W6_NAME
 from workflows.w7_plan_execute import NAME as W7_NAME
 from ui.charts import RESULTS_CSS
 from ui.results_charts_tab import build_results_charts_tab
@@ -289,7 +290,10 @@ def _run_selected_workflow(workflow, path, job_url, pasted_jd, tracker):
                 "hit_budget": result.get("hit_budget", False)}
     return {
         "resume_md": result["resume_md"],
-        "output_path": _save_markdown(result["resume_md"], workflow),
+        "output_path": (
+            result["output_path"] if workflow in (W6_NAME, W7_NAME)
+            else _save_markdown(result["resume_md"], workflow)
+        ),
         "errors": [],
     }
 
@@ -337,7 +341,7 @@ def run(workflow, resume_file, job_url, pasted_jd):
         )
 
     # Add validation status
-    if workflow in (BASELINE_NAME, CRITIC_NAME):
+    if workflow in (BASELINE_NAME, CRITIC_NAME, W6_NAME, W7_NAME):
         stats += " &nbsp;·&nbsp; **Validation passed**"
     elif workflow == W4_NAME:
         stats += " &nbsp;·&nbsp; **Evidence-grounded**"

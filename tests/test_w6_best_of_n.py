@@ -9,6 +9,7 @@ from workflows.w6_best_of_n import (
     _extract_json,
     _judge_node,
     _normalise_judgments,
+    generate_draft,
     run,
     validate_candidate,
 )
@@ -102,7 +103,7 @@ class BestOfNTests(unittest.TestCase):
                 "reason": "No candidate passed.",
             },
         }
-        result = run({"resume": "original"}, tracker=object())
+        result = run({"resume": "original"}, tracker=Tracker())
         self.assertFalse(result["finished"])
         self.assertEqual(result["resume_md"], "")
         self.assertTrue(result["errors"][0].startswith("W6_NO_VALID_CANDIDATE:"))
@@ -271,7 +272,7 @@ class JudgeCallTests(unittest.TestCase):
         self.assertFalse(scores["skills_first"]["valid"])
 
 
-class EndToEndTests(unittest.TestCase):
+class DraftSelectionTests(unittest.TestCase):
     def test_false_positive_justification_no_longer_blocks_selection(self):
         justification = ("All claims are fully supported. 'Docker' is listed in skills but not "
                          "explicitly mentioned in experience bullets.")
@@ -287,7 +288,7 @@ class EndToEndTests(unittest.TestCase):
         drafts = [complete_resume(s) for s in ("a", "b", "c")]
         fake = FakeChat(drafts + [judge_reply, judge_reply])
         with patch("workflows.w6_best_of_n.chat", fake):
-            result = run(PAIR, Tracker())
+            result = generate_draft(PAIR, Tracker())
         self.assertTrue(result["finished"], result["errors"])
         self.assertEqual(result["details"]["selected_strategy"], "skills_first")
         self.assertTrue(all(call["format"] is None for call in fake.calls[:3]))
@@ -301,7 +302,7 @@ class EndToEndTests(unittest.TestCase):
         drafts = [complete_resume(s) for s in ("a", "b", "c")]
         fake = FakeChat(drafts + [reply, reply])
         with patch("workflows.w6_best_of_n.chat", fake):
-            result = run(PAIR, Tracker())
+            result = generate_draft(PAIR, Tracker())
         self.assertFalse(result["finished"])
         self.assertTrue(result["errors"][0].startswith("W6_NO_VALID_CANDIDATE:"))
 

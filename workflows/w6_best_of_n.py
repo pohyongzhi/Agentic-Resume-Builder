@@ -3,6 +3,8 @@
 The graph generates independent drafts, rejects structurally invalid drafts, judges the
 remaining drafts in both forward and reverse order, and selects the highest-scoring grounded
 draft. All model calls go through common.llm.chat so their time and tokens are tracked.
+The selected Markdown then passes through source parsing, schema transcription and the shared
+validate/render harness. Selection approval alone no longer makes the workflow successful.
 
 Course references:
 - Topic 5 Temperature: diversity normally comes from sampling. Here strategy prompts create
@@ -19,6 +21,7 @@ from typing import TypedDict
 from langgraph.graph import END, START, StateGraph
 
 import config
+from common.finalisation import finalise_markdown
 from common.llm import chat
 from common.prompts import BASE_RULES, task_prompt
 from common.schemas import W6JudgeResponse, llm_schema
@@ -446,7 +449,7 @@ def build_graph(tracker):
     return graph.compile()
 
 
-def run(pair, tracker):
+def generate_draft(pair, tracker):
     out = build_graph(tracker).invoke({
         "pair": pair,
         "candidates": [],
@@ -470,3 +473,7 @@ def run(pair, tracker):
         ),
         "details": details,
     }
+
+
+def run(pair, tracker):
+    return finalise_markdown(pair, generate_draft(pair, tracker), tracker, NAME)

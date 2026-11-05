@@ -77,7 +77,7 @@ def run_w7(plan_replies):
     fake = FakeOllama(plan_replies)
     tracker = Tracker()
     with mock.patch.object(common.llm, "_client", fake):
-        out = w7.run({"resume": RESUME, "jd": JD}, tracker)
+        out = w7.generate_draft({"resume": RESUME, "jd": JD}, tracker)
     return out, fake, tracker
 
 

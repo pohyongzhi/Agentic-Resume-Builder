@@ -15,8 +15,8 @@ agentic baseline is `w2_baseline`.
 | `w3_critic` | W3: parallel fact, recruiter and formatting critics + rewrites | done |
 | `w4_evidence` | W4: source-span grounding and claim verification | done |
 | `w5_fine_tuned` | W5: one-pass generation with the selected V4.1 fine-tuned model | done |
-| `w6_best_of_n` | W6: three strategy drafts + two-order rubric selector | done |
-| `w7_plan_execute` | W7: planner + parallel section writers + assembler | done |
+| `w6_best_of_n` | W6: three strategy drafts + two-order selector + validation/render harness | done |
+| `w7_plan_execute` | W7: planner + parallel section writers + assembler + validation/render harness | done |
 
 ## Architecture
 
@@ -184,10 +184,12 @@ cut items and UNSUPPORTED requirements.
 python run_all.py --workflows w7_plan_execute --split test --limit 1 --repeats 1
 ```
 
-W7 makes 1 + N + 1 model calls, where N is the number of planned sections. All writers share one
-Ollama server, so "parallel" may just queue; report `wall_seconds` as latency. Like W1 and W6, W7
-reads the raw resume and JD and does not use the shared extraction pipeline or harness, so its
-output is shown as experimental in the app. The plan is logged in the trace as a `w7_plan` event.
+W7 draft generation makes 1 + N + 1 model calls, where N is the number of planned sections.
+Finalisation adds two model calls: extraction of candidate facts from the original resume and
+schema-constrained transcription of the assembled draft. Actual `validate_resume` and
+`render_resume` calls then execute through `ToolHarness`. On success, both tool events are logged
+and the app downloads the harness-saved file. All writers share one Ollama server, so "parallel"
+may just queue; report `wall_seconds` as latency. The plan is logged as a `w7_plan` event.
 See `docs/w7-plan-execute/` for the diagram and design notes.
 
 ## Run experiments
@@ -229,7 +231,35 @@ python run_all.py --workflows w6_best_of_n --split test --repeats 1
 configuration hash. Per-candidate scores and the selected strategy are stored in
 `workflow_details`; canonical resumes, metrics and traces are stored below `results/runs/`.
 Benchmark one pair on the evaluation machine before estimating the full runtime because W6 makes
-at least five model calls per pair and may retry incomplete selector responses.
+at least seven model calls per successful pair, including the two finalisation calls, and may
+retry incomplete selector responses. Successful finalisation also records two harness tool calls.
+
+### W6 and W7 harness finalisation
+
+Both workflows retain their existing Markdown drafting techniques. `common/finalisation.py`
+parses candidate facts from the original resume in one structured call, then transcribes only the
+selected/assembled draft into `GeneratedResume` in a second structured call. The transcriber sees
+neither the JD nor the parsed source facts and is instructed to preserve the draft verbatim.
+Validation uses the shared harness, including W2's skill checks. Rendering is permitted only for
+the exact validated draft and uses the shared fixed template, so final section order follows
+that template rather than the strategy or plan. Tool permissions, the tool budget, output-folder
+restrictions and original-file/overwrite protections remain enforced by `ToolHarness`.
+
+If a draft starts with a resume section rather than an identity header, transcription constrains
+the missing name to an empty string. The harness then fills it from the parsed source, as it does
+for other omitted identity fields. An explicit header with a changed name still fails validation.
+
+Preparation failures and final validation rejections return errors with no download. Rejected
+Markdown remains in `workflow_details.pre_harness_resume_md` for research, without marking the
+run successful. There is no extra repair or critique loop in this finalisation stage. Model calls
+use the shared tracker; harness calls record tool names, arguments, outcomes and elapsed time.
+Historical traces without a harness marker keep their previous operational interpretation.
+
+These changes alter generation identities and must be benchmarked as new runs. Do not retrofit
+tool counts or reuse historical output scores as results for these harness-integrated workflows.
+The transcription model can still change wording or omit content despite its instructions;
+evaluate the final rendered text independently with NLI and the shared quality judge. Neither
+the harness nor a successful transcription proves every rewritten sentence is factually correct.
 
 After generation, create operational summaries with `python summarise.py`. To apply the complete
 shared offline evaluator, including the independent rubric judge, run:
