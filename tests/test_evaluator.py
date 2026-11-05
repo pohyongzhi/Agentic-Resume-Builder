@@ -241,8 +241,9 @@ def test_robustness_variants_and_summary():
     ]
     summary = summarise_robustness(rows)[0]
     assert summary["robust_success_rate"] == 0.6667
-    assert summary["faithfulness_worst_degradation"] == -0.2
-    assert summary["sim_after_mean_delta"] == -0.15
+    assert summary["faithfulness_worst_degradation"] == -0.1
+    assert summary["sim_after_mean_delta"] == -0.1
+    assert summary["faithfulness_paired_n"] == 1
 
 
 def test_stratified_robustness_selection_is_balanced_and_deterministic():
@@ -301,3 +302,18 @@ def test_offline_evaluator_reads_saved_resume_and_trace(monkeypatch, tmp_path):
     assert evaluated[0]["task_success"] is True
     assert output_path.exists()
     assert not metrics_path.exists()  # immutable generation metrics are not overwritten
+
+
+def test_changed_input_recomputes_alignment_instead_of_reusing_original(monkeypatch, tmp_path):
+    saved = dict(words=250, sim_before=.4, sim_after=.9, sim_gain=.5,
+                 kw_before=.25, kw_after=1., kw_missing=[])
+    monkeypatch.setattr(offline_evaluation, '_quality',
+                        lambda pair, text: {**saved, 'sim_after': .2, 'kw_after': .25})
+    record = offline_evaluation._evaluate_output(
+        {'workflow': 'w1_single_pass', 'error': None, **saved},
+        {'split': 'test', 'resume': _resume(), 'jd': '', 'keywords': []},
+        _resume(), tmp_path, JudgeConfig(), skip_nli=True, skip_judge=True,
+        trace=[], totals=_totals(), recompute_quality=True,
+    )
+    assert record['sim_after'] == .2
+    assert record['kw_after'] == .25

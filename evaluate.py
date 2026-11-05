@@ -137,6 +137,7 @@ def _evaluate_output(
     force=False,
     trace=None,
     totals=None,
+    recompute_quality=False,
 ):
     failures = {}
     record = {
@@ -150,7 +151,7 @@ def _evaluate_output(
         "words", "sim_before", "sim_after", "sim_gain",
         "kw_before", "kw_after", "kw_missing",
     }
-    if not saved_quality_fields <= generation_row.keys():
+    if recompute_quality or not saved_quality_fields <= generation_row.keys():
         try:
             record.update(_quality(pair, tailored_resume))
         except Exception as exc:
@@ -375,6 +376,7 @@ def evaluate_robustness(
                             force=force,
                             trace=trace,
                             totals=totals,
+                            recompute_quality=True,
                         )
                         record.update({
                             "base_pair_id": base_pair["pair_id"],
@@ -425,6 +427,7 @@ def evaluate_robustness(
                     force=force,
                     trace=trace,
                     totals=totals,
+                    recompute_quality=True,
                 )
                 record.update({
                     "base_pair_id": base_pair["pair_id"],

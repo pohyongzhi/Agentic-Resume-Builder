@@ -1,0 +1,510 @@
+{
+  "source": "results/results.jsonl",
+  "selection": "latest attempt per workflow and pair",
+  "workflows": [
+    {
+      "workflow": "w1_single_pass",
+      "pairs": 100,
+      "attempts": 100,
+      "completed": 100,
+      "failed": 0,
+      "metrics": {
+        "wall_seconds": {
+          "n": 100,
+          "mean": 27.092,
+          "median": 22.9,
+          "p95": 28.4,
+          "sd": 39.4428,
+          "total": 2709.2,
+          "min": 17.7,
+          "max": 416.3
+        },
+        "seconds": {
+          "n": 100,
+          "mean": 22.834,
+          "median": 22.745,
+          "p95": 27.19,
+          "sd": 2.7626,
+          "total": 2283.4,
+          "min": 17.57,
+          "max": 30.46
+        },
+        "llm_calls": {
+          "n": 100,
+          "mean": 1.0,
+          "median": 1.0,
+          "p95": 1.0,
+          "sd": 0.0,
+          "total": 100.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "input_tokens": {
+          "n": 100,
+          "mean": 824.14,
+          "median": 821.0,
+          "p95": 860.0,
+          "sd": 18.1013,
+          "total": 82414.0,
+          "min": 793.0,
+          "max": 878.0
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 563.83,
+          "median": 564.0,
+          "p95": 639.0,
+          "sd": 51.3479,
+          "total": 56383.0,
+          "min": 450.0,
+          "max": 688.0
+        },
+        "total_tokens": {
+          "n": 100,
+          "mean": 1387.97,
+          "median": 1390.5,
+          "p95": 1468.0,
+          "sd": 56.388,
+          "total": 138797.0,
+          "min": 1277.0,
+          "max": 1546.0
+        },
+        "tool_calls": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "tool_calls_ok": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "tool_calls_repeated": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "agent_steps": {
+          "n": 100,
+          "mean": 1.0,
+          "median": 1.0,
+          "p95": 1.0,
+          "sd": 0.0,
+          "total": 100.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "step_efficiency": {
+          "n": 100,
+          "mean": 1.0,
+          "median": 1.0,
+          "p95": 1.0,
+          "sd": 0.0,
+          "total": 100.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "budget_utilisation": {
+          "n": 100,
+          "mean": 1.0,
+          "median": 1.0,
+          "p95": 1.0,
+          "sd": 0.0,
+          "total": 100.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "hit_budget": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    {
+      "workflow": "w2_baseline",
+      "pairs": 100,
+      "attempts": 100,
+      "completed": 100,
+      "failed": 0,
+      "metrics": {
+        "wall_seconds": {
+          "n": 100,
+          "mean": 57.883,
+          "median": 54.45,
+          "p95": 85.4,
+          "sd": 13.9836,
+          "total": 5788.3,
+          "min": 38.7,
+          "max": 110.2
+        },
+        "seconds": {
+          "n": 100,
+          "mean": 68.7621,
+          "median": 65.57,
+          "p95": 96.98,
+          "sd": 15.3768,
+          "total": 6876.21,
+          "min": 46.51,
+          "max": 120.26
+        },
+        "llm_calls": {
+          "n": 100,
+          "mean": 3.24,
+          "median": 3.0,
+          "p95": 4.0,
+          "sd": 0.5341,
+          "total": 324.0,
+          "min": 3.0,
+          "max": 5.0
+        },
+        "input_tokens": {
+          "n": 100,
+          "mean": 2721.74,
+          "median": 2260.5,
+          "p95": 4464.0,
+          "sd": 1159.1989,
+          "total": 272174.0,
+          "min": 2073.0,
+          "max": 7053.0
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 1306.53,
+          "median": 1227.0,
+          "p95": 1840.0,
+          "sd": 295.0708,
+          "total": 130653.0,
+          "min": 1031.0,
+          "max": 2349.0
+        },
+        "total_tokens": {
+          "n": 100,
+          "mean": 4028.27,
+          "median": 3483.5,
+          "p95": 6295.0,
+          "sd": 1448.0896,
+          "total": 402827.0,
+          "min": 3122.0,
+          "max": 9402.0
+        },
+        "tool_calls": {
+          "n": 100,
+          "mean": 2.24,
+          "median": 2.0,
+          "p95": 3.0,
+          "sd": 0.5341,
+          "total": 224.0,
+          "min": 2.0,
+          "max": 4.0
+        },
+        "tool_calls_ok": {
+          "n": 100,
+          "mean": 2.24,
+          "median": 2.0,
+          "p95": 3.0,
+          "sd": 0.5341,
+          "total": 224.0,
+          "min": 2.0,
+          "max": 4.0
+        },
+        "tool_calls_repeated": {
+          "n": 100,
+          "mean": 0.01,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.1,
+          "total": 1.0,
+          "min": 0.0,
+          "max": 1.0
+        },
+        "hit_budget": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    },
+    {
+      "workflow": "w3_critic",
+      "pairs": 100,
+      "attempts": 104,
+      "completed": 91,
+      "failed": 9,
+      "metrics": {
+        "wall_seconds": {
+          "n": 100,
+          "mean": 465.326,
+          "median": 429.9,
+          "p95": 604.6,
+          "sd": 136.446,
+          "total": 46532.6,
+          "min": 300.8,
+          "max": 1243.7
+        },
+        "seconds": {
+          "n": 100,
+          "mean": 784.3603,
+          "median": 725.795,
+          "p95": 1021.94,
+          "sd": 231.2198,
+          "total": 78436.03,
+          "min": 495.8,
+          "max": 2117.18
+        },
+        "llm_calls": {
+          "n": 100,
+          "mean": 14.0,
+          "median": 14.0,
+          "p95": 14.0,
+          "sd": 0.0,
+          "total": 1400.0,
+          "min": 14.0,
+          "max": 14.0
+        },
+        "input_tokens": {
+          "n": 100,
+          "mean": 29087.54,
+          "median": 29058.0,
+          "p95": 30572.0,
+          "sd": 945.8901,
+          "total": 2908754.0,
+          "min": 27332.0,
+          "max": 31512.0
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 7488.17,
+          "median": 7547.5,
+          "p95": 7918.0,
+          "sd": 322.0978,
+          "total": 748817.0,
+          "min": 6650.0,
+          "max": 8103.0
+        },
+        "total_tokens": {
+          "n": 100,
+          "mean": 36575.71,
+          "median": 36381.0,
+          "p95": 38194.0,
+          "sd": 1075.5261,
+          "total": 3657571.0,
+          "min": 34636.0,
+          "max": 39511.0
+        },
+        "tool_calls": {
+          "n": 100,
+          "mean": 1.91,
+          "median": 2.0,
+          "p95": 2.0,
+          "sd": 0.2876,
+          "total": 191.0,
+          "min": 1.0,
+          "max": 2.0
+        },
+        "tool_calls_ok": {
+          "n": 100,
+          "mean": 1.91,
+          "median": 2.0,
+          "p95": 2.0,
+          "sd": 0.2876,
+          "total": 191.0,
+          "min": 1.0,
+          "max": 2.0
+        },
+        "tool_calls_repeated": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "hit_budget": {
+          "n": 100,
+          "mean": 1.0,
+          "median": 1.0,
+          "p95": 1.0,
+          "sd": 0.0,
+          "total": 100.0,
+          "min": 1.0,
+          "max": 1.0
+        }
+      }
+    },
+    {
+      "workflow": "w6_best_of_n",
+      "pairs": 100,
+      "attempts": 100,
+      "completed": 66,
+      "failed": 34,
+      "metrics": {
+        "wall_seconds": {
+          "n": 100,
+          "mean": 18.314,
+          "median": 17.7,
+          "p95": 21.1,
+          "sd": 4.2165,
+          "total": 1831.4,
+          "min": 13.7,
+          "max": 52.5
+        },
+        "seconds": {
+          "n": 100,
+          "mean": 17.4801,
+          "median": 17.38,
+          "p95": 20.63,
+          "sd": 1.6619,
+          "total": 1748.01,
+          "min": 13.67,
+          "max": 23.57
+        },
+        "llm_calls": {
+          "n": 100,
+          "mean": 5.25,
+          "median": 5.0,
+          "p95": 6.0,
+          "sd": 0.4578,
+          "total": 525.0,
+          "min": 5.0,
+          "max": 7.0
+        },
+        "input_tokens": {
+          "n": 100,
+          "mean": 7734.68,
+          "median": 7362.5,
+          "p95": 9539.0,
+          "sd": 968.0857,
+          "total": 773468.0,
+          "min": 6107.0,
+          "max": 11611.0
+        },
+        "output_tokens": {
+          "n": 100,
+          "mean": 1438.9,
+          "median": 1410.5,
+          "p95": 1672.0,
+          "sd": 146.4502,
+          "total": 143890.0,
+          "min": 1147.0,
+          "max": 2077.0
+        },
+        "total_tokens": {
+          "n": 100,
+          "mean": 9173.58,
+          "median": 8754.0,
+          "p95": 11126.0,
+          "sd": 1088.4592,
+          "total": 917358.0,
+          "min": 7304.0,
+          "max": 13487.0
+        },
+        "tool_calls": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "tool_calls_ok": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "tool_calls_repeated": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        },
+        "agent_steps": {
+          "n": 100,
+          "mean": 5.25,
+          "median": 5.0,
+          "p95": 6.0,
+          "sd": 0.4578,
+          "total": 525.0,
+          "min": 5.0,
+          "max": 7.0
+        },
+        "step_efficiency": {
+          "n": 100,
+          "mean": 0.9588,
+          "median": 1.0,
+          "p95": 1.0,
+          "sd": 0.0746,
+          "total": 95.8802,
+          "min": 0.7143,
+          "max": 1.0
+        },
+        "budget_utilisation": {
+          "n": 100,
+          "mean": 0.75,
+          "median": 0.7143,
+          "p95": 0.8571,
+          "sd": 0.0654,
+          "total": 75.0001,
+          "min": 0.7143,
+          "max": 1.0
+        },
+        "hit_budget": {
+          "n": 100,
+          "mean": 0.0,
+          "median": 0.0,
+          "p95": 0.0,
+          "sd": 0.0,
+          "total": 0.0,
+          "min": 0.0,
+          "max": 0.0
+        }
+      }
+    }
+  ],
+  "notes": [
+    "Source: results/results.jsonl; snapshot 4 November 2026. Latest recorded attempt per pair; earlier failed attempts are excluded from metric averages and totals.",
+    "Elapsed time is wall_seconds. Historical W1 elapsed time contains online evaluation overhead in one run. seconds sums model/tool durations, which may overlap in parallel workflows; it is not elapsed time.",
+    "These runs were produced under different configurations and potentially different hardware. Timing differences do not establish a controlled speed ranking.",
+    "W3 has 91 validated outputs and 9 separately recovered drafts. All 100 records reached the critic revision limit; this is not the same as a tool-budget crash.",
+    "tool_calls_ok measures successful tool execution, not factual validity. A validate_resume operation can execute successfully and report invalid content.",
+    "No full benchmark runtime records for W4, W5 or W7 were found here. Missing metrics are not zeros."
+  ]
+}

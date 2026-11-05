@@ -135,6 +135,10 @@ def summarise_robustness(rows):
             for row in group:
                 if row["variant"] == "original":
                     continue
+                if any(item.get("error") or item.get("finished") is False
+                       or ("resume_md" in item and not item["resume_md"].strip())
+                       for item in (original, row)):
+                    continue
                 for metric in ROBUSTNESS_METRICS:
                     if original.get(metric) is not None and row.get(metric) is not None:
                         metric_deltas[metric].append(row[metric] - original[metric])

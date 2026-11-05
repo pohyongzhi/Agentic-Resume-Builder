@@ -103,3 +103,11 @@ def test_review_ids_distinguish_workflows_and_match_every_artifact(tmp_path):
     assert len(packet_ids) == 2
     assert {item["review_id"] for item in mapping} == packet_ids
     assert {line.split(",", 1)[0] for line in claim_rows} == packet_ids
+
+
+def test_robustness_excludes_failed_or_empty_outputs_from_paired_scores():
+    original = {'workflow': 'w1', 'base_pair_id': 'p1', 'variant': 'original',
+                'faithfulness': .9, 'resume_md': 'valid', 'finished': True}
+    failed = {**original, 'variant': 'formatting', 'faithfulness': .1, 'error': 'failure'}
+    empty = {**original, 'variant': 'reordered_sections', 'faithfulness': .1, 'resume_md': ''}
+    assert paired_delta_summary([original, failed, empty]) == []
