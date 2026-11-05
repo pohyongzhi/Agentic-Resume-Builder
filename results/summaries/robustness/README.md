@@ -1,3 +1,5 @@
+> **Not part of the final evaluation.** The final method is NLI claim faithfulness followed by rubric v3; see `results/summaries/final/README.md`. These input-robustness results are kept as a record of an earlier experiment.
+
 # Input robustness results (robustness-variants-v2)
 
 *Run 2026-11-05 on the team machine (RTX 4070, Ollama, local GPU only, no hosted judge). 700 generations: 7 workflows × 10 pairs × 10 inputs (original + 9 variants). Evaluator hash `1cd268431e1c38d1`, robustness identity `3e0667eedc9494da`, dataset hash `3bb1861e…`.*

@@ -110,10 +110,9 @@ Files:
 - `rubric_v3_and_good_per_resume.csv`: per resume, NLI fields, the 4 rubric scores, overall, and the pass and good flags.
 - `good_resume_summary.json`: the counts and thresholds used.
 
-## Supplementary (valid, but not part of the good-resume count)
+## Supplementary (not part of the good-resume count)
 
-- **Robustness:** `results/summaries/robustness/README.md`. 700 runs on altered inputs, with 0 crashes.
-- **Operational cost:** time and model calls per workflow, in `report-tables.docx`.
+- **Operational cost:** time, model calls and tokens per resume, in `results/results.jsonl` and `results/runs/1.0.0/<config>/<workflow>/<pair>/repeat_0/metrics.json`.
 
 ## Superseded (kept for history in the team knowledge base; do not use in the report's results)
 
@@ -121,3 +120,4 @@ Files:
 - **Requirement coverage** (gpt-oss-20b). Dropped from the criteria.
 - **Pairwise vs W2** (DeepInfra, 6 × 100 pairs). Dropped from the criteria. It can still be cited as the reason quality judges need a truth gate: the judge preferred W1, which fabricates, 13–2.
 - **The pairwise screening and the earlier ranking** built on rubric v1 and pairwise.
+- **Input robustness** (700 runs on altered inputs, 2026-11-05). It is not part of the final method, and its stability score used the old checks.
