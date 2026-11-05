@@ -253,3 +253,24 @@ def test_groq_requires_environment_key_without_injected_client(tmp_path, monkeyp
             "Python developer", "Need Python", "Python developer",
             tmp_path, _groq_config(),
         )
+
+
+def test_transient_judge_failures_are_not_cached_and_are_retried(tmp_path):
+    import json
+    from eval import judge
+
+    calls = []
+    original = judge._call_judge
+    def fake_call(client, judge_config, prompt):
+        calls.append(1)
+        raise type("RateLimitError", (Exception,), {})("Error code: 429")
+    judge._call_judge = fake_call
+    try:
+        cfg = judge.JudgeConfig(provider="groq", model="openai/gpt-oss-120b", min_request_interval_seconds=0, max_retries=0)
+        first = judge.evaluate_judge("orig", "jd", "tailored", tmp_path, judge_config=cfg, client=object())
+        assert first["status"] == "unscored" and first["failure_reason"].startswith("RateLimitError")
+        assert not list(tmp_path.glob("*.json"))
+        judge.evaluate_judge("orig", "jd", "tailored", tmp_path, judge_config=cfg, client=object())
+        assert len(calls) == 2
+    finally:
+        judge._call_judge = original

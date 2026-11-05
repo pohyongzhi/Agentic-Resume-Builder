@@ -382,7 +382,10 @@ def evaluate_judge(
     cache_key = _sha(json.dumps({"inputs": input_hashes, "judge": identity}, sort_keys=True))
     cache_path = Path(cache_dir) / f"{cache_key}.json"
     if cache_path.exists() and not force:
-        return json.loads(cache_path.read_text(encoding="utf-8"))
+        cached = json.loads(cache_path.read_text(encoding="utf-8"))
+        # A rate limit or outage says nothing about the resume: retry it instead of reusing it.
+        if not _is_transient_failure(cached.get("failure_reason")):
+            return cached
 
     user_prompt = _user_prompt(original_resume, job_description, tailored_resume)
     sources = {
@@ -442,5 +445,20 @@ def evaluate_judge(
         "result": result,
         "attempts": attempts,
     }
-    _atomic_json(cache_path, record)
+    if not _is_transient_failure(record["failure_reason"]):
+        _atomic_json(cache_path, record)
     return record
+
+
+TRANSIENT_FAILURE_PREFIXES = (
+    "RateLimitError",
+    "APIConnectionError",
+    "APITimeoutError",
+    "InternalServerError",
+    "ConnectionError",
+    "TimeoutError",
+)
+
+
+def _is_transient_failure(reason):
+    return isinstance(reason, str) and reason.startswith(TRANSIENT_FAILURE_PREFIXES)
