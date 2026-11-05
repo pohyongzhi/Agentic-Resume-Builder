@@ -18,7 +18,13 @@ from typing import Any, Literal
 from pydantic import BaseModel, ConfigDict, Field
 
 import config
-from eval.judge import configured_model, wait_for_hosted_request_slot
+from eval.judge import (
+    HOSTED_PROVIDERS,
+    configured_model,
+    hosted_client,
+    hosted_request_options,
+    wait_for_hosted_request_slot,
+)
 
 EVALUATOR_VERSION = config.REQUIREMENT_COVERAGE_EVALUATOR_VERSION
 PROMPT_VERSION = config.REQUIREMENT_COVERAGE_PROMPT_VERSION
@@ -186,14 +192,8 @@ def _default_client(cfg: RequirementCoverageConfig):
         import ollama
 
         return ollama.Client()
-    if cfg.provider == "groq":
-        import os
-
-        if not os.environ.get("GROQ_API_KEY"):
-            raise RuntimeError("GROQ_API_KEY_MISSING")
-        from groq import Groq
-
-        return Groq(api_key=os.environ["GROQ_API_KEY"])
+    if cfg.provider in HOSTED_PROVIDERS:
+        return hosted_client(cfg.provider)
     raise RuntimeError(f"UNKNOWN_COVERAGE_PROVIDER: {cfg.provider!r}")
 
 
@@ -227,7 +227,7 @@ def _call(client, cfg: RequirementCoverageConfig, schema: type[BaseModel], promp
         temperature=cfg.temperature,
         seed=cfg.seed,
         reasoning_effort=cfg.reasoning_effort,
-        include_reasoning=False,
+        **hosted_request_options(cfg.provider),
         max_completion_tokens=cfg.max_completion_tokens,
         response_format={
             "type": "json_schema",

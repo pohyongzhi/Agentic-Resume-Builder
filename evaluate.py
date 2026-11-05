@@ -17,6 +17,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import time
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
@@ -67,7 +68,8 @@ from workflows import WORKFLOWS
 def _atomic_text(path, text):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = path.with_suffix(path.suffix + ".tmp")
+    # Unique per process, so parallel evaluators writing the same file cannot collide.
+    temporary = path.with_suffix(f"{path.suffix}.{os.getpid()}.tmp")
     temporary.write_text(text, encoding="utf-8")
     temporary.replace(path)
 
@@ -1266,10 +1268,10 @@ def build_parser():
         "command", choices=("all", "score", *STAGES, "report"), default="all",
     )
     parser.add_argument("--workflows", nargs="+", default=["w1_single_pass"])
-    parser.add_argument("--judge-provider", choices=("ollama", "groq"), default=config.JUDGE_PROVIDER)
+    parser.add_argument("--judge-provider", choices=("ollama", "groq", "deepinfra"), default=config.JUDGE_PROVIDER)
     parser.add_argument("--judge-model", default=config.JUDGE_MODEL)
     parser.add_argument(
-        "--coverage-provider", choices=("ollama", "groq"),
+        "--coverage-provider", choices=("ollama", "groq", "deepinfra"),
         help="requirement-coverage evaluator provider (default: judge provider)",
     )
     parser.add_argument(
