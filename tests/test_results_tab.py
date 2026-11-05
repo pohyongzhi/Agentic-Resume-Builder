@@ -114,25 +114,19 @@ def test_tradeoffs_render_both_scatter_plots(root, plain_root):
         "good_rate", "claim_faithfulness", "rubric_overall"]
 
 
-def test_robustness_view_without_pairwise(root):
-    assert not hasattr(rt, "render_pairwise")
-    robustness = rt.render_robustness(root)
-    assert "Noisy input" in robustness and "Out of scope" in robustness
-    assert "mismatched_jd" in robustness
-    deltas = rt.render_deltas(root, "unsupported_claim_rate")
-    assert "Unsupported claims" in deltas and "lower is better" in deltas
+def test_superseded_views_are_gone():
+    for name in ("render_pairwise", "render_robustness", "render_deltas"):
+        assert not hasattr(rt, name)
 
 
 def test_missing_stages_render_messages(plain_root, root):
-    assert "Robustness not run for this evaluation" in rt.render_robustness(plain_root)
-    assert rt.render_deltas(plain_root) == ""
     status = rt.render_status(plain_root)
     assert "rubric v3 — not found" in status and "pairwise" not in status
     assert "<b>rubric v3</b> ✓ <code>rubric00000000v3</code>" in rt.render_status(root)
 
 
 def test_no_results_at_all(tmp_path):
-    for render in (rt.render_status, rt.render_leaderboard, rt.render_robustness):
+    for render in (rt.render_status, rt.render_leaderboard):
         assert "No saved evaluation found" in render(None)
     assert rt.render_pair(None, None)[3]["w1_single_pass"][0] is False
 
@@ -212,7 +206,9 @@ def test_blocks_build_and_handlers_run(evaluations):
     assert "28</b> scored outputs" in first[1]
     assert "pairwise" not in handles
     labels = [getattr(block, "label", None) for block in demo.blocks.values()]
-    assert "3 · Robustness" in labels and "3 · Pairwise and robustness" not in labels
+    assert "3 · Output viewer" in labels
+    assert not any(label and "Robustness" in label for label in labels)
+    assert not any(label and "Pairwise" in label for label in labels)
     quality = next(value for value in first if isinstance(value, dict)
                    and value.get("value") in dict(rt.QUALITY_CHOICES).values())
     assert quality["value"] == "good_rate"

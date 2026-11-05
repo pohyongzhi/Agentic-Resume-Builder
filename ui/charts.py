@@ -524,17 +524,3 @@ def scatter_chart(
     return "".join(parts)
 
 
-# --- diverging cell shading --------------------------------------------------------------------
-
-
-def delta_style(delta, direction: str, scale: float = 0.2) -> str:
-    """Background for a delta cell: blue when the change is an improvement, red when worse."""
-    if delta is None:
-        return ""
-    signed = delta if direction == "higher_is_better" else -delta
-    strength = min(abs(signed) / scale, 1.0)
-    if strength < 0.05:
-        return "background:var(--viz-neutral)"
-    colour = "var(--viz-better)" if signed > 0 else "var(--viz-worse)"
-    percent = int(12 + strength * 48)
-    return f"background:color-mix(in srgb, {colour} {percent}%, transparent)"

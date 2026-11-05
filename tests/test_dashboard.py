@@ -1,7 +1,6 @@
 """Results-dashboard loader and aggregations, on synthetic roots written by the real report code."""
 import json
 import os
-import shutil
 import socket
 
 import pytest
@@ -287,57 +286,15 @@ def test_workflow_profiles(bundle):
 
 
 def test_superseded_pairwise_helpers_are_gone():
-    for name in ("pairwise_table", "pairwise_outcome", "PAIRWISE_OUTCOME_LABELS"):
+    for name in ("pairwise_table", "pairwise_outcome", "PAIRWISE_OUTCOME_LABELS",
+                 "robustness_family_panels", "robustness_delta_matrix", "DELTA_METRIC_LABELS"):
         assert not hasattr(dd, name)
-
-
-def test_robustness_family_panels(bundle):
-    panels = {panel["family"]: panel for panel in dd.robustness_family_panels(bundle)}
-    assert list(panels) == ["noisy", "format", "out_of_scope"]
-    noisy = {item["workflow"]: item for item in panels["noisy"]["items"]}
-    # W2's failed pdf_extraction run is excluded from stability scoring, not counted as unstable.
-    assert noisy["w2_baseline"]["runs"] == 6 and noisy["w2_baseline"]["denominator"] == 5
-    oos = {item["workflow"]: item for item in panels["out_of_scope"]["items"]}
-    assert "1 crashed" in oos["w1_single_pass"]["note"]
-    assert oos["w4_evidence"]["value"] == 1.0
-
-
-def test_robustness_tables_rebuilt_without_summaries(tmp_path, bundle):
-    root = build_fixture_root(tmp_path, pairwise=False)
-    shutil.rmtree(root / "summaries")
-    rebuilt = dd.robustness_family_panels(dd.load_bundle(root))
-    written = dd.robustness_family_panels(bundle)
-    assert [[(i["workflow"], i["value"], i["denominator"]) for i in p["items"]] for p in rebuilt] == [
-        [(i["workflow"], i["value"], i["denominator"]) for i in p["items"]] for p in written
-    ]
-
-
-def test_robustness_delta_matrix(bundle):
-    matrix = dd.robustness_delta_matrix(bundle, "faithfulness")
-    families = [family for family, _ in matrix["variants"]]
-    assert families == sorted(families, key=["noisy", "format"].index)
-    assert len(matrix["variants"]) == 7
-    assert matrix["direction"] == "higher_is_better"
-    cell = matrix["cells"][("w2_baseline", "pdf_extraction")]
-    assert (cell["eligible"], cell["scored"], cell["failed"]) == (2, 1, 1)
-    assert "faithfulness" in dd.robustness_delta_metrics(bundle)
-    # Superseded metrics are still in the delta table but not offered.
-    assert set(dd.robustness_delta_metrics(bundle)) <= set(dd.DELTA_METRIC_LABELS)
-    assert "kw_after" not in dd.robustness_delta_metrics(bundle)
-    assert dd.robustness_delta_matrix(bundle, "unsupported_claim_rate")["direction"] == (
-        "lower_is_better"
-    )
-    assert {row["variant"] for row in dd.out_of_scope_variant_rows(bundle)} == {
-        "mismatched_jd", "degenerate_jd",
-    }
 
 
 def test_missing_stages_are_reported_not_invented(tmp_path):
     root = build_fixture_root(tmp_path, pairwise=False, robustness=False)
     bundle = dd.load_bundle(root)
     assert not bundle.has_pairwise and not bundle.has_robustness
-    assert all(not panel["items"] for panel in dd.robustness_family_panels(bundle))
-    assert dd.robustness_delta_matrix(bundle)["variants"] == []
     view = dd.pair_view(bundle, PAIRS[0][0])
     assert view["has_rubric"] is False
     for output in view["outputs"].values():

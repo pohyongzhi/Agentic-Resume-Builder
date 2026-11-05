@@ -81,7 +81,7 @@ def render_status(path) -> str:
         f"Evaluator <code>{escape(root.name)}</code> · generation scope "
         f"<code>{escape(root.parent.name)}</code> · dataset <code>{escape(dataset[:12])}</code>"
         f"<br><b>{len(bundle.rows)}</b> scored outputs · workflows: <b>{escape(workflows)}</b>"
-        f" · {mark('score')} · {rubric} · {mark('robustness')} · {summaries}"
+        f" · {mark('score')} · {rubric} · {summaries}"
         "</div>"
     )
 
@@ -427,137 +427,7 @@ def render_tradeoffs(path, category=ALL, fit_level=ALL, cost="total_tokens",
     )
 
 
-# --- 3. robustness ----------------------------------------------------------------------------
-
-
-def _rate(value):
-    return "–" if value is None else f"{float(value) * 100:.0f}%"
-
-
-def render_robustness(path) -> str:
-    bundle = _bundle(path)
-    if bundle is None:
-        return charts.empty(NO_RUN)
-    if not bundle.has_robustness:
-        return charts.empty("Robustness not run for this evaluation.")
-    panels = dd.robustness_family_panels(bundle)
-    if not any(panel["items"] for panel in panels):
-        return charts.empty(
-            "Robustness rows exist but no v2 family tables could be built (older robustness run)."
-        )
-    blocks = []
-    workflows = set()
-    for panel in panels:
-        items = []
-        for item in panel["items"]:
-            workflows.add(item["workflow"])
-            if item["value"] is None:
-                label = f"unscored (0/{item['denominator']} of {item['runs']} runs)"
-            else:
-                label = f"{_rate(item['value'])} · {item['numerator']}/{item['denominator']}"
-            text = f"{label} | {dd.display_name(item['workflow'])} | variants: {item['variants']}"
-            text += f" | {item['runs']} runs"
-            if item["note"]:
-                text += f" | {item['note']}"
-            items.append({"workflow": item["workflow"], "value": item["value"], "label": label,
-                          "tip": text})
-        subtitle = (
-            "Stable runs: no pass/fail check flipped to worse and no 0-1 metric dropped by more "
-            f"than {config.ROBUSTNESS_STABILITY_TOLERANCE:.2f}."
-            if panel["measure"] == "stability"
-            else "Expected behaviour: refused or errored cleanly, or completed without "
-            "fabrication or protected-field changes."
-        )
-        body = charts.bar_chart(items) if items else '<div class="empty">Not run</div>'
-        blocks.append(charts.panel(panel["title"], body, subtitle))
-    oos = dd.out_of_scope_variant_rows(bundle)
-    oos_table = ""
-    if oos:
-        rows = "".join(
-            "<tr>"
-            f"<td>{charts._wf_label(row.get('workflow', ''))}</td>"
-            f"<td style=\"text-align:left\">{escape(str(row.get('variant', '')))}</td>"
-            f"<td>{_rate(row.get('expected_behaviour_pass_rate'))}<span class=\"n\">"
-            f"{row.get('expected_behaviour_passes', 0)}/{row.get('scored', 0)} scored"
-            f"</span></td>"
-            f"<td>{row.get('completed', 0)}</td><td>{row.get('refused', 0)}</td>"
-            f"<td>{row.get('handled_errors', 0)}</td><td>{row.get('crashed', 0)}</td>"
-            f"<td>{row.get('fabrication_failures', 0)}<span class=\"n\">of "
-            f"{row.get('fabrication_checked', 0)} checked</span></td>"
-            f"<td>{row.get('protected_field_failures', 0)}<span class=\"n\">of "
-            f"{row.get('protected_fields_checked', 0)} checked</span></td>"
-            "</tr>"
-            for row in oos
-        )
-        oos_table = charts.panel(
-            "Out-of-scope inputs by variant",
-            '<div class="tblwrap"><table class="tbl"><thead><tr><th>Workflow</th>'
-            '<th style="text-align:left">Variant</th><th>Pass rate</th><th>Completed</th>'
-            "<th>Refused</th><th>Handled error</th><th>Crashed</th><th>Fabrication</th>"
-            f"<th>Protected fields</th></tr></thead><tbody>{rows}</tbody></table></div>",
-            "mismatched_jd: a JD from another field · degenerate_jd: title only, one line, or "
-            "non-job text.",
-        )
-    return charts.wrap(
-        charts.legend(dd.order_workflows(workflows))
-        + f'<div class="grid3">{"".join(blocks)}</div>'
-        + ('<div class="gap"></div>' + oos_table if oos_table else "")
-    )
-
-
-def render_deltas(path, metric="faithfulness") -> str:
-    bundle = _bundle(path)
-    if bundle is None or not bundle.has_robustness:
-        return ""
-    matrix = dd.robustness_delta_matrix(bundle, metric or "faithfulness")
-    if not matrix["variants"]:
-        return charts.empty("No in-scope robustness deltas for this metric.")
-    direction = matrix["direction"]
-    header = "".join(
-        f"<th>{escape(variant.replace('_', ' '))}<br><span class=\"n\">{escape(family)}</span></th>"
-        for family, variant in matrix["variants"]
-    )
-    body = []
-    for workflow in matrix["workflows"]:
-        cells = []
-        for _, variant in matrix["variants"]:
-            row = matrix["cells"].get((workflow, variant))
-            if not row:
-                cells.append('<td><span class="na">–</span></td>')
-                continue
-            delta = row.get("mean_delta")
-            if delta is None:
-                cells.append(
-                    f'<td><span class="na">unscored</span><span class="n">0/'
-                    f'{row.get("eligible", 0)}</span></td>'
-                )
-                continue
-            text = (
-                f"Δ {float(delta):+.3f} · {variant.replace('_', ' ')} | {dd.display_name(workflow)}"
-                f" | 95% CI {row.get('ci_95_low')} to {row.get('ci_95_high')}"
-                f" | worst degradation {row.get('worst_degradation')}"
-                f" | {row.get('scored', 0)} paired of {row.get('eligible', 0)} eligible,"
-                f" {row.get('failed', 0)} variant generations failed"
-            )
-            cells.append(
-                f'<td{charts.tip(text)} style="{charts.delta_style(float(delta), direction)}">'
-                f"{float(delta):+.3f}<span class=\"n\">n={row.get('scored', 0)}"
-                f"{' of ' + str(row.get('eligible')) if row.get('scored') != row.get('eligible') else ''}"
-                "</span></td>"
-            )
-        cls = ' class="base"' if workflow == dd.BASELINE else ""
-        body.append(f"<tr{cls}><td>{charts._wf_label(workflow)}</td>{''.join(cells)}</tr>")
-    better = "higher" if direction == "higher_is_better" else "lower"
-    return charts.wrap(charts.panel(
-        f"Per-variant change: {dd.DELTA_METRIC_LABELS.get(metric, metric)}",
-        f'<div class="tblwrap"><table class="tbl heat"><thead><tr><th>Workflow</th>{header}'
-        f"</tr></thead><tbody>{''.join(body)}</tbody></table></div>",
-        f"Mean of (variant − original) on the same pair; {better} is better. Blue = improved, "
-        "red = degraded, grey ≈ no change. n = pairs with both runs scored.",
-    ))
-
-
-# --- 4. output viewer --------------------------------------------------------------------------
+# --- 3. output viewer --------------------------------------------------------------------------
 
 # Verdict chip per resume: text (with a mark, so state never rests on colour) and chip state.
 VERDICT_CHIPS = {
@@ -684,8 +554,7 @@ def _root_choices(evaluations_dir):
 def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=None):
     """Add the Results tab inside the current ``gr.Tabs`` of ``blocks``.
 
-    ``selected_view`` opens a sub-tab first: "workflows", "leaderboard", "robustness" or
-    "viewer".
+    ``selected_view`` opens a sub-tab first: "workflows", "leaderboard" or "viewer".
     """
     models = _models()
 
@@ -723,14 +592,7 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
                 with gr.Row():
                     cost_plot = gr.HTML(**CHART_HTML)
                     gates_plot = gr.HTML(**CHART_HTML)
-            with gr.Tab("3 · Robustness", id="robustness"):
-                robustness = gr.HTML(**CHART_HTML)
-                delta_dd = gr.Dropdown(
-                    choices=[(label, key) for key, label in dd.DELTA_METRIC_LABELS.items()],
-                    value="faithfulness", label="Per-variant change in",
-                )
-                deltas = gr.HTML(**CHART_HTML)
-            with gr.Tab("4 · Output viewer", id="viewer"):
+            with gr.Tab("3 · Output viewer", id="viewer"):
                 with gr.Row():
                     pair_dd = gr.Dropdown(choices=[], label="Resume and job pair", scale=3)
                     workflow_pick = gr.CheckboxGroup(
@@ -768,10 +630,6 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
         categories, fit_levels = dd.filter_options(bundle) if bundle else ([], [])
         pairs = dd.pair_choices(bundle) if bundle else []
         pair_id = pairs[0][1] if pairs else None
-        delta_metrics = dd.robustness_delta_metrics(bundle) if bundle else []
-        delta_metric = "faithfulness" if "faithfulness" in delta_metrics else (
-            delta_metrics[0] if delta_metrics else "faithfulness"
-        )
         quality = (
             quality_metric(dd.leaderboard(bundle)[0]) if bundle else DEFAULT_QUALITY
         )
@@ -787,13 +645,6 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
             gr.update(value=quality),
             cost_html,
             gates_html,
-            render_robustness(path),
-            gr.update(
-                choices=[(dd.DELTA_METRIC_LABELS[m], m) for m in delta_metrics]
-                or [(label, key) for key, label in dd.DELTA_METRIC_LABELS.items()],
-                value=delta_metric,
-            ),
-            render_deltas(path, delta_metric),
             gr.update(choices=pairs, value=pair_id),
             gr.update(value=list(SLOT_WORKFLOWS)),
             *viewer(path, pair_id, list(SLOT_WORKFLOWS)),
@@ -801,7 +652,7 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
 
     root_outputs = [
         status, explainer, category_dd, fit_dd, board, cost_radio, quality_radio, cost_plot,
-        gates_plot, robustness, delta_dd, deltas, pair_dd, workflow_pick,
+        gates_plot, pair_dd, workflow_pick,
         *viewer_outputs,
     ]
 
@@ -831,12 +682,11 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
           [board, cost_plot, gates_plot], **quiet)
     gr.on([cost_radio.input, quality_radio.input], render_tradeoffs, filter_inputs,
           [cost_plot, gates_plot], **quiet)
-    delta_dd.input(render_deltas, [root_dd, delta_dd], deltas, **quiet)
     gr.on([pair_dd.input, workflow_pick.input], viewer, [root_dd, pair_dd, workflow_pick],
           viewer_outputs, **quiet)
 
     return {
         "root": root_dd, "refresh": refresh, "status": status, "explainer": explainer,
-        "board": board, "robustness": robustness, "deltas": deltas,
+        "board": board,
         "pair": pair_dd, "initial": initial, "on_root": on_root, "viewer": viewer,
     }

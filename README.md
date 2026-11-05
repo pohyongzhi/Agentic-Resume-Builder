@@ -111,11 +111,11 @@ similarity, pairwise against W2, task success) are not shown.
 | --- | --- |
 | 1 · Workflows | A card per W1-W7: how it works, its step flow, the model it uses, measured averages (LLM calls, tokens, wall time) and its good resumes out of every attempt |
 | 2 · Leaderboard and trade-offs | Headline tiles, good-resume, truth-gate and writing-gate bars, a metric table with scored/eligible counts (good resumes, NLI pass rate, claim faithfulness, unsupported claims, fabrication bait, protected-field violations, rubric v3 pass rate, overall and its four dimensions, tokens and wall time), and two trade-off plots (good rate, faithfulness or rubric v3 vs cost; faithfulness vs rubric v3); filter by category and fit level |
-| 3 · Robustness | Stability per variant family, out-of-scope pass rates and per-variant changes in faithfulness and the guardrails |
-| 4 · Output viewer | One pair's original resume and JD, then every workflow's output side by side with its verdict (good, failed truth, failed writing, unscored, no resume), NLI faithfulness against the gate and rubric v3 scores |
+| 3 · Output viewer | One pair's original resume and JD, then every workflow's output side by side with its verdict (good, failed truth, failed writing, unscored, no resume), NLI faithfulness against the gate and rubric v3 scores |
 
-Unscored outputs are shown as unscored with their denominators, never as 0. Missing stages show a
-message such as "Robustness not run for this evaluation". Tables come from `summaries/*.json`;
+Unscored outputs are shown as unscored with their denominators, never as 0. A run without rubric v3
+scores says so instead of counting good resumes. Input robustness is not part of the final evaluation
+and is not shown. Tables come from `summaries/*.json`;
 when a summary file is missing, the same table is rebuilt in memory from the saved index with
 `eval/reporting.py`. Each workflow keeps one colour in every view, and W2 is drawn in neutral grey
 with a dashed outline. To preview the tab without real results:
