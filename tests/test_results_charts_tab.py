@@ -161,8 +161,10 @@ def test_records_fallback_when_no_index(tmp_path):
 
 def test_headlines_are_computed_from_the_data(payload):
     headlines = payload["headlines"]
-    assert set(headlines) == {"outcome", "faith", "bait", "heat", "fit", "time", "calls",
-                              "scatter", "words"}
+    assert set(headlines) == {"good", "quadrant", "faith", "bait", "rubric", "dims", "heat", "fit",
+                              "time", "calls", "tokens", "value"}
+    # The fixture has no rubric v3 run, so the good-resume headline says so instead of ranking.
+    assert payload["has_rubric"] is False and "no rubric v3 scores" in headlines["good"]
     # W1 has the lowest fixture quality (0.55) and W3 the highest cost.
     assert headlines["faith"].startswith("W1 is the least faithful")
     assert headlines["calls"].startswith("W3 makes the most model calls")
@@ -223,3 +225,61 @@ def test_app_mounts_both_results_tabs():
     labels = [getattr(block, "label", None) for block in app.demo.blocks.values()]
     assert {"Tailor a resume", "Results", "Results (charts)"} <= set(labels)
     assert labels.index("Results") < labels.index("Results (charts)")
+
+
+def _write_rubric(root, scores, gates=(0.8, 4.0)):
+    """A rubric v3 run next to ``root``: {(workflow, pair_id): overall or None}."""
+    run = root.parent.parent / "quality-rubric" / "rubricid"
+    (run / "records").mkdir(parents=True)
+    (run / "identity.json").write_text(json.dumps({"version": dc.RUBRIC_VERSION, "provider": "deepinfra",
+                                                   "model": "openai/gpt-oss-120b", "reasoning_effort": "medium"}))
+    (run / "summary.json").write_text(json.dumps({"nli_threshold": gates[0], "rubric_threshold": gates[1]}))
+    for (workflow, pair_id), overall in scores.items():
+        path = run / "records" / workflow / f"{pair_id}.json"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        dims = None if overall is None else dict.fromkeys(dc.RUBRIC_DIMENSIONS, overall)
+        path.write_text(json.dumps({"workflow": workflow, "pair_id": pair_id, "overall": overall,
+                                    "status": "scored" if overall is not None else "unscored",
+                                    "scores": dims}))
+
+
+def test_verdict_checks_truth_before_writing():
+    gates = {"nli": 0.8, "rubric": 4.0}
+    ok = {"task_success": True, "claim_faithfulness": 0.9}
+    assert dc.verdict({"error": "X"}, {"overall": 5}, gates) == "rejected"
+    assert dc.verdict({**ok, "claim_faithfulness": 0.7}, {"overall": 5}, gates) == "nli_fail"
+    assert dc.verdict({**ok, "claim_faithfulness": 0.7}, {"overall": 2}, gates) == "nli_fail"
+    assert dc.verdict(ok, {"overall": 3.75}, gates) == "rubric_fail"
+    assert dc.verdict(ok, {"overall": 4.0}, gates) == "good"
+    assert dc.verdict(ok, {"overall": None}, gates) == "unscored"
+    assert dc.verdict(ok, None, gates) == "unscored"
+    assert dc.verdict({**ok, "claim_faithfulness": None}, {"overall": 5}, gates) == "unscored"
+
+
+def test_payload_joins_rubric_scores_and_counts_good_resumes(tmp_path):
+    rows = build_score_rows()
+    root = _write_root(tmp_path, rows)
+    scores = {(r["workflow"], r["pair_id"]): 4.5 for r in rows}
+    # The fixture's W4 resumes all pass the truth gate, so the writing gate decides.
+    w4 = [r["pair_id"] for r in rows if r["workflow"] == "w4_evidence"]
+    scores[("w4_evidence", w4[0])] = 3.0     # fails the writing gate
+    scores[("w4_evidence", w4[1])] = None    # judge left it unscored
+    _write_rubric(root, scores)
+    payload = dc.build_payload(root)
+    assert payload["has_rubric"] is True
+    assert payload["thresholds"]["faith"] == 0.8 and payload["thresholds"]["rubric"] == 4.0
+    summary = {s["short"]: s for s in payload["summary"]}
+    w4 = summary["W4"]["verdicts"]
+    assert w4 == {"good": 2, "rubric_fail": 1, "unscored": 1, "nli_fail": 0, "rejected": 0}
+    assert summary["W4"]["rubric_scored"] == 3 and summary["W4"]["rubric_pass"] == 2
+    assert summary["W1"]["verdicts"]["nli_fail"] == 4   # every fixture W1 resume is below 0.8
+    assert summary["W3"]["verdicts"]["rejected"] == 1   # the fixture's failed generation
+    records = _records(payload)
+    assert all(r["verdict"] in dc.VERDICTS for r in records)
+    assert all(r["verdict"] != "good" or (r["faith"] >= 0.8 and r["rubric"] >= 4.0) for r in records)
+    good = {code: s["verdicts"]["good"] for code, s in summary.items()}
+    top = [code for code, n in good.items() if n == max(good.values())]
+    assert payload["headlines"]["good"].startswith(dc.join_codes(top))
+    assert "openai/gpt-oss-120b via deepinfra" in payload["text"]["footer"]
+    page = rct.render_page(payload)
+    assert not re.search(r"__[A-Z0-9_]+__", page)

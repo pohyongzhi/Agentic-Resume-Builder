@@ -1,5 +1,8 @@
 """The read-only "Results (charts)" tab: the d3 results page for one saved evaluation.
 
+It reports good resumes per workflow (NLI truth gate + rubric v3 writing gate) with the charts
+behind that count; ``eval.dashboard_charts`` builds the data.
+
 The page (``ui/static/results_charts.html``) is self-contained: its data comes from
 ``eval.dashboard_charts`` and d3 v7.8.5 is inlined from ``ui/static/``, so nothing loads from the
 network. ``gr.HTML`` does not run ``<script>`` tags, so the page is shown in an
@@ -45,6 +48,7 @@ def render_page(payload: dict) -> str:
     thresholds = payload["thresholds"]
     page = (
         template.replace("__FAITH_MIN__", f"{thresholds['faith']:g}")
+        .replace("__RUBRIC_MIN__", f"{thresholds.get('rubric', 4.0):g}")
         .replace("__MIN_WORDS__", str(thresholds["min_words"]))
         .replace("__MAX_WORDS__", str(thresholds["max_words"]))
         .replace("__DATA__", _script_safe_json(payload))
