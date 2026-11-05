@@ -206,7 +206,7 @@ def test_blocks_build_and_handlers_run(evaluations):
     assert "28</b> scored outputs" in first[1]
     assert "pairwise" not in handles
     labels = [getattr(block, "label", None) for block in demo.blocks.values()]
-    assert "3 · Output viewer" in labels
+    assert "3 · Top resumes" in labels and "4 · Output viewer" in labels
     assert not any(label and "Robustness" in label for label in labels)
     assert not any(label and "Pairwise" in label for label in labels)
     quality = next(value for value in first if isinstance(value, dict)
@@ -229,3 +229,18 @@ def test_app_mounts_results_tab():
 
     labels = [getattr(block, "label", None) for block in app.demo.blocks.values()]
     assert "Tailor a resume" in labels and "Results" in labels
+
+
+def test_top_resumes_tab(root, plain_root):
+    intro, slots = rt.render_top(root)
+    assert "highest rubric v3 overall score" in intro
+    shown = [workflow for workflow, (visible, *_rest) in slots.items() if visible]
+    assert shown, "every workflow in the run gets a card"
+    for workflow in shown:
+        visible, header, body, source = slots[workflow]
+        assert "good resumes out of" in header or "no resume passed both gates" in header
+        if body:
+            assert "✓ good resume" in header and "Job description" in source
+    message, empty = rt.render_top(plain_root)
+    assert "no rubric v3 run was found" in message
+    assert not any(visible for visible, *_rest in empty.values())

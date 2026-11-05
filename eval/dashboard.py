@@ -965,3 +965,61 @@ def pair_view(bundle: EvaluationBundle, pair_id: str) -> dict[str, Any] | None:
         "has_rubric": bool(records),
         "outputs": {name: outputs[name] for name in order_workflows(outputs)},
     }
+
+
+def _job_title(job_description: str) -> str:
+    """The JD's first Markdown heading (its role title), or an empty string."""
+    for line in (job_description or "").splitlines():
+        if line.startswith("#"):
+            return line.lstrip("#").strip()
+    return ""
+
+
+def top_resumes(bundle: EvaluationBundle) -> dict[str, Any]:
+    """Each workflow's top-scoring resume under the final criteria.
+
+    Among a workflow's good resumes (truth gate and writing gate passed), the one with the highest
+    rubric v3 overall score; ties go to higher claim faithfulness, then fewer unsupported claims,
+    then pair id. A workflow with no good resume gets ``None`` (``reason`` says why).
+    """
+    records, meta = rubric_scores(bundle)
+    gates = meta["gates"]
+    primary = _primary_rows(bundle.rows)
+    by_workflow: dict[str, list[dict]] = {}
+    for (workflow, _), row in primary.items():
+        by_workflow.setdefault(workflow, []).append(row)
+    items = []
+    for workflow in order_workflows(by_workflow):
+        rows = by_workflow[workflow]
+        good = []
+        for row in rows:
+            record = records.get((workflow, row.get("pair_id")))
+            if resume_verdict(row, record, gates) != "good":
+                continue
+            claims, supported = row.get("n_claims"), row.get("supported_claims")
+            unsupported = (claims - supported) if claims is not None and supported is not None else 0
+            good.append((-(_rubric_value(record) or 0), -(faithfulness_value(row) or 0),
+                         unsupported, str(row.get("pair_id")), row))
+        item = {"workflow": workflow, "good": len(good), "total": len(rows), "best": None,
+                "ties": 0, "reason": None}
+        if not records:
+            item["reason"] = "no rubric v3 run found"
+        elif not good:
+            item["reason"] = "no resume passed both gates"
+        else:
+            ranked = sorted(good, key=lambda entry: entry[:4])
+            row = ranked[0][4]
+            # Other good resumes with the same rubric overall and faithfulness as the pick.
+            item["ties"] = sum(entry[:2] == ranked[0][:2] for entry in ranked[1:])
+            view = pair_view(bundle, row["pair_id"])
+            item["best"] = {
+                "pair_id": row["pair_id"],
+                "category": view["category"],
+                "fit_level": view["fit_level"],
+                "job_title": _job_title(view["job_description"]),
+                "original_resume": view["original_resume"],
+                "job_description": view["job_description"],
+                "output": view["outputs"][workflow],
+            }
+        items.append(item)
+    return {"gates": dict(gates), "has_rubric": bool(records), "items": items}

@@ -427,7 +427,56 @@ def render_tradeoffs(path, category=ALL, fit_level=ALL, cost="total_tokens",
     )
 
 
-# --- 3. output viewer --------------------------------------------------------------------------
+# --- 3. top resumes ---------------------------------------------------------------------------
+
+
+def render_top(path):
+    """(intro html, {workflow: (visible, header html, resume md, source md)}) for the top resumes."""
+    bundle = _bundle(path)
+    slots = {workflow: (False, "", "", "") for workflow in SLOT_WORKFLOWS}
+    if bundle is None:
+        return charts.empty(NO_RUN), slots
+    top = dd.top_resumes(bundle)
+    if not top["has_rubric"]:
+        return charts.empty("Top resumes need rubric v3 scores; no rubric v3 run was found."), slots
+    for item in top["items"]:
+        workflow = item["workflow"]
+        if workflow not in slots:
+            continue
+        info = dd.WORKFLOW_INFO.get(workflow, {"code": workflow, "title": ""})
+        if item["best"] is None:
+            header = charts.wrap(
+                f'<div class="out-head" style="--card-colour:{charts.colour_var(workflow)}">'
+                f'<h4><span style="color:{charts.colour_var(workflow)}">{escape(info["code"])}</span> '
+                f"{escape(info['title'])}</h4>"
+                f'<div class="model">{escape(item["reason"] or "no good resume")} · '
+                f"{item['good']} of {item['total']} good</div></div>"
+            )
+            slots[workflow] = (True, header, "", "")
+            continue
+        best = item["best"]
+        facts = [best["job_title"], best["category"].replace("_", " "),
+                 f"{best['fit_level']} fit" if best["fit_level"] else "", best["pair_id"]]
+        tie = (f" · {item['ties']} other good resume{'s' if item['ties'] != 1 else ''} "
+               "scored the same" if item["ties"] else "")
+        header = output_header(workflow, best["output"], top["gates"], True).replace(
+            '<div class="chips">',
+            f'<div class="model">Top of {item["good"]} good resumes out of {item["total"]}{tie}'
+            f'<br>{escape(" · ".join(fact for fact in facts if fact))}</div><div class="chips">', 1)
+        source = ("#### Job description\n\n" + (best["job_description"] or "_Not available._")
+                  + "\n\n---\n\n#### Original resume\n\n"
+                  + (best["original_resume"] or "_Not available._"))
+        slots[workflow] = (True, header, best["output"]["resume_md"] or "_Empty output._", source)
+    intro = charts.wrap(
+        '<div class="status-line">Each workflow\'s best resume: among its good resumes '
+        "(both gates passed), the one with the highest rubric v3 overall score; ties go to higher "
+        "claim faithfulness, then fewer unsupported claims."
+        f"<br>{_criteria(top['gates'])}</div>"
+    )
+    return intro, slots
+
+
+# --- 4. output viewer --------------------------------------------------------------------------
 
 # Verdict chip per resume: text (with a mark, so state never rests on colour) and chip state.
 VERDICT_CHIPS = {
@@ -554,7 +603,7 @@ def _root_choices(evaluations_dir):
 def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=None):
     """Add the Results tab inside the current ``gr.Tabs`` of ``blocks``.
 
-    ``selected_view`` opens a sub-tab first: "workflows", "leaderboard" or "viewer".
+    ``selected_view`` opens a sub-tab first: "workflows", "leaderboard", "top" or "viewer".
     """
     models = _models()
 
@@ -592,7 +641,18 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
                 with gr.Row():
                     cost_plot = gr.HTML(**CHART_HTML)
                     gates_plot = gr.HTML(**CHART_HTML)
-            with gr.Tab("3 · Output viewer", id="viewer"):
+            with gr.Tab("3 · Top resumes", id="top"):
+                top_intro = gr.HTML(apply_default_css=False)
+                top_cards, top_headers, top_bodies, top_sources = [], [], [], []
+                for workflow in SLOT_WORKFLOWS:
+                    with gr.Group(visible=False) as card:
+                        top_headers.append(gr.HTML(apply_default_css=False))
+                        with gr.Accordion("Tailored resume", open=False):
+                            top_bodies.append(gr.Markdown(elem_classes=["out-body"]))
+                        with gr.Accordion("Job description and original resume", open=False):
+                            top_sources.append(gr.Markdown(elem_classes=["out-body"]))
+                    top_cards.append(card)
+            with gr.Tab("4 · Output viewer", id="viewer"):
                 with gr.Row():
                     pair_dd = gr.Dropdown(choices=[], label="Resume and job pair", scale=3)
                     workflow_pick = gr.CheckboxGroup(
@@ -612,6 +672,18 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
                             slot_headers.append(gr.HTML(apply_default_css=False))
                             slot_bodies.append(gr.Markdown(elem_classes=["out-body"]))
                         slot_columns.append(column)
+
+    top_outputs = [top_intro]
+    for card, header, body, source in zip(top_cards, top_headers, top_bodies, top_sources):
+        top_outputs += [card, header, body, source]
+
+    def top(path):
+        intro, slots = render_top(path)
+        values = [intro]
+        for workflow in SLOT_WORKFLOWS:
+            visible, header, body, source = slots[workflow]
+            values += [gr.update(visible=visible), header, body, source]
+        return values
 
     viewer_outputs = [pair_info, original_md, jd_md]
     for column, header, body in zip(slot_columns, slot_headers, slot_bodies):
@@ -645,6 +717,7 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
             gr.update(value=quality),
             cost_html,
             gates_html,
+            *top(path),
             gr.update(choices=pairs, value=pair_id),
             gr.update(value=list(SLOT_WORKFLOWS)),
             *viewer(path, pair_id, list(SLOT_WORKFLOWS)),
@@ -652,7 +725,7 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
 
     root_outputs = [
         status, explainer, category_dd, fit_dd, board, cost_radio, quality_radio, cost_plot,
-        gates_plot, pair_dd, workflow_pick,
+        gates_plot, *top_outputs, pair_dd, workflow_pick,
         *viewer_outputs,
     ]
 
@@ -687,6 +760,6 @@ def build_results_tab(blocks: gr.Blocks, evaluations_dir=None, selected_view=Non
 
     return {
         "root": root_dd, "refresh": refresh, "status": status, "explainer": explainer,
-        "board": board,
+        "board": board, "top": top,
         "pair": pair_dd, "initial": initial, "on_root": on_root, "viewer": viewer,
     }

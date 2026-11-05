@@ -331,3 +331,24 @@ def test_pair_choices_and_view(bundle):
     unscored = dd.pair_view(bundle, PAIRS[2][0])["outputs"]["w3_critic"]
     assert unscored["verdict"] == "unscored" and unscored["rubric_status"] == "unscored"
     assert dd.pair_view(bundle, "unknown") is None
+
+
+def test_top_resumes_pick_the_best_good_resume(bundle, tmp_path):
+    top = dd.top_resumes(bundle)
+    assert top["has_rubric"] is True
+    records, meta = dd.rubric_scores(bundle)
+    for item in top["items"]:
+        rows = [row for row in bundle.rows if row["workflow"] == item["workflow"]]
+        good = [row for row in rows
+                if dd.resume_verdict(row, records.get((row["workflow"], row["pair_id"])), meta["gates"]) == "good"]
+        assert item["good"] == len(good)
+        if not good:
+            assert item["best"] is None and item["reason"] == "no resume passed both gates"
+            continue
+        best = item["best"]["output"]
+        assert best["verdict"] == "good"
+        top_score = max(dd._rubric_value(records[(row["workflow"], row["pair_id"])]) for row in good)
+        assert best["rubric_overall"] == top_score
+    plain = dd.top_resumes(dd.load_bundle(build_fixture_root(tmp_path, pairwise=False, robustness=False)))
+    assert plain["has_rubric"] is False
+    assert all(item["best"] is None and item["reason"] == "no rubric v3 run found" for item in plain["items"])
