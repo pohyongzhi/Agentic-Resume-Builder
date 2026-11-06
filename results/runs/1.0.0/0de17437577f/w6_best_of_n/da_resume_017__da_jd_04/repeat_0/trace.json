@@ -1,0 +1,363 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1097,
+    "output_tokens": 311,
+    "thinking_chars": 0,
+    "seconds": 3.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "202 words; target is roughly 350-500"
+      ],
+      "words": 202
+    },
+    "generation": {
+      "seconds": 3.19,
+      "input_tokens": 1097,
+      "output_tokens": 311
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1098,
+    "output_tokens": 310,
+    "thinking_chars": 0,
+    "seconds": 3.26,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "205 words; target is roughly 350-500"
+      ],
+      "words": 205
+    },
+    "generation": {
+      "seconds": 3.26,
+      "input_tokens": 1098,
+      "output_tokens": 310
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1110,
+    "output_tokens": 333,
+    "thinking_chars": 0,
+    "seconds": 3.55,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "219 words; target is roughly 350-500"
+      ],
+      "words": 219
+    },
+    "generation": {
+      "seconds": 3.55,
+      "input_tokens": 1110,
+      "output_tokens": 333
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2204,
+    "output_tokens": 226,
+    "thinking_chars": 0,
+    "seconds": 2.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with original text; minor reordering of bullet points.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 4,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "tracking quality checks and follow-up actions"
+        ],
+        "justification": "Reorders bullets to prioritize impact metrics; adds 'follow-up actions' which is an inference.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "adds 'follow-up actions' which is an inference."
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "contributed to team planning"
+        ],
+        "justification": "Adds specific JD phrases like 'guide engineers' and 'under review'; introduces unsupported claim about team planning.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Adds specific JD phrases like 'guide engineers' and 'under review';"
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2204,
+    "output_tokens": 240,
+    "thinking_chars": 0,
+    "seconds": 2.81,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with JD responsibilities (architecting, pipelines, safety, observability, communication) and uses precise terminology from the job description.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reflects resume data but omits key JD responsibilities (guiding engineers, communicating trade-offs) and lacks specific impact metrics for those areas.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Lists all resume skills but fails to map them to specific JD responsibilities or quantify impact where the original resume provided numbers.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "202 words; target is roughly 350-500"
+          ],
+          "words": 202
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with original text; minor reordering of bullet points.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Lists all resume skills but fails to map them to specific JD responsibilities or quantify impact where the original resume provided numbers.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.19,
+          "input_tokens": 1097,
+          "output_tokens": 311
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "205 words; target is roughly 350-500"
+          ],
+          "words": 205
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "tracking quality checks and follow-up actions"
+            ],
+            "justification": "Reorders bullets to prioritize impact metrics; adds 'follow-up actions' which is an inference.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "adds 'follow-up actions' which is an inference."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reflects resume data but omits key JD responsibilities (guiding engineers, communicating trade-offs) and lacks specific impact metrics for those areas.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.26,
+          "input_tokens": 1098,
+          "output_tokens": 310
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 5.0,
+        "writing_quality": 4.5,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "219 words; target is roughly 350-500"
+          ],
+          "words": 219
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "contributed to team planning"
+            ],
+            "justification": "Adds specific JD phrases like 'guide engineers' and 'under review'; introduces unsupported claim about team planning.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds specific JD phrases like 'guide engineers' and 'under review';"
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD responsibilities (architecting, pipelines, safety, observability, communication) and uses precise terminology from the job description.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.55,
+          "input_tokens": 1110,
+          "output_tokens": 333
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

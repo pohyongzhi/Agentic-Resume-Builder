@@ -1,0 +1,251 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 369,
+    "output_tokens": 217,
+    "thinking_chars": 0,
+    "seconds": 2.07,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 494,
+    "output_tokens": 437,
+    "thinking_chars": 0,
+    "seconds": 6.23,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793789177.617153,
+    "end": 1793789177.6176083,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1710,
+    "output_tokens": 637,
+    "thinking_chars": 0,
+    "seconds": 6.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793789177.6178436,
+    "end": 1793789183.811635,
+    "seconds": 6.194,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789183.8120775,
+    "end": 1793789183.8185465,
+    "seconds": 0.006,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 697,
+    "output_tokens": 438,
+    "thinking_chars": 0,
+    "seconds": 4.26,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 9,
+    "cited_ok": 9,
+    "rule_ok": 8,
+    "llm_checked": 8,
+    "llm_cached": 0,
+    "supported": 8,
+    "rejected_by_code": {
+      "inflated": 1
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789183.8187785,
+    "end": 1793789188.0822558,
+    "seconds": 4.263,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2571,
+    "output_tokens": 760,
+    "thinking_chars": 0,
+    "seconds": 7.32,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793789188.0826573,
+    "end": 1793789195.4061902,
+    "seconds": 7.324,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793789195.4065812,
+    "end": 1793789195.4130728,
+    "seconds": 0.006,
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 283,
+    "output_tokens": 107,
+    "thinking_chars": 0,
+    "seconds": 1.25,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 9,
+    "cited_ok": 9,
+    "rule_ok": 9,
+    "llm_checked": 2,
+    "llm_cached": 7,
+    "supported": 9,
+    "rejected_by_code": {},
+    "step": 14
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793789195.41335,
+    "end": 1793789196.6663966,
+    "seconds": 1.253,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Leon Lee",
+        "contact": {
+          "email": "leon.lee@example.test",
+          "phone": "+65 6000 0072",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Site Reliability Engineer with hands-on experience in SRE, observability and incident response. Delivers documented, measurable improvements with cross-functional teams.",
+        "experience": [
+          {
+            "employer": "Example Beacon Services (fictional)",
+            "title": "Site Reliability Engineer",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Defined service reliability targets using SRE and observability, improving team turnaround by 20%.",
+              "Improved monitoring and alerting through incident response while documenting decisions for technical and business reviewers.",
+              "Collaborated with four colleagues to lead incident analysis and presented progress during fortnightly reviews.",
+              "Managed approximately 56 work items per month while tracking quality checks and follow-up actions."
+            ]
+          },
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using Linux and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 15%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [],
+        "skills": [
+          "SRE",
+          "observability",
+          "incident response",
+          "Linux",
+          "Kubernetes",
+          "Python",
+          "service level objectives",
+          "performance testing",
+          "Prometheus",
+          "Grafana"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 17
+  },
+  {
+    "type": "w4_final",
+    "kept": 9,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.8888888888888888,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 18
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793789196.6668034,
+    "end": 1793789196.6679235,
+    "seconds": 0.001,
+    "step": 19
+  }
+]

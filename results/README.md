@@ -1,5 +1,7 @@
 # Results
 
+**Final evaluation results are in [summaries/final/README.md](summaries/final/README.md)** (NLI faithfulness, then rubric v3; good resumes per workflow). `latest.json` below describes earlier evaluation batches and is kept for history.
+
 Start with [latest.json](latest.json). It points to the current saved evaluations for W1, W2 and W3 and the runtime summary. Completion of an evaluation batch does not mean every rubric judgment succeeded; check scored and unscored counts in its summaries.
 
 - `evaluations/` — output scores, claim evidence, judge responses and evaluation summaries.

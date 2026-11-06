@@ -1,0 +1,359 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1055,
+    "output_tokens": 281,
+    "thinking_chars": 0,
+    "seconds": 3.62,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "188 words; target is roughly 350-500"
+      ],
+      "words": 188
+    },
+    "generation": {
+      "seconds": 3.62,
+      "input_tokens": 1055,
+      "output_tokens": 281
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1056,
+    "output_tokens": 280,
+    "thinking_chars": 0,
+    "seconds": 2.91,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "187 words; target is roughly 350-500"
+      ],
+      "words": 187
+    },
+    "generation": {
+      "seconds": 2.91,
+      "input_tokens": 1056,
+      "output_tokens": 280
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1068,
+    "output_tokens": 339,
+    "thinking_chars": 0,
+    "seconds": 3.55,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "234 words; target is roughly 350-500"
+      ],
+      "words": 234
+    },
+    "generation": {
+      "seconds": 3.55,
+      "input_tokens": 1068,
+      "output_tokens": 339
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2108,
+    "output_tokens": 242,
+    "thinking_chars": 0,
+    "seconds": 2.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Removes unsupported 'Excel' skill from skills list; otherwise faithful to original text.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Reorders bullet points within experience sections without adding or removing claims; faithful to original.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 5,
+        "skills_coverage": 3,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "The candidate lists 'Excel' as a skill in the Skills section, but this item does not appear in the original resume's Skills list or elsewhere."
+        ],
+        "justification": "Includes 'Excel' in skills list which is not in the original resume; otherwise faithful.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Includes 'Excel' in skills list which is not in the original resume;"
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2108,
+    "output_tokens": 234,
+    "thinking_chars": 0,
+    "seconds": 2.63,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Candidate 1 is a verbatim copy of the original resume text with no modifications or unsupported claims.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 4,
+        "jd_alignment": 3,
+        "skills_coverage": 3,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Candidate 2 reorders bullet points for impact but omits 'Excel' from skills and removes the project presentation detail, creating minor gaps.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 4,
+        "jd_alignment": 3,
+        "skills_coverage": 3,
+        "writing_quality": 3,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [],
+        "justification": "Candidate 3 condenses the summary and omits 'Excel' from skills while removing project details, resulting in a less complete profile.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": null,
+    "finished": false,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.0,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Removes unsupported 'Excel' skill from skills list; otherwise faithful to original text.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 3,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 3 condenses the summary and omits 'Excel' from skills while removing project details, resulting in a less complete profile.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.62,
+          "input_tokens": 1055,
+          "output_tokens": 281
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "187 words; target is roughly 350-500"
+          ],
+          "words": 187
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Reorders bullet points within experience sections without adding or removing claims; faithful to original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Candidate 2 reorders bullet points for impact but omits 'Excel' from skills and removes the project presentation detail, creating minor gaps.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.91,
+          "input_tokens": 1056,
+          "output_tokens": 280
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 4.0,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "234 words; target is roughly 350-500"
+          ],
+          "words": 234
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 3,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "The candidate lists 'Excel' as a skill in the Skills section, but this item does not appear in the original resume's Skills list or elsewhere."
+            ],
+            "justification": "Includes 'Excel' in skills list which is not in the original resume; otherwise faithful.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Includes 'Excel' in skills list which is not in the original resume;"
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Candidate 1 is a verbatim copy of the original resume text with no modifications or unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.55,
+          "input_tokens": 1068,
+          "output_tokens": 339
+        }
+      }
+    },
+    "reason": "No candidate passed deterministic validation and both judge orders.",
+    "step": 11
+  }
+]

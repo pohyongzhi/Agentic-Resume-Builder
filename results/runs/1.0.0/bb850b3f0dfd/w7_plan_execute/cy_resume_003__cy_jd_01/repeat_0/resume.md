@@ -1,0 +1,19 @@
+## Summary
+Technology associate with transferable experience in SIEM, incident triage and log analysis, seeking to deepen capability as a SOC Analyst.
+
+## Experience
+### Technology Associate, Example Cedar Innovations (fictional) (Jan 2025 - Present)
+- Used SIEM and incident triage to monitor security alerts, improving team turnaround by 34%.
+- Applied log analysis to triage suspicious activity and documented decisions for technical and business reviewers.
+- Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews.
+
+### Technical Assistant, Example Delta Operations (fictional) (May 2024 - Dec 2024)
+- Supported recurring operational work using network security and documented step-by-step procedures.
+- Investigated service requests, recorded findings and escalated issues with clear supporting evidence.
+- Created a simple reporting template that reduced manual preparation time by 29%.
+
+## Education
+### Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)
+
+## Skills
+SIEM, incident triage, log analysis, network security, Splunk

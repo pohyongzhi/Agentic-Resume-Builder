@@ -93,6 +93,40 @@ login or JavaScript. Use the workflow selector to compare the single-pass contro
 and multi-critic workflow interactively. Harness-validated Markdown resumes can be
 previewed and downloaded; unguarded comparison workflows are clearly marked as experimental.
 
+## Results tab
+
+`python app.py` also has a read-only **Results** tab for saved evaluation runs. It never generates,
+evaluates or calls a model; it only reads `results/evaluations/<dataset>/<generation scope>/<evaluator>/`
+(the newest run is selected first; **Refresh list** picks up new runs). Set `ARB_EVALUATIONS_DIR`
+to read another folder.
+
+Results follow the final criteria: a resume is good when its NLI claim faithfulness against the
+original resume is at least 0.80 and its rubric v3 overall score (`eval/quality_rubric.py`) is at
+least 4.0; a workflow's result is its good resumes out of every attempt, and a failed generation is
+not good. Rubric v3 scores are read from `<dataset>/quality-rubric/<run>/records/` next to the
+evaluation root. Superseded measures (rubric v1, requirement coverage, keyword coverage, JD
+similarity, pairwise against W2, task success) are not shown.
+
+| View | What it shows |
+| --- | --- |
+| 1 · Workflows | A card per W1-W7: how it works, its step flow, the model it uses, measured averages (LLM calls, tokens, wall time) and its good resumes out of every attempt |
+| 2 · Leaderboard and trade-offs | Headline tiles, good-resume, truth-gate and writing-gate bars, a metric table with scored/eligible counts (good resumes, NLI pass rate, claim faithfulness, unsupported claims, fabrication bait, protected-field violations, rubric v3 pass rate, overall and its four dimensions, tokens and wall time), and two trade-off plots (good rate, faithfulness or rubric v3 vs cost; faithfulness vs rubric v3); filter by category and fit level |
+| 3 · Output viewer | One pair's original resume and JD, then every workflow's output side by side with its verdict (good, failed truth, failed writing, unscored, no resume), NLI faithfulness against the gate and rubric v3 scores |
+
+Unscored outputs are shown as unscored with their denominators, never as 0. A run without rubric v3
+scores says so instead of counting good resumes. Input robustness is not part of the final evaluation
+and is not shown. Tables come from `summaries/*.json`;
+when a summary file is missing, the same table is rebuilt in memory from the saved index with
+`eval/reporting.py`. Each workflow keeps one colour in every view, and W2 is drawn in neutral grey
+with a dashed outline. To preview the tab without real results:
+
+```bash
+python -m tests.dashboard_fixture /tmp/demo_evaluations
+ARB_EVALUATIONS_DIR=/tmp/demo_evaluations python app.py
+```
+
+The **Results (charts)** tab shows the same evaluation run as one chart page: outcome per workflow, faithfulness, invented qualifications, category and fit, time and model calls, word counts and a table view, with 95% bootstrap intervals. Chart titles are computed from the selected run (`eval/dashboard_charts.py`). The page needs no network: d3 v7.8.5 is vendored in `ui/static/` and inlined into the tab's iframe.
+
 ## W3 multi-critic workflow
 
 `w3_critic` creates a structured draft, then runs three separate reviewers in parallel:
@@ -341,7 +375,9 @@ Detailed evaluation records are reproducible local artifacts and are ignored by 
 ## Code layout
 
 ```text
-app.py                    Gradio UI for the agentic baseline
+app.py                    Gradio UI: tailoring plus the read-only Results tab
+ui/results_tab.py         Results tab layout; ui/charts.py draws its SVG charts
+ui/results_charts_tab.py  Results (charts) tab: d3 page in ui/static/, offline
 baseline_tailor.py        single-pass V0 CLI
 config.py                 shared model, harness and extraction settings
 common/
@@ -363,6 +399,8 @@ workflows/
 eval/metrics.py           shared evaluator metrics
 eval/operational.py       task, tool, step and cost metrics
 eval/robustness.py        input perturbations and stability aggregation
+eval/dashboard.py         loads saved evaluation roots for the Results tab
+eval/dashboard_charts.py  chart data and computed titles for Results (charts)
 run_all.py                batch runner
 evaluate_results.py       rescore saved outputs without regeneration
 run_robustness.py         shared perturbation benchmark

@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 383,
+    "output_tokens": 228,
+    "thinking_chars": 0,
+    "seconds": 2.34,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 510,
+    "output_tokens": 653,
+    "thinking_chars": 0,
+    "seconds": 8.68,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1678,
+    "output_tokens": 630,
+    "thinking_chars": 0,
+    "seconds": 6.19,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Quentin Lim\",\n  \"contact\": {\n    \"email\": \"quentin.lim@example.test\",\n    \"phone\": \"+65 6000 0037\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Senior AI and LLM Solutions Engineer with hands-on experience in Python, large language models and RAG. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Senior AI and LLM Solutions Engineer\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Architected production LLM applications using Python and large language models, improving team turnaround by 23%.\",\n        \"Designed retrieval and evaluation pipelines using RAG and documented decisions for technical and business reviewers.\",\n        \"Established safety and observability controls in collaboration with four colleagues, presenting progress during fortnightly reviews.\",\n        \"Managed approximately 51 work items per month while tracking quality checks and follow-up actions.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Cedar Innovations (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported operational work using prompt engineering and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Senior AI and LLM Solutions Engineer Practice Project\",\n      \"bullets\": [\n        \"Built a demonstration project using Python, large language models and RAG.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Institute of Technology (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"large language models\",\n    \"RAG\",\n    \"prompt engineering\",\n    \"vector databases\",\n    \"model evaluation\",\n    \"Docker\",\n    \"system architecture\",\n    \"LangGraph\",\n    \"Kubernetes\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.001,
+    "step": 5
+  }
+]

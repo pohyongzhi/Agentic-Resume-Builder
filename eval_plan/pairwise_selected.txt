@@ -1,0 +1,11 @@
+# Selected for pairwise: top 3 challengers by mean rubric score among those with
+# mean claim faithfulness >= 0.9. Scores used (faithfulness / rubric, n):
+#   w1_single_pass: 0.732 (n=100) / 4.68 (n=29) -> not selected
+#   w3_critic: 0.880 (n=92, local metrics; rubric pending) / – -> not eligible, faithfulness below 0.9
+#   w4_evidence: 0.962 (n=100) / 4.62 (n=30) -> selected
+#   w5_fine_tuned: 0.947 (n=100) / 4.63 (n=29) -> selected
+#   w6_best_of_n: 0.929 (n=86) / 4.12 (n=29) -> not selected
+#   w7_plan_execute: 0.931 (n=100) / 4.39 (n=29) -> selected
+w5_fine_tuned
+w4_evidence
+w7_plan_execute

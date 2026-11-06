@@ -1,0 +1,178 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1169,
+    "output_tokens": 857,
+    "thinking_chars": 0,
+    "seconds": 7.89,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "w7_plan",
+    "ok": true,
+    "attempt": 1,
+    "header": "Kavya Ng\nkavya.ng@example.test | +65 6000 0051 | Singapore",
+    "sections": [
+      {
+        "name": "Summary",
+        "lead_with": [
+          "Security Engineer with hands-on experience in cloud security, IAM and vulnerability management.",
+          "Delivers documented, measurable improvements with cross-functional teams."
+        ],
+        "cut": []
+      },
+      {
+        "name": "Experience",
+        "lead_with": [
+          "Used cloud security and IAM to implement preventive security controls, improving team turnaround by 28%.",
+          "Applied vulnerability management to automate vulnerability and compliance checks and documented decisions for technical and business reviewers.",
+          "Managed approximately 53 work items per month while tracking quality checks and follow-up actions.",
+          "Collaborated with four colleagues to harden cloud environments and presented progress during fortnightly reviews."
+        ],
+        "cut": [
+          "Created a simple reporting template that reduced manual preparation time by 23%.",
+          "Investigated service requests, recorded findings and escalated issues with clear supporting evidence."
+        ]
+      },
+      {
+        "name": "Education",
+        "lead_with": [
+          "Bachelor of Science in Information Systems, Example Polytechnic (fictional) (Aug 2020 - May 2024)",
+          "Coursework included software engineering, databases, cybersecurity and applied analytics."
+        ],
+        "cut": []
+      },
+      {
+        "name": "Skills",
+        "lead_with": [
+          "cloud security, IAM, vulnerability management, Python, Linux, network security, incident response, security automation"
+        ],
+        "cut": [
+          "AWS, Terraform"
+        ]
+      }
+    ],
+    "requirements": [
+      {
+        "requirement": "cloud security",
+        "evidence": "Used cloud security and IAM to implement preventive security controls",
+        "section": "Experience"
+      },
+      {
+        "requirement": "IAM",
+        "evidence": "Used cloud security and IAM to implement preventive security controls",
+        "section": "Experience"
+      },
+      {
+        "requirement": "vulnerability management",
+        "evidence": "Applied vulnerability management to automate vulnerability and compliance checks",
+        "section": "Experience"
+      },
+      {
+        "requirement": "Python",
+        "evidence": "Supported recurring operational work using Python",
+        "section": "Experience"
+      },
+      {
+        "requirement": "Linux",
+        "evidence": "Linux",
+        "section": "Skills"
+      },
+      {
+        "requirement": "network security",
+        "evidence": "network security",
+        "section": "Skills"
+      },
+      {
+        "requirement": "incident response",
+        "evidence": "incident response",
+        "section": "Skills"
+      },
+      {
+        "requirement": "security automation",
+        "evidence": "Automate vulnerability and compliance checks",
+        "section": "Experience"
+      },
+      {
+        "requirement": "Clear written and verbal communication",
+        "evidence": "documented decisions for technical and business reviewers",
+        "section": "Experience"
+      },
+      {
+        "requirement": "Ability to work collaboratively and solve ambiguous problems",
+        "evidence": "Collaborated with four colleagues to harden cloud environments",
+        "section": "Experience"
+      },
+      {
+        "requirement": "AWS",
+        "evidence": null,
+        "section": "Skills"
+      },
+      {
+        "requirement": "Terraform",
+        "evidence": null,
+        "section": "Skills"
+      }
+    ],
+    "supported": 10,
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1072,
+    "output_tokens": 30,
+    "thinking_chars": 0,
+    "seconds": 0.58,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1091,
+    "output_tokens": 24,
+    "thinking_chars": 0,
+    "seconds": 1.04,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1089,
+    "output_tokens": 50,
+    "thinking_chars": 0,
+    "seconds": 1.77,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1268,
+    "output_tokens": 106,
+    "thinking_chars": 0,
+    "seconds": 2.98,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 867,
+    "output_tokens": 210,
+    "thinking_chars": 0,
+    "seconds": 2.16,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  }
+]

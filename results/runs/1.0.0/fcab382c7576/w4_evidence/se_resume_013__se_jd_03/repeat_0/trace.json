@@ -1,0 +1,249 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 219,
+    "thinking_chars": 0,
+    "seconds": 2.12,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 482,
+    "output_tokens": 419,
+    "thinking_chars": 0,
+    "seconds": 6.14,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793787711.6101813,
+    "end": 1793787711.6106284,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1680,
+    "output_tokens": 653,
+    "thinking_chars": 0,
+    "seconds": 6.24,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793787711.6108568,
+    "end": 1793787717.8534622,
+    "seconds": 6.243,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787717.8539474,
+    "end": 1793787717.8628695,
+    "seconds": 0.009,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 912,
+    "output_tokens": 621,
+    "thinking_chars": 0,
+    "seconds": 5.97,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 12,
+    "cited_ok": 12,
+    "rule_ok": 12,
+    "llm_checked": 12,
+    "llm_cached": 0,
+    "supported": 10,
+    "rejected_by_code": {
+      "not_entailed": 2
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787717.8631017,
+    "end": 1793787723.8358939,
+    "seconds": 5.973,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2673,
+    "output_tokens": 910,
+    "thinking_chars": 0,
+    "seconds": 9.09,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793787723.8363035,
+    "end": 1793787732.9247365,
+    "seconds": 9.088,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793787732.9251573,
+    "end": 1793787732.9352484,
+    "seconds": 0.01,
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 208,
+    "output_tokens": 70,
+    "thinking_chars": 0,
+    "seconds": 0.88,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 14,
+    "cited_ok": 14,
+    "rule_ok": 14,
+    "llm_checked": 1,
+    "llm_cached": 13,
+    "supported": 14,
+    "rejected_by_code": {},
+    "step": 14
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793787732.9354954,
+    "end": 1793787733.8189852,
+    "seconds": 0.883,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Mei Tan",
+        "contact": {
+          "email": "mei.tan@example.test",
+          "phone": "+65 6000 0013",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in TypeScript, React and Node.js. Delivered end-to-end product features using TypeScript and React, improving team turnaround by 41%. Designed frontend components and backend APIs using Node.js. Modeled relational data while collaborating with four colleagues. Presented progress during fortnightly reviews to relevant stakeholders.",
+        "experience": [
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Delivered end-to-end product features using TypeScript and React, improving team turnaround by 41%.",
+              "Designed frontend components and backend APIs using Node.js.",
+              "Modeled relational data while collaborating with four colleagues.",
+              "Presented progress during fortnightly reviews to relevant stakeholders.",
+              "Managed approximately 99 work items per month while tracking quality checks and follow-up actions.",
+              "Documented decisions for technical and business reviewers."
+            ]
+          },
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using REST APIs.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 36%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Institute of Technology (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [],
+        "skills": [
+          "TypeScript",
+          "React",
+          "Node.js",
+          "REST APIs",
+          "Next.js",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 17
+  },
+  {
+    "type": "w4_final",
+    "kept": 14,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.8333333333333334,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 18
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793787733.8194134,
+    "end": 1793787733.820786,
+    "seconds": 0.001,
+    "step": 19
+  }
+]

@@ -1,0 +1,520 @@
+<!doctype html>
+<!-- Embedded by ui/results_charts_tab.py, which fills in d3, the data and the thresholds.
+     No network references: d3 is inlined and the fonts fall back to system fonts. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume Agent Lab Results</title>
+<style>
+/* Layout: a results report. The good-resume result first, then pairs of chart cards per question (truth, writing, where good resumes come from, cost), each card titled with its finding. */
+:root {
+  --plane: #f3f5f7;
+  --surface: #ffffff;
+  --ink: #121821;
+  --ink-2: #485260;
+  --muted: #6b7482;
+  --grid: #e6e9ed;
+  --axis: #c3c9d1;
+  --accent: #2a78d6;
+  --muted-mark: #b9c0c9;
+  --ref: #8a919c;
+  --c-pass: #2a78d6;
+  --c-unfaithful: #e34948;
+  --c-length: #6250d6;
+  --c-sections: #eda100;
+  --c-rejected: #c9ced5;
+  --heat-lo: #eef4fc;
+  --heat-hi: #0d366b;
+  --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --plane: #0e1115; --surface: #161a20; --ink: #eceff3; --ink-2: #b8c0cb; --muted: #8b939e;
+    --grid: #232930; --axis: #3b424c; --accent: #3987e5; --muted-mark: #4a525d; --ref: #8b939e;
+    --c-pass: #3987e5; --c-unfaithful: #e66767; --c-length: #9085e9; --c-sections: #c98500; --c-rejected: #3b424c;
+    --heat-lo: #172334; --heat-hi: #b7d3f6;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --plane: #0e1115; --surface: #161a20; --ink: #eceff3; --ink-2: #b8c0cb; --muted: #8b939e;
+  --grid: #232930; --axis: #3b424c; --accent: #3987e5; --muted-mark: #4a525d; --ref: #8b939e;
+  --c-pass: #3987e5; --c-unfaithful: #e66767; --c-length: #9085e9; --c-sections: #c98500; --c-rejected: #3b424c;
+  --heat-lo: #172334; --heat-hi: #b7d3f6;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--plane); color: var(--ink); font-family: var(--font-ui); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 32px 64px;
+}
+.wrap { max-width: 1200px; margin: 0 auto; display: grid; gap: 36px; }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: -0.01em; }
+h1 { font-size: 30px; line-height: 1.15; font-weight: 600; }
+h2 { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+h3 { font-size: 16px; font-weight: 600; line-height: 1.3; }
+p { margin: 0; color: var(--ink-2); max-width: 70ch; }
+header { display: grid; gap: 10px; }
+.kicker { font-family: var(--font-data); font-size: 12px; color: var(--muted); }
+.caveat { font-size: 13px; color: var(--ink-2); max-width: 95ch; border-left: 3px solid var(--c-sections); padding-left: 10px; }
+.caveat b { color: var(--ink); font-weight: 600; }
+section { display: grid; gap: 14px; }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 30rem), 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--grid); border-radius: 6px; padding: 20px; display: grid; gap: 6px; align-content: start; min-width: 0; position: relative; }
+.card .note { font-size: 13px; color: var(--muted); }
+.chart { margin-top: 10px; min-width: 0; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+svg text { fill: var(--ink-2); font-family: var(--font-ui); font-size: 12px; }
+svg .tick text, svg text.tick { fill: var(--muted); font-family: var(--font-data); font-size: 11px; }
+svg .wf { fill: var(--ink); font-family: var(--font-data); font-size: 12px; }
+svg .wfname { fill: var(--muted); font-size: 12px; }
+svg .val { fill: var(--ink); font-family: var(--font-data); font-size: 11.5px; }
+svg .inbar { font-family: var(--font-data); font-size: 11px; }
+svg .gridline { stroke: var(--grid); stroke-width: 1; }
+svg text.lbl { paint-order: stroke; stroke: var(--surface); stroke-width: 4px; stroke-linejoin: round; }
+svg .axisline { stroke: var(--axis); stroke-width: 1; }
+svg .refline { stroke: var(--ref); stroke-width: 1.5; stroke-dasharray: 3 3; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 12.5px; color: var(--ink-2); margin-top: 4px; }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+.legend i { width: 12px; height: 12px; border-radius: 2px; display: inline-block; }
+.hatch { background: repeating-linear-gradient(135deg, var(--c-rejected) 0 2px, transparent 2px 4px) !important; box-shadow: inset 0 0 0 1px var(--c-rejected); }
+#tip { position: fixed; z-index: 20; pointer-events: none; background: var(--surface); color: var(--ink); border: 1px solid var(--axis); font-size: 12px; line-height: 1.45; padding: 7px 10px; border-radius: 5px; max-width: 280px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); }
+#tip .h { color: var(--muted); }
+#tip .num { font-family: var(--font-data); }
+details { font-size: 13px; }
+details summary { cursor: pointer; color: var(--ink-2); }
+.tbl { overflow-x: auto; margin-top: 8px; }
+table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 13px; }
+th, td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--grid); font-variant-numeric: tabular-nums; }
+th:first-child, td:first-child { text-align: left; }
+th { font-weight: 500; color: var(--muted); font-size: 12px; }
+td { font-family: var(--font-data); }
+td:first-child { font-family: var(--font-ui); }
+footer { font-size: 12px; color: var(--muted); max-width: 100ch; }
+</style>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker" id="kicker"></div>
+    <h1>Which workflow writes the most good resumes</h1>
+    <p id="intro"></p>
+    <div class="caveat" id="caveat"></div>
+  </header>
+
+  <section>
+    <h2>Result</h2>
+    <div class="card" id="c-good">
+      <h3 data-headline="good">Good resumes per workflow</h3>
+      <div class="note">Every attempt counts once, under its first failed check. Good = claim faithfulness ≥ __FAITH_MIN__ and rubric v3 overall ≥ __RUBRIC_MIN__. Truth is checked first, so a resume that fails both counts as failing the truth gate.</div>
+      <div class="note" id="no-rubric" hidden>No rubric v3 scores were found for this run, so no resume can be counted as good yet. Run <code>scripts/quality_rubric.py</code>.</div>
+      <div class="legend" id="lg-good"></div>
+      <div class="chart" id="ch-good"></div>
+    </div>
+    <div class="card">
+      <h3 data-headline="quadrant">Truth gate and writing gate pass rates</h3>
+      <div class="note">Horizontal: share of attempts whose claim faithfulness reaches __FAITH_MIN__. Vertical: share of rubric-scored resumes whose overall score reaches __RUBRIC_MIN__. Labels give the good resumes out of all attempts. Dashed lines mark 90%.</div>
+      <div class="chart" id="ch-quad"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Truth: NLI claim faithfulness</h2>
+    <div class="row">
+      <div class="card">
+        <h3 data-headline="faith">Claim faithfulness of each workflow's resumes</h3>
+        <div class="note">Share of each resume's claims supported by the original, one dot per resume. Boxes span the middle half, the line marks the median; dashed line at the __FAITH_MIN__ truth gate.</div>
+        <div class="chart" id="ch-faith"></div>
+      </div>
+      <div class="card">
+        <h3 data-headline="bait">Invented qualifications by workflow</h3>
+        <div class="note">Resumes containing a job-description skill or certification that the candidate's resume does not have.</div>
+        <div class="chart" id="ch-bait"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Writing: rubric v3</h2>
+    <div class="row">
+      <div class="card">
+        <h3 data-headline="rubric">Rubric v3 overall score of each workflow's resumes</h3>
+        <div class="note">Mean of the four dimensions (1–5), one dot per scored resume. Dashed line at the __RUBRIC_MIN__ writing gate.</div>
+        <div class="chart" id="ch-rubric"></div>
+      </div>
+      <div class="card">
+        <h3 data-headline="dims">Rubric v3 scores by dimension</h3>
+        <div class="note">Mean score per dimension (1–5). Each level counts problems: 5 none, 4 one, 3 two or three, 2 four or five, 1 more. Quantified evidence credits only numbers that appear in the original resume.</div>
+        <div class="chart" id="ch-dims"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where good resumes come from</h2>
+    <div class="row">
+      <div class="card">
+        <h3 data-headline="heat">Good-resume rate by job category</h3>
+        <div class="note">Share of attempts that produced a good resume, by job category and workflow.</div>
+        <div class="chart" id="ch-heat"></div>
+      </div>
+      <div class="card">
+        <h3 data-headline="fit">Good-resume rate by how well the candidate fits the job</h3>
+        <div class="note">Share of attempts that produced a good resume, by fit level. Hover a line to pick out one workflow.</div>
+        <div class="chart" id="ch-fit"></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cost</h2>
+    <div class="row">
+      <div class="card">
+        <h3 data-headline="time">Median time per resume</h3>
+        <div class="note">Median wall-clock time to produce one resume on the team machine (RTX 4070, Ollama).</div>
+        <div class="chart" id="ch-time"></div>
+      </div>
+      <div class="card">
+        <h3 data-headline="calls">Median model calls per resume</h3>
+        <div class="note">Median number of model calls per resume.</div>
+        <div class="chart" id="ch-calls"></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="card">
+        <h3 data-headline="tokens">Median tokens per resume</h3>
+        <div class="note">Median input plus output tokens the workflow's models processed per resume.</div>
+        <div class="chart" id="ch-tokens"></div>
+      </div>
+      <div class="card">
+        <h3 data-headline="value">Good-resume rate against time per resume</h3>
+        <div class="note">Share of good resumes with 95% bootstrap interval against median time per resume (log scale). The dashed line joins the workflows that nothing beats on both.</div>
+        <div class="chart" id="ch-value"></div>
+      </div>
+    </div>
+  </section>
+
+  <details>
+    <summary>Show every figure as a table</summary>
+    <div class="tbl" id="tbl"></div>
+  </details>
+
+  <footer id="foot"></footer>
+</div>
+<div id="tip" hidden></div>
+
+<script>__D3__</script>
+<script type="application/json" id="data">__DATA__</script>
+<script>
+(() => {
+  const D = JSON.parse(document.getElementById("data").textContent);
+  const rows = D.rows.map(r => Object.fromEntries(D.cols.map((c, i) => [c, r[i]])));
+  const WF = D.workflows.map(w => w.short);
+  const NAME = Object.fromEntries(D.workflows.map(w => [w.short, w.name]));
+  const S = Object.fromEntries(D.summary.map(s => [s.short, s]));
+  const REF = D.baseline, T = D.thresholds;
+  const done = rows.filter(r => r.outcome !== "rejected");
+  const css = name => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  const pct0 = d3.format(".0%"), f20 = d3.format(".2f");
+  const pct = v => v == null ? "–" : pct0(v), f2 = v => v == null ? "–" : f20(v);
+  const ci2 = c => c[0] == null ? "–" : `${f2(c[0])} (${f2(c[1])}–${f2(c[2])})`;
+  const ciP = c => c[0] == null ? "–" : `${pct(c[0])} (${pct(c[1])}–${pct(c[2])})`;
+  const DIMS = [["r_quant", "Quantified evidence"], ["r_clar", "Clarity"], ["r_conc", "Concision"], ["r_order", "Logical order"]];
+
+  const setText = (id, text) => { const el = document.getElementById(id); if (el) el.textContent = text || ""; };
+  setText("kicker", D.text.kicker); setText("intro", D.text.intro); setText("caveat", D.text.caveat);
+  document.querySelectorAll("[data-headline]").forEach(el => { const h = D.headlines[el.dataset.headline]; if (h) el.textContent = h; });
+  if (!D.has_rubric) document.getElementById("no-rubric").hidden = false;
+
+  // tooltip
+  const tip = document.getElementById("tip");
+  const show = (html, e) => {
+    tip.innerHTML = html; tip.hidden = false;
+    const r = tip.getBoundingClientRect();
+    let x = e.clientX + 14, y = e.clientY + 14;
+    if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 14;
+    if (y + r.height > innerHeight - 8) y = e.clientY - r.height - 14;
+    tip.style.left = Math.max(8, x) + "px"; tip.style.top = Math.max(8, y) + "px";
+  };
+  const hide = () => { tip.hidden = true; };
+  const hover = (sel, html) => sel.on("pointermove", (e, d) => show(html(d), e)).on("pointerleave", hide);
+
+  // shared: a horizontal chart with one row per workflow
+  function frame(id, { rowH = 30, left = 150, right = 56, top = 6, bottom = 30 } = {}) {
+    const host = document.getElementById(id); host.innerHTML = "";
+    const W = Math.max(320, host.clientWidth || 600);
+    const H = top + WF.length * rowH + bottom;
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+    const y = d3.scaleBand(WF, [top, top + WF.length * rowH]).padding(0.28);
+    const labels = svg.append("g");
+    WF.forEach(w => {
+      const t = labels.append("text").attr("x", 0).attr("y", y(w) + y.bandwidth() / 2).attr("dy", "0.35em");
+      t.append("tspan").attr("class", "wf").text(w + " ");
+      if (left > 60) t.append("tspan").attr("class", "wfname").text(NAME[w]);
+    });
+    return { svg, W, H, y, left, right, top, bottom, plotB: top + WF.length * rowH };
+  }
+  function xAxis(f, x, ticks, fmt) {
+    const g = f.svg.append("g");
+    ticks.forEach(t => {
+      g.append("line").attr("class", "gridline").attr("x1", x(t)).attr("x2", x(t)).attr("y1", f.top).attr("y2", f.plotB);
+      g.append("text").attr("class", "tick").attr("x", x(t)).attr("y", f.plotB + 18).attr("text-anchor", "middle").text(fmt(t));
+    });
+    return g;
+  }
+  const narrow = id => (document.getElementById(id).clientWidth || 600) < 520;
+
+  // 1. good resumes: verdict stacked bars
+  const VER = [
+    { k: "good", label: "Good (truthful and well written)", c: "--c-pass" },
+    { k: "rubric_fail", label: `Failed the writing gate (rubric < ${T.rubric})`, c: "--c-length" },
+    { k: "unscored", label: "Truthful, but no rubric score", c: "--muted-mark" },
+    { k: "nli_fail", label: `Failed the truth gate (faithfulness < ${T.faith})`, c: "--c-unfaithful" },
+    { k: "rejected", label: "No resume produced", c: "--c-rejected", hatch: true },
+  ].filter(o => o.k !== "unscored" || rows.some(r => r.verdict === "unscored"));
+  document.getElementById("lg-good").innerHTML = VER.map(o => `<span><i class="${o.hatch ? "hatch" : ""}" style="background:var(${o.c})"></i>${o.label}</span>`).join("");
+  function drawGood() {
+    const nar = narrow("ch-good");
+    const f = frame("ch-good", { rowH: 36, left: nar ? 40 : 160, right: 8 });
+    const x = d3.scaleLinear([0, 100], [f.left, f.W - f.right]);
+    xAxis(f, x, [0, 25, 50, 75, 100], v => v + "%");
+    const pat = f.svg.append("defs").append("pattern").attr("id", "hatch").attr("width", 5).attr("height", 5).attr("patternUnits", "userSpaceOnUse").attr("patternTransform", "rotate(45)");
+    pat.append("rect").attr("width", 5).attr("height", 5).attr("fill", "var(--surface)");
+    pat.append("line").attr("x1", 0).attr("y1", 0).attr("x2", 0).attr("y2", 5).attr("stroke", "var(--c-rejected)").attr("stroke-width", 3);
+    WF.forEach(w => {
+      const mine = rows.filter(r => r.wf === w);
+      let acc = 0;
+      VER.forEach(o => {
+        const n = mine.filter(r => r.verdict === o.k).length; if (!n) return;
+        const share = n / mine.length * 100; const x0 = x(acc), x1 = x(acc + share);
+        const seg = f.svg.append("rect").attr("x", x0 + 1).attr("y", f.y(w)).attr("width", Math.max(0, x1 - x0 - 2)).attr("height", f.y.bandwidth()).attr("rx", 3)
+          .attr("fill", o.hatch ? "url(#hatch)" : `var(${o.c})`).attr("stroke", o.hatch ? "var(--c-rejected)" : "none");
+        hover(seg, () => `<div class="h">${w} ${NAME[w]}</div>${o.label}: <span class="num">${n}</span> of ${mine.length} (${Math.round(share)}%)`);
+        if (x1 - x0 > 26) f.svg.append("text").attr("class", "inbar").attr("x", (x0 + x1) / 2).attr("y", f.y(w) + f.y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "middle")
+          .style("fill", o.k === "unscored" || o.hatch ? "#121821" : "#ffffff").style("pointer-events", "none").text(n);
+        acc += share;
+      });
+    });
+  }
+
+  // 2. truth vs writing pass rates
+  function drawQuad() {
+    const host = document.getElementById("ch-quad"); host.innerHTML = "";
+    const W = Math.max(320, host.clientWidth || 900), H = 360, m = { l: 52, r: 24, t: 14, b: 44 };
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+    const pts = D.summary.filter(s => s.total && s.rubric_scored).map(s => ({ s, xv: s.nli_pass / s.total, yv: s.rubric_pass / s.rubric_scored }));
+    const xLo = Math.min(0.5, Math.floor((d3.min(pts, p => p.xv) ?? 0.5) * 10) / 10), yLo = Math.min(0.5, Math.floor((d3.min(pts, p => p.yv) ?? 0.5) * 10) / 10);
+    const x = d3.scaleLinear([xLo, 1], [m.l, W - m.r]), y = d3.scaleLinear([yLo, 1], [H - m.b, m.t]);
+    d3.range(Math.round(xLo * 10), 11).map(t => t / 10).forEach(t => {
+      svg.append("line").attr("class", "gridline").attr("x1", x(t)).attr("x2", x(t)).attr("y1", m.t).attr("y2", H - m.b);
+      svg.append("text").attr("class", "tick").attr("x", x(t)).attr("y", H - m.b + 18).attr("text-anchor", "middle").text(pct(t));
+    });
+    d3.range(Math.round(yLo * 10), 11).map(t => t / 10).forEach(t => {
+      svg.append("line").attr("class", "gridline").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(t)).attr("y2", y(t));
+      svg.append("text").attr("class", "tick").attr("x", m.l - 8).attr("y", y(t)).attr("dy", "0.35em").attr("text-anchor", "end").text(pct(t));
+    });
+    svg.append("line").attr("class", "refline").attr("x1", x(0.9)).attr("x2", x(0.9)).attr("y1", m.t).attr("y2", H - m.b);
+    svg.append("line").attr("class", "refline").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0.9)).attr("y2", y(0.9));
+    svg.append("text").attr("x", (m.l + W - m.r) / 2).attr("y", H - 6).attr("text-anchor", "middle").text(`Truth gate: faithfulness ≥ ${T.faith}`);
+    svg.append("text").attr("transform", `translate(14,${(m.t + H - m.b) / 2}) rotate(-90)`).attr("text-anchor", "middle").text(`Writing gate: rubric ≥ ${T.rubric}`);
+    const placed = [];
+    pts.sort((a, b) => y(a.yv) - y(b.yv)).forEach(p => {
+      const px = x(p.xv), py = y(p.yv), isRef = p.s.short === REF, g = svg.append("g");
+      g.append("circle").attr("cx", px).attr("cy", py).attr("r", 7).attr("fill", isRef ? "var(--surface)" : "var(--accent)").attr("stroke", isRef ? "var(--ref)" : "var(--surface)").attr("stroke-width", 2);
+      let lx = px - 11, ly = py, anchor = "end";
+      if (px < m.l + 190) { lx = px + 11; anchor = "start"; }
+      while (placed.some(q => Math.abs(q.y - ly) < 14 && Math.abs(q.x - lx) < 170)) ly += 14;
+      placed.push({ x: lx, y: ly });
+      const t = g.append("text").attr("class", "lbl").attr("x", lx).attr("y", ly).attr("dy", "0.35em").attr("text-anchor", anchor);
+      t.append("tspan").attr("class", "wf").text(p.s.short + " "); t.append("tspan").attr("class", "wfname").text(`${p.s.name} · ${p.s.verdicts.good} good`);
+      g.append("circle").attr("cx", px).attr("cy", py).attr("r", 14).attr("fill", "transparent");
+      hover(g, () => `<div class="h">${p.s.short} ${p.s.name}</div>Truth gate: <span class="num">${p.s.nli_pass}</span> of ${p.s.total} attempts (${pct(p.xv)})<br>Writing gate: <span class="num">${p.s.rubric_pass}</span> of ${p.s.rubric_scored} scored (${pct(p.yv)})<br>Good: <span class="num">${p.s.verdicts.good}</span> of ${p.s.total}`);
+    });
+  }
+
+  // distribution: dots + box per workflow
+  function dist(id, key, lo, hi, gate, ticks, fmt, label) {
+    const nar = narrow(id);
+    const f = frame(id, { rowH: 38, left: nar ? 40 : 150, right: 44 });
+    const x = d3.scaleLinear([lo, hi], [f.left, f.W - f.right]);
+    xAxis(f, x, ticks, fmt);
+    f.svg.append("line").attr("class", "refline").attr("x1", x(gate)).attr("x2", x(gate)).attr("y1", f.top).attr("y2", f.plotB);
+    const rng = d3.randomLcg(42);
+    WF.forEach(w => {
+      const v = done.filter(r => r.wf === w && r[key] != null).map(r => r[key]).sort(d3.ascending);
+      if (!v.length) return;
+      const q1 = d3.quantile(v, 0.25), md = d3.quantile(v, 0.5), q3 = d3.quantile(v, 0.75);
+      const cy = f.y(w) + f.y.bandwidth() / 2, bh = f.y.bandwidth();
+      const g = f.svg.append("g");
+      g.selectAll("circle").data(v).join("circle").attr("cx", d => x(Math.max(lo, d))).attr("cy", () => cy + (rng() - 0.5) * bh * 0.9).attr("r", 2.2)
+        .attr("fill", w === REF ? "var(--ref)" : "var(--accent)").attr("fill-opacity", 0.35);
+      g.append("rect").attr("x", x(Math.max(lo, q1))).attr("y", cy - bh / 2).attr("width", Math.max(1, x(q3) - x(Math.max(lo, q1)))).attr("height", bh).attr("rx", 3)
+        .attr("fill", "none").attr("stroke", "var(--ink)").attr("stroke-width", 1.5);
+      g.append("line").attr("x1", x(md)).attr("x2", x(md)).attr("y1", cy - bh / 2).attr("y2", cy + bh / 2).attr("stroke", "var(--ink)").attr("stroke-width", 2.5);
+      f.svg.append("text").attr("class", "val").attr("x", f.W).attr("y", cy).attr("dy", "0.35em").attr("text-anchor", "end").text(f2(md));
+      g.append("rect").attr("x", f.left).attr("y", cy - bh / 2).attr("width", f.W - f.left - f.right).attr("height", bh).attr("fill", "transparent");
+      hover(g, () => `<div class="h">${w} ${NAME[w]}</div>Median <span class="num">${f2(md)}</span>, middle half <span class="num">${f2(q1)}–${f2(q3)}</span><br>Below the ${gate} ${label}: <span class="num">${v.filter(d => d < gate - 1e-9).length}</span> of ${v.length} resumes`);
+    });
+  }
+  const drawFaith = () => dist("ch-faith", "faith", 0, 1, T.faith, [0, 0.25, 0.5, 0.75, 1], d3.format(".2f"), "truth gate");
+  const drawRubric = () => dist("ch-rubric", "rubric", 1, 5, T.rubric, [1, 2, 3, 4, 5], d3.format(".1f"), "writing gate");
+
+  // simple horizontal bar per workflow
+  function bars(id, value, fmt, max, tipText) {
+    const nar = narrow(id);
+    const f = frame(id, { rowH: 30, left: nar ? 40 : 150, right: 64 });
+    const vals = WF.map(w => ({ w, v: value(w) }));
+    const x = d3.scaleLinear([0, Math.max(max, (d3.max(vals, d => d.v) || 0) * 1.08)], [f.left, f.W - f.right]);
+    xAxis(f, x, x.ticks(4), fmt);
+    vals.forEach(({ w, v }) => {
+      if (v == null) return;
+      const r = f.svg.append("rect").attr("x", f.left).attr("y", f.y(w)).attr("width", Math.max(2, x(v) - f.left)).attr("height", f.y.bandwidth()).attr("rx", 3)
+        .attr("fill", w === REF ? "var(--ref)" : "var(--accent)");
+      f.svg.append("text").attr("class", "val").attr("x", x(v) + 6).attr("y", f.y(w) + f.y.bandwidth() / 2).attr("dy", "0.35em").text(fmt(v));
+      hover(r, () => `<div class="h">${w} ${NAME[w]}</div>${tipText(w, v)}`);
+    });
+  }
+  const kfmt = v => v >= 1000 ? d3.format(".1~f")(v / 1000) + "k" : d3.format("~f")(v);
+  const drawBait = () => bars("ch-bait", w => S[w].bait[0], pct, 0.4, (w, v) => `<span class="num">${Math.round(v * S[w].bait_n)}</span> of ${S[w].bait_n} scored resumes (${pct(v)})<br>95% CI ${pct(S[w].bait[1])}–${pct(S[w].bait[2])}`);
+  const drawTime = () => bars("ch-time", w => S[w].wall_median, v => v + " s", 80, (w, v) => `Median <span class="num">${v} s</span> per resume`);
+  const drawCalls = () => bars("ch-calls", w => S[w].calls_median, v => d3.format("~f")(v), 15, (w, v) => `Median <span class="num">${v}</span> model calls per resume`);
+  const drawTokens = () => bars("ch-tokens", w => S[w].tok_median, kfmt, 10000, (w, v) => `Median <span class="num">${d3.format(",")(Math.round(v))}</span> tokens per resume`);
+
+  // heatmap helper
+  function heatmap(id, cols, colLabel, value, color, fmt, tipText) {
+    const host = document.getElementById(id); host.innerHTML = "";
+    const W = Math.max(320, host.clientWidth || 600), left = 116, top = 22, ch = 32;
+    const cell = Math.min(96, (W - left) / cols.length);
+    const H = top + WF.length * ch + 4;
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+    cols.forEach((c, i) => svg.append("text").attr("class", "tick").attr("x", left + i * cell + cell / 2).attr("y", 12).attr("text-anchor", "middle").text(colLabel(c, cell)));
+    WF.forEach((w, j) => {
+      const t = svg.append("text").attr("x", 0).attr("y", top + j * ch + ch / 2).attr("dy", "0.35em");
+      t.append("tspan").attr("class", "wf").text(w + " ");
+      cols.forEach((c, i) => {
+        const v = value(w, c), g = svg.append("g");
+        g.append("rect").attr("x", left + i * cell + 1).attr("y", top + j * ch + 1).attr("width", cell - 2).attr("height", ch - 2).attr("rx", 3).attr("fill", v == null ? "var(--grid)" : color(v));
+        const dark = v != null && d3.hsl(color(v)).l < 0.55;
+        g.append("text").attr("class", "inbar").attr("x", left + i * cell + cell / 2).attr("y", top + j * ch + ch / 2).attr("dy", "0.35em").attr("text-anchor", "middle")
+          .style("fill", dark ? "#ffffff" : "#121821").text(v == null ? "–" : fmt(v));
+        hover(g, () => `<div class="h">${w} ${NAME[w]}</div>${tipText(w, c, v)}`);
+      });
+    });
+  }
+  const shortLabel = (text, cell) => cell < 70 ? text.split(" ")[0] : text;
+
+  function drawDims() {
+    const col = d3.scaleLinear([2.5, 5], [css("--heat-lo"), css("--heat-hi")]).interpolate(d3.interpolateRgb).clamp(true);
+    heatmap("ch-dims", DIMS, (c, cell) => shortLabel(c[1], cell), (w, c) => S[w].dims[c[0]], col, f2,
+      (w, c, v) => `${c[1]}: mean <span class="num">${f2(v)}</span> over ${S[w].rubric_scored} scored resumes`);
+  }
+
+  const goodRate = list => list.length ? list.filter(r => r.verdict === "good").length / list.length : null;
+  function drawHeat() {
+    const cats = [...new Set(rows.map(r => r.cat))].sort(d3.ascending);
+    const col = d3.scaleLinear([0, 1], [css("--heat-lo"), css("--heat-hi")]).interpolate(d3.interpolateRgb).clamp(true);
+    heatmap("ch-heat", cats, (c, cell) => shortLabel(c, cell), (w, c) => goodRate(rows.filter(r => r.wf === w && r.cat === c)), col, pct,
+      (w, c, v) => { const list = rows.filter(r => r.wf === w && r.cat === c); return `${c}: <span class="num">${list.filter(r => r.verdict === "good").length}</span> good of ${list.length} attempts (${pct(v)})`; });
+  }
+
+  // fit-level lines (good-resume rate)
+  function drawFit() {
+    const host = document.getElementById("ch-fit"); host.innerHTML = "";
+    const fits = D.fits.length ? D.fits : ["strong", "moderate", "weak"]; const lastFit = fits[fits.length - 1];
+    const W = Math.max(320, host.clientWidth || 600), H = 300, m = { l: 44, r: 150, t: 12, b: 30 };
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+    const x = d3.scalePoint(fits, [m.l, W - m.r]).padding(0.1);
+    const y = d3.scaleLinear([0, 1], [H - m.b, m.t]);
+    [0, 0.25, 0.5, 0.75, 1].forEach(t => {
+      svg.append("line").attr("class", "gridline").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(t)).attr("y2", y(t));
+      svg.append("text").attr("class", "tick").attr("x", m.l - 8).attr("y", y(t)).attr("dy", "0.35em").attr("text-anchor", "end").text(pct(t));
+    });
+    fits.forEach(fl => svg.append("text").attr("class", "tick").attr("x", x(fl)).attr("y", H - 8).attr("text-anchor", "middle").text(fl + " fit"));
+    const series = WF.map(w => ({ w, pts: fits.map(fl => { const list = rows.filter(r => r.wf === w && r.fit === fl); return { fl, v: goodRate(list), n: list.length }; }) }));
+    const line = d3.line().defined(p => p.v != null).x(p => x(p.fl)).y(p => y(p.v));
+    const gs = svg.append("g").selectAll("g").data(series).join("g");
+    gs.append("path").attr("d", s => line(s.pts)).attr("fill", "none").attr("stroke", s => s.w === REF ? "var(--ref)" : "var(--muted-mark)").attr("stroke-width", 2).attr("stroke-linejoin", "round").attr("stroke-linecap", "round");
+    gs.selectAll("circle").data(s => s.pts.filter(p => p.v != null).map(p => ({ ...p, w: s.w }))).join("circle").attr("cx", p => x(p.fl)).attr("cy", p => y(p.v)).attr("r", 3.5).attr("fill", "var(--surface)").attr("stroke", "var(--muted-mark)").attr("stroke-width", 2);
+    const ends = series.map(s => ({ w: s.w, v: [...s.pts].reverse().find(p => p.v != null)?.v })).filter(e => e.v != null).map(e => ({ w: e.w, y: y(e.v) })).sort((a, b) => a.y - b.y);
+    for (let i = 1; i < ends.length; i++) if (ends[i].y - ends[i - 1].y < 13) ends[i].y = ends[i - 1].y + 13;
+    const lab = svg.append("g").selectAll("text").data(ends).join("text").attr("x", x(lastFit) + 10).attr("y", e => e.y).attr("dy", "0.35em").attr("class", "wfname").text(e => `${e.w} ${NAME[e.w]}`);
+    const focus = w => {
+      gs.select("path").attr("stroke", s => s.w === w ? "var(--accent)" : s.w === REF ? "var(--ref)" : "var(--muted-mark)").attr("stroke-opacity", s => !w || s.w === w || s.w === REF ? 1 : 0.35).attr("stroke-width", s => s.w === w ? 3 : 2);
+      gs.selectAll("circle").attr("stroke", p => p.w === w ? "var(--accent)" : "var(--muted-mark)");
+      lab.attr("class", e => e.w === w ? "wf" : "wfname");
+    };
+    gs.append("path").attr("d", s => line(s.pts)).attr("fill", "none").attr("stroke", "transparent").attr("stroke-width", 14)
+      .on("pointermove", (e, s) => { focus(s.w); show(`<div class="h">${s.w} ${NAME[s.w]}</div>` + s.pts.map(p => `${p.fl}: <span class="num">${pct(p.v)}</span> good (n=${p.n})`).join("<br>"), e); })
+      .on("pointerleave", () => { focus(null); hide(); });
+  }
+
+  // good-resume rate against time
+  function drawValue() {
+    const host = document.getElementById("ch-value"); host.innerHTML = "";
+    const W = Math.max(320, host.clientWidth || 900), H = 320, m = { l: 48, r: 20, t: 14, b: 42 };
+    const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("width", "100%");
+    const sp = D.summary.filter(s => s.good[0] != null && s.wall_median > 0);
+    const lo = Math.min(2, (d3.min(sp, s => s.wall_median) ?? 2) / 1.3), hi = Math.max(100, (d3.max(sp, s => s.wall_median) ?? 100) * 1.3);
+    const x = d3.scaleLog([lo, hi], [m.l, W - m.r]);
+    const yLo = Math.min(0.5, Math.floor((d3.min(sp, s => s.good[1]) ?? 0.5) * 10) / 10);
+    const y = d3.scaleLinear([yLo, 1], [H - m.b, m.t]);
+    d3.range(Math.round(yLo * 10), 11).map(t => t / 10).forEach(t => {
+      svg.append("line").attr("class", "gridline").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(t)).attr("y2", y(t));
+      svg.append("text").attr("class", "tick").attr("x", m.l - 8).attr("y", y(t)).attr("dy", "0.35em").attr("text-anchor", "end").text(pct(t));
+    });
+    [1, 2, 5, 10, 20, 50, 100, 200, 500].filter(t => t >= lo && t <= hi).forEach(t => svg.append("text").attr("class", "tick").attr("x", x(t)).attr("y", H - m.b + 18).attr("text-anchor", "middle").text(t + " s"));
+    svg.append("line").attr("class", "axisline").attr("x1", m.l).attr("x2", W - m.r).attr("y1", H - m.b).attr("y2", H - m.b);
+    svg.append("text").attr("x", (m.l + W - m.r) / 2).attr("y", H - 6).attr("text-anchor", "middle").text("Median time per resume (log scale)");
+    const pts = sp.map(s => ({ s, px: x(s.wall_median), py: y(s.good[0]) }));
+    const front = []; let best = -1;
+    [...pts].sort((a, b) => a.s.wall_median - b.s.wall_median).forEach(p => { if (p.s.good[0] > best) { front.push(p); best = p.s.good[0]; } });
+    svg.append("polyline").attr("points", front.map(p => `${p.px},${p.py}`).join(" ")).attr("fill", "none").attr("stroke", "var(--ink-2)").attr("stroke-width", 1.5).attr("stroke-dasharray", "4 4");
+    const placed = [];
+    pts.sort((a, b) => a.py - b.py).forEach(p => {
+      const isRef = p.s.short === REF, g = svg.append("g");
+      g.append("line").attr("x1", p.px).attr("x2", p.px).attr("y1", y(Math.max(yLo, p.s.good[1]))).attr("y2", y(p.s.good[2])).attr("stroke", "var(--ink-2)").attr("stroke-width", 2).attr("stroke-linecap", "round");
+      g.append("circle").attr("cx", p.px).attr("cy", p.py).attr("r", 6).attr("fill", isRef ? "var(--surface)" : "var(--accent)").attr("stroke", isRef ? "var(--ref)" : "var(--surface)").attr("stroke-width", 2);
+      let lx = p.px + 11, ly = p.py, anchor = "start";
+      if (p.px > W - 170) { lx = p.px - 11; anchor = "end"; }
+      while (placed.some(q => Math.abs(q.y - ly) < 14 && Math.abs(q.x - lx) < 140)) ly += 14;
+      placed.push({ x: lx, y: ly });
+      const t = g.append("text").attr("class", "lbl").attr("x", lx).attr("y", ly).attr("dy", "0.35em").attr("text-anchor", anchor);
+      t.append("tspan").attr("class", "wf").text(p.s.short + " "); t.append("tspan").attr("class", "wfname").text(p.s.name);
+      g.append("circle").attr("cx", p.px).attr("cy", p.py).attr("r", 14).attr("fill", "transparent");
+      hover(g, () => `<div class="h">${p.s.short} ${p.s.name}</div>Good <span class="num">${p.s.verdicts.good}</span> of ${p.s.total} (95% CI ${pct(p.s.good[1])}–${pct(p.s.good[2])})<br>Median <span class="num">${p.s.wall_median} s</span>, ${p.s.calls_median} model calls`);
+    });
+  }
+
+  // table
+  function drawTable() {
+    const body = WF.map(w => {
+      const s = S[w], v = s.verdicts;
+      return `<tr><td>${w} ${NAME[w]}</td><td>${v.good}</td><td>${s.nli_pass}</td><td>${s.rubric_pass} / ${s.rubric_scored}</td><td>${v.nli_fail}</td><td>${v.rubric_fail}</td><td>${v.unscored}</td><td>${v.rejected}</td><td>${ci2(s.faith)}</td><td>${ci2(s.rubric)}</td>${DIMS.map(d => `<td>${f2(s.dims[d[0]])}</td>`).join("")}<td>${pct(s.bait[0])}</td><td>${s.wall_median == null ? "–" : s.wall_median + " s"}</td><td>${s.calls_median ?? "–"}</td><td>${s.tok_median == null ? "–" : d3.format(",")(Math.round(s.tok_median))}</td></tr>`;
+    }).join("");
+    document.getElementById("tbl").innerHTML = `<table><thead><tr><th>Workflow</th><th>Good</th><th>Truth pass</th><th>Writing pass</th><th>Failed truth</th><th>Failed writing</th><th>Unscored</th><th>No resume</th><th>Faithfulness (95% CI)</th><th>Rubric (95% CI)</th>${DIMS.map(d => `<th>${d[1]}</th>`).join("")}<th>Invented qualification</th><th>Median time</th><th>Median calls</th><th>Median tokens</th></tr></thead><tbody>${body}</tbody></table>`;
+  }
+
+  setText("foot", D.text.footer);
+
+  const drawAll = () => { drawGood(); drawQuad(); drawFaith(); drawBait(); drawRubric(); drawDims(); drawHeat(); drawFit(); drawTime(); drawCalls(); drawTokens(); drawValue(); };
+  drawAll(); drawTable();
+  let t; new ResizeObserver(() => { clearTimeout(t); t = setTimeout(drawAll, 120); }).observe(document.querySelector(".wrap"));
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", drawAll);
+  new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // inside the app's iframe: grow the frame to the page's height so the app scrolls, not the frame
+  let outer = null; try { outer = window.frameElement; } catch (e) { outer = null; }
+  if (outer) {
+    const fit = () => {
+      const cs = getComputedStyle(document.body);
+      const h = Math.ceil(document.body.getBoundingClientRect().height + parseFloat(cs.marginTop) + parseFloat(cs.marginBottom));
+      if (h > 0 && Math.abs(outer.getBoundingClientRect().height - h) > 2) outer.style.height = h + "px";
+    };
+    new ResizeObserver(fit).observe(document.body); addEventListener("load", fit); fit();
+  }
+})();
+</script>
+</body>
+</html>

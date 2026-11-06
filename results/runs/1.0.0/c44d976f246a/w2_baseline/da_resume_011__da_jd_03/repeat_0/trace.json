@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 373,
+    "output_tokens": 221,
+    "thinking_chars": 0,
+    "seconds": 2.21,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 514,
+    "output_tokens": 656,
+    "thinking_chars": 0,
+    "seconds": 8.53,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1678,
+    "output_tokens": 630,
+    "thinking_chars": 0,
+    "seconds": 6.11,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Kavya Lim\",\n  \"contact\": {\n    \"email\": \"kavya.lim@example.test\",\n    \"phone\": \"+65 6000 0031\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Machine Learning Engineer with hands-on experience in Python, machine learning and scikit-learn. Delivers documented, measurable improvements with cross-functional teams.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Atlas Solutions (fictional)\",\n      \"title\": \"Machine Learning Engineer\",\n      \"start\": \"Jul 2023\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Trained and evaluated predictive models using Python and machine learning, improving team turnaround by 12%.\",\n        \"Built reproducible feature pipelines with scikit-learn and documented decisions for technical and business reviewers.\",\n        \"Deployed models behind APIs in collaboration with four colleagues, presenting progress during fortnightly reviews.\",\n        \"Monitored model quality while managing approximately 63 work items per month.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Beacon Services (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Jun 2023\",\n      \"bullets\": [\n        \"Supported operational work using PyTorch and documented step-by-step procedures.\",\n        \"Investigated service requests, recorded findings and escalated issues with clear supporting evidence.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Machine Learning Engineer Practice Project\",\n      \"bullets\": [\n        \"Built a demonstration project using Python, machine learning and scikit-learn.\",\n        \"Tested the project with representative scenarios and recorded limitations and next steps.\",\n        \"Presented the design and outcomes to a five-person peer review group.\"\n      ]\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": [\n        \"Coursework included software engineering, databases, cybersecurity and applied analytics.\"\n      ]\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"machine learning\",\n    \"scikit-learn\",\n    \"PyTorch\",\n    \"model evaluation\",\n    \"feature engineering\",\n    \"Docker\",\n    \"REST APIs\",\n    \"MLflow\",\n    \"AWS\"\n  ],\n  \"certifications\": [\n    \"AWS Certified Cloud Practitioner\"\n  ]\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 5
+  }
+]

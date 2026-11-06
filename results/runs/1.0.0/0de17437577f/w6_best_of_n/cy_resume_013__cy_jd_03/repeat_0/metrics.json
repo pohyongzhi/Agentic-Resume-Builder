@@ -1,0 +1,187 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7266,
+  "output_tokens": 1273,
+  "thinking_chars": 0,
+  "seconds": 14.39,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": false,
+  "error": "W6_NO_VALID_CANDIDATE: No candidate passed deterministic validation and both judge orders.",
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_013__cy_jd_03",
+  "resume_id": "cy_resume_013",
+  "jd_id": "cy_jd_03",
+  "category": "cybersecurity",
+  "role_family": "security_engineer",
+  "seniority": "mid",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.4,
+  "generation_seconds": 14.398,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_013__cy_jd_03/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_013__cy_jd_03/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_013__cy_jd_03/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": null,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "183 words; target is roughly 350-500"
+          ],
+          "words": 183
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text but lacks certifications section found in source.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves original content but omits Linux skill and lacks specific JD-aligned phrasing regarding incident response communication.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.81,
+          "input_tokens": 1056,
+          "output_tokens": 276
+        }
+      },
+      "impact_first": {
+        "faithfulness": 3.5,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 3.88,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 2,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "AWS Certified Cloud Practitioner",
+              "Excel"
+            ],
+            "justification": "Adds unsupported certification and skill (Excel) not present in original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds unsupported certification and skill (Excel) not present in original resume."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original metrics and claims; lacks Linux skill which is a JD requirement.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.02,
+          "input_tokens": 1057,
+          "output_tokens": 292
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.5,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.12,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "175 words; target is roughly 350-500"
+          ],
+          "words": 175
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 2,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Linux"
+            ],
+            "justification": "Invents specific skills (Linux) and claims not supported by original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Invents specific skills (Linux) and claims not supported by original resume."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD responsibilities (preventive controls, automation, incident response communication) and includes Linux which was missing in the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.74,
+          "input_tokens": 1069,
+          "output_tokens": 265
+        }
+      }
+    },
+    "selection_reason": "No candidate passed deterministic validation and both judge orders."
+  }
+}

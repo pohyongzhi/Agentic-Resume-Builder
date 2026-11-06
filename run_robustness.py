@@ -1,4 +1,7 @@
-"""Run all workflows on meaning-preserving input variants for a small held-out subset."""
+"""Legacy v1 robustness runner (formatting/reordered variants only); kept for its history.
+
+New robustness runs use ``python evaluate.py robustness`` (eval/robustness.py v2 variants).
+"""
 import argparse
 import json
 import time
@@ -10,9 +13,9 @@ import run_all
 from common.data import dataset_hash, load_pairs
 from common.llm import Tracker
 from eval.robustness import (
-    VARIANTS,
+    LEGACY_VARIANTS as VARIANTS,
     perturb_pair,
-    robustness_manifest,
+    robustness_manifest_v1 as robustness_manifest,
     select_stratified_pairs,
     summarise_robustness,
     write_robustness_csv,

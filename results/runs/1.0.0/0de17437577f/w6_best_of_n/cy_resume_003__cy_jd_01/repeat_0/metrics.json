@@ -1,0 +1,185 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7461,
+  "output_tokens": 1421,
+  "thinking_chars": 0,
+  "seconds": 14.94,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_003__cy_jd_01",
+  "resume_id": "cy_resume_003",
+  "jd_id": "cy_jd_01",
+  "category": "cybersecurity",
+  "role_family": "soc_analyst",
+  "seniority": "entry",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.9,
+  "generation_seconds": 14.944,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_003__cy_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_003__cy_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_003__cy_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "jd_wording_alignment",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 3.0,
+        "overall": 3.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Accurate to original text but lacks formatting consistency (missing blank lines) and JD keyword alignment.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume, failing to incorporate JD keywords like 'threat detection', 'ticketing', or 'technical writing'. It lacks Markdown formatting and inconsistent spacing.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.87,
+          "input_tokens": 1057,
+          "output_tokens": 290
+        }
+      },
+      "impact_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 2.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.0,
+        "overall": 3.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "188 words; target is roughly 350-500"
+          ],
+          "words": 188
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 3,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Managed approximately 39 work items per month while tracking quality checks and follow-up actions."
+            ],
+            "justification": "Contains a factual error regarding bullet point ordering compared to the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume, failing to incorporate JD keywords like 'threat detection', 'ticketing', or 'technical writing'. It also reorders bullet points without adding value.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.83,
+          "input_tokens": 1058,
+          "output_tokens": 290
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "233 words; target is roughly 350-500"
+          ],
+          "words": 233
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Best balance of faithfulness and JD alignment; includes all original content with proper formatting.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "The draft is identical to the original resume, failing to incorporate JD keywords like 'threat detection', 'ticketing', or 'technical writing' which are explicitly required.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.6,
+          "input_tokens": 1070,
+          "output_tokens": 348
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 383,
+    "output_tokens": 228,
+    "thinking_chars": 0,
+    "seconds": 2.28,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 495,
+    "output_tokens": 425,
+    "thinking_chars": 0,
+    "seconds": 6.52,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1456,
+    "output_tokens": 558,
+    "thinking_chars": 0,
+    "seconds": 5.53,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": "{\n  \"name\": \"Samuel Lim\",\n  \"contact\": {\n    \"email\": \"samuel.lim@example.test\",\n    \"phone\": \"+65 6000 0039\",\n    \"location\": \"Singapore\",\n    \"links\": []\n  },\n  \"summary\": \"Technology associate with transferable experience in Python, large language models and RAG, seeking to deepen capability as a Senior AI and LLM Solutions Engineer.\",\n  \"experience\": [\n    {\n      \"employer\": \"Example Delta Operations (fictional)\",\n      \"title\": \"Technology Associate\",\n      \"start\": \"Jan 2021\",\n      \"end\": \"Present\",\n      \"bullets\": [\n        \"Used Python and large language models to architect production LLM applications, improving team turnaround by 37%.\",\n        \"Applied RAG to design retrieval and evaluation pipelines and documented decisions for technical and business reviewers.\",\n        \"Collaborated with four colleagues to establish safety and observability controls and presented progress during fortnightly reviews.\"\n      ]\n    },\n    {\n      \"employer\": \"Example Ember Technologies (fictional)\",\n      \"title\": \"Technical Assistant\",\n      \"start\": \"Jun 2017\",\n      \"end\": \"Dec 2020\",\n      \"bullets\": [\n        \"Supported recurring operational work using prompt engineering and documented step-by-step procedures.\",\n        \"Created a simple reporting template that reduced manual preparation time by 32%.\"\n      ]\n    }\n  ],\n  \"projects\": [\n    {\n      \"name\": \"Senior AI and LLM Solutions Engineer Practice Project\",\n      \"description\": \"Built a fictional demonstration project using Python, large language models and RAG. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group.\",\n      \"bullets\": []\n    }\n  ],\n  \"education\": [\n    {\n      \"institution\": \"Example Polytechnic (fictional)\",\n      \"degree\": \"Bachelor of Science in Information Systems\",\n      \"start\": \"Aug 2020\",\n      \"end\": \"May 2024\",\n      \"details\": []\n    }\n  ],\n  \"skills\": [\n    \"Python\",\n    \"large language models\",\n    \"RAG\",\n    \"prompt engineering\",\n    \"LangGraph\",\n    \"documentation\",\n    \"Git\"\n  ],\n  \"certifications\": []\n}"
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 4
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.002,
+    "step": 5
+  }
+]

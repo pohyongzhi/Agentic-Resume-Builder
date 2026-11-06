@@ -1,5 +1,7 @@
 """Shared product and experiment settings."""
 
+import os
+
 PRODUCT_NAME = "Agentic Resume Builder"
 PRODUCT_VERSION = "1.0.0"
 EXPERIMENT_VERSION = "V5"
@@ -54,16 +56,77 @@ JUDGE_NUM_CTX = 16384
 JUDGE_THINK = False
 JUDGE_REASONING_EFFORT = "medium"
 JUDGE_MAX_COMPLETION_TOKENS = 2048
-JUDGE_MIN_REQUEST_INTERVAL_SECONDS = 15.0
+# Minimum spacing between hosted judge requests. Override with HOSTED_MIN_INTERVAL_SECONDS
+# (e.g. 55 on the Groq free tier, whose per-minute token limit counts max_completion_tokens).
+JUDGE_MIN_REQUEST_INTERVAL_SECONDS = float(os.environ.get("HOSTED_MIN_INTERVAL_SECONDS", "15"))
 JUDGE_MAX_RETRIES = 2
 JUDGE_PROMPT_VERSION = "resume-rubric-v4"
 JUDGE_SCHEMA_VERSION = "1.0"
-EVALUATOR_SCHEMA_VERSION = "2.2"
+# 2.3 adds supportable-requirement coverage and per-component identities to evaluation records.
+EVALUATOR_SCHEMA_VERSION = "2.3"
 NLI_EVALUATOR_VERSION = "claim-evidence-nli-v4"
 PROTECTED_FIELD_EVALUATOR_VERSION = "protected-fields-v2"
 FABRICATION_BAIT_EVALUATOR_VERSION = "keyword-bait-v2"
 NLI_EVIDENCE_LIMIT = 3
+
+# Supportable-requirement coverage (eval/requirement_coverage.py). The provider/model default to
+# the judge; the CLI can override them. Semantic decisions use the same structured-output settings.
+REQUIREMENT_COVERAGE_EVALUATOR_VERSION = "supportable-requirement-coverage-v2"
+REQUIREMENT_COVERAGE_PROMPT_VERSION = "supportable-requirements-v1"
+REQUIREMENT_COVERAGE_PROVIDER = JUDGE_PROVIDER
+REQUIREMENT_COVERAGE_MODEL = JUDGE_MODEL
+
+# Prompt-injection benchmark (eval/injection.py). Generation uses the workflow's own settings.
+INJECTION_ATTACK_VERSION = "prompt-injection-canary-v1"
+INJECTION_SAMPLE_VERSION = "injection-sample-v1"
+INJECTION_SEED = 42
+
+# Pairwise position-swap comparison (eval/pairwise.py). Uses the judge provider/model.
+PAIRWISE_EVALUATOR_VERSION = "pairwise-position-swap-v2"
+PAIRWISE_PROMPT_VERSION = "pairwise-v1"
+PAIRWISE_SCHEMA_VERSION = "1"
+# Hosted reasoning models spend completion tokens on reasoning before the JSON answer;
+# 2048 truncated pairwise verdicts (five dimensions plus explanation) in the Groq pilot.
+PAIRWISE_MAX_COMPLETION_TOKENS = 4096
+# Pairwise verdicts are a forced choice per dimension; low reasoning keeps hosted token use
+# within free-tier limits (override with PAIRWISE_REASONING_EFFORT on a paid provider; it is part of
+# the pairwise identity). Position-swap consistency is reported as the stability check.
+PAIRWISE_REASONING_EFFORT = os.environ.get("PAIRWISE_REASONING_EFFORT", "low")
+PAIRING_POLICY_VERSION = "same-dataset-pair-repeat-v1"
+POSITION_ORDER_VERSION = "challenger-first-then-baseline-first-v1"
+PAIRWISE_BASELINE_WORKFLOW = "w2_baseline"
+PAIRWISE_FAILURE_JUDGE = "judge_failed"
+PAIRWISE_FAILURE_INVALID = "invalid_output"
+PAIRWISE_FAILURE_GENERATION = "generation_unavailable"
+
+# Judge-versus-human agreement (eval/human_review.py).
+AGREEMENT_SCHEMA_VERSION = "1.1"
+HUMAN_AGREEMENT_VERSION = "judge-human-agreement-v1"
+MIN_AGREEMENT_PAIRS = 10  # below this, agreement is reported as insufficient_labels
+CLAIM_LABELS = ("supported", "contradicted", "unsupported")
+
+# Offline ATS-style compatibility proxy (eval/ats.py). Any scoring-rule change must bump
+# OFFLINE_PROXY_VERSION.
+ATS_SCHEMA_VERSION = "1.1"
+OFFLINE_PROXY_VERSION = "offline-ats-proxy-v1"
+ATS_STATUSES = ("scored", "unscored", "failed")
+COMPOSITE_WEIGHTS = {
+    "parseability": 0.20,
+    "section_completeness": 0.25,
+    "formatting_compatibility": 0.15,
+    "supported_requirement_coverage": 0.40,
+}
+FORMAT_HAZARD_PENALTY = 0.34
+
+# Input robustness (eval/robustness.py). v2 adds noisy, format and out-of-scope variant families
+# and scores against the clean original resume; its artifacts live under
+# robustness/<identity_hash>/. v1 artifacts (robustness-sample-v1, meaning-preserving-v1) stay
+# under robustness/ as history.
 ROBUSTNESS_SEED = 42
+ROBUSTNESS_SAMPLE_VERSION = "robustness-sample-v2"
+ROBUSTNESS_VARIANT_VERSION = "robustness-variants-v2"
+ROBUSTNESS_TYPO_RATE = 0.03          # share of eligible (lowercase, unprotected) prose words
+ROBUSTNESS_STABILITY_TOLERANCE = 0.05  # max degradation of a [0, 1] metric for a stable run
 REPORT_BOOTSTRAP_SEED = 42
 REPORT_BOOTSTRAP_SAMPLES = 2000
 

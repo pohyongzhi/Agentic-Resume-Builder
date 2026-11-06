@@ -1,0 +1,185 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7120,
+  "output_tokens": 1241,
+  "thinking_chars": 0,
+  "seconds": 13.04,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_005__da_jd_01",
+  "resume_id": "da_resume_005",
+  "jd_id": "da_jd_01",
+  "category": "data_ai",
+  "role_family": "data_analyst",
+  "seniority": "entry",
+  "fit_level": "weak",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 13.1,
+  "generation_seconds": 13.05,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_005__da_jd_01/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_005__da_jd_01/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_005__da_jd_01/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "impact_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "184 words; target is roughly 350-500"
+          ],
+          "words": 184
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes listing skills over impact; lacks specific metrics in the summary compared to original.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "with experience cleaning operational data, building dashboards, and collaborating on business metrics"
+            ],
+            "justification": "Adds a summary sentence explicitly listing skills mentioned in the JD (cleaning data, dashboards, metrics) which is an inference not present in the original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds a summary sentence explicitly listing skills mentioned in the JD (cleaning data, dashboards, metrics) which is an inference not present in the original resume."
+          }
+        ],
+        "generation": {
+          "seconds": 2.8,
+          "input_tokens": 1038,
+          "output_tokens": 278
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "180 words; target is roughly 350-500"
+          ],
+          "words": 180
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with original text, preserving all specific metrics and phrasing accurately.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retains original phrasing which includes specific metrics (32%, 75 items) and actions that align with JD responsibilities.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.74,
+          "input_tokens": 1039,
+          "output_tokens": 271
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 5.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 4.5,
+        "overall": 4.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "164 words; target is roughly 350-500"
+          ],
+          "words": 164
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Modifies original phrasing to match JD terminology (e.g., 'stakeholders' instead of 'reviewers'), risking faithfulness.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Rewrites bullet points to match JD verbs exactly (Cleaned, Built, Defined) while retaining all original facts.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.68,
+          "input_tokens": 1051,
+          "output_tokens": 256
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

@@ -1,0 +1,365 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1037,
+    "output_tokens": 270,
+    "thinking_chars": 0,
+    "seconds": 2.74,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "176 words; target is roughly 350-500"
+      ],
+      "words": 176
+    },
+    "generation": {
+      "seconds": 2.74,
+      "input_tokens": 1037,
+      "output_tokens": 270
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1038,
+    "output_tokens": 329,
+    "thinking_chars": 0,
+    "seconds": 3.32,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "225 words; target is roughly 350-500"
+      ],
+      "words": 225
+    },
+    "generation": {
+      "seconds": 3.32,
+      "input_tokens": 1038,
+      "output_tokens": 329
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1050,
+    "output_tokens": 335,
+    "thinking_chars": 0,
+    "seconds": 3.37,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "223 words; target is roughly 350-500"
+      ],
+      "words": 223
+    },
+    "generation": {
+      "seconds": 3.37,
+      "input_tokens": 1050,
+      "output_tokens": 335
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2124,
+    "output_tokens": 238,
+    "thinking_chars": 0,
+    "seconds": 2.83,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves original claims but lacks JD keyword alignment (e.g., 'vulnerability management' vs 'Excel').",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Identical to original resume; faithful but misses JD terminology like 'vulnerability management'.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "Automated vulnerability and compliance checks using Excel; documented decisions for technical and business reviewers."
+        ],
+        "justification": "Adds unsupported JD keywords ('vulnerability management') not present in original resume.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Adds unsupported JD keywords ('vulnerability management') not present in original resume."
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2124,
+    "output_tokens": 310,
+    "thinking_chars": 0,
+    "seconds": 4.04,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 5,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "vulnerability management",
+          "preventive security controls"
+        ],
+        "justification": "Adds 'vulnerability management' to skills which is a JD requirement but not explicitly in the original resume's skill list (only 'cloud security' and 'IAM' are listed). Adds 'preventive security controls' to summary which is a JD responsibility, not an explicit resume claim.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Adds 'vulnerability management' to skills which is a JD requirement but not explicitly in the original resume's skill list (only 'cloud security' and 'IAM' are listed)."
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reproduces the original resume content without adding or inferring new claims. However, it fails to include 'vulnerability management' in the skills section despite the JD requiring it and the candidate having experience with it.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully reproduces the original resume content. Like Candidate 2, it omits 'vulnerability management' from the skills list despite the JD requirement and candidate experience.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "176 words; target is roughly 350-500"
+          ],
+          "words": 176
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves original claims but lacks JD keyword alignment (e.g., 'vulnerability management' vs 'Excel').",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces the original resume content. Like Candidate 2, it omits 'vulnerability management' from the skills list despite the JD requirement and candidate experience.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.74,
+          "input_tokens": 1037,
+          "output_tokens": 270
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "225 words; target is roughly 350-500"
+          ],
+          "words": 225
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Identical to original resume; faithful but misses JD terminology like 'vulnerability management'.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully reproduces the original resume content without adding or inferring new claims. However, it fails to include 'vulnerability management' in the skills section despite the JD requiring it and the candidate having experience with it.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.32,
+          "input_tokens": 1038,
+          "output_tokens": 329
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.0,
+        "jd_alignment": 5.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.62,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "223 words; target is roughly 350-500"
+          ],
+          "words": 223
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Automated vulnerability and compliance checks using Excel; documented decisions for technical and business reviewers."
+            ],
+            "justification": "Adds unsupported JD keywords ('vulnerability management') not present in original resume.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds unsupported JD keywords ('vulnerability management') not present in original resume."
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "vulnerability management",
+              "preventive security controls"
+            ],
+            "justification": "Adds 'vulnerability management' to skills which is a JD requirement but not explicitly in the original resume's skill list (only 'cloud security' and 'IAM' are listed). Adds 'preventive security controls' to summary which is a JD responsibility, not an explicit resume claim.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds 'vulnerability management' to skills which is a JD requirement but not explicitly in the original resume's skill list (only 'cloud security' and 'IAM' are listed)."
+          }
+        ],
+        "generation": {
+          "seconds": 3.37,
+          "input_tokens": 1050,
+          "output_tokens": 335
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

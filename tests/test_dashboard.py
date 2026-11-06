@@ -1,0 +1,354 @@
+"""Results-dashboard loader and aggregations, on synthetic roots written by the real report code."""
+import json
+import os
+import socket
+
+import pytest
+
+from eval import dashboard as dd
+from eval import dashboard_charts as dc
+from tests.dashboard_fixture import PAIRS, WORKFLOWS, build_rubric_run
+from tests.dashboard_fixture import build_fixture_root as _build
+
+
+def build_fixture_root(base, **kwargs):
+    return _build(base, bootstrap_samples=50, **kwargs)
+
+
+@pytest.fixture(autouse=True)
+def _no_network(monkeypatch):
+    def refuse(*args, **kwargs):
+        raise AssertionError("network access attempted in a dashboard test")
+
+    monkeypatch.setattr(socket.socket, "connect", refuse)
+    monkeypatch.setattr(socket, "create_connection", refuse)
+    monkeypatch.setattr(dd.config, "REPORT_BOOTSTRAP_SAMPLES", 50)
+    dd.clear_cache()
+
+
+@pytest.fixture(scope="module")
+def full_root(tmp_path_factory):
+    return build_fixture_root(tmp_path_factory.mktemp("evaluations"), rubric=True)
+
+
+@pytest.fixture
+def bundle(full_root):
+    return dd.load_bundle(full_root)
+
+
+@pytest.fixture(scope="module")
+def plain_root(tmp_path_factory):
+    """Scored outputs without a rubric v3 run."""
+    return build_fixture_root(tmp_path_factory.mktemp("plain"), pairwise=False, robustness=False)
+
+
+def test_discover_roots_newest_first_with_stages(tmp_path):
+    older = build_fixture_root(tmp_path, pairwise=False, robustness=False, evaluator_hash="a" * 16)
+    newer = build_fixture_root(tmp_path, evaluator_hash="b" * 16)
+    for path in [older / "evaluations.jsonl", *(older / "summaries").glob("*.json")]:
+        os.utime(path, (1_000_000, 1_000_000))
+    (tmp_path / "x" / "y" / "not-a-root").mkdir(parents=True)
+
+    roots = dd.discover_roots(tmp_path)
+
+    assert [root.path for root in roots] == [newer, older]
+    # Superseded stages (pairwise, robustness) are not reported even though the fixture has them.
+    assert roots[0].stages == ("NLI",) and roots[1].stages == ("NLI",)
+    assert "700" not in roots[0].label and " resumes · " in roots[0].label
+    with_rubric = build_fixture_root(tmp_path / "r", rubric=True)
+    assert dd.root_stages(with_rubric) == ("NLI", "rubric v3")
+    assert roots[0].outputs == len(WORKFLOWS) * len(PAIRS)
+    assert roots[0].workflows == WORKFLOWS
+    assert "W1, W2, W3" in roots[0].label and "bbbbbbbb" in roots[0].label
+
+
+def test_discover_roots_missing_directory(tmp_path):
+    assert dd.discover_roots(tmp_path / "absent") == []
+
+
+def test_default_dir_can_be_overridden(monkeypatch, tmp_path):
+    monkeypatch.setenv("ARB_EVALUATIONS_DIR", str(tmp_path))
+    assert dd.default_evaluations_dir() == tmp_path
+
+
+def test_read_jsonl_skips_blank_and_truncated_lines(tmp_path):
+    path = tmp_path / "evaluations.jsonl"
+    path.write_text('{"a": 1}\n\n{"a": 2}\n{"a": 3', encoding="utf-8")
+    assert dd.read_jsonl(path) == [{"a": 1}, {"a": 2}]
+    assert dd.read_jsonl(tmp_path / "missing.jsonl") == []
+
+
+def test_load_bundle_reads_every_stage(bundle):
+    assert len(bundle.rows) == len(WORKFLOWS) * len(PAIRS)
+    assert bundle.workflows == list(WORKFLOWS)
+    assert {"overall", "by_category", "by_fit_level", "pairwise", "robustness_families",
+            "robustness_deltas", "robustness_out_of_scope"} <= set(bundle.summaries)
+    assert len(bundle.pairwise_rows) == (len(WORKFLOWS) - 1) * len(PAIRS)
+    assert bundle.has_pairwise and bundle.has_robustness
+
+
+def test_load_bundle_cache_refreshes_when_files_change(tmp_path):
+    root = build_fixture_root(tmp_path, pairwise=False, robustness=False)
+    first = dd.load_bundle(root)
+    assert dd.load_bundle(root) is first
+    index = root / "evaluations.jsonl"
+    rows = dd.read_jsonl(index)[:3]
+    index.write_text("".join(json.dumps(row) + "\n" for row in rows), encoding="utf-8")
+    os.utime(index, (first_time := index.stat().st_mtime + 5, first_time))
+    assert len(dd.load_bundle(root).rows) == 3
+
+
+def test_leaderboard_matches_overall_summary(bundle):
+    board, source = dd.leaderboard(bundle)
+    assert source == "summaries/overall.json + rubric v3 run rubric00000000v3"
+    assert [row["workflow"] for row in board] == list(WORKFLOWS)
+    summary = {
+        (row["workflow"], row["metric"]): row for row in bundle.summaries["overall"]
+    }
+    for row in board:
+        for spec in dd.LEADERBOARD_METRICS:
+            if spec.key in dd.FINAL_METRICS:
+                continue  # computed from the rows and rubric records, not in summaries/
+            cell = row["cells"][spec.key]
+            expected = summary[(row["workflow"], spec.key)]
+            if expected["scored"]:
+                assert cell["value"] == pytest.approx(expected["mean"])
+            assert (cell["eligible"], cell["scored"]) == (expected["eligible"], expected["scored"])
+
+
+def test_leaderboard_shows_only_final_criteria():
+    keys = [spec.key for spec in dd.LEADERBOARD_METRICS]
+    for superseded in ("task_success", "requirement_coverage", "kw_after", "sim_after",
+                       "judge_overall_mean"):
+        assert superseded not in keys
+    assert keys[:2] == ["good_rate", "nli_pass_rate"]
+    assert set(dd.FINAL_METRICS) <= set(keys)
+    assert tuple(dd.RUBRIC_DIMENSION_LABELS) == dc.RUBRIC_DIMENSIONS
+    assert all(spec.tier in dd.METRIC_TIERS for spec in dd.LEADERBOARD_METRICS)
+
+
+def test_unscored_is_never_zero(bundle, plain_root):
+    board, _ = dd.leaderboard(bundle)
+    cells = {row["workflow"]: row["cells"] for row in board}
+    # W6's judge could not score one resume: 3 scored of 4 eligible, mean over the 3 only.
+    rubric = cells["w6_best_of_n"]["rubric_overall"]
+    assert (rubric["scored"], rubric["eligible"], rubric["unscored"]) == (3, 4, 1)
+    assert rubric["value"] == pytest.approx(4.25)
+    # W3's generation failure leaves its per-resume measures at 3 eligible ...
+    assert cells["w3_critic"]["claim_faithfulness"]["eligible"] == 3
+    assert cells["w3_critic"]["nli_pass_rate"]["eligible"] == 3
+    # ... but it is still an attempt that is not good.
+    good = cells["w3_critic"]["good_rate"]
+    assert (good["numerator"], good["scored"], good["eligible"]) == (1, 4, 4)
+    # Without a rubric v3 run the good-resume rate is unknown, not 0.
+    plain = {row["workflow"]: row["cells"] for row in dd.leaderboard(dd.load_bundle(plain_root))[0]}
+    for workflow in WORKFLOWS:
+        assert plain[workflow]["good_rate"]["value"] is None
+        assert plain[workflow]["good_rate"]["status"] == "unscored"
+        assert plain[workflow]["rubric_overall"]["value"] is None
+    assert plain["w2_baseline"]["good_rate"]["eligible"] == 4
+    assert plain["w4_evidence"]["nli_pass_rate"]["value"] == 1.0  # the truth gate still scores
+
+
+def test_final_summaries_count_good_resumes(bundle, full_root):
+    final = dd.final_summaries(bundle)
+    w4 = final["w4_evidence"]
+    # Every W4 resume passes NLI; the writing gate fails one (3.75) and passes 4.0 exactly.
+    assert w4["good_rate"]["verdicts"] == {
+        "good": 3, "nli_fail": 0, "rubric_fail": 1, "unscored": 0, "rejected": 0,
+    }
+    assert (w4["good_rate"]["numerator"], w4["good_rate"]["mean"]) == (3, 0.75)
+    assert (w4["nli_pass_rate"]["numerator"], w4["nli_pass_rate"]["scored"]) == (4, 4)
+    assert (w4["rubric_pass_rate"]["numerator"], w4["rubric_pass_rate"]["scored"]) == (3, 4)
+    assert w4["rubric_overall"]["mean"] == pytest.approx((4.5 + 3.75 + 4.75 + 4.0) / 4)
+    assert w4["rubric_clarity"]["mean"] == pytest.approx(3.5)
+    low, high = w4["good_rate"]["ci_95_low"], w4["good_rate"]["ci_95_high"]
+    assert low < 0.75 < high
+    # W3: one NLI failure, one good, one the judge left unscored, one failed generation.
+    assert final["w3_critic"]["good_rate"]["verdicts"] == {
+        "good": 1, "nli_fail": 1, "rubric_fail": 0, "unscored": 1, "rejected": 1,
+    }
+    # The Results and Results (charts) tabs count the same good resumes.
+    payload = dc.build_payload(full_root)
+    charts_good = {item["short"]: item["verdicts"] for item in payload["summary"]}
+    for workflow, metrics in final.items():
+        assert metrics["good_rate"]["verdicts"] == charts_good[dd.short_name(workflow)]
+    # Pair 2 alone: W3's only resume passes NLI but is unscored by the judge, so its rate is
+    # unknown; W6's only resume fails NLI, so its rate is decided (0 of 1) without a judge score.
+    filtered = dd.final_summaries(bundle, category="software_engineering", fit_level="strong")
+    assert filtered["w3_critic"]["good_rate"]["mean"] is None
+    assert filtered["w6_best_of_n"]["good_rate"]["mean"] == 0.0
+    assert filtered["w4_evidence"]["good_rate"]["numerator"] == 1
+    assert all(item["good_rate"]["eligible"] == 1 for item in filtered.values())
+
+
+def test_rubric_scores_follow_the_run_on_disk(tmp_path):
+    root = build_fixture_root(tmp_path, pairwise=False, robustness=False)
+    bundle = dd.load_bundle(root)
+    records, meta = dd.rubric_scores(bundle)
+    assert records == {} and meta["gates"] == dc.DEFAULT_GATES
+    assert dd.leaderboard(bundle)[0][0]["cells"]["good_rate"]["value"] is None
+    build_rubric_run(root, dd.read_jsonl(root / "evaluations.jsonl"), gates=(0.75, 4.0))
+    records, meta = dd.rubric_scores(bundle)
+    assert len(records) == len(WORKFLOWS) * len(PAIRS)
+    assert dd.final_gates(bundle) == {"nli": 0.75, "rubric": 4.0}
+    assert dd.rubric_scores(bundle)[0] is records  # cached while the run is unchanged
+    board, source = dd.leaderboard(bundle)
+    assert "rubric v3 run" in source and board[0]["cells"]["good_rate"]["value"] is not None
+
+
+def test_resume_verdict_uses_the_older_faithfulness_field():
+    gates = dict(dc.DEFAULT_GATES)
+    row = {"faithfulness": 0.9}
+    assert dd.resume_verdict(row, {"overall": 4.0}, gates) == "good"
+    assert dd.resume_verdict({"claim_faithfulness": 0.5, "faithfulness": 0.9}, {"overall": 5},
+                             gates) == "nli_fail"
+    assert dd.resume_verdict({"error": "X"}, None, gates) == "rejected"
+    rows = [{"workflow": "w", "pair_id": "p", "claim_faithfulness": 0.9},
+            {"workflow": "w", "pair_id": "q", "claim_faithfulness": 0.5}]
+    other = {("x", "p"): {"overall": 5}}  # a rubric run exists, but not for these resumes
+    counts = dd.good_resume_counts(rows, other, gates)
+    assert counts["verdicts"]["unscored"] == 1 and counts["verdicts"]["nli_fail"] == 1
+    assert not counts["good_scored"]  # the writing gate never decided anything here
+    assert not dd.good_resume_counts(rows[1:], {}, gates)["good_scored"]  # no rubric run
+    # A truth-gate failure needs no rubric score: 0 of 1 is decided.
+    assert dd.good_resume_counts(rows[1:], other, gates)["good_scored"]
+    judged = {**other, ("w", "p"): {"overall": 3.0}, ("w", "q"): {"overall": 5}}
+    counts = dd.good_resume_counts(rows, judged, gates)
+    assert counts["good_scored"] and counts["verdicts"]["rubric_fail"] == 1
+
+
+def test_filters_use_stratified_summaries_or_rebuild(bundle):
+    _, source = dd.leaderboard(bundle, category="software_engineering")
+    assert source.startswith("summaries/by_category.json + rubric v3 run")
+    _, source = dd.leaderboard(bundle, fit_level="strong")
+    assert source.startswith("summaries/by_fit_level.json + rubric v3 run")
+    board, source = dd.leaderboard(bundle, "business_technology", "strong")
+    assert source.startswith("evaluations.jsonl")
+    assert all(row["cells"]["good_rate"]["eligible"] == 1 for row in board)
+    assert all(row["cells"]["claim_faithfulness"]["eligible"] == 1 for row in board)
+    assert dd.filter_options(bundle) == (
+        ["business_technology", "software_engineering"], ["strong", "moderate", "weak"],
+    )
+
+
+def test_rebuilt_summaries_match_written_ones(tmp_path, bundle):
+    root = build_fixture_root(tmp_path, pairwise=False, robustness=False, summaries=False)
+    rebuilt, source = dd.leaderboard(dd.load_bundle(root))
+    written, _ = dd.leaderboard(bundle)
+    assert source == "evaluations.jsonl"
+    for left, right in zip(rebuilt, written):
+        for metric in ("claim_faithfulness", "unsupported_claim_rate", "fabrication_bait_violation"):
+            assert left["cells"][metric]["value"] == pytest.approx(right["cells"][metric]["value"])
+            assert left["cells"][metric]["scored"] == right["cells"][metric]["scored"]
+
+
+def test_tradeoff_points_skip_unscored(bundle):
+    board, _ = dd.leaderboard(bundle)
+    points = dd.tradeoff_points(board, "total_tokens", "claim_faithfulness")
+    assert {point["workflow"] for point in points} == set(WORKFLOWS)
+    assert len(dd.tradeoff_points(board, "claim_faithfulness", "rubric_overall")) == len(WORKFLOWS)
+
+
+def test_tradeoff_points_skip_workflows_without_rubric(plain_root):
+    board, _ = dd.leaderboard(dd.load_bundle(plain_root))
+    assert dd.tradeoff_points(board, "total_tokens", "rubric_overall") == []
+    assert dd.tradeoff_points(board, "total_tokens", "good_rate") == []
+
+
+def test_headline_findings(bundle):
+    board, _ = dd.leaderboard(bundle)
+    findings = {item["metric"]: item for item in dd.headline_findings(board)}
+    assert list(findings) == ["good_rate", "claim_faithfulness", "rubric_overall", "total_tokens"]
+    assert findings["good_rate"]["workflow"] == "w4_evidence"
+    assert findings["good_rate"]["value"] == 0.75 and findings["good_rate"]["baseline"] == 0.25
+    assert findings["claim_faithfulness"]["workflow"] == "w4_evidence"
+    assert findings["claim_faithfulness"]["baseline"] == pytest.approx(
+        next(r for r in board if r["workflow"] == "w2_baseline")["cells"]["claim_faithfulness"]["value"]
+    )
+    assert findings["total_tokens"]["workflow"] in {"w1_single_pass", "w5_fine_tuned"}
+    rubric = findings["rubric_overall"]  # every workflow but W1 averages 4.25
+    assert rubric["workflow"] == "w2_baseline"
+    assert rubric["ties"] == ["w3_critic", "w4_evidence", "w5_fine_tuned", "w6_best_of_n",
+                              "w7_plan_execute"]
+    empty = [{"workflow": "w1_single_pass",
+              "cells": {m: {"value": None} for m in dd.METRIC_SPECS}}]
+    assert all(item["workflow"] is None for item in dd.headline_findings(empty))
+
+
+def test_workflow_profiles(bundle):
+    profiles = dd.workflow_profiles(bundle)
+    w3 = profiles["w3_critic"]
+    assert w3["outputs"] == 4 and w3["generation_failures"] == 1
+    assert w3["llm_calls"] == pytest.approx(9.0)
+    assert (w3["good"], w3["attempts"], w3["good_scored"]) == (1, 4, True)
+    assert w3["verdicts"]["rejected"] == 1
+    assert (profiles["w4_evidence"]["good"], profiles["w4_evidence"]["attempts"]) == (3, 4)
+    assert profiles["w5_fine_tuned"]["models"] == ["agentic-resume-v4-1:q4_K_M"]
+    assert "task_success" not in w3
+
+
+def test_superseded_pairwise_helpers_are_gone():
+    for name in ("pairwise_table", "pairwise_outcome", "PAIRWISE_OUTCOME_LABELS",
+                 "robustness_family_panels", "robustness_delta_matrix", "DELTA_METRIC_LABELS"):
+        assert not hasattr(dd, name)
+
+
+def test_missing_stages_are_reported_not_invented(tmp_path):
+    root = build_fixture_root(tmp_path, pairwise=False, robustness=False)
+    bundle = dd.load_bundle(root)
+    assert not bundle.has_pairwise and not bundle.has_robustness
+    view = dd.pair_view(bundle, PAIRS[0][0])
+    assert view["has_rubric"] is False
+    for output in view["outputs"].values():
+        assert output["rubric_overall"] is None and output["rubric_pass"] is None
+        assert output["verdict"] in {"unscored", "nli_fail", "rejected"}
+
+
+def test_pair_choices_and_view(bundle):
+    choices = dd.pair_choices(bundle)
+    assert [value for _, value in choices] == sorted(pair[0] for pair in PAIRS)
+    assert "business technology · strong fit · 7 outputs" in choices[0][0]
+
+    view = dd.pair_view(bundle, PAIRS[3][0])
+    assert view["fit_level"] == "moderate" and view["original_resume"].startswith("# Ravi")
+    assert list(view["outputs"]) == list(WORKFLOWS)
+    assert view["gates"] == {"nli": 0.8, "rubric": 4.0} and view["has_rubric"] is True
+    w3 = view["outputs"]["w3_critic"]
+    assert w3["error"] and w3["resume_md"] == "" and w3["verdict"] == "rejected"
+    assert w3["claim_faithfulness"] is None and w3["nli_pass"] is None
+    assert w3["rubric_overall"] is None and set(w3["rubric_scores"].values()) == {None}
+    w4 = view["outputs"]["w4_evidence"]  # pair 3: rubric exactly at the 4.0 gate
+    assert w4["verdict"] == "good" and w4["nli_pass"] is True
+    assert w4["rubric_overall"] == 4.0 and w4["rubric_pass"] is True
+    assert w4["rubric_scores"] == dict.fromkeys(dd.RUBRIC_DIMENSION_LABELS, 4.0)
+    assert view["outputs"]["w1_single_pass"]["verdict"] == "nli_fail"
+    assert view["outputs"]["w1_single_pass"]["nli_pass"] is False
+    for output in view["outputs"].values():
+        assert not {"pairwise", "task_success", "requirement_coverage"} & set(output)
+    other = dd.pair_view(bundle, PAIRS[1][0])["outputs"]["w4_evidence"]
+    assert other["verdict"] == "rubric_fail" and other["rubric_pass"] is False
+    unscored = dd.pair_view(bundle, PAIRS[2][0])["outputs"]["w3_critic"]
+    assert unscored["verdict"] == "unscored" and unscored["rubric_status"] == "unscored"
+    assert dd.pair_view(bundle, "unknown") is None
+
+
+def test_top_resumes_pick_the_best_good_resume(bundle, tmp_path):
+    top = dd.top_resumes(bundle)
+    assert top["has_rubric"] is True
+    records, meta = dd.rubric_scores(bundle)
+    for item in top["items"]:
+        rows = [row for row in bundle.rows if row["workflow"] == item["workflow"]]
+        good = [row for row in rows
+                if dd.resume_verdict(row, records.get((row["workflow"], row["pair_id"])), meta["gates"]) == "good"]
+        assert item["good"] == len(good)
+        if not good:
+            assert item["best"] is None and item["reason"] == "no resume passed both gates"
+            continue
+        best = item["best"]["output"]
+        assert best["verdict"] == "good"
+        top_score = max(dd._rubric_value(records[(row["workflow"], row["pair_id"])]) for row in good)
+        assert best["rubric_overall"] == top_score
+    plain = dd.top_resumes(dd.load_bundle(build_fixture_root(tmp_path, pairwise=False, robustness=False)))
+    assert plain["has_rubric"] is False
+    assert all(item["best"] is None and item["reason"] == "no rubric v3 run found" for item in plain["items"])

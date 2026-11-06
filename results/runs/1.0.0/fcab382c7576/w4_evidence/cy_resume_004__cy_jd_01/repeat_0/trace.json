@@ -1,0 +1,261 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 368,
+    "output_tokens": 213,
+    "thinking_chars": 0,
+    "seconds": 2.1,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 484,
+    "output_tokens": 416,
+    "thinking_chars": 0,
+    "seconds": 6.75,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793788443.7516987,
+    "end": 1793788443.752154,
+    "seconds": 0.0,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1675,
+    "output_tokens": 868,
+    "thinking_chars": 0,
+    "seconds": 8.3,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793788443.7523813,
+    "end": 1793788452.0561929,
+    "seconds": 8.304,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788452.0566406,
+    "end": 1793788452.071098,
+    "seconds": 0.014,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1203,
+    "output_tokens": 439,
+    "thinking_chars": 0,
+    "seconds": 4.27,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 17,
+    "cited_ok": 17,
+    "rule_ok": 16,
+    "llm_checked": 16,
+    "llm_cached": 0,
+    "supported": 15,
+    "rejected_by_code": {
+      "new_skill": 1,
+      "not_entailed": 1
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788452.0714056,
+    "end": 1793788456.3412232,
+    "seconds": 4.27,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2939,
+    "output_tokens": 1300,
+    "thinking_chars": 0,
+    "seconds": 12.49,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793788456.3416317,
+    "end": 1793788468.8384717,
+    "seconds": 12.497,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788468.838894,
+    "end": 1793788468.85317,
+    "seconds": 0.014,
+    "step": 12
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 581,
+    "output_tokens": 392,
+    "thinking_chars": 0,
+    "seconds": 3.91,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 13
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 21,
+    "cited_ok": 21,
+    "rule_ok": 21,
+    "llm_checked": 7,
+    "llm_cached": 14,
+    "supported": 21,
+    "rejected_by_code": {},
+    "step": 14
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788468.8534055,
+    "end": 1793788472.7596393,
+    "seconds": 3.906,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Daniel Ng",
+        "contact": {
+          "email": "daniel.ng@example.test",
+          "phone": "+65 6000 0044",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in SIEM, incident triage and log analysis. Demonstrated capability to monitor security alerts using SIEM and improve team turnaround by 41%. Applied log analysis to triage suspicious activity and documented decisions for technical and business reviewers. Collaborated with four colleagues to analyse endpoint and network logs and presented progress during reviews. Supported operational work using network security and documented step-by-step procedures. Investigated service requests, recorded findings and escalated issues with clear supporting evidence. Built a fictional demonstration project using SIEM, incident triage and log analysis. Tested the project with representative scenarios and recorded limitations and next steps. Presented the design and outcomes to a five-person peer review group. Seeking to deepen capability as a SOC Analyst.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jan 2025",
+            "end": "Present",
+            "bullets": [
+              "Used SIEM and incident triage to monitor security alerts, improving team turnaround by 41%.",
+              "Applied log analysis to triage suspicious activity and documented decisions for technical and business reviewers.",
+              "Managed approximately 52 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to analyse endpoint and network logs and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "May 2024",
+            "end": "Dec 2024",
+            "bullets": [
+              "Supported recurring operational work using network security and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 36%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "SOC Analyst Practice Project",
+            "description": "Built a fictional demonstration project using SIEM, incident triage and log analysis.",
+            "bullets": [
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "SIEM",
+          "incident triage",
+          "log analysis",
+          "network security",
+          "Splunk",
+          "Excel",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 17
+  },
+  {
+    "type": "w4_final",
+    "kept": 21,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.8823529411764706,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 18
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788472.7600625,
+    "end": 1793788472.7615993,
+    "seconds": 0.002,
+    "step": 19
+  }
+]

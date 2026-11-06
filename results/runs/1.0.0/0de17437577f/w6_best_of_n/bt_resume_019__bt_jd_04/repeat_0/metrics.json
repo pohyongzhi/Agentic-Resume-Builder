@@ -1,0 +1,188 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7307,
+  "output_tokens": 1314,
+  "thinking_chars": 0,
+  "seconds": 14.09,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "bt_resume_019__bt_jd_04",
+  "resume_id": "bt_resume_019",
+  "jd_id": "bt_jd_04",
+  "category": "business_technology",
+  "role_family": "technology_consultant",
+  "seniority": "senior",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.1,
+  "generation_seconds": 14.1,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_019__bt_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_019__bt_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/bt_resume_019__bt_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "impact_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 3.0,
+        "jd_alignment": 2.0,
+        "skills_coverage": 3.0,
+        "writing_quality": 4.0,
+        "overall": 3.0,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "176 words; target is roughly 350-500"
+          ],
+          "words": 176
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 1,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Presented progress during fortnightly reviews to technical and business reviewers"
+            ],
+            "justification": "Removes specific metrics (23%, 47 items) and adds unsupported claims about presenting to 'technical and business reviewers' which were not in the original.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Removes specific metrics (23%, 47 items) and adds unsupported claims about presenting to 'technical and business reviewers' which were not in the original."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes skills but omits critical JD keywords like 'transformation' and 'roadmaps', reducing relevance.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.74,
+          "input_tokens": 1065,
+          "output_tokens": 268
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 2.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.88,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "185 words; target is roughly 350-500"
+          ],
+          "words": 185
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original data including specific metrics but lacks the JD-aligned summary phrasing.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Retains original impact metrics but lacks specific JD phrasing; slightly less tailored than Candidate 1.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.92,
+          "input_tokens": 1066,
+          "output_tokens": 278
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "189 words; target is roughly 350-500"
+          ],
+          "words": 189
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 1,
+            "jd_alignment": 3,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [
+              "Managing senior stakeholders",
+              "Assess operating models and capabilities"
+            ],
+            "justification": "Adds unsupported claims about 'managing stakeholders' and 'assessing capabilities' which were not explicitly stated in the original resume bullets.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Adds unsupported claims about 'managing stakeholders' and 'assessing capabilities' which were not explicitly stated in the original resume bullets."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD keywords (transformation, roadmap, stakeholders) while maintaining factual accuracy.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.98,
+          "input_tokens": 1078,
+          "output_tokens": 285
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

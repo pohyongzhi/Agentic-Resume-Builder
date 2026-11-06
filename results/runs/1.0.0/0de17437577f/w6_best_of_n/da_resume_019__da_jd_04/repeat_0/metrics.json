@@ -1,0 +1,183 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7410,
+  "output_tokens": 1281,
+  "thinking_chars": 0,
+  "seconds": 14.14,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "da_resume_019__da_jd_04",
+  "resume_id": "da_resume_019",
+  "jd_id": "da_jd_04",
+  "category": "data_ai",
+  "role_family": "llm_solutions_engineer",
+  "seniority": "senior",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 14.1,
+  "generation_seconds": 14.127,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_019__da_jd_04/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_019__da_jd_04/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/da_resume_019__da_jd_04/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "impact_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 4.5,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.25,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "195 words; target is roughly 350-500"
+          ],
+          "words": 195
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Complete resume with all original facts preserved; minor omission of 'Git' in skills.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Faithfully includes all original bullets but omits the '77 work items' metric found in the original resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.1,
+          "input_tokens": 1082,
+          "output_tokens": 294
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 4.0,
+        "skills_coverage": 4.0,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "194 words; target is roughly 350-500"
+          ],
+          "words": 194
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Complete resume with all original facts preserved; minor omission of 'Git' in skills.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully includes all original bullets including the '77 work items' metric; strong alignment with JD responsibilities.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.07,
+          "input_tokens": 1083,
+          "output_tokens": 293
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.5,
+        "jd_alignment": 2.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.5,
+        "overall": 3.5,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "164 words; target is roughly 350-500"
+          ],
+          "words": 164
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 3,
+            "jd_alignment": 2,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": false,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Incomplete resume: missing 'Projects', 'Education' details (specifics), and key experience bullet points.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Removed the 'Managed 77 work items' bullet point which is not in the original resume; otherwise faithful.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Removed the 'Managed 77 work items' bullet point which is not in the original resume;"
+          }
+        ],
+        "generation": {
+          "seconds": 2.82,
+          "input_tokens": 1095,
+          "output_tokens": 253
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

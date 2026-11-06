@@ -1,0 +1,359 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1068,
+    "output_tokens": 282,
+    "thinking_chars": 0,
+    "seconds": 2.9,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "skills_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "183 words; target is roughly 350-500"
+      ],
+      "words": 183
+    },
+    "generation": {
+      "seconds": 2.9,
+      "input_tokens": 1068,
+      "output_tokens": 282
+    },
+    "step": 2
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1069,
+    "output_tokens": 291,
+    "thinking_chars": 0,
+    "seconds": 3.62,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 3
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "impact_first",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "191 words; target is roughly 350-500"
+      ],
+      "words": 191
+    },
+    "generation": {
+      "seconds": 3.62,
+      "input_tokens": 1069,
+      "output_tokens": 291
+    },
+    "step": 4
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1081,
+    "output_tokens": 279,
+    "thinking_chars": 0,
+    "seconds": 2.88,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 5
+  },
+  {
+    "type": "workflow",
+    "event": "w6_candidate_generated",
+    "strategy": "jd_wording_alignment",
+    "validation": {
+      "valid": true,
+      "errors": [],
+      "warnings": [
+        "179 words; target is roughly 350-500"
+      ],
+      "words": 179
+    },
+    "generation": {
+      "seconds": 2.88,
+      "input_tokens": 1081,
+      "output_tokens": 279
+    },
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2073,
+    "output_tokens": 256,
+    "thinking_chars": 0,
+    "seconds": 2.92,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "forward",
+    "retried_strategies": [],
+    "scores": {
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 3,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Prioritizes core technical skills but omits JD-aligned responsibilities like 'incident response' and 'security automation' in the experience section.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 2,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Mirrors the original resume almost exactly; lacks specific JD-aligned verbs and omits key responsibilities like incident response.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4,
+        "jd_alignment": 5,
+        "skills_coverage": 4,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": false,
+        "unsupported_claims": [
+          "Automated vulnerability and compliance checks using Python"
+        ],
+        "justification": "Strong alignment with JD language (e.g., 'risks', 'trade-offs') but invents a specific tool ('Python') for an automation task not explicitly linked to Python in the original.",
+        "grounding_concern_in_justification": true,
+        "grounding_concern_evidence": "Strong alignment with JD language (e.g., 'risks', 'trade-offs') but invents a specific tool ('Python') for an automation task not explicitly linked to Python in the original."
+      }
+    },
+    "step": 8
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2073,
+    "output_tokens": 243,
+    "thinking_chars": 0,
+    "seconds": 2.66,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 9
+  },
+  {
+    "type": "workflow",
+    "event": "w6_judge_pass",
+    "order": "reverse",
+    "retried_strategies": [],
+    "scores": {
+      "jd_wording_alignment": {
+        "faithfulness": 5,
+        "jd_alignment": 5,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Strong alignment with JD responsibilities (preventive controls, automation, stakeholder communication) and uses specific numbers from the resume.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "impact_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 5,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Faithfully preserves all original metrics and claims; lacks explicit mention of 'risks' and 'trade-offs' from JD but covers them implicitly.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      },
+      "skills_first": {
+        "faithfulness": 5,
+        "jd_alignment": 4,
+        "skills_coverage": 5,
+        "writing_quality": 4,
+        "judge_valid": true,
+        "valid": true,
+        "unsupported_claims": [],
+        "justification": "Prioritizes skills in summary; slightly less detailed on JD-specific responsibilities like 'risks' and 'trade-offs' compared to Candidate 1.",
+        "grounding_concern_in_justification": false,
+        "grounding_concern_evidence": ""
+      }
+    },
+    "step": 10
+  },
+  {
+    "type": "workflow",
+    "event": "w6_selection",
+    "selected_strategy": "skills_first",
+    "finished": true,
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 4.5,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "183 words; target is roughly 350-500"
+          ],
+          "words": 183
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes core technical skills but omits JD-aligned responsibilities like 'incident response' and 'security automation' in the experience section.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Prioritizes skills in summary; slightly less detailed on JD-specific responsibilities like 'risks' and 'trade-offs' compared to Candidate 1.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.9,
+          "input_tokens": 1068,
+          "output_tokens": 282
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.38,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "191 words; target is roughly 350-500"
+          ],
+          "words": 191
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 2,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Mirrors the original resume almost exactly; lacks specific JD-aligned verbs and omits key responsibilities like incident response.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original metrics and claims; lacks explicit mention of 'risks' and 'trade-offs' from JD but covers them implicitly.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.62,
+          "input_tokens": 1069,
+          "output_tokens": 291
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 4.5,
+        "jd_alignment": 5.0,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "179 words; target is roughly 350-500"
+          ],
+          "words": 179
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 4,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Automated vulnerability and compliance checks using Python"
+            ],
+            "justification": "Strong alignment with JD language (e.g., 'risks', 'trade-offs') but invents a specific tool ('Python') for an automation task not explicitly linked to Python in the original.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Strong alignment with JD language (e.g., 'risks', 'trade-offs') but invents a specific tool ('Python') for an automation task not explicitly linked to Python in the original."
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 5,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD responsibilities (preventive controls, automation, stakeholder communication) and uses specific numbers from the resume.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 2.88,
+          "input_tokens": 1081,
+          "output_tokens": 279
+        }
+      }
+    },
+    "reason": null,
+    "step": 11
+  }
+]

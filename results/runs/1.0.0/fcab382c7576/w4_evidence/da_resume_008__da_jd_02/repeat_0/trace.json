@@ -1,0 +1,198 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 367,
+    "output_tokens": 215,
+    "thinking_chars": 0,
+    "seconds": 2.53,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 472,
+    "output_tokens": 607,
+    "thinking_chars": 0,
+    "seconds": 8.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793788090.3328295,
+    "end": 1793788090.3333576,
+    "seconds": 0.001,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1835,
+    "output_tokens": 761,
+    "thinking_chars": 0,
+    "seconds": 7.41,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793788090.333623,
+    "end": 1793788097.7473583,
+    "seconds": 7.414,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788097.7478044,
+    "end": 1793788097.7558753,
+    "seconds": 0.008,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 929,
+    "output_tokens": 229,
+    "thinking_chars": 0,
+    "seconds": 2.38,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 12,
+    "cited_ok": 12,
+    "rule_ok": 12,
+    "llm_checked": 12,
+    "llm_cached": 0,
+    "supported": 12,
+    "rejected_by_code": {},
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788097.756139,
+    "end": 1793788100.1350968,
+    "seconds": 2.379,
+    "step": 9
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Hiro Lim",
+        "contact": {
+          "email": "hiro.lim@example.test",
+          "phone": "+65 6000 0028",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in Python, SQL and ETL, seeking to deepen capability as a Data Engineer.",
+        "experience": [
+          {
+            "employer": "Example Cedar Innovations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jul 2023",
+            "end": "Present",
+            "bullets": [
+              "Used Python and SQL to build reliable batch data pipelines, improving team turnaround by 22%.",
+              "Applied ETL to model analytics-ready datasets and documented decisions for technical and business reviewers.",
+              "Managed approximately 24 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to monitor data quality and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jan 2021",
+            "end": "Jun 2023",
+            "bullets": [
+              "Supported recurring operational work using data pipelines and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 17%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example School of Computing (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": [
+              "Coursework included software engineering, databases, cybersecurity and applied analytics."
+            ]
+          }
+        ],
+        "projects": [
+          {
+            "name": "Data Engineer Practice Project",
+            "description": "",
+            "bullets": [
+              "Built a fictional demonstration project using Python, SQL and ETL.",
+              "Tested the project with representative scenarios and recorded limitations and next steps.",
+              "Presented the design and outcomes to a five-person peer review group."
+            ]
+          }
+        ],
+        "skills": [
+          "Python",
+          "SQL",
+          "ETL",
+          "data pipelines",
+          "Spark",
+          "Excel",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 10
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 11
+  },
+  {
+    "type": "w4_final",
+    "kept": 12,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 1.0,
+    "rounds_used": 0,
+    "skills_dropped": 0,
+    "step": 12
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788100.135505,
+    "end": 1793788100.1366622,
+    "seconds": 0.001,
+    "step": 13
+  }
+]

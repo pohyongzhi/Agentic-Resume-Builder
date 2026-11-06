@@ -1,0 +1,185 @@
+{
+  "llm_calls": 5,
+  "input_tokens": 7761,
+  "output_tokens": 1534,
+  "thinking_chars": 0,
+  "seconds": 16.2,
+  "tool_calls": 0,
+  "tool_calls_ok": 0,
+  "tool_calls_repeated": 0,
+  "hit_budget": false,
+  "finished": true,
+  "evaluation_skipped": true,
+  "error": null,
+  "workflow": "w6_best_of_n",
+  "pair_id": "cy_resume_008__cy_jd_02",
+  "resume_id": "cy_resume_008",
+  "jd_id": "cy_jd_02",
+  "category": "cybersecurity",
+  "role_family": "grc_analyst",
+  "seniority": "mid",
+  "fit_level": "moderate",
+  "split": "test",
+  "repeat": 0,
+  "model": "qwen3.5:4b-q4_K_M",
+  "config_hash": "0de17437577f",
+  "dataset_version": "1.0.0",
+  "dataset_hash": "3bb1861e2944d4b4e792b78d475572a70ef762c03ac03fd3cca8acc9141a6f81",
+  "wall_seconds": 16.2,
+  "generation_seconds": 16.207,
+  "evaluation_seconds": 0.0,
+  "resume_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_008__cy_jd_02/repeat_0/resume.md",
+  "metrics_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_008__cy_jd_02/repeat_0/metrics.json",
+  "trace_path": "results/runs/1.0.0/0de17437577f/w6_best_of_n/cy_resume_008__cy_jd_02/repeat_0/trace.json",
+  "native_output_path": null,
+  "workflow_details": {
+    "candidate_count": 3,
+    "selected_strategy": "skills_first",
+    "candidate_scores": {
+      "skills_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "192 words; target is roughly 350-500"
+          ],
+          "words": 192
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithfully preserves all original data points including specific numbers (38%, 104 items, 33%) and dates without adding unsupported claims.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text. However, it misses the critical JD keyword 'remediation actions' in the first bullet point of the primary role, which is a core responsibility.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.04,
+          "input_tokens": 1101,
+          "output_tokens": 305
+        }
+      },
+      "impact_first": {
+        "faithfulness": 5.0,
+        "jd_alignment": 3.5,
+        "skills_coverage": 4.5,
+        "writing_quality": 5.0,
+        "overall": 4.5,
+        "valid": true,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "222 words; target is roughly 350-500"
+          ],
+          "words": 222
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 5,
+            "jd_alignment": 4,
+            "skills_coverage": 5,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Strong faithfulness but reorders bullet points to prioritize metrics; maintains all original facts and numbers accurately.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          },
+          {
+            "faithfulness": 5,
+            "jd_alignment": 3,
+            "skills_coverage": 4,
+            "writing_quality": 5,
+            "judge_valid": true,
+            "valid": true,
+            "unsupported_claims": [],
+            "justification": "Faithful to original text but lacks the specific 'remediation actions' phrasing found in the JD. The summary omits the candidate's goal of deepening capability as a GRC Analyst.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.37,
+          "input_tokens": 1102,
+          "output_tokens": 340
+        }
+      },
+      "jd_wording_alignment": {
+        "faithfulness": 3.0,
+        "jd_alignment": 4.5,
+        "skills_coverage": 3.5,
+        "writing_quality": 4.0,
+        "overall": 3.75,
+        "valid": false,
+        "deterministic_validation": {
+          "valid": true,
+          "errors": [],
+          "warnings": [
+            "207 words; target is roughly 350-500"
+          ],
+          "words": 207
+        },
+        "judge_passes": [
+          {
+            "faithfulness": 2,
+            "jd_alignment": 5,
+            "skills_coverage": 4,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [
+              "Performed technology risk assessments using risk assessment and ISO 901 standards."
+            ],
+            "justification": "Major faithfulness failure: changes 'ISO 27001' to 'ISO 901 standards' (unsupported claim) and omits the specific metric of 38% improvement.",
+            "grounding_concern_in_justification": true,
+            "grounding_concern_evidence": "Major faithfulness failure: changes 'ISO 27001' to 'ISO 901 standards' (unsupported claim) and omits the specific metric of 38% improvement."
+          },
+          {
+            "faithfulness": 4,
+            "jd_alignment": 4,
+            "skills_coverage": 3,
+            "writing_quality": 4,
+            "judge_valid": true,
+            "valid": false,
+            "unsupported_claims": [],
+            "justification": "Strong alignment with JD terminology (remediation actions, control testing implied via quality checks). However, 'ISO 2701' is a typo for 'ISO 27001'. Missing explicit mention of 'cloud governance' or 'GRC tooling' from preferred quals.",
+            "grounding_concern_in_justification": false,
+            "grounding_concern_evidence": ""
+          }
+        ],
+        "generation": {
+          "seconds": 3.39,
+          "input_tokens": 1114,
+          "output_tokens": 323
+        }
+      }
+    },
+    "selection_reason": null
+  }
+}

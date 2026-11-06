@@ -1,0 +1,238 @@
+[
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 384,
+    "output_tokens": 234,
+    "thinking_chars": 0,
+    "seconds": 2.42,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 1
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 500,
+    "output_tokens": 426,
+    "thinking_chars": 0,
+    "seconds": 6.53,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 2
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "split_spans",
+    "start": 1793788910.8881056,
+    "end": 1793788910.8886786,
+    "seconds": 0.001,
+    "step": 3
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1722,
+    "output_tokens": 895,
+    "thinking_chars": 0,
+    "seconds": 8.35,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 4
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "draft",
+    "start": 1793788910.888945,
+    "end": 1793788919.2394967,
+    "seconds": 8.351,
+    "step": 5
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788919.2399356,
+    "end": 1793788919.2518628,
+    "seconds": 0.012,
+    "step": 6
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 1231,
+    "output_tokens": 801,
+    "thinking_chars": 0,
+    "seconds": 7.67,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 7
+  },
+  {
+    "type": "w4_round",
+    "round": 0,
+    "claims": 17,
+    "cited_ok": 17,
+    "rule_ok": 16,
+    "llm_checked": 16,
+    "llm_cached": 0,
+    "supported": 16,
+    "rejected_by_code": {
+      "new_skill": 1
+    },
+    "step": 8
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788919.2521243,
+    "end": 1793788926.9212227,
+    "seconds": 7.669,
+    "step": 9
+  },
+  {
+    "type": "llm",
+    "model": "qwen3.5:4b-q4_K_M",
+    "input_tokens": 2948,
+    "output_tokens": 722,
+    "thinking_chars": 0,
+    "seconds": 7.11,
+    "asked_tools": [],
+    "done_reason": "stop",
+    "step": 10
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "revise",
+    "start": 1793788926.9218051,
+    "end": 1793788934.032568,
+    "seconds": 7.111,
+    "step": 11
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "check",
+    "start": 1793788934.033,
+    "end": 1793788934.0388513,
+    "seconds": 0.006,
+    "step": 12
+  },
+  {
+    "type": "w4_round",
+    "round": 1,
+    "claims": 8,
+    "cited_ok": 8,
+    "rule_ok": 8,
+    "llm_checked": 0,
+    "llm_cached": 8,
+    "supported": 8,
+    "rejected_by_code": {},
+    "step": 13
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "llm_verify",
+    "start": 1793788934.0391603,
+    "end": 1793788934.0393379,
+    "seconds": 0.0,
+    "step": 14
+  },
+  {
+    "type": "tool",
+    "name": "validate_resume",
+    "args": {
+      "resume": {
+        "name": "Samuel Ng",
+        "contact": {
+          "email": "samuel.ng@example.test",
+          "phone": "+65 6000 0059",
+          "location": "Singapore",
+          "links": []
+        },
+        "summary": "Technology associate with transferable experience in threat intelligence, MITRE ATT&CK and malware analysis.",
+        "experience": [
+          {
+            "employer": "Example Delta Operations (fictional)",
+            "title": "Technology Associate",
+            "start": "Jan 2021",
+            "end": "Present",
+            "bullets": [
+              "Used threat intelligence and MITRE ATT&CK to lead strategic and operational threat analysis, improving team turnaround by 22%.",
+              "Applied malware analysis to prioritise intelligence requirements and documented decisions for technical and business reviewers.",
+              "Managed approximately 67 work items per month while tracking quality checks and follow-up actions.",
+              "Collaborated with four colleagues to map adversary behaviour to MITRE ATT&CK and presented progress during fortnightly reviews."
+            ]
+          },
+          {
+            "employer": "Example Ember Technologies (fictional)",
+            "title": "Technical Assistant",
+            "start": "Jun 2017",
+            "end": "Dec 2020",
+            "bullets": [
+              "Supported recurring operational work using incident response and documented step-by-step procedures.",
+              "Investigated service requests, recorded findings and escalated issues with clear supporting evidence.",
+              "Created a simple reporting template that reduced manual preparation time by 17%."
+            ]
+          }
+        ],
+        "education": [
+          {
+            "institution": "Example Polytechnic (fictional)",
+            "degree": "Bachelor of Science in Information Systems",
+            "start": "Aug 2020",
+            "end": "May 2024",
+            "details": []
+          }
+        ],
+        "projects": [],
+        "skills": [
+          "threat intelligence",
+          "MITRE ATT&CK",
+          "malware analysis",
+          "incident response",
+          "Python",
+          "Excel",
+          "documentation",
+          "Git"
+        ],
+        "certifications": []
+      }
+    },
+    "ok": true,
+    "seconds": 0.0,
+    "step": 15
+  },
+  {
+    "type": "tool",
+    "name": "render_resume",
+    "args": {},
+    "ok": true,
+    "seconds": 0.0,
+    "step": 16
+  },
+  {
+    "type": "w4_final",
+    "kept": 8,
+    "dropped": 0,
+    "first_draft_citation_coverage": 1.0,
+    "first_draft_supported_rate": 0.9411764705882353,
+    "rounds_used": 1,
+    "skills_dropped": 0,
+    "step": 17
+  },
+  {
+    "type": "node",
+    "workflow": "w4_evidence",
+    "node": "finalise",
+    "start": 1793788934.0396109,
+    "end": 1793788934.0406234,
+    "seconds": 0.001,
+    "step": 18
+  }
+]
